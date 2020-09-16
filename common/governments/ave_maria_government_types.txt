@@ -1,0 +1,130 @@
+﻿roman_administration_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = yes
+
+	fallback = 1
+	
+	can_get_government = {
+		OR = {
+			top_liege = { has_title = title:e_byzantium }
+			top_liege = { has_title = title:e_roman_empire }
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire
+		}
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding }
+	required_county_holdings = { }
+
+	primary_cultures = {
+		armenian
+		greek
+		alan
+		georgian
+		assyrian
+	}
+	
+	vassal_contract = {
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+roman_administration_military_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = yes
+
+	fallback = 1
+	
+	can_get_government = {
+		OR = {
+			has_title = title:d_megas_domestikos
+		}
+		OR = {
+			top_liege = { has_title = title:e_byzantium }
+			top_liege = { has_title = title:e_roman_empire }
+		}
+		NOR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire
+		}
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding }
+	required_county_holdings = { }
+
+	primary_cultures = {
+		armenian
+		greek
+		alan
+		georgian
+		assyrian
+	}
+	
+	vassal_contract = {
+		ave_maria_roman_administration_tagma_salary
+		title_revocation_rights
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+roman_administration_civilian_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = yes
+
+	# fallback = 1
+	
+	can_get_government = {
+		OR = {
+			top_liege = { has_title = title:e_byzantium }
+			top_liege = { has_title = title:e_roman_empire }
+		}
+		NOT = {
+			has_title = title:e_byzantium
+			# has_title = title:e_roman_empire
+		}
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding }
+	required_county_holdings = { }
+
+	primary_cultures = {
+		armenian
+		greek
+		alan
+		georgian
+		assyrian
+	}
+	
+	vassal_contract = {
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}

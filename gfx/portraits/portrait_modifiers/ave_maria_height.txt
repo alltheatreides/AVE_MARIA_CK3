@@ -1,0 +1,75 @@
+height= {
+	usage = game
+
+	height_above_average = {
+		ignore_outfit_tags = yes
+		dna_modifiers = {
+			morph = {
+				mode = modify_multiply
+				gene = gene_height
+				value = 1.15
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 100
+				has_trait = height_above_average
+			}
+		}
+	}
+	
+	height_tall = {
+		ignore_outfit_tags = yes
+		dna_modifiers = {
+			morph = {
+				mode = modify_multiply
+				gene = gene_height
+				value = 1.3
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 100
+				has_trait = height_tall
+			}
+		}
+	}
+	
+	height_below_average = {
+		ignore_outfit_tags = yes
+		dna_modifiers = {
+			morph = {
+				mode = modify_multiply
+				gene = gene_height
+				value = 0.85
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 100
+				has_trait = height_below_average
+			}
+		}
+	}
+	
+	height_small = {
+		ignore_outfit_tags = yes
+		dna_modifiers = {
+			morph = {
+				mode = modify_multiply
+				gene = gene_height
+				value = 0.7
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 100
+				has_trait = height_small
+			}
+		}
+	}
+}

@@ -1,0 +1,87 @@
+﻿# Called from code after history generation if in the tutorial
+# Empty scope
+on_game_start_with_tutorial = {
+	effect = {
+		eliminate_&_replace_faith_effect = {
+			TARGET_FAITH = faith:insular_celtic
+			REPLACEMENT_FAITH =  faith:catholic
+		}
+		title:d_munster.holder = {
+			add_gold = 1000
+		}
+		title:b_limerick.title_province = {
+			add_building = curtain_walls_01
+			add_building = military_camps_01
+			add_building = outposts_01
+			if = {
+				limit = {
+					NOT = {
+						has_building = curtain_walls_01
+					}
+				}
+				add_building_slot = 1
+				add_building = curtain_walls_01
+			}
+		}
+		title:b_tralee.title_province = {
+			add_building = common_tradeport_01
+			add_building = peat_quarries_01
+			add_building = curtain_walls_01
+		}
+		title:d_normandy.holder = {
+			every_close_or_extended_family_member = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_landed = no
+					can_marry_trigger = yes
+				}
+				game_rule_create_spouse_and_children = { CHARACTER = this }
+			}
+		}
+		title:k_norway.holder = {
+			every_close_or_extended_family_member = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_landed = no
+					can_marry_trigger = yes
+				}
+				game_rule_create_spouse_and_children =  { CHARACTER = this }
+			}
+		}
+		title:k_denmark.holder = {
+			every_close_or_extended_family_member = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_landed = no
+					can_marry_trigger = yes
+				}
+				game_rule_create_spouse_and_children =  { CHARACTER = this }
+			}
+		}
+		title:k_england.holder = {
+			every_close_or_extended_family_member = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_landed = no
+					can_marry_trigger = yes
+				}
+				game_rule_create_spouse_and_children =  { CHARACTER = this }
+			}
+		}
+		title:k_navarra.holder = {
+			every_close_or_extended_family_member = {
+				limit = {
+					is_married = no
+					is_betrothed = no
+					is_landed = no
+					can_marry_trigger = yes
+				}
+				game_rule_create_spouse_and_children =  { CHARACTER = this }
+			}
+		}
+	}
+}

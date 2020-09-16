@@ -1,0 +1,400 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_events
+
+# ave_maria_roman_administration_events
+
+
+# TABLE OF CONTENT:
+
+##### 1) DYNAMIC TITLES CREATION
+##### Creates the various titular titles required for the system to work
+
+##### 2) ARMY CREATION
+##### Creates the various armies of the tagma and strategos themes
+
+##### 3) TERMS OF OFFICE EVENTS
+##### Events to track how many years of office on a particular office a character has spent and managing the succession
+######## When inheriting a title, checks that it is a term of office title and give a variable of term count to the holder and add him to the scripted list of title holders
+
+##### 4) IMPERIAL CORONATION
+##### Events regarding the Imperial Coronation
+
+#############################################
+# DYNAMIC TITLE CREATION					#
+#############################################
+
+ave_maria_roman_administration_events.0001 = {
+	# type = character_event
+	hidden = yes
+	
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}		
+	}
+	
+	immediate = {
+		every_held_title = {
+			limit = {
+				tier = tier_county
+				# AND = {
+					# NOT = {
+						# title:c_byzantion
+					# }
+					# NOT = {
+						# title:c_roman_family_1
+					# }
+				# }
+				NOR = {
+					this = title:c_byzantion
+					this = title:c_roman_family_1
+					title:c_byzantion
+					title:c_roman_family_1
+				}
+			}
+			save_scope_as = the_county_to_give
+			prev = {
+				create_character = {
+					location = root.location
+					gender_female_chance = 0
+					culture = root.culture
+					faith = root.faith
+					save_scope_as = civilian_theme_holder
+				}
+				scope:civilian_theme_holder = {
+					get_title = scope:the_county_to_give
+				}
+			}
+		}
+	}
+}
+
+
+#############################################
+# ARMY CREATION								#
+#############################################
+
+## Create the tagma and the theme armies 
+
+ave_maria_roman_administration_events.0002 = {
+	type = character_event 				
+	hidden = yes
+
+	## Event only happen for some people at the start of the game
+	trigger = {
+		OR = {
+			# has_title = title:d_megas_domestikos
+		}
+		any_held_title = { 
+			has_title_law = ave_maria_roman_administration_tagma_succession_law 
+		}
+	}
+
+	## Scope to all the tagma and strategos commanders 
+	## Create the Man at Arms Regiments
+	immediate = {
+		# spawn_army = {
+		# 	name = "Scholai Tagma"
+		# 	men_at_arms = {
+		# 		type = cataphract
+		# 		stacks = 10
+		# 	}
+		# 	location = root.capital_province
+		# 	origin = root.capital_province
+		# }
+		spawn_army = {
+			name = "Scholai Tagma"
+			# levies = 0
+			men_at_arms = {
+				type = cataphract
+				stacks = 100
+			}
+			men_at_arms = {
+				type = house_guard
+				stacks = 100
+			}
+			men_at_arms = {
+				type = bowmen
+				stacks = 50
+			}
+			location = root.capital_province
+			origin = root.capital_province
+		}
+	}
+}
+
+ave_maria_roman_administration_events.00021 = {
+	type = character_event 				
+	hidden = yes
+
+	## Event only happen for the Emperor at the start of the game
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}	
+	}
+
+	## Create the Man at Arms Regiments
+	immediate = {
+		spawn_army = {
+			name = "Varangian Guard"
+			men_at_arms = {
+				type = house_guard
+				stacks = 100
+			}
+			men_at_arms = {
+				type = bowmen
+				stacks = 50
+			}
+			location = root.capital_province
+			origin = root.capital_province
+		}
+	}
+}
+
+
+
+#############################################
+# IMPERIAL CORONATION						#
+#############################################
+
+## First event triggered by the decision to be crowned
+ave_maria_roman_administration_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0003.title
+	theme = crown	
+	event_background = throneroom
+	left_portrait = root
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { is_at_war = no }
+				desc = ave_maria_roman_administration_events.0003.desc_no_war
+				## I inherited the mantle of the empire, but it is now time to perform the public ceremony of the coronation in Constantinople so the whole people can see us a legitimate emperor. 
+			}
+			triggered_desc = {
+				trigger = { is_at_war = yes }
+				desc = ave_maria_roman_administration_events.0003.desc_yes_war
+				## I inherited the mantle of the empire, but despite the ongoing war it is now more than ever time to perform the public ceremony of the coronation in Constantinople so the whole people is reassured and our legitimacy firmly set. 
+			}
+		}
+	}
+
+	## Redudant check as the decision to be crowned byzantine emperor requires you to be emperor
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}	
+	}
+
+	## Flag the character so we know he has decided to start the coronation
+	immediate = {
+		play_music_cue = mx_cue_epic_sacral_moment
+		add_character_flag = imperial_coronation_started_preparations
+	}
+
+	## Spend a lot for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_A
+		## "Spend lavishly, everyone must see our generosity and magnificence"
+		# Scope to patriarch and give him a positive flag
+		add_character_flag = imperial_coronation_lavish_coronation
+		add_gold = -300
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+	}
+
+	## Spend normal amount for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_B
+		## "Proceed with the ceremony as is customary"
+		# Scope to patriarch and give him a 60/40 flag
+		add_character_flag = imperial_coronation_normal_coronation
+		add_gold = -150
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+	}
+
+	## Spend the minimum for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_C
+		## "Save up as much as we can on the ceremony, we need the money elsewhere."
+		# Scope to patriarch and give him a negative flag
+		add_character_flag = imperial_coronation_stingy_coronation
+		add_gold = -75
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+	}
+
+
+}
+
+## First part of the procession - Great Palace
+ave_maria_roman_administration_events.0004 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0004.title
+	theme = crown	
+	event_background = throneroom
+	left_portrait = root
+	
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}	
+	}
+
+	desc = ave_maria_roman_administration_events.0004_desc
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0004.OPT_A
+		trigger = {
+			has_character_flag = imperial_coronation_normal_coronation
+		}
+		## Add some prestige here
+		add_prestige = 75
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0004.C
+		trigger = {
+			has_character_flag = imperial_coronation_lavish_coronation
+		}
+		## Add some prestige here
+		add_prestige = 100
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0004.OPT_B
+		trigger = {
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = -25
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
+
+	}
+
+}
+
+## Second part of the procession - Hagia Sophia
+ave_maria_roman_administration_events.0005 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0005.title
+	theme = crown	
+	event_background = throneroom
+	left_portrait = root
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = imperial_coronation_started_preparations				
+				}
+				desc = ave_maria_roman_administration_events.0005_desc
+			}
+		}
+	}
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0005.OPT_A
+		trigger = {
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+		}
+		## Add some prestige here
+		add_prestige = 75
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 1 }
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0005.OPT_B
+		trigger = {
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = -25
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 1 }
+	}
+}
+
+## Third part of the procession - Communion and Feast
+ave_maria_roman_administration_events.0006 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0006.title
+	theme = crown	
+	event_background = throneroom
+	left_portrait = root
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = imperial_coronation_started_preparations				
+				}
+				desc = ave_maria_roman_administration_events.0006_desc
+				
+			}
+		}
+	}
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_A
+		trigger = {
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+		}
+		## Add some prestige here
+		add_prestige = 300
+		## Add some approval rating in Constantinople
+
+		## Add Crowned Basileus trait
+		add_trait = crowned_basileus
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_B
+		trigger = {
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = 300
+		## Remove some approval rating in Constantinople
+
+		## Add Crowned Basileus trait
+		add_trait = crowned_basileus
+	}
+}

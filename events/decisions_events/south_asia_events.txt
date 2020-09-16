@@ -1,0 +1,345 @@
+﻿
+namespace = south_asia
+
+### Become Chakravarti
+# by Petter Vilberg
+# south_asia.0001 # I became Chakravarti
+# south_asia.0002 # My liege became Chakravarti
+# south_asia.0003 # My liege became Chakravarti - convert?
+# south_asia.0004 # Someone became Chakravarti
+###
+
+
+################
+# Become Chakravarti events
+# south_asia.0001 - 0004
+#
+
+#I united India
+south_asia.0001 = {
+	type = character_event
+	title = south_asia.0001.t
+	desc = south_asia.0001.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		unite_india_decision_effect = yes
+		add_trait = chakravarti
+	}
+
+	option = {
+		name = south_asia.0001.a
+		add_prestige = massive_prestige_value
+		add_prestige_level = 2
+		faith = {
+			if = {
+				limit = {
+					NOT = { has_doctrine = divine_destiny_doctrine }
+				}
+				add_doctrine = divine_destiny_doctrine
+			}
+			change_fervor = major_fervor_gain
+		}
+	}
+}
+
+
+#My ruler became Chakravarti
+south_asia.0002 = {
+	type = character_event
+	title = south_asia.0002.t
+	desc = {
+		desc = south_asia.0002.intro
+		desc = south_asia.0002.text
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:chakravarti
+		animation = personality_bold
+	}
+	
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		show_as_tooltip = {
+			scope:chakravarti = {
+				add_trait_force_tooltip = chakravarti
+				hidden_effect = { set_primary_title_to = title:e_india }
+				faith = {
+					add_doctrine = divine_destiny_doctrine
+					change_fervor = major_fervor_gain
+				}
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0002.a
+		if = {
+			limit = {
+				faith = scope:chakravarti.faith
+			}
+			scope:chakravarti = {
+				add_opinion = {
+					target = root
+					modifier = followed_the_chakravarti_opinion
+				}
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0002.b
+		trigger = {
+			NOT = { faith = scope:chakravarti.faith }
+		}
+		set_character_faith_with_conversion = scope:chakravarti.faith
+		scope:chakravarti = {
+			add_opinion = {
+				target = root
+				modifier = followed_the_chakravarti_opinion
+			}
+		}
+	}
+}
+
+#My ruler became Chakravarti - non-Indian religion
+south_asia.0003 = {
+	type = character_event
+	title = south_asia.0002.t
+	desc = {
+		desc = south_asia.0002.intro
+		desc = south_asia.0003.text
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:chakravarti
+		animation = personality_bold
+	}
+	
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		show_as_tooltip = {
+			scope:chakravarti = {
+				add_trait_force_tooltip = chakravarti
+				hidden_effect = { set_primary_title_to = title:e_india }
+				faith = {
+					add_doctrine = divine_destiny_doctrine
+					change_fervor = major_fervor_gain
+				}
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0003.a
+		set_character_faith_with_conversion = scope:chakravarti.faith
+		scope:chakravarti = {
+			add_opinion = {
+				target = root
+				modifier = followed_the_chakravarti_opinion
+			}
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:chakravarti
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0003.b
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 1
+			}
+		}
+	}
+}
+
+
+#Someone became Chakravarti
+south_asia.0004 = {
+	type = character_event
+	title = south_asia.0002.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					OR = {
+						faith.religion = faith:vaishnavism.religion
+						faith.religion = faith:theravada.religion
+						faith.religion = faith:digambara.religion		
+					}
+				}
+				desc = south_asia.0004.relevant_religion
+			}
+			desc = south_asia.0004.desc
+		}
+		desc = south_asia.0004.text
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:chakravarti
+		animation = personality_bold
+	}
+	
+	immediate = {
+		#Indian faith coreligionists get a positive music cue.
+		if = {
+			limit = {
+				OR = {
+					faith = { religion_tag = hinduism_religion }
+					faith = { religion_tag = buddhism_religion }
+					faith = { religion_tag = jainism_religion }
+				}
+			}
+			play_music_cue = "mx_cue_epic_sacral_moment"
+		}
+		#Everyone else sees a terrifying empire.
+		else = { play_music_cue = "mx_cue_combat_2" }
+		show_as_tooltip = {
+			scope:chakravarti = {
+				add_trait_force_tooltip = chakravarti
+				hidden_effect = { set_primary_title_to = title:e_india }
+				faith = {
+					add_doctrine = divine_destiny_doctrine
+					change_fervor = major_fervor_gain
+				}
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0004.a
+		trigger = {
+			OR = {
+				faith.religion = faith:vaishnavism.religion
+				faith.religion = faith:theravada.religion
+				faith.religion = faith:digambara.religion		
+			}
+		}
+	}
+
+	option = {
+		name = south_asia.0004.b
+		fallback = yes
+	}
+}
+
+#
+# END Become Chakravarti events
+#################
+
+
+##############
+#Take Stewardship of the Sacred River
+# south_asia.0011-0013
+# by Petter Vilberg
+
+#I have become the Lady/Lord of the Ganges
+south_asia.0011 = {
+	type = character_event
+	title = south_asia.0011.t
+	desc = south_asia.0011.desc
+	theme = faith
+	left_portrait = {
+		character = root
+		animation = personality_zealous
+	}
+	override_background = { event_background = throne_room_india }
+
+	immediate = { play_music_cue = "mx_cue_sacredrite" }
+
+	option = {
+		name = south_asia.0011.a
+		take_stewardship_of_the_sacred_river_effect = yes
+	}
+}
+
+
+#Someone has claimed stewardship of the Ganges
+south_asia.0012 = {
+	type = character_event
+	title = south_asia.0011.t
+	desc = south_asia.0012.desc
+	theme = faith
+	left_portrait = {
+		character = scope:ruler_of_ganges
+		animation = personality_zealous
+	}
+	override_background = { event_background = throne_room_india }
+
+	option = {
+		name = {
+			text = south_asia.0012.a.like
+			trigger = {
+				opinion = {
+					target = scope:ruler_of_ganges
+					value >= 0
+				}
+			}
+		}
+		name = {
+			text = south_asia.0012.a.dislike
+		}
+		show_as_tooltip = {
+			scope:ruler_of_ganges = {
+				give_nickname = nick_the_ladylord_of_the_ganges
+				add_character_modifier = {
+					modifier = ruler_of_the_ganges_modifier
+				}
+			}
+		}
+	}
+}
+
+
+#Someone has claimed my title as steward of the Ganges
+south_asia.0013 = {
+	type = character_event
+	title = south_asia.0013.t
+	desc = south_asia.0013.desc
+	theme = faith
+	left_portrait = {
+		character = scope:ruler_of_ganges
+		animation = personality_zealous
+	}
+	override_background = { event_background = throne_room_india }
+
+	immediate = {
+		add_opinion = {
+			target = scope:ruler_of_ganges
+			modifier = humbled_opinion
+			opinion = -40	
+		}
+		remove_character_modifier = ruler_of_the_ganges_modifier
+	}
+
+	option = {
+		name = south_asia.0013.a
+		if = {
+			limit = { has_nickname = nick_the_ladylord_of_the_ganges }
+			remove_nickname = yes
+		}
+		show_as_tooltip = {
+			scope:ruler_of_ganges = {
+				add_opinion = {
+					target = root
+					modifier = weak_opinion
+					opinion = -20	
+				}
+				give_nickname = nick_the_ladylord_of_the_ganges
+				add_character_modifier = {
+					modifier = ruler_of_the_ganges_modifier
+				}
+			}
+		}
+	}
+}

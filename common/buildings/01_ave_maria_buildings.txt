@@ -1,0 +1,88 @@
+﻿@ave_maria_constantinople_holding_illustration_western = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+@ave_maria_constantinople_holding_illustration_mena = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+@ave_maria_constantinople_holding_illustration_india = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+@ave_maria_constantinople_holding_illustration_mediterranean = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+
+metropolis_constantinople_01 = {
+	construction_time = slow_construction_time
+	
+	asset = {
+		type = pdxmesh
+		names = {
+			"western_city_01_a_mesh"
+			"western_city_01_b_mesh"
+			"western_city_01_c_mesh"
+		}
+		illustration = @ave_maria_constantinople_holding_illustration_western
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/western_city" soundparameter = { "Tier" = 0 } }
+	}
+	
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_city_01_mesh"
+		}
+		illustration = @ave_maria_constantinople_holding_illustration_mena
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/mena_city" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_mena }
+	}
+	
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_indian_city_01_mesh"
+		}
+		illustration = @ave_maria_constantinople_holding_illustration_india
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/indian_city" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_india }
+	}
+	
+	asset = {
+		type = pdxmesh
+		name = "building_mediterranean_city_01_mesh"
+		illustration = @ave_maria_constantinople_holding_illustration_mediterranean
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/mediterranean_city" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_mediterranean }
+	}
+
+	
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+		barony_cannot_construct_holding = no
+	}
+	
+	can_construct = {	
+		culture = {
+			has_innovation = innovation_city_planning
+		}
+	}
+	
+	can_construct_showing_failures_only = {
+		building_requirement_tribal_holding_in_county = no
+	}
+	
+	cost_gold = 696969
+	
+	levy = 0
+	
+	garrison = good_building_garrison_tier_1
+	
+	province_modifier = {
+		monthly_income = good_building_tax_tier_2
+		fort_level = great_building_fort_level_tier_1
+	}
+		
+	flag = castle
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			scope:holder = {
+				has_government = theocracy_government
+			}
+		}
+	}
+}
+

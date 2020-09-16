@@ -1,0 +1,6848 @@
+########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+# NOTES/TABLE OF CONTENT:
+##### 1) HEXACO TRAIT AND VARIABLE INITIAL ASSIGNEMENT
+##### Effects adding the personality traits and corresponding varibles on start up for all characters OR when a character is born OR when is created through random create_character_effects
+
+##### 2) EDUCATION PROGRESSION
+##### Effects updating the proper education traits based on the corresponding character variable
+
+##### 3) PERSONALITY TRAIT PROGRESSION
+##### Effects updating the proper personality traits based on the corresponding character variable
+##### Effects adding/removing personaly traits variable and updating the proper personality traits based on the corresponding character variable
+##### For quick reference here are the various scripted effects modifying the HEXACO personality trait variables for each categories. It will add the variable and update the trait if needed
+##### positive_gain_hexaco_honesty_humility_scale / negative_gain_hexaco_honesty_humility_scale
+##### positive_gain_hexaco_emotionality_scale / negative_gain_hexaco_emotionality_scale
+##### positive_gain_hexaco_extraversion_scale / negative_gain_hexaco_extraversion_scale
+##### positive_gain_hexaco_agreeableness_scale / negative_gain_hexaco_agreeableness_scale
+##### positive_gain_hexaco_conscientiousness_scale / negative_gain_hexaco_conscientiousness_scale
+##### positive_gain_hexaco_openness_to_experience_scale / negative_gain_hexaco_openness_to_experience_scale
+
+
+
+#############################################
+# INITIAL ASSIGNEMENT						#
+#############################################
+
+## Add random HEXACO personality traits and assign corresponding variable if you do not have some by checking each category of traits and adding randomly one as well as setting up the corresponding variable
+add_random_hexaco_personality_trait = {
+	#	Honesty-Humility			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = faithful
+				has_trait = honest
+				has_trait = sincere
+				has_trait = generous
+				has_trait = humble
+				has_trait = pretentious
+				has_trait = greedy
+				has_trait = inconstant
+				has_trait = deceitful
+				has_trait = hypocritical
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = faithful
+				set_variable = { name = hexaco_personality_value_honesty_humility value = 25 }	
+			}		
+			10 = { 		
+				add_trait = honest
+				set_variable = { name = hexaco_personality_value_honesty_humility value = 18 }	
+			}		
+			10 = { 		
+				add_trait = sincere
+				set_variable = { name = hexaco_personality_value_honesty_humility value = 12 }	
+			}		
+			10 = { 		
+				add_trait = generous
+				set_variable = { name = hexaco_personality_value_honesty_humility value = 7 }	
+			}		
+			10 = { 		
+				add_trait = humble
+				set_variable = { name = hexaco_personality_value_honesty_humility value = 3 }	
+			}		
+			10 = { 		
+				add_trait = pretentious
+				set_variable = { name = hexaco_personality_value_honesty_humility value = -3 }	
+			}		
+			10 = { 		
+				add_trait = greedy
+				set_variable = { name = hexaco_personality_value_honesty_humility value = -7 }	
+			}		
+			10 = { 		
+				add_trait = inconstant
+				set_variable = { name = hexaco_personality_value_honesty_humility value = -12 }	
+			}		
+			10 = { 		
+				add_trait = deceitful
+				set_variable = { name = hexaco_personality_value_honesty_humility value = -18 }	
+			}		
+			10 = { 		
+				add_trait = hypocritical
+				set_variable = { name = hexaco_personality_value_honesty_humility value = -25 }	
+			}		
+		}			
+	}				
+	#	Emotionality			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = brave
+				has_trait = tough
+				has_trait = independent
+				has_trait = selfassured
+				has_trait = stable
+				has_trait = vulnerable
+				has_trait = anxious
+				has_trait = fearful
+				has_trait = sentimental
+				has_trait = craven
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = brave
+				set_variable = { name = hexaco_personality_value_emotionality value = 25 }	
+			}		
+			10 = { 		
+				add_trait = tough
+				set_variable = { name = hexaco_personality_value_emotionality value = 18 }	
+			}		
+			10 = { 		
+				add_trait = independent
+				set_variable = { name = hexaco_personality_value_emotionality value = 12 }	
+			}		
+			10 = { 		
+				add_trait = selfassured
+				set_variable = { name = hexaco_personality_value_emotionality value = 7 }	
+			}		
+			10 = { 		
+				add_trait = stable
+				set_variable = { name = hexaco_personality_value_emotionality value = 3 }	
+			}		
+			10 = { 		
+				add_trait = vulnerable
+				set_variable = { name = hexaco_personality_value_emotionality value = -3 }	
+			}		
+			10 = { 		
+				add_trait = anxious
+				set_variable = { name = hexaco_personality_value_emotionality value = -7 }	
+			}		
+			10 = { 		
+				add_trait = fearful
+				set_variable = { name = hexaco_personality_value_emotionality value = -12 }	
+			}		
+			10 = { 		
+				add_trait = sentimental
+				set_variable = { name = hexaco_personality_value_emotionality value = -18 }	
+			}		
+			10 = { 		
+				add_trait = craven
+				set_variable = { name = hexaco_personality_value_emotionality value = -25 }	
+			}		
+		}			
+	}				
+	#	Extraversion			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = outgoing
+				has_trait = lively
+				has_trait = sociable
+				has_trait = talkative
+				has_trait = cheerful
+				has_trait = passive
+				has_trait = withdrawn
+				has_trait = introverted
+				has_trait = quiet
+				has_trait = reserved
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = outgoing
+				set_variable = { name = hexaco_personality_value_extraversion value = 25 }	
+			}		
+			10 = { 		
+				add_trait = lively
+				set_variable = { name = hexaco_personality_value_extraversion value = 18 }	
+			}		
+			10 = { 		
+				add_trait = sociable
+				set_variable = { name = hexaco_personality_value_extraversion value = 12 }	
+			}		
+			10 = { 		
+				add_trait = talkative
+				set_variable = { name = hexaco_personality_value_extraversion value = 7 }	
+			}		
+			10 = { 		
+				add_trait = cheerful
+				set_variable = { name = hexaco_personality_value_extraversion value = 3 }	
+			}		
+			10 = { 		
+				add_trait = passive
+				set_variable = { name = hexaco_personality_value_extraversion value = -3 }	
+			}		
+			10 = { 		
+				add_trait = withdrawn
+				set_variable = { name = hexaco_personality_value_extraversion value = -7 }	
+			}		
+			10 = { 		
+				add_trait = introverted
+				set_variable = { name = hexaco_personality_value_extraversion value = -12 }	
+			}		
+			10 = { 		
+				add_trait = quiet
+				set_variable = { name = hexaco_personality_value_extraversion value = -18 }	
+			}		
+			10 = { 		
+				add_trait = reserved
+				set_variable = { name = hexaco_personality_value_extraversion value = -25 }	
+			}		
+		}			
+	}				
+	#	Agreeableness			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = patient
+				has_trait = tolerant
+				has_trait = agreeable
+				has_trait = mild
+				has_trait = gentle
+				has_trait = illtempered
+				has_trait = quarrelsome
+				has_trait = stubborn
+				has_trait = intolerant
+				has_trait = wroth
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = patient
+				set_variable = { name = hexaco_personality_value_agreeableness value = 25 }	
+			}		
+			10 = { 		
+				add_trait = tolerant
+				set_variable = { name = hexaco_personality_value_agreeableness value = 18 }	
+			}		
+			10 = { 		
+				add_trait = agreeable
+				set_variable = { name = hexaco_personality_value_agreeableness value = 12 }	
+			}		
+			10 = { 		
+				add_trait = mild
+				set_variable = { name = hexaco_personality_value_agreeableness value = 7 }	
+			}		
+			10 = { 		
+				add_trait = gentle
+				set_variable = { name = hexaco_personality_value_agreeableness value = 3 }	
+			}		
+			10 = { 		
+				add_trait = illtempered
+				set_variable = { name = hexaco_personality_value_agreeableness value = -3 }	
+			}		
+			10 = { 		
+				add_trait = quarrelsome
+				set_variable = { name = hexaco_personality_value_agreeableness value = -7 }	
+			}		
+			10 = { 		
+				add_trait = stubborn
+				set_variable = { name = hexaco_personality_value_agreeableness value = -12 }	
+			}		
+			10 = { 		
+				add_trait = intolerant
+				set_variable = { name = hexaco_personality_value_agreeableness value = -18 }	
+			}		
+			10 = { 		
+				add_trait = wroth
+				set_variable = { name = hexaco_personality_value_agreeableness value = -25 }	
+			}		
+		}			
+	}				
+	#	Conscientiousness			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = organized
+				has_trait = diligent
+				has_trait = careful
+				has_trait = thorough
+				has_trait = precise
+				has_trait = sloppy
+				has_trait = negligent
+				has_trait = reckless
+				has_trait = lazy
+				has_trait = irresponsible
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = organized
+				set_variable = { name = hexaco_personality_value_conscientiousness value = 25 }	
+			}		
+			10 = { 		
+				add_trait = diligent
+				set_variable = { name = hexaco_personality_value_conscientiousness value = 18 }	
+			}		
+			10 = { 		
+				add_trait = careful
+				set_variable = { name = hexaco_personality_value_conscientiousness value = 12 }	
+			}		
+			10 = { 		
+				add_trait = thorough
+				set_variable = { name = hexaco_personality_value_conscientiousness value = 7 }	
+			}		
+			10 = { 		
+				add_trait = precise
+				set_variable = { name = hexaco_personality_value_conscientiousness value = 3 }	
+			}		
+			10 = { 		
+				add_trait = sloppy
+				set_variable = { name = hexaco_personality_value_conscientiousness value = -3 }	
+			}		
+			10 = { 		
+				add_trait = negligent
+				set_variable = { name = hexaco_personality_value_conscientiousness value = -7 }	
+			}		
+			10 = { 		
+				add_trait = reckless
+				set_variable = { name = hexaco_personality_value_conscientiousness value = -12 }	
+			}		
+			10 = { 		
+				add_trait = lazy
+				set_variable = { name = hexaco_personality_value_conscientiousness value = -18 }	
+			}		
+			10 = { 		
+				add_trait = irresponsible
+				set_variable = { name = hexaco_personality_value_conscientiousness value = -25 }	
+			}		
+		}			
+	}				
+	#	Openness to Experience			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = intellectual
+				has_trait = creative
+				has_trait = unconventional
+				has_trait = innovative
+				has_trait = thoughtful
+				has_trait = shallow
+				has_trait = unimaginative
+				has_trait = conventional
+				has_trait = uninspired
+				has_trait = simple
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = intellectual
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = 25 }	
+			}		
+			10 = { 		
+				add_trait = creative
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = 18 }	
+			}		
+			10 = { 		
+				add_trait = unconventional
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = 12 }	
+			}		
+			10 = { 		
+				add_trait = innovative
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = 7 }	
+			}		
+			10 = { 		
+				add_trait = thoughtful
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = 3 }	
+			}		
+			10 = { 		
+				add_trait = shallow
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = -3 }	
+			}		
+			10 = { 		
+				add_trait = unimaginative
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = -7 }	
+			}		
+			10 = { 		
+				add_trait = conventional
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = -12 }	
+			}		
+			10 = { 		
+				add_trait = uninspired
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = -18 }	
+			}		
+			10 = { 		
+				add_trait = simple
+				set_variable = { name = hexaco_personality_value_openness_to_experience value = -25 }	
+			}		
+		}			
+	}				
+
+
+}
+
+## Add HEXACO education traits and assign corresponding variable if you do not have some by checking each category of traits and adding randomly one
+add_hexaco_education_trait = {
+	#	Martial Arts			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = martial_arts_1
+				has_trait = martial_arts_2
+				has_trait = martial_arts_3
+				has_trait = martial_arts_4
+				has_trait = martial_arts_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = martial_arts_1
+				set_variable = { name = hexaco_education_xp_martial_arts value = 3 }	
+			}		
+			10 = { 		
+				add_trait = martial_arts_2
+				set_variable = { name = hexaco_education_xp_martial_arts value = 6 }	
+			}		
+			10 = { 		
+				add_trait = martial_arts_3
+				set_variable = { name = hexaco_education_xp_martial_arts value = 9 }	
+			}		
+			10 = { 		
+				add_trait = martial_arts_4
+				set_variable = { name = hexaco_education_xp_martial_arts value = 12 }	
+			}		
+			10 = { 		
+				add_trait = martial_arts_5
+				set_variable = { name = hexaco_education_xp_martial_arts value = 15 }	
+			}		
+		}			
+	}				
+	#	Riding			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = riding_1
+				has_trait = riding_2
+				has_trait = riding_3
+				has_trait = riding_4
+				has_trait = riding_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = riding_1
+				set_variable = { name = hexaco_education_xp_riding value = 3 }	
+			}		
+			10 = { 		
+				add_trait = riding_2
+				set_variable = { name = hexaco_education_xp_riding value = 6 }	
+			}		
+			10 = { 		
+				add_trait = riding_3
+				set_variable = { name = hexaco_education_xp_riding value = 9 }	
+			}		
+			10 = { 		
+				add_trait = riding_4
+				set_variable = { name = hexaco_education_xp_riding value = 12 }	
+			}		
+			10 = { 		
+				add_trait = riding_5
+				set_variable = { name = hexaco_education_xp_riding value = 15 }	
+			}		
+		}			
+	}				
+	#	Etiquette			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = etiquette_1
+				has_trait = etiquette_2
+				has_trait = etiquette_3
+				has_trait = etiquette_4
+				has_trait = etiquette_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = etiquette_1
+				set_variable = { name = hexaco_education_xp_etiquette value = 3 }	
+			}		
+			10 = { 		
+				add_trait = etiquette_2
+				set_variable = { name = hexaco_education_xp_etiquette value = 6 }	
+			}		
+			10 = { 		
+				add_trait = etiquette_3
+				set_variable = { name = hexaco_education_xp_etiquette value = 9 }	
+			}		
+			10 = { 		
+				add_trait = etiquette_4
+				set_variable = { name = hexaco_education_xp_etiquette value = 12 }	
+			}		
+			10 = { 		
+				add_trait = etiquette_5
+				set_variable = { name = hexaco_education_xp_etiquette value = 15 }	
+			}		
+		}			
+	}				
+	#	Read Write			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = read_write_1
+				has_trait = read_write_2
+				has_trait = read_write_3
+				has_trait = read_write_4
+				has_trait = read_write_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = read_write_1
+				set_variable = { name = hexaco_education_xp_read_write value = 3 }	
+			}		
+			10 = { 		
+				add_trait = read_write_2
+				set_variable = { name = hexaco_education_xp_read_write value = 6 }	
+			}		
+			10 = { 		
+				add_trait = read_write_3
+				set_variable = { name = hexaco_education_xp_read_write value = 9 }	
+			}		
+			10 = { 		
+				add_trait = read_write_4
+				set_variable = { name = hexaco_education_xp_read_write value = 12 }	
+			}		
+			10 = { 		
+				add_trait = read_write_5
+				set_variable = { name = hexaco_education_xp_read_write value = 15 }	
+			}		
+		}			
+	}				
+	#	Mathematics			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = mathematics_1
+				has_trait = mathematics_2
+				has_trait = mathematics_3
+				has_trait = mathematics_4
+				has_trait = mathematics_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = mathematics_1
+				set_variable = { name = hexaco_education_xp_mathematics value = 3 }	
+			}		
+			10 = { 		
+				add_trait = mathematics_2
+				set_variable = { name = hexaco_education_xp_mathematics value = 6 }	
+			}		
+			10 = { 		
+				add_trait = mathematics_3
+				set_variable = { name = hexaco_education_xp_mathematics value = 9 }	
+			}		
+			10 = { 		
+				add_trait = mathematics_4
+				set_variable = { name = hexaco_education_xp_mathematics value = 12 }	
+			}		
+			10 = { 		
+				add_trait = mathematics_5
+				set_variable = { name = hexaco_education_xp_mathematics value = 15 }	
+			}		
+		}			
+	}				
+	#	Philosophy			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = philosophy_1
+				has_trait = philosophy_2
+				has_trait = philosophy_3
+				has_trait = philosophy_4
+				has_trait = philosophy_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = philosophy_1
+				set_variable = { name = hexaco_education_xp_philosophy value = 3 }	
+			}		
+			10 = { 		
+				add_trait = philosophy_2
+				set_variable = { name = hexaco_education_xp_philosophy value = 6 }	
+			}		
+			10 = { 		
+				add_trait = philosophy_3
+				set_variable = { name = hexaco_education_xp_philosophy value = 9 }	
+			}		
+			10 = { 		
+				add_trait = philosophy_4
+				set_variable = { name = hexaco_education_xp_philosophy value = 12 }	
+			}		
+			10 = { 		
+				add_trait = philosophy_5
+				set_variable = { name = hexaco_education_xp_philosophy value = 15 }	
+			}		
+		}			
+	}				
+	#	Law			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = law_1
+				has_trait = law_2
+				has_trait = law_3
+				has_trait = law_4
+				has_trait = law_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = law_1
+				set_variable = { name = hexaco_education_xp_law value = 3 }	
+			}		
+			10 = { 		
+				add_trait = law_2
+				set_variable = { name = hexaco_education_xp_law value = 6 }	
+			}		
+			10 = { 		
+				add_trait = law_3
+				set_variable = { name = hexaco_education_xp_law value = 9 }	
+			}		
+			10 = { 		
+				add_trait = law_4
+				set_variable = { name = hexaco_education_xp_law value = 12 }	
+			}		
+			10 = { 		
+				add_trait = law_5
+				set_variable = { name = hexaco_education_xp_law value = 15 }	
+			}		
+		}			
+	}				
+	#	Theology			
+	if = {				
+		limit = {			
+			NOR = {		
+				has_trait = theology_1
+				has_trait = theology_2
+				has_trait = theology_3
+				has_trait = theology_4
+				has_trait = theology_5
+			}		
+		}			
+		random_list = {			
+			10 = { 		
+				add_trait = theology_1
+				set_variable = { name = hexaco_education_xp_theology value = 3 }	
+			}		
+			10 = { 		
+				add_trait = theology_2
+				set_variable = { name = hexaco_education_xp_theology value = 6 }	
+			}		
+			10 = { 		
+				add_trait = theology_3
+				set_variable = { name = hexaco_education_xp_theology value = 9 }	
+			}		
+			10 = { 		
+				add_trait = theology_4
+				set_variable = { name = hexaco_education_xp_theology value = 12 }	
+			}		
+			10 = { 		
+				add_trait = theology_5
+				set_variable = { name = hexaco_education_xp_theology value = 15 }	
+			}		
+		}			
+	}
+	
+}
+
+## Add HEXACO personality trait variable if character has randomly generated trait from the game startup or being born or other situations
+add_hexaco_personality_trait_variable = {
+	if = {		
+		limit = {	
+			has_trait = faithful
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = honest
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = sincere
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = generous
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = humble
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = pretentious
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = greedy
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = inconstant
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = deceitful
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = hypocritical
+		}	
+		set_variable = { name = hexaco_education_xp_honesty_humility value = -25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = brave
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = tough
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = independent
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = selfassured
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = stable
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = vulnerable
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = anxious
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = fearful
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = sentimental
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = craven
+		}	
+		set_variable = { name = hexaco_education_xp_emotionality value = -25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = outgoing
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = lively
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = sociable
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = talkative
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = cheerful
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = passive
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = withdrawn
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = reserved
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = quiet
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = introverted
+		}	
+		set_variable = { name = hexaco_education_xp_extraversion value = -25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = agreeable
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = tolerant
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = patient
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = mild
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = gentle
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = illtempered
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = quarrelsome
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = stubborn
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = intolerant
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = wroth
+		}	
+		set_variable = { name = hexaco_education_xp_agreeableness value = -25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = organized
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = diligent
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = careful
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = thorough
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = precise
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = sloppy
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = negligent
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = reckless
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = irresponsible
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = lazy
+		}	
+		set_variable = { name = hexaco_education_xp_conscientiousness value = -25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = intellectual
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = 25 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = creative
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = 18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = unconventional
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = 12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = innovative
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = 7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = thoughtful
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = 3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = shallow
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = -3 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = unimaginative
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = -7 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = conventional
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = -12 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = uninspired
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = -18 }	
+	}		
+	if = {		
+		limit = {	
+			has_trait = simple
+		}	
+		set_variable = { name = hexaco_education_xp_openness_to_experience value = -25 }	
+	}		
+		
+}
+
+## Add HEXACO education trait variable if character has randomly generated trait from the game startup
+add_hexaco_education_trait_variable = {
+	trigger_switch = {			
+		on_trigger = trait		
+		martial_arts_1 = { set_variable = { name = hexaco_education_xp_martial_arts value = 3 } }		
+		martial_arts_2 = { set_variable = { name = hexaco_education_xp_martial_arts value = 6 } }		
+		martial_arts_3 = { set_variable = { name = hexaco_education_xp_martial_arts value = 9 } }		
+		martial_arts_4 = { set_variable = { name = hexaco_education_xp_martial_arts value = 12 } }		
+		martial_arts_5 = { set_variable = { name = hexaco_education_xp_martial_arts value = 15 } }		
+		riding_1 = { set_variable = { name = hexaco_education_xp_riding value = 3 } }		
+		riding_2 = { set_variable = { name = hexaco_education_xp_riding value = 6 } }		
+		riding_3 = { set_variable = { name = hexaco_education_xp_riding value = 9 } }		
+		riding_4 = { set_variable = { name = hexaco_education_xp_riding value = 12 } }		
+		riding_5 = { set_variable = { name = hexaco_education_xp_riding value = 15 } }		
+		etiquette_1 = { set_variable = { name = hexaco_education_xp_etiquette value = 3 } }		
+		etiquette_2 = { set_variable = { name = hexaco_education_xp_etiquette value = 6 } }		
+		etiquette_3 = { set_variable = { name = hexaco_education_xp_etiquette value = 9 } }		
+		etiquette_4 = { set_variable = { name = hexaco_education_xp_etiquette value = 12 } }		
+		etiquette_5 = { set_variable = { name = hexaco_education_xp_etiquette value = 15 } }		
+		read_write_1 = { set_variable = { name = hexaco_education_xp_read_write value = 3 } }		
+		read_write_2 = { set_variable = { name = hexaco_education_xp_read_write value = 6 } }		
+		read_write_3 = { set_variable = { name = hexaco_education_xp_read_write value = 9 } }		
+		read_write_4 = { set_variable = { name = hexaco_education_xp_read_write value = 12 } }		
+		read_write_5 = { set_variable = { name = hexaco_education_xp_read_write value = 15 } }		
+		mathematics_1 = { set_variable = { name = hexaco_education_xp_mathematics value = 3 } }		
+		mathematics_2 = { set_variable = { name = hexaco_education_xp_mathematics value = 6 } }		
+		mathematics_3 = { set_variable = { name = hexaco_education_xp_mathematics value = 9 } }		
+		mathematics_4 = { set_variable = { name = hexaco_education_xp_mathematics value = 12 } }		
+		mathematics_5 = { set_variable = { name = hexaco_education_xp_mathematics value = 15 } }		
+		philosophy_1 = { set_variable = { name = hexaco_education_xp_philosophy value = 3 } }		
+		philosophy_2 = { set_variable = { name = hexaco_education_xp_philosophy value = 6 } }		
+		philosophy_3 = { set_variable = { name = hexaco_education_xp_philosophy value = 9 } }		
+		philosophy_4 = { set_variable = { name = hexaco_education_xp_philosophy value = 12 } }		
+		philosophy_5 = { set_variable = { name = hexaco_education_xp_philosophy value = 15 } }		
+		law_1 = { set_variable = { name = hexaco_education_xp_law value = 3 } }		
+		law_2 = { set_variable = { name = hexaco_education_xp_law value = 6 } }		
+		law_3 = { set_variable = { name = hexaco_education_xp_law value = 9 } }		
+		law_4 = { set_variable = { name = hexaco_education_xp_law value = 12 } }		
+		law_5 = { set_variable = { name = hexaco_education_xp_law value = 15 } }		
+		theology_1 = { set_variable = { name = hexaco_education_xp_theology value = 3 } }		
+		theology_2 = { set_variable = { name = hexaco_education_xp_theology value = 6 } }		
+		theology_3 = { set_variable = { name = hexaco_education_xp_theology value = 9 } }		
+	}			
+}
+
+## Add HEXACO personality traits to a newborn baby based off a randomly selected parent with a chance to get a personality trait above or below those of the selected parent
+add_hexaco_personality_trait_from_parents_at_birth = {
+	#faithful			
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:mother = {		
+						has_trait = faithful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					5 = {		
+						add_trait = generous
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = faithful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					5 = {		
+						add_trait = generous
+					}		
+				}			
+			}				
+		}					
+	}						
+	#honest						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = honest
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					30 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					5 = {		
+						add_trait = humble
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = honest
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					30 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					5 = {		
+						add_trait = humble
+					}		
+				}			
+			}				
+		}					
+	}						
+	#sincere						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = sincere
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					30 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					5 = {		
+						add_trait = pretentious
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = sincere
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					30 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					30 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					5 = {		
+						add_trait = pretentious
+					}		
+				}			
+			}				
+		}					
+	}						
+	#generous						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = generous
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					30 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					30 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					5 = {		
+						add_trait = greedy
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = generous
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					30 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					30 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					5 = {		
+						add_trait = greedy
+					}		
+				}			
+			}				
+		}					
+	}						
+	#humble						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = humble
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					30 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					30 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					5 = {		
+						add_trait = inconstant
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = humble
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = honest
+					}		
+					10 = {		
+						add_trait = sincere
+					}		
+					30 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					30 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					5 = {		
+						add_trait = inconstant
+					}		
+				}			
+			}				
+		}					
+	}						
+	#pretentious						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = pretentious
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					30 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					30 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					5 = {		
+						add_trait = deceitful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = pretentious
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sincere
+					}		
+					10 = {		
+						add_trait = generous
+					}		
+					30 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					30 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					5 = {		
+						add_trait = deceitful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#greedy						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = greedy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					30 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					30 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					5 = {		
+						add_trait = hypocritical
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = greedy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = generous
+					}		
+					10 = {		
+						add_trait = humble
+					}		
+					30 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					30 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					5 = {		
+						add_trait = hypocritical
+					}		
+				}			
+			}				
+		}					
+	}						
+	#inconstant						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = inconstant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					30 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					30 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					5 = {		
+						add_trait = craven
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = inconstant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = humble
+					}		
+					10 = {		
+						add_trait = pretentious
+					}		
+					30 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					30 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					5 = {		
+						add_trait = craven
+					}		
+				}			
+			}				
+		}					
+	}						
+	#deceitful						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = deceitful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					30 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					30 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					5 = {		
+						add_trait = sentimental
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = deceitful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = pretentious
+					}		
+					10 = {		
+						add_trait = greedy
+					}		
+					30 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					30 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					5 = {		
+						add_trait = sentimental
+					}		
+				}			
+			}				
+		}					
+	}						
+	#hypocritical						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = hypocritical
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					30 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					30 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					5 = {		
+						add_trait = fearful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = hypocritical
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = greedy
+					}		
+					10 = {		
+						add_trait = inconstant
+					}		
+					30 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					30 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					5 = {		
+						add_trait = fearful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#craven						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = craven
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					30 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					30 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					5 = {		
+						add_trait = anxious
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = craven
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = inconstant
+					}		
+					10 = {		
+						add_trait = deceitful
+					}		
+					30 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					30 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					5 = {		
+						add_trait = anxious
+					}		
+				}			
+			}				
+		}					
+	}						
+	#sentimental						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = sentimental
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					30 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					30 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					5 = {		
+						add_trait = vulnerable
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = sentimental
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = deceitful
+					}		
+					10 = {		
+						add_trait = hypocritical
+					}		
+					30 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					30 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					5 = {		
+						add_trait = vulnerable
+					}		
+				}			
+			}				
+		}					
+	}						
+	#fearful						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = fearful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					30 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					30 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					5 = {		
+						add_trait = stable
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = fearful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = hypocritical
+					}		
+					10 = {		
+						add_trait = craven
+					}		
+					30 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					30 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					5 = {		
+						add_trait = stable
+					}		
+				}			
+			}				
+		}					
+	}						
+	#anxious						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = anxious
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					30 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					30 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					5 = {		
+						add_trait = selfassured
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = anxious
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = craven
+					}		
+					10 = {		
+						add_trait = sentimental
+					}		
+					30 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					30 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					5 = {		
+						add_trait = selfassured
+					}		
+				}			
+			}				
+		}					
+	}						
+	#vulnerable 						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = vulnerable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					30 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					30 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					5 = {		
+						add_trait = independent
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = vulnerable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sentimental
+					}		
+					10 = {		
+						add_trait = fearful
+					}		
+					30 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					30 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					5 = {		
+						add_trait = independent
+					}		
+				}			
+			}				
+		}					
+	}						
+	#stable						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = stable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					30 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					30 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					5 = {		
+						add_trait = tough
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = stable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = fearful
+					}		
+					10 = {		
+						add_trait = anxious
+					}		
+					30 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					30 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					5 = {		
+						add_trait = tough
+					}		
+				}			
+			}				
+		}					
+	}						
+	#selfassured						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = selfassured
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					30 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					30 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					5 = {		
+						add_trait = brave
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = selfassured
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = anxious
+					}		
+					10 = {		
+						add_trait = vulnerable
+					}		
+					30 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					30 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					5 = {		
+						add_trait = brave
+					}		
+				}			
+			}				
+		}					
+	}						
+	#independent						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = independent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					30 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					30 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					5 = {		
+						add_trait = outgoing
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = independent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = vulnerable
+					}		
+					10 = {		
+						add_trait = stable
+					}		
+					30 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					30 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					5 = {		
+						add_trait = outgoing
+					}		
+				}			
+			}				
+		}					
+	}						
+	#tough						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = tough
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					30 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					30 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					5 = {		
+						add_trait = lively
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = tough
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = stable
+					}		
+					10 = {		
+						add_trait = selfassured
+					}		
+					30 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					30 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					5 = {		
+						add_trait = lively
+					}		
+				}			
+			}				
+		}					
+	}						
+	#brave						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = brave
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					30 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					30 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					5 = {		
+						add_trait = sociable
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = brave
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = selfassured
+					}		
+					10 = {		
+						add_trait = independent
+					}		
+					30 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					30 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					5 = {		
+						add_trait = sociable
+					}		
+				}			
+			}				
+		}					
+	}						
+	#outgoing						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = outgoing
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					30 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					30 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					5 = {		
+						add_trait = talkative
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = outgoing
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = independent
+					}		
+					10 = {		
+						add_trait = tough
+					}		
+					30 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					30 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					5 = {		
+						add_trait = talkative
+					}		
+				}			
+			}				
+		}					
+	}						
+	#lively						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = lively
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					30 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					30 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					5 = {		
+						add_trait = cheerful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = lively
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = tough
+					}		
+					10 = {		
+						add_trait = brave
+					}		
+					30 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					30 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					5 = {		
+						add_trait = cheerful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#sociable						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = sociable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					30 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					30 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					5 = {		
+						add_trait = passive
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = sociable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = brave
+					}		
+					10 = {		
+						add_trait = outgoing
+					}		
+					30 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					30 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					5 = {		
+						add_trait = passive
+					}		
+				}			
+			}				
+		}					
+	}						
+	#talkative						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = talkative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					30 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					30 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					5 = {		
+						add_trait = withdrawn
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = talkative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = outgoing
+					}		
+					10 = {		
+						add_trait = lively
+					}		
+					30 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					30 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					5 = {		
+						add_trait = withdrawn
+					}		
+				}			
+			}				
+		}					
+	}						
+	#cheerful						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = cheerful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					30 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					30 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					5 = {		
+						add_trait = introverted
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = cheerful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = lively
+					}		
+					10 = {		
+						add_trait = sociable
+					}		
+					30 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					30 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					5 = {		
+						add_trait = introverted
+					}		
+				}			
+			}				
+		}					
+	}						
+	#passive						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = passive
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					30 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					30 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					5 = {		
+						add_trait = quiet
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = passive
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sociable
+					}		
+					10 = {		
+						add_trait = talkative
+					}		
+					30 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					30 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					5 = {		
+						add_trait = quiet
+					}		
+				}			
+			}				
+		}					
+	}						
+	#withdrawn						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = withdrawn
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					30 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					30 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					5 = {		
+						add_trait = reserved
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = withdrawn
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = talkative
+					}		
+					10 = {		
+						add_trait = cheerful
+					}		
+					30 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					30 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					5 = {		
+						add_trait = reserved
+					}		
+				}			
+			}				
+		}					
+	}						
+	#introverted						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = introverted
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					30 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					30 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					5 = {		
+						add_trait = patient
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = introverted
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = cheerful
+					}		
+					10 = {		
+						add_trait = passive
+					}		
+					30 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					30 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					5 = {		
+						add_trait = patient
+					}		
+				}			
+			}				
+		}					
+	}						
+	#quiet						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = quiet
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					30 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					30 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					5 = {		
+						add_trait = tolerant
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = quiet
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = passive
+					}		
+					10 = {		
+						add_trait = withdrawn
+					}		
+					30 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					30 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					5 = {		
+						add_trait = tolerant
+					}		
+				}			
+			}				
+		}					
+	}						
+	#reserved						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = reserved
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					30 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					30 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					5 = {		
+						add_trait = agreeable
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = reserved
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = withdrawn
+					}		
+					10 = {		
+						add_trait = introverted
+					}		
+					30 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					30 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					5 = {		
+						add_trait = agreeable
+					}		
+				}			
+			}				
+		}					
+	}						
+	#patient						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = patient
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					30 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					30 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					5 = {		
+						add_trait = mild
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = patient
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = introverted
+					}		
+					10 = {		
+						add_trait = quiet
+					}		
+					30 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					30 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					5 = {		
+						add_trait = mild
+					}		
+				}			
+			}				
+		}					
+	}						
+	#tolerant						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = tolerant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					30 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					30 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					5 = {		
+						add_trait = gentle
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = tolerant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = quiet
+					}		
+					10 = {		
+						add_trait = reserved
+					}		
+					30 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					30 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					5 = {		
+						add_trait = gentle
+					}		
+				}			
+			}				
+		}					
+	}						
+	#agreeable						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = agreeable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					30 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					30 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					5 = {		
+						add_trait = illtempered
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = agreeable
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = reserved
+					}		
+					10 = {		
+						add_trait = patient
+					}		
+					30 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					30 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					5 = {		
+						add_trait = illtempered
+					}		
+				}			
+			}				
+		}					
+	}						
+	#mild						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = mild
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					30 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					30 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					5 = {		
+						add_trait = quarrelsome
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = mild
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = patient
+					}		
+					10 = {		
+						add_trait = tolerant
+					}		
+					30 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					30 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					5 = {		
+						add_trait = quarrelsome
+					}		
+				}			
+			}				
+		}					
+	}						
+	#gentle						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = gentle
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					30 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					30 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					5 = {		
+						add_trait = stubborn
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = gentle
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = tolerant
+					}		
+					10 = {		
+						add_trait = agreeable
+					}		
+					30 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					30 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					5 = {		
+						add_trait = stubborn
+					}		
+				}			
+			}				
+		}					
+	}						
+	#illtempered						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = illtempered
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					30 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					30 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					5 = {		
+						add_trait = intolerant
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = illtempered
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = agreeable
+					}		
+					10 = {		
+						add_trait = mild
+					}		
+					30 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					30 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					5 = {		
+						add_trait = intolerant
+					}		
+				}			
+			}				
+		}					
+	}						
+	#quarrelsome						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = quarrelsome
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					30 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					30 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					5 = {		
+						add_trait = wroth
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = quarrelsome
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = mild
+					}		
+					10 = {		
+						add_trait = gentle
+					}		
+					30 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					30 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					5 = {		
+						add_trait = wroth
+					}		
+				}			
+			}				
+		}					
+	}						
+	#stubborn						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = stubborn
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					30 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					30 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					5 = {		
+						add_trait = organized
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = stubborn
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = gentle
+					}		
+					10 = {		
+						add_trait = illtempered
+					}		
+					30 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					30 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					5 = {		
+						add_trait = organized
+					}		
+				}			
+			}				
+		}					
+	}						
+	#intolerant						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = intolerant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					30 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					30 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					5 = {		
+						add_trait = diligent
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = intolerant
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = illtempered
+					}		
+					10 = {		
+						add_trait = quarrelsome
+					}		
+					30 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					30 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					5 = {		
+						add_trait = diligent
+					}		
+				}			
+			}				
+		}					
+	}						
+	#wroth						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = wroth
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					30 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					30 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					5 = {		
+						add_trait = careful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = wroth
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = quarrelsome
+					}		
+					10 = {		
+						add_trait = stubborn
+					}		
+					30 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					30 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					5 = {		
+						add_trait = careful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#organized						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = organized
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					30 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					30 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					5 = {		
+						add_trait = thorough
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = organized
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = stubborn
+					}		
+					10 = {		
+						add_trait = intolerant
+					}		
+					30 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					30 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					5 = {		
+						add_trait = thorough
+					}		
+				}			
+			}				
+		}					
+	}						
+	#diligent						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = diligent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					30 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					30 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					5 = {		
+						add_trait = precise
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = diligent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = intolerant
+					}		
+					10 = {		
+						add_trait = wroth
+					}		
+					30 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					30 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					5 = {		
+						add_trait = precise
+					}		
+				}			
+			}				
+		}					
+	}						
+	#careful						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = careful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					30 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					30 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					5 = {		
+						add_trait = sloppy
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = careful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = wroth
+					}		
+					10 = {		
+						add_trait = organized
+					}		
+					30 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					30 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					5 = {		
+						add_trait = sloppy
+					}		
+				}			
+			}				
+		}					
+	}						
+	#thorough						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = thorough
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					30 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					30 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					5 = {		
+						add_trait = negligent
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = thorough
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = organized
+					}		
+					10 = {		
+						add_trait = diligent
+					}		
+					30 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					30 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					5 = {		
+						add_trait = negligent
+					}		
+				}			
+			}				
+		}					
+	}						
+	#precise						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = precise
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					30 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					30 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					5 = {		
+						add_trait = reckless
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = precise
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = diligent
+					}		
+					10 = {		
+						add_trait = careful
+					}		
+					30 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					30 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					5 = {		
+						add_trait = reckless
+					}		
+				}			
+			}				
+		}					
+	}						
+	#sloppy						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = sloppy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					30 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					30 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					5 = {		
+						add_trait = lazy
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = sloppy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = careful
+					}		
+					10 = {		
+						add_trait = thorough
+					}		
+					30 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					30 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					5 = {		
+						add_trait = lazy
+					}		
+				}			
+			}				
+		}					
+	}						
+	#negligent						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = negligent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					30 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					30 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					5 = {		
+						add_trait = irresponsible
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = negligent
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = thorough
+					}		
+					10 = {		
+						add_trait = precise
+					}		
+					30 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					30 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					5 = {		
+						add_trait = irresponsible
+					}		
+				}			
+			}				
+		}					
+	}						
+	#reckless						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = reckless
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					30 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					30 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					5 = {		
+						add_trait = intellectual
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = reckless
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = precise
+					}		
+					10 = {		
+						add_trait = sloppy
+					}		
+					30 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					30 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					5 = {		
+						add_trait = intellectual
+					}		
+				}			
+			}				
+		}					
+	}						
+	#lazy						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = lazy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					30 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					30 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					5 = {		
+						add_trait = creative
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = lazy
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = sloppy
+					}		
+					10 = {		
+						add_trait = negligent
+					}		
+					30 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					30 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					5 = {		
+						add_trait = creative
+					}		
+				}			
+			}				
+		}					
+	}						
+	#irresponsible						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = irresponsible
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					30 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					30 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					5 = {		
+						add_trait = unconventional
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = irresponsible
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = negligent
+					}		
+					10 = {		
+						add_trait = reckless
+					}		
+					30 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					30 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					5 = {		
+						add_trait = unconventional
+					}		
+				}			
+			}				
+		}					
+	}						
+	#intellectual						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = intellectual
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					30 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					30 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					5 = {		
+						add_trait = innovative
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = intellectual
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = reckless
+					}		
+					10 = {		
+						add_trait = lazy
+					}		
+					30 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					30 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					5 = {		
+						add_trait = innovative
+					}		
+				}			
+			}				
+		}					
+	}						
+	#creative						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = creative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					30 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					30 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					5 = {		
+						add_trait = thoughtful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = creative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = lazy
+					}		
+					10 = {		
+						add_trait = irresponsible
+					}		
+					30 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					30 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					5 = {		
+						add_trait = thoughtful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#unconventional						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = unconventional
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					30 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					30 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					5 = {		
+						add_trait = shallow
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = unconventional
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = irresponsible
+					}		
+					10 = {		
+						add_trait = intellectual
+					}		
+					30 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					30 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					5 = {		
+						add_trait = shallow
+					}		
+				}			
+			}				
+		}					
+	}						
+	#innovative						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = innovative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					30 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					30 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					5 = {		
+						add_trait = unimaginative
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = innovative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = intellectual
+					}		
+					10 = {		
+						add_trait = creative
+					}		
+					30 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					30 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					5 = {		
+						add_trait = unimaginative
+					}		
+				}			
+			}				
+		}					
+	}						
+	#thoughtful						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = thoughtful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					30 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					30 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					5 = {		
+						add_trait = conventional
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = thoughtful
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = creative
+					}		
+					10 = {		
+						add_trait = unconventional
+					}		
+					30 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					30 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					5 = {		
+						add_trait = conventional
+					}		
+				}			
+			}				
+		}					
+	}						
+	#shallow						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = shallow
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					30 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					30 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					5 = {		
+						add_trait = uninspired
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = shallow
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = unconventional
+					}		
+					10 = {		
+						add_trait = innovative
+					}		
+					30 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					30 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					5 = {		
+						add_trait = uninspired
+					}		
+				}			
+			}				
+		}					
+	}						
+	#unimaginative						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = unimaginative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					30 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					30 = {		
+						add_trait = conventional
+					}		
+					10 = {		
+						add_trait = uninspired
+					}		
+					5 = {		
+						add_trait = simple
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = unimaginative
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = innovative
+					}		
+					10 = {		
+						add_trait = thoughtful
+					}		
+					30 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					30 = {		
+						add_trait = conventional
+					}		
+					10 = {		
+						add_trait = uninspired
+					}		
+					5 = {		
+						add_trait = simple
+					}		
+				}			
+			}				
+		}					
+	}						
+	#conventional						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = conventional
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					30 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					30 = {		
+						add_trait = uninspired
+					}		
+					10 = {		
+						add_trait = simple
+					}		
+					5 = {		
+						add_trait = faithful
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = conventional
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = thoughtful
+					}		
+					10 = {		
+						add_trait = shallow
+					}		
+					30 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					30 = {		
+						add_trait = uninspired
+					}		
+					10 = {		
+						add_trait = simple
+					}		
+					5 = {		
+						add_trait = faithful
+					}		
+				}			
+			}				
+		}					
+	}						
+	#uninspired						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = uninspired
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					30 = {		
+						add_trait = conventional
+					}		
+					10 = {		
+						add_trait = uninspired
+					}		
+					30 = {		
+						add_trait = simple
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					5 = {		
+						add_trait = honest
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = uninspired
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = shallow
+					}		
+					10 = {		
+						add_trait = unimaginative
+					}		
+					30 = {		
+						add_trait = conventional
+					}		
+					10 = {		
+						add_trait = uninspired
+					}		
+					30 = {		
+						add_trait = simple
+					}		
+					10 = {		
+						add_trait = faithful
+					}		
+					5 = {		
+						add_trait = honest
+					}		
+				}			
+			}				
+		}					
+	}						
+	#simple						
+	random_list = {						
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:this.mother = {		
+						has_trait = simple
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					30 = {		
+						add_trait = uninspired
+					}		
+					10 = {		
+						add_trait = simple
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					5 = {		
+						add_trait = sincere
+					}		
+				}			
+			}				
+		}					
+		50 = { 					
+			if = {				
+				limit = {			
+					scope:father = {		
+						has_trait = simple
+					}		
+				}			
+				random_list = {			
+					5 = {		
+						add_trait = unimaginative
+					}		
+					10 = {		
+						add_trait = conventional
+					}		
+					30 = {		
+						add_trait = uninspired
+					}		
+					10 = {		
+						add_trait = simple
+					}		
+					30 = {		
+						add_trait = faithful
+					}		
+					10 = {		
+						add_trait = honest
+					}		
+					5 = {		
+						add_trait = sincere
+					}		
+				}			
+			}				
+		}					
+	}				
+}
+
+
+#############################################
+# EDUCATION TRAIT PROGRESSION	 			#
+#############################################
+
+## Assign the proper education trait depending on the variable detected on the character
+
+## Updates the corresponding level of Martial arts trait depending on the character martial variable xp
+update_hexaco_martial_arts_trait = {
+	if = {	#	Martial Arts 1		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_martial_arts value >= 3 }		
+			check_variable = { name =  hexaco_education_xp_martial_arts value < 7 }		
+			NOT = { has_trait = martial_arts_1 }		
+		}
+		remove_trait = martial_arts_1
+		remove_trait = martial_arts_2
+		remove_trait = martial_arts_3
+		remove_trait = martial_arts_4
+		remove_trait = martial_arts_5
+
+		add_trait = martial_arts_1			
+	}				
+	if = {	#	Martial Arts 2		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_martial_arts value >= 7 }		
+			check_variable = { name =  hexaco_education_xp_martial_arts value < 11 }		
+			NOT = { has_trait = martial_arts_2 }		
+		}			
+		remove_trait = martial_arts_1
+		remove_trait = martial_arts_2
+		remove_trait = martial_arts_3
+		remove_trait = martial_arts_4
+		remove_trait = martial_arts_5
+
+		add_trait = martial_arts_2			
+	}				
+	if = {	#	Martial Arts 3		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_martial_arts value >= 12 }		
+			check_variable = { name =  hexaco_education_xp_martial_arts value < 16 }		
+			NOT = { has_trait = martial_arts_3 }		
+		}
+		remove_trait = martial_arts_1
+		remove_trait = martial_arts_2
+		remove_trait = martial_arts_3
+		remove_trait = martial_arts_4
+		remove_trait = martial_arts_5
+
+		add_trait = martial_arts_3			
+	}				
+	if = {	#	Martial Arts 4		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_martial_arts value >= 18 }		
+			check_variable = { name =  hexaco_education_xp_martial_arts value < 22 }		
+			NOT = { has_trait = martial_arts_4 }		
+		}
+		remove_trait = martial_arts_1
+		remove_trait = martial_arts_2
+		remove_trait = martial_arts_3
+		remove_trait = martial_arts_4
+		remove_trait = martial_arts_5
+
+		add_trait = martial_arts_4			
+	}				
+	if = {	#	Martial Arts 5		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_martial_arts value >= 25 }				
+			NOT = { has_trait = martial_arts_5 }		
+		}
+		remove_trait = martial_arts_1
+		remove_trait = martial_arts_2
+		remove_trait = martial_arts_3
+		remove_trait = martial_arts_4
+		remove_trait = martial_arts_5
+
+		add_trait = martial_arts_5			
+	}			
+}
+
+## Updates the corresponding level of Riding trait depending on the character riding variable xp
+update_hexaco_riding_trait = {
+
+	if = {	#	Riding 1		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_riding value >= 3 }		
+			check_variable = { name =  hexaco_education_xp_riding value < 7 }		
+			NOT = { has_trait = riding_1 }		
+		}	
+		remove_trait = riding_1
+		remove_trait = riding_2
+		remove_trait = riding_3
+		remove_trait = riding_4
+		remove_trait = riding_5
+
+		add_trait = riding_1			
+	}				
+	if = {	#	Riding 2		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_riding value >= 7 }		
+			check_variable = { name =  hexaco_education_xp_riding value < 11 }		
+			NOT = { has_trait = riding_2 }		
+		}			
+		remove_trait = riding_1
+		remove_trait = riding_2
+		remove_trait = riding_3
+		remove_trait = riding_4
+		remove_trait = riding_5
+
+		add_trait = riding_2			
+	}				
+	if = {	#	Riding 4		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_riding value >= 18 }		
+			check_variable = { name =  hexaco_education_xp_riding value < 22 }		
+			NOT = { has_trait = riding_4 }		
+		}
+		remove_trait = riding_1
+		remove_trait = riding_2
+		remove_trait = riding_3
+		remove_trait = riding_4
+		remove_trait = riding_5
+
+		add_trait = riding_4			
+	}				
+	if = {	#	Riding 5		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_riding value >= 25 }
+			NOT = { has_trait = riding_5 }		
+		}			
+		remove_trait = riding_1
+		remove_trait = riding_2
+		remove_trait = riding_3
+		remove_trait = riding_4
+		remove_trait = riding_5
+
+		add_trait = riding_5			
+	}				
+
+
+}
+
+## Updates the corresponding level of Etiquette trait depending on the character etiquette variable xp
+update_hexaco_etiquette_trait = {
+	
+	if = {	#	Etiquette 1			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_etiquette value >= 3 }			
+			check_variable = { name =  hexaco_education_xp_etiquette value < 7 }			
+			NOT = { has_trait = etiquette_1 }			
+		}				
+		remove_trait = etiquette_1
+		remove_trait = etiquette_2
+		remove_trait = etiquette_3
+		remove_trait = etiquette_4
+		remove_trait = etiquette_5
+
+		add_trait = etiquette_1				
+	}					
+	if = {	#	Etiquette 2			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_etiquette value >= 7 }			
+			check_variable = { name =  hexaco_education_xp_etiquette value < 11 }			
+			NOT = { has_trait = etiquette_2 }			
+		}				
+		remove_trait = etiquette_1
+		remove_trait = etiquette_2
+		remove_trait = etiquette_3
+		remove_trait = etiquette_4
+		remove_trait = etiquette_5
+		add_trait = etiquette_2				
+	}					
+	if = {	#	Etiquette 3			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_etiquette value >= 12 }			
+			check_variable = { name =  hexaco_education_xp_etiquette value < 16 }			
+			NOT = { has_trait = etiquette_3 }			
+		}				
+		remove_trait = etiquette_1
+		remove_trait = etiquette_2
+		remove_trait = etiquette_3
+		remove_trait = etiquette_4
+		remove_trait = etiquette_5
+		add_trait = etiquette_3				
+	}					
+	if = {	#	Etiquette 4			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_etiquette value >= 18 }			
+			check_variable = { name =  hexaco_education_xp_etiquette value < 22 }			
+			NOT = { has_trait = etiquette_4 }			
+		}				
+		remove_trait = etiquette_1
+		remove_trait = etiquette_2
+		remove_trait = etiquette_3
+		remove_trait = etiquette_4
+		remove_trait = etiquette_5
+		add_trait = etiquette_4				
+	}					
+	if = {	#	Etiquette 5			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_etiquette value >= 25 }					
+			NOT = { has_trait = etiquette_5 }			
+		}
+		remove_trait = etiquette_1
+		remove_trait = etiquette_2
+		remove_trait = etiquette_3
+		remove_trait = etiquette_4
+		remove_trait = etiquette_5
+		add_trait = etiquette_5				
+	}					
+
+}
+
+## Updates the corresponding level of Read/Write trait depending on the character of Read/Write variable xp
+update_hexaco_read_write_trait = {
+	if = {	#	Read Write 1		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_read_write value >= 3 }		
+			check_variable = { name =  hexaco_education_xp_read_write value < 7 }		
+			NOT = { has_trait = read_write_1 }		
+		}			
+		remove_trait = read_write_1
+		remove_trait = read_write_2
+		remove_trait = read_write_3
+		remove_trait = read_write_4
+		remove_trait = read_write_5
+		add_trait = read_write_1			
+	}				
+	if = {	#	Read Write 2		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_read_write value >= 7 }		
+			check_variable = { name =  hexaco_education_xp_read_write value < 11 }		
+			NOT = { has_trait = read_write_2 }		
+		}			
+		remove_trait = read_write_1
+		remove_trait = read_write_2
+		remove_trait = read_write_3
+		remove_trait = read_write_4
+		remove_trait = read_write_5
+		add_trait = read_write_2			
+	}				
+	if = {	#	Read Write 3		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_read_write value >= 12 }		
+			check_variable = { name =  hexaco_education_xp_read_write value < 16 }		
+			NOT = { has_trait = read_write_3 }		
+		}			
+		remove_trait = read_write_1
+		remove_trait = read_write_2
+		remove_trait = read_write_3
+		remove_trait = read_write_4
+		remove_trait = read_write_5
+		add_trait = read_write_3			
+	}				
+	if = {	#	Read Write 4		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_read_write value >= 18 }		
+			check_variable = { name =  hexaco_education_xp_read_write value < 22 }		
+			NOT = { has_trait = read_write_4 }		
+		}			
+		remove_trait = read_write_1
+		remove_trait = read_write_2
+		remove_trait = read_write_3
+		remove_trait = read_write_4
+		remove_trait = read_write_5
+		add_trait = read_write_4			
+	}				
+	if = {	#	Read Write 5		
+		limit = {			
+			check_variable = { name =  hexaco_education_xp_read_write value >= 25 }			
+			NOT = { has_trait = read_write_5 }		
+		}			
+		remove_trait = read_write_1
+		remove_trait = read_write_2
+		remove_trait = read_write_3
+		remove_trait = read_write_4
+		remove_trait = read_write_5
+		add_trait = read_write_5			
+	}				
+
+}
+
+## Updates the corresponding level of Mathematics trait depending on the character Mathematics variable 
+update_hexaco_mathematics_trait = {
+	if = {	#	Mathematics 1	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_mathematics value >= 3 }	
+			check_variable = { name =  hexaco_education_xp_mathematics value < 7 }	
+			NOT = { has_trait = mathematics_1 }	
+		}		
+		remove_trait = mathematics_1
+		remove_trait = mathematics_2
+		remove_trait = mathematics_3
+		remove_trait = mathematics_4
+		remove_trait = mathematics_5
+		add_trait = mathematics_1		
+	}			
+	if = {	#	Mathematics 2	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_mathematics value >= 7 }	
+			check_variable = { name =  hexaco_education_xp_mathematics value < 11 }	
+			NOT = { has_trait = mathematics_2 }	
+		}		
+		remove_trait = mathematics_1
+		remove_trait = mathematics_2
+		remove_trait = mathematics_3
+		remove_trait = mathematics_4
+		remove_trait = mathematics_5
+		add_trait = mathematics_2		
+	}			
+	if = {	#	Mathematics 3	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_mathematics value >= 12 }	
+			check_variable = { name =  hexaco_education_xp_mathematics value < 16 }	
+			NOT = { has_trait = mathematics_3 }	
+		}		
+		remove_trait = mathematics_1
+		remove_trait = mathematics_2
+		remove_trait = mathematics_3
+		remove_trait = mathematics_4
+		remove_trait = mathematics_5
+		add_trait = mathematics_3		
+	}			
+	if = {	#	Mathematics 4	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_mathematics value >= 18 }	
+			check_variable = { name =  hexaco_education_xp_mathematics value < 22 }	
+			NOT = { has_trait = mathematics_4 }	
+		}		
+		remove_trait = mathematics_1
+		remove_trait = mathematics_2
+		remove_trait = mathematics_3
+		remove_trait = mathematics_4
+		remove_trait = mathematics_5
+		add_trait = mathematics_4		
+	}			
+	if = {	#	Mathematics 5	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_mathematics value >= 25 }	
+			NOT = { has_trait = mathematics_5 }	
+		}		
+		remove_trait = mathematics_1
+		remove_trait = mathematics_2
+		remove_trait = mathematics_3
+		remove_trait = mathematics_4
+		remove_trait = mathematics_5
+		add_trait = mathematics_5		
+	}			
+
+}
+
+## Updates the corresponding level of Philosophy trait depending on the character Philosophy variable 
+update_hexaco_philosophy_trait = {
+	if = {	#	Philosophy 1	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_philosophy value >= 3 }	
+			check_variable = { name =  hexaco_education_xp_philosophy value < 7 }	
+			NOT = { has_trait = philosophy_1 }	
+		}		
+		remove_trait = philosophy_1
+		remove_trait = philosophy_2
+		remove_trait = philosophy_3
+		remove_trait = philosophy_4
+		remove_trait = philosophy_5		
+		add_trait = philosophy_1		
+	}			
+	if = {	#	Philosophy 2	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_philosophy value >= 7 }	
+			check_variable = { name =  hexaco_education_xp_philosophy value < 11 }	
+			NOT = { has_trait = philosophy_2 }	
+		}		
+		remove_trait = philosophy_1
+		remove_trait = philosophy_2
+		remove_trait = philosophy_3
+		remove_trait = philosophy_4
+		remove_trait = philosophy_5	
+		add_trait = philosophy_2		
+	}			
+	if = {	#	Philosophy 3	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_philosophy value >= 12 }	
+			check_variable = { name =  hexaco_education_xp_philosophy value < 16 }	
+			NOT = { has_trait = philosophy_3 }	
+		}		
+		remove_trait = philosophy_1
+		remove_trait = philosophy_2
+		remove_trait = philosophy_3
+		remove_trait = philosophy_4
+		remove_trait = philosophy_5	
+		add_trait = philosophy_3		
+	}			
+	if = {	#	Philosophy 4	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_philosophy value >= 18 }	
+			check_variable = { name =  hexaco_education_xp_philosophy value < 22 }	
+			NOT = { has_trait = philosophy_4 }	
+		}		
+		remove_trait = philosophy_1
+		remove_trait = philosophy_2
+		remove_trait = philosophy_3
+		remove_trait = philosophy_4
+		remove_trait = philosophy_5	
+		add_trait = philosophy_4		
+	}			
+	if = {	#	Philosophy 5	
+		limit = {		
+			check_variable = { name =  hexaco_education_xp_philosophy value >= 25 }	
+			check_variable = { name =  hexaco_education_xp_philosophy value < 29 }	
+			NOT = { has_trait = philosophy_5 }	
+		}
+		remove_trait = philosophy_1
+		remove_trait = philosophy_2
+		remove_trait = philosophy_3
+		remove_trait = philosophy_4
+		remove_trait = philosophy_5	
+		add_trait = philosophy_5		
+	}			
+
+}
+
+## Updates the corresponding level of Law trait depending on the character Law variable 
+update_hexaco_law_trait = {
+	if = {	#	Law 1			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_law value >= 3 }			
+			check_variable = { name =  hexaco_education_xp_law value < 7 }			
+			NOT = { has_trait = law_1 }			
+		}
+		remove_trait = law_1
+		remove_trait = law_2
+		remove_trait = law_3
+		remove_trait = law_4
+		remove_trait = law_5						
+		add_trait = law_1				
+	}					
+	if = {	#	Law 2			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_law value >= 7 }			
+			check_variable = { name =  hexaco_education_xp_law value < 11 }			
+			NOT = { has_trait = law_2 }			
+		}				
+		remove_trait = law_1
+		remove_trait = law_2
+		remove_trait = law_3
+		remove_trait = law_4
+		remove_trait = law_5
+		add_trait = law_2				
+	}					
+	if = {	#	Law 3			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_law value >= 12 }			
+			check_variable = { name =  hexaco_education_xp_law value < 16 }			
+			NOT = { has_trait = law_3 }			
+		}				
+		remove_trait = law_1
+		remove_trait = law_2
+		remove_trait = law_3
+		remove_trait = law_4
+		remove_trait = law_5
+		add_trait = law_3				
+	}					
+	if = {	#	Law 4			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_law value >= 18 }			
+			check_variable = { name =  hexaco_education_xp_law value < 22 }			
+			NOT = { has_trait = law_4 }			
+		}				
+		remove_trait = law_1
+		remove_trait = law_2
+		remove_trait = law_3
+		remove_trait = law_4
+		remove_trait = law_5
+		add_trait = law_4				
+	}					
+	if = {	#	Law 5			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_law value >= 25 }					
+			NOT = { has_trait = law_5 }			
+		}				
+		remove_trait = law_1
+		remove_trait = law_2
+		remove_trait = law_3
+		remove_trait = law_4
+		remove_trait = law_5
+		add_trait = law_5				
+	}					
+
+}
+
+## Updates the corresponding level of Theology trait depending on the character Theology variable 
+update_hexaco_theology_trait = {
+	if = {	#	Theology 1			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_theology value >= 3 }			
+			check_variable = { name =  hexaco_education_xp_theology value < 7 }			
+			NOT = { has_trait = theology_1 }			
+		}
+		remove_trait = theology_1
+		remove_trait = theology_2
+		remove_trait = theology_3
+		remove_trait = theology_4
+		remove_trait = theology_5						
+		add_trait = theology_1				
+	}					
+	if = {	#	Theology 2			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_theology value >= 7 }			
+			check_variable = { name =  hexaco_education_xp_theology value < 11 }			
+			NOT = { has_trait = theology_2 }			
+		}				
+		remove_trait = theology_1
+		remove_trait = theology_2
+		remove_trait = theology_3
+		remove_trait = theology_4
+		remove_trait = theology_5
+		add_trait = theology_2				
+	}					
+	if = {	#	Theology 3			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_theology value >= 12 }			
+			check_variable = { name =  hexaco_education_xp_theology value < 16 }			
+			NOT = { has_trait = theology_3 }			
+		}				
+		remove_trait = theology_1
+		remove_trait = theology_2
+		remove_trait = theology_3
+		remove_trait = theology_4
+		remove_trait = theology_5
+		add_trait = theology_3				
+	}					
+	if = {	#	Theology 4			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_theology value >= 18 }			
+			check_variable = { name =  hexaco_education_xp_theology value < 22 }			
+			NOT = { has_trait = theology_4 }			
+		}				
+		remove_trait = theology_1
+		remove_trait = theology_2
+		remove_trait = theology_3
+		remove_trait = theology_4
+		remove_trait = theology_5
+		add_trait = theology_4				
+	}					
+	if = {	#	Theology 5			
+		limit = {				
+			check_variable = { name =  hexaco_education_xp_theology value >= 25 }					
+			NOT = { has_trait = theology_5 }			
+		}				
+		remove_trait = theology_1
+		remove_trait = theology_2
+		remove_trait = theology_3
+		remove_trait = theology_4
+		remove_trait = theology_5
+		add_trait = theology_5				
+	}					
+
+}
+
+
+#############################################
+# PERSONALITY TRAIT PROGRESSION	 			#
+#############################################
+
+#### Updates the proper personality trait depending on the variable detected on the character
+
+## Updates the corresponding level of Honest Humility trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_honesty_humility_trait = {
+	if = {	#	faithful	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= 25 }		
+			NOT = { has_trait = faithful }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = faithful			
+	}				
+	if = {	#	honest	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= 18 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 25 }		
+			NOT = { has_trait = honest }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = honest			
+	}				
+	if = {	#	sincere	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= 12 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 19 }		
+			NOT = { has_trait = sincere }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = sincere			
+	}				
+	if = {	#	generous	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= 7 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 14 }		
+			NOT = { has_trait = generous }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = generous			
+	}				
+	if = {	#	humble	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= 3 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 10 }		
+			NOT = { has_trait = humble }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = humble			
+	}				
+	if = {	#	pretentious	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= -3 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 4 }		
+			NOT = { has_trait = pretentious }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = pretentious			
+	}				
+	if = {	#	greedy	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= -7 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < 0 }		
+			NOT = { has_trait = greedy }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = greedy			
+	}				
+	if = {	#	inconstant	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= -12 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < -5 }		
+			NOT = { has_trait = inconstant }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = inconstant			
+	}				
+	if = {	#	deceitful	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value >= -18 }		
+			check_variable = { name = hexaco_personality_value_honesty_humility value < -11 }		
+			NOT = { has_trait = deceitful }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = deceitful			
+	}				
+	if = {	#	hypocritical	Honesty-Humility	
+		limit = {			
+			check_variable = { name = hexaco_personality_value_honesty_humility value < -18 }		
+			NOT = { has_trait = hypocritical }		
+		}			
+		remove_trait = faithful			
+		remove_trait = honest			
+		remove_trait = sincere			
+		remove_trait = generous			
+		remove_trait = humble			
+		remove_trait = pretentious			
+		remove_trait = greedy			
+		remove_trait = inconstant			
+		remove_trait = deceitful			
+		remove_trait = hypocritical			
+		add_trait = hypocritical			
+	}				
+
+}
+
+## Updates the corresponding level of Emotionality trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_emotionality_trait = { 
+	if = {	#	brave	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= 25 }			
+			NOT = { has_trait = brave }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = brave				
+	}					
+	if = {	#	tough	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= 18 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 25 }			
+			NOT = { has_trait = tough }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable		
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = tough				
+	}					
+	if = {	#	independent	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= 12 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 19 }			
+			NOT = { has_trait = independent }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable			
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = independent				
+	}					
+	if = {	#	selfassured	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= 7 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 14 }			
+			NOT = { has_trait = selfassured }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable		
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = selfassured				
+	}					
+	if = {	#	stable	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= 3 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 10 }			
+			NOT = { has_trait = stable }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable		
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = stable				
+	}					
+	if = {	#	vulnerable�	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= -3 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 4 }			
+			NOT = { has_trait = vulnerable }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable		
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = vulnerable			
+	}					
+	if = {	#	anxious	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= -7 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < 0 }			
+			NOT = { has_trait = anxious }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable			
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = anxious				
+	}					
+	if = {	#	fearful	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= -12 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < -5 }			
+			NOT = { has_trait = fearful }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = fearful				
+	}					
+	if = {	#	sentimental	Emotionality		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_emotionality value >= -18 }			
+			check_variable = { name = hexaco_personality_value_emotionality value < -11 }			
+			NOT = { has_trait = sentimental }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = sentimental				
+	}					
+	if = {	#	craven	Emotionality		
+		limit = {
+			check_variable = { name = hexaco_personality_value_emotionality value < -18 }			
+			NOT = { has_trait = craven }			
+		}				
+		remove_trait = brave				
+		remove_trait = tough				
+		remove_trait = independent				
+		remove_trait = selfassured				
+		remove_trait = stable				
+		remove_trait = vulnerable
+		remove_trait = anxious				
+		remove_trait = fearful				
+		remove_trait = sentimental				
+		remove_trait = craven				
+		add_trait = craven				
+	}					
+
+}
+
+## Updates the corresponding level of Extraversion trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_extraversion_trait = {
+	if = {	#	outgoing	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= 25 }				
+			NOT = { has_trait = outgoing }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = outgoing				
+	}					
+	if = {	#	lively	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= 18 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 25 }			
+			NOT = { has_trait = lively }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = lively				
+	}					
+	if = {	#	sociable	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= 12 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 19 }			
+			NOT = { has_trait = sociable }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = sociable				
+	}					
+	if = {	#	talkative	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= 7 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 14 }			
+			NOT = { has_trait = talkative }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = talkative				
+	}					
+	if = {	#	cheerful	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= 3 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 10 }			
+			NOT = { has_trait = cheerful }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = cheerful				
+	}					
+	if = {	#	passive	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= -3 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 4 }			
+			NOT = { has_trait = passive }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = passive				
+	}					
+	if = {	#	withdrawn	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= -7 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < 0 }			
+			NOT = { has_trait = withdrawn }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = withdrawn				
+	}					
+	if = {	#	introverted	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= -12 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < -5 }			
+			NOT = { has_trait = introverted }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = introverted				
+	}					
+	if = {	#	quiet	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value >= -18 }			
+			check_variable = { name = hexaco_personality_value_extraversion value < -11 }			
+			NOT = { has_trait = quiet }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = quiet				
+	}					
+	if = {	#	reserved	Extraversion		
+		limit = {				
+			check_variable = { name = hexaco_personality_value_extraversion value < -18 }			
+			NOT = { has_trait = reserved }			
+		}				
+		remove_trait = outgoing				
+		remove_trait = lively				
+		remove_trait = sociable				
+		remove_trait = talkative				
+		remove_trait = cheerful				
+		remove_trait = passive				
+		remove_trait = withdrawn				
+		remove_trait = introverted				
+		remove_trait = quiet				
+		remove_trait = reserved				
+		add_trait = reserved				
+	}					
+
+}
+
+## Updates the corresponding level of Agreeableness trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_agreeableness_trait = {
+	if = {	#	patient	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= 25 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 32 }				
+			NOT = { has_trait = patient }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = patient					
+	}						
+	if = {	#	tolerant	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= 18 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 25 }				
+			NOT = { has_trait = tolerant }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = tolerant					
+	}						
+	if = {	#	agreeable	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= 12 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 19 }				
+			NOT = { has_trait = agreeable }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = agreeable					
+	}						
+	if = {	#	mild	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= 7 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 14 }				
+			NOT = { has_trait = mild }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = mild					
+	}						
+	if = {	#	gentle	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= 3 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 10 }				
+			NOT = { has_trait = gentle }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = gentle					
+	}						
+	if = {	#	illtempered	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= -3 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 4 }				
+			NOT = { has_trait = illtempered }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = illtempered					
+	}						
+	if = {	#	quarrelsome	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= -7 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < 0 }				
+			NOT = { has_trait = quarrelsome }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = quarrelsome					
+	}						
+	if = {	#	stubborn	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= -12 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < -5 }				
+			NOT = { has_trait = stubborn }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = stubborn					
+	}						
+	if = {	#	intolerant	Agreeableness			
+		limit = {					
+			check_variable = { name = hexaco_personality_value_agreeableness value >= -18 }				
+			check_variable = { name = hexaco_personality_value_agreeableness value < -11 }				
+			NOT = { has_trait = intolerant }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = intolerant					
+	}						
+	if = {	#	wroth	Agreeableness			
+		limit = {									
+			check_variable = { name = hexaco_personality_value_agreeableness value < -18 }				
+			NOT = { has_trait = wroth }				
+		}					
+		remove_trait = patient					
+		remove_trait = tolerant					
+		remove_trait = agreeable					
+		remove_trait = mild					
+		remove_trait = gentle					
+		remove_trait = illtempered					
+		remove_trait = quarrelsome					
+		remove_trait = stubborn					
+		remove_trait = intolerant					
+		remove_trait = wroth					
+		add_trait = wroth					
+	}						
+
+}
+
+## Updates the corresponding level of Conscientiousness trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_conscientiousness_trait = {
+	if = {	#	organized	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= 25 }									
+			NOT = { has_trait = organized }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = organized						
+	}							
+	if = {	#	diligent	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= 18 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 25 }					
+			NOT = { has_trait = diligent }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = diligent						
+	}							
+	if = {	#	careful	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= 12 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 19 }					
+			NOT = { has_trait = careful }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = careful						
+	}							
+	if = {	#	thorough	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= 7 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 14 }					
+			NOT = { has_trait = thorough }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = thorough						
+	}							
+	if = {	#	precise	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= 3 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 10 }					
+			NOT = { has_trait = precise }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = precise						
+	}							
+	if = {	#	sloppy	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= -3 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 4 }					
+			NOT = { has_trait = sloppy }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = sloppy						
+	}							
+	if = {	#	negligent	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= -7 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < 0 }					
+			NOT = { has_trait = negligent }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = negligent						
+	}							
+	if = {	#	reckless	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= -12 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < -5 }					
+			NOT = { has_trait = reckless }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = reckless						
+	}							
+	if = {	#	lazy	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value >= -18 }					
+			check_variable = { name = hexaco_personality_value_conscientiousness value < -11 }					
+			NOT = { has_trait = lazy }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = lazy						
+	}							
+	if = {	#	irresponsible	Conscientiousness				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value < -18 }					
+			NOT = { has_trait = irresponsible }					
+		}						
+		remove_trait = organized						
+		remove_trait = diligent						
+		remove_trait = careful						
+		remove_trait = thorough						
+		remove_trait = precise						
+		remove_trait = sloppy						
+		remove_trait = negligent						
+		remove_trait = reckless						
+		remove_trait = lazy						
+		remove_trait = irresponsible						
+		add_trait = irresponsible						
+	}							
+
+}
+
+## Updates the corresponding level of Openess to Experience trait depending on the character related scale variable (can be changed through events or other scripted effects)
+update_hexaco_openness_to_experience_trait = {
+	if = {	#	intellectual	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= 25 }									
+			NOT = { has_trait = intellectual }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = intellectual						
+	}							
+	if = {	#	creative	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= 18 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 25 }					
+			NOT = { has_trait = creative }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = creative						
+	}							
+	if = {	#	unconventional	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= 12 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 19 }					
+			NOT = { has_trait = unconventional }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = unconventional						
+	}							
+	if = {	#	innovative	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= 7 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 14 }					
+			NOT = { has_trait = innovative }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = innovative						
+	}							
+	if = {	#	thoughtful	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= 3 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 10 }					
+			NOT = { has_trait = thoughtful }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = thoughtful						
+	}							
+	if = {	#	shallow	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= -3 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 4 }					
+			NOT = { has_trait = shallow }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = shallow						
+	}							
+	if = {	#	unimaginative	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= -7 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < 0 }					
+			NOT = { has_trait = unimaginative }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = unimaginative						
+	}							
+	if = {	#	conventional	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= -12 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < -5 }					
+			NOT = { has_trait = conventional }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = conventional						
+	}							
+	if = {	#	uninspired	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_openness_to_experience value >= -18 }					
+			check_variable = { name = hexaco_personality_value_openness_to_experience value < -11 }					
+			NOT = { has_trait = uninspired }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = uninspired						
+	}							
+	if = {	#	simple	Openness to Experience				
+		limit = {						
+			check_variable = { name = hexaco_personality_value_conscientiousness value < -18 }					
+			NOT = { has_trait = simple }					
+		}						
+		remove_trait = intellectual						
+		remove_trait = creative						
+		remove_trait = unconventional						
+		remove_trait = innovative						
+		remove_trait = thoughtful						
+		remove_trait = shallow						
+		remove_trait = unimaginative						
+		remove_trait = conventional						
+		remove_trait = uninspired						
+		remove_trait = simple						
+		add_trait = simple						
+	}							
+
+}
+
+
+#### Adds a point in the related scale and assign the proper education trait depending on the variable detected on the character
+
+## Adds 1 positive points towards the positive end of Honesty Humility HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_honesty_humility_scale = {
+	change_variable = { name = hexaco_personality_value_honesty_humility value = 1 }
+	update_hexaco_honesty_humility_trait = yes
+}
+
+## Adds 1 positive points towards the positive end of Emotionality HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_emotionality_scale = {
+	change_variable = { name = hexaco_personality_value_emotionality value = 1 }
+	update_hexaco_emotionality_trait = yes
+}
+
+## Adds 1 positive points towards the positive end of Extraversion HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_extraversion_scale = {
+	change_variable = { name = hexaco_personality_value_extraversion value = 1 }
+	update_hexaco_extraversion_trait = yes
+}
+
+## Adds 1 positive points towards the positive end of Agreeableness HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_agreeableness_scale = {
+	change_variable = { name = hexaco_personality_value_agreeableness value = 1 }
+	update_hexaco_agreeableness_trait = yes
+}
+
+## Adds 1 positive points towards the positive end of Conscientiousness HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_conscientiousness_scale = {
+	change_variable = { name = hexaco_personality_value_conscientiousness value = 1 }
+	update_hexaco_conscientiousness_trait = yes
+}
+
+## Adds 1 positive points towards the positive end of Openness To Experience HEXACO personality scale and updates the trait if needed
+positive_gain_hexaco_openness_to_experience_scale = {
+	change_variable = { name = hexaco_personality_value_openness_to_experience value = 1 }
+	update_hexaco_openness_to_experience_trait = yes
+}
+
+
+#### Removes a point in the related scale and assign the proper personality trait depending on the variable detected on the character
+
+## Removes 1 points towards the end of Honesty Humility HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_honesty_humility_scale = {
+	change_variable = { name = hexaco_personality_value_honesty_humility value = -1 }
+	update_hexaco_honesty_humility_trait = yes
+}
+
+## Removes 1 points towards the end of Emotionality HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_emotionality_scale = {
+	change_variable = { name = hexaco_personality_value_emotionality value = -1 }
+	update_hexaco_emotionality_trait = yes
+}
+
+## Removes 1  points towards the end of Extraversion HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_extraversion_scale = {
+	change_variable = { name = hexaco_personality_value_extraversion value = -1 }
+	update_hexaco_extraversion_trait = yes
+}
+
+## Removes 1  points towards the end of Agreeableness HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_agreeableness_scale = {
+	change_variable = { name = hexaco_personality_value_agreeableness value = -1 }
+	update_hexaco_agreeableness_trait = yes
+}
+
+## Removes 1  points towards the end of Conscientiousness HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_conscientiousness_scale = {
+	change_variable = { name = hexaco_personality_value_conscientiousness value = -1 }
+	update_hexaco_conscientiousness_trait = yes
+}
+
+## Removes 1  points towards the end of Openness To Experience HEXACO personality scale and updates the trait if needed
+negative_gain_hexaco_openness_to_experience_scale = {
+	change_variable = { name = hexaco_personality_value_openness_to_experience value = -1 }
+	update_hexaco_openness_to_experience_trait = yes
+}

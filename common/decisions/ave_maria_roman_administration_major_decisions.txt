@@ -1,0 +1,165 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA decisions																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Decisions						                        	   #
+#                               													   #
+########################################################################################
+
+## Written by Atreides
+
+# Be crowned basileus choose your co emperor
+ave_maria_roman_administration_imperial_coronation_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_imperial_coronation.dds"
+	major = yes
+	desc = ave_maria_roman_administration_imperial_coronation_decision_desc
+
+	ai_check_interval = 36
+
+	is_shown = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+		NOT = {
+			has_trait = crowned_basileus 
+			has_character_flag = imperial_coronation_started_preparations
+		}
+	}
+
+	is_valid = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+		NOT = {
+			has_trait = crowned_basileus 
+			has_character_flag = imperial_coronation_started_preparations
+		}
+	}
+
+	cost = {
+		# add_gold = -150
+	}
+
+	effect = {
+		custom_tooltip = ave_maria_roman_administration_imperial_coronation_decision_tooltip
+		# trigger_event = ave_maria_roman_administration_events.0003
+		save_scope_as = actor
+		
+		capital_province = {
+			spawn_activity = {
+				type = activity_roman_administration_imperial_coronation
+				owner = root
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}
+
+## Name a Co emperor
+## Only if already has the trait basileus can you use this co emperor ceremony
+ave_maria_roman_administration_coemperor_coronation_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_imperial_coronation.dds"
+
+	major = yes
+	ai_check_interval = 12
+
+	is_shown = {
+		is_landed = yes
+		is_independent_ruler = yes
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+		has_trait = crowned_basileus
+		player_heir = { NOT = { has_trait = crowned_coemperor } }
+	}
+
+	is_valid = {	
+		is_physically_able_adult = yes
+		custom_description = {
+			text = name_co_emperor_decision_candidate
+			primary_title = {
+				any_election_candidate = {
+					this = root.player_heir
+				}
+			}
+		}		
+		player_heir = {
+			dynasty = root.dynasty
+			is_imprisoned = no
+			NOT = { has_trait = incapable }
+		}	
+		trigger_if = {
+			limit = { has_culture_group = culture_group:byzantine_group }
+			custom_description = {
+				text = name_co_emperor_decision_byzantine_heir
+				player_heir = {
+					byzantine_elective_deformed_candidate_trigger = no
+				}	
+			}	
+		}	
+		trigger_if = {
+			limit = {
+				OR = {
+					has_realm_law = male_only_law
+					has_realm_law = male_preference_law
+				}
+			}
+			player_heir = { is_female = no }
+		}
+		trigger_else_if = {
+			limit = {
+				OR = {
+					has_realm_law = female_only_law
+					has_realm_law = female_preference_law
+				}
+			}
+			player_heir = { is_female = yes }
+		}
+		trigger_else = {
+			always = yes
+		}
+	}
+
+	cost = {					
+		prestige = 150
+		# gold = 300
+	}
+
+	effect = {
+		#for loc
+		save_temporary_scope_as = roman_administration_emperor
+		player_heir = { save_temporary_scope_as = roman_administration_emperor_heir }
+		
+		hidden_effect = {
+			set_relation_co_emperor = root.player_heir
+			set_designated_heir = scope:roman_administration_emperor_heir
+		}
+		player_heir = {
+			custom_tooltip = name_co_emperor_EFFECT_A
+		}	
+		trigger_event = {
+			id = imperial.0005
+		}
+	}
+	
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+	
+	ai_priority = 100
+}

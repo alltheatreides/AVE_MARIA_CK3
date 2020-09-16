@@ -1,0 +1,69 @@
+﻿title_succession_laws = {
+
+	# AVE MARIA - ROMAN ADMINISTRATION BUREAUCRATIC SUCCESSION
+	
+	ave_maria_roman_administration_tagma_succession_law = {
+		can_have = {
+			OR = {
+				has_title = title:d_megas_domestikos
+			}
+			top_liege = {
+				primary_title = e_byzantium
+			}
+		}
+		can_pass = {
+			always = yes
+		}
+		can_title_have = {
+			tier >= tier_duchy
+		}
+		succession = {
+			order_of_succession = election
+			election_type = roman_administration_tagma_elective
+		}
+		flag = roman_elective_succession_law
+		modifier = {
+			direct_vassal_opinion = 5
+		}
+		revoke_cost = {
+			prestige = 10000000
+		}
+		pass_cost = {
+			prestige = 0
+		}
+	}
+	
+	ave_maria_roman_administration_family_succession_law = {
+		can_have = {
+			OR = {
+				has_government = roman_administration_government
+				# has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}
+			top_liege = {
+				primary_title = e_byzantium
+			}
+		}
+		can_pass = {
+			always = yes
+		}
+		can_title_have = {
+			tier = tier_county
+		}
+		succession = {
+			order_of_succession = election
+			election_type = roman_administration_family_elective
+		}
+		flag = roman_elective_succession_law
+		modifier = {
+			# direct_vassal_opinion = 5
+		}
+		revoke_cost = {
+			prestige = 10000000
+		}
+		pass_cost = {
+			prestige = 0
+		}
+	}
+
+}

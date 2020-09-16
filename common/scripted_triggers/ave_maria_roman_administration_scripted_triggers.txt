@@ -1,0 +1,63 @@
+########################################################################################
+#                                         											   #
+# AVE MARIA Scripted Triggers														   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Scripted Triggers                   							   #
+#                               													   #
+########################################################################################
+
+### Scripted Triggers to enable certain laws
+roman_administration_realm_law_special_crown_authority = {
+	OR = {
+		has_government = roman_administration_government
+		has_government = roman_administration_military_government
+		has_government = roman_administration_civilian_government
+	}
+	
+}
+
+
+### GOVERNMENT ELECTION CHECK
+roman_administration_elective_potential_landed_candidate_trigger = {
+
+	#Either the candidate is in the roman empire, or the title is independent, or the realm of the title does NOT have protected inheritance.
+	OR = {
+		any_liege_or_above = {
+			target_is_liege_or_above = scope:holder
+		}
+		scope:holder = { is_independent_ruler = yes }
+		scope:holder = {
+			NOT = {
+				has_realm_law_flag = titles_cannot_leave_realm_on_succession
+			}
+		}
+	}
+	OR = {
+		highest_held_title_tier > 2 #Or Duke-tier... (if title is King or Emperor tier)
+		AND = {
+			scope:holder = {
+				highest_held_title_tier = 3
+			}
+			highest_held_title_tier > 1 #...Or Count-tier under a Duchy...
+		}
+		AND = {
+			scope:holder = {
+				highest_held_title_tier < 3
+			}
+			is_ruler = yes #...Or Baron-tier under a County.
+			is_landed = yes
+		}
+	}
+	OR = { #If the title controls the faith, candidates must be of the same faith.
+		scope:holder = {
+			NAND = {
+				exists = faith.religious_head
+				this = faith.religious_head #TODO_CD:It might need to be changed to check only for the title rather than the holder. (controlled_faith = scope:holder.faith)
+			}
+		}
+		this.faith = scope:holder.faith
+	}
+	has_unelectable_trait_trigger = no
+	has_unelectable_government_trigger = no
+}
