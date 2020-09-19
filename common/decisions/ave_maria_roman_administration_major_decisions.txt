@@ -81,7 +81,7 @@ ave_maria_roman_administration_coemperor_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		has_trait = crowned_basileus
-		player_heir = { NOT = { has_trait = crowned_coemperor } }
+		# player_heir = { NOT = { has_trait = crowned_coemperor } }
 	}
 
 	is_valid = {	
@@ -201,7 +201,7 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 		is_at_war = yes
 		NOT = { 
 			any_vassal_or_below = {
-				limit = {
+				any_held_title = {
 					roman_administration_tagma_title_trigger = yes
 				}
 				any_character_war = {
@@ -237,10 +237,11 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 					}
 				}
 			}
-			save_scope_as = tagma_to_join		
+			add_to_list = list_of_tagma_to_join_the_wars
+			# save_scope_as = tagma_to_join		
 		}
 		scope:actor = {
-			any_character_war = {
+			every_character_war = {
 				limit = {
 					is_war_leader = scope:actor
 				}		
@@ -252,10 +253,18 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 				limit = {
 					is_attacker = scope:actor
 				}
-				add_attacker = scope:tagma_to_join
+				every_in_list = {
+					list = list_of_tagma_to_join_the_wars
+					add_attacker = this
+				}
+				# add_attacker = scope:tagma_to_join
 			}
 			else = {
-				add_defender = scope:tagma_to_join
+				every_in_list = {
+					list = list_of_tagma_to_join_the_wars
+					add_attacker = this
+				}
+				# add_defender = scope:tagma_to_join
 			}
 		}
 	}
