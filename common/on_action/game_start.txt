@@ -167,19 +167,7 @@ on_game_start = {
 		#############################################
 		# AVE MARIA									#
 		#############################################
-		# every_living_character = {
-		# 	trigger_event = ave_maria_hexaco_traits_events.0001
-		# }
-		#Emperor Varangians
-		character:1732 = {
-			if = {
-				limit = {
-					is_alive = yes
-					is_landed = yes
-				}
-				trigger_event = ave_maria_roman_administration_events.00021
-			}
-		}
+		
 		
 	}
 }
@@ -242,36 +230,26 @@ on_game_start_after_lobby = {
 		every_living_character = {
 			trigger_event = ave_maria_hexaco_traits_events.0001
 		}
+
 		every_ruler = {
 			limit = {
-				has_government = roman_administration_military_government
+				roman_administration_tagma_title_trigger = yes
 			}
-			spawn_army = {
-				name = "Tagma"
-				# levies = 0
-				men_at_arms = {
-					type = cataphract
-					stacks = 100
+			trigger_event = ave_maria_roman_administration_events.0002
 				}
-				men_at_arms = {
-					type = house_guard
-					stacks = 100
+		every_ruler = {
+			limit = {
+				any_held_title = {
+					this = title:e_byzantium
 				}
-				men_at_arms = {
-					type = bowmen
-					stacks = 50
-				}
-				location = root.capital_province
-				origin = root.capital_province
 			}
+			trigger_event = ave_maria_roman_administration_events.0001
+			trigger_event = ave_maria_roman_administration_events.00021
 		}
 	}
 
 	events = {
 		game_rule.1000	#Autopopulate families.
 		game_rule.1011	#Hungarian Migration management.
-
-		
-		ave_maria_hexaco_traits_events.0001
 	}
 }

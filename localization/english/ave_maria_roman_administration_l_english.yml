@@ -3,6 +3,15 @@
  e_byzantium:0 "Roman Empire"
 
  d_megas_domestikos:0 "Scholae Tagma"
+ d_varangian_guard:0 "Varangian Guard"
+ d_megas_droungarios:0 "Stolos"
+ d_excubitor:0 "Excubitor Tagma"
+ d_vigla:0 "Vigla Tagma"
+ d_hikanatoi:0 "Hikanatoi Tagma"
+ d_regular_tagma_1:0 "Imperial Troops"
+ d_regular_tagma_2:0 "Imperial Troops"
+
+
  c_roman_family_1:0 "Roman Family"
  c_roman_family_1:0 "Roman Family"
  c_roman_family_2:0 "Roman Family"
@@ -105,11 +114,31 @@
  c_roman_family_99:0 "Roman Family"
  c_roman_family_100:0 "Roman Family"
 
+ varangian_guard_leader:0 "Akolouthos"
+ megas_droungarious_leader:0 "Droungarios"
+
+ 
+ ### BUILDINGS AND HOLDINGS
+ metropolis_constantinople_holding:0 "Metropolis"
+ building_type_metropolis_constantinople_01:0 "Constantinople"
+
+ ### ACTIVITIES
+ activity_roman_administration_imperial_coronation_name:0 "Imperial Coronation"
+ activity_roman_administration_imperial_coronation:0 "Coronation"
+ activity_roman_administration_imperial_coronation_owner:0 "Basileus"
+
 
  ### GOVERNMENT NAMES
  roman_administration_government:0 "Administration"
  roman_administration_civilian_government:0 "Civilian Administration"
  roman_administration_military_government:0 "Professional Military"
+ ROMAN_ADMINISTRATION_APPOINTMENT_OPINION:0 "Hierarchical Superior Appointement"
+ roman_administration_military_government_vassals_label:0 "Military governments are salaried professionals joining the Basileus when he calls."
+
+ ### GOVERNMENT LAWS
+ ave_maria_roman_administration_realm_law:0 "Roman Administration"
+ ave_maria_roman_administration_realm_law_civilian:0 "Roman Civilian Administration"
+ ave_maria_roman_administration_realm_law_military:0 "Roman Military Administration"
 
  ### SUCCESSION LAWS NAMES
  ave_maria_roman_administration_succession_law:0 "Nepotism"
@@ -122,7 +151,9 @@
  
  ### TRAITS
  trait_crowned_basileus:0 "Basileus"
- trait_crowned_basileus_character_desc:0 "This character has been crowned emperor of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_crowned_basileus_character_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_crowned_basileus:0 "Basileus"
+ trait_crowned_basileus_character_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  
  
  ### DECISIONS
@@ -130,6 +161,20 @@
  ave_maria_roman_administration_imperial_coronation_decision_desc:0 "Publicly performing my coronation as Basileus is essential if I am to be a legitimate Emperor of the Romans."
  ave_maria_roman_administration_imperial_coronation_decision_tooltip:0 "Will start the preparations towards your coronation as Basileus of the Romans."
  ave_maria_roman_administration_imperial_coronation_decision_confirm:0 "Start the preparations."
+ ave_maria_roman_administration_muster_all_the_tagma_decision:0 "Muster the Tagma"
+ ave_maria_roman_administration_muster_all_the_tagma_decision_desc:0 "War is upon us and it is time to muster the Tagmas to fight the enemies of Rome."
+ ave_maria_roman_administration_muster_all_the_tagma_decision_tooltip:0 "The Tagma leaders will join our wars."
+ ave_maria_roman_administration_muster_all_the_tagma_decision_confirm:0 "We go to war."
+ ave_maria_roman_administration_coemperor_coronation_decision:0 "Co-Emperor Coronation"
+ ave_maria_roman_administration_coemperor_coronation_decision_desc:0 "Publicly performing the coronation of my chosen co-emperor is essential if he is to be seen as my legitimate successor."
+ ave_maria_roman_administration_coemperor_coronation_decision_tooltip:0 "Will start the preparations towards the coronation of your co-emperor."
+ ave_maria_roman_administration_coemperor_coronation_decision_confirm:0 "Start the preparations."
+ 
+
+ ### INTERACTIONS
+ ADMINISTRATIVE_ACTIONS:0 "Administration"
+ interaction_category_roman_administration:0 "Administration"
+ roman_administration_get_claim:0 "Compete for Office"
  
  ### EVENTS
  ave_maria_roman_administration_events.0003.title:0 "Imperial Coronation"
@@ -150,5 +195,18 @@
  ave_maria_roman_administration_events.0006_desc:0 "After receiveing the kiss of the various factions leaders, important people and a few selected individuals, it is now time to enter back to the nave of the church to receive communion before heading back to the palace for a post-coronation feast."
  ave_maria_roman_administration_events.0006.OPT_A:0 "Basileus, finally!"
  ave_maria_roman_administration_events.0006.OPT_B:0 "Basileus, finally!"
+
+ ave_maria_roman_administration_events.0007:0 "Invitation to the Coronation"
+ ave_maria_roman_administration_events.0007.opening:0 "Invitation to the Imperial Coronation"
+ ave_maria_roman_administration_events.0007_desc:0 "Illustris, you are hereby invited to the ceremony of my coronation as Basileus of the Romans. We expect your presence with great pleasure."
+ ave_maria_roman_administration_events.0007.host_likes_me:0 "Illustris, you are hereby invited to the ceremony of my coronation as Basileus of the Romans. We expect your presence with great pleasure."
+ ave_maria_roman_administration_events.0007.host_gets_along_with_me:0 "Illustris, you are hereby invited to the ceremony of my coronation as Basileus of the Romans. We expect your presence with great pleasure."
+ ave_maria_roman_administration_events.0007.host_dislikes_me:0 "Illustris, you are hereby invited to the ceremony of my coronation as Basileus of the Romans. We expect your presence with great pleasure."
+ ave_maria_roman_administration_events.0007.a:0 "Of course I will attend."
+ ave_maria_roman_administration_events.0007.b:0 "I will attend. Reluctantly."
+ ave_maria_roman_administration_events.0007.c:0 "I am sad to say that I am busy."
+ ave_maria_roman_administration_events.0007.d:0 "No, I refuse!"
+ ave_maria_roman_administration_events.0008.a:0 "Of course I will attend."
+ ave_maria_roman_administration_events.0008.b:0 "No, I refuse!"
 
 

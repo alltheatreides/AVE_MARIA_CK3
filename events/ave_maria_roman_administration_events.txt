@@ -38,10 +38,12 @@ ave_maria_roman_administration_events.0001 = {
 	hidden = yes
 	
 	trigger = {
-		OR = {
-			has_title = title:e_byzantium
-			has_title = title:e_roman_empire			
-		}		
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}			
 	}
 	
 	immediate = {
@@ -59,8 +61,6 @@ ave_maria_roman_administration_events.0001 = {
 				NOR = {
 					this = title:c_byzantion
 					this = title:c_roman_family_1
-					title:c_byzantion
-					title:c_roman_family_1
 				}
 			}
 			save_scope_as = the_county_to_give
@@ -75,6 +75,18 @@ ave_maria_roman_administration_events.0001 = {
 				scope:civilian_theme_holder = {
 					get_title = scope:the_county_to_give
 				}
+			}
+		}
+		title:e_byzantium = {
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier > tier_county
+					roman_administration_tagma_title_trigger = no
+				}
+				scope:holder = {
+					change_government = roman_administration_civilian_government
+					add_realm_law_skip_effects = ave_maria_roman_administration_civilian_administration_succession_law
+				}				
 			}
 		}
 	}
@@ -93,11 +105,10 @@ ave_maria_roman_administration_events.0002 = {
 
 	## Event only happen for some people at the start of the game
 	trigger = {
-		OR = {
-			# has_title = title:d_megas_domestikos
-		}
-		any_held_title = { 
-			has_title_law = ave_maria_roman_administration_tagma_succession_law 
+		NOT = {
+			any_held_title = {
+				this = title:d_megas_droungarios
+			}
 		}
 	}
 
@@ -114,19 +125,19 @@ ave_maria_roman_administration_events.0002 = {
 		# 	origin = root.capital_province
 		# }
 		spawn_army = {
-			name = "Scholai Tagma"
+			name = "Tagma"
 			# levies = 0
 			men_at_arms = {
 				type = cataphract
-				stacks = 100
+				stacks = 25
 			}
 			men_at_arms = {
 				type = house_guard
-				stacks = 100
+				stacks = 25
 			}
 			men_at_arms = {
 				type = bowmen
-				stacks = 50
+				stacks = 10
 			}
 			location = root.capital_province
 			origin = root.capital_province
@@ -152,15 +163,35 @@ ave_maria_roman_administration_events.00021 = {
 			name = "Varangian Guard"
 			men_at_arms = {
 				type = house_guard
-				stacks = 100
+				stacks = 50
 			}
 			men_at_arms = {
 				type = bowmen
-				stacks = 50
+				stacks = 25
 			}
 			location = root.capital_province
 			origin = root.capital_province
 		}
+
+		# create_character = {
+		# 	employer = root
+		# 	gender_female_chance = 0
+		# 	location = root.capital_province
+		# 	template = varangian_guard_commander_character
+		# 	save_scope_as = varangian_guard_leader
+		# 	dynasty = generate
+		# }
+
+		# title:d_varangian_guard = {
+		# 	change_government = roman_administration_military_government
+		# 	add_title_law = ave_maria_roman_administration_tagma_succession_law
+		# 	set_de_jure_liege_title = title:e_byzantium
+		# 	change_liege = { liege = root change = title:d_varangian_guard }
+		# }
+		## Grant title of varangian guard to the guy
+		# scope:varangian_guard_leader = { get_title = title:d_varangian_guard }
+
+		## Do the effect on the titles
 	}
 }
 
@@ -170,6 +201,7 @@ ave_maria_roman_administration_events.00021 = {
 # IMPERIAL CORONATION						#
 #############################################
 
+# EMPEROR EVENTS
 ## First event triggered by the decision to be crowned
 ave_maria_roman_administration_events.0003 = {
 	type = character_event
@@ -203,7 +235,7 @@ ave_maria_roman_administration_events.0003 = {
 
 	## Flag the character so we know he has decided to start the coronation
 	immediate = {
-		play_music_cue = mx_cue_epic_sacral_moment
+		play_music_cue = "mx_cue_crusade_starts"
 		add_character_flag = imperial_coronation_started_preparations
 	}
 
@@ -213,7 +245,7 @@ ave_maria_roman_administration_events.0003 = {
 		## "Spend lavishly, everyone must see our generosity and magnificence"
 		# Scope to patriarch and give him a positive flag
 		add_character_flag = imperial_coronation_lavish_coronation
-		add_gold = -300
+		remove_short_term_gold = 300
 		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
 	}
 
@@ -223,7 +255,7 @@ ave_maria_roman_administration_events.0003 = {
 		## "Proceed with the ceremony as is customary"
 		# Scope to patriarch and give him a 60/40 flag
 		add_character_flag = imperial_coronation_normal_coronation
-		add_gold = -150
+		remove_short_term_gold = 150
 		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
 	}
 
@@ -233,7 +265,7 @@ ave_maria_roman_administration_events.0003 = {
 		## "Save up as much as we can on the ceremony, we need the money elsewhere."
 		# Scope to patriarch and give him a negative flag
 		add_character_flag = imperial_coronation_stingy_coronation
-		add_gold = -75
+		remove_short_term_gold = 75
 		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
 	}
 
@@ -382,6 +414,13 @@ ave_maria_roman_administration_events.0006 = {
 
 		## Add Crowned Basileus trait
 		add_trait = crowned_basileus
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
 	}
 
 	## negative option because you spent below normal gold
@@ -396,5 +435,333 @@ ave_maria_roman_administration_events.0006 = {
 
 		## Add Crowned Basileus trait
 		add_trait = crowned_basileus
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
 	}
 }
+
+# INVITATION EVENTS
+#Vassals
+ave_maria_roman_administration_events.0007 = {
+	type = letter_event
+	opening = {
+		desc = ave_maria_roman_administration_events.0007.opening
+	}
+	desc = {
+		desc = ave_maria_roman_administration_events.0007_desc
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > 50
+					}
+				}
+				desc = ave_maria_roman_administration_events.0007.host_likes_me
+			}
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > -1
+					}
+				}
+				desc = ave_maria_roman_administration_events.0007.host_gets_along_with_me
+			}
+			desc = ave_maria_roman_administration_events.0007.host_dislikes_me
+		}
+	}
+	sender = scope:sender
+
+	trigger = {
+		is_available_for_activity_trigger = yes
+		exists = scope:activity.activity_owner
+		target_is_liege_or_above = scope:activity.activity_owner
+		NOT = { exists = var:is_handling_imperial_coronation_invitation }
+	}
+
+	on_trigger_fail = { #Trigger invitation again if it was blocked because the character was handling another invitation
+		if = {
+			limit = {
+				is_available_for_activity_trigger = yes
+				exists = var:is_handling_imperial_coronation_invitation
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_events.0007
+				days = 1
+			}
+		}
+	}
+
+	immediate = {
+		scope:activity.activity_owner = {
+			save_scope_as = sender
+		}
+		scope:activity.activity_province = {
+			barony = {
+				save_scope_as = barony
+			}
+		}
+		set_variable = {
+			name = is_handling_imperial_coronation_invitation
+			value = scope:sender
+			days = 20
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.a
+		trigger = {
+			opinion = {
+				target = liege
+				value >= 0
+			}
+		}
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			outgoing = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.b
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			outgoing = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.c
+		trigger = {
+			opinion = {
+				target = liege
+				value > -1
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			withdrawn = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		add_piety = -75
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+			modifier = {
+				add = -50
+				top_liege = {
+					OR = {
+						has_title = title:e_byzantium
+						has_title = title:e_roman_empire			
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.d
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			withdrawn = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		add_piety = -75
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+				ai_vengefulness = 0.5
+			}
+			modifier = {
+				add = -50
+				top_liege = {
+					OR = {
+						has_title = title:e_byzantium
+						has_title = title:e_roman_empire			
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		remove_variable = is_handling_imperial_coronation_invitation
+	}
+}
+
+#Other relations
+ave_maria_roman_administration_events.0008 = {
+	type = letter_event
+	opening = {
+		desc = ave_maria_roman_administration_events.0008.opening
+	}
+	desc = ave_maria_roman_administration_events.0008.desc
+	sender = scope:sender
+
+	trigger = {
+		is_available_for_activity_trigger = yes
+		NOT = { exists = var:is_handling_imperial_coronation_invitation }
+	}
+
+	on_trigger_fail = { #Trigger invitation again if it was blocked because the character was handling another invitation
+		if = {
+			limit = {
+				is_available_for_activity_trigger = yes
+				exists = var:is_handling_imperial_coronation_invitation
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_events.0008
+				days = 1
+			}
+		}
+	}
+
+	immediate = {
+		scope:activity.activity_owner = {
+			save_scope_as = sender
+		}
+		scope:activity.activity_province = {
+			barony = {
+				save_scope_as = barony
+			}
+		}
+		set_variable = {
+			name = is_handling_imperial_coronation_invitation
+			value = scope:sender
+			days = 20
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0008.a
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			outgoing = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0008.b
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			withdrawn = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 15
+				scope:sender = {
+					target_is_liege_or_above = scope:sender
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+		}
+	}
+
+	after = {
+		remove_variable = is_handling_imperial_coronation_invitation
+	}
+}
+
+# FALLBACK WHEN EMPEROR DIES OR OTHER
+#The host has died during the coronation - event for guests
+# ave_maria_roman_administration_events.0009
+
+#The host has been imprisoned - for host
+# ave_maria_roman_administration_events.00010
+
+#The host has been imprisoned - for guests
+# ave_maria_roman_administration_events.00011

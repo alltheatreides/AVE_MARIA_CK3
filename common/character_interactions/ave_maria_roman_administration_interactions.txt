@@ -52,11 +52,18 @@ designate_heir_interaction = {
 
 ### Signal interest to be a title successor by adding a claim on it
 roman_administration_get_claim = {
-	category = interaction_category_uncategorized
+	category = interaction_category_roman_administration
 	
 	use_diplomatic_range = yes
 
 	is_shown = {
+		scope:actor = {
+			NOT = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}			
+		}
 		scope:recipient = { 
 			is_landed = yes 
 			any_held_title = {
@@ -73,3 +80,4 @@ roman_administration_get_claim = {
 		}
 	}
 }
+

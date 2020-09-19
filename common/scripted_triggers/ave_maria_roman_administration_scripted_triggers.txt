@@ -1,4 +1,4 @@
-########################################################################################
+﻿########################################################################################
 #                                         											   #
 # AVE MARIA Scripted Triggers														   #
 # A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
@@ -7,7 +7,23 @@
 #                               													   #
 ########################################################################################
 
-### Scripted Triggers to enable certain laws
+# TABLE OF CONTENT:
+
+##### 1) GOVERNMENT TYPE TRIGGER
+##### Checks if you are of one of the new roman administration government type
+
+##### 2) ELECTION TRIGGERS
+##### Checks for various conditions in the special government type elections
+
+##### 3) SPECIFIC TITLES TRIGGERS
+##### Checks if you are one of specific new roman administration titles
+
+
+#############################################
+# GOVERNMENT TYPE TRIGGER					#
+#############################################
+
+## Checks if you are on of the new roman administration government type
 roman_administration_realm_law_special_crown_authority = {
 	OR = {
 		has_government = roman_administration_government
@@ -18,46 +34,29 @@ roman_administration_realm_law_special_crown_authority = {
 }
 
 
-### GOVERNMENT ELECTION CHECK
-roman_administration_elective_potential_landed_candidate_trigger = {
 
-	#Either the candidate is in the roman empire, or the title is independent, or the realm of the title does NOT have protected inheritance.
-	OR = {
-		any_liege_or_above = {
-			target_is_liege_or_above = scope:holder
-		}
-		scope:holder = { is_independent_ruler = yes }
-		scope:holder = {
-			NOT = {
-				has_realm_law_flag = titles_cannot_leave_realm_on_succession
-			}
-		}
-	}
-	OR = {
-		highest_held_title_tier > 2 #Or Duke-tier... (if title is King or Emperor tier)
-		AND = {
-			scope:holder = {
-				highest_held_title_tier = 3
-			}
-			highest_held_title_tier > 1 #...Or Count-tier under a Duchy...
-		}
-		AND = {
-			scope:holder = {
-				highest_held_title_tier < 3
-			}
-			is_ruler = yes #...Or Baron-tier under a County.
-			is_landed = yes
+#############################################
+# ELECTION TRIGGERS							#
+#############################################
+# roman_administration_elective_potential_landed_candidate_trigger = {
+
+# }
+
+#############################################
+# SPECIFIC TITLES TRIGGERS					#
+#############################################
+
+## Checks in character scope if you have a tagma titles
+roman_administration_tagma_title_trigger = {
+	any_held_title = {
+		OR = {
+			this = title:d_megas_domestikos
+			this = title:d_excubitor
+			this = title:d_vigla
+			this = title:d_hikanatoi
+			this = title:d_varangian_guard
+			this = title:d_regular_tagma_1
+			this = title:d_regular_tagma_2
 		}
 	}
-	OR = { #If the title controls the faith, candidates must be of the same faith.
-		scope:holder = {
-			NAND = {
-				exists = faith.religious_head
-				this = faith.religious_head #TODO_CD:It might need to be changed to check only for the title rather than the holder. (controlled_faith = scope:holder.faith)
-			}
-		}
-		this.faith = scope:holder.faith
-	}
-	has_unelectable_trait_trigger = no
-	has_unelectable_government_trigger = no
 }

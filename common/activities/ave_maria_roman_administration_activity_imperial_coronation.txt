@@ -82,14 +82,14 @@
 						has_any_scripted_relation = scope:activity.activity_owner
 						is_consort_of = scope:activity.activity_owner
 					}
-					trigger_event = feast.1503
+					trigger_event = ave_maria_roman_administration_events.0008
 				}
 				else_if = { #Vassals
 					limit = {
 						target_is_liege_or_above = scope:activity.activity_owner
 					}
 					trigger_event = {
-						id = feast.1501
+						id = ave_maria_roman_administration_events.0007
 						days = 3
 					}
 				}
@@ -103,7 +103,7 @@
 					}
 				}
 				else = { #Catch for anyone else
-					trigger_event = feast.1503
+					trigger_event = ave_maria_roman_administration_events.0008
 				}
 			}
 	
@@ -127,48 +127,17 @@
 		else = {
 		# If there are guests present
 			activity_owner = { # The host gets their events
-				# The key event is chosen for the host, and fires other events from there to every participant:
-				trigger_event = feast.0001
-				trigger_event = {
-					on_action = feast_main_event_selection
-					days = 10
-				}
-				#Reveler lifestyle tracking:
-				reveler_points_gain_effect = {
-					CHANGE = 2
-				}
+				trigger_event = ave_maria_roman_administration_events.0003
 			}
 			every_participant = {
 				limit = { NOT = { this = scope:activity.activity_owner } }
-				#Reveler lifestyle tracking:
-				reveler_points_gain_effect = {
-					CHANGE = 1
-				}
 				#Remove blocker for invitations to feasts (the feast is now active and will work as a blocker)
 				remove_variable = booked_for_a_party
 			}
 		}
 	}
 	on_complete = {
-		activity_owner = {
-			if = { #A vassal was promised a feast (vassal.2101)
-				limit = {
-					exists = var:was_promised_a_feast
-					var:was_promised_a_feast = {
-						is_alive = yes
-					}
-				}
-				trigger_event = {
-					id = vassal.2110
-					days = { 7 14 }
-				}
-			}
-		}
-		every_participant = {
-			target_weight_modifier_effect = {
-				VALUE = feast_weight_modifier_value
-			}
-		}
+		
 	}
 	on_expire = { # Should never happen - kept as fallback for weirdness only
 		activity_owner = {

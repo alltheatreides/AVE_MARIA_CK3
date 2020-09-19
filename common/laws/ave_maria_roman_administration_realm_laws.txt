@@ -6,6 +6,28 @@ ave_maria_roman_administration_realm_law = {
 	cumulative = yes
 	flag = realm_law
 	
+	ave_maria_roman_administration_realm_law = {
+		flag = vassal_all_wars_banned
+		flag = vassal_internal_wars_banned
+		flag = titles_cannot_leave_realm_on_succession
+		# flag = can_designate_heirs
+		modifier = {
+			
+		}
+
+		can_have = { 
+			OR = {
+				has_government = roman_administration_government
+				# has_government = roman_administration_military_government
+				# has_government = roman_administration_civilian_government
+			}
+		}
+		can_pass = {
+			
+		}
+	}
+
+
 	ave_maria_roman_administration_realm_law_civilian = {
 		flag = vassal_all_wars_banned
 		flag = vassal_internal_wars_banned
@@ -17,7 +39,7 @@ ave_maria_roman_administration_realm_law = {
 
 		can_have = { 
 			OR = {
-				has_government = roman_administration_government
+				# has_government = roman_administration_government
 				# has_government = roman_administration_military_government
 				has_government = roman_administration_civilian_government
 			}
@@ -38,13 +60,13 @@ ave_maria_roman_administration_realm_law = {
 
 		can_have = { 
 			OR = {
-				has_government = roman_administration_government
+				# has_government = roman_administration_government
 				has_government = roman_administration_military_government
 				# has_government = roman_administration_civilian_government
 			}
 		}
 		can_pass = {
-			has_primary_title = d_megas_domestikos 
+			roman_administration_tagma_title_trigger = yes
 		}
 	}
 

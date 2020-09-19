@@ -69,7 +69,7 @@ ave_maria_roman_administration_imperial_coronation_decision = {
 ## Only if already has the trait basileus can you use this co emperor ceremony
 ave_maria_roman_administration_coemperor_coronation_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_imperial_coronation.dds"
-
+	desc = ave_maria_roman_administration_coemperor_coronation_decision_desc
 	major = yes
 	ai_check_interval = 12
 
@@ -148,9 +148,9 @@ ave_maria_roman_administration_coemperor_coronation_decision = {
 		player_heir = {
 			custom_tooltip = name_co_emperor_EFFECT_A
 		}	
-		trigger_event = {
-			id = imperial.0005
-		}
+		# trigger_event = {
+		# 	id = imperial.0005
+		# }
 	}
 	
 	ai_potential = {
@@ -162,4 +162,109 @@ ave_maria_roman_administration_coemperor_coronation_decision = {
 	}
 	
 	ai_priority = 100
+}
+
+## Decision to call all the tagma at once instead of manually selecting each of them
+ave_maria_roman_administration_muster_all_the_tagma_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_muster_all_the_tagma.dds"
+	major = yes
+	desc = ave_maria_roman_administration_muster_all_the_tagma_decision_desc
+
+	ai_check_interval = 36
+
+	is_shown = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+		is_at_war = yes
+		NOT = { 
+			any_vassal_or_below = {
+				limit = {
+					roman_administration_tagma_title_trigger = yes
+				}
+				any_character_war = {
+					NOR = {
+						is_attacker = PREV
+						is_defender = PREV
+					}
+				}				
+			}
+		}
+	}
+
+	is_valid = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+		is_at_war = yes
+		NOT = { 
+			any_vassal_or_below = {
+				limit = {
+					roman_administration_tagma_title_trigger = yes
+				}
+				any_character_war = {
+					NOR = {
+						is_attacker = PREV
+						is_defender = PREV
+					}
+				}				
+			}
+		}
+	}
+
+	cost = {
+		
+	}
+
+	effect = {
+		custom_tooltip = ave_maria_roman_administration_muster_all_the_tagma_decision_tooltip
+		# trigger_event = ave_maria_roman_administration_events.0003
+		save_scope_as = actor
+
+		every_vassal_or_below = {
+			limit = {
+				any_held_title = {
+					OR = {
+						this = title:d_megas_domestikos
+						this = title:d_excubitor
+						this = title:d_vigla
+						this = title:d_hikanatoi
+						this = title:d_varangian_guard
+						this = title:d_regular_tagma_1
+						this = title:d_regular_tagma_2
+					}
+				}
+			}
+			save_scope_as = tagma_to_join		
+		}
+		scope:actor = {
+			any_character_war = {
+				limit = {
+					is_war_leader = scope:actor
+				}		
+				save_scope_as = basileus_war
+			}
+		}		
+		scope:basileus_war = {
+			if = {
+				limit = {
+					is_attacker = scope:actor
+				}
+				add_attacker = scope:tagma_to_join
+			}
+			else = {
+				add_defender = scope:tagma_to_join
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
 }
