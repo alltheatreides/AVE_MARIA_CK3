@@ -1,0 +1,73 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA																			   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Character Templates											   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+tagma_commander_character = {
+	age = { 30 45 }
+	random_traits_list = {
+		count = 1
+		education_martial_3 = {}
+		education_martial_4 = {}
+	}
+	random_traits_list = {
+		count = 2
+		brave = {}
+		thorough = {}
+	}
+	
+	gender_female_chance = 0
+	random_traits = yes
+	faith = root.faith
+	culture = root.culture
+	martial = {
+		min_template_decent_skill
+		max_template_decent_skill
+	}
+	prowess = { 8 12 }
+	after_creation = {
+		#Chance of receiving an extra commander trait
+		random = {
+			chance = 25
+			give_random_commander_trait_effect = yes
+		}
+	}
+}
+
+
+varangian_guard_commander_character = {
+	age = { 30 45 }
+	random_traits_list = {
+		count = 1
+		education_martial_3 = {}
+		education_martial_4 = {}
+	}
+	random_traits_list = {
+		count = 2
+		brave = {}
+		thorough = {}
+	}
+	
+	gender_female_chance = 0
+	random_traits = yes
+	faith = faith:norse_pagan
+	culture = culture:norse
+	martial = {
+		min_template_decent_skill
+		max_template_decent_skill
+	}
+	prowess = { 8 12 }
+	after_creation = {
+		#Chance of receiving an extra commander trait
+		random = {
+			chance = 25
+			give_random_commander_trait_effect = yes
+		}
+	}
+}

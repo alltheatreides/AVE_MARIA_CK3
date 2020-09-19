@@ -225,20 +225,9 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 
 		every_vassal_or_below = {
 			limit = {
-				any_held_title = {
-					OR = {
-						this = title:d_megas_domestikos
-						this = title:d_excubitor
-						this = title:d_vigla
-						this = title:d_hikanatoi
-						this = title:d_varangian_guard
-						this = title:d_regular_tagma_1
-						this = title:d_regular_tagma_2
-					}
-				}
+				roman_administration_tagma_title_trigger = yes
 			}
-			add_to_list = list_of_tagma_to_join_the_wars
-			# save_scope_as = tagma_to_join		
+			add_to_list = list_of_tagma_to_join_the_wars	
 		}
 		scope:actor = {
 			every_character_war = {
@@ -255,16 +244,18 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 				}
 				every_in_list = {
 					list = list_of_tagma_to_join_the_wars
-					add_attacker = this
+					scope:basileus_war = {
+						add_attacker = prev
+					}
 				}
-				# add_attacker = scope:tagma_to_join
 			}
 			else = {
 				every_in_list = {
 					list = list_of_tagma_to_join_the_wars
-					add_defender = this
+					scope:basileus_war = {
+						add_defender = prev
+					}
 				}
-				# add_defender = scope:tagma_to_join
 			}
 		}
 	}
