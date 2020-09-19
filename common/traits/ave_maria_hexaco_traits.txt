@@ -3575,3 +3575,333 @@ simple = {	#	simple	openness_to_experience
 		simple = 	@neg_compat_high				
 	}						
 }
+
+sexuality_normal = {
+	index = 460						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = lustful
+			has_trait = chaste
+			has_trait = sexuality_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+sexuality_normal_2 = {
+	index = 461						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = sexuality_normal
+			has_trait = lustful
+			has_trait = chaste
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+appetite_normal = {
+	index = 462						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = gluttonous
+			has_trait = temperate
+			has_trait = appetite_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+appetite_normal_2 = {
+	index = 463						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = appetite_normal
+			has_trait = gluttonous
+			has_trait = temperate
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+
+
+#################################################################
+# PHYSICAL 		   												#
+#################################################################
+
+height_above_average = {
+	index = 600
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 3
+	
+	monthly_prestige = 0.05	
+	dread_baseline_add = 1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_above_average_desc
+			}
+			desc = trait_height_above_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+
+height_tall = {
+	index = 601
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 4
+	
+	monthly_prestige = 0.075
+	dread_baseline_add = 2
+	
+	monthly_prestige_gain_mult = 0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_tall_desc
+			}
+			desc = trait_height_tall_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+
+height_below_average = {
+	index = 602
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 2
+	
+	monthly_prestige = -0.05	
+	dread_baseline_add = -1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_below_average_desc
+			}
+			desc = trait_height_below_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+
+height_small = {
+	index = 603
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 1
+	
+	monthly_prestige = -0.075
+	dread_baseline_add = -2
+	
+	monthly_prestige_gain_mult = -0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_small_desc
+			}
+			desc = trait_height_small_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+
+#################################################################
+# OTHERS		   												#
+#################################################################
+
+crowned_basileus = {
+	index = 604
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_crowned_basileus_desc
+			}
+			desc = trait_crowned_basileus_desc
+		}
+	}
+	vassal_opinion = 5
+	religious_vassal_opinion = 5
+	monthly_prestige = 1
+	monthly_piety = 0.5
+}
+
+crowned_coemperor = {
+	index = 605
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_crowned_coemperor_desc
+			}
+			desc = trait_crowned_coemperor_character_desc
+		}
+	}
+	vassal_opinion = 5
+	religious_vassal_opinion = 5
+	monthly_prestige = 1
+	monthly_piety = 0.5
+}
