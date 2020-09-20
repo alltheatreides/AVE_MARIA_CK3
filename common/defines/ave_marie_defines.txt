@@ -1,7 +1,40 @@
-﻿NRetreat = {
+﻿NCombat = {
+	UNRAISED_LEVY_REGIMENTS_SPEED = 10.0			# How many distance units do unraised regiments travel per day when gathering
+}
+NRetreat = {
 	SHATTERED_RETREAT_PREFERRED_PROVINCES = 3
 	SHATTERED_RETREAT_MAX_PROVINCES = 6
 }
+NChildbirth = {
+	MALE_FERTILITY_MULTIPLIER_LIMITS = { 70 60 50 40 35 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
+	MALE_FERTILITY_MULTIPLIER = { 0.4 0.5 0.6 0.7 0.8 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
+	FEMALE_FERTILITY_MULTIPLIER_LIMITS = { 45 40 35 30 25 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
+	FEMALE_FERTILITY_MULTIPLIER = { 0.1 0.25 0.4 0.6 0.8 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
+	MOTHER_FERTILITY_REDUCTION_PER_PREVIOUS_CHILD = 0.05
+	LOW_FERTILITY = 0.1
+	PRIMARY_SPOUSE_FERTILITY_MULTIPLIER = 1
+	SECONDARY_SPOUSE_FERTILITY_MULTIPLIER = 0.3
+	CONCUBINE_FERTILITY_MULTIPLIER = 0.3
+	NOT_SPOUSE_FERTILITY_MULTIPLIER = 0.8
+	NON_RULER_FERTILITY_MULTIPLIER = 0.85	# If neither parent is a ruler, resulting fertility gets multiplied by this
+	FERTILITY_CHANCE_MULTIPLIER = 2.2 # Fertility is an average between the father and the mother (if the mother has 0.3 and the father 0.5, the average is 0.4), this number is then multiplied by this multiplier to produce the percentage chance of impregnation. Impregnation is checked every month.
+	MIN_FERTILITY_CHANCE = 1
+	MAX_FERTILITY_CHANCE = 25
+	FEMALE_CHANCE = 51
+}
 NCharacter = {
 	RANDOM_PERSONALITY_TRAITS_BASE = 7
+
+NArmy = {
+	MOVEMENT_SPEED_RETREAT = 3					# Movement speed while retreating
+	MOVEMENT_SPEED = 2								# Normal movement speed
+	MOVEMENT_SPEED_BONUS_FRIENDLY_AREA = 0.2		# In friendly areas you get a 20% speed bonus
+	REGIMENT_MONTHLY_REINFORCE_SPEED = 0.02			# Monthly reinforcement percentage of unraised chunks [0-1]
+	REGIMENT_MONTHLY_MAA_REINFORCE_SPEED = 0.06		# Monthly reinforcement percentage of unraised MAA chunks [0-1]
+}
+NFleet = {
+	FLEET_SPEED = 6						# Fleet speed
+	EMBARK_GOLD_COST_PER_HUNDRED = 1		# Embark cost for every hundred units
+	GOLD_COST_MAINTENANCE_MULT = 0.25		# Increase in the gold maintenance for armies that are embarked
+	ATTRITION_AFTER_DAYS = 60				# After embarking the army can expend this time without getting attrition
 }
