@@ -1,0 +1,406 @@
+﻿
+roman_administration_army_faction = {
+	casus_belli = roman_administration_army_faction_war
+
+	short_effect_desc = roman_administration_army_faction_short_effect_desc
+
+	sort_order = 1
+	
+	can_character_create = {	
+		roman_administration_tagma_title_trigger = yes
+		scope:target = { roman_administration_tagma_title_trigger = no }
+		custom_description = {
+			text = roman_administration_army_faction_TOOLTIP
+		}	
+		
+		is_adult = yes
+		
+		custom_description = {
+			text = character_blocked_from_joining
+			NOT = {
+				has_character_flag = joining_faction_block
+			}
+		}
+
+		scope:target.highest_held_title_tier > tier_county
+		highest_held_title_tier > tier_barony
+
+		####
+		# BLOCKERS
+		####
+		# General Faction immunity
+		custom_description = {
+			text = character_is_immune_to_factions
+			subject = scope:target
+			NOT = { scope:target = { immune_to_factions_trigger = yes } }
+		}
+
+		custom_description = {
+			text = character_has_faction_disabling_modifier
+			character_has_faction_disabling_modifier_trigger = yes
+		}
+	}
+	
+	can_character_join = {
+		roman_administration_tagma_title_trigger = yes
+		scope:faction.faction_target = { roman_administration_tagma_title_trigger = no }
+		
+		is_adult = yes
+
+		scope:faction.faction_target.highest_held_title_tier > tier_county
+
+		custom_description = {
+			text = character_has_faction_disabling_modifier
+			character_has_faction_disabling_modifier_trigger = yes
+		}
+	}
+
+	
+	# can_character_become_leader = {
+	# }
+
+	is_character_valid = {
+		roman_administration_tagma_title_trigger = yes
+		scope:faction.faction_target = liege
+		highest_held_title_tier > tier_barony
+
+		#Not blocked through events
+		custom_description = {
+			text = character_blocked_from_joining
+			NOT = {
+				has_character_flag = joining_faction_block
+			}
+		}
+	}
+	
+	county_allow_join = yes
+	county_allow_create = no
+	
+	can_county_join = {
+	}
+
+	is_county_valid = {
+		scope:faction.faction_target = holder
+	}
+
+	county_join_score =  {
+		base = -5
+		
+		modifier = {
+			add = 20
+			county_opinion < 1
+			scope:faction = { #Encourage to join if faction is powerful and discontent
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}
+		}
+		
+		modifier = { #Capital reluctance
+			add = -5
+			this = scope:faction.faction_target.capital_county
+		}
+		
+		#Losing war
+		modifier = {
+			add = 10	
+			scope:faction.faction_target = { 
+				any_character_war = {
+					OR = {
+						AND = {
+							scope:faction.faction_target = { is_attacker_in_war = prev }
+							attacker_war_score <= -25
+						}	
+						AND = {
+							scope:faction.faction_target = { is_defender_in_war = prev }
+							defender_war_score <= -25
+						}
+					}	
+				}
+			}
+		}
+		#Long offensive war
+		modifier = {
+			add = 10	
+			scope:faction.faction_target = { 
+				is_at_war = yes
+				is_at_war_as_attacker = yes
+				days_of_continuous_war = 548
+			}
+		}
+		
+		modifier = {
+			add = -5
+			county_opinion >= 20
+		}
+		modifier = {
+			add = -5
+			county_opinion >= 10
+		}
+		modifier = {
+			add = 5
+			county_opinion < 0
+		}
+		modifier = {
+			add = 5
+			county_opinion < -5
+		}
+		modifier = {
+			add = 5
+			county_opinion < -10
+		}
+		modifier = {
+			add = 5
+			county_opinion < -15
+		}
+		modifier = {
+			add = 5
+			scope:faction = { #Unless faction is powerful and discontent, prefer other factions
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}	
+			county_opinion < -20
+		}
+		modifier = {
+			add = 5
+			scope:faction = { #Unless faction is powerful and discontent, prefer other factions
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}	
+			county_opinion < -25
+		}
+		modifier = {
+			add = 5
+			scope:faction = { #Unless faction is powerful and discontent, prefer other factions
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}	
+			county_opinion < -30
+		}
+
+		# Incapable to rule
+		modifier = {
+			add = 5
+			scope:faction = { #Unless faction is powerful and discontent, prefer other factions
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}	
+			exists = scope:faction.faction_target
+			scope:faction.faction_target = { 
+				OR = {
+					is_adult = no 
+					has_trait = incapable
+					has_trait = infirm
+				}	
+			}
+		}
+		#Tyranny
+		modifier = {
+			add = 10
+			scope:faction = { #Unless faction is powerful and discontent, prefer other factions
+				faction_discontent > faction_power_threshold 
+				faction_discontent >= 80
+			}	
+			scope:faction.faction_target = { tyranny >= low_tyranny }
+		}
+		
+		
+		# Dread
+		modifier = {
+			add = {
+				add = scope:faction.faction_target.dread
+				multiply = -0.24
+			}
+		}
+	}
+
+	discontent_progress = {
+		base = 0
+
+		# Discontent always slowly decays in military faction
+		modifier = {
+			add = -1
+			desc = "FACTION_DISCONTENT_MILITARY"
+			faction_target = { NOT = { has_character_flag = military_faction_coup_attempt } }
+		}
+		modifier = {
+			add = -10
+			desc = "FACTION_DISCONTENT_MILITARY_RECENT_COUP_ATTEMPT"
+			faction_target = { has_character_flag = military_faction_coup_attempt }
+		}
+		
+		
+		modifier = { #Losing war
+			add = 4
+			desc = "FACTION_DISCONTENT_MILITARY_LOSING_WAR"
+			faction_target = {		
+				save_temporary_scope_as = the_faction_target
+				any_character_war = {
+					OR = {
+						AND = {
+							scope:the_faction_target = { is_attacker_in_war = prev }
+							attacker_war_score <= -25
+						}	
+						AND = {
+							scope:the_faction_target = { is_defender_in_war = prev }
+							defender_war_score <= -25
+						}
+					}	
+				}
+			}				
+		}
+		
+		modifier = { #Long offensive war
+			add = 3
+			desc = "FACTION_DISCONTENT_MILITARY_OFFENSIVE_WAR"
+			faction_target = {	
+				is_at_war = yes
+				is_at_war_as_attacker = yes
+				days_of_continuous_war = 548
+			}				
+		}
+		
+		modifier = { #Liege is a child
+			add = 1
+			desc = "FACTION_DISCONTENT_LIEGE_CHILD"
+			faction_target = { is_adult = no }				
+		}
+
+		modifier = { #Liege is unfit to rule
+			add = 1
+			desc = "FACTION_DISCONTENT_LIEGE_UNFIT"
+			faction_target = { 
+				OR = {
+					has_trait = incapable
+					has_trait = infirm
+				}
+			}				
+		}
+		modifier = { #Liege is a tyrant
+			add = {
+				value = 1
+				if = {
+					limit = { faction_target = { tyranny >= medium_tyranny } }
+					add = 1
+				}
+				if = {
+					limit = { faction_target = { tyranny >= high_tyranny } }
+					add = 2
+				}
+			}
+			desc = "FACTION_DISCONTENT_LIEGE_TYRANT"
+			faction_target = { 
+				tyranny >= low_tyranny
+			}	
+		}
+
+		modifier = { #Faction leader opinion
+			add = {
+				value = 1
+				if = {
+					limit = { 
+						faction_leader = {
+							opinion = { target = scope:the_faction_target value < -50 }
+						}
+					}
+					add = 1
+				}
+			}
+			desc = "FACTION_DISCONTENT_LEADER_OPINION"
+			faction_target = { 
+				save_temporary_scope_as = the_faction_target
+			}	
+			faction_leader = {
+				save_temporary_scope_as = the_faction_leader
+				opinion = { target = scope:the_faction_target value < -20 }
+			}		
+		}
+		modifier = { #Liege is bankrupt
+			add = 1
+			desc = "FACTION_DISCONTENT_LIEGE_BANKRUPT"
+			faction_target = { 
+				gold < 0
+			}	
+		}
+	}
+
+	power_threshold = {
+		base = 80
+
+		modifier = {
+			add = 20
+			faction_target = {
+				has_perk = hard_rule_perk
+			}
+			desc = "FACTION_POWER_HARD_RULE"
+		}
+	}
+	
+	demand = {
+		
+	}
+	
+	special_character_title = "FACTIONS_WINDOW_ARMY_CANDIDATE"
+	
+	ai_join_score = {
+		base = 20
+
+		############
+		# BLOCKERS #
+
+		# Do not join a new faction if I am already at war.
+		modifier = {
+			add = -100
+			AND = {
+				is_at_war = yes
+				trigger_if = {
+					limit = {
+						exists = joined_faction
+					}
+					NOT = { joined_faction = scope:faction }
+				}
+			}
+		}
+
+		#######################
+		# Standard AI Weights #
+		#
+
+		modifier = {
+			add = 100
+		}
+	
+	}
+
+	ai_create_score = {
+		base = 100
+	}
+
+	ai_demand_chance = {
+		base = 0
+
+		# 30% base chance at minimum power (80%), increasing linearly
+		compare_modifier = {
+			value = faction_power
+			multiplier = 0.375
+		}
+
+		# Once the faction has a good chance to win (10% stronger than liege) demand chance increases much more rapidly.
+		compare_modifier = {
+			trigger = {	faction_power > 110 }
+			value = faction_power
+			multiplier = 0.75
+		}
+
+		# Less likely if already in a war with an external ruler - the Liberty Faction is pretty sporting
+		modifier = {
+			add = -75
+			faction_target = {
+				any_war_enemy = {
+					NOT = {
+						target_is_liege_or_above = root.faction_target
+					}
+				}
+			}
+		}
+	}
+}

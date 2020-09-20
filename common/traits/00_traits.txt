@@ -1436,9 +1436,18 @@ lustful = {
 	opposites = {
 		chaste
 	}
+
+	potential = {
+		NOR = {
+			has_trait = sexuality_normal
+			has_trait = chaste
+			has_trait = sexuality_normal_2
+		}
+	}
+
 	#Asexual characters may still have the lustful trait. This is intended to represent asexuals who, whilst not generally experiencing attraction to other people, might still have a high libido.
 	fertility = 0.25
-	intrigue = 2
+	# intrigue = 2
 	seduce_scheme_power_add = 10
 
 	desc = {
@@ -1481,8 +1490,17 @@ chaste = {
 	opposites = {
 		lustful
 	}
+
+	potential = {
+		NOR = {
+			has_trait = sexuality_normal
+			has_trait = lustful
+			has_trait = sexuality_normal_2
+		}
+	}
+
 	fertility = -0.25
-	learning = 2
+	# learning = 2
 	
 	same_opinion = 10
 	opposite_opinion = -10
@@ -1525,6 +1543,15 @@ chaste = {
 gluttonous = {
 	index = 59
 	personality = yes
+
+	potential = {
+		NOR = {
+			has_trait = appetite_normal
+			has_trait = temperate
+			has_trait = appetite_normal_2
+		}
+	}
+
 	opposites = {
 		temperate
 	}
@@ -1540,7 +1567,7 @@ gluttonous = {
 		temperate = @neg_compat_medium
 	}
 
-	stewardship = -2
+	# stewardship = -2
 	stress_loss_mult = 0.1
 	
 	attraction_opinion = -5
@@ -1566,10 +1593,19 @@ gluttonous = {
 temperate = {
 	index = 60
 	personality = yes
+
+	potential = {
+		NOR = {
+			has_trait = appetite_normal
+			has_trait = gluttonous
+			has_trait = appetite_normal_2
+		}
+	}
+
 	opposites = {
 		gluttonous
 	}
-	stewardship = 2
+	# stewardship = 2
 	health = 0.25
 	
 	same_opinion = 10
@@ -4672,6 +4708,16 @@ beauty_bad_1 = {
 		beauty_good
 	}
 	
+	potential = {
+		NOR = {
+			beauty_bad_2
+			beauty_bad_3
+			beauty_good_1
+			beauty_good_2
+			beauty_good_3
+		}
+	}
+
 	diplomacy = -1
 	fertility = -0.1
 	
@@ -4705,6 +4751,16 @@ beauty_bad_2 = {
 	index = 127
 	opposites = {
 		beauty_good
+	}
+
+	potential = {
+		NOR = {
+			beauty_bad_1
+			beauty_bad_3
+			beauty_good_1
+			beauty_good_2
+			beauty_good_3
+		}
 	}
 	
 	diplomacy = -2
@@ -4741,6 +4797,16 @@ beauty_bad_3 = {
 	opposites = {
 		beauty_good
 	}
+
+	potential = {
+		NOR = {
+			beauty_bad_1
+			beauty_bad_2
+			beauty_good_1
+			beauty_good_2
+			beauty_good_3
+		}
+	}
 	
 	birth = 0.15
 	random_creation = 0.15
@@ -4775,6 +4841,16 @@ beauty_good_1 = {
 	index = 129
 	opposites = {
 		beauty_bad
+	}
+
+	potential = {
+		NOR = {
+			beauty_bad_1
+			beauty_bad_2
+			beauty_bad_3
+			beauty_good_2
+			beauty_good_3
+		}
 	}
 	
 	diplomacy = 1
@@ -4815,6 +4891,16 @@ beauty_good_2 = {
 	index = 130
 	opposites = {
 		beauty_bad
+	}
+
+	potential = {
+		NOR = {
+			beauty_bad_1
+			beauty_bad_2
+			beauty_bad_3
+			beauty_good_1
+			beauty_good_3
+		}
 	}
 	
 	diplomacy = 2
@@ -4871,6 +4957,16 @@ beauty_good_3 = {
 	opposites = {
 		beauty_bad
 	}
+
+	potential = {
+		NOR = {
+			beauty_bad_1
+			beauty_bad_2
+			beauty_bad_3
+			beauty_good_1
+			beauty_good_2
+		}
+	}
 	
 	birth = 0.15
 	random_creation = 0.15
@@ -4911,6 +5007,16 @@ intellect_bad_1 = {
 	opposites = {
 		shrewd
 		intellect_good
+	}
+
+	potential = {
+		NOR = {
+			intellect_bad_2
+			intellect_bad_3
+			intellect_good_1
+			intellect_good_2
+			intellect_good_3
+		}
 	}
 	
 	diplomacy = -2
@@ -4963,6 +5069,16 @@ intellect_bad_2 = {
 		shrewd
 		intellect_good
 	}
+
+	potential = {
+		NOR = {
+			intellect_bad_1
+			intellect_bad_3
+			intellect_good_1
+			intellect_good_2
+			intellect_good_3
+		}
+	}
 	
 	diplomacy = -4
 	martial = -4
@@ -5012,6 +5128,16 @@ intellect_bad_3 = {
 	opposites = {
 		shrewd
 		intellect_good
+	}
+
+	potential = {
+		NOR = {
+			intellect_bad_1
+			intellect_bad_2
+			intellect_good_1
+			intellect_good_2
+			intellect_good_3
+		}
 	}
 	
 	birth = 0.05
@@ -5063,6 +5189,16 @@ intellect_good_1 = {
 	opposites = {
 		dull
 		intellect_bad
+	}
+
+	potential = {
+		NOR = {
+			intellect_bad_1
+			intellect_bad_2
+			intellect_bad_3
+			intellect_good_2
+			intellect_good_3
+		}
 	}
 	
 	diplomacy = 1
@@ -5116,6 +5252,16 @@ intellect_good_2 = {
 		dull
 		intellect_bad
 	}
+
+	potential = {
+		NOR = {
+			intellect_bad_1
+			intellect_bad_2
+			intellect_bad_3
+			intellect_good_1
+			intellect_good_3
+		}
+	}
 	
 	diplomacy = 3
 	martial = 3
@@ -5167,6 +5313,16 @@ intellect_good_3 = {
 	opposites = {
 		dull
 		intellect_bad
+	}
+
+	potential = {
+		NOR = {
+			intellect_bad_1
+			intellect_bad_2
+			intellect_bad_3
+			intellect_good_1
+			intellect_good_2
+		}
 	}
 	
 	birth = 0.05
@@ -5220,6 +5376,16 @@ physique_bad_1 = {
 		strong
 		physique_good
 	}
+
+	potential = {
+		NOR = {
+			physique_bad_2
+			physique_bad_3
+			physique_good_1
+			physique_good_2
+			physique_good_3
+		}
+	}
 	
 	prowess = -2
 	health = -0.25
@@ -5254,6 +5420,16 @@ physique_bad_2 = {
 	opposites = {
 		strong
 		physique_good
+	}
+
+	potential = {
+		NOR = {
+			physique_bad_1
+			physique_bad_3
+			physique_good_1
+			physique_good_2
+			physique_good_3
+		}
 	}
 	
 	prowess = -4
@@ -5292,6 +5468,16 @@ physique_bad_3 = {
 		strong
 		physique_good
 	}
+
+	potential = {
+		NOR = {
+			physique_bad_1
+			physique_bad_2
+			physique_good_1
+			physique_good_2
+			physique_good_3
+		}
+	}
 	
 	birth = 0.15
 	random_creation = 0.15
@@ -5329,6 +5515,16 @@ physique_good_1 = {
 		weak
 		spindly
 		physique_bad
+	}
+
+	potential = {
+		NOR = {
+			physique_bad_1
+			physique_bad_2
+			physique_bad_3
+			physique_good_2
+			physique_good_3
+		}
 	}
 	
 	prowess = 2
@@ -5369,6 +5565,16 @@ physique_good_2 = {
 		spindly
 		physique_bad
 	}
+
+	potential = {
+		NOR = {
+			physique_bad_1
+			physique_bad_2
+			physique_bad_3
+			physique_good_1
+			physique_good_3
+		}
+	}
 	
 	physical = yes
 	
@@ -5408,6 +5614,16 @@ physique_good_3 = {
 		weak
 		spindly
 		physique_bad
+	}
+
+	potential = {
+		NOR = {
+			physique_bad_1
+			physique_bad_2
+			physique_bad_3
+			physique_good_1
+			physique_good_2
+		}
 	}
 	
 	birth = 0.15
