@@ -38,13 +38,19 @@ roman_administration_realm_law_special_crown_authority = {
 #############################################
 # ELECTION TRIGGERS							#
 #############################################
-# roman_administration_elective_potential_landed_candidate_trigger = {
-
-# }
+roman_administration_can_vote_in_emperor_election_trigger = {
+	joined_faction = {
+		OR = {
+			faction_is_type = roman_administration_army_faction
+		}
+	}
+	is_a_faction_leader = yes
+}
 
 #############################################
 # SPECIFIC TITLES TRIGGERS					#
 #############################################
+
 
 ## Checks in character scope if you have a tagma titles
 roman_administration_tagma_title_trigger = {
@@ -58,5 +64,32 @@ roman_administration_tagma_title_trigger = {
 			this = title:d_regular_tagma_1
 			this = title:d_regular_tagma_2
 		}
+	}
+}
+
+## Councillor job
+can_be_roman_empire_court_chaplain_trigger = {
+	save_temporary_scope_as = court_chaplain_check
+	can_be_councillor_basics_trigger = yes
+	NOT = { has_council_position = councillor_spouse }
+	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
+	faith = $COURT_OWNER$.faith
+	$COURT_OWNER$ = { save_temporary_scope_as = basileus }
+	trigger_if = {
+		limit = {
+			scope:basileus= {
+				any_held_title = {
+					OR = {
+						this = title:d_megas_domestikos
+						this = title:d_excubitor
+					}
+				}
+			}
+		}
+		scope:court_chaplain_check = {
+			any_held_title = {
+				this = title:k_orthodox
+			}
+		}		
 	}
 }

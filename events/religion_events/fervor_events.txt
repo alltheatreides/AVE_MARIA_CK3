@@ -42,7 +42,8 @@ scripted_trigger is_capable_priest = {
 # Used to find a sinful theocrat who could be the target of a scandal.
 scripted_trigger valid_scandal_target = {
 	faith = root
-	num_sinful_traits >= 1
+	num_sinful_traits >= 2
+	num_virtuous_traits <= 0
 	is_capable_priest = yes
 }
 
@@ -65,7 +66,8 @@ fervor.1001 = {
 				exists = religious_head
 				religious_head = {
 					is_capable_adult_ai = yes
-					num_sinful_traits >= 1
+					num_sinful_traits >= 2
+					num_virtuous_traits <= 0
 				}
 			}
 			AND = { # Sinful Theocratic Ruler
@@ -137,15 +139,17 @@ fervor.1001 = {
 			add = 1.5
 			exists = religious_head
 			religious_head = {
-				num_sinful_traits >= 2
-				}
+				num_sinful_traits >= 3
+				num_virtuous_traits <= 0
+			}
 		}
 		modifier = {
 			add = 1.5
 			exists = religious_head
 			religious_head = {
-				num_sinful_traits >= 3
-				}
+				num_sinful_traits >= 4
+				num_virtuous_traits <= 0
+			}
 		}
 	}
 
@@ -156,7 +160,8 @@ fervor.1001 = {
 				trigger = {
 					exists = religious_head
 					religious_head = {
-						num_sinful_traits >= 1
+						num_sinful_traits >= 2
+						num_virtuous_traits <= 0
 					}
 				}
 
@@ -584,7 +589,7 @@ fervor.1001 = {
 					exists = scope:sinful_theocrat
 				}
 
-				change_fervor = -10
+				change_fervor = -5
 
 				every_player = {
 					limit = {
@@ -645,7 +650,7 @@ fervor.1001 = {
 								}
 								else = { # Otherwise show the standard scandal loss.
 									faith = {
-										change_fervor = -10
+										change_fervor = -5
 									}
 								}
 								scope:sinful_theocrat = {
@@ -915,7 +920,7 @@ fervor.1002 = {
 			show_as_tooltip = { faith = { change_fervor = -20 } }
 		}
 		else = {
-			show_as_tooltip = { faith = { change_fervor = -10 } }
+			show_as_tooltip = { faith = { change_fervor = -5 } }
 		}
 		show_as_tooltip = {
 			scope:sinful_theocrat = {
@@ -998,7 +1003,8 @@ fervor.1002 = {
 
 scripted_trigger suitable_theocrat_fervor_2001_trigger = {
 	faith = root
-	num_virtuous_traits >= 1
+	num_virtuous_traits >= 2
+	num_sinful_traits <= 0
 	is_capable_priest = yes
 }
 
@@ -1021,7 +1027,8 @@ fervor.2001 = {
 				exists = religious_head
 				religious_head = {
 					is_capable_adult_ai = yes
-					num_virtuous_traits >= 1
+					num_virtuous_traits >= 2
+					num_sinful_traits <= 0
 				}
 			}
 			AND = {
@@ -1095,6 +1102,7 @@ fervor.2001 = {
 			exists = religious_head
 			religious_head = {
 				num_virtuous_traits >= 2
+				num_sinful_traits <= 0
 				piety_level >= medium_piety_level
 				}
 		}
@@ -1103,6 +1111,7 @@ fervor.2001 = {
 			exists = religious_head
 			religious_head = {
 				num_virtuous_traits >= 3
+				num_sinful_traits <= 0
 				piety_level >= high_piety_level
 				}
 		}
@@ -1114,7 +1123,8 @@ fervor.2001 = {
 				trigger = {
 					exists = religious_head
 					religious_head = {
-						num_virtuous_traits >= 1
+						num_virtuous_traits >= 2
+						num_sinful_traits <= 0
 					}
 				}
 				modifier = {
@@ -1570,7 +1580,7 @@ fervor.2001 = {
 				}
 			}
 
-			change_fervor = 10
+			change_fervor = 5
 
 			every_player = {
 				limit = {
@@ -1620,7 +1630,7 @@ fervor.2001 = {
 
 						show_as_tooltip = {
 							faith = {
-								change_fervor = 10
+								change_fervor = 5
 							}
 							scope:virtuous_theocrat = {
 								add_piety = major_piety_gain
@@ -1962,7 +1972,7 @@ fervor.2002 = {
 			}
 			liege.primary_title = { save_scope_as = scoped_primary_title }
 		}
-		show_as_tooltip = { faith = { change_fervor = 10 } }
+		show_as_tooltip = { faith = { change_fervor = 5 } }
 		}
 	option = { #
 		name = {

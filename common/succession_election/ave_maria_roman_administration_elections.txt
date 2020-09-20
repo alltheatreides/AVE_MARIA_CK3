@@ -15,7 +15,6 @@ roman_administration_elective = {
 			is_landed = yes
 			exists = capital_county
 			capital_county.county_opinion > 25
-			capital_county = { exists = var:variable_sicilian_parliament_county }
 		}
 		modifier = { #Imperial Dignity
 			desc = tooltip_feudal_vote_strength_emperor_tier
@@ -64,12 +63,21 @@ roman_administration_elective = {
 		add = holder
 		add = {
 			type = holder_direct_vassals
+			limit = {
+				roman_administration_can_vote_in_emperor_election_trigger = yes
+			}
 		}
 		add = {
 			type = title_dejure_vassals
+			limit = {
+				roman_administration_can_vote_in_emperor_election_trigger = yes
+			}
 		}
 		add = {
 			type = title_claimants
+			limit = {
+				roman_administration_can_vote_in_emperor_election_trigger = yes
+			}
 		}
 	}
 
@@ -98,15 +106,27 @@ roman_administration_elective = {
 	candidates = {
 		add = {
 			type = holder_direct_vassals
+			limit = {
+				age >= 16
+			}
 		}
 		add = {
 			type = title_dejure_vassals
+			limit = {
+				age >= 16
+			}
 		}
 		add = {
 			type = title_claimants
+			limit = {
+				age >= 16
+			}
 		}
 		add = {
 			type = holder_close_or_extended_family
+			limit = {
+				age >= 16
+			}
 		}
 	}
 }
@@ -306,7 +326,6 @@ roman_administration_civilian_administration_elective = {
 		}
 	}
 }
-
 
 roman_administration_family_elective = {
 	elector_vote_strength = {
