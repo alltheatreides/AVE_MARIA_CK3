@@ -1,0 +1,15 @@
+﻿character_view_bg = {
+	# Droungarios tou stolou
+	texture = {
+		reference = "character_view/ave_maria_roman_administration_droungarios_tou_stolou.dds"
+
+		trigger = {
+			exists = primary_title
+			any_held_title = {
+				OR = {
+					this = title:d_megas_droungarios
+				}
+			}
+		}
+	}
+}

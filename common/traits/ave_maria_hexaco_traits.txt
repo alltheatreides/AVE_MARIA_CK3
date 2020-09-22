@@ -31,34 +31,38 @@
 @neg_compat_medium = -15
 @neg_compat_low = -5
 
+#################################################################
+# PERSONALITY   												#
+#################################################################
+
+## Hexaco scale trait
 am_faithful = {	#	faithful	honesty_humility				
 	index = 300						
 							
 	personality = yes						
 							
 	potential = {						
-		NOR = {					
-			 				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
-			am_pretentious				
-			am_greedy				
-			am_inconstant				
-			am_deceitful				
-			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+		NOR = {
+			has_trait = am_honest
+			has_trait = am_sincere
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant				
+		am_deceitful				
+		am_hypocritical				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -68,9 +72,9 @@ am_faithful = {	#	faithful	honesty_humility
 				desc = trait_faithful_desc			
 			}				
 			desc = trait_faithful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 5						
 	martial = 0						
 	stewardship = 0						
@@ -88,8 +92,8 @@ am_faithful = {	#	faithful	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_honest = {	#	honest	honesty_humility				
 	index = 301						
 							
@@ -97,27 +101,26 @@ am_honest = {	#	honest	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			 				
-			am_sincere				
-			am_generous				
-			am_humble				
-			am_pretentious				
-			am_greedy				
+			has_trait = am_faithful
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious
+			am_greedy
 			am_inconstant				
 			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -127,9 +130,9 @@ am_honest = {	#	honest	honesty_humility
 				desc = trait_honest_desc			
 			}				
 			desc = trait_honest_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 4						
 	martial = 0						
 	stewardship = 0						
@@ -147,8 +150,8 @@ am_honest = {	#	honest	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_sincere = {	#	sincere	honesty_humility				
 	index = 302						
 							
@@ -156,27 +159,26 @@ am_sincere = {	#	sincere	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			 				
-			am_generous				
-			am_humble				
-			am_pretentious				
-			am_greedy				
-			am_inconstant				
-			am_deceitful				
-			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+			has_trait = am_faithful				
+			has_trait = am_honest
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant				
+		am_deceitful				
+		am_hypocritical				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -186,9 +188,9 @@ am_sincere = {	#	sincere	honesty_humility
 				desc = trait_sincere_desc			
 			}				
 			desc = trait_sincere_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 3						
 	martial = 0						
 	stewardship = 0						
@@ -206,8 +208,8 @@ am_sincere = {	#	sincere	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_generous = {	#	generous	honesty_humility				
 	index = 303						
 							
@@ -215,27 +217,26 @@ am_generous = {	#	generous	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			 				
-			am_humble				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
 			am_pretentious				
 			am_greedy				
 			am_inconstant				
 			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -245,9 +246,9 @@ am_generous = {	#	generous	honesty_humility
 				desc = trait_generous_desc			
 			}				
 			desc = trait_generous_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 2						
 	martial = 0						
 	stewardship = 0						
@@ -265,8 +266,8 @@ am_generous = {	#	generous	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_humble = {	#	humble	honesty_humility				
 	index = 304						
 							
@@ -274,27 +275,26 @@ am_humble = {	#	humble	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			 				
-			am_pretentious				
-			am_greedy				
-			am_inconstant				
-			am_deceitful				
-			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant
+		am_deceitful
+		am_hypocritical				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -304,9 +304,9 @@ am_humble = {	#	humble	honesty_humility
 				desc = trait_humble_desc			
 			}				
 			desc = trait_humble_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 1						
 	martial = 0						
 	stewardship = 0						
@@ -324,8 +324,8 @@ am_humble = {	#	humble	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_pretentious = {	#	pretentious	honesty_humility				
 	index = 305						
 							
@@ -333,27 +333,27 @@ am_pretentious = {	#	pretentious	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
-			 				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious				
 			am_greedy				
 			am_inconstant				
 			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -363,9 +363,9 @@ am_pretentious = {	#	pretentious	honesty_humility
 				desc = trait_pretentious_desc			
 			}				
 			desc = trait_pretentious_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -1						
 	martial = 0						
 	stewardship = 0						
@@ -383,8 +383,8 @@ am_pretentious = {	#	pretentious	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_greedy = {	#	greedy	honesty_humility				
 	index = 306						
 							
@@ -392,27 +392,27 @@ am_greedy = {	#	greedy	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
-			am_pretentious				
-			 				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious
+			am_greedy				
 			am_inconstant				
 			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -422,9 +422,9 @@ am_greedy = {	#	greedy	honesty_humility
 				desc = trait_greedy_desc			
 			}				
 			desc = trait_greedy_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -2						
 	martial = 0						
 	stewardship = 0						
@@ -442,8 +442,8 @@ am_greedy = {	#	greedy	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_inconstant = {	#	inconstant	honesty_humility				
 	index = 307						
 							
@@ -451,27 +451,27 @@ am_inconstant = {	#	inconstant	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
 			am_pretentious				
 			am_greedy				
-			 				
+			am_inconstant				
 			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -481,9 +481,9 @@ am_inconstant = {	#	inconstant	honesty_humility
 				desc = trait_inconstant_desc			
 			}				
 			desc = trait_inconstant_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -3						
 	martial = 0						
 	stewardship = 0						
@@ -501,8 +501,8 @@ am_inconstant = {	#	inconstant	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_hypocritical = {	#	hypocritical	honesty_humility				
 	index = 308						
 							
@@ -510,27 +510,27 @@ am_hypocritical = {	#	hypocritical	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+
+		}
+	}
+
+	opposites = {
 			am_pretentious				
 			am_greedy				
 			am_inconstant				
 			am_deceitful				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+			am_hypocritical				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -540,9 +540,9 @@ am_hypocritical = {	#	hypocritical	honesty_humility
 				desc = trait_hypocritical_desc			
 			}				
 			desc = trait_hypocritical_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -5						
 	martial = 0						
 	stewardship = 0						
@@ -560,8 +560,8 @@ am_hypocritical = {	#	hypocritical	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_deceitful = {	#	deceitful	honesty_humility				
 	index = 309						
 							
@@ -569,27 +569,27 @@ am_deceitful = {	#	deceitful	honesty_humility
 							
 	potential = {						
 		NOR = {					
-			am_faithful				
-			am_honest				
-			am_sincere				
-			am_generous				
-			am_humble				
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
 			am_pretentious				
 			am_greedy				
 			am_inconstant				
-			 				
+			am_deceitful				
 			am_hypocritical				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_pretentious				
-		trait = am_greedy				
-		trait = am_inconstant				
-		trait = am_deceitful				
-		trait = am_hypocritical				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -599,9 +599,9 @@ am_deceitful = {	#	deceitful	honesty_humility
 				desc = trait_deceitful_desc			
 			}				
 			desc = trait_deceitful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -4						
 	martial = 0						
 	stewardship = 0						
@@ -619,8 +619,8 @@ am_deceitful = {	#	deceitful	honesty_humility
 		am_inconstant = @neg_compat_medium				
 		am_deceitful = @neg_compat_high				
 		am_hypocritical = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_brave = {	#	brave	emotionality				
 	index = 310						
 							
@@ -628,27 +628,27 @@ am_brave = {	#	brave	emotionality
 							
 	potential = {						
 		NOR = {					
-			 				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
+
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -658,9 +658,9 @@ am_brave = {	#	brave	emotionality
 				desc = trait_brave_desc			
 			}				
 			desc = trait_brave_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 5						
 	stewardship = 0						
@@ -678,8 +678,8 @@ am_brave = {	#	brave	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_tough = {	#	tough	emotionality				
 	index = 311						
 							
@@ -687,27 +687,27 @@ am_tough = {	#	tough	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			 				
-			am_independent				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -717,9 +717,9 @@ am_tough = {	#	tough	emotionality
 				desc = trait_tough_desc			
 			}				
 			desc = trait_tough_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 4						
 	stewardship = 0						
@@ -737,8 +737,8 @@ am_tough = {	#	tough	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_independent = {	#	independent	emotionality				
 	index = 312						
 							
@@ -746,27 +746,27 @@ am_independent = {	#	independent	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			 				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -776,9 +776,9 @@ am_independent = {	#	independent	emotionality
 				desc = trait_independent_desc			
 			}				
 			desc = trait_independent_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 3						
 	stewardship = 0						
@@ -796,8 +796,8 @@ am_independent = {	#	independent	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_selfassured = {	#	selfassured	emotionality				
 	index = 313						
 							
@@ -805,27 +805,27 @@ am_selfassured = {	#	selfassured	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			 				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -835,9 +835,9 @@ am_selfassured = {	#	selfassured	emotionality
 				desc = trait_selfassured_desc			
 			}				
 			desc = trait_selfassured_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 2						
 	stewardship = 0						
@@ -855,8 +855,8 @@ am_selfassured = {	#	selfassured	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_stable = {	#	stable	emotionality				
 	index = 314						
 							
@@ -864,27 +864,27 @@ am_stable = {	#	stable	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			 				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -894,9 +894,9 @@ am_stable = {	#	stable	emotionality
 				desc = trait_stable_desc			
 			}				
 			desc = trait_stable_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 1						
 	stewardship = 0						
@@ -914,8 +914,8 @@ am_stable = {	#	stable	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_vulnerable = {	#	vulnerable	emotionality				
 	index = 315						
 							
@@ -923,27 +923,27 @@ am_vulnerable = {	#	vulnerable	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
-			 				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -953,9 +953,9 @@ am_vulnerable = {	#	vulnerable	emotionality
 				desc = trait_vulnerable_desc			
 			}				
 			desc = trait_vulnerable_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	#N/A						
 	#N/A						
 	#N/A						
@@ -973,8 +973,8 @@ am_vulnerable = {	#	vulnerable	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_anxious = {	#	anxious	emotionality				
 	index = 316						
 							
@@ -982,27 +982,27 @@ am_anxious = {	#	anxious	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
-			 				
+			am_anxious				
 			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1012,9 +1012,9 @@ am_anxious = {	#	anxious	emotionality
 				desc = trait_anxious_desc			
 			}				
 			desc = trait_anxious_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -2						
 	stewardship = 0						
@@ -1032,8 +1032,8 @@ am_anxious = {	#	anxious	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_fearful = {	#	fearful	emotionality				
 	index = 317						
 							
@@ -1041,27 +1041,27 @@ am_fearful = {	#	fearful	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
-			 				
+			am_fearful				
 			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1071,9 +1071,9 @@ am_fearful = {	#	fearful	emotionality
 				desc = trait_fearful_desc			
 			}				
 			desc = trait_fearful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -3						
 	stewardship = 0						
@@ -1091,8 +1091,8 @@ am_fearful = {	#	fearful	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_sentimental = {	#	sentimental	emotionality				
 	index = 318						
 							
@@ -1100,27 +1100,27 @@ am_sentimental = {	#	sentimental	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
-			 				
+			am_sentimental				
 			am_craven				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1130,9 +1130,9 @@ am_sentimental = {	#	sentimental	emotionality
 				desc = trait_sentimental_desc			
 			}				
 			desc = trait_sentimental_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -4						
 	stewardship = 0						
@@ -1150,8 +1150,8 @@ am_sentimental = {	#	sentimental	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_craven = {	#	craven	emotionality				
 	index = 319						
 							
@@ -1159,27 +1159,27 @@ am_craven = {	#	craven	emotionality
 							
 	potential = {						
 		NOR = {					
-			am_brave				
-			am_tough				
-			am_independent				
-			am_selfassured				
-			am_stable				
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+
+		}
+	}
+
+	opposites = {
 			am_vulnerable				
 			am_anxious				
 			am_fearful				
 			am_sentimental				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_vulnerable				
-		trait = am_anxious				
-		trait = am_fearful				
-		trait = am_sentimental				
-		trait = am_craven				
-	}						
-							
+			am_craven				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1189,9 +1189,9 @@ am_craven = {	#	craven	emotionality
 				desc = trait_craven_desc			
 			}				
 			desc = trait_craven_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -5						
 	stewardship = 0						
@@ -1209,8 +1209,8 @@ am_craven = {	#	craven	emotionality
 		am_fearful = @neg_compat_medium				
 		am_sentimental = @neg_compat_high				
 		am_craven = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_outgoing = {	#	outgoing	extraversion				
 	index = 320						
 							
@@ -1218,27 +1218,27 @@ am_outgoing = {	#	outgoing	extraversion
 							
 	potential = {						
 		NOR = {					
-			 				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1248,9 +1248,9 @@ am_outgoing = {	#	outgoing	extraversion
 				desc = trait_outgoing_desc			
 			}				
 			desc = trait_outgoing_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 5						
 	martial = 0						
 	stewardship = 0						
@@ -1268,8 +1268,8 @@ am_outgoing = {	#	outgoing	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_lively = {	#	lively	extraversion				
 	index = 321						
 							
@@ -1277,27 +1277,27 @@ am_lively = {	#	lively	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			 				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1307,9 +1307,9 @@ am_lively = {	#	lively	extraversion
 				desc = trait_lively_desc			
 			}				
 			desc = trait_lively_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 4						
 	martial = 0						
 	stewardship = 0						
@@ -1327,8 +1327,8 @@ am_lively = {	#	lively	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_sociable = {	#	sociable	extraversion				
 	index = 322						
 							
@@ -1336,27 +1336,27 @@ am_sociable = {	#	sociable	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			 				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1366,9 +1366,9 @@ am_sociable = {	#	sociable	extraversion
 				desc = trait_sociable_desc			
 			}				
 			desc = trait_sociable_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 3						
 	martial = 0						
 	stewardship = 0						
@@ -1386,8 +1386,8 @@ am_sociable = {	#	sociable	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_talkative = {	#	talkative	extraversion				
 	index = 323						
 							
@@ -1395,27 +1395,27 @@ am_talkative = {	#	talkative	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			 				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1425,9 +1425,9 @@ am_talkative = {	#	talkative	extraversion
 				desc = trait_talkative_desc			
 			}				
 			desc = trait_talkative_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 2						
 	martial = 0						
 	stewardship = 0						
@@ -1445,8 +1445,8 @@ am_talkative = {	#	talkative	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_cheerful = {	#	cheerful	extraversion				
 	index = 324						
 							
@@ -1454,27 +1454,27 @@ am_cheerful = {	#	cheerful	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			 				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1484,9 +1484,9 @@ am_cheerful = {	#	cheerful	extraversion
 				desc = trait_cheerful_desc			
 			}				
 			desc = trait_cheerful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 1						
 	martial = 0						
 	stewardship = 0						
@@ -1504,8 +1504,8 @@ am_cheerful = {	#	cheerful	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_passive = {	#	passive	extraversion				
 	index = 325						
 							
@@ -1513,27 +1513,27 @@ am_passive = {	#	passive	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
-			 				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1543,9 +1543,9 @@ am_passive = {	#	passive	extraversion
 				desc = trait_passive_desc			
 			}				
 			desc = trait_passive_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -1						
 	martial = 0						
 	stewardship = 0						
@@ -1563,8 +1563,8 @@ am_passive = {	#	passive	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_withdrawn = {	#	withdrawn	extraversion				
 	index = 326						
 							
@@ -1572,27 +1572,27 @@ am_withdrawn = {	#	withdrawn	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
-			 				
+			am_withdrawn				
 			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1602,9 +1602,9 @@ am_withdrawn = {	#	withdrawn	extraversion
 				desc = trait_withdrawn_desc			
 			}				
 			desc = trait_withdrawn_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -2						
 	martial = 0						
 	stewardship = 0						
@@ -1622,8 +1622,8 @@ am_withdrawn = {	#	withdrawn	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_introverted = {	#	introverted	extraversion				
 	index = 327						
 							
@@ -1631,27 +1631,27 @@ am_introverted = {	#	introverted	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
-			 				
+			am_introverted				
 			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1661,9 +1661,9 @@ am_introverted = {	#	introverted	extraversion
 				desc = trait_introverted_desc			
 			}				
 			desc = trait_introverted_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -3						
 	martial = 0						
 	stewardship = 0						
@@ -1681,8 +1681,8 @@ am_introverted = {	#	introverted	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_quiet = {	#	quiet	extraversion				
 	index = 328						
 							
@@ -1690,27 +1690,27 @@ am_quiet = {	#	quiet	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
-			 				
+			am_quiet				
 			am_reserved				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1720,9 +1720,9 @@ am_quiet = {	#	quiet	extraversion
 				desc = trait_quiet_desc			
 			}				
 			desc = trait_quiet_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -4						
 	martial = 0						
 	stewardship = 0						
@@ -1740,8 +1740,8 @@ am_quiet = {	#	quiet	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_reserved = {	#	reserved	extraversion				
 	index = 329						
 							
@@ -1749,27 +1749,27 @@ am_reserved = {	#	reserved	extraversion
 							
 	potential = {						
 		NOR = {					
-			am_outgoing				
-			am_lively				
-			am_sociable				
-			am_talkative				
-			am_cheerful				
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+
+		}
+	}
+
+	opposites = {
 			am_passive				
 			am_withdrawn				
 			am_introverted				
 			am_quiet				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_passive				
-		trait = am_withdrawn				
-		trait = am_introverted				
-		trait = am_quiet				
-		trait = am_reserved				
-	}						
-							
+			am_reserved				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1779,9 +1779,9 @@ am_reserved = {	#	reserved	extraversion
 				desc = trait_reserved_desc			
 			}				
 			desc = trait_reserved_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -5						
 	martial = 0						
 	stewardship = 0						
@@ -1799,8 +1799,8 @@ am_reserved = {	#	reserved	extraversion
 		am_introverted = @neg_compat_medium				
 		am_quiet = @neg_compat_high				
 		am_reserved = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_patient = {	#	patient	agreeableness				
 	index = 330						
 							
@@ -1808,27 +1808,27 @@ am_patient = {	#	patient	agreeableness
 							
 	potential = {						
 		NOR = {					
-			 				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1838,9 +1838,9 @@ am_patient = {	#	patient	agreeableness
 				desc = trait_patient_desc			
 			}				
 			desc = trait_patient_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 5						
 	martial = 1						
 	stewardship = 1						
@@ -1858,8 +1858,8 @@ am_patient = {	#	patient	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_tolerant = {	#	tolerant	agreeableness				
 	index = 331						
 							
@@ -1867,27 +1867,27 @@ am_tolerant = {	#	tolerant	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			 				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1897,9 +1897,9 @@ am_tolerant = {	#	tolerant	agreeableness
 				desc = trait_tolerant_desc			
 			}				
 			desc = trait_tolerant_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 4						
 	martial = 0						
 	stewardship = 0						
@@ -1917,8 +1917,8 @@ am_tolerant = {	#	tolerant	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_agreeable = {	#	agreeable	agreeableness				
 	index = 332						
 							
@@ -1926,27 +1926,27 @@ am_agreeable = {	#	agreeable	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			 				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -1956,9 +1956,9 @@ am_agreeable = {	#	agreeable	agreeableness
 				desc = trait_agreeable_desc			
 			}				
 			desc = trait_agreeable_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 3						
 	martial = 0						
 	stewardship = 0						
@@ -1976,8 +1976,8 @@ am_agreeable = {	#	agreeable	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_mild = {	#	mild	agreeableness				
 	index = 333						
 							
@@ -1985,27 +1985,27 @@ am_mild = {	#	mild	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			 				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2015,9 +2015,9 @@ am_mild = {	#	mild	agreeableness
 				desc = trait_mild_desc			
 			}				
 			desc = trait_mild_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 2						
 	martial = 0						
 	stewardship = 0						
@@ -2035,8 +2035,8 @@ am_mild = {	#	mild	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_gentle = {	#	gentle	agreeableness				
 	index = 334						
 							
@@ -2044,27 +2044,27 @@ am_gentle = {	#	gentle	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			 				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2074,9 +2074,9 @@ am_gentle = {	#	gentle	agreeableness
 				desc = trait_gentle_desc			
 			}				
 			desc = trait_gentle_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 1						
 	martial = 0						
 	stewardship = 0						
@@ -2094,8 +2094,8 @@ am_gentle = {	#	gentle	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_illtempered = {	#	illtempered	agreeableness				
 	index = 335						
 							
@@ -2103,27 +2103,27 @@ am_illtempered = {	#	illtempered	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
-			 				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2133,9 +2133,9 @@ am_illtempered = {	#	illtempered	agreeableness
 				desc = trait_illtempered_desc			
 			}				
 			desc = trait_illtempered_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -1						
 	martial = 0						
 	stewardship = 0						
@@ -2153,8 +2153,8 @@ am_illtempered = {	#	illtempered	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_quarrelsome = {	#	quarrelsome	agreeableness				
 	index = 336						
 							
@@ -2162,27 +2162,27 @@ am_quarrelsome = {	#	quarrelsome	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
-			 				
+			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2192,9 +2192,9 @@ am_quarrelsome = {	#	quarrelsome	agreeableness
 				desc = trait_quarrelsome_desc			
 			}				
 			desc = trait_quarrelsome_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -2						
 	martial = 0						
 	stewardship = 0						
@@ -2212,8 +2212,8 @@ am_quarrelsome = {	#	quarrelsome	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_stubborn = {	#	stubborn	agreeableness				
 	index = 337						
 							
@@ -2221,27 +2221,27 @@ am_stubborn = {	#	stubborn	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
-			 				
+			am_stubborn				
 			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2251,9 +2251,9 @@ am_stubborn = {	#	stubborn	agreeableness
 				desc = trait_stubborn_desc			
 			}				
 			desc = trait_stubborn_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -3						
 	martial = 0						
 	stewardship = 0						
@@ -2271,8 +2271,8 @@ am_stubborn = {	#	stubborn	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_intolerant = {	#	intolerant	agreeableness				
 	index = 338						
 							
@@ -2280,27 +2280,27 @@ am_intolerant = {	#	intolerant	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
-			 				
+			am_intolerant				
 			am_wroth				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2310,9 +2310,9 @@ am_intolerant = {	#	intolerant	agreeableness
 				desc = trait_intolerant_desc			
 			}				
 			desc = trait_intolerant_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -4						
 	martial = 0						
 	stewardship = 0						
@@ -2330,8 +2330,8 @@ am_intolerant = {	#	intolerant	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_wroth = {	#	wroth	agreeableness				
 	index = 339						
 							
@@ -2339,27 +2339,27 @@ am_wroth = {	#	wroth	agreeableness
 							
 	potential = {						
 		NOR = {					
-			am_patient				
-			am_tolerant				
-			am_agreeable				
-			am_mild				
-			am_gentle				
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+
+		}
+	}
+
+	opposites = {
 			am_illtempered				
 			am_quarrelsome				
 			am_stubborn				
 			am_intolerant				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_illtempered				
-		trait = am_quarrelsome				
-		trait = am_stubborn				
-		trait = am_intolerant				
-		trait = am_wroth				
-	}						
-							
+			am_wroth				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2369,9 +2369,9 @@ am_wroth = {	#	wroth	agreeableness
 				desc = trait_wroth_desc			
 			}				
 			desc = trait_wroth_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = -5						
 	martial = 0						
 	stewardship = 0						
@@ -2389,8 +2389,8 @@ am_wroth = {	#	wroth	agreeableness
 		am_stubborn = @neg_compat_medium				
 		am_intolerant = @neg_compat_high				
 		am_wroth = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_organized = {	#	organized	conscientiousness				
 	index = 340						
 							
@@ -2398,27 +2398,27 @@ am_organized = {	#	organized	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			 				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
+
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2428,9 +2428,9 @@ am_organized = {	#	organized	conscientiousness
 				desc = trait_organized_desc			
 			}				
 			desc = trait_organized_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 2						
 	stewardship = 5						
@@ -2448,8 +2448,8 @@ am_organized = {	#	organized	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_diligent = {	#	diligent	conscientiousness				
 	index = 341						
 							
@@ -2457,27 +2457,27 @@ am_diligent = {	#	diligent	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			 				
-			am_careful				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2487,9 +2487,9 @@ am_diligent = {	#	diligent	conscientiousness
 				desc = trait_diligent_desc			
 			}				
 			desc = trait_diligent_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 2						
 	stewardship = 4						
@@ -2507,8 +2507,8 @@ am_diligent = {	#	diligent	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_careful = {	#	careful	conscientiousness				
 	index = 342						
 							
@@ -2516,27 +2516,27 @@ am_careful = {	#	careful	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			 				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2546,9 +2546,9 @@ am_careful = {	#	careful	conscientiousness
 				desc = trait_careful_desc			
 			}				
 			desc = trait_careful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 3						
@@ -2566,8 +2566,8 @@ am_careful = {	#	careful	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_thorough = {	#	thorough	conscientiousness				
 	index = 343						
 							
@@ -2575,27 +2575,27 @@ am_thorough = {	#	thorough	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			 				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2605,9 +2605,9 @@ am_thorough = {	#	thorough	conscientiousness
 				desc = trait_thorough_desc			
 			}				
 			desc = trait_thorough_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 1						
 	stewardship = 2						
@@ -2625,8 +2625,8 @@ am_thorough = {	#	thorough	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_precise = {	#	precise	conscientiousness				
 	index = 344						
 							
@@ -2634,27 +2634,27 @@ am_precise = {	#	precise	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			 				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2664,9 +2664,9 @@ am_precise = {	#	precise	conscientiousness
 				desc = trait_precise_desc			
 			}				
 			desc = trait_precise_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 1						
 	stewardship = 1						
@@ -2684,8 +2684,8 @@ am_precise = {	#	precise	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_sloppy = {	#	sloppy	conscientiousness				
 	index = 345						
 							
@@ -2693,27 +2693,27 @@ am_sloppy = {	#	sloppy	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
-			 				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2723,9 +2723,9 @@ am_sloppy = {	#	sloppy	conscientiousness
 				desc = trait_sloppy_desc			
 			}				
 			desc = trait_sloppy_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -1						
 	stewardship = -1						
@@ -2743,8 +2743,8 @@ am_sloppy = {	#	sloppy	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_negligent = {	#	negligent	conscientiousness				
 	index = 346						
 							
@@ -2752,27 +2752,27 @@ am_negligent = {	#	negligent	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
-			 				
+			am_negligent				
 			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2782,9 +2782,9 @@ am_negligent = {	#	negligent	conscientiousness
 				desc = trait_negligent_desc			
 			}				
 			desc = trait_negligent_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -1						
 	stewardship = -2						
@@ -2802,8 +2802,8 @@ am_negligent = {	#	negligent	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_reckless = {	#	reckless	conscientiousness				
 	index = 347						
 							
@@ -2811,27 +2811,27 @@ am_reckless = {	#	reckless	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
-			 				
+			am_reckless				
 			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2841,9 +2841,9 @@ am_reckless = {	#	reckless	conscientiousness
 				desc = trait_reckless_desc			
 			}				
 			desc = trait_reckless_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = -3						
@@ -2861,8 +2861,8 @@ am_reckless = {	#	reckless	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_lazy = {	#	lazy	conscientiousness				
 	index = 348						
 							
@@ -2870,27 +2870,27 @@ am_lazy = {	#	lazy	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
-			 				
+			am_lazy				
 			am_irresponsible				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2900,9 +2900,9 @@ am_lazy = {	#	lazy	conscientiousness
 				desc = trait_lazy_desc			
 			}				
 			desc = trait_lazy_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -2						
 	stewardship = -4						
@@ -2920,8 +2920,8 @@ am_lazy = {	#	lazy	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_irresponsible = {	#	irresponsible	conscientiousness				
 	index = 349						
 							
@@ -2929,27 +2929,27 @@ am_irresponsible = {	#	irresponsible	conscientiousness
 							
 	potential = {						
 		NOR = {					
-			am_organized				
-			am_diligent				
-			am_careful				
-			am_thorough				
-			am_precise				
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+
+		}
+	}
+
+	opposites = {
 			am_sloppy				
 			am_negligent				
 			am_reckless				
 			am_lazy				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_sloppy				
-		trait = am_negligent				
-		trait = am_reckless				
-		trait = am_lazy				
-		trait = am_irresponsible				
-	}						
-							
+			am_irresponsible				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -2959,9 +2959,9 @@ am_irresponsible = {	#	irresponsible	conscientiousness
 				desc = trait_irresponsible_desc			
 			}				
 			desc = trait_irresponsible_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = -2						
 	stewardship = -5						
@@ -2979,8 +2979,8 @@ am_irresponsible = {	#	irresponsible	conscientiousness
 		am_reckless = @neg_compat_medium				
 		am_lazy = @neg_compat_high				
 		am_irresponsible = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_intellectual = {	#	intellectual	openness_to_experience				
 	index = 350						
 							
@@ -2988,27 +2988,27 @@ am_intellectual = {	#	intellectual	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			 				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3018,9 +3018,9 @@ am_intellectual = {	#	intellectual	openness_to_experience
 				desc = trait_intellectual_desc			
 			}				
 			desc = trait_intellectual_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 2						
@@ -3038,8 +3038,8 @@ am_intellectual = {	#	intellectual	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_creative = {	#	creative	openness_to_experience				
 	index = 351						
 							
@@ -3047,27 +3047,27 @@ am_creative = {	#	creative	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			 				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3077,9 +3077,9 @@ am_creative = {	#	creative	openness_to_experience
 				desc = trait_creative_desc			
 			}				
 			desc = trait_creative_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 2						
@@ -3097,8 +3097,8 @@ am_creative = {	#	creative	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_unconventional = {	#	unconventional	openness_to_experience				
 	index = 352						
 							
@@ -3106,27 +3106,27 @@ am_unconventional = {	#	unconventional	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			 				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3136,9 +3136,9 @@ am_unconventional = {	#	unconventional	openness_to_experience
 				desc = trait_unconventional_desc			
 			}				
 			desc = trait_unconventional_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 0						
@@ -3156,8 +3156,8 @@ am_unconventional = {	#	unconventional	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_innovative = {	#	innovative	openness_to_experience				
 	index = 353						
 							
@@ -3165,27 +3165,27 @@ am_innovative = {	#	innovative	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			 				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3195,9 +3195,9 @@ am_innovative = {	#	innovative	openness_to_experience
 				desc = trait_innovative_desc			
 			}				
 			desc = trait_innovative_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 1						
@@ -3215,8 +3215,8 @@ am_innovative = {	#	innovative	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_thoughtful = {	#	thoughtful	openness_to_experience				
 	index = 354						
 							
@@ -3224,27 +3224,27 @@ am_thoughtful = {	#	thoughtful	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			 				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3254,9 +3254,9 @@ am_thoughtful = {	#	thoughtful	openness_to_experience
 				desc = trait_thoughtful_desc			
 			}				
 			desc = trait_thoughtful_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 0						
@@ -3274,8 +3274,8 @@ am_thoughtful = {	#	thoughtful	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_shallow = {	#	shallow	openness_to_experience				
 	index = 355						
 							
@@ -3283,27 +3283,27 @@ am_shallow = {	#	shallow	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
-			 				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3313,9 +3313,9 @@ am_shallow = {	#	shallow	openness_to_experience
 				desc = trait_shallow_desc			
 			}				
 			desc = trait_shallow_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 0						
@@ -3333,8 +3333,8 @@ am_shallow = {	#	shallow	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_unimaginative = {	#	unimaginative	openness_to_experience				
 	index = 356						
 							
@@ -3342,27 +3342,27 @@ am_unimaginative = {	#	unimaginative	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
-			 				
+			am_unimaginative				
 			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3372,9 +3372,9 @@ am_unimaginative = {	#	unimaginative	openness_to_experience
 				desc = trait_unimaginative_desc			
 			}				
 			desc = trait_unimaginative_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = -1						
@@ -3392,8 +3392,8 @@ am_unimaginative = {	#	unimaginative	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_conventional = {	#	conventional	openness_to_experience				
 	index = 357						
 							
@@ -3401,27 +3401,27 @@ am_conventional = {	#	conventional	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
-			 				
+			am_conventional				
 			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3431,9 +3431,9 @@ am_conventional = {	#	conventional	openness_to_experience
 				desc = trait_conventional_desc			
 			}				
 			desc = trait_conventional_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = 0						
@@ -3451,8 +3451,8 @@ am_conventional = {	#	conventional	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_uninspired = {	#	uninspired	openness_to_experience				
 	index = 358						
 							
@@ -3460,27 +3460,27 @@ am_uninspired = {	#	uninspired	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
-			 				
+			am_uninspired				
 			am_simple				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3490,9 +3490,9 @@ am_uninspired = {	#	uninspired	openness_to_experience
 				desc = trait_uninspired_desc			
 			}				
 			desc = trait_uninspired_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = -2						
@@ -3510,8 +3510,8 @@ am_uninspired = {	#	uninspired	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
 am_simple = {	#	simple	openness_to_experience				
 	index = 359						
 							
@@ -3519,27 +3519,27 @@ am_simple = {	#	simple	openness_to_experience
 							
 	potential = {						
 		NOR = {					
-			am_intellectual				
-			am_creative				
-			am_unconventional				
-			am_innovative				
-			am_thoughtful				
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+
+		}
+	}
+
+	opposites = {
 			am_shallow				
 			am_unimaginative				
 			am_conventional				
 			am_uninspired				
-			 				
-		}					
-	}						
-							
-	opposite = {						
-		trait = am_shallow				
-		trait = am_unimaginative				
-		trait = am_conventional				
-		trait = am_uninspired				
-		trait = am_simple				
-	}						
-							
+			am_simple				
+	}
+
 	desc = {						
 		first_valid = {					
 			triggered_desc = {				
@@ -3549,9 +3549,9 @@ am_simple = {	#	simple	openness_to_experience
 				desc = trait_simple_desc			
 			}				
 			desc = trait_simple_character_desc				
-		}					
-	}						
-							
+		}
+	}
+
 	diplomacy = 0						
 	martial = 0						
 	stewardship = -2						
@@ -3569,5 +3569,335 @@ am_simple = {	#	simple	openness_to_experience
 		am_conventional = @neg_compat_medium				
 		am_uninspired = @neg_compat_high				
 		am_simple = @neg_compat_high				
-	}						
-}							
+	}	
+}		
+
+## Sexuality
+sexuality_normal = {
+	index = 460						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = lustful
+			has_trait = chaste
+			has_trait = sexuality_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+sexuality_normal_2 = {
+	index = 461						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = sexuality_normal
+			has_trait = lustful
+			has_trait = chaste
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+
+## Appetite
+appetite_normal = {
+	index = 462						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = gluttonous
+			has_trait = temperate
+			has_trait = appetite_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+appetite_normal_2 = {
+	index = 463						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = appetite_normal
+			has_trait = gluttonous
+			has_trait = temperate
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+
+#################################################################
+# PHYSICAL 		   												#
+#################################################################
+
+## Height
+height_above_average = {
+	index = 600
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 3
+	
+	monthly_prestige = 0.05	
+	dread_baseline_add = 1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_above_average_desc
+			}
+			desc = trait_height_above_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+height_tall = {
+	index = 601
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 4
+	
+	monthly_prestige = 0.075
+	dread_baseline_add = 2
+	
+	monthly_prestige_gain_mult = 0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_tall_desc
+			}
+			desc = trait_height_tall_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+height_below_average = {
+	index = 602
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 2
+	
+	monthly_prestige = -0.05	
+	dread_baseline_add = -1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_below_average_desc
+			}
+			desc = trait_height_below_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+height_small = {
+	index = 603
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 1
+	
+	monthly_prestige = -0.075
+	dread_baseline_add = -2
+	
+	monthly_prestige_gain_mult = -0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_small_desc
+			}
+			desc = trait_height_small_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+
+#################################################################
+# OTHERS		   												#
+#################################################################
+
+
+crowned_basileus = {
+	index = 604
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_crowned_basileus_desc
+			}
+			desc = trait_crowned_basileus_desc
+		}
+	}
+	vassal_opinion = 5
+	religious_vassal_opinion = 5
+	monthly_prestige = 1
+	monthly_piety = 0.5
+}
+crowned_coemperor = {
+	index = 605
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_crowned_coemperor_desc
+			}
+			desc = trait_crowned_coemperor_character_desc
+		}
+	}
+	vassal_opinion = 5
+	religious_vassal_opinion = 5
+	monthly_prestige = 1
+	monthly_piety = 0.5
+}

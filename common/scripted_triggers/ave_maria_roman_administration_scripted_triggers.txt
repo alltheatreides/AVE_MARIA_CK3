@@ -67,21 +67,36 @@ roman_administration_tagma_title_trigger = {
 	}
 }
 
+## Checks in title scope if you have a tagma titles
+roman_administration_is_a_tagma_title_trigger = {
+	OR = {
+		this = title:d_megas_domestikos
+		this = title:d_excubitor
+		this = title:d_vigla
+		this = title:d_hikanatoi
+		this = title:d_varangian_guard
+		this = title:d_regular_tagma_1
+		this = title:d_regular_tagma_2
+	}
+}
+
+
+
 ## Councillor job
 can_be_roman_empire_court_chaplain_trigger = {
 	save_temporary_scope_as = court_chaplain_check
+	$COURT_OWNER$ = { save_temporary_scope_as = basileus }
 	can_be_councillor_basics_trigger = yes
 	NOT = { has_council_position = councillor_spouse }
 	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
-	faith = $COURT_OWNER$.faith
-	$COURT_OWNER$ = { save_temporary_scope_as = basileus }
+	faith = $COURT_OWNER$.faith	
 	trigger_if = {
 		limit = {
-			scope:basileus= {
+			$COURT_OWNER$ = {
 				any_held_title = {
 					OR = {
-						this = title:d_megas_domestikos
-						this = title:d_excubitor
+						this = title:e_byzantium
+						this = title:e_roman_empire
 					}
 				}
 			}

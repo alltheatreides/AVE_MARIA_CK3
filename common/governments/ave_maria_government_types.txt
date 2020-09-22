@@ -60,24 +60,17 @@ roman_administration_military_government = {
 	# fallback = 1
 	
 	can_get_government = {
-		any_held_title = {
-		OR = {
-				this = title:d_megas_domestikos
-				this = title:d_varangian_guard
-			}
-		}
 		roman_administration_tagma_title_trigger = yes
-
 		top_liege = {
 			any_held_title = {
-		OR = {
+				OR = {
 					this = title:e_byzantium
 					this = title:e_roman_empire
-		}
+				}
 			}
 		}
 		any_held_title = {
-		NOR = {
+			NOR = {
 				this = title:e_byzantium
 				this = title:e_roman_empire
 			}
@@ -91,7 +84,7 @@ roman_administration_military_government = {
 	opinion_of_liege = {
 		scope:vassal = {
 			value = 20
-	}
+		}
 	}
 	opinion_of_liege_desc = {
 		first_valid = {
@@ -114,6 +107,7 @@ roman_administration_military_government = {
 	
 	vassal_contract = {
 		ave_maria_roman_administration_tagma_salary
+		council_rights
 		title_revocation_rights
 	}
 	
@@ -173,14 +167,9 @@ roman_administration_civilian_government = {
 	# }
 	
 	vassal_contract = {
-		feudal_government_taxes
-		feudal_government_levies
-		special_contract
+		ave_maria_roman_administration_theme_taxe
 		religious_rights
 		fortification_rights
-		coinage_rights
-		succession_rights
-		war_declaration_rights
 		council_rights
 		title_revocation_rights
 	}

@@ -66,9 +66,7 @@ roman_administration_get_claim = {
 		}
 		scope:recipient = { 
 			is_landed = yes 
-			any_held_title = {
-				this = title:d_megas_domestikos
-			}
+			roman_administration_tagma_title_trigger = yes
 		}
 	}
 	
@@ -77,7 +75,114 @@ roman_administration_get_claim = {
 	on_accept = {
 		scope:actor = {
 			add_unpressed_claim = scope:recipient.primary_title
+			## Add the stress impacts
 		}
 	}
 }
 
+roman_administration_favour_successor = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+	target_type = title
+	target_filter = secondary_recipient_domain_titles	
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			is_landed = yes 
+			roman_administration_tagma_title_trigger = yes
+		}
+	}
+
+	redirect = {
+		if = {
+			limit = {
+				scope:recipient = { 
+					is_landed = yes 
+					roman_administration_tagma_title_trigger = yes
+				}
+			}
+			scope:recipient = {
+				save_scope_as = secondary_recipient
+			}
+			scope:actor = {
+				any_vassal = {
+					limit = {
+						roman_administration_tagma_title_trigger = no
+					}
+					save_scope_as = recipient
+				}			
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_vassal = {
+				limit = {
+					roman_administration_tagma_title_trigger = no
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	can_be_picked_title = {
+		scope:target = {
+			roman_administration_is_a_tagma_title_trigger = yes
+		}
+	}
+	
+	on_accept = {
+		scope:recipient = {
+			add_unpressed_claim = scope:secondary_recipient.primary_title
+			## Add some flag so it has a better score in the election
+		}
+	}
+}
+
+roman_administration_fire_bureaucrat = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}		
+		}
+		scope:recipient = { 
+			roman_administration_tagma_title_trigger = yes
+		}
+	}
+
+	auto_accept = yes
+	
+	on_accept = {
+		scope:recipient = {
+			primary_title = {
+				create_title_and_vassal_change = change
+				scope:change = {
+					set_title_and_vassal_change_type = conquest
+					set_add_claim_on_loss = yes
+				}
+				save_temporary_scope_as = title_to_inherit
+				current_heir = {
+					save_scope_as = title_heir
+				}
+				change_title_holder = {
+					holder = scope:title_heir
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+	}
+}

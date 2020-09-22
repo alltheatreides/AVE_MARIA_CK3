@@ -57,6 +57,63 @@ ave_maria_roman_administration_tagma_salary = {
 	}
 }
 
+ave_maria_roman_administration_theme_taxe = {
+	display_mode = tree
+	icon = gold_icon
+	obligation_levels = {
+		ave_maria_roman_administration_theme_taxe_exuberant = {
+			position = { 0 0 }
+
+			tax = 1.5
+			vassal_opinion = 10
+
+			ai_liege_desire = 1
+			ai_vassal_desire = 1
+		}
+		ave_maria_roman_administration_theme_taxe_high = {
+			parent = ave_maria_roman_administration_theme_taxe_exuberant
+			position = { 1 0 }
+
+			tax = 1
+			vassal_opinion = 5
+
+			ai_liege_desire = 2
+			ai_vassal_desire = 2
+		}
+		ave_maria_roman_administration_theme_taxe_normal = {
+			default = yes
+			parent = ave_maria_roman_administration_theme_taxe_high
+			position = { 2 0 }
+
+			tax = 1
+
+			ai_liege_desire = 3
+			ai_vassal_desire = 3
+		}
+		ave_maria_roman_administration_theme_taxe_low = {
+			parent = ave_maria_roman_administration_theme_taxe_normal
+			position = { 3 0 }
+			
+			tax = 0.8
+			vassal_opinion = -15
+
+			ai_liege_desire = 4
+			ai_vassal_desire = 4
+		}
+		ave_maria_roman_administration_theme_taxe_very_low = {
+			parent = ave_maria_roman_administration_theme_taxe_low
+			position = { 4 0 }
+			
+			tax = 0.6
+			vassal_opinion = -25
+
+			ai_liege_desire = 5
+			ai_vassal_desire = 5
+		}
+	}
+}
+
+
 ave_maria_roman_administration_special_contract = {
 	display_mode = radiobutton
 	is_shown = {

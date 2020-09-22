@@ -1,4 +1,22 @@
-﻿#Roman - title holders
+﻿# Accepted categories are: governments, cultures, culture_groups, faiths, religions
+# A Flavorization will apply if ALL specified categories have ANY of their entries
+# represented in the character/title
+# So for example:
+# governments = { feudal_government }
+# culture_groups = { mongolic_group central_germanic_group }
+# For this to apply a character MUST BE feudal, AND must also be EITHER altaic OR germanic
+# priority is used to determine priority, if they are the same then the LAST will be selected,
+# and honorifics will be prefered over landed titles. Default priority is 1
+# If a flavorization does not have a tier it can apply to all tiers of characters, too many non-tiered
+# flavorizations is bad for performance though, YOU HAVE BEEN WARNED!
+# 'top_liege = no' means that its the holder of the title causing the honorific that is tested for
+# 'only_holder = yes' means that this will only be applied to the person holding the title, not their spouse and such
+# the various categories, so for a prince it is the king that is tested, for a queen mother it is her son
+# if this is not specified ( or 'top_liege = yes' the default ) then it is the top liege of that character
+# that is tested, this means that most title flavor comes from the top liege of the title not the holder
+####################################################
+
+#Roman - title holders
 baron_roman_administration_male_greek = {
 	type = character
 	gender = male
@@ -134,7 +152,7 @@ county_roman_administration = {
 	tier = county
 	priority = 300
 	governments = { roman_administration_government roman_administration_civilian_government roman_administration_military_government }
-	de_jure_liege = { e_byzantium e_roman_empire }
+	# de_jure_liege = { e_byzantium e_roman_empire }
 	top_liege = no
 }
 duchy_roman_administration = {
@@ -142,7 +160,7 @@ duchy_roman_administration = {
 	tier = duchy
 	priority = 300
 	governments = { roman_administration_government roman_administration_civilian_government }
-	de_jure_liege = { e_byzantium e_roman_empire }
+	# de_jure_liege = { e_byzantium e_roman_empire }
 	top_liege = no
 }
 duchy_roman_administration_military_government = {
@@ -159,6 +177,14 @@ kingdom_roman_administration = {
 	priority = 300
 	governments = { roman_administration_government roman_administration_civilian_government roman_administration_military_government }
 	de_jure_liege = { e_byzantium e_roman_empire }
+	top_liege = no
+}
+empire_roman_administration = {
+	type = title
+	tier = empire
+	priority = 300
+	governments = { roman_administration_government roman_administration_civilian_government roman_administration_military_government }
+	title = { e_byzantium e_roman_empire }
 	top_liege = no
 }
 
