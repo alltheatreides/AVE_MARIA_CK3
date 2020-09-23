@@ -63,6 +63,11 @@ roman_administration_get_claim = {
 					this = title:e_byzantium
 				}
 			}			
+			top_liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 		}
 		scope:recipient = { 
 			is_landed = yes 
@@ -84,8 +89,8 @@ roman_administration_favour_successor = {
 	category = interaction_category_roman_administration
 
 	use_diplomatic_range = yes
-	target_type = title
-	target_filter = secondary_recipient_domain_titles	
+	# target_type = title
+	# target_filter = secondary_recipient_domain_titles	
 	auto_accept = yes
 
 	is_shown = {
@@ -133,15 +138,15 @@ roman_administration_favour_successor = {
 		}
 	}
 
-	can_be_picked_title = {
-		scope:target = {
-			roman_administration_is_a_tagma_title_trigger = yes
-		}
-	}
+	# can_be_picked_title = {
+	# 	scope:target = {
+	# 		roman_administration_is_a_tagma_title_trigger = yes
+	# 	}
+	# }
 	
 	on_accept = {
-		scope:recipient = {
-			add_unpressed_claim = scope:secondary_recipient.primary_title
+		scope:secondary_recipient = {
+			add_unpressed_claim = scope:recipient.primary_title
 			## Add some flag so it has a better score in the election
 		}
 	}

@@ -34,7 +34,7 @@ ave_maria_roman_administration_imperial_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		NOT = {
-			has_trait = crowned_basileus 
+			has_character_modifier = crowned_basileus 
 			has_character_flag = imperial_coronation_started_preparations
 		}
 	}
@@ -231,9 +231,9 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 		}
 		scope:actor = {
 			every_character_war = {
-				limit = {
-					is_war_leader = scope:actor
-				}		
+				# limit = {
+				# 	is_war_leader = scope:actor
+				# }		
 				save_scope_as = basileus_war
 			}
 		}		

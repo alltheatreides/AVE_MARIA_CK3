@@ -1,0 +1,4558 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA TRAITS																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA HEXACO TRAITS									                       	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+# TABLE OF CONTENT:
+##### 1) PERSONALITY TRAITS
+##### HEXACO Personality Traits
+
+##### 2) EDUCATION TRAITS
+##### Hexaco Education Traits
+
+##### 3) PHYSICAL TRAITS
+##### Physical traits
+
+##### 4) OTHER TRAITS
+##### Various traits
+
+# Standard Values
+@pos_compat_high = 30
+@pos_compat_medium = 15
+@pos_compat_low = 5
+
+@neg_compat_high = -30
+@neg_compat_medium = -15
+@neg_compat_low = -5
+
+#################################################################
+# PERSONALITY   												#
+#################################################################
+
+## Hexaco scale trait
+am_faithful = {	#	faithful	honesty_humility				
+	index = 300						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {
+			has_trait = am_honest
+			has_trait = am_sincere
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant				
+		am_deceitful				
+		am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_faithful_desc			
+			}				
+			desc = trait_faithful_character_desc				
+		}
+	}
+
+	opinion_of_vassal = 15
+	opinion_of_liege = 15
+
+	ai_honor = dominant_positive_ai_value
+	ai_zeal = very_low_positive_ai_value
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+
+	diplomacy = 5						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -2						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_honest = {	#	honest	honesty_humility				
+	index = 301						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious
+			am_greedy
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_honest_desc			
+			}				
+			desc = trait_honest_character_desc				
+		}
+	}
+
+	ai_honor = high_positive_ai_value
+	ai_boldness = very_low_positive_ai_value
+	ai_compassion = very_low_positive_ai_value
+	ai_sociability = low_positive_ai_value
+
+	opinion_of_vassal = 10
+	opinion_of_liege = 10
+
+	diplomacy = 4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -2						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_sincere = {	#	sincere	honesty_humility				
+	index = 302						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant				
+		am_deceitful				
+		am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sincere_desc			
+			}				
+			desc = trait_sincere_character_desc				
+		}
+	}
+
+	opinion_of_vassal = 8
+	opinion_of_liege = 8
+
+	diplomacy = 3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -1						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_generous = {	#	generous	honesty_humility				
+	index = 303						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious				
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_generous_desc			
+			}				
+			desc = trait_generous_character_desc				
+		}
+	}
+
+	ai_honor = low_positive_ai_value
+	ai_greed = dominant_negative_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = very_low_positive_ai_value
+
+	opinion_of_vassal = 5
+	opinion_of_liege = 5
+
+	diplomacy = 2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -1						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_humble = {	#	humble	honesty_humility				
+	index = 304						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+		am_pretentious				
+		am_greedy				
+		am_inconstant
+		am_deceitful
+		am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_humble_desc			
+			}				
+			desc = trait_humble_character_desc				
+		}
+	}
+
+	monthly_piety = 0.5
+
+	clergy_opinion = 10
+	opinion_of_liege = 2
+	opinion_of_vassal = 2
+
+	ai_honor = low_positive_ai_value
+	ai_greed = high_negative_ai_value
+	ai_energy = very_low_negative_ai_value
+	ai_compassion = low_positive_ai_value
+
+	diplomacy = 1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -1						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_pretentious = {	#	pretentious	honesty_humility				
+	index = 305						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious				
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_pretentious_desc			
+			}				
+			desc = trait_pretentious_character_desc				
+		}
+	}
+
+	monthly_prestige = 1
+	
+	opinion_of_liege = -5
+	opinion_of_vassal = -5
+
+	ai_honor = low_negative_ai_value
+	ai_greed = low_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_boldness = medium_positive_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = -1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_greedy = {	#	greedy	honesty_humility				
+	index = 306						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_greedy_desc			
+			}				
+			desc = trait_greedy_character_desc				
+		}
+	}
+
+	ai_war_chance = 0.5
+
+	ai_honor = very_low_negative_ai_value
+	ai_greed = dominant_positive_ai_value
+	ai_compassion = low_negative_ai_value
+
+	diplomacy = -2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_inconstant = {	#	inconstant	honesty_humility				
+	index = 307						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+
+			has_trait = am_deceitful				
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious				
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {				
+				trigger = {
+					NOT = { exists = this }		
+				}			
+				desc = trait_inconstant_desc			
+			}				
+			desc = trait_inconstant_character_desc				
+		}
+	}
+
+	stress_gain_mult = -0.5
+	hostile_scheme_resistance_mult = 0.2
+	dread_baseline_add = 15
+	
+	opinion_of_vassal = -5
+
+	ai_honor = dominant_negative_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_boldness = very_low_positive_ai_value
+	ai_vengefulness = low_negative_ai_value
+
+	diplomacy = -3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_hypocritical = {	#	hypocritical	honesty_humility				
+	index = 308						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+			has_trait = am_deceitful				
+
+		}
+	}
+
+	opposites = {
+			am_pretentious				
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_hypocritical_desc			
+			}				
+			desc = trait_hypocritical_character_desc				
+		}
+	}
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = low_negative_ai_value
+	ai_zeal = dominant_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+
+	diplomacy = -5						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 5						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_deceitful = {	#	deceitful	honesty_humility				
+	index = 309						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_faithful				
+			has_trait = am_honest				
+			has_trait = am_sincere				
+			has_trait = am_generous				
+			has_trait = am_humble				
+			has_trait = am_pretentious				
+			has_trait = am_greedy				
+			has_trait = am_inconstant				
+
+			has_trait = am_hypocritical				
+		}
+	}
+
+	opposites = {
+			am_pretentious				
+			am_greedy				
+			am_inconstant				
+			am_deceitful				
+			am_hypocritical				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_deceitful_desc			
+			}				
+			desc = trait_deceitful_character_desc				
+		}
+	}
+
+	attraction_opinion = -5
+	close_relative_opinion = -5
+
+	ai_honor = high_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_rationality = very_low_positive_ai_value
+	ai_boldness = very_low_negative_ai_value
+	ai_sociability = very_low_negative_ai_value
+
+	diplomacy = -4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 4						
+	learning = 0						
+							
+	compatibility = {						
+		am_faithful = @pos_compat_high				
+		am_honest = @pos_compat_high				
+		am_sincere = @pos_compat_medium				
+		am_generous = @pos_compat_medium				
+		am_humble = @pos_compat_low				
+		am_pretentious = @neg_compat_low				
+		am_greedy = @neg_compat_medium				
+		am_inconstant = @neg_compat_medium				
+		am_deceitful = @neg_compat_high				
+		am_hypocritical = @neg_compat_high				
+	}	
+}		
+am_brave = {	#	brave	emotionality				
+	index = 310						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_brave_desc			
+			}				
+			desc = trait_brave_character_desc				
+		}
+	}
+
+	flag = higher_chance_of_dying_in_battle
+
+	attraction_opinion = 10
+	opinion_of_vassal = 5
+
+	ai_energy = low_positive_ai_value
+	ai_boldness = dominant_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 5						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0			
+	
+	prowess = 3
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_tough = {	#	tough	emotionality				
+	index = 311						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_tough_desc			
+			}				
+			desc = trait_tough_character_desc				
+		}
+	}
+
+	flag = higher_chance_of_dying_in_battle
+
+	attraction_opinion = 5
+	opinion_of_vassal = 2.5
+
+	ai_energy = low_positive_ai_value
+	ai_boldness = dominant_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 4						
+	stewardship = 0						
+	intrigue = -2						
+	learning = 0		
+	
+	prowess = 2
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_independent = {	#	independent	emotionality				
+	index = 312						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_independent_desc			
+			}				
+			desc = trait_independent_character_desc				
+		}
+	}
+
+	attraction_opinion = 2.5
+
+	ai_energy = low_positive_ai_value
+	ai_boldness = dominant_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 3						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0		
+	
+	prowess = 2
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_selfassured = {	#	selfassured	emotionality				
+	index = 313						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_selfassured_desc			
+			}				
+			desc = trait_selfassured_character_desc				
+		}
+	}
+
+	attraction_opinion = 1
+
+	ai_energy = low_positive_ai_value
+	ai_boldness = dominant_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 2						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0			
+	
+	prowess = 1
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_stable = {	#	stable	emotionality				
+	index = 314						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_stable_desc			
+			}				
+			desc = trait_stable_character_desc				
+		}
+	}
+
+	ai_energy = low_positive_ai_value
+	ai_boldness = dominant_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 1						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_vulnerable = {	#	vulnerable	emotionality				
+	index = 315						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_vulnerable_desc			
+			}				
+			desc = trait_vulnerable_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.25
+
+	scheme_discovery_chance_mult = 0.025
+	enemy_personal_scheme_success_chance_add = -6.25
+	
+	opinion_of_vassal = -5
+
+	ai_honor = low_negative_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_positive_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = medium_negative_ai_value
+
+	diplomacy = 0						
+	martial = -1					
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_anxious = {	#	anxious	emotionality				
+	index = 316						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_anxious_desc			
+			}				
+			desc = trait_anxious_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.5
+
+	scheme_discovery_chance_mult = 0.05
+	enemy_personal_scheme_success_chance_add = -12.5
+	
+	opinion_of_vassal = -5
+
+	ai_honor = low_negative_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_positive_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = medium_negative_ai_value
+
+	diplomacy = 0						
+	martial = -2						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0			
+	
+	prowess = -1
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_fearful = {	#	fearful	emotionality				
+	index = 317						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+
+			has_trait = am_sentimental				
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_fearful_desc			
+			}				
+			desc = trait_fearful_character_desc				
+		}
+	}
+
+	stress_gain_mult = 1
+	dread_gain_mult = 0.25
+
+	scheme_discovery_chance_mult = 0.1
+	enemy_personal_scheme_success_chance_add = -25
+	
+	opinion_of_vassal = -10
+
+	ai_honor = low_negative_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_positive_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = medium_negative_ai_value
+
+	diplomacy = 0						
+	martial = -3						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0		
+	
+	prowess = -2
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_sentimental = {	#	sentimental	emotionality				
+	index = 318
+
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+
+			has_trait = am_craven				
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sentimental_desc			
+			}				
+			desc = trait_sentimental_character_desc				
+		}
+	}
+
+	ai_honor = low_negative_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_positive_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = medium_negative_ai_value
+
+	diplomacy = 0						
+	martial = -4						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0		
+	
+	prowess = -2
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_craven = {	#	craven	emotionality				
+	index = 319
+
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_brave				
+			has_trait = am_tough				
+			has_trait = am_independent				
+			has_trait = am_selfassured				
+			has_trait = am_stable				
+			has_trait = am_vulnerable				
+			has_trait = am_anxious				
+			has_trait = am_fearful				
+			has_trait = am_sentimental				
+
+		}
+	}
+
+	opposites = {
+			am_vulnerable				
+			am_anxious				
+			am_fearful				
+			am_sentimental				
+			am_craven				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_craven_desc			
+			}				
+			desc = trait_craven_character_desc				
+		}
+	}
+
+	flag = lower_chance_of_dying_in_combat
+
+	attraction_opinion = -10
+	opinion_of_vassal = -5
+
+	ai_energy = low_negative_ai_value
+	ai_boldness = dominant_negative_ai_value
+	ai_rationality = very_low_positive_ai_value
+	ai_sociability = low_negative_ai_value
+
+	diplomacy = 0						
+	martial = -5						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0	
+	
+	prowess = -3
+							
+	compatibility = {						
+		am_brave = @pos_compat_high				
+		am_tough = @pos_compat_high				
+		am_independent = @pos_compat_medium				
+		am_selfassured = @pos_compat_medium				
+		am_stable = @pos_compat_low				
+		am_vulnerable = @neg_compat_low				
+		am_anxious = @neg_compat_medium				
+		am_fearful = @neg_compat_medium				
+		am_sentimental = @neg_compat_high				
+		am_craven = @neg_compat_high				
+	}	
+}		
+am_outgoing = {	#	outgoing	extraversion				
+	index = 320						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_outgoing_desc			
+			}				
+			desc = trait_outgoing_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = 0.15
+	attraction_opinion = 15
+
+	ai_boldness = low_positive_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = dominant_positive_ai_value
+
+	diplomacy = 5						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_lively = {	#	lively	extraversion				
+	index = 321						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_lively_desc			
+			}				
+			desc = trait_lively_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = 0.10
+	attraction_opinion = 10
+
+	ai_boldness = low_positive_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = dominant_positive_ai_value
+
+	diplomacy = 4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_sociable = {	#	sociable	extraversion				
+	index = 322						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sociable_desc			
+			}				
+			desc = trait_sociable_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = 0.5
+	attraction_opinion = 5
+
+	ai_boldness = low_positive_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = dominant_positive_ai_value
+
+	diplomacy = 3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_talkative = {	#	talkative	extraversion				
+	index = 323						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_talkative_desc			
+			}				
+			desc = trait_talkative_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = 0.5
+	attraction_opinion = 5
+
+	ai_boldness = low_positive_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = dominant_positive_ai_value
+
+	diplomacy = 2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_cheerful = {	#	cheerful	extraversion				
+	index = 324						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_cheerful_desc			
+			}				
+			desc = trait_cheerful_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = 0.25
+	attraction_opinion = 2.5
+
+	ai_boldness = low_positive_ai_value
+	ai_compassion = medium_positive_ai_value
+	ai_sociability = dominant_positive_ai_value
+
+	diplomacy = 1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_passive = {	#	passive	extraversion				
+	index = 325						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_passive_desc			
+			}				
+			desc = trait_passive_character_desc				
+		}
+	}
+
+	personal_scheme_power_mult = -0.05
+
+	attraction_opinion = -2.5
+
+	ai_boldness = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+	ai_sociability = dominant_negative_ai_value
+
+	diplomacy = -1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}		
+am_withdrawn = {	#	withdrawn	extraversion				
+	index = 326						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_withdrawn_desc			
+			}				
+			desc = trait_withdrawn_character_desc				
+		}
+	}
+
+	hostile_scheme_resistance_mult = 0.15
+	personal_scheme_power_mult = -0.15
+
+	attraction_opinion = -5
+
+	ai_boldness = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+	ai_sociability = dominant_negative_ai_value
+
+	diplomacy = -2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}	
+am_reserved = {	#	reserved	extraversion				
+	index = 327						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+			has_trait = am_quiet				
+
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_reserved_desc			
+			}				
+			desc = trait_reserved_character_desc				
+		}
+	}
+
+	hostile_scheme_resistance_mult = 0.175
+	personal_scheme_power_mult = -0.2
+
+	attraction_opinion = -5
+
+	ai_boldness = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+	ai_sociability = dominant_negative_ai_value
+
+	diplomacy = -3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 1							
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}			
+am_quiet = {	#	quiet	extraversion				
+	index = 328						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+			has_trait = am_introverted				
+
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_quiet_desc			
+			}				
+			desc = trait_quiet_character_desc				
+		}
+	}
+
+	hostile_scheme_resistance_mult = 0.2
+	personal_scheme_power_mult = -0.25
+
+	attraction_opinion = -5
+
+	ai_boldness = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+	ai_sociability = dominant_negative_ai_value
+
+	diplomacy = -4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 2						
+							
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}	
+am_introverted = {	#	introverted	extraversion				
+	index = 329						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_outgoing				
+			has_trait = am_lively				
+			has_trait = am_sociable				
+			has_trait = am_talkative				
+			has_trait = am_cheerful				
+			has_trait = am_passive				
+			has_trait = am_withdrawn				
+
+			has_trait = am_quiet				
+			has_trait = am_reserved				
+		}
+	}
+
+	opposites = {
+			am_passive				
+			am_withdrawn				
+			am_introverted				
+			am_quiet				
+			am_reserved				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_introverted_desc			
+			}				
+			desc = trait_introverted_character_desc				
+		}
+	}
+
+	hostile_scheme_resistance_mult = 0.25
+	personal_scheme_power_mult = -0.3
+
+	attraction_opinion = -10
+
+	ai_boldness = low_negative_ai_value
+	ai_zeal = very_low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+	ai_sociability = dominant_negative_ai_value
+
+	diplomacy = -5						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 2	
+								
+	compatibility = {						
+		am_outgoing = @pos_compat_high				
+		am_lively = @pos_compat_high				
+		am_sociable = @pos_compat_medium				
+		am_talkative = @pos_compat_medium				
+		am_cheerful = @pos_compat_low				
+		am_passive = @neg_compat_low				
+		am_withdrawn = @neg_compat_medium				
+		am_introverted = @neg_compat_medium				
+		am_quiet = @neg_compat_high				
+		am_reserved = @neg_compat_high				
+	}	
+}	
+am_agreeable = {	#	agreeable	agreeableness				
+	index = 330						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_agreeable_desc			
+			}				
+			desc = trait_agreeable_character_desc				
+		}
+	}
+
+	dread_decay_mult = 1.5
+	dread_baseline_add = -20
+	prisoner_opinion = 15
+	opinion_of_vassal = 10
+	opinion_of_liege = 10
+	enemy_hostile_scheme_success_chance_add = 15
+	ai_war_chance = -0.25
+
+	ai_honor = low_positive_ai_value
+	ai_rationality = very_low_positive_ai_value
+	ai_energy = very_low_negative_ai_value
+	ai_vengefulness = dominant_negative_ai_value
+	ai_compassion = medium_positive_ai_value
+
+	diplomacy = 5
+	martial = 1
+	stewardship = 1						
+	intrigue = 1
+	learning = 1
+
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}	
+am_tolerant = {	#	tolerant	agreeableness				
+	index = 331						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_tolerant_desc			
+			}				
+			desc = trait_tolerant_character_desc				
+		}
+	}
+
+	opinion_of_vassal = 7.5
+	opinion_of_liege = 7.5
+	enemy_hostile_scheme_success_chance_add = 10
+	dread_decay_mult = 1
+	dread_baseline_add = -15
+
+	ai_honor = medium_positive_ai_value
+	ai_greed = low_negative_ai_value
+	ai_compassion = dominant_positive_ai_value
+	ai_sociability = medium_positive_ai_value
+
+	ai_war_chance = -0.25
+
+	diplomacy = 4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_patient = {	#	patient	agreeableness				
+	index = 332						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_patient_desc			
+			}				
+			desc = trait_patient_character_desc				
+		}
+	}
+
+	dread_decay_mult = 0.5
+	dread_baseline_add = -10
+
+	opinion_of_vassal = 5
+	opinion_of_liege = 5
+
+	scheme_discovery_chance_mult = 0.1
+	hostile_scheme_resistance_add = 10
+	
+	ai_war_chance = -0.25
+	ai_war_cooldown = 0.5
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = very_low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_positive_ai_value
+
+	diplomacy = 3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0			
+
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_mild = {	#	mild	agreeableness				
+	index = 333						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_mild_desc			
+			}				
+			desc = trait_mild_character_desc				
+		}
+	}
+
+	dread_decay_mult = 0.25
+	dread_baseline_add = -5
+	ai_war_chance = -0.25
+
+	opinion_of_liege = 2.5
+	opinion_of_vassal = 2.5
+
+	diplomacy = 2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0				
+	
+	ai_honor = medium_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_negative_ai_value
+	ai_compassion = low_positive_ai_value
+	ai_sociability = medium_positive_ai_value
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_gentle = {	#	gentle	agreeableness				
+	index = 334						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_gentle_desc			
+			}				
+			desc = trait_gentle_character_desc				
+		}
+	}
+
+	dread_decay_mult = 0.25
+	dread_baseline_add = -5
+	ai_war_chance = -0.25
+
+	opinion_of_liege = 2.5
+	opinion_of_vassal = 2.5
+
+	ai_honor = medium_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_vengefulness = low_negative_ai_value
+	ai_compassion = low_positive_ai_value
+	ai_sociability = medium_positive_ai_value
+
+	diplomacy = 1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_illtempered = {	#	illtempered	agreeableness				
+	index = 335						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_illtempered_desc			
+			}				
+			desc = trait_illtempered_character_desc				
+		}
+	}
+
+	dread_gain_mult = 0.05
+
+	ai_honor = very_low_negative_ai_value
+	ai_rationality = very_low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_vengefulness = dominant_positive_ai_value
+	ai_compassion = low_negative_ai_value
+
+	diplomacy = -1						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_quarrelsome = {	#	quarrelsome	agreeableness				
+	index = 336						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_quarrelsome_desc			
+			}				
+			desc = trait_quarrelsome_character_desc				
+		}
+	}
+
+	flag = extra_scheme_power_vs_rivals
+
+	prowess = 2
+	dread_gain_mult = 0.15
+
+	ai_honor = very_low_negative_ai_value
+	ai_rationality = very_low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_vengefulness = dominant_positive_ai_value
+	ai_compassion = low_negative_ai_value
+
+	diplomacy = -2						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_stubborn = {	#	stubborn	agreeableness				
+	index = 337						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+
+			has_trait = am_intolerant				
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_stubborn_desc			
+			}				
+			desc = trait_stubborn_character_desc				
+		}
+	}
+
+	negate_health_penalty_add = 0.25
+	
+	opinion_of_liege = -5
+	opinion_of_vassal = -5
+
+	ai_honor = medium_positive_ai_value
+	ai_rationality = very_low_negative_ai_value
+	ai_vengefulness = medium_positive_ai_value
+
+	diplomacy = -3						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_intolerant = {	#	intolerant	agreeableness				
+	index = 338						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+
+			has_trait = am_wroth				
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_intolerant_desc			
+			}				
+			desc = trait_intolerant_character_desc				
+		}
+	}
+
+	dread_baseline_add = 15
+	
+	ai_war_chance = 0.20
+
+	diplomacy = -4						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_wroth = {	#	wroth	agreeableness				
+	index = 339						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_patient				
+			has_trait = am_tolerant				
+			has_trait = am_agreeable				
+			has_trait = am_mild				
+			has_trait = am_gentle				
+			has_trait = am_illtempered				
+			has_trait = am_quarrelsome				
+			has_trait = am_stubborn				
+			has_trait = am_intolerant				
+
+		}
+	}
+
+	opposites = {
+			am_illtempered				
+			am_quarrelsome				
+			am_stubborn				
+			am_intolerant				
+			am_wroth				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_wroth_desc			
+			}				
+			desc = trait_wroth_character_desc				
+		}
+	}
+
+	dread_baseline_add = 20
+	
+	ai_war_chance = 0.25
+
+	diplomacy = -5						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = 0						
+
+	ai_rationality = medium_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_vengefulness = low_positive_ai_value
+							
+	compatibility = {						
+		am_patient = @pos_compat_high				
+		am_tolerant = @pos_compat_high				
+		am_agreeable = @pos_compat_medium				
+		am_mild = @pos_compat_medium				
+		am_gentle = @pos_compat_low				
+		am_illtempered = @neg_compat_low				
+		am_quarrelsome = @neg_compat_medium				
+		am_stubborn = @neg_compat_medium				
+		am_intolerant = @neg_compat_high				
+		am_wroth = @neg_compat_high				
+	}	
+}		
+am_organized = {	#	organized	conscientiousness				
+	index = 340						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_organized_desc			
+			}				
+			desc = trait_organized_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.25
+
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+
+	diplomacy = 0						
+	martial = 2						
+	stewardship = 5						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_diligent = {	#	diligent	conscientiousness				
+	index = 341						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_diligent_desc			
+			}				
+			desc = trait_diligent_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.2
+
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+
+	diplomacy = 0						
+	martial = 2						
+	stewardship = 4						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_careful = {	#	careful	conscientiousness				
+	index = 342						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_careful_desc			
+			}				
+			desc = trait_careful_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.15
+
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 3						
+	intrigue = 2						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_thorough = {	#	thorough	conscientiousness				
+	index = 343						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_thorough_desc			
+			}				
+			desc = trait_thorough_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.10
+
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+
+	diplomacy = 0						
+	martial = 1						
+	stewardship = 2						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_precise = {	#	precise	conscientiousness				
+	index = 344						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_precise_desc			
+			}				
+			desc = trait_precise_character_desc				
+		}
+	}
+
+	stress_gain_mult = 0.5
+
+	ai_vengefulness = very_low_positive_ai_value
+	ai_rationality = low_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = medium_positive_ai_value
+
+	diplomacy = 0						
+	martial = 1						
+	stewardship = 1						
+	intrigue = 1						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_sloppy = {	#	sloppy	conscientiousness				
+	index = 345						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sloppy_desc			
+			}				
+			desc = trait_sloppy_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.05
+
+	ai_vengefulness = very_low_negative_ai_value
+	ai_greed = very_low_positive_ai_value
+	ai_energy = high_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = -1						
+	stewardship = -1						
+	intrigue = -1						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_negligent = {	#	negligent	conscientiousness				
+	index = 346						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_negligent_desc			
+			}				
+			desc = trait_negligent_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.1
+
+	ai_vengefulness = very_low_negative_ai_value
+	ai_greed = very_low_positive_ai_value
+	ai_energy = high_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = -1						
+	stewardship = -2						
+	intrigue = -2						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_reckless = {	#	reckless	conscientiousness				
+	index = 347						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+
+			has_trait = am_lazy				
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_reckless_desc			
+			}				
+			desc = trait_reckless_character_desc				
+		}
+	}
+
+	monthly_prestige_gain_mult = 0.2
+	hostile_scheme_power_mult = 0.15
+
+	ai_war_cooldown = -0.5
+
+	ai_rationality = medium_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_boldness = low_positive_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = -3						
+	intrigue = -3						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_lazy = {	#	lazy	conscientiousness				
+	index = 348						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+
+			has_trait = am_irresponsible				
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_lazy_desc			
+			}				
+			desc = trait_lazy_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.15
+
+	ai_vengefulness = very_low_negative_ai_value
+	ai_greed = very_low_positive_ai_value
+	ai_energy = high_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = -2						
+	stewardship = -4						
+	intrigue = -4						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_irresponsible = {	#	irresponsible	conscientiousness				
+	index = 349						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_organized				
+			has_trait = am_diligent				
+			has_trait = am_careful				
+			has_trait = am_thorough				
+			has_trait = am_precise				
+			has_trait = am_sloppy				
+			has_trait = am_negligent				
+			has_trait = am_reckless				
+			has_trait = am_lazy				
+
+		}
+	}
+
+	opposites = {
+			am_sloppy				
+			am_negligent				
+			am_reckless				
+			am_lazy				
+			am_irresponsible				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_irresponsible_desc			
+			}				
+			desc = trait_irresponsible_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.2
+
+	ai_vengefulness = very_low_negative_ai_value
+	ai_greed = very_low_positive_ai_value
+	ai_energy = high_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_compassion = very_low_negative_ai_value
+	ai_sociability = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = -2						
+	stewardship = -5						
+	intrigue = -5						
+	learning = 0						
+							
+	compatibility = {						
+		am_organized = @pos_compat_high				
+		am_diligent = @pos_compat_high				
+		am_careful = @pos_compat_medium				
+		am_thorough = @pos_compat_medium				
+		am_precise = @pos_compat_low				
+		am_sloppy = @neg_compat_low				
+		am_negligent = @neg_compat_medium				
+		am_reckless = @neg_compat_medium				
+		am_lazy = @neg_compat_high				
+		am_irresponsible = @neg_compat_high				
+	}	
+}		
+am_intellectual = {	#	intellectual	openness_to_experience				
+	index = 350						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_intellectual_desc			
+			}				
+			desc = trait_intellectual_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = 15
+	owned_hostile_scheme_success_chance_add = 15
+
+	ai_rationality = very_high_positive_ai_value
+	ai_energy = very_low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 2						
+	intrigue = 2						
+	learning = 5						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_creative = {	#	creative	openness_to_experience				
+	index = 351						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_creative_desc			
+			}				
+			desc = trait_creative_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = 10
+	owned_hostile_scheme_success_chance_add = 10
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 2						
+	intrigue = 2						
+	learning = 4						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_unconventional = {	#	unconventional	openness_to_experience				
+	index = 352						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_unconventional_desc			
+			}				
+			desc = trait_unconventional_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = 5
+	owned_hostile_scheme_success_chance_add = 5
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 2						
+	learning = 3						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_innovative = {	#	innovative	openness_to_experience				
+	index = 353						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_innovative_desc			
+			}				
+			desc = trait_innovative_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = 5
+	owned_hostile_scheme_success_chance_add = 5
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = very_high_positive_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 1						
+	intrigue = 1						
+	learning = 2						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_thoughtful = {	#	thoughtful	openness_to_experience				
+	index = 354						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_thoughtful_desc			
+			}				
+			desc = trait_thoughtful_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = 2.5
+	owned_hostile_scheme_success_chance_add = 2.5
+
+	ai_rationality = medium_positive_ai_value
+	ai_energy = very_low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_vengefulness = very_low_negative_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 1						
+	learning = 1						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_shallow = {	#	shallow	openness_to_experience				
+	index = 355						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_shallow_desc			
+			}				
+			desc = trait_shallow_character_desc				
+		}
+	}
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 0						
+	intrigue = 0						
+	learning = -1						
+
+	ai_honor = low_negative_ai_value
+	ai_greed = low_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_unimaginative = {	#	unimaginative	openness_to_experience				
+	index = 356						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_unimaginative_desc			
+			}				
+			desc = trait_unimaginative_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.1
+
+	owned_personal_scheme_success_chance_add = -2.5
+	owned_hostile_scheme_success_chance_add = -2.5
+
+	ai_war_chance = -0.2
+
+	ai_honor = low_negative_ai_value
+	ai_greed = low_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = -1						
+	intrigue = -1						
+	learning = -2						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_conventional = {	#	conventional	openness_to_experience				
+	index = 357						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+
+			has_trait = am_uninspired				
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_conventional_desc			
+			}				
+			desc = trait_conventional_character_desc				
+		}
+	}
+
+	owned_personal_scheme_success_chance_add = -5
+	owned_hostile_scheme_success_chance_add = -5
+	
+	stress_loss_mult = 0.1
+	
+	ai_war_chance = -0.25
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = 0						
+	intrigue = -1						
+	learning = -3						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_uninspired = {	#	uninspired	openness_to_experience				
+	index = 358						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+
+			has_trait = am_simple				
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_uninspired_desc			
+			}				
+			desc = trait_uninspired_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.15
+
+	owned_personal_scheme_success_chance_add = -10
+	owned_hostile_scheme_success_chance_add = -10
+
+	ai_war_chance = -0.25
+
+	ai_honor = low_negative_ai_value
+	ai_greed = low_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = -2						
+	intrigue = -2						
+	learning = -4						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+am_simple = {	#	simple	openness_to_experience				
+	index = 359						
+							
+	personality = yes
+	same_opinion = 1
+	opposite_opinion = -1						
+							
+	potential = {						
+		NOR = {					
+			has_trait = am_intellectual				
+			has_trait = am_creative				
+			has_trait = am_unconventional				
+			has_trait = am_innovative				
+			has_trait = am_thoughtful				
+			has_trait = am_shallow				
+			has_trait = am_unimaginative				
+			has_trait = am_conventional				
+			has_trait = am_uninspired				
+
+		}
+	}
+
+	opposites = {
+			am_shallow				
+			am_unimaginative				
+			am_conventional				
+			am_uninspired				
+			am_simple				
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_simple_desc			
+			}				
+			desc = trait_simple_character_desc				
+		}
+	}
+
+	stress_loss_mult = 0.2
+
+	owned_personal_scheme_success_chance_add = -15
+	owned_hostile_scheme_success_chance_add = -15
+
+	ai_war_chance = -0.25
+
+	ai_honor = low_negative_ai_value
+	ai_greed = low_positive_ai_value
+	ai_rationality = low_negative_ai_value
+	ai_boldness = low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_sociability = low_positive_ai_value
+
+	diplomacy = 0						
+	martial = 0						
+	stewardship = -2						
+	intrigue = -2						
+	learning = -5						
+							
+	compatibility = {						
+		am_intellectual = @pos_compat_high				
+		am_creative = @pos_compat_high				
+		am_unconventional = @pos_compat_medium				
+		am_innovative = @pos_compat_medium				
+		am_thoughtful = @pos_compat_low				
+		am_shallow = @neg_compat_low				
+		am_unimaginative = @neg_compat_medium				
+		am_conventional = @neg_compat_medium				
+		am_uninspired = @neg_compat_high				
+		am_simple = @neg_compat_high				
+	}	
+}		
+
+## Sexuality
+sexuality_normal = {
+	index = 460						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = lustful
+			has_trait = chaste
+			has_trait = sexuality_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+sexuality_normal_2 = {
+	index = 461						
+							
+	personality = yes
+
+	opposites = {
+		lustful
+		chaste
+	}
+
+	potential = {
+		NOR = {
+			has_trait = sexuality_normal
+			has_trait = lustful
+			has_trait = chaste
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_sexuality_normal_desc			
+			}				
+			desc = trait_sexuality_normal_character_desc				
+		}					
+	}	
+}
+
+## Appetite
+appetite_normal = {
+	index = 462						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = gluttonous
+			has_trait = temperate
+			has_trait = appetite_normal_2
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+appetite_normal_2 = {
+	index = 463						
+							
+	personality = yes
+
+	opposites = {
+		gluttonous
+		temperate
+	}
+
+	potential = {
+		NOR = {
+			has_trait = appetite_normal
+			has_trait = gluttonous
+			has_trait = temperate
+		}
+	}
+
+	desc = {						
+		first_valid = {					
+			triggered_desc = {				
+				trigger = {			
+					NOT = { exists = this }		
+				}			
+				desc = trait_appetite_normal_desc			
+			}				
+			desc = trait_appetite_normal_character_desc				
+		}					
+	}	
+}
+
+#################################################################
+# PHYSICAL 		   												#
+#################################################################
+
+# Height
+height_above_average = {
+	index = 464
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 3
+	
+	monthly_prestige = 0.05	
+	dread_baseline_add = 1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_above_average_desc
+			}
+			desc = trait_height_above_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+height_tall = {
+	index = 465
+	
+	opposites = {
+		height_below_average
+		height_small
+		dwarf
+	}
+	
+	prowess = 3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 4
+	
+	monthly_prestige = 0.075
+	dread_baseline_add = 2
+	
+	monthly_prestige_gain_mult = 0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_tall_desc
+			}
+			desc = trait_height_tall_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = yes
+	
+}
+height_below_average = {
+	index = 466
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -2
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 2
+	
+	monthly_prestige = -0.05	
+	dread_baseline_add = -1
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_below_average_desc
+			}
+			desc = trait_height_below_average_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+height_small = {
+	index = 467
+	
+	opposites = {
+		height_above_average
+		height_tall
+		giant
+	}
+	
+	prowess = -3
+	
+	birth = 0.5
+	random_creation = 0.5
+	
+	group = height
+	level = 1
+	
+	monthly_prestige = -0.075
+	dread_baseline_add = -2
+	
+	monthly_prestige_gain_mult = -0.05
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_height_small_desc
+			}
+			desc = trait_height_small_character_desc
+		}
+	}
+	
+	genetic = yes
+	physical = yes
+	
+	good = no
+	
+}
+
+
+#################################################################
+# OTHERS		   												#
+#################################################################
+

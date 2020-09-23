@@ -47,17 +47,10 @@ ave_maria_roman_administration_events.0001 = {
 	}
 	
 	immediate = {
+		save_scope_as = roman_administration_basileus
 		every_held_title = {
 			limit = {
 				tier = tier_county
-				# AND = {
-					# NOT = {
-						# title:c_byzantion
-					# }
-					# NOT = {
-						# title:c_roman_family_1
-					# }
-				# }
 				NOR = {
 					this = title:c_byzantion
 					this = title:c_roman_family_1
@@ -77,21 +70,40 @@ ave_maria_roman_administration_events.0001 = {
 				}
 			}
 		}
-		title:e_byzantium = {
-			every_in_de_jure_hierarchy = {
+		every_vassal = {
+			limit = {
+				roman_administration_tagma_title_trigger = no
+			}
+			change_government = roman_administration_civilian_government
+			every_held_title = {
 				limit = {
-					tier > tier_county
-					roman_administration_tagma_title_trigger = no
+					tier = tier_county
+					NOR = {
+						this = title:c_byzantion
+						this = title:c_roman_family_1
+						is_capital_barony = yes
+					}
 				}
-				scope:holder = {
-					change_government = roman_administration_civilian_government
-					add_realm_law_skip_effects = ave_maria_roman_administration_civilian_administration_succession_law
-				}				
+				save_scope_as = the_county_to_give
+				prev = {
+					create_character = {
+						location = root.location
+						gender_female_chance = 0
+						culture = root.culture
+						faith = root.faith
+						save_scope_as = civilian_theme_holder
+					}
+					scope:civilian_theme_holder = {
+						get_title = scope:the_county_to_give
+					}
+				}
+			}
+			every_vassal = {
+				change_government = roman_administration_civilian_government
 			}
 		}
 	}
 }
-
 
 #############################################
 # ARMY CREATION								#
@@ -417,8 +429,9 @@ ave_maria_roman_administration_events.0006 = {
 		## Add some approval rating in Constantinople
 
 		## Add Crowned Basileus trait
-		add_trait = crowned_basileus
-
+		add_character_modifier = {
+			modifier = crowned_basileus
+		}
 		## Ends the coronation activity
 		hidden_effect = {
 			scope:activity = {
@@ -438,7 +451,9 @@ ave_maria_roman_administration_events.0006 = {
 		## Remove some approval rating in Constantinople
 
 		## Add Crowned Basileus trait
-		add_trait = crowned_basileus
+		add_character_modifier = {
+			modifier = crowned_basileus
+		} 
 
 		## Ends the coronation activity
 		hidden_effect = {
@@ -450,7 +465,7 @@ ave_maria_roman_administration_events.0006 = {
 }
 
 # INVITATION EVENTS
-#Vassals
+#Vassals invitation
 ave_maria_roman_administration_events.0007 = {
 	type = letter_event
 	opening = {
@@ -660,7 +675,7 @@ ave_maria_roman_administration_events.0007 = {
 	}
 }
 
-#Other relations
+#Other relations invitation
 ave_maria_roman_administration_events.0008 = {
 	type = letter_event
 	opening = {
