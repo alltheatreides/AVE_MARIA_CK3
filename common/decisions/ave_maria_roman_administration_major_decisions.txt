@@ -220,41 +220,28 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 
 	effect = {
 		custom_tooltip = ave_maria_roman_administration_muster_all_the_tagma_decision_tooltip
-		# trigger_event = ave_maria_roman_administration_events.0003
 		save_scope_as = actor
 
+		scope:actor = {
+			every_character_war = {
+				save_scope_as = basileus_war
+			}
+		}
 		every_vassal_or_below = {
 			limit = {
 				roman_administration_tagma_title_trigger = yes
 			}
-			add_to_list = list_of_tagma_to_join_the_wars	
-		}
-		scope:actor = {
-			every_character_war = {
-				# limit = {
-				# 	is_war_leader = scope:actor
-				# }		
-				save_scope_as = basileus_war
-			}
-		}		
-		scope:basileus_war = {
 			if = {
 				limit = {
 					is_attacker = scope:actor
 				}
-				every_in_list = {
-					list = list_of_tagma_to_join_the_wars
-					scope:basileus_war = {
-						add_attacker = prev
-					}
+				scope:basileus_war = {
+					add_attacker = prev
 				}
 			}
 			else = {
-				every_in_list = {
-					list = list_of_tagma_to_join_the_wars
-					scope:basileus_war = {
-						add_defender = prev
-					}
+				scope:basileus_war = {
+					add_defender = prev
 				}
 			}
 		}
