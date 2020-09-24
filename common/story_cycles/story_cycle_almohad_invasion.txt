@@ -1,0 +1,147 @@
+﻿
+# Story for the rise of the Almohads
+# by Petter Vilberg
+
+story_almohad_invasion = {
+
+	on_setup = {
+		set_global_variable = {
+			name = spawned_almohads
+			value = yes
+		}
+	}
+
+	on_end = {
+		debug_log = "Almohad story ended on:"
+		debug_log_date = yes
+	}
+
+	on_owner_death = {
+		if = {
+			limit = { NOT = { exists = var:had_ibn_tumart_succession } }
+			set_variable = {
+				name = had_ibn_tumart_succession
+				value = yes
+			}
+			if = {
+				limit = { exists = var:ibn_tumart_triggered_death }
+				if = {
+					limit = {
+						var:al_mumin = {
+							is_alive = yes
+							faith = faith:masmudi
+						}
+					}
+					if = {
+						limit = { var:al_mumin = { is_imprisoned = yes } }
+						var:al_mumin = { release_from_prison = yes }
+					}
+					if = {
+						limit = {
+							NOT = { var:ibn_tumart.primary_heir = var:al_mumin }
+						}
+						create_title_and_vassal_change = change
+						scope:change = { set_title_and_vassal_change_type = inheritance }
+						var:ibn_tumart = {
+							save_scope_as = ibn_tumart
+							every_held_title = {
+								limit = { is_capital_barony = no }
+								change_title_holder = {
+									holder = scope:story.var:al_mumin
+									change = scope:change
+								}
+							}
+						}
+						resolve_title_and_vassal_change = scope:change
+
+						make_story_owner = var:al_mumin
+
+						var:almohad_county = {
+							save_scope_as = almohad_county
+						}
+
+						story_owner = {
+							if = { # Make sure they get back to warfare
+								limit = { is_at_war = no }
+								almohads_find_target_titles_effect = yes
+								almohads_declare_war_for_target_title_effect = yes
+							}
+							spawn_second_almohad_troops_effect = yes
+
+							save_scope_as = al_mumin
+
+							every_war_enemy = {
+								trigger_event = almohad.1003
+							}
+						}
+					}
+				}
+			}
+		}
+		else = {
+			end_story = yes
+		}
+	}
+
+
+
+	#Kill ibn Tumert if he suffers a defeat
+	effect_group = {
+		days = { 20 80 }
+
+		trigger = {
+			debug_log_details = "Almohad effect group"
+			story_owner = var:ibn_tumart
+			exists = global_var:almohads_were_defeated
+		}
+
+		triggered_effect = {
+			trigger = {
+				always = yes
+			}
+			effect = {
+				debug_log = "Trying to kill Ibn Tumert!"
+				set_variable = {
+					name = ibn_tumart_triggered_death
+					value = yes
+				}
+				story_owner = {
+					death = natural
+				}
+			}
+		}
+	}
+
+	#Rebuild Marrakesh
+	effect_group = {
+		days = 180
+
+		trigger = {
+			NOT = { exists = var:fired_marrakesh_event }
+			story_owner = {
+				any_sub_realm_county = {
+					this = title:c_marrakesh
+					OR = {
+						holder = scope:story.story_owner
+						holder = { is_ai = no }
+					}
+				}
+			}
+		}
+
+		triggered_effect = {
+			trigger = {
+				always = yes
+			}
+			effect = {
+				set_variable = {
+					name = fired_marrakesh_event
+					value = yes
+				}
+				story_owner = {
+					trigger_event = almohad.1004
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,301 @@
+﻿marriage_interaction_on_accept_effect = {
+	#Use hook
+	if = {
+		limit = { always = scope:marriage_hook }
+		scope:actor = {
+			use_hook = scope:recipient
+		}
+		#To make sure betrothals can't be broken if a hook was used
+		if = {
+			limit = {
+				OR = {
+					scope:secondary_actor = { is_adult = no }
+					scope:secondary_recipient = { is_adult = no }
+				}
+			}
+			scope:secondary_actor = {
+				set_variable = {
+					name = hook_used_for_betrothal
+					value = scope:secondary_recipient
+				}
+			}
+		}
+	}
+
+	#Marriage on_actions and events
+	hidden_effect = {		
+		scope:actor = {
+			if = {
+				limit = { NOT = { this = scope:recipient } }
+				trigger_event = marriage_interaction.0010
+			}
+			else = {
+				send_interface_toast = {
+					title = arrange_marriage_interaction_accept_toast
+					left_icon = root
+					right_icon = scope:secondary_recipient
+					custom_tooltip  = arrange_marriage_interaction_accept_toast_desc
+				}
+			}
+		}
+	}
+
+
+
+
+	###MANAGEMENT SCRIPT FOR VARIOUS EVENTS/CONTENT###
+	
+	#If your spouse councillor had boosted the chance of marriage, remove modifier
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				has_character_modifier = heir_easier_to_marry_off_modifier
+			}
+			scope:actor = { player_heir = scope:secondary_actor }
+		}
+		scope:secondary_actor = {
+			remove_character_modifier = heir_easier_to_marry_off_modifier
+		}
+	}
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				is_child_of = scope:actor
+				has_character_modifier = child_easier_to_marry_off_modifier
+			}
+		}
+		scope:secondary_actor = {
+			remove_character_modifier = child_easier_to_marry_off_modifier
+		}
+	}
+}
+
+concubine_on_accept_effect = {
+	scope:recipient = {
+		trigger_event = marriage_interaction.0040
+		if = {
+			limit = {
+				is_imprisoned = yes
+			}
+			release_from_prison = yes
+			if = {
+				limit = {
+					is_married = yes
+				}
+				every_spouse = {
+					trigger_event = marriage_interaction.0041
+					divorce = scope:recipient # no opinion hit, no scripted effect
+				}
+			}
+			if = {
+				limit = { exists = betrothed }
+				trigger_event = marriage_interaction.0041
+				break_betrothal = betrothed
+			}
+		}
+	}
+	scope:actor = {
+		hidden_effect = {
+			send_interface_toast = {
+				type = event_generic_neutral
+				title = msg_concubine_taken_title
+				right_icon = scope:recipient
+				make_concubine = scope:recipient
+				#custom_tooltip = msg_concubine_taken_desc
+			}
+		}
+	}
+}
+
+divorce_effect = {
+	$DIVORCER$ = {
+		divorce = $DIVORCEE$
+		
+		reverse_add_opinion = {
+			modifier = divorced_me_opinion
+			target = $DIVORCEE$
+		}
+	}
+	# Opinion hit
+	$DIVORCEE$ = {
+		every_close_or_extended_family_member = {
+			limit = { NOT = { this = $DIVORCER$ } } # don't hate yourself just because of some incest
+			custom = all_family_members
+			add_opinion = {
+				modifier = divorced_close_kin
+				target = $DIVORCER$
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			$DIVORCER$ = {
+				has_character_modifier = rejected_from_marriage_bed_modifier
+			}
+		}
+		remove_character_modifier = rejected_from_marriage_bed_modifier
+	}
+	if = {
+		limit = {
+			$DIVORCEE$ = {
+				has_character_modifier = rejected_from_marriage_bed_modifier
+			}
+		}
+		remove_character_modifier = rejected_from_marriage_bed_modifier
+	}
+}
+
+marriage_soulmate_exclusivity_confrontation_effect = {
+	$SPOUSE_1$ = { add_to_temporary_list = new_spouses }
+	$SPOUSE_2$ = { add_to_temporary_list = new_spouses }
+
+	every_in_list = {
+		list = new_spouses
+		limit = {
+			any_relation = {
+				type = soulmate
+				NOT = { is_in_list = new_spouses }
+			}
+		}
+		add_character_flag = {
+			flag = can_be_confronted_about_lover_exclusivity
+			days = 1825
+		}
+	}
+}
+
+# CHARACTER = character we check for if they should send a message
+# SPOUSE = the spouse in this divorce
+# scope:reason = flag:script or flag:faith
+send_divorce_notifications_effect = {
+	$CHARACTER$ = {
+		if = {
+			limit = {
+				is_ai = no
+			}
+			switch = {
+				trigger = scope:reason
+				flag:script = {
+					send_interface_message = {
+						type = msg_divorce
+						left_icon = $SPOUSE$
+					}
+				}
+				flag:faith = {
+					send_interface_message = {
+						type = msg_spouse_invalidated
+						left_icon = $SPOUSE$
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_heir_to_title = {
+					holder = { is_ai = no }
+				}
+			}
+			every_heir_to_title = {
+				limit = {
+					holder = { is_ai = no }
+				}
+				holder = {
+					if = {
+						limit = {
+							NOT = { is_in_list = had_notification_sent } 
+						}
+						add_to_list = had_notification_sent
+						switch = {
+							trigger = scope:reason
+							flag:script = {
+								send_interface_message = {
+									type = msg_divorce_player_heir
+									left_icon = $CHARACTER$
+									right_icon = $SPOUSE$
+								}
+							}
+							flag:faith = {
+								send_interface_message = {
+									type = msg_spouse_invalidated_player_heir
+									left_icon = $CHARACTER$
+									right_icon = $SPOUSE$
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# CHARACTER = character we check for if they should send a message
+# BETROTHED = the other person in the betrothal
+# scope:reason = flag:timeout, flag:death, flag:faith, or flag:script
+send_break_betrothal_notifications_effect = {
+	$CHARACTER$ = {
+		if = {
+			limit = {
+				is_ai = no
+			}
+			switch = {
+				trigger = scope:reason
+				flag:script = {
+					send_interface_message = {
+						type = msg_break_betrothal
+						left_icon = $BETROTHED$
+					}
+				}
+				flag:faith = {
+					send_interface_message = {
+						type = msg_betrothal_invalidated
+						left_icon = $BETROTHED$
+					}
+				}
+				# flag:death is hanlded by normal death management events
+				# flag:timeout is hanlded by caller separately
+			}
+		}
+		else_if = {
+			limit = {
+				any_heir_to_title = {
+					exists = holder
+					holder = { is_ai = no }
+				}
+			}
+			every_heir_to_title = {
+				limit = {
+					holder = { is_ai = no }
+				}
+				holder = {
+					if = {
+						limit = {
+							NOT = { is_in_list = had_notification_sent } 
+						}
+						add_to_list = had_notification_sent
+						switch = {
+							trigger = scope:reason
+							flag:script = {
+								send_interface_message = {
+									type = msg_break_betrothal_player_heir
+									left_icon = $CHARACTER$
+									right_icon = $BETROTHED$
+								}
+							}
+							flag:faith = {
+								send_interface_message = {
+									type = msg_betrothal_invalidated_player_heir
+									left_icon = $CHARACTER$
+									right_icon = $BETROTHED$
+								}
+							}
+							# flag:death is hanlded by normal death management events
+							# flag:timeout is hanlded by caller separately
+						}
+					}
+				}
+			}
+		}
+	}
+}

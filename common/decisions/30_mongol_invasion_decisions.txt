@@ -1,0 +1,122 @@
+﻿submit_to_the_great_khan_decision = {
+	ai_check_interval = 12
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	desc = submit_to_the_great_khan_decision_opening_desc
+	selection_tooltip = submit_to_the_great_khan_decision_tooltip
+
+	is_shown = {
+		is_independent_ruler = yes
+		exists = global_var:mongol_empire_has_spawned
+		NOT = {
+			any_held_title = {
+				this = title:e_mongol_empire
+			}
+		}
+		OR = {
+			any_neighboring_top_liege_realm_owner = {
+				any_held_title = { this = title:e_mongol_empire }
+			}
+			AND = {
+				is_ai = no # this heavier check is for players, AI will only evaluate decision when immediately bordering the Mongols
+				any_neighboring_top_liege_realm_owner = {
+					any_neighboring_top_liege_realm_owner = {
+						any_held_title = { this = title:e_mongol_empire }
+					}
+				}
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		NOT = { highest_held_title_tier = tier_empire }
+	}
+
+	effect = {
+		hidden_effect = {
+			title:e_mongol_empire.holder = {
+				save_scope_as = mongol_emperor
+			}
+		}
+		show_as_tooltip = {
+			custom_tooltip = submit_to_the_great_khan_effect_tooltip
+		}
+		every_character_war = {
+			limit = {
+				NOT = { primary_defender = root }
+			}
+			end_war = white_peace
+		}
+		hidden_effect = {
+			create_title_and_vassal_change = title_change
+			change_liege = {
+				liege = scope:mongol_emperor
+				change = scope:title_change
+			}
+			resolve_title_and_vassal_change = scope:title_change
+			debug_log = "A ruler submitted to the khan"
+			debug_log_scopes = yes
+		}
+	}
+
+	ai_potential = {
+		exists = global_var:mongol_empire_has_spawned
+		is_independent_ruler = yes
+		highest_held_title_tier < tier_empire
+	}
+
+	ai_will_do = { # is_shown trigger means AI will only evaluate these when immediate neighbors with the Mongols
+		base = 0
+		# Very likely if you're an independent count bordering the Empire
+		modifier = {
+			add = 25
+			highest_held_title_tier = tier_county
+		}
+		# Fairly likely if you're an independent duke bordering the Empire
+		modifier = {
+			add = 10
+			highest_held_title_tier = tier_duchy
+			OR = {
+				culture_group = culture_group:mongolic_group
+				culture_group = culture_group:turkic_group
+			}
+		}
+		# A little bit likely if you're an independent king in the Altaic group bordering the Empire
+		modifier = {
+			add = 10
+			highest_held_title_tier = tier_duchy
+			OR = {
+				culture_group = culture_group:mongolic_group
+				culture_group = culture_group:turkic_group
+			}
+		}
+		# More likely if you're Craven
+		modifier = {
+			factor = 1.25
+			has_trait = am_craven
+		}
+		# Unlikely if you're Brave
+		modifier = {
+			factor = 0.2
+			has_trait = am_brave
+		}
+		# Unlikely if you're Arrogant
+		modifier = {
+			factor = 0.1
+			has_trait = am_pretentious
+		}
+		# Very likely if you're already allies
+		modifier = {
+			factor = 1.5
+			any_ally = {
+				any_held_title = {
+					this = title:e_mongol_empire
+				}
+			}
+		}
+		# The AI should never do this as a king or above
+		modifier = {
+			factor = 0
+			highest_held_title_tier >= tier_kingdom
+		}
+	}
+}

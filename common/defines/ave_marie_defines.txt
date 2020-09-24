@@ -1,9 +1,15 @@
-﻿NCombat = {
+﻿NArmy = {
+	MOVEMENT_SPEED_RETREAT = 3					# Movement speed while retreating
+	MOVEMENT_SPEED = 2								# Normal movement speed
+	MOVEMENT_SPEED_BONUS_FRIENDLY_AREA = 0.2		# In friendly areas you get a 20% speed bonus
+	REGIMENT_MONTHLY_REINFORCE_SPEED = 0.02			# Monthly reinforcement percentage of unraised chunks [0-1]
+	REGIMENT_MONTHLY_MAA_REINFORCE_SPEED = 0.06		# Monthly reinforcement percentage of unraised MAA chunks [0-1]
+}
+NCombat = {
 	UNRAISED_LEVY_REGIMENTS_SPEED = 10.0			# How many distance units do unraised regiments travel per day when gathering
 }
-NRetreat = {
-	SHATTERED_RETREAT_PREFERRED_PROVINCES = 3
-	SHATTERED_RETREAT_MAX_PROVINCES = 6
+NCharacter = {
+	RANDOM_PERSONALITY_TRAITS_BASE = 8
 }
 NChildbirth = {
 	MALE_FERTILITY_MULTIPLIER = { 0.4 0.5 0.6 0.7 0.8 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
@@ -13,19 +19,17 @@ NChildbirth = {
 	NON_RULER_FERTILITY_MULTIPLIER = 1	# If neither parent is a ruler, resulting fertility gets multiplied by this
 	FERTILITY_CHANCE_MULTIPLIER = 2.2 # Fertility is an average between the father and the mother (if the mother has 0.3 and the father 0.5, the average is 0.4), this number is then multiplied by this multiplier to produce the percentage chance of impregnation. Impregnation is checked every month.
 }
-NCharacter = {
-	RANDOM_PERSONALITY_TRAITS_BASE = 8
-
-NArmy = {
-	MOVEMENT_SPEED_RETREAT = 3					# Movement speed while retreating
-	MOVEMENT_SPEED = 2								# Normal movement speed
-	MOVEMENT_SPEED_BONUS_FRIENDLY_AREA = 0.2		# In friendly areas you get a 20% speed bonus
-	REGIMENT_MONTHLY_REINFORCE_SPEED = 0.02			# Monthly reinforcement percentage of unraised chunks [0-1]
-	REGIMENT_MONTHLY_MAA_REINFORCE_SPEED = 0.06		# Monthly reinforcement percentage of unraised MAA chunks [0-1]
-}
 NFleet = {
 	FLEET_SPEED = 6						# Fleet speed
 	EMBARK_GOLD_COST_PER_HUNDRED = 1		# Embark cost for every hundred units
 	GOLD_COST_MAINTENANCE_MULT = 0.25		# Increase in the gold maintenance for armies that are embarked
 	ATTRITION_AFTER_DAYS = 30				# After embarking the army can expend this time without getting attrition
+}
+NPlayer = {
+	RALLY_POINT_LIMIT = 10		# Rally point number limit for players
+	MIN_PATH_COST_SAVINGS_TO_CONSIDER_WATER_PATH = 130	# Number of travel days saved before right-clicking considers going through water instead
+}
+NRetreat = {
+	SHATTERED_RETREAT_PREFERRED_PROVINCES = 3
+	SHATTERED_RETREAT_MAX_PROVINCES = 6
 }

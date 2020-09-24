@@ -1,0 +1,27 @@
+﻿################
+# 867 NORTHMEN #
+################
+
+bookmark_867_northmen_aellas_capture_war_imprisonment_effect = {
+	if = {
+		limit = {
+			scope:defender_loser = {
+				this = character:163103 #Aella
+				is_ai = yes
+			}
+			NOR = {
+				is_target_in_global_variable_list = {
+					name = triggered_bookmark_events
+					target = flag:bookmark_867_northmen_aellas_capture
+				}
+				character:163103 = { is_imprisoned = yes }
+			}
+		}
+		scope:attacker_winner = {
+			imprison =  {
+				target = scope:defender_loser
+				type = dungeon
+			}
+		}
+	}
+}

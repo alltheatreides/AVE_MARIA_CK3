@@ -1,0 +1,73 @@
+﻿
+
+send_child_to_holy_order_tooltip_effect = {
+	scope:recipient = {
+		add_trait = order_member
+		add_piety_level = 1
+		custom_tooltip = character_will_leave_court_holy_order
+	}
+	if = { # No piety gain for asking random people to take the vows
+		limit = {
+			scope:recipient = {
+				is_close_family_of = scope:actor
+			}
+		}
+		add_piety = medium_piety_gain
+	}
+}
+
+send_child_to_holy_order_effect = {
+	scope:recipient = {
+		add_trait = order_member
+		add_piety_level = 1
+		if = {
+			limit = { is_ruler = yes }
+			depose = yes
+		}
+		if = {
+			limit = {
+				NOT = { faith = scope:$GRANDMASTER$.faith }
+			}
+			set_character_faith = scope:$GRANDMASTER$.faith
+		}
+	}
+	if = { # No piety gain for asking random people to take the vows
+		limit = {
+			scope:recipient = {
+				is_close_family_of = scope:actor
+			}
+		}
+		add_piety = medium_piety_gain
+		scope:$GRANDMASTER$ = {
+			add_courtier = scope:recipient
+			add_opinion = {
+				target = scope:actor
+				modifier = pleased_opinion
+				opinion = 20
+			}
+		}
+	}
+}
+
+send_child_to_clergy_effect = {
+	scope:recipient = {
+		add_opinion = {
+			modifier = demanded_taking_vows
+			target = scope:actor
+		}
+		add_trait = devoted
+		add_piety_level = 1
+		if = {
+			limit = { is_ruler = yes }
+			depose = yes
+		}
+	}
+	if = { # No piety gain for asking random people to take the vows
+		limit = {
+			scope:recipient = {
+				is_close_family_of = scope:actor
+			}
+		}
+		add_piety = minor_piety_gain
+	}
+}

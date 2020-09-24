@@ -1,0 +1,366 @@
+﻿find_title_for_almohad_spawn_effect = {
+	if = { # The important thing is to not mess too much with players who can't resist
+		limit = {
+			title:c_tinmallal = {
+				holder = { is_ai = yes }
+				OR = {
+					NOT = { exists = duchy.holder }
+					duchy.holder = { is_ai = yes }
+				}
+			}
+		}
+		title:c_tinmallal = {
+			save_scope_as = almohad_county
+		}
+	}
+	else = {
+		title:k_maghreb = {
+			random_in_de_jure_hierarchy = {
+				continue = { tier > tier_county }
+				limit = {
+					tier = tier_county
+					holder = { is_ai = yes } # Let's not murder players
+					NOT = { this = title:c_marrakesh }
+					save_temporary_scope_as = potential_almohad_county
+					# If someone holds k_maghreb, put the Almohads in their realm
+					trigger_if = {
+						limit = { exists = title:k_maghreb.holder }
+						title:k_maghreb.holder = {
+							OR = {
+								this = scope:potential_almohad_county.holder
+								any_sub_realm_county = {
+									this = scope:potential_almohad_county
+								}
+							}
+						}
+					}
+					# Either this should be the holder's only title, or it should NOT be their capital
+					trigger_if = {
+						limit = {
+							holder = {
+								any_sub_realm_county = { count > 1 }
+							}
+						}
+						NOT = {
+							this = holder.capital_county
+						}
+					}
+				}
+				weight = {
+					base = 1
+					# Prefer already Muslim counties
+					modifier = {
+						add = 5
+						religion = religion:islam_religion
+					}
+					# Massively prefer to avoid a player-held Duchies if possible
+					modifier = {
+						factor = 0.01
+						exists = duchy.holder
+						duchy.holder = { is_ai = no }
+					}
+				}
+				save_scope_as = almohad_county
+			}
+		}
+	}
+
+	if = { # Discard stuff from here on out
+		limit = { NOT = { exists = scope:almohad_county } }
+		debug_log = "No Almohad title found, Almohad's won't spawn"
+	}
+	# Convert the County and warn relevant people
+	else = {
+		set_global_variable = {
+			name = spawned_almohads
+			value = yes
+		}
+		scope:almohad_county = {
+			set_county_faith = faith:masmudi
+		}
+		scope:almohad_county.holder = {
+			if = {
+				limit = {
+					is_ai = no
+				}
+				trigger_event = almohad.1001
+			}
+			every_liege_or_above = {
+				limit = { is_ai = no }
+				trigger_event = almohad.1001
+			}
+		}
+		trigger_event = { # Random amount of time to convert the province or otherwise prepare
+			id = almohad.0002
+			days = { 400 1000 }
+		}
+	}
+}
+
+
+create_almohads_effect = {
+	create_character = {
+		template = ibn_tumart_character_template
+		name = Amghar_ibn_Tumert
+		location = scope:almohad_county.title_province
+		dynasty_house = house_tumert
+		save_scope_as = ibn_tumart
+	}
+	faith:masmudi = {
+		change_fervor = 50
+	}
+	scope:ibn_tumart = {
+		create_story = {
+			type = story_almohad_invasion
+			save_scope_as = story
+		}
+		add_pressed_claim = title:k_maghreb
+		add_character_modifier = {
+			modifier = almohad_leader_modifier
+		}
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 15
+		}
+	}
+	scope:story = {
+		set_variable = {
+			name = ibn_tumart
+			value = scope:ibn_tumart
+		}
+		set_variable = {
+			name = almohad_county
+			value = scope:almohad_county
+		}
+	}
+	almohads_find_target_titles_effect = yes
+
+	find_almohad_titles_and_assign_to_ibn_tumart_effect = yes
+
+	create_character = {
+		template = abd_al_mumin_character_template
+		name = Abd_al_Mu_min
+		employer = scope:ibn_tumart
+		dynasty_house = house_almohad
+		save_scope_as = al_mumin
+	}
+	scope:al_mumin = {
+		add_pressed_claim = title:k_maghreb
+		add_character_modifier = {
+			modifier = almohad_leader_modifier
+		}
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 15
+		}
+	}
+	scope:story = {
+		set_variable = {
+			name = al_mumin
+			value = scope:al_mumin
+		}
+	}
+
+	scope:almohad_county.holder = {
+		set_global_variable = {
+			name = almohads_waiting_for_player_responses
+			value = 0
+			years = 1 # Clear out eventually, just in case
+		}
+		set_global_variable = {
+			name = almohads_player_responses_received
+			value = 0
+			years = 1 # Clear out eventually, just in case
+		}
+		if = {
+			limit = { is_ai = no }
+			change_global_variable = {
+				name = almohads_waiting_for_player_responses
+				add = 1
+			}
+			trigger_event = almohad.1002
+		}
+		every_liege_or_above = {
+			limit = { is_ai = no }
+			change_global_variable = {
+				name = almohads_waiting_for_player_responses
+				add = 1
+			}
+			trigger_event = almohad.1002
+		}
+		if = {
+			limit = {
+				global_var:almohads_waiting_for_player_responses = 0
+			}
+			remove_global_variable = almohads_waiting_for_player_responses
+			remove_global_variable = almohads_player_responses_received
+			almohads_go_to_war_effect = yes
+		}
+		else = {
+			trigger_event = {
+				id = almohad.0004
+				days = 5
+			}
+		}
+	}
+}
+
+find_almohad_titles_and_assign_to_ibn_tumart_effect = {
+
+	create_title_and_vassal_change = change
+	scope:change = { set_title_and_vassal_change_type = usurped }
+	scope:almohad_county = {
+		change_title_holder = {
+			holder = scope:ibn_tumart
+			change = scope:change
+			take_baronies = yes
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+
+	create_title_and_vassal_change = change
+	scope:change = { set_title_and_vassal_change_type = created }
+	scope:ibn_tumart.faith.religious_head_title = {
+		change_title_holder = {
+			holder = scope:ibn_tumart
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+}
+
+almohads_go_to_war_effect = {
+	scope:ibn_tumart = {
+		almohads_become_independent_effect = yes
+		almohads_declare_war_for_target_title_effect = yes
+		spawn_first_almohad_troops_effect = yes
+	}
+}
+
+almohads_become_independent_effect = {
+	hidden_effect = {
+		if = {
+			limit = { scope:ibn_tumart = { is_imprisoned = yes } }
+			scope:ibn_tumart = { release_from_prison = yes }
+		}
+	}
+	create_title_and_vassal_change = going_independent
+	scope:going_independent = { set_title_and_vassal_change_type = independency }
+	scope:ibn_tumart = {
+		becomes_independent = {
+			change = scope:going_independent
+		}
+	}
+
+	resolve_title_and_vassal_change = scope:going_independent
+}
+
+almohads_find_target_titles_effect = {
+	if = {
+		limit = { exists = title:k_maghreb.holder }
+		title:k_maghreb = {
+			save_scope_as = maghreb_target_title
+			holder = {
+				save_scope_as = first_target
+			}
+		}
+		if = {
+			limit = {
+				NOT = { scope:almohad_county.holder.top_liege = title:k_maghreb.holder.top_liege }
+				scope:almohad_county.holder.top_liege = {
+					any_sub_realm_county = {
+						NOT = { this = scope:almohad_county }
+						kingdom = title:k_maghreb
+					}
+				}
+			}
+			scope:almohad_county.holder.top_liege = {
+				save_scope_as = second_target
+			}
+		}
+	}
+	else = {
+		ordered_independent_ruler = {
+			limit = { highest_held_title_tier > tier_county }
+			order_by = titles_held_in_k_maghreb
+			position = 0
+			save_scope_as = first_target
+		}
+	}
+}
+
+
+almohads_declare_war_for_target_title_effect = {
+	save_scope_as = war_leader
+	if = {
+		limit = { exists = scope:first_target }
+		start_war = {
+			cb = claim_cb
+			target = scope:first_target
+			claimant = scope:war_leader
+			target_title = scope:maghreb_target_title
+		}
+
+		if = {
+			limit = {
+				exists = scope:second_target
+				NOT = { exists = global_var:almohads_do_not_attack_second_target }
+			}
+			start_war = {
+				cb = claim_cb
+				target = scope:second_target
+				claimant = scope:war_leader
+				target_title = scope:maghreb_target_title
+			}
+		}
+	}
+	if = {
+		limit = { exists = global_var:almohads_do_not_attack_second_target }
+		remove_global_variable = almohads_do_not_attack_second_target
+	}
+	else = {
+		debug_log = "Failed to find a valid war target for the Almohads!"
+	}
+}
+
+
+spawn_first_almohad_troops_effect = {
+	spawn_army = {
+		uses_supply = yes
+		inheritable = no
+		name = first_almohad_event_troops
+		levies = {
+			value = 1000
+		}
+		location = scope:ibn_tumart.capital_province
+	}
+}
+
+spawn_second_almohad_troops_effect = {
+	if = {
+		limit = {
+			is_at_war = yes
+		}
+		ordered_war_enemy = {
+			order_by = max_military_strength
+			position = 0
+			save_scope_as = powerful_war_enemy
+		}
+		spawn_army = {
+			uses_supply = yes
+			inheritable = no
+			name = second_almohad_event_troops
+			levies = {
+				if = {
+					limit = { exists = scope:powerful_war_enemy }
+					add = scope:powerful_war_enemy.max_military_strength
+					multiply = 2
+				}
+				else = {
+					add = 3000
+				}
+			}
+			location = capital_province
+		}
+	}
+}

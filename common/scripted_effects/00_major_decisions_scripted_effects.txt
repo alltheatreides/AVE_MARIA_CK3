@@ -1,0 +1,1725 @@
+﻿create_roman_empire_scripted_effect = {
+	add_trait = augustus
+	#Create Roman Empire, shift dejure/history/laws, destroy e_byzantium.
+	hidden_effect = {
+		every_held_title = { #Should shift all dejure of all Empires owned at the time.
+			limit = {
+				tier = tier_empire
+			}
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_kingdom
+				}
+				set_de_jure_liege_title = title:e_roman_empire
+				
+			}
+		}
+		every_held_title = { #Completely Controlled Kingdoms as well.
+			limit = {
+				tier = tier_kingdom
+				root = { completely_controls = prev }
+			}
+			set_de_jure_liege_title = title:e_roman_empire
+		}
+	}
+	
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:e_roman_empire = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+		copy_title_history = title:e_byzantium
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:e_roman_empire }
+	every_held_title = { #Should destroy all other Empires owned at the time.
+		limit = {
+				tier = tier_empire
+			NOT = { this = title:e_roman_empire }
+		}
+		root = { destroy_title = prev }
+	}
+	if = { #Automatically move capital to Constantinople, unless it's been set to Rome.
+		limit = {
+			NOT = { capital_county = { this = title:c_roma } }
+			NOT = { capital_county = { this = title:c_byzantion } }
+			has_culture_group = culture_group:byzantine_group
+		}
+		hidden_effect = {
+			if = { #Usurp if not held personally.
+				limit = {
+					NOT = { this = title:c_byzantion.holder }
+				}
+				create_title_and_vassal_change = change
+				scope:change = {
+					set_title_and_vassal_change_type = returned
+				}
+				title:c_byzantion = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
+		title:e_roman_empire.holder = { set_realm_capital = title:c_byzantion }
+	}
+	else_if = {
+		limit = {
+			NOT = { capital_county = { this = title:c_roma } }
+			NOT = { capital_county = { this = title:c_byzantion } }
+			NOT = { has_culture_group = culture_group:byzantine_group }
+			exists = title:e_roman_empire.holder
+		}
+		hidden_effect = {
+			if = { #Usurp if not held personally.
+				limit = {
+					NOT = { this = title:c_roma.holder }
+				}
+				create_title_and_vassal_change = change
+				scope:change = {
+					set_title_and_vassal_change_type = returned
+				}
+				title:c_roma = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
+		title:e_roman_empire.holder = { set_realm_capital = title:c_roma }
+	}
+	hidden_effect = {
+		create_story = restoring_roman_provinces_story
+		add_character_flag = flag_restorer_of_rome #used for Eulogy.
+	}
+}
+create_roman_empire_holy_scripted_effect = {
+	add_trait = augustus
+	#Create Roman Empire, shift dejure/history/laws, destroy e_hre.
+	hidden_effect = {
+		every_held_title = { #Should shift all dejure of all Empires owned at the time.
+			limit = {
+				tier = tier_empire
+			}
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_kingdom
+				}
+				set_de_jure_liege_title = title:e_roman_empire
+				
+			}
+		}
+	}
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:e_roman_empire = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+		set_variable = {
+			name = variable_restored_hre #Used for flavor later.
+			value = yes
+		}	
+		copy_title_history = title:e_hre
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:e_roman_empire }
+	every_held_title = { #Should destroy all other Empires owned at the time.
+		limit = {
+			tier = tier_empire
+			NOT = { this = title:e_roman_empire }
+		}
+		root = { destroy_title = prev }
+	}
+	hidden_effect = {
+		title:e_roman_empire = {
+			set_coa = e_hre_roman
+			set_color_from_title = title:e_hre
+		}
+	}
+
+	if = { #Automatically move capital to Rome.
+		limit = {
+			NOT = { capital_county = { this = title:c_roma } }
+			exists = title:e_roman_empire.holder
+		}
+		hidden_effect = {
+			if = { #Usurp if not held personally.
+				limit = {
+					NOT = { title:c_roma.holder = { this = root } }
+				}
+				create_title_and_vassal_change = change
+				scope:change = {
+					set_title_and_vassal_change_type = returned
+				}
+				title:c_roma = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
+		title:e_roman_empire.holder = { set_realm_capital = title:c_roma }
+	}
+	hidden_effect = {
+		create_story = restoring_roman_provinces_story
+		add_character_flag = flag_restorer_of_rome #used for Eulogy.
+	}
+}
+create_roman_empire_italy_scripted_effect = {
+	add_trait = augustus
+	#Create Roman Empire, shift dejure/history/laws, destroy e_italy.
+	hidden_effect = {
+		every_held_title = { #Should shift all dejure of all Empires owned at the time.
+			limit = {
+				tier = tier_empire
+			}
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_kingdom
+				}
+				set_de_jure_liege_title = title:e_roman_empire
+				
+			}
+		}
+	}
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:e_roman_empire = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+		set_variable = {
+			name = variable_restored_italy #Used for flavor later.
+			value = yes
+		}	
+		copy_title_history = title:e_italy
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:e_roman_empire }
+	every_held_title = { #Should destroy all other Empires owned at the time.
+		limit = {
+			tier = tier_empire
+			NOT = { this = title:e_roman_empire }
+		}
+		root = { destroy_title = prev }
+	}
+	if = { #Automatically move capital to Rome.
+		limit = {
+			NOT = { capital_county = { this = title:c_roma } }
+			exists = title:e_roman_empire.holder
+		}
+		hidden_effect = {
+			if = { #Usurp if not held personally.
+				limit = {
+					NOT = { title:c_roma.holder = { this = root } }
+				}
+				create_title_and_vassal_change = change
+				scope:change = {
+					set_title_and_vassal_change_type = returned
+				}
+				title:c_roma = {
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
+		title:e_roman_empire.holder = { set_realm_capital = title:c_roma }
+	}
+	hidden_effect = {
+		create_story = restoring_roman_provinces_story
+		add_character_flag = flag_restorer_of_rome #used for Eulogy.
+	}
+}
+mend_great_schism_scripted_effect = {
+	root.faith = {
+		if = { #If from obscure branch of Christianity, make it official.
+			limit = {
+				root.faith = { NOT = { has_doctrine = special_doctrine_ecumenical_christian } }
+			}
+			add_doctrine = special_doctrine_ecumenical_christian
+		}
+		change_fervor = 25
+	}
+	every_player = { #Notify all players of the same Faith.
+		limit = {
+			NOT = { this = root }
+			faith = root.faith
+		}
+		trigger_event = roman_restoration.0103
+	}
+	every_ruler = { #Notify rulers of other Christian branches that they are no longer valid and offer chance at conversion.
+		limit = {
+			faith.religion = root.faith.religion
+			NOT = { faith = root.faith }
+			NOT = { has_government = theocracy_government }
+			NOT = { this = this.faith.religious_head }
+			faith = {
+				has_doctrine = special_doctrine_ecumenical_christian
+			}
+		}
+		trigger_event = roman_restoration.0101
+	}
+	every_player = { #Then notify all infidel players that might be around.
+		limit = {
+			OR = {
+				AND = { #Either filthy heretics...
+					faith.religion = root.faith.religion
+					faith = { NOT = { has_doctrine = special_doctrine_ecumenical_christian } }
+				}
+				NOT = { faith.religion = root.faith.religion } #...Or Heathens.
+			}
+		}
+		trigger_event = roman_restoration.0102
+	}
+	faith:catholic.religion = {
+		every_faith = { #All main branches of Christianity that were considered Ecumenical are now heresies.
+			limit = {
+				this.religion = root.faith.religion
+				has_doctrine = special_doctrine_ecumenical_christian
+				NOT = { this = root.faith }
+			}
+			remove_doctrine = special_doctrine_ecumenical_christian
+			change_fervor = -25
+		}
+	}
+}
+
+restore_papacy_scripted_effect = {
+	save_scope_as = reformer
+	if = { #Pick your chaplain first.
+		limit = {
+			exists = cp:councillor_court_chaplain
+			cp:councillor_court_chaplain = { faith = faith:catholic }
+		}
+		cp:councillor_court_chaplain = { save_scope_as = new_pope }
+	}
+	else = {
+		hidden_effect = {
+			create_character = {
+				employer = root
+				template = religious_leader_character
+				random_traits = no
+				save_scope_as = new_pope
+			}
+		}
+		scope:new_pope = {
+			add_trait = education_learning_3
+			add_trait = am_intolerant
+			add_trait = intellect_good_1
+			random_list = {
+				1 = { add_trait = lustful }
+				1 = { add_trait = chaste }
+				1 = { add_trait = am_wroth }
+				1 = { add_trait = am_diligent }
+				1 = { add_trait = am_illtempered }
+				1 = { add_trait = am_pretentious }
+				1 = { add_trait = am_humble }
+				1 = { add_trait = am_outgoing }
+			}
+			random_list = {
+				1 = { add_trait = am_honest }
+				1 = { add_trait = ambitious }
+				1 = { add_trait = am_faithful }
+				1 = { add_trait = am_hypocritical }
+				1 = { add_trait = am_intolerant }
+				1 = { add_trait = am_tolerant }
+				1 = { add_trait = am_stubborn }
+			}
+		}
+	}
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = returned
+	}
+	title:k_papal_state = {
+		change_title_holder = {
+			holder = scope:new_pope
+			change = scope:change
+		}
+	}
+	title:c_roma = {
+		change_title_holder = {
+			holder = scope:new_pope
+			change = scope:change
+		}
+	}
+	title:d_latium = {
+		change_title_holder = {
+			holder = scope:new_pope
+			change = scope:change
+		}
+	}
+	title:d_spoleto = {
+		change_title_holder = {
+			holder = scope:new_pope
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	faith:catholic = {
+		change_fervor = 15
+		if = {
+			limit = { NOT = { has_doctrine = special_doctrine_ecumenical_christian } }
+			add_doctrine = special_doctrine_ecumenical_christian
+		}
+	}
+}
+
+destroy_papacy_scripted_effect = {
+	save_scope_as = scoped_destroyer
+	if = {
+		limit = { exists = title:k_papal_state.holder }
+		title:k_papal_state.holder = { save_scope_as = scoped_pope }
+	}
+	add_piety = massive_piety_gain
+	root.faith = {
+		change_fervor = 50
+	}
+
+	# Destroy the papacy title if it exists.
+	if = {
+		limit = {
+			exists = title:k_papal_state
+		}
+		destroy_title = title:k_papal_state
+	}
+
+	# If the Pope exists, they will suffer some kind of humiliating or tragic fate.
+	if = {
+		limit = {
+			exists = scope:scoped_pope
+		}
+		if = {
+			limit = {
+				faith = {
+					has_doctrine_parameter = human_sacrifice_active
+				}
+			}
+			scope:scoped_pope = {
+				death = {
+					death_reason = death_sacrificed_to_gods
+					killer = root
+				}
+			}
+		}
+		else_if = { 
+			limit = {
+				faith.religion = faith:hellenic_pagan.religion
+			}
+			scope:scoped_pope = {
+				death = {
+					death_reason = death_crucified
+					killer = root
+				}
+			}
+		}
+		else = {
+			scope:scoped_pope = { set_character_faith = root.faith }
+		}
+	}
+
+	# Catholicism is now sad.
+	faith:catholic = {
+		change_fervor = -100
+		if = {
+			limit = { has_doctrine = special_doctrine_ecumenical_christian }
+			remove_doctrine = special_doctrine_ecumenical_christian
+		}
+		if = {
+			limit = { has_doctrine = doctrine_spiritual_head }
+			remove_doctrine = doctrine_spiritual_head
+			add_doctrine = doctrine_no_head
+		}
+	}
+}
+
+form_switzerland_scripted_effect = {
+	save_scope_as = scoped_ruler
+	title:e_hre.holder = { save_scope_as = scoped_emperor }
+	#De jure shifts.
+	title:d_upper_burgundy = {
+		set_de_jure_liege_title = title:k_switzerland
+	}
+	title:d_currezia = {
+		set_de_jure_liege_title = title:k_switzerland
+	}
+	title:d_savoie = {
+		set_de_jure_liege_title = title:k_switzerland
+	}
+	title:k_switzerland = {
+		set_de_jure_liege_title = title:e_hre
+	}
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:k_switzerland = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:k_switzerland }
+	add_prestige = major_prestige_gain
+	if = {
+		limit = {
+			OR = {
+				has_realm_law = crown_authority_0
+				has_realm_law = crown_authority_1
+				has_realm_law = crown_authority_2
+			}
+		}
+		add_realm_law_skip_effects = crown_authority_3
+	}
+}
+
+form_austria_scripted_effect = {
+	save_scope_as = scoped_ruler
+	title:e_hre.holder = { save_scope_as = scoped_emperor }
+	#De jure shifts.
+	hidden_effect = {
+		title:d_osterreich = {
+			set_de_jure_liege_title = title:k_austria
+		}
+		title:d_carinthia = {
+			set_de_jure_liege_title = title:k_austria
+		}
+		title:d_steyermark = {
+			set_de_jure_liege_title = title:k_austria
+		}
+		title:d_salzburg = {
+			set_de_jure_liege_title = title:k_austria
+		}
+		title:k_austria = {
+			set_de_jure_liege_title = title:e_hre
+		}
+	}
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:k_austria = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+		copy_title_history = title:d_osterreich
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:k_austria }
+	add_prestige = major_prestige_gain
+	if = {
+		limit = {
+			NOT = { has_realm_law = single_heir_succession_law }
+		}
+		add_realm_law_skip_effects = single_heir_succession_law
+	}
+}
+
+form_carolingian_empire_scripted_effect = {
+	save_scope_as = scoped_ruler
+	title:e_hre.holder = { save_scope_as = scoped_emperor }
+	#De jure shifts.
+	hidden_effect = {
+		title:k_france = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_burgundy = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_aquitaine = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_brittany = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_frisia = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_lotharingia = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_bavaria = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_east_francia = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_italy = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_navarra = {
+			set_de_jure_liege_title = title:e_france
+		}
+		title:k_aragon = {
+			set_de_jure_liege_title = title:e_france
+		}
+		if = {
+			limit = {
+				exists = title:k_austria.holder
+			}
+			title:k_austria = {
+				set_de_jure_liege_title = title:e_france
+			}
+		}
+		if = {
+			limit = {
+				exists = title:k_switzerland.holder
+			}
+			title:k_switzerland = {
+				set_de_jure_liege_title = title:e_france
+			}
+		}
+	}
+	add_prestige = major_prestige_gain
+	if = {
+		limit = {
+			culture:french = {
+				NOT = {
+					has_innovation = innovation_knighthood
+				}
+			}
+		}
+		culture:french = {
+			add_innovation = innovation_knighthood
+		}
+	}
+	if = {
+		limit = {
+			culture:french = {
+			NOT = {
+					has_innovation = innovation_royal_prerogative
+				}
+			}
+		}
+		culture:french = {
+			add_innovation = innovation_royal_prerogative
+		}
+	}
+	if = {
+		limit = {
+			culture:french = {
+				NOT = {
+					has_innovation = innovation_heraldry
+				}
+			}
+		}
+		culture:french = {
+			add_innovation = innovation_heraldry
+		}
+	}
+	if = {
+		limit = {
+			NOT = { has_realm_law = single_heir_succession_law }
+		}
+		add_realm_law_skip_effects = single_heir_succession_law
+	}
+	scope:scoped_emperor = {
+		add_prestige = major_prestige_loss
+		add_opinion = {
+			target = scope:scoped_ruler
+			modifier = pretender_opinion
+		}
+		destroy_title = title:e_hre
+	}
+}
+
+unite_burgundies_scripted_effect = {
+	add_prestige = medium_prestige_gain
+	save_scope_as = scoped_ruler
+	liege = { save_scope_as = former_liege }
+	#De jure shifts.
+	hidden_effect = {
+		title:d_burgundy = {
+			set_de_jure_liege_title = title:k_burgundy
+		}
+		title:d_provence = { #Just in case they drifted in the meantime.
+			set_de_jure_liege_title = title:k_burgundy
+		}
+		title:d_savoie = {
+			set_de_jure_liege_title = title:k_burgundy
+		}
+		title:d_dauphine = {
+			set_de_jure_liege_title = title:k_burgundy
+		}
+		title:d_upper_burgundy = {
+			set_de_jure_liege_title = title:k_burgundy
+		}
+	}
+	if = {
+		limit = {
+			culture:occitan = {
+				NOT = {
+					has_innovation = innovation_guilds
+				}
+			}
+		}
+		culture:occitan = {
+			add_innovation = innovation_guilds
+		}
+	}
+	if = {
+		limit = {
+			culture:occitan = {
+				NOT = {
+					has_innovation = innovation_burhs
+				}
+			}
+		}
+		culture:occitan = {
+			add_innovation = innovation_burhs
+		}
+	}
+	if = {
+		limit = {
+			culture:occitan = {
+				NOT = {
+					has_innovation = innovation_baliffs
+				}
+			}
+		}
+		culture:occitan = {
+			add_innovation = innovation_baliffs
+		}
+	}
+	#Make ruler independent and give Burgundy to him.
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = independency
+	}
+	change_liege_or_become_independent = {
+		CHANGE = scope:change
+		VASSAL = this
+	}
+	hidden_effect = {
+		add_truce_both_ways = {
+			character = scope:former_liege
+			days = 1825
+			name = TRUCE_GRANT_INDEPENDENCE_ROOT
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	create_title_and_vassal_change = new_burgundy
+	scope:new_burgundy = {
+		set_title_and_vassal_change_type = created
+	}
+	title:k_burgundy = {
+		change_title_holder = {
+			holder = root
+			change = scope:new_burgundy
+		}
+	}
+	resolve_title_and_vassal_change = scope:new_burgundy
+	scope:former_liege = {
+		add_prestige = major_prestige_loss
+		add_unpressed_claim = title:k_burgundy #Give chance to retaliate
+		add_opinion = {
+			target = scope:scoped_ruler
+			modifier = pretender_opinion
+		}
+	}
+}
+
+form_outremer_scripted_effect = {
+	add_prestige = medium_prestige_gain
+	add_piety = medium_piety_gain
+	faith = { change_fervor = 15 }
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:e_outremer = {
+		change_title_holder = {
+			holder = root
+			change = scope:change
+		}
+		hidden_effect = {
+			copy_title_history = title:k_jerusalem
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = { set_primary_title_to = title:e_outremer }
+	if = { #The Sunni Caliphate is dismantled
+		limit = {
+			faith:ashari = { exists = religious_head }
+		}
+		root = { destroy_title = title:d_sunni }
+	}
+	set_culture = culture:outremer
+	capital_county = { set_county_culture = culture:outremer }
+	if = {
+		limit = {
+			culture:outremer = {
+				NOT = {
+					has_innovation = innovation_men_at_arms
+				}
+			}
+		}
+		culture:outremer = {
+			add_innovation = innovation_men_at_arms
+		}
+	}
+	if = {
+		limit = {
+			culture:outremer = {
+				NOT = {
+					has_innovation = innovation_desert_tactics
+				}
+			}
+		}
+		culture:outremer = {
+			add_innovation = innovation_desert_tactics
+		}
+	}
+	hidden_effect = {
+		culture:outremer = {
+			get_random_innovation_from = culture:french
+			get_random_innovation_from = culture:french
+			get_random_innovation_from = culture:french
+			get_random_innovation_from = culture:french
+			get_random_innovation_from = culture:bedouin #Just a sprinkle...
+			get_random_innovation_from = culture:bedouin
+		}
+	}
+}
+restore_sunni_caliphate_scripted_effect = {
+	add_piety = major_piety_gain
+	save_scope_as = reformer
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = returned
+	}
+	title:d_sunni = {
+		change_title_holder = {
+			holder = scope:reformer
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	faith:ashari = {
+		change_fervor = 15
+	}
+}
+create_israel_scripted_effect = {
+	save_scope_as = scoped_ruler
+	create_title_and_vassal_change = change
+	scope:change = {
+		set_title_and_vassal_change_type = created
+	}
+	title:k_israel = {
+		change_title_holder = {
+			holder = scope:scoped_ruler
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+	hidden_effect = {
+		set_primary_title_to = title:k_israel
+		title:d_palestine = {
+			set_de_jure_liege_title = title:k_israel
+		}
+		title:d_urdunn = {
+			set_de_jure_liege_title = title:k_israel
+		}
+		title:d_oultrejourdain = {
+			set_de_jure_liege_title = title:k_israel
+		}
+		title:k_israel = {
+			set_de_jure_liege_title = title:k_jerusalem.de_jure_liege
+		}
+	}
+}
+create_rum_scripted_effect = {
+	add_prestige = medium_prestige_gain
+	#If under a liege, make independent.
+	if = {
+		limit = {
+			is_independent_ruler = no
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:former_liege
+				}
+			}
+			liege = {
+				save_scope_as = former_liege
+			}
+		}
+		create_title_and_vassal_change = change
+		scope:change = {
+			set_title_and_vassal_change_type = independency
+		}
+		change_liege_or_become_independent = {
+			CHANGE = scope:change
+			VASSAL = this
+		}
+		hidden_effect = {
+			add_truce_both_ways = {
+				character = scope:former_liege
+				days = 1825
+				name = TRUCE_GRANT_INDEPENDENCE_ROOT
+			}
+		}
+		resolve_title_and_vassal_change = scope:change
+	}
+	create_title_and_vassal_change = new_rum
+	scope:new_rum = {
+		set_title_and_vassal_change_type = created
+	}
+	title:k_rum = {
+		change_title_holder = {
+			holder = root
+			change = scope:new_rum
+		}
+	}
+	resolve_title_and_vassal_change = scope:new_rum
+	if = {
+		limit = {
+			exists = scope:former_liege
+		}
+		scope:former_liege = {
+			add_prestige = major_prestige_loss
+			add_unpressed_claim = title:k_rum #Give chance to retaliate
+			add_opinion = {
+				target = root
+				modifier = pretender_opinion
+			}
+		}
+	}
+	hidden_effect = { set_primary_title_to = title:k_rum }
+}
+
+declare_bloodline_holy_decision_effect = {
+
+	faith = {
+		set_variable = {
+			name = variable_savior_found
+			value = yes
+		}
+		change_fervor = 25
+	}
+	if = { #Temporal.
+		limit = {
+			root.faith.religious_head = root
+		}
+		add_trait = savior
+		every_child = {
+			limit = { faith = root.faith }
+			trigger_event = major_decisions.0101
+		}
+		root.dynasty = {
+			add_dynasty_prestige = 1000
+			add_dynasty_prestige_level = 1
+		}
+	}
+	else = { #Spiritual.
+		add_trait = paragon
+		every_child = {
+			limit = { faith = root.faith }
+			trigger_event = major_decisions.0101
+		}
+		root.dynasty = {
+			add_dynasty_prestige = 500
+		}
+	}
+}
+
+sicilian_parliament_building_scripted_effect = {
+	#this is the County title.
+	title_province = {
+		set_variable = {
+			name = variable_sicilian_parliament_county
+			value = yes
+		}
+		if = {
+			limit = {
+				has_free_building_slot = yes
+			}
+			add_building_slot = 1
+		}
+		add_building = special_sicilian_parliament_01
+	}
+}
+sicilian_parliament_kingdom_split_scripted_effect = { #If the decision is taken when the ruler doesn't hold the entirety of k_sicily, it results in the Naples/Trinacria split. (this is the ruler)
+	root = {
+		destroy_title = title:k_sicily
+	}
+	title:d_sicily = {
+		set_de_jure_liege_title = title:k_trinacria
+	}
+	title:d_benevento = {
+		set_de_jure_liege_title = title:k_naples
+	}
+	title:d_capua = {
+		set_de_jure_liege_title = title:k_naples
+	}
+	title:d_apulia = {
+		set_de_jure_liege_title = title:k_naples
+	}
+	title:d_salerno = {
+		set_de_jure_liege_title = title:k_naples
+	}
+	title:d_calabria = {
+		set_de_jure_liege_title = title:k_naples
+	}
+}
+
+empower_sicilian_parliament_decision_scripted_effect = {
+	root = {
+		if = {
+			limit = {
+				has_realm_law = crown_authority_0
+			}
+			add_realm_law_skip_effects = crown_authority_1
+		}
+		else_if = {
+			limit = {
+				has_realm_law = crown_authority_1
+			}
+			add_realm_law_skip_effects = crown_authority_2
+		}
+		else_if = {
+			limit = {
+				has_realm_law = crown_authority_2
+			}
+			add_realm_law_skip_effects = crown_authority_3
+		}
+	}
+	if = {
+		limit = { has_title = title:k_sicily }
+		title:k_sicily = {
+			every_in_de_jure_hierarchy = {
+				custom = empower_sicilian_parliament_decision_every_province_custom
+				limit = {
+					tier = tier_county
+					title_province = { geographical_region = custom_sicily }
+					 holder = {
+						OR = {
+							this = root
+							target_is_liege_or_above = root
+						}
+					}
+				}
+				title_province = {
+					add_province_modifier = {
+						modifier = parliamentary_bureaucracy_modifier
+						years = 150
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_title = title:k_naples }
+		title:k_naples = {
+			every_in_de_jure_hierarchy = {
+				custom = empower_sicilian_parliament_decision_every_province_custom
+				limit = {
+					tier = tier_county
+					title_province = { geographical_region = custom_sicily }
+					 holder = {
+						OR = {
+							this = root
+							target_is_liege_or_above = root
+						}
+					}
+				}
+				title_province = {
+					add_province_modifier = {
+						modifier = parliamentary_bureaucracy_modifier
+						years = 150
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { has_title = title:k_trinacria }
+		title:k_trinacria = {
+			every_in_de_jure_hierarchy = {
+				custom = empower_sicilian_parliament_decision_every_province_custom
+				limit = {
+					tier = tier_county
+					title_province = { geographical_region = custom_sicily }
+					 holder = {
+						OR = {
+							this = root
+							target_is_liege_or_above = root
+						}
+					}
+				}
+				title_province = {
+					add_province_modifier = {
+						modifier = parliamentary_bureaucracy_modifier
+						years = 150
+					}
+				}
+			}
+		}
+	}
+}
+
+promote_gothic_innovations_decision_scripted_effect = {
+	if = {
+		limit = {
+			has_realm_law = crown_authority_0
+		}
+		add_realm_law_skip_effects= crown_authority_1
+	}
+	else_if = {
+		limit = {
+			has_realm_law = crown_authority_1
+		}
+		add_realm_law_skip_effects = crown_authority_2
+	}
+	else_if = {
+		limit = {
+			has_realm_law = crown_authority_2
+		}
+		add_realm_law_skip_effects = crown_authority_3
+	}
+	culture = {
+		if = {
+			limit = {
+				NOT = { has_innovation = innovation_french_peerage }
+			}
+			add_innovation = innovation_french_peerage
+		}
+	}
+	if = {
+		limit = {
+			this = { completely_controls = title:d_valois }
+		}
+		title:c_ile_de_france = {
+			title_province = {
+				add_province_modifier = {
+					modifier = flourishing_culture_modifier
+					years = 150
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			this = { completely_controls = title:d_orleans }
+		}
+		title:c_orleans = {
+			title_province = {
+				add_province_modifier = {
+					modifier = flourishing_culture_modifier
+					years = 150
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			this = { completely_controls = title:d_provence }
+		}
+		title:c_nice = {
+			title_province = {
+				add_province_modifier = {
+					modifier = flourishing_culture_modifier
+					years = 150
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			this = { completely_controls = title:d_toulouse }
+		}
+		title:c_toulouse = {
+			title_province = {
+				add_province_modifier = {
+					modifier = flourishing_culture_modifier
+					years = 150
+				}
+			}
+		}
+	}
+}
+
+promote_hungarian_settlement_decision_scripted_effect = {
+	if = {
+		limit = {
+			culture = culture:mogyer
+		}
+
+		# Convert my culture to Hungarian Culture
+		set_culture = culture:hungarian
+
+		# Convert my courtiers to Hungarian 
+		hidden_effect = {
+			every_courtier = {
+				limit = {
+					culture = culture:mogyer
+				}
+				set_culture = culture:hungarian
+			}
+		}
+
+		# Convert my vassals to Hungarian
+		every_vassal_or_below = {
+			limit = {
+				culture = culture:mogyer
+			}
+
+			custom = promote_hungarian_settlement_decision_every_vassal_custom
+			set_culture = culture:hungarian
+
+			# Convert their courtiers as well
+			hidden_effect = {
+				every_courtier = {
+					limit = {
+						culture = culture:mogyer
+					}
+					set_culture = culture:hungarian
+				}
+			}
+		}
+	}
+
+	title:k_hungary = {
+		every_in_de_jure_hierarchy = {
+			custom = promote_hungarian_settlement_decision_every_province_custom
+			limit = {
+				tier = tier_county
+				culture = culture:mogyer
+				title_province = { geographical_region = custom_hungary }
+				holder = {
+					OR = {
+						this = root
+						target_is_liege_or_above = root
+					}
+				}
+			}
+			set_county_culture = culture:hungarian
+			add_county_modifier = {
+				modifier = hungarian_resettlement_modifier
+				years = 100
+			}
+			custom_tooltip = promote_hungarian_settlement_decision_increased_development
+			custom_tooltip = promote_hungarian_settlement_decision_convert_county
+			hidden_effect = {
+				if = {
+					limit = {
+						development_level < 5
+					}
+					change_development_level = 1
+				}
+				random_list = {
+					30 = {
+						# Nothing happens
+					}
+					30 = {
+						trigger = {
+							NOT = {
+								faith = { has_doctrine = special_doctrine_ecumenical_christian }
+							}
+						}
+						set_county_faith = root.faith
+					}
+					30 = {
+						trigger = {
+							NOT = {
+								faith = { has_doctrine = special_doctrine_ecumenical_christian }
+							}
+							any_neighboring_county = {
+								faith = { has_doctrine = special_doctrine_ecumenical_christian }
+							}
+						}
+						random_neighboring_county = {
+							limit = {
+								faith = { has_doctrine = special_doctrine_ecumenical_christian }
+							}
+							save_scope_as = neighboring_county
+						}
+						set_county_faith = scope:neighboring_county.faith
+					}
+				}
+			}
+		}
+	}
+}
+
+revive_magyar_paganism_decision_scripted_effect = {
+	set_character_faith_with_conversion = faith:magyar_pagan
+	hidden_effect = {
+		if = {
+			limit = {
+				has_title = title:e_carpathia
+			}
+			title:e_carpathia = {
+				every_in_de_jure_hierarchy = {
+					custom = promote_hungarian_settlement_decision_every_province_custom
+					limit = {
+						tier = tier_county
+						title_province = { geographical_region = custom_carpathia }
+						holder = root
+					}
+					if = {
+						limit = {
+							culture = culture:hungarian
+							faith.religion = faith:catholic.religion
+						}
+						random = {
+							chance = 30
+							set_county_faith = faith:magyar_pagan
+						}
+					}
+				}
+			}
+		}
+		else = {
+			title:k_hungary = {
+				every_in_de_jure_hierarchy = {
+					custom = promote_hungarian_settlement_decision_every_province_custom
+					limit = {
+						tier = tier_county
+						title_province = { geographical_region = custom_hungary }
+						holder = root
+					}
+					if = {
+						limit = {
+							culture = culture:hungarian
+							faith.religion = faith:catholic.religion
+						}
+						random = {
+							chance = 30
+							set_county_faith = faith:magyar_pagan
+						}
+					}
+				}
+			}
+		}
+	}
+	#Split effect for tooltip readability.
+	primary_title = {
+		if = {
+			limit = {
+				any_in_de_jure_hierarchy = {
+					tier = tier_county
+					title_province = { geographical_region = custom_hungary }
+					holder = root
+					faith.religion = faith:magyar_pagan.religion
+				}
+			}
+			every_in_de_jure_hierarchy = {
+				custom = hungarian_resettlement.every_converted_province.custom
+				limit = {
+					tier = tier_county
+					title_province = { geographical_region = custom_hungary }
+					holder = root
+					faith.religion = faith:magyar_pagan.religion
+				}
+				add_county_modifier = {
+					modifier = magyar_appreciation_modifier
+					years = 25
+				}
+			}
+		}
+	}
+}
+
+restore_dumnonia_decision_scripted_effect = {
+	save_scope_as = founder
+	create_title_and_vassal_change = title_change
+	scope:title_change = { set_title_and_vassal_change_type = created }
+	title:k_cornwall = {
+		change_title_holder = {
+			holder = root
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	hidden_effect = {
+		title:d_somerset = { save_scope_as = cornwall_somerset }
+		title:d_gloucester = { save_scope_as = cornwall_gloucester }
+		title:d_cornwall = { set_de_jure_liege_title = title:k_cornwall }
+		if = {	#If owned, annex Somerset/Wessex.
+			limit = {
+				title:d_somerset = { holder = root }
+			}
+			title:d_somerset = { set_de_jure_liege_title = title:k_cornwall }
+		}
+		if = {	#If owned, annex Gloucestershire/Hwicce.
+			limit = {
+				title:d_gloucester = { holder = root }
+			}
+			title:d_gloucester = { set_de_jure_liege_title = title:k_cornwall }
+		}
+	}
+	custom_tooltip = restore_dumnonia_decision_effects_de_jure_tt
+}
+
+revive_armenian_empire_decision_scripted_effect = {
+	save_scope_as = founder
+	create_title_and_vassal_change = title_change
+	scope:title_change = { set_title_and_vassal_change_type = created }
+	title:e_armenia = {
+		change_title_holder = {
+			holder = root
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	hidden_effect = {
+		title:k_armenia = { save_scope_as = armenian_armenia }
+		title:k_georgia = { save_scope_as = armenian_georgia }
+		title:k_daylam = { save_scope_as = armenian_daylam }
+		title:k_jazira = { save_scope_as = armenian_jazira }
+		title:k_syria = { save_scope_as = armenian_syria }
+		title:k_jerusalem = { save_scope_as = armenian_jerusalem }
+		title:k_anatolia = { save_scope_as = armenian_anatolia }
+		title:k_pontus = { save_scope_as = armenian_pontus }
+		title:e_armenia = { save_scope_as = armenian_armenia_empire }
+		title:k_armenia = { set_de_jure_liege_title = title:e_armenia }
+		if = {
+			limit = {
+				title:k_armenia = { is_title_created = yes }
+			}
+			create_title_and_vassal_change = title_change_2
+			scope:title_change_2 = { set_title_and_vassal_change_type = usurped }
+			title:k_armenia = {
+				change_title_holder = {
+					holder = root
+					change = scope:title_change_2
+				}
+			}
+			resolve_title_and_vassal_change = scope:title_change_2
+		}
+		else_if = {
+			limit = {
+				title:k_armenia = { is_title_created = no }
+			}
+			create_title_and_vassal_change = title_change_2
+			scope:title_change_2 = { set_title_and_vassal_change_type = created }
+			title:k_armenia = {
+				change_title_holder = {
+					holder = root
+					change = scope:title_change_2
+				}
+			}
+			resolve_title_and_vassal_change = scope:title_change_2
+		}
+		if = {	#If any have drifted out, then k_armenia's constituent duchies are flipped back.
+			limit = {
+				title:d_greater_armenia = {
+					NOT = { target_is_de_jure_liege_or_above = title:k_armenia }
+				}
+			}
+			title:d_greater_armenia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If any have drifted out, then k_armenia's constituent duchies are flipped back.
+			limit = {
+				title:d_vaspurakan = {
+					NOT = { target_is_de_jure_liege_or_above = title:k_armenia }
+				}
+			}
+			title:d_vaspurakan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If any have drifted out, then k_armenia's constituent duchies are flipped back.
+			limit = {
+				title:d_mesopotamia = {
+					NOT = { target_is_de_jure_liege_or_above = title:k_armenia }
+				}
+			}
+			title:d_mesopotamia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Daylam & exempt Azerbaijan from de jure flipping to Armenia.
+			limit = {
+				title:k_daylam = { holder = root  }
+				title:d_azerbaijan = {	target_is_de_jure_liege_or_above = title:k_daylam }
+			}
+			title:k_daylam = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Daylam & flip Azerbaijan to Armenia.
+			limit = {
+				title:k_daylam = { holder = root  }
+				NOT = {
+					title:d_azerbaijan = {	target_is_de_jure_liege_or_above = title:k_daylam }
+				}
+			}
+			title:k_daylam = { set_de_jure_liege_title = title:e_armenia }
+			title:d_azerbaijan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_azerbaijan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Daylam & exempt Shirvan from de jure flipping to Armenia.
+			limit = {
+				title:k_daylam = { holder = root  }
+				title:d_shirvan = {	target_is_de_jure_liege_or_above = title:k_daylam }
+			}
+			title:k_daylam = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Daylam & flip Shirvan to Armenia.
+			limit = {
+				title:k_daylam = { holder = root  }
+				NOT = {
+					title:d_shirvan = {	target_is_de_jure_liege_or_above = title:k_daylam }
+				}
+			}
+			title:k_daylam = { set_de_jure_liege_title = title:e_armenia }
+			title:d_shirvan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_shirvan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Georgia & exempt ducal Georgia from de jure flipping to Armenia.
+			limit = {
+				title:k_georgia = { holder = root  }
+				title:d_georgia = {	target_is_de_jure_liege_or_above = title:k_georgia }
+			}
+			title:k_georgia = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Georgia & flip ducal Georgia to Armenia.
+			limit = {
+				title:k_georgia = { holder = root  }
+				NOT = {
+					title:d_georgia = {	target_is_de_jure_liege_or_above = title:k_georgia }
+				}
+			}
+			title:k_georgia = { set_de_jure_liege_title = title:e_armenia }
+			title:d_georgia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_georgia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Anatolia & exempt Cilicia from de jure flipping to Armenia.
+			limit = {
+				title:k_anatolia = { holder = root  }
+				title:d_cilicia = {	target_is_de_jure_liege_or_above = title:k_anatolia }
+			}
+			title:k_anatolia = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Anatolia & flip Cilicia to Armenia.
+			limit = {
+				title:k_anatolia = { holder = root  }
+				NOT = {
+					title:d_cilicia = {	target_is_de_jure_liege_or_above = title:k_anatolia }
+				}
+			}
+			title:k_anatolia = { set_de_jure_liege_title = title:e_armenia }
+			title:d_cilicia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_cilicia = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Jazira & exempt Diyarbakr from de jure flipping to Armenia.
+			limit = {
+				title:k_jazira = { holder = root  }
+				title:d_diyarbakr = {	target_is_de_jure_liege_or_above = title:k_jazira }
+			}
+			title:k_jazira = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Jazira & flip Diyarbakr to Armenia.
+			limit = {
+				title:k_jazira = { holder = root  }
+				NOT = {
+					title:d_diyarbakr = {	target_is_de_jure_liege_or_above = title:k_jazira }
+				}
+			}
+			title:k_jazira = { set_de_jure_liege_title = title:e_armenia }
+			title:d_diyarbakr = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_diyarbakr = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Syria & exempt Edessa from de jure flipping to Armenia.
+			limit = {
+				title:k_syria = { holder = root  }
+				title:d_edessa = {	target_is_de_jure_liege_or_above = title:k_syria }
+			}
+			title:k_syria = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Syria & flip Edessa to Armenia.
+			limit = {
+				title:k_syria = { holder = root  }
+				NOT = {
+					title:d_edessa = {	target_is_de_jure_liege_or_above = title:k_syria }
+				}
+			}
+			title:k_syria = { set_de_jure_liege_title = title:e_armenia }
+			title:d_edessa = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_edessa = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & de jure has not drifted, annex Syria & exempt Antioch from de jure flipping to Armenia.
+			limit = {
+				title:k_syria = { holder = root  }
+				title:d_antioch = {	target_is_de_jure_liege_or_above = title:k_syria }
+			}
+			title:k_syria = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & de jure has drifted, annex Syria & flip Antioch to Armenia.
+			limit = {
+				title:k_syria = { holder = root  }
+				NOT = {
+					title:d_antioch = {	target_is_de_jure_liege_or_above = title:k_syria }
+				}
+			}
+			title:k_syria = { set_de_jure_liege_title = title:e_armenia }
+			title:d_antioch = { set_de_jure_liege_title = title:k_armenia }
+		}
+		else = {
+			title:d_antioch = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned & Kurdistan is already part of Jazira, annex Jazira & exempt Kurdistan from de jure flipping to Armenia.
+			limit = {
+				title:k_jazira = { holder = root  }
+				title:d_kurdistan = { target_is_de_jure_liege_or_above = title:k_jazira }
+			}
+			title:k_jazira = { set_de_jure_liege_title = title:e_armenia }
+		}
+		else_if = {	#If owned & Kurdistan is not part of Jazira, but Jazira is owned entirely, annex Jazira & flip Kurdistan to Jazira, because bordergore.
+			limit = {
+				title:k_jazira = { holder = root  }
+				NOT = {
+					title:d_kurdistan = { target_is_de_jure_liege_or_above = title:k_jazira }
+				}
+			}
+			title:k_jazira = { set_de_jure_liege_title = title:e_armenia }
+			title:d_kurdistan = { set_de_jure_liege_title = title:k_jazira }
+		}
+		else = {
+			title:d_kurdistan = { set_de_jure_liege_title = title:k_armenia }
+		}
+		if = {	#If owned, annex Pontus.
+			limit = {
+				title:k_pontus = { holder = root  }
+			}
+			title:k_pontus = { set_de_jure_liege_title = title:e_armenia }
+		}
+		if = {	#If owned, annex Jerusalem.
+			limit = {
+				title:k_jerusalem = { holder = root  }
+			}
+			title:k_jerusalem = { set_de_jure_liege_title = title:e_armenia }
+		}
+	}
+	custom_tooltip = create_armenian_empire_decision_effects_de_jure_tt_a
+	custom_tooltip = create_armenian_empire_decision_effects_de_jure_tt_b
+}
+
+restore_holy_roman_empire_decision_scripted_effect = {
+	save_scope_as = founder
+	create_title_and_vassal_change = title_change
+	scope:title_change = { set_title_and_vassal_change_type = created }
+	title:e_hre = {
+		change_title_holder = {
+			holder = root
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	#Papal hook management.
+	if = {
+		limit = {
+			faith.religious_head = {
+				exists = this
+				opinion = {
+					target = root
+					value < high_positive_opinion
+				}
+			}
+			OR = {
+				has_hook = faith.religious_head
+				has_strong_usable_hook = faith.religious_head
+			}
+		}
+		use_hook = faith.religious_head
+	}
+
+	#Sort title laws.
+	destroy_title = title:k_east_francia	#Make Germany inalienable.
+ 	title:e_hre = {
+		add_title_law = princely_elective_succession_law
+		if = {	#Add Salic law.
+			limit = {
+				root.primary_title = {
+					OR = {
+						has_title_law = male_preference_law
+						has_title_law = male_only_law
+					}
+				}
+			}
+			add_title_law = male_only_law
+		}
+		if = {	#Ignore Salic law.
+			limit = {
+				root.primary_title = { has_title_law = equal_law }
+			}
+			add_title_law = equal_law
+		}
+		if = {	#Invert Salic law. Take that, Clovis, y'big nerd.
+			limit = {
+				root.primary_title = {
+					OR = {
+						has_title_law = female_preference_law
+						has_title_law = female_only_law
+					}
+				}
+			}
+			add_title_law = female_only_law
+		}
+	}
+
+	#Add de jures.
+	hidden_effect = {
+		every_held_title = {
+			limit = {
+				tier = tier_kingdom
+				NOT = {	#The Pope retains vague dibs on Italy.
+					any_this_title_or_de_jure_above = { this = title:e_italy }
+				}
+				save_temporary_scope_as = this_title
+				root = { completely_controls = scope:this_title }
+			}
+			set_de_jure_liege_title = title:e_hre
+		}
+	}
+	custom_tooltip = restore_holy_roman_empire_decision_effects_de_jure.tt
+}
+
+found_kingdom_of_bosnia_decision_scripted_effect = {
+	create_title_and_vassal_change = title_change
+	scope:title_change = { set_title_and_vassal_change_type = created }
+	title:k_bosnia = {
+		change_title_holder = {
+			holder = scope:founder
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	title:d_bosna = { set_de_jure_liege_title = title:k_bosnia }
+	title:d_usora = { set_de_jure_liege_title = title:k_bosnia }
+}
