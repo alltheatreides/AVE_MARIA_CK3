@@ -11,6 +11,8 @@
 	
 	valid = {
 		scope:target = {
+			is_alive = yes
+			is_imprisoned = no
 			is_courtier = yes
 			NOT = { is_courtier_of = scope:owner }
 			could_marry_character_trigger = { CHARACTER = scope:owner }
@@ -27,6 +29,10 @@
 				}
 			}
 		}
+	}
+
+	valid_agent = {
+		age >= 14
 	}
 	
 	agent_join_chance = {
@@ -256,6 +262,59 @@
 						subject = scope:other_imprisoner
 						object = scope:target
 						text = scheme_target_imprisoned_by_other
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:target = {
+					is_courtier = no
+					exists = var:last_visited_ruler
+				}
+			}
+			scope:target.var:last_visited_ruler = { save_scope_as = target_liege }
+			scope:owner = {
+				send_interface_toast = {
+					title = elope_scheme_invalidated_title
+					left_icon = scope:target
+					custom_description_no_bullet = {
+						subject = scope:target_liege
+						object = scope:target
+						text = scheme_target_no_longer_courtier
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:target = {
+					is_courtier = no
+					NOT = { exists = var:last_visited_ruler }
+				}
+			}
+			scope:owner = {
+				send_interface_toast = {
+					title = elope_scheme_invalidated_title
+					left_icon = scope:target
+					custom_description_no_bullet = {
+						subject = scope:target
+						text = scheme_target_no_longer_courtier_no_var
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:target = { is_courtier_of = scope:owner }
+			}
+			scope:owner = {
+				send_interface_toast = {
+					title = elope_scheme_invalidated_title
+					left_icon = scope:target
+					custom_description_no_bullet = {
+						subject = scope:target
+						text = scheme_target_is_your_courtier
 					}
 				}
 			}

@@ -22,6 +22,11 @@ num_virtuous_traits_less_than = {
 	third_not = FAITH_VIRTUES_THIRD
 }
 
+num_sinful_traits = 
+{
+	global = FAITH_SINS_GLOBAL
+}
+
 num_sinful_traits_greater_or_equal = {
 	global = FAITH_SINS_GLOBAL
 	first = FAITH_SINS_FIRST
@@ -68,7 +73,7 @@ holy_sites_controlled_less_than = {
 	third_not = HOLY_SITES_CONTROLLED_THIRD
 }
 
-number_directly_owned_holy_sites = {
+number_realm_holy_sites_held_by_faithful = {
 	first = I_HOLD_AT_LEAST_COUNT_HOLY_SITES_OF_FAITH
 	first_not = I_DO_NOT_HOLD_AT_LEAST_COUNT_HOLY_SITES_OF_FAITH
 }
@@ -78,4 +83,12 @@ faith_allows_legitimization_of_bastards = {
 	global_not = CANNOT_LEGITIMIZE_BASTARDS_IN_FAITH
 	first = CAN_LEGITIMIZE_BASTARDS_IN_FAITH
 	first_not = CANNOT_LEGITIMIZE_BASTARDS_IN_FAITH
+}
+
+cannot_create_hof_title_at_or_above_liege_tier = {
+	third_not = CANNOT_CREATE_HOF_TITLE_AT_OR_ABOVE_LIEGE_TIER
+}
+
+character_can_only_create_one_faith = {
+	first_not = CHAR_CAN_ONLY_CREATE_ONE_FAITH
 }

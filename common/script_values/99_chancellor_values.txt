@@ -211,16 +211,18 @@ chancellor_domestic_affairs_opinion_scale = {
 	value = 0
 	if = {
 		limit = {
-			is_ai = yes
-			scope:councillor_liege = { is_independent_ruler = yes }
+		    scope:councillor_liege = {
+		        is_ai = yes
+		        is_independent_ruler = yes
+		    }
 		}
 		add = chancellor_domestic_affairs_opinion_max
 	}
 	else_if = {
 		limit = {
-			has_variable = chancellor_domestic_affairs_opinion_value
+			scope:councillor_liege = { has_variable = chancellor_domestic_affairs_opinion_value }
 		}
-		add = liege.var:chancellor_domestic_affairs_opinion_value
+		add = scope:councillor_liege.var:chancellor_domestic_affairs_opinion_value
 	}
 }
 

@@ -1,5 +1,4 @@
 ﻿seduce = {
-	
 	skill = intrigue
 	# cooldown = { months = 2 }
 	is_secret = yes
@@ -19,13 +18,14 @@
 	allow = {
 		is_adult = yes
 		scope:target = { is_adult = yes }
-		#Mutual attraction is a hard limit because this scheme implies real romantic feelings and we don't model romantic attraction separately from sexual attraction
+
+		# Mutual attraction is a hard limit because this scheme implies real romantic feelings and we don't model romantic attraction separately from sexual attraction
 		OR = {
 			is_ai = no	#Players may override their character's sexuality for the purposes of cynical seductions.
 			scope:owner = { is_attracted_to_gender_of = scope:target }	
 		}
 				
-		#Have I been blocked from targeting this character?
+		# Have I been blocked from targeting this character?
 		custom_description = { #Permanent
 			text = seduce_blocked
 			object = scope:target
@@ -40,7 +40,7 @@
 			}
 		}
 
-		#Time-limited blocker
+		# Time-limited blocker
 		custom_description = {
 			text = seduce_cooldown
 			object = scope:target
@@ -55,7 +55,7 @@
 			}
 		}
 
-		#10 year general target blocker
+		# 10 year general target blocker
 		custom_description = {
 			text = seduce_general_10_year_cooldown
 			subject = scope:target
@@ -67,7 +67,7 @@
 			}
 		}
 
-		#They're not interested
+		# They're not interested
 		custom_description = {
 			text = no_attraction_due_to_gender
 			object = scope:target
@@ -156,14 +156,21 @@
 			}
 		}
 
+		# They can't consent
+		NOT = { scope:target = { has_trait = intellect_bad_3 } } # Implies a mental development level akin to an average child
+		NOT = { scope:target = { has_trait = incapable } } # Bed-ridden at best, but in many cases comatose or in a vegetative state
+
+		# One of you is celibate
 		NOT = { has_trait = celibate }
 		scope:target = { NOT = { has_trait = celibate } }
 		
+		# One of you is imprisoned
 		is_imprisoned = no
 		scope:target = {
 			is_imprisoned = no
 		}
 
+		# You're too far away
 		scope:target = {
 			OR = {
 				exists = location
@@ -311,7 +318,7 @@
 		}
 		modifier = {
 			desc = "SCHEME_SHY_TRAIT"
-			scope:target = { has_trait = am_withdrawn }
+			scope:target = { has_trait = shy }
 			add = -10
 		}
 
@@ -340,7 +347,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				has_relation_soulmate = scope:target_spouse
 			}
@@ -353,7 +360,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				OR = {
 					has_relation_lover = scope:target_spouse
@@ -367,7 +374,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				NOR = {
 					has_relation_lover = scope:target_spouse
@@ -385,7 +392,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = { #medium_positive_opinion+ of spouse
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				NOR = {
 					has_relation_lover = scope:target_spouse
@@ -403,11 +410,11 @@
 			add = -30
 			desc = "SCHEME_SEDUCE_SPOUSE_OPINION_PENALTY"
 		}
-		modifier = { #low_negative_opinion+ of souse
+		modifier = { #low_negative_opinion+ of spouse
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				NOR = {
 					has_relation_lover = scope:target_spouse
@@ -423,17 +430,17 @@
 				}
 			}
 			add = -15
-			desc = "SCHEME_SEDUCE_SPOUSE_OPINION_PENALTY"
+			desc = "SCHEME_SEDUCE_SPOUSE_OPINION_PENALTY_MILD"
 		}
 		modifier = { #low_negative_opinion- of spouse
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				opinion = {
 					target = scope:target_spouse
-					value <= low_negative_opinion
+					value < low_negative_opinion
 				}
 				opinion = {
 					target = scope:target_spouse
@@ -447,7 +454,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				opinion = {
 					target = scope:target_spouse
@@ -465,7 +472,7 @@
 			trigger = { scope:owner = { NOT = { is_consort_of = scope:target } } }
 			scope:target = {
 				is_married = yes
-				exists = primary_spouse #TIT-18438
+				exists = primary_spouse
 				primary_spouse = { save_temporary_scope_as = target_spouse }
 				opinion = {
 					target = scope:target_spouse
@@ -707,9 +714,9 @@
 			add = 10
 			scope:target = {
 				OR = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					has_trait = ambitious
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 				NOT = {
 					is_theocratic_lessee = yes
@@ -732,9 +739,9 @@
 			add = -10
 			scope:target = {
 				OR = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					has_trait = ambitious
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 			}
 			OR = {

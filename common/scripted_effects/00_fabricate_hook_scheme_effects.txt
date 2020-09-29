@@ -261,6 +261,13 @@ fabricate_hook_success_effect = {
 	else = {
 		fabricate_hook_discovery_effect = yes
 	}
+
+	if = {
+		limit = { exists = scope:scheme }
+		scope:scheme = {
+			end_scheme = yes
+		}
+	}
 }
 
 

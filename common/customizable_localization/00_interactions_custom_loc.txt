@@ -89,3 +89,21 @@ ImprisonCharacterDeclineSummary = {
 		fallback = yes
 	}
 }
+
+RevokeTitleDeclineSummary = {
+	type = character
+
+	text = {
+		localization_key = general_rebellion_decline_summary_auto_accept
+		trigger = { #Auto-accept
+			OR = {
+				highest_held_title_tier = tier_barony
+				is_imprisoned_by = scope:second
+			}
+		}
+	}
+	text = {
+		localization_key = general_rebellion_decline_summary_warning
+		fallback = yes
+	}
+}

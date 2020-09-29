@@ -14,7 +14,7 @@
 }
 
 NJominiGraphics = {
-	BLOOM_ITERATIONS = 6
+	BLOOM_ITERATIONS = 3
 	NULL_ENTITY = "test_object_entity"
 	NULL_MESH = "test_object_mesh"
 }
@@ -57,8 +57,8 @@ NGraphics = {
 	SURROUND_MAP_CLOUD2SCROLLING = { -0.0015 0.0015 }
 	SURROUND_MAP_CLOUD2STRENGTH = 0.99
 	#	SURROUND_MAP_CLOUD2STRENGTH = 0.1
-	SURROUND_MAP_LOWCLOUDCOLOR = { 0.0 0.0 0.0 }
-	SURROUND_MAP_HIGHCLOUDCOLOR = { 0.0 0.0 0.0 }
+	SURROUND_MAP_LOWCLOUDCOLOR = { 1.0 0.0 0.0 }
+	SURROUND_MAP_HIGHCLOUDCOLOR = { 1.0 0.0 0.0 }
 	SURROUND_MAP_SHADOWCOLOR = { 0.9 0.0 0.0 }
 
 	ERRORHOOF_DIVISOR = 100
@@ -203,12 +203,13 @@ NCombatInterface = {
 	COMBAT_BALANCE_UNDECIDED_ZONE = 0.1					# If the balance of the combat is within this range around 50% (0.5) the prediction is considered undecided
 	COMBAT_BALANCE_DIRECTION_STEPS = 3					# How many steps should the combat balance progress direction indicator have
 	COMBAT_BALANCE_STEP_CHANGE = 10						# Balance change needed for increasing the steps of the indicator by one
-	UNIT_QUALITY_THRESHOLDS = { # If damage + toughness per man is at least the threshold value, the quality level is considered one higher
+	UNIT_QUALITY_THRESHOLDS = { # If the weighted (damage + toughness)^2 per man is at least the threshold value, the quality level is considered one higher. Weight is damage + toughness or MAX_QUALITY_POWER_MULT. Whichever is lower
 		25
-		50
 		75
-		100
+		125
+		175
 	}
+	MAX_QUALITY_POWER_MULT = 50							# When multiplying damage + toughness with itself, we cap it at this value. So damage + toughness of 100 would result in 100 * MAX_QUALITY_POWER_MULT rather than 100^2, while a value of 20 would result in 20*20
 	MAX_COMBAT_PREDICTION_DISTANCE = 5					# How far along the path of your units should we bother to look? Higher means we can predict combat further away, but the situation is more likely to change before combat occurs
 	BATTLE_EVENT_DURATION = 5.0							# How many seconds do battle events stick around for?
 }
@@ -221,7 +222,7 @@ NCombatPrediction = {
 	EDGE_QUALITY_THRESHOLD = 1.25						# Quality ratio needs to be at least this for it to be counted as an edge (together with EDGE_MIN_MEN_AT_ARMS)
 	EDGE_COUNTER_RATIO_THRESHOLD = 1.25					# Total MAA counters need to be at least this for it to be counted as an edge
 	EDGE_FORTIFICATION_THRESHOLD = 20					# Fortification needs to be at least this for it to be counted as an edge
-	COMBAT_PREDICTION_LEVELS = { 0.4 0.5 0.7 0.9 }		# Prediction levels thresholds
+	COMBAT_PREDICTION_LEVELS = { 0.3 0.45 0.6 0.8 }		# Prediction levels thresholds
 	EDGE_ICON_COMMANDER_SKILL = "gfx/interface/icons/icon_skills_martial.dds"
 	EDGE_ICON_COMMANDER_TRAITS = "gfx/interface/icons/icon_commander_trait.dds"
 	EDGE_ICON_SOLDIERS = "gfx/interface/icons/icon_soldier.dds"
@@ -395,13 +396,13 @@ NGameIcons = {
 	HOLDING_TYPE_TAB_ICON_PATH = "gfx/interface/icons/holding_types_tab"
 	COUNCIL_TASK_TYPE_ICON_PATH = "gfx/interface/icons/council_task_types"
 	ACTIVITY_TYPE_ICON_PATH = "gfx/interface/icons/activities"
-	ACTIVITY_TYPE_BACKGROUND_PATH = "gfx/interface/activities"
-	IMPORTANT_ACTIONS_TYPE_ICON_PATH = "gfx/interface/icons/important_action_types"
+	ACTIVITY_TYPE_BACKGROUND_PATH = "gfx/interface/illustrations/activities"
+	IMPORTANT_ACTIONS_TYPE_ICON_PATH = "gfx/interface/icons/alerts"
 	SUGGESTION_TYPE_ICON_PATH = "gfx/interface/icons/suggestion_types"
 	DECISION_ICON_PATH = "gfx/interface/icons/decisions"
 	FAITH_DOCTRINE_ICON_PATH = "gfx/interface/icons/faith_doctrines"
 	FAITH_DOCTRINE_GROUP_ICON_PATH = "gfx/interface/icons/faith_doctrine_groups"
-	CULTURE_ERA_ILLUSTRATION_PATH = "gfx/interface/icons/culture_era_illustrations"
+	CULTURE_ERA_ILLUSTRATION_PATH = "gfx/interface/window_culture/culture_era_illustrations"
 	CULTURE_ERA_FRAME_PATH = "gfx/interface/icons/culture_era_frames"
 	FACTION_TYPE_ICON_PATH = "gfx/interface/icons/faction_type"
 	TERRAIN_ICON_PATH = "gfx/interface/icons/terrain_types"
@@ -411,7 +412,7 @@ NGameIcons = {
 	FOCUS_ICON_PATH = "gfx/interface/icons/focuses"
 	LIFESTYLE_ICON_PATH = "gfx/interface/icons/lifestyles"
 	LIFESTYLE_BIG_ICON_PATH = "gfx/interface/icons/lifestyles_big"
-	LIFESTYLE_BACKGROUND_PATH = "gfx/interface/icons/lifestyles_background"
+	LIFESTYLE_BACKGROUND_PATH = "gfx/interface/illustrations/lifestyles_background"
 	LEGACY_ICON_PATH = "gfx/interface/icons/dynasty"
 	LEGACY_TRACK_ICON_PATH = "gfx/interface/icons/legacy_tracks"
 	CASUS_BELLI_TYPE_ICON_PATH = "gfx/interface/icons/casus_bellis"
@@ -420,8 +421,12 @@ NGameIcons = {
 	CHARACTER_INTERACTION_ICON_PATH = "gfx/interface/icons/character_interactions"
 	CHARACTER_INTERACTION_CATEGORY_ICON_PATH = "gfx/interface/icons/character_interaction_category"
 	CHARACTER_INTERACTION_CATEGORY_BACKGROUND_PATH = "gfx/interface/icons/character_interaction_category_background"
-	CHARACTER_INTERACTION_ALERT_PATH = "gfx/interface/icons/character_interaction_alert"
+	CHARACTER_INTERACTION_ALERT_PATH = "gfx/interface/icons/alerts_character_interaction"
 	MESSAGE_ICON_PATH = "gfx/interface/icons/message_feed"
+	BOOKMARK_BUTTON_PATH = "gfx/interface/icons/bookmark_buttons"
+	BOOKMARK_BUTTON_BIG_PATH = "gfx/interface/icons/bookmark_big"
+	SECRET_TYPE_PATH = "gfx/interface/icons/secret_categories"
+	LIFESTYPE_TREE_BACKGROUND_PATH = "gfx/interface/icons/lifestyle_tree_backgrounds"
 
 	DEFAULT_DEATH_REASON_ICON = "death_natural.dds"
 
@@ -457,6 +462,16 @@ NGameIcons = {
 
 	PIETY_GROUPS = { "christian" "islam" "pagan" "eastern" }
 	PIETY_GAME_CONCEPT_LEVEL = 1	# Which level of piety is used for the game concept icon
+	PRESTIGE_LEVEL_PATH = "gfx/interface/icons/currencies"
+	DYNASTY_PRESTIGE_LEVEL_PATH = "gfx/interface/icons/currencies"
+	PIETY_LEVEL_PATH = "gfx/interface/icons/currencies"
+	BATTLE_REPORT_VICTORY = "gfx/interface/icons/alerts_reports/report_battle_won.dds"
+	BATTLE_REPORT_DEFEAT = "gfx/interface/icons/alerts_reports/report_battle_lost.dds"
+	WAR_REPORT_VICTORY = "gfx/interface/icons/alerts_reports/report_war_victory.dds"
+	WAR_REPORT_DEFEAT = "gfx/interface/icons/alerts_reports/report_war_defeat.dds"
+	WAR_REPORT_WHITE_PEACE = "gfx/interface/icons/alerts_reports/report_war_white_peace.dds"
+	WAR_REPORT_INVALIDATED = "gfx/interface/icons/alerts_reports/report_war_invalidation.dds"
+	FAITH_ICON_PATH = "gfx/interface/icons/religion"
 }
 
 NOwnMapMode = {
@@ -588,4 +603,8 @@ NUnitStatus = {
 
 NVassalContract = {
 	OBLIGATION_OFFSET = { 110 50 } # How many pixels is 1 point of offset for an obligation level? x vs y axis
+}
+
+NTextMatching = {
+	DEFAULT_CUT_OFF_MULTIPLIER = 0.5 # The default cut off multiplier for text matching relative to the top score
 }

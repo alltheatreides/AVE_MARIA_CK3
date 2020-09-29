@@ -10,19 +10,6 @@
 			is_adult = yes
 			is_imprisoned = no
 		}
-		custom_description = { #Time-limited
-			text = befriend_cooldown
-			object = scope:target
-
-			NOT = {
-				scope:target = {
-					has_opinion_modifier = {
-						target = scope:owner
-						modifier = attempted_befriending_opinion
-					}
-				}
-			}
-		}
 		NOT = {	this = scope:target }
 
 		is_below_ai_friend_soft_cap_trigger = yes
@@ -52,11 +39,6 @@
 		NOR = {
 			is_at_war_with = scope:target
 			custom_description = {
-				text = "befriend_already_friend"
-				object = scope:target
-				has_relation_friend = scope:target
-			}
-			custom_description = {
 				text = "befriend_already_lover"
 				object = scope:target
 				has_relation_lover = scope:target
@@ -70,12 +52,6 @@
 		#Outcome system by Mathilda Bjarnehed
 		scheme_owner = {
 			trigger_event = befriend_outcome.0001 #Hidden event rolling success/failure, discover/no discovery and sending on_actions or player choice event
-		}
-		scope:target = {
-			add_opinion = {
-				target = scope:owner
-				modifier = attempted_befriending_opinion
-			}
 		}
 	}
 
@@ -165,43 +141,43 @@
 		}
 		modifier = {
 			add = -5
-			scope:owner = { has_trait = am_withdrawn }
+			scope:owner = { has_trait = shy }
 			desc = "SCHEME_BEFRIEND_MY_SHYNESS"
 		}
 		modifier = {
 			add = 5
-			scope:owner = { has_trait = am_outgoing }
+			scope:owner = { has_trait = gregarious }
 			desc = "SCHEME_BEFRIEND_MY_GREGARIOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:owner = { has_trait = am_deceitful }
+			scope:owner = { has_trait = callous }
 			desc = "SCHEME_BEFRIEND_MY_CALLOUSNESS"
 		}
 		#Target Traits
 		modifier = {
 			add = -5
-			scope:target = { has_trait = am_withdrawn }
+			scope:target = { has_trait = shy }
 			desc = "SCHEME_BEFRIEND_THEIR_SHYNESS"
 		}
 		modifier = {
 			add = 5
-			scope:target = { has_trait = am_outgoing }
+			scope:target = { has_trait = gregarious }
 			desc = "SCHEME_BEFRIEND_THEIR_GREGARIOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:target = { has_trait = am_deceitful }
+			scope:target = { has_trait = callous }
 			desc = "SCHEME_BEFRIEND_THEIR_CALLOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:target = { has_trait = am_fearful }
+			scope:target = { has_trait = paranoid }
 			desc = "SCHEME_BEFRIEND_THEIR_PARANOIA"
 		}
 		modifier = {
 			add = 4
-			scope:target = { has_trait = am_mild }
+			scope:target = { has_trait = trusting }
 			desc = "SCHEME_BEFRIEND_THEIR_TRUST"
 		}
 		modifier = {
@@ -222,7 +198,7 @@
 		modifier = {
 			add = scope:target.var:recipient_stubborness_scheme
 			scope:target = {
-				has_trait = am_stubborn
+				has_trait = stubborn
 				exists = var:recipient_stubborness_scheme
 			}
 			desc = "SCHEME_BEFRIEND_THEIR_STUBBORNESS"
@@ -230,7 +206,7 @@
 		modifier = {
 			add = scope:target.var:recipient_fickleness_scheme
 			scope:target = {
-				has_trait = am_inconstant
+				has_trait = fickle
 				exists = var:recipient_fickleness_scheme
 				NOT = { var:recipient_fickleness_scheme = 0 }
 			}
@@ -428,9 +404,9 @@
 			add = 10
 			scope:target = {
 				OR = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					has_trait = ambitious
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 				NOT = {
 					is_theocratic_lessee = yes
@@ -452,9 +428,9 @@
 			add = -10
 			scope:target = {
 				OR = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					has_trait = ambitious
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 			}
 			OR = {
@@ -567,7 +543,7 @@
 		if = {
 			limit = {
 				scheme_target = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					OR = {
 						NOT = { exists = var:recipient_fickleness_scheme }
 						var:recipient_fickleness_scheme >= 30 #Keep within reason.
@@ -585,7 +561,7 @@
 		if = {
 			limit = {
 				scheme_target = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					exists = var:recipient_fickleness_scheme
 				}
 			}

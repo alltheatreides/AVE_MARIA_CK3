@@ -1001,6 +1001,148 @@ empire_theocracy_islam_religion = {
 	religions = { islam_religion }
 }
 
+# Yazidi
+baron_theocracy_male_yazidi_religion = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 7
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+baron_theocracy_female_yazidi_religion = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 7
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+barony_theocracy_yazidi_religion = {
+	type = title
+	tier = barony
+	top_liege = no
+	priority = 7
+	holding = church_holding
+	religions = { yazidi_religion }
+}
+count_theocracy_male_yazidi_religion = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 18
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+count_theocracy_female_yazidi_religion = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 18
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+county_theocracy_yazidi_religion = {
+	type = title
+	tier = county
+	top_liege = no
+	priority = 18
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+duke_theocracy_male_yazidi_religion = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 27
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+duke_theocracy_female_yazidi_religion = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 27
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+duchy_theocracy_yazidi_religion = {
+	type = title
+	tier = duchy
+	top_liege = no
+	priority = 27
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+king_theocracy_male_yazidi_religion = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 47
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+king_theocracy_female_yazidi_religion = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 47
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+kingdom_theocracy_yazidi_religion = {
+	type = title
+	tier = kingdom
+	priority = 47
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+emperor_theocracy_male_yazidi_religion = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 102
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+emperor_theocracy_female_yazidi_religion = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 102
+	top_liege = no
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+empire_theocracy_yazidi_religion = {
+	type = title
+	tier = empire
+	top_liege = no
+	priority = 102
+	governments = { theocracy_government }
+	religions = { yazidi_religion }
+}
+
 # Jainism
 baron_theocracy_male_jainism_religion = {
 	type = character
@@ -2170,6 +2312,14 @@ duke_republic_female_roman = {
 	governments = { republic_government }
 	cultures = { roman }
 }
+duchy_republic_roman = {
+	type = title
+	tier = duchy
+	top_liege = no
+	priority = 27
+	governments = { republic_government }
+	cultures = { roman }
+}
 king_republic_male_roman = {
 	type = character
 	gender = male
@@ -2338,7 +2488,7 @@ emperor_feudal_male_german = {
 	tier = empire
 	priority = 102
 	governments = { feudal_government tribal_government }
-	cultures = { german }
+	culture_groups = { central_germanic_group }
 }
 emperor_feudal_female_german = {
 	type = character
@@ -2347,7 +2497,7 @@ emperor_feudal_female_german = {
 	tier = empire
 	priority = 102
 	governments = { feudal_government tribal_government }
-	cultures = { german }
+	culture_groups = { central_germanic_group }
 }
 
 ### Norse ###
@@ -4400,6 +4550,15 @@ king_feudal_male_iranian_group = {
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 }
+king_feudal_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 47
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+}
 kingdom_feudal_iranian_group = {
 	type = title
 	tier = kingdom
@@ -4416,12 +4575,135 @@ emperor_feudal_male_iranian_group = {
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 }
+emperor_feudal_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 102
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+}
 empire_feudal_iranian_group = {
 	type = title
 	tier = empire
 	priority = 102
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
+}
+
+# Muslim variants
+baron_feudal_muslim_male_iranian_group = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 8
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+baron_feudal_muslim_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 8
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+barony_feudal_muslim_iranian_group = {
+	type = title
+	tier = barony
+	priority = 8
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+count_feudal_muslim_male_iranian_group = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 19
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+count_feudal_muslim_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 19
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+county_feudal_muslim_iranian_group = {
+	type = title
+	tier = county
+	priority = 19
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+duke_feudal_muslim_male_iranian_group = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+duke_feudal_muslim_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+duchy_feudal_muslim_iranian_group = {
+	type = title
+	tier = duchy
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+king_feudal_muslim_male_iranian_group = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 48
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+king_feudal_muslim_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 48
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
+}
+kingdom_feudal_muslim_iranian_group = {
+	type = title
+	tier = kingdom
+	priority = 48
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+	religions = { islam_religion }
 }
 
 ### Sogdian ###

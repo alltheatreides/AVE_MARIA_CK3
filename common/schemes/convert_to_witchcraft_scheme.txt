@@ -45,6 +45,10 @@
 		use_convert_to_witchcraft_secrecy_trigger = yes
 	}
 
+	valid_agent = {
+		age >= 14
+	}
+
 	agent_join_chance = {
 		base = 0
 		
@@ -83,7 +87,7 @@
 		modifier = {
 			add = -1000
 			this = scope:target
-			desc = SCHEME_NOT_AGAINST_SELF
+			desc = COMPASSIONATE_REASON #SCHEME_NOT_AGAINST_SELF
 		}
 		
 		#Target is not diplomatically available
@@ -207,7 +211,7 @@
 
 		#Target traits
 		modifier = {
-			scope:target = { has_trait = am_intolerant }
+			scope:target = { has_trait = zealous }
 			desc = "SCHEME_TRAIT_ZEALOUS"
 			add = -50
 		}
@@ -222,12 +226,12 @@
 			add = -30
 		}
 		modifier = {
-			scope:target = { has_trait = am_craven }
+			scope:target = { has_trait = craven }
 			desc = "SCHEME_TRAIT_CRAVEN"
 			add = -10
 		}
 		modifier = {
-			scope:target = { has_trait = am_fearful }
+			scope:target = { has_trait = paranoid }
 			desc = "SCHEME_TRAIT_PARANOID"
 			add = -20
 		}
@@ -262,7 +266,7 @@
 			add = 5
 		}
 		modifier = {
-			scope:target = { has_trait = am_deceitful }
+			scope:target = { has_trait = deceitful }
 			desc = "SCHEME_TRAIT_DECEITFUL"
 			add = 5
 		}
@@ -272,12 +276,12 @@
 			add = 5
 		}
 		modifier = {
-			scope:target = { has_trait = am_hypocritical }
+			scope:target = { has_trait = cynical }
 			desc = "SCHEME_TRAIT_CYNICAL"
 			add = 5
 		}
 		modifier = {
-			scope:target = { has_trait = am_mild }
+			scope:target = { has_trait = trusting }
 			desc = "SCHEME_TRAIT_TRUSTING"
 			add = 5
 		}

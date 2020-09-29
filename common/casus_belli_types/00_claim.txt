@@ -46,7 +46,10 @@
 		}
 		scope:claimant = {
 			NOT = { has_trait = incapable }
-			is_imprisoned = no
+			trigger_if = {
+				limit = { NOT = { scope:claimant = scope:attacker } } # You can always press your own claims
+				is_imprisoned = no
+			}
 			#religion = scope:attacker.religion
 			# claimant must not be at war against defender for this claim already
 			custom_description = {
@@ -601,13 +604,11 @@
 	}
 
 	on_victory = {
-		create_title_and_vassal_change = change
-
-		scope:change = {
-			set_title_and_vassal_change_type = conquest_claim
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest_claim
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
-
 		# Create a claim CB which is executed to handle title/vassal changes, in addition to being used to calculate Prestige awards for war participants.
 		setup_claim_cb = {
 			titles = target_titles
@@ -634,7 +635,11 @@
 				}
 			}
 
-			create_title_and_vassal_change = change_two
+			create_title_and_vassal_change = {
+				type = conquest_claim
+				save_scope_as = change_two
+				add_claim_on_loss = yes
+			}
 			scope:claimant = {
 				change_liege = {
 					liege = scope:attacker

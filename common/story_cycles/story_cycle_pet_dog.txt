@@ -21,7 +21,7 @@
 	on_end = {
 		story_owner = {
 			remove_dog_story_modifiers_effect = yes
-			remove_variable = story_cycle_dog_name
+			remove_dog_name_effect = yes
 		}
 	}
 
@@ -208,50 +208,9 @@
 				NOT = { exists = story_owner.var:story_cycle_dog_name }
 			}
 			effect = {
-				if = {
-					limit = { has_multiple_players = yes }
-					story_owner = {
-						assign_name_options_dog_story_cycle_effect = yes
-						assign_name_options_dog_story_cycle_effect = yes
-						assign_name_options_dog_story_cycle_effect = yes
-						random_list = {
-							1 = {
-								trigger = { has_character_flag = name_amiable }
-								set_variable = { name = story_cycle_dog_name value = flag:Amiable }
-							}
-							1 = {
-								trigger = { has_character_flag = name_nosewise }
-								set_variable = { name = story_cycle_dog_name value = flag:Nosewise }
-							}
-							1 = {
-								trigger = { has_character_flag = name_holdfast }
-								set_variable = { name = story_cycle_dog_name value = flag:Holdfast }
-							}
-							1 = {
-								trigger = { has_character_flag = name_gray }
-								set_variable = { name = story_cycle_dog_name value = flag:Gray }
-							}
-							1 = {
-								trigger = { has_character_flag = name_choplicker }
-								set_variable = { name = story_cycle_dog_name value = flag:Choplicker }
-							}
-							1 = {
-								trigger = { has_character_flag = name_shadow }
-								set_variable = { name = story_cycle_dog_name value = flag:Shadow }
-							}
-							1 = {
-								trigger = { has_character_flag = name_snow }
-								set_variable = { name = story_cycle_dog_name value = flag:Snow }
-							}
-						}
-						clear_name_options_dog_story_cycle_effect = yes
-					}
-				}
-				else = {
-					story_owner = {
-						add_character_flag = is_naming_dog
-						trigger_event = pet_animal.1001
-					}
+				story_owner = {
+					add_character_flag = is_naming_dog
+					trigger_event = pet_animal.1001
 				}
 			}
 		}

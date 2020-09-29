@@ -51,6 +51,7 @@ theocracy_lease = {
 
 		# Anything not going to the liege can be split between ruler and lessee. By default everything goes to the lessee.
 		rest = {
+			max = 0..100				# Used in the UI to show maximum possible split share that goes to the to the ruler
 			weight = {} 				# Share that goes to the left hand side target. MTTH. Result should be between 0 and 100.
 			beneficiary = ruler/lessee 	# Who gets the ratio calculated in weight
 			rest = ruler/lessee			# What is left goes to the right hand side target

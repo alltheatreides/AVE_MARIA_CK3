@@ -3,6 +3,7 @@
 #Select appropriate main event or default
 feast_main_event_selection = {
 	trigger = { #To make sure the ones who choose the murder feast will always get that event!
+		exists = scope:activity
 		NOT = {
 			scope:activity.activity_owner = {
 				exists = var:murder_feast

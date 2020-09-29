@@ -599,7 +599,7 @@ offer_fealty_interaction = {
 			add = 20
 		}
 		modifier = { #Holds dejure liege title.
-			desc = offer_vassalization_interaction_aibehavior_dejureliegetitleholder_tt
+			desc = offer_vassalization_interaction_aibehavior_dejurevassaltitleholder_tt
 			trigger = {
 				scope:recipient = {
 					any_held_title = {
@@ -754,8 +754,6 @@ force_vote_in_succession_election_interaction = {
 
 	on_accept = {
 		scope:actor = {
-			use_hook = scope:recipient
-			
 			send_interface_message = {
 				type = event_generic_neutral
 				title = force_vote_in_succession_election_interaction
@@ -767,8 +765,9 @@ force_vote_in_succession_election_interaction = {
 						use_hook = scope:recipient
 						custom_tooltip = msg_force_vote_in_succession_election_message
 					}
-		   		}
+				}
 			}
+			use_hook = scope:recipient
 		}
 	}
 }
@@ -1034,10 +1033,10 @@ grant_independence_interaction = {
 				name = TRUCE_GRANT_INDEPENDENCE
 			}
 
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = independency
-				set_add_claim_on_loss = yes
+			create_title_and_vassal_change = {
+				type = independency
+				save_scope_as = change
+				add_claim_on_loss = yes
 			}
 			becomes_independent = {
 				change = scope:change

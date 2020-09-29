@@ -162,9 +162,40 @@ action_wrong_holding_type = {
 			limit = {
 				is_leased_out = no
 				has_wrong_holding_type = yes
+				title_province = {
+					NOT = { has_holding_type = tribal_holding }
+				}
 			}
 			try_create_important_action = {
 				important_action_type = action_wrong_holding_type
+				actor = root
+				landed_title = this
+			}
+		}
+	}
+
+	effect = {
+		scope:landed_title.title_province = {
+			open_view_data = {
+				view = holding_view
+			}
+		}
+	}
+}
+
+action_upgrade_tribal_holding_type = {
+	combine_into_one = yes
+	is_dangerous = yes
+	
+	check_create_action = {
+		every_held_title = {
+			limit = {
+				is_leased_out = no
+				has_wrong_holding_type = yes
+				title_province = { has_holding_type = tribal_holding }
+			}
+			try_create_important_action = {
+				important_action_type = action_upgrade_tribal_holding_type
 				actor = root
 				landed_title = this
 			}
@@ -215,6 +246,7 @@ action_dangerous_faction_targeting_me = {
 			limit = {
 				any_targeting_faction = {
 					is_dangerous_faction_trigger = yes
+					NOT = { exists = faction_war }
 				}
 			}
 			try_create_important_action = {
@@ -238,9 +270,7 @@ action_mega_duke_penalty = {
 		if = {
 			limit = {
 				primary_title.tier = tier_duchy
-				30 <= { # Needs to match MAX_COUNTIES_IN_REALM_AS_DUKE
-					every_sub_realm_county = { add = 1 }
-				}
+				sub_realm_size > define:NCharacter|MAX_COUNTIES_IN_REALM_AS_DUKE
 			}
 			try_create_important_action = {
 				important_action_type = action_mega_duke_penalty
@@ -306,6 +336,9 @@ action_ghw_participation_alert = {
 				NOT = { has_character_flag = ghw_pledged_gold }
 				faith.great_holy_war = { is_directed_ghw = no }
 				faith.great_holy_war = { days_until_ghw_launch <= 200 }
+				faith = { save_temporary_scope_as = the_faith }
+				ghw_pope_annoyed_at_lack_of_participation_trigger = yes
+				ghw_pope_annoyed_at_lack_of_participation_tier_trigger = yes
 			}
 			try_create_important_action = {
 				important_action_type = action_ghw_participation_alert
@@ -337,9 +370,47 @@ action_not_endorsed_by_realm_priest = {
 						value <= 0
 					}
 				}
+				any_sub_realm_barony = { #They can actually provide you with levies
+					title_province = { has_building_with_flag = temple }
+				}
 			}
 			try_create_important_action = {
 				important_action_type = action_not_endorsed_by_realm_priest
+				actor = root
+				recipient = root.cp:councillor_court_chaplain
+			}
+		}
+	}
+	effect = {
+		scope:actor.cp:councillor_court_chaplain = {
+			open_view_data = {
+				view = character
+			}
+		}
+	}
+}
+
+action_not_endorsed_by_realm_priest_no_holding = {
+	check_create_action = {
+		if = {
+			limit = {
+				faith = { has_doctrine = doctrine_theocracy_temporal }
+				exists = cp:councillor_court_chaplain
+				cp:councillor_court_chaplain = {
+					is_ai = yes
+					opinion = {
+						target = root
+						value <= 0
+					}
+				}
+				NOT = {
+					any_sub_realm_barony = { #They can't provide you with levies
+						title_province = { has_building_with_flag = temple }
+					}
+				}
+			}
+			try_create_important_action = {
+				important_action_type = action_not_endorsed_by_realm_priest_no_holding
 				actor = root
 				recipient = root.cp:councillor_court_chaplain
 			}
@@ -406,6 +477,103 @@ action_can_use_hook_to_change_contract = {
 			interaction = liege_modify_vassal_contract_interaction
 			actor = scope:actor
 			recipient = scope:recipient
+		}
+	}
+}
+
+action_grant_vassal_to_rightful_liege = {
+	combine_into_one = yes
+	check_create_action = {
+		every_vassal = {
+			limit = {
+				save_temporary_scope_as = vassal_to_transfer
+		
+				is_diplomatically_available = yes
+				highest_held_title_tier > tier_barony
+				NOT = {
+					root = {
+						is_at_war_with = scope:vassal_to_transfer
+					}
+				}
+				NOT = {
+					scope:vassal_to_transfer = {
+						any_vassal_or_below = {
+							is_at_war_with = root
+						}
+					}
+				}
+				NOT = {
+					primary_title.de_jure_liege.holder = liege
+				}
+				liege = {
+					any_vassal = {
+						is_diplomatically_available = yes
+						NOR = {
+							is_at_war_with = root
+							is_at_war_with = scope:vassal_to_transfer
+						}
+						any_held_title = {
+							this = scope:vassal_to_transfer.primary_title.de_jure_liege
+						}
+					}
+				}
+			}
+			try_create_important_action = {
+				important_action_type = action_grant_vassal_to_rightful_liege
+				actor = root
+				recipient = this.primary_title.de_jure_liege.holder
+				secondary_actor = this
+			}
+		}
+		every_vassal = {
+			limit = {
+				save_temporary_scope_as = vassal_to_transfer
+		
+				is_diplomatically_available = yes
+				highest_held_title_tier > tier_barony
+				NOT = {
+					is_at_war_with = root
+				}
+				NOT = {
+					scope:vassal_to_transfer = {
+						any_vassal_or_below = {
+							is_at_war_with = root
+						}
+					}
+				}
+				NOT = {
+					primary_title.de_jure_liege.holder = liege
+				}
+				liege = {
+					any_vassal = {
+						is_diplomatically_available = yes
+						NOT = {
+							is_at_war_with = root
+						}
+						any_vassal = {
+							any_held_title = {
+								this = scope:vassal_to_transfer.primary_title.de_jure_liege
+							}
+						}
+					}
+				}
+			}
+			try_create_important_action = {
+				important_action_type = action_grant_vassal_to_rightful_liege
+				actor = root
+				recipient = this.primary_title.de_jure_liege.holder.liege
+				secondary_actor = this
+			}
+		}
+		
+	}
+
+	effect = {
+		open_interaction_window = {
+			interaction = grant_vassal_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+			secondary_actor = scope:secondary_actor
 		}
 	}
 }

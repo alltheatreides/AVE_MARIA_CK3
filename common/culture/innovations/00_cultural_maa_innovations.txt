@@ -216,7 +216,6 @@ innovation_cataphracts = {
 			this = culture:armenian
 			this = culture:greek
 			this = culture:georgian
-			this = culture:assyrian
 		}
 	}
 
@@ -332,18 +331,6 @@ innovation_compound_bows = {
 			this = culture:tuyuhun
 			this = culture:jurchen
 
-			#Iranian
-			this = culture:persian
-			this = culture:sogdian
-			this = culture:tocharian
-			this = culture:kurdish
-			this = culture:afghan
-			this = culture:baloch
-			this = culture:saka
-			this = culture:daylamite
-			this = culture:khwarezmian
-			this = culture:tajik
-
 			#Mogyer
 			this = culture:mogyer
 			
@@ -386,6 +373,32 @@ innovation_khandayats = {
 	}
 
 	unlock_maa = khandayat
+
+	flag = global_maa
+}
+
+innovation_futuwaa = {
+	group = culture_group_regional
+	culture_era = culture_era_tribal
+	icon = @maa_02
+
+	potential = {
+		OR = {
+			#Iranian
+			this = culture:persian
+			this = culture:sogdian
+			this = culture:tocharian
+			this = culture:kurdish
+			this = culture:afghan
+			this = culture:baloch
+			this = culture:saka
+			this = culture:daylamite
+			this = culture:khwarezmian
+			this = culture:tajik
+		}
+	}
+
+	unlock_maa = ayyar
 
 	flag = global_maa
 }

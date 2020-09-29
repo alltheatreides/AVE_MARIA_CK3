@@ -52,7 +52,6 @@ on_declared_war = {
 				modifier = broke_truce
 				years = 3
 			}
-			custom_tooltip = " "
 		}
 	}
 	if = {
@@ -69,7 +68,6 @@ on_declared_war = {
 				modifier = attacked_ally
 				years = 3
 			}
-			custom_tooltip = " "
 			break_alliance = scope:defender
 		}
 	}
@@ -362,6 +360,18 @@ on_lost_faction_revolt_war = {
 				limit = {
 					is_imprisoned = no
 				}
+				if = {
+					limit = {
+						exists = scope:attacker.joined_faction # Can get destroyed as we loop through
+					}
+					leave_faction_with_cooldown_effect = {
+						FACTION = scope:attacker.joined_faction
+						YEARS = faction_war_defeat_cooldown
+					}
+				}
+				else = {
+					add_faction_cooldown_effect = { YEARS = faction_war_defeat_cooldown }
+				}
 				hard_imprison_character_effect = {
 					TARGET = this
 					IMPRISONER = scope:defender
@@ -379,14 +389,17 @@ on_lost_faction_revolt_war = {
 		war = {
 			every_war_attacker = {
 				limit = {
-					is_imprisoned = no
 					exists = liege
 					liege = scope:defender
 				}
-				hard_imprison_character_effect = {
-					TARGET = this
-					IMPRISONER = scope:defender
+				if = {
+					limit = { is_imprisoned = no }
+					hard_imprison_character_effect = {
+						TARGET = this
+						IMPRISONER = scope:defender
+					}
 				}
+				add_faction_cooldown_effect = { YEARS = faction_war_defeat_cooldown }
 			}
 		}
 	}
@@ -397,21 +410,19 @@ on_lost_request_revolt_war = {
 	war = {
 		every_war_attacker = {
 			limit = {
-				is_imprisoned = no
 				exists = liege
-				liege = scope:defender
+				any_liege_or_above = { this = scope:defender }
 			}
-			hard_imprison_character_effect = {
-				TARGET = this
-				IMPRISONER = scope:defender
+			if = {
+				limit = { is_imprisoned = no }
+				hard_imprison_character_effect = {
+					TARGET = this
+					IMPRISONER = scope:defender
+				}
 			}
-		}
-	}
-	war = {
-		every_war_attacker = {
-			limit = {
-				exists = liege
-				liege = scope:defender
+			if = {
+				limit = { liege = scope:defender }
+				add_faction_cooldown_effect = { YEARS = faction_war_defeat_cooldown }
 			}
 			scope:defender = {
 				add_opinion = {
@@ -427,6 +438,18 @@ on_lost_request_revolt_war = {
 on_white_peace_faction_revolt_war = {
 	scope:attacker.joined_faction = {
 		every_faction_member = {
+			if = {
+				limit = {
+					exists = scope:attacker.joined_faction # Can get destroyed as we loop through
+				}
+				leave_faction_with_cooldown_effect = {
+					FACTION = scope:attacker.joined_faction
+					YEARS = faction_war_white_peace_cooldown
+				}
+			}
+			else = {
+				add_faction_cooldown_effect = { YEARS = faction_war_white_peace_cooldown }
+			}
 			scope:defender = {
 				add_opinion = {
 					target = prev
@@ -443,13 +466,17 @@ on_white_peace_request_revolt_war = {
 		every_war_attacker = {
 			limit = {
 				exists = liege
-				liege = scope:defender
+				any_liege_or_above = { this = scope:defender }
 			}
 			scope:defender = {
 				add_opinion = {
 					target = prev
 					modifier = vassal_lost_or_wp_faction_revolt_war
 				}
+			}
+			if = {
+				limit = { liege = scope:defender }
+				add_faction_cooldown_effect = { YEARS = faction_war_white_peace_cooldown }
 			}
 		}
 	}
@@ -483,11 +510,10 @@ change_liege_or_become_independent = {
 }
 
 on_peasant_faction_war_win_common = {
-	create_title_and_vassal_change = change
-
-	scope:change = {
-		set_title_and_vassal_change_type = conquest
-		set_add_claim_on_loss = yes
+	create_title_and_vassal_change = {
+		type = conquest
+		save_scope_as = change
+		add_claim_on_loss = yes
 	}
 
 	setup_claim_cb = {
@@ -536,15 +562,27 @@ on_claimant_faction_war_win_common = {
 	}
 
 	# Give the claimant their new title.
-	create_title_and_vassal_change = change
+	create_title_and_vassal_change = {
+		type = faction_demand
+		save_scope_as = change
+		add_claim_on_loss = yes
+	}
 
-	scope:change = {
-		set_title_and_vassal_change_type = faction_demand
-		set_add_claim_on_loss = yes
+	every_in_list = {
+		list = $TARGET_TITLES$
+		add_to_list = faction_titles
+	}
+	$ATTACKER$.joined_faction = {
+		every_faction_county_member = {
+			limit = {
+				NOT = { is_in_list = faction_titles }
+			}
+			add_to_list = faction_titles
+		}
 	}
 
 	setup_claim_cb = {
-		titles = $TARGET_TITLES$
+		titles = faction_titles
 		attacker = $ATTACKER$
 		defender = $DEFENDER$
 		claimant = $CLAIMANT$
@@ -858,7 +896,7 @@ force_truce_GHW_defenders_effect = {
 notify_players_about_neighboring_war_resolution_effect = {
 	every_player = {
 		limit = {
-			NOT = { is_participant_in_war = scope:this_war}
+			NOT = { is_participant_in_war = scope:war}
 		}
 		save_scope_as = this_player
 
@@ -870,7 +908,7 @@ notify_players_about_neighboring_war_resolution_effect = {
 				# Only notify about revolts if rebels win
 				trigger_if = {
 					limit = {
-						scope:this_war = {
+						scope:war = {
 							OR = {
 								using_cb = peasant_war
 								using_cb = independence_faction_war
@@ -918,7 +956,7 @@ notify_players_about_neighboring_war_resolution_effect = {
 				# Only notify about revolts if rebels win
 				trigger_if = {
 					limit = {
-						scope:this_war = {
+						scope:war = {
 							OR = {
 								using_cb = peasant_war
 								using_cb = independence_faction_war

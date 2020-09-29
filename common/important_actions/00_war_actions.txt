@@ -3,41 +3,46 @@
 action_has_any_display_cb_on = {
 	combine_into_one = yes
 	check_create_action = {
-		every_neighboring_and_across_water_top_liege_realm_owner = {
-			limit = {
-				save_temporary_scope_as = this_ruler
-				root = {
-					has_any_cb_on = scope:this_ruler
-					NOR = {
-						is_allied_to = scope:this_ruler
-						has_truce = scope:this_ruler
-					}
-				}	
-			}
-			try_create_important_action = {
-				important_action_type = action_has_any_display_cb_on
-				actor = root
-				recipient = this
-			}
-		}
 		if = {
-			limit = { is_independent_ruler = no }
-			liege = {
-				every_vassal = {
-					limit = {
-						save_temporary_scope_as = this_ruler
-						root = {
-							has_any_cb_on = scope:this_ruler
-							NOR = {
-								is_allied_to = scope:this_ruler
-								has_truce = scope:this_ruler
-							}
-						}	
-					}
-					try_create_important_action = {
-						important_action_type = action_has_any_display_cb_on
-						actor = root
-						recipient = this
+			limit = {
+				gold >= 0
+			}
+			every_neighboring_and_across_water_top_liege_realm_owner = {
+				limit = {
+					save_temporary_scope_as = this_ruler
+					root = {
+						has_any_cb_on = scope:this_ruler
+						NOR = {
+							is_allied_to = scope:this_ruler
+							has_truce = scope:this_ruler
+						}
+					}	
+				}
+				try_create_important_action = {
+					important_action_type = action_has_any_display_cb_on
+					actor = root
+					recipient = this
+				}
+			}
+			if = {
+				limit = { is_independent_ruler = no }
+				liege = {
+					every_vassal = {
+						limit = {
+							save_temporary_scope_as = this_ruler
+							root = {
+								has_any_cb_on = scope:this_ruler
+								NOR = {
+									is_allied_to = scope:this_ruler
+									has_truce = scope:this_ruler
+								}
+							}	
+						}
+						try_create_important_action = {
+							important_action_type = action_has_any_display_cb_on
+							actor = root
+							recipient = this
+						}
 					}
 				}
 			}
@@ -167,7 +172,7 @@ action_not_enough_knights = {
 	check_create_action = {
 		if = {
 			limit = {
-				max_number_of_knights != root.number_of_knights
+				max_number_of_knights > root.number_of_knights
 			}
 			try_create_important_action = {
 				important_action_type = action_not_enough_knights

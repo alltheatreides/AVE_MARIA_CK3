@@ -101,6 +101,7 @@ unite_the_southern_slavs_decision = {
 	is_shown = {
 		has_culture_group = culture_group:south_slavic_group
 		NOT = {
+			has_culture = culture:vlach # Not technically Slavic despite being in the South Slavic group.
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:unite_the_southern_slavs_decision
@@ -184,7 +185,8 @@ unite_the_slavs_decision = {
 			has_culture_group = culture_group:east_slavic_group
 			has_culture_group = culture_group:south_slavic_group
 		}
-		NOT = {
+		NOR = {
+			has_culture = culture:vlach # Not technically Slavic despite being in the South Slavic group.
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:unite_the_slavs_decision
@@ -199,26 +201,6 @@ unite_the_slavs_decision = {
 			has_culture_group = culture_group:south_slavic_group
 		}
 		completely_controls_region = custom_slavia
-		OR = {
-			has_primary_title = title:e_russia
-			has_primary_title = title:e_wendish_empire
-			has_primary_title = title:e_carpathia
-			has_primary_title = title:k_poland
-			has_primary_title = title:k_pomerania
-			has_primary_title = title:k_bohemia
-			has_primary_title = title:k_moravia
-			has_primary_title = title:k_croatia
-			has_primary_title = title:k_serbia
-			has_primary_title = title:k_bulgaria
-			has_primary_title = title:k_dacia
-			has_primary_title = title:k_moldavia
-			has_primary_title = title:k_white_rus
-			has_primary_title = title:k_galicia-volhynia
-			has_primary_title = title:k_ruthenia
-			has_primary_title = title:k_novgorod
-			has_primary_title = title:k_permia
-			has_primary_title = title:k_hungary
-		}
 	}
 
 	effect = {
@@ -425,6 +407,7 @@ promote_hungarian_settlement_decision = {
 	is_shown = {
 		is_ruler = yes
 		is_landed = yes
+		game_start_date < 1066.1.1
 		culture_group = culture_group:magyar_group
 		NOT = {  #Can only do it once.
 			is_target_in_global_variable_list = {
@@ -505,7 +488,10 @@ promote_hungarian_settlement_decision = {
 	}
 }
 
-#Hungary: a-historical return to paganism.
+#########################################
+# Return to Magyar Paganism				#
+# by Flavio Verna & Ewan Cowhig Croft	#
+#########################################
 revive_magyar_paganism_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_major_religion.dds"
 
@@ -515,52 +501,60 @@ revive_magyar_paganism_decision = {
 	ai_check_interval = 0
 
 	is_shown = {
-		is_ruler = yes
 		is_landed = yes
+		#Must be some flavour of Magyar.
 		culture_group = culture_group:magyar_group
-		NOT = { culture = { has_cultural_era_or_later = culture_era_high_medieval } } #Should be done early.
-		NOT = {  #Can only do it once.
+		NOR = {
+			#Should be done early.
+			culture = { has_cultural_era_or_later = culture_era_high_medieval }
+			#Can only do it once.
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_revived_magyar_paganism
 			}
 		}
-		NOT = {  #Can only do either or.
-			is_target_in_global_variable_list = {
-				name = unavailable_unique_decisions
-				target = flag:flag_promoted_hungarian_settlement
+		#Must be the ruler of the Carpathian Basin.
+		any_sub_realm_county = {
+			title_province = { geographical_region = custom_hungary }
+		}
+		#Must be feudalised.
+		has_government = feudal_government
+		#Must be something other than pagan.
+		NOT = {
+			faith.religion = { is_in_family = rf_pagan }
+		}
+		#Magyar Paganism must not have been reformed.
+		religion:magyar_religion = {
+			any_faith = {
+				count = all
+				has_doctrine = unreformed_faith_doctrine
 			}
 		}
-		OR = {
-			has_title = title:k_hungary
-			has_title = title:e_carpathia
-			liege = { has_title = title:k_hungary }
-			liege = { has_title = title:e_carpathia }
-		}
-		has_government = feudal_government
-		#Christian reverting back to roots.
-		faith.religion = faith:catholic.religion
 	}
 	
 	is_valid = {
-		piety_level >= 3
-		piety >= 2000
-		capital_province = { culture_group = culture_group:magyar_group }
-		#Must control core provinces:
-		completely_controls = title:d_visegrad
-		completely_controls = title:d_nyitra
-		completely_controls = title:d_ungvar
-		completely_controls = title:d_transcarpathia
-		completely_controls = title:d_bihar
-		completely_controls = title:d_somogy
-		completely_controls = title:d_gyor
-		completely_controls = title:d_transylvania
-		completely_controls = title:d_bacs
-		completely_controls = title:d_temes
-		completely_controls = title:d_syrmia
-		#Must have basic innovation:
-		root.culture = {
-			has_innovation = innovation_royal_prerogative
+		#Must be suitably prestigious.
+		prestige_level >= high_prestige_level
+		#Either you hold k_hungary directly, or your vassal does.
+		OR = {
+			has_title = title:k_hungary
+			AND = {
+				has_title = title:e_carpathia
+				any_vassal = { has_title = title:k_hungary }
+			}
+		}
+		#Must control at least 80% of de jure Hungary (usually we'd use a region, but if Hungary has shrunk/grown for some reason, the people and title are more important than the actual area).
+		any_realm_county = {
+			count >= 30
+			culture_group = culture_group:magyar_group
+		}
+		#Must have at least CA4.
+		has_realm_law = crown_authority_3
+		#Must be a noted scholar of theology (and thus filled out the entire Theologian tree).
+		has_trait = theologian
+		#Should be done early: reiterate this here so the player isn't surprised by losing the decision when shifting up an era.
+		NOT = {
+			culture = { has_cultural_era_or_later = culture_era_high_medieval }
 		}
 	}
 
@@ -568,6 +562,7 @@ revive_magyar_paganism_decision = {
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_at_war = no
+		is_independent_ruler = yes
 	}
 
 	cost = {
@@ -575,12 +570,9 @@ revive_magyar_paganism_decision = {
 	}
 
 	effect = {
-		show_as_tooltip = {
-			revive_magyar_paganism_decision_scripted_effect = yes
-		}
-		trigger_event = {
-			id = east_europe.0032
-		}
+		custom_tooltip = revive_magyar_paganism_decision.adjust_the_faith.tt
+		show_as_tooltip = { revive_magyar_paganism_decision_scripted_effect = yes }
+		trigger_event = { id = east_europe.0032 }
 		hidden_effect = {
 			add_to_global_variable_list = {
 				name = unavailable_unique_decisions
@@ -793,12 +785,12 @@ accuse_krstjani_of_heresy_decision = {
 		#Weight up for zealous characters.
 		modifier = {
 			add = 25
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		#Ironically, weight up for cynical characters: they stand to gain the most.
 		modifier = {
 			add = 15
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		#Mildly weight up crusaders, who would be more likely to see/look for heresy.
 		modifier = {

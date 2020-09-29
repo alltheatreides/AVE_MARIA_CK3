@@ -72,10 +72,10 @@ norman_conquest_cb = {
 	
 	on_victory = {
 		# Set land acquisition type to conquest.
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 		
 		# Transfer landed titles to the attacker.
@@ -471,10 +471,10 @@ norwegian_invasion_cb = {
 		custom_tooltip = norwegian_invasion_cb_victory_with_tostig_desc
 		# Set land acquisition type to conquest.
 		hidden_effect = {
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = conquest
-				set_add_claim_on_loss = yes
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
 			}
 			
 			# Transfer landed titles to the attacker.
@@ -624,10 +624,10 @@ norwegian_invasion_cb = {
 
 				#Adjust titles.
 				hidden_effect = {
-					create_title_and_vassal_change = change
-					scope:change = {
-						set_title_and_vassal_change_type = granted
-						set_add_claim_on_loss = no
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = no
 					}
 					every_in_list = {
 						list = tostig_reward_titles
@@ -667,10 +667,10 @@ norwegian_invasion_cb = {
 				}
 				scope:free_william = {
 					#De-vassalise him.
-					create_title_and_vassal_change = change
-					scope:change = {
-						set_title_and_vassal_change_type = independency
-						set_add_claim_on_loss = no
+					create_title_and_vassal_change = {
+						type = independency
+						save_scope_as = change
+						add_claim_on_loss = no
 					}
 					becomes_independent = { change = scope:change }
 					resolve_title_and_vassal_change = scope:change
@@ -692,7 +692,11 @@ norwegian_invasion_cb = {
 			#And give him Maine & Sable too.
 			if = {
 				limit = { title:c_maine.holder.liege = scope:attacker }
-				create_title_and_vassal_change = change
+				create_title_and_vassal_change = {
+					type = revoked
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
 				title:c_maine.holder = {
 					change_liege = {
 						liege = scope:free_william
@@ -706,7 +710,11 @@ norwegian_invasion_cb = {
 					NOT = { title:c_sable.holder = title:c_maine.holder }
 					title:c_sable.holder.liege = scope:attacker
 				}
-				create_title_and_vassal_change = change
+				create_title_and_vassal_change = {
+					type = revoked
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
 				title:c_sable.holder = {
 					change_liege = {
 						liege = scope:free_william
@@ -975,10 +983,10 @@ sons_of_lothbrok_invasion_cb = {
 	}
 
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 
 		# go through the dejure hierarchy under target titles, transfer titles with same or worse tolerance holders (their religion equaly or less tolerated than the defender's),
@@ -1224,7 +1232,8 @@ hungarian_migration_cb = {
 	group = invasion	#Switching this to event will render the CB invisible.
 
 	allowed_for_character = {
-		has_character_flag = undertaking_hungarian_migration
+		culture = culture:mogyer
+		faith = { has_doctrine = unreformed_faith_doctrine }
 	}
 
 	allowed_against_character = {
@@ -1257,6 +1266,8 @@ hungarian_migration_cb = {
 	valid_to_start = {
 		#May only target Hungary.
 		scope:target = title:k_hungary
+		#Must have taken the appropriate decision.
+		has_character_flag = undertaking_hungarian_migration
 	}
 
 	should_invalidate = {
@@ -1276,15 +1287,18 @@ hungarian_migration_cb = {
 	}
 
 	on_invalidated = {
-		scope:attacker = {
-			if = {
-				limit = {
-					culture = culture:mogyer
-					faith = { has_doctrine = unreformed_faith_doctrine }
+		if = {
+			limit = { exists = scope:attacker.player_heir }
+			scope:attacker.player_heir = {
+				if = {
+					limit = {
+						culture = culture:mogyer
+						faith = { has_doctrine = unreformed_faith_doctrine }
+					}
 				}
+				#Give scope:attacker back their ability to declare a migration in the event of invalidation.
+				add_character_flag = undertaking_hungarian_migration
 			}
-			#Give scope:attacker back their ability to declare a migration in the event of invalidation.
-			add_character_flag = undertaking_hungarian_migration
 		}
 	}
 
@@ -1392,9 +1406,10 @@ hungarian_migration_cb = {
 			limit = {
 				scope:attacker = { is_independent_ruler = no }
 			}
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = independency
+			create_title_and_vassal_change = {
+				type = independency
+				save_scope_as = change
+				add_claim_on_loss = no
 			}
 			change_liege_or_become_independent = {
 				CHANGE = scope:change
@@ -1405,10 +1420,10 @@ hungarian_migration_cb = {
 
 		#Take lands within Pannonia.
 		hidden_effect = {
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = conquest
-				set_add_claim_on_loss = yes
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
 			}
 			setup_invasion_cb = {
 				titles = target_titles
@@ -1597,6 +1612,7 @@ hungarian_migration_cb = {
 	
 	on_primary_attacker_death = inherit
 	on_primary_defender_death = inherit
+	transfer_behavior = transfer
 	
 	attacker_allies_inherit = yes
 	defender_allies_inherit = yes

@@ -334,6 +334,7 @@ reclusive_damage_relationships_effect = {
 		limit = {
 			exists = scope:lost_friend
 			scope:lost_friend = { is_alive = yes }
+			has_relation_friend = scope:lost_friend
 		}
 		remove_relation_friend = scope:lost_friend
 		add_stress = medium_stress_impact_loss
@@ -342,14 +343,16 @@ reclusive_damage_relationships_effect = {
 		limit = {
 			exists = scope:lost_lover
 			scope:lost_lover = { is_alive = yes }
+			has_relation_lover = scope:lost_lover
 		}
-		remove_relation_friend = scope:lost_lover
+		remove_relation_lover = scope:lost_lover
 		add_stress = medium_stress_impact_loss
 	}
 	else_if = {
 		limit = {
 			exists = scope:neglected_spouse
 			scope:neglected_spouse = { is_alive = yes }
+			any_consort = { this = scope:neglected_spouse }
 		}
 		scope:neglected_spouse = {
 			add_opinion = {
@@ -467,121 +470,121 @@ stress_replace_personality_trait_with_opposite_effect = {
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:greedy
-			has_trait = am_generous
+			has_trait = generous
 		}
-		remove_trait = am_generous
+		remove_trait = generous
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:generous
-			has_trait = am_greedy
+			has_trait = greedy
 		}
-		remove_trait = am_greedy
+		remove_trait = greedy
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:lazy
-			has_trait = am_diligent
+			has_trait = diligent
 		}
-		remove_trait = am_diligent
+		remove_trait = diligent
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:diligent
-			has_trait = am_lazy
+			has_trait = lazy
 		}
-		remove_trait = am_lazy
+		remove_trait = lazy
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:wrathful
-			has_trait = am_patient
+			has_trait = calm
 		}
-		remove_trait = am_patient
+		remove_trait = calm
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:calm
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
-		remove_trait = am_wroth
+		remove_trait = wrathful
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:patient
-			has_trait = am_illtempered
+			has_trait = impatient
 		}
-		remove_trait = am_illtempered
+		remove_trait = impatient
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:impatient
-			has_trait = am_patient
+			has_trait = patient
 		}
-		remove_trait = am_patient
+		remove_trait = patient
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:arrogant
-			has_trait = am_humble
+			has_trait = humble
 		}
-		remove_trait = am_humble
+		remove_trait = humble
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:humble
-			has_trait = am_pretentious
+			has_trait = arrogant
 		}
-		remove_trait = am_pretentious
+		remove_trait = arrogant
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:deceitful
-			has_trait = am_honest
+			has_trait = honest
 		}
-		remove_trait = am_honest
+		remove_trait = honest
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:honest
-			has_trait = am_deceitful
+			has_trait = deceitful
 		}
-		remove_trait = am_deceitful
+		remove_trait = deceitful
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:craven
-			has_trait = am_brave
+			has_trait = brave
 		}
-		remove_trait = am_brave
+		remove_trait = brave
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:brave
-			has_trait = am_craven
+			has_trait = craven
 		}
-		remove_trait = am_craven
+		remove_trait = craven
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:shy
-			has_trait = am_outgoing
+			has_trait = gregarious
 		}
-		remove_trait = am_outgoing
+		remove_trait = gregarious
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:gregarious
-			has_trait = am_withdrawn
+			has_trait = shy
 		}
-		remove_trait = am_withdrawn
+		remove_trait = shy
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:ambitious
-			has_trait = am_conventional
+			has_trait = content
 		}
-		remove_trait = am_conventional
+		remove_trait = content
 	}
 	else_if = {
 		limit = {
@@ -593,97 +596,97 @@ stress_replace_personality_trait_with_opposite_effect = {
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:arbitrary
-			has_trait = am_faithful
+			has_trait = just
 		}
-		remove_trait = am_faithful
+		remove_trait = just
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:just
-			has_trait = am_inconstant
+			has_trait = arbitrary
 		}
-		remove_trait = am_inconstant
+		remove_trait = arbitrary
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:cynical
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
-		remove_trait = am_intolerant
+		remove_trait = zealous
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:zealous
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
-		remove_trait = am_hypocritical
+		remove_trait = cynical
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:paranoid
-			has_trait = am_mild
+			has_trait = trusting
 		}
-		remove_trait = am_mild
+		remove_trait = trusting
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:trusting
-			has_trait = am_fearful
+			has_trait = paranoid
 		}
-		remove_trait = am_fearful
+		remove_trait = paranoid
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:compassionate
 			OR = {
-				has_trait = am_deceitful
+				has_trait = callous
 				has_trait = sadistic
 			}	
 		}
-		remove_trait = am_deceitful
+		remove_trait = callous
 		remove_trait = sadistic
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:callous
-			has_trait = am_tolerant
+			has_trait = compassionate
 		}
-		remove_trait = am_tolerant
+		remove_trait = compassionate
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:sadistic
-			has_trait = am_tolerant
+			has_trait = compassionate
 		}
-		remove_trait = am_tolerant
+		remove_trait = compassionate
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:stubborn
-			has_trait = am_inconstant
+			has_trait = fickle
 		}
-		remove_trait = am_inconstant
+		remove_trait = fickle
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:fickle
-			has_trait = am_stubborn
+			has_trait = stubborn
 		}
-		remove_trait = am_stubborn
+		remove_trait = stubborn
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:vengeful
-			has_trait = am_tolerant
+			has_trait = forgiving
 		}
-		remove_trait = am_tolerant
+		remove_trait = forgiving
 	}
 	else_if = {
 		limit = {
 			flag:$TRAIT$ = flag:forgiving
-			has_trait = am_quarrelsome
+			has_trait = vengeful
 		}
-		remove_trait = am_quarrelsome
+		remove_trait = vengeful
 	}
 	else = {
 		if = {
@@ -702,80 +705,80 @@ stress_replace_personality_trait_with_opposite_effect = {
 # Removes one personality trait from a character, ordered based on what makes more sense for a character to lose while in prison.
 stress_prison_remove_ordered_personality_trait_effect = {
 	if = {
-		limit = { has_trait = am_tolerant }
-		remove_trait = am_tolerant
+		limit = { has_trait = forgiving }
+		remove_trait = forgiving
 	}
 	else_if = {
-		limit = { has_trait = am_mild }
-		remove_trait = am_mild
+		limit = { has_trait = trusting }
+		remove_trait = trusting
 	}
 	else_if = {
 		limit = { has_trait = lustful }
 		remove_trait = lustful
 	}
 	else_if = {
-		limit = { has_trait = am_pretentious }
-		remove_trait = am_pretentious
+		limit = { has_trait = arrogant }
+		remove_trait = arrogant
 	}
 	else_if = {
-		limit = { has_trait = am_outgoing }
-		remove_trait = am_outgoing
+		limit = { has_trait = gregarious }
+		remove_trait = gregarious
 	}
 	else_if = {
 		limit = { has_trait = ambitious }
 		remove_trait = ambitious
 	}
 	else_if = {
-		limit = { has_trait = am_illtempered }
-		remove_trait = am_illtempered
+		limit = { has_trait = impatient }
+		remove_trait = impatient
 	}
 	else_if = {
-		limit = { has_trait = am_diligent }
-		remove_trait = am_diligent
+		limit = { has_trait = diligent }
+		remove_trait = diligent
 	}
 	else_if = {
 		limit = { has_trait = temperate }
 		remove_trait = temperate
 	}
 	else_if = {
-		limit = { has_trait = am_generous }
-		remove_trait = am_generous
+		limit = { has_trait = generous }
+		remove_trait = generous
 	}
 	else_if = {
-		limit = { has_trait = am_tolerant }
-		remove_trait = am_tolerant
+		limit = { has_trait = compassionate }
+		remove_trait = compassionate
 	}
 	else_if = {
-		limit = { has_trait = am_intolerant }
-		remove_trait = am_intolerant
+		limit = { has_trait = zealous }
+		remove_trait = zealous
 	}
 	else_if = {
-		limit = { has_trait = am_brave }
-		remove_trait = am_brave
+		limit = { has_trait = brave }
+		remove_trait = brave
 	}
 	else_if = {
-		limit = { has_trait = am_patient }
-		remove_trait = am_patient
+		limit = { has_trait = calm }
+		remove_trait = calm
 	}
 	else_if = {
-		limit = { has_trait = am_faithful }
-		remove_trait = am_faithful
+		limit = { has_trait = just }
+		remove_trait = just
 	}
 	else_if = {
-		limit = { has_trait = am_inconstant }
-		remove_trait = am_inconstant
+		limit = { has_trait = fickle }
+		remove_trait = fickle
 	}
 	else_if = {
-		limit = { has_trait = am_stubborn }
-		remove_trait = am_stubborn
+		limit = { has_trait = stubborn }
+		remove_trait = stubborn
 	}
 	else_if = {
-		limit = { has_trait = am_conventional }
-		remove_trait = am_conventional
+		limit = { has_trait = content }
+		remove_trait = content
 	}
 	else_if = {
-		limit = { has_trait = am_honest }
-		remove_trait = am_honest
+		limit = { has_trait = honest }
+		remove_trait = honest
 	}
 	else_if = {
 		limit = { has_trait = gluttonous }
@@ -786,60 +789,60 @@ stress_prison_remove_ordered_personality_trait_effect = {
 		remove_trait = chaste
 	}
 	else_if = {
-		limit = { has_trait = am_greedy }
-		remove_trait = am_greedy
+		limit = { has_trait = greedy }
+		remove_trait = greedy
 	}
 	else_if = {
-		limit = { has_trait = am_deceitful }
-		remove_trait = am_deceitful
+		limit = { has_trait = deceitful }
+		remove_trait = deceitful
 	}
 	else_if = {
-		limit = { has_trait = am_hypocritical }
-		remove_trait = am_hypocritical
+		limit = { has_trait = cynical }
+		remove_trait = cynical
 	}
 	else_if = {
-		limit = { has_trait = am_withdrawn }
-		remove_trait = am_withdrawn
+		limit = { has_trait = shy }
+		remove_trait = shy
 	}
 	else_if = {
-		limit = { has_trait = am_lazy }
-		remove_trait = am_lazy
+		limit = { has_trait = lazy }
+		remove_trait = lazy
 	}
 	else_if = {
-		limit = { has_trait = am_patient }
-		remove_trait = am_patient
+		limit = { has_trait = patient }
+		remove_trait = patient
 	}
 	else_if = {
-		limit = { has_trait = am_inconstant }
-		remove_trait = am_inconstant
+		limit = { has_trait = arbitrary }
+		remove_trait = arbitrary
 	}
 	else_if = {
-		limit = { has_trait = am_humble }
-		remove_trait = am_humble
+		limit = { has_trait = humble }
+		remove_trait = humble
 	}
 	else_if = {
-		limit = { has_trait = am_wroth }
-		remove_trait = am_wroth
+		limit = { has_trait = wrathful }
+		remove_trait = wrathful
 	}
 	else_if = {
 		limit = { has_trait = sadistic }
 		remove_trait = sadistic
 	}
 	else_if = {
-		limit = { has_trait = am_deceitful }
-		remove_trait = am_deceitful
+		limit = { has_trait = callous }
+		remove_trait = callous
 	}
 	else_if = {
-		limit = { has_trait = am_quarrelsome }
-		remove_trait = am_quarrelsome
+		limit = { has_trait = vengeful }
+		remove_trait = vengeful
 	}
 	else_if = {
-		limit = { has_trait = am_fearful }
-		remove_trait = am_fearful
+		limit = { has_trait = paranoid }
+		remove_trait = paranoid
 	}
 	else_if = {
-		limit = { has_trait = am_craven }
-		remove_trait = am_craven
+		limit = { has_trait = craven }
+		remove_trait = craven
 	}
 }
 
@@ -850,76 +853,76 @@ stress_unimprisoned_remove_ordered_personality_trait_effect = {
 		remove_trait = ambitious
 	}
 	else_if = {
-		limit = { has_trait = am_faithful }
-		remove_trait = am_faithful
+		limit = { has_trait = just }
+		remove_trait = just
 	}
 	else_if = {
-		limit = { has_trait = am_brave }
-		remove_trait = am_brave
+		limit = { has_trait = brave }
+		remove_trait = brave
 	}
 	else_if = {
-		limit = { has_trait = am_diligent }
-		remove_trait = am_diligent
+		limit = { has_trait = diligent }
+		remove_trait = diligent
 	}
 	else_if = {
-		limit = { has_trait = am_outgoing }
-		remove_trait = am_outgoing
+		limit = { has_trait = gregarious }
+		remove_trait = gregarious
 	}
 	else_if = {
-		limit = { has_trait = am_intolerant }
-		remove_trait = am_intolerant
+		limit = { has_trait = zealous }
+		remove_trait = zealous
 	}
 	else_if = {
-		limit = { has_trait = am_patient }
-		remove_trait = am_patient
+		limit = { has_trait = calm }
+		remove_trait = calm
 	}
 	else_if = {
 		limit = { has_trait = temperate }
 		remove_trait = temperate
 	}
 	else_if = {
-		limit = { has_trait = am_generous }
-		remove_trait = am_generous
+		limit = { has_trait = generous }
+		remove_trait = generous
 	}
 	else_if = {
-		limit = { has_trait = am_tolerant }
-		remove_trait = am_tolerant
+		limit = { has_trait = compassionate }
+		remove_trait = compassionate
 	}
 	else_if = {
-		limit = { has_trait = am_tolerant }
-		remove_trait = am_tolerant
+		limit = { has_trait = forgiving }
+		remove_trait = forgiving
 	}
 	else_if = {
-		limit = { has_trait = am_honest }
-		remove_trait = am_honest
+		limit = { has_trait = honest }
+		remove_trait = honest
 	}
 	else_if = {
-		limit = { has_trait = am_conventional }
-		remove_trait = am_conventional
+		limit = { has_trait = content }
+		remove_trait = content
 	}
 	else_if = {
-		limit = { has_trait = am_patient }
-		remove_trait = am_patient
+		limit = { has_trait = patient }
+		remove_trait = patient
 	}
 	else_if = {
-		limit = { has_trait = am_mild }
-		remove_trait = am_mild
+		limit = { has_trait = trusting }
+		remove_trait = trusting
 	}
 	else_if = {
-		limit = { has_trait = am_pretentious }
-		remove_trait = am_pretentious
+		limit = { has_trait = arrogant }
+		remove_trait = arrogant
 	}
 	else_if = {
-		limit = { has_trait = am_illtempered }
-		remove_trait = am_illtempered
+		limit = { has_trait = impatient }
+		remove_trait = impatient
 	}
 	else_if = {
-		limit = { has_trait = am_stubborn }
-		remove_trait = am_stubborn
+		limit = { has_trait = stubborn }
+		remove_trait = stubborn
 	}
 	else_if = {
-		limit = { has_trait = am_inconstant }
-		remove_trait = am_inconstant
+		limit = { has_trait = fickle }
+		remove_trait = fickle
 	}
 	else_if = {
 		limit = { has_trait = lustful }
@@ -930,60 +933,60 @@ stress_unimprisoned_remove_ordered_personality_trait_effect = {
 		remove_trait = gluttonous
 	}
 	else_if = {
-		limit = { has_trait = am_greedy }
-		remove_trait = am_greedy
+		limit = { has_trait = greedy }
+		remove_trait = greedy
 	}
 	else_if = {
 		limit = { has_trait = chaste }
 		remove_trait = chaste
 	}
 	else_if = {
-		limit = { has_trait = am_withdrawn }
-		remove_trait = am_withdrawn
+		limit = { has_trait = shy }
+		remove_trait = shy
 	}
 	else_if = {
-		limit = { has_trait = am_deceitful }
-		remove_trait = am_deceitful
+		limit = { has_trait = deceitful }
+		remove_trait = deceitful
 	}
 	else_if = {
-		limit = { has_trait = am_hypocritical }
-		remove_trait = am_hypocritical
+		limit = { has_trait = cynical }
+		remove_trait = cynical
 	}
 	else_if = {
-		limit = { has_trait = am_lazy }
-		remove_trait = am_lazy
+		limit = { has_trait = lazy }
+		remove_trait = lazy
 	}
 	else_if = {
-		limit = { has_trait = am_humble }
-		remove_trait = am_humble
+		limit = { has_trait = humble }
+		remove_trait = humble
 	}
 	else_if = {
-		limit = { has_trait = am_wroth }
-		remove_trait = am_wroth
+		limit = { has_trait = wrathful }
+		remove_trait = wrathful
 	}
 	else_if = {
-		limit = { has_trait = am_deceitful }
-		remove_trait = am_deceitful
+		limit = { has_trait = callous }
+		remove_trait = callous
 	}
 	else_if = {
-		limit = { has_trait = am_quarrelsome }
-		remove_trait = am_quarrelsome
+		limit = { has_trait = vengeful }
+		remove_trait = vengeful
 	}
 	else_if = {
 		limit = { has_trait = sadistic }
 		remove_trait = sadistic
 	}
 	else_if = {
-		limit = { has_trait = am_inconstant }
-		remove_trait = am_inconstant
+		limit = { has_trait = arbitrary }
+		remove_trait = arbitrary
 	}
 	else_if = {
-		limit = { has_trait = am_fearful }
-		remove_trait = am_fearful
+		limit = { has_trait = paranoid }
+		remove_trait = paranoid
 	}
 	else_if = {
-		limit = { has_trait = am_craven }
-		remove_trait = am_craven
+		limit = { has_trait = craven }
+		remove_trait = craven
 	}
 }
 

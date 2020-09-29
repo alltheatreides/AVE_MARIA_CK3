@@ -78,9 +78,37 @@ viking_conquest_ai_score_value = {
 			}
 			multiply = 0.2
 		}
+		if = { # Russian Vikings stay home
+			limit = {
+				scope:attacker = {
+					capital_province = {
+						geographical_region = world_europe_east
+					}
+					NOT = {
+						character_is_realm_neighbor = scope:defender
+					}
+				}
+			}
+			multiply = 0.1
+		}
 		if = { # Norsemen should prefer their historical targets
 			limit = {
-				scope:attacker.faith.religion = faith:norse_pagan.religion
+				scope:attacker = {
+					OR = {
+						capital_province = {
+							geographical_region = world_europe_north
+						}
+						capital_province = {
+							geographical_region = world_europe_west
+						}
+						capital_province = {
+							geographical_region = world_europe_west_francia
+						}
+						capital_province = {
+							geographical_region = world_europe_west_germania
+						}
+					}
+				}
 				scope:defender = {
 					OR = {
 						capital_province = {

@@ -28,7 +28,7 @@
 	culture = "bulgarian"
 	trait = craven
 	trait = deceitful
-	trait = wroth
+	trait = wrathful
 	trait = education_intrigue_2
 	father = 722
 	1012.1.1 = {
@@ -93,7 +93,7 @@
 	culture = "bulgarian"
 	trait = diligent
 	trait = brave
-	trait = pretentious
+	trait = arrogant
 	trait = education_diplomacy_3
 	father = 217503
 	1160.1.1 = {
@@ -116,7 +116,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = honest
-	trait = patient
+	trait = calm
 	trait = humble
 	trait = education_learning_2
 	father = 217503
@@ -166,7 +166,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = hypocritical
+	trait = cynical
 	trait = education_martial_3
 	1120.1.1 = {
 		birth = "1120.1.1"
@@ -187,7 +187,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = temperate
-	trait = inconstant
+	trait = arbitrary
 	trait = education_intrigue_1
 	father = 217503
 	1165.1.1 = {
@@ -207,7 +207,7 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = inconstant
+	trait = arbitrary
 	trait = education_stewardship_2
 	father = 215004
 	mother = 217504
@@ -847,7 +847,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = intolerant
+	trait = zealous
 	trait = generous
 	trait = education_stewardship_2
 	father = 467505
@@ -895,7 +895,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = inconstant
+	trait = arbitrary
 	trait = education_learning_3
 	father = 467505
 	mother = 467506
@@ -1004,8 +1004,8 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = generous
-	trait = pretentious
-	trait = patient
+	trait = arrogant
+	trait = calm
 	trait = education_martial_3
 	father = 467508
 	1281.1.2 = {
@@ -1088,7 +1088,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = patient
+	trait = calm
 	trait = temperate
 	trait = education_martial_2
 	father = 467500
@@ -1134,9 +1134,9 @@
 	culture = "bulgarian"
 	trait = diligent
 	trait = honest
-	trait = honest
-	trait = intolerant
-	trait = patient
+	trait = just
+	trait = zealous
+	trait = calm
 	trait = education_learning_2
 	father = 467508
 	1280.1.2 = {
@@ -1271,7 +1271,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = patient
+	trait = calm
 	trait = stuttering
 	trait = education_intrigue_2
 	father = 467530
@@ -1293,7 +1293,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = wroth
+	trait = wrathful
 	trait = education_diplomacy_3
 	father = 31198
 	1264.1.2 = {
@@ -1424,7 +1424,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = intolerant
+	trait = zealous
 	trait = education_martial_2
 	father = 468555
 	mother = 467542
@@ -1468,7 +1468,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = diligent
-	trait = conventional
+	trait = content
 	trait = education_diplomacy_3
 	father = 722
 	1008.1.1 = {
@@ -1489,7 +1489,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = ambitious
-	trait = pretentious
+	trait = arrogant
 	trait = education_martial_2
 	mother = 70385
 	925.1.1 = {
@@ -1506,11 +1506,12 @@
 	martial = 7
 	diplomacy = 6
 	intrigue = 8
-	stewardship = 6
+	stewardship = 10
 	religion = "tengri_pagan"
 	culture = "bulgarian"
-	trait = diligent
-	trait = brave
+	trait = ambitious	#Can't say he didn't aim high in all areas of his life.
+	trait = callous	#Blinded his own son, threatened to blind the others, ruthlessly broke pagan revolts throughout his reign. Rarely mean, but utterly pragmatic.
+	trait = cynical	#Converted for political reasons.
 	trait = education_martial_4
 	father = 70384
 	825.1.1 = {
@@ -1519,8 +1520,20 @@
 	841.1.1 = {
 		add_spouse = 168075
 	}
+	855.1.1 = {
+		effect = {
+			set_relation_lover = character:168076	#Meets Vasilka's mother.
+		}
+	}
 	864.1.1 = {
 		religion = "orthodox"
+		effect = {
+			set_relation_rival = character:70383	#Vladimir does not take kindly to Christianity.
+			set_relation_potential_friend = character:712	#Simeon, on the other hand, is born just after/before the conversion, and he has high hopes.
+		}
+	}
+	889 = {
+		trait = devoted	#Abdicated to become a monk.
 	}
 	907.5.2 = {
 		death = "907.5.2"
@@ -1528,7 +1541,7 @@
 }
 
 70383 = {
-	name = "Vladimir"
+	name = "Vladimir_Rasate"
 	dynasty = 8636
 	martial = 5
 	diplomacy = 5
@@ -1536,22 +1549,17 @@
 	stewardship = 7
 	religion = "tengri_pagan"
 	culture = "bulgarian"
-	trait = patient
+	trait = calm
 	trait = temperate
-	trait = intolerant
+	trait = zealous
 	trait = education_stewardship_2
 	father = 70382
 	mother = 168075
 	845.1.1 = {
 		birth = "845.1.1"
 	}
-#	864.1.1 = {
-#		religion = "orthodox"
-#	}
-	889.1.1 = {
-		religion = "tengri_pagan"	
-	}
 	893.1.1 = {
+		trait = blind
 		death = "893.1.1"
 	}
 }
@@ -1566,7 +1574,7 @@
 	religion = "tengri_pagan"
 	culture = "bulgarian"
 	trait = brave
-	trait = pretentious
+	trait = arrogant
 	trait = education_martial_2
 	father = 159126
 	802.1.1 = {
@@ -1606,19 +1614,24 @@
 	diplomacy = 6
 	intrigue = 4
 	stewardship = 6
-	religion = "tengri_pagan"	
+	learning = 6
+	religion = "orthodox"
 	culture = "bulgarian"
-	trait = deceitful
-	trait = hypocritical
 	trait = lisping
-	trait = education_martial_2
+	trait = pensive
 	father = 70382
 	mother = 168075
-	850.1.1 = {
-		birth = "850.1.1"
-	}
 	864.1.1 = {
-		religion = "orthodox"
+		birth = yes
+	}
+	880.1.1 = {
+		trait = ambitious
+		trait = zealous
+		trait = diligent
+		trait = education_learning_3
+	}
+	914.1.1 = {
+		give_nickname = nick_the_great
 	}
 	927.5.27 = {
 		death = "927.5.27"
@@ -1634,8 +1647,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = wroth
-	trait = tolerant
+	trait = wrathful
+	trait = compassionate
 	trait = honest
 	trait = education_intrigue_2
 	father = 712
@@ -1719,7 +1732,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = intolerant
+	trait = zealous
 	trait = education_martial_2
 	father = 720
 	977.1.1 = {
@@ -1784,7 +1797,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = honest
+	trait = just
 	trait = education_intrigue_2
 	father = 724
 	1032.1.1 = {
@@ -1805,7 +1818,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = diligent
-	trait = wroth
+	trait = wrathful
 	trait = education_martial_2
 	father = 722
 	1013.1.1 = {
@@ -1846,7 +1859,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = honest
+	trait = just
 	trait = education_martial_3
 	father = 70381
 	945.1.1 = {
@@ -1888,7 +1901,7 @@
 	religion = "orthodox"
 	culture = "bulgarian"
 	trait = brave
-	trait = wroth
+	trait = wrathful
 	trait = education_martial_3
 	father = 728
 	969.1.2 = {
@@ -1915,8 +1928,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "bulgarian"
-	trait = hypocritical
-	trait = pretentious
+	trait = cynical
+	trait = arrogant
 	trait = education_martial_2
 	father = 730
 	mother = 492
@@ -1978,24 +1991,6 @@
 	}
 }
 
-168066 = {
-	name = "Rasate"
-	dynasty = 8636
-	religion = "tengri_pagan"
-	culture = "bulgarian"
-	father = 70382
-	mother = 168075
-	847.1.1 = {
-		birth = "847.1.1"
-	}
-	864.1.1 = {
-		religion = "orthodox"
-	}
-	896.1.1 = {
-		death = "896.1.1"
-	}
-}
-
 168067 = {
 	name = "Gavril"
 	dynasty = 8636
@@ -2008,6 +2003,7 @@
 	}
 	864.1.1 = {
 		religion = "orthodox"
+		add_trait = disinherited	#His father preferred his newborn brother, Simeon.
 	}
 	896.1.1 = {
 		death = "896.1.1"
@@ -2125,15 +2121,12 @@
 168078 = {
 	name = "Iakov"
 	dynasty = 8636
-	religion = "tengri_pagan"
+	religion = "orthodox"
 	culture = "bulgarian"
 	father = 70382
 	mother = 168075
-	852.1.1 = {
+	867.1.1 = {
 		birth = "852.1.1"
-	}
-	864.1.1 = {
-		religion = "orthodox"
 	}
 	896.1.1 = {
 		death = "896.1.1"

@@ -1,4 +1,7 @@
-﻿reclaim_britannia_decision = {
+﻿
+
+#The culture of the people both high and low is veering towards Celtic - embrace it?
+reclaim_britannia_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
 	major = yes
 
@@ -14,7 +17,7 @@
 
 		is_landed = yes
 		any_sub_realm_county = {
-			de_jure_liege.de_jure_liege.de_jure_liege = title:e_britannia
+			title_province = {  geographical_region = world_europe_west_britannia }
 			NOR = {
 				culture_group = culture_group:goidelic_group
 				culture_group = culture_group:brythonic_group
@@ -146,11 +149,7 @@ restore_the_danelaw_decision = {
 				NOT = { this = root }
 				OR = {
 					primary_title = {
-						OR = {
-							de_jure_liege = title:e_britannia
-							de_jure_liege.de_jure_liege = title:e_britannia
-							de_jure_liege.de_jure_liege.de_jure_liege = title:e_britannia
-						}
+						title_capital_county.title_province = {  geographical_region = world_europe_west_britannia }
 					}
 					has_culture_group = culture_group:north_germanic_group
 					has_culture_group = culture_group:central_germanic_group
@@ -207,7 +206,7 @@ embrace_english_culture_decision = {
 				geographical_region = custom_england
 			}
 		}
-		title:k_england.holder = root
+		has_title = title:k_england
 	}
 
 	is_valid_showing_failures_only = {
@@ -284,8 +283,6 @@ england_request_laudabiliter_decision = {
 	
 	is_valid = {
 		piety_level >= 3
-		piety >= 2000
-		gold >= 1000
 		root.faith.religious_head = {
 			opinion = {
 				target = root
@@ -387,7 +384,7 @@ restore_dumnonia_decision = {
 
 	is_valid = {
 		is_independent_ruler = yes
-		dynasty.dynasty_prestige_level >= medium_dynasty_prestige_level
+		prestige_level >= very_high_prestige_level
 		has_title = title:d_cornwall
 		completely_controls = title:d_cornwall
 		any_realm_province = { #You must have some realm support for your claims.

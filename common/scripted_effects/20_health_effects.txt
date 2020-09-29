@@ -497,7 +497,7 @@ contract_disease_effect = {
 							has_new_contagious_disease_outbreak_story_trigger = yes
 							trigger_if = {
 								limit = { exists = player_heir }
-							 	player_heir = scope:sick_character
+								player_heir = scope:sick_character
 							}
 							is_parent_of = scope:sick_character
 							is_spouse_of = scope:sick_character
@@ -509,11 +509,25 @@ contract_disease_effect = {
 				else_if = {
 					limit = { is_ai = no } #AIs don't care about updates
 					save_temporary_scope_as = message_receiver
-					send_interface_message = {
-						title = health_$DISEASE$_spreads_message
-						left_icon = scope:sick_character
-						show_as_tooltip = {
-							scope:sick_character = { add_trait_force_tooltip = $DISEASE$ }
+					if = {
+						limit = {
+							scope:disease_type = flag:smallpox
+						}
+						send_interface_message = {
+							title = health_smallpox_spreads_message
+							left_icon = scope:sick_character
+							show_as_tooltip = {
+								scope:sick_character = { add_trait_force_tooltip = $DISEASE$ }
+							}
+						}
+					}
+					else = {
+						send_interface_message = {
+							title = health_bubonic_plague_spreads_message
+							left_icon = scope:sick_character
+							show_as_tooltip = {
+								scope:sick_character = { add_trait_force_tooltip = $DISEASE$ }
+							}
 						}
 					}
 				}
@@ -553,7 +567,7 @@ contract_disease_effect = {
 						#It's a player heir
 						trigger_if = {
 							limit = { exists = player_heir }
-						 	player_heir = scope:sick_character
+							player_heir = scope:sick_character
 						}
 						#Or a child/spouse who is really sick or this character has to pick their treatment
 						AND = {
@@ -763,7 +777,7 @@ recover_from_disease_effect = {
 					limit = {
 						is_landed = yes
 						NOT = { is_in_list = disase_notification_list }
- 					}
+					}
 					add_to_temporary_list = disase_notification_list
 				}
 			}
@@ -815,7 +829,7 @@ recover_from_disease_effect = {
 							#It's your player heir
 							trigger_if = {
 								limit = { exists = player_heir }
-							 	player_heir = scope:sick_character
+								player_heir = scope:sick_character
 							}
 						}
 					}
@@ -1156,6 +1170,7 @@ maimed_in_battle_effect = {
 				}
 			}
 			add_trait_force_tooltip = one_legged
+			increase_wounds_effect = { REASON = fight }
 		}
 		2 = {
 			trigger = {
@@ -1164,6 +1179,7 @@ maimed_in_battle_effect = {
 				}
 			}
 			add_trait_force_tooltip = disfigured
+			increase_wounds_effect = { REASON = fight }
 			epilepsy_brain_trauma_risk_effect = { CHANCE = 5 }
 		}
 		4 = {
@@ -1173,9 +1189,10 @@ maimed_in_battle_effect = {
 				}
 			}
 			add_trait_force_tooltip = one_eyed
+			increase_wounds_effect = { REASON = fight }
 			epilepsy_brain_trauma_risk_effect = { CHANCE = 5 }
 		}
-		10 = {
+		4 = {
 			trigger = {
 				NOT = {
 					has_trait = maimed
@@ -1502,6 +1519,7 @@ safe_disease_treatment_effect = {
 			if = {
 				limit = {
 					exists = scope:physician
+					court_physician_available_trigger = yes
 				}
 
 				#Physician skill up
@@ -1704,10 +1722,10 @@ risky_disease_treatment_effect = {
 								}
 							}
 							OR = {
-							 	reverse_opinion = {
-							 		target = scope:physician
-							 		value < 0
-							 	}
+								reverse_opinion = {
+									target = scope:physician
+									value < 0
+								}
 								has_relation_rival = scope:physician
 								has_relation_potential_rival = scope:physician
 							}
@@ -1716,9 +1734,9 @@ risky_disease_treatment_effect = {
 							OR = {
 								has_relation_rival = scope:physician
 								reverse_opinion = {
-							 		target = scope:physician
-							 		value <= -20
-							 	}
+									target = scope:physician
+									value <= -20
+								}
 							}
 							factor = 2
 						}
@@ -1749,6 +1767,7 @@ mystic_disease_treatment_effect = {
 			if = {
 				limit = {
 					exists = scope:physician
+					court_physician_available_trigger = yes
 				}
 				#Physician skill up
 				scope:physician = {
@@ -1859,10 +1878,10 @@ mystic_disease_treatment_effect = {
 							}
 						}
 						OR = {
-						 	reverse_opinion = {
-						 		target = scope:physician
-						 		value < 0
-						 	}
+							reverse_opinion = {
+								target = scope:physician
+								value < 0
+							}
 							has_relation_rival = scope:physician
 							has_relation_potential_rival = scope:physician
 						}
@@ -1871,9 +1890,9 @@ mystic_disease_treatment_effect = {
 						OR = {
 							has_relation_rival = scope:physician
 							reverse_opinion = {
-						 		target = scope:physician
-						 		value <= -20
-						 	}
+								target = scope:physician
+								value <= -20
+							}
 						}
 						factor = 2
 					}
@@ -1918,9 +1937,11 @@ safe_wound_treatment_effect = {
 	hidden_effect = {
 		save_court_physician_as_effect = { SCOPE_NAME = physician }
 
-
 		if = {
-			limit = { exists = scope:physician }
+			limit = { 
+				exists = scope:physician 
+				court_physician_available_trigger = yes
+			}
 
 			#Physician skill up
 			scope:physician = {
@@ -2013,7 +2034,10 @@ risky_wound_treatment_effect = {
 		save_court_physician_as_effect = { SCOPE_NAME = physician }
 
 		if = {
-			limit = { exists = scope:physician }
+			limit = { 
+				exists = scope:physician 
+				court_physician_available_trigger = yes
+			}
 
 			#Physician skill up
 			scope:physician = {
@@ -2714,7 +2738,7 @@ disease_treatment_results_effect = {
 					add_trait_force_tooltip = dull
 				}
 				10 = {
-					trigger = { NOT = { has_trait = am_craven } }
+					trigger = { NOT = { has_trait = craven } }
 					set_variable = {
 						name = mystic_side_effect
 						value = flag:craven
@@ -2723,7 +2747,7 @@ disease_treatment_results_effect = {
 					add_trait_force_tooltip = craven
 				}
 				10 = {
-					trigger = { NOT = { has_trait = am_fearful } }
+					trigger = { NOT = { has_trait = paranoid } }
 					set_variable = {
 						name = mystic_side_effect
 						value = flag:paranoid
@@ -3215,7 +3239,7 @@ pick_own_disease_treatment_effect = {
 decide_who_picks_disease_treatment_effect = {
 	if = {
 		limit = {
-		 	liege_picks_treatment_trigger = yes
+			liege_picks_treatment_trigger = yes
 		}
 		liege = {
 			trigger_event = {
@@ -3285,7 +3309,7 @@ pick_own_wound_treatment_effect = {
 decide_who_picks_wound_treatment_effect = {
 	if = {
 		limit = {
-		 	liege_picks_treatment_trigger = yes
+			liege_picks_treatment_trigger = yes
 		}
 		liege = {
 			trigger_event = {
@@ -3307,26 +3331,28 @@ decide_who_picks_wound_treatment_effect = {
 ###FAILED TREAMENT EFFECTS###
 
 add_failed_treatment_of_me_opinions_effect = {
+#Physician scope is set in the events that reference this effect
 	if = {
 		limit = {
 			scope:physician = {
 				is_alive = yes
 			}
+			court_physician_available_trigger = yes
 		}
 		if = {
 			limit = {
 				OR = {
-				 	has_character_flag = physician_used_wrong_method
-				 	scope:physician = { has_character_modifier = chastised_physician_modifier }
-				 	scope:sick_character = {
-				 		exists = var:treatment_strategy
-				 		OR = {
-				 			var:treatment_strategy = flag:amputation
-				 			var:treatment_strategy = flag:disfigurement
-				 			var:treatment_strategy = flag:eye
-				 			var:treatment_strategy = flag:castration
-				 		}
-				 	}
+					has_character_flag = physician_used_wrong_method
+					scope:physician = { has_character_modifier = chastised_physician_modifier }
+					scope:sick_character = {
+						exists = var:treatment_strategy
+						OR = {
+							var:treatment_strategy = flag:amputation
+							var:treatment_strategy = flag:disfigurement
+							var:treatment_strategy = flag:eye
+							var:treatment_strategy = flag:castration
+						}
+					}
 				}
 			}
 			hidden_effect = {
@@ -3360,12 +3386,14 @@ add_failed_treatment_of_me_opinions_effect = {
 }
 
 add_failed_treatment_of_kin_opinions_effect = {
+#Physician scope is set in the events that reference this effect
 	hidden_effect = {
 		if = {
 			limit = {
 				scope:physician = {
 					is_alive = yes
 				}
+				court_physician_available_trigger = yes
 			}
 			every_close_family_member = {
 				add_to_temporary_list = failed_treatment_opinion
@@ -3392,19 +3420,19 @@ add_failed_treatment_of_kin_opinions_effect = {
 							has_character_flag = die_risky_treatment
 							is_alive = no
 							has_character_flag = physician_used_wrong_method
-						 	scope:physician = { has_character_modifier = chastised_physician_modifier }
-						 	trigger_if = {
-						 		limit = { has_variable = treatment_strategy }
-						 		OR = {
-						 			var:treatment_strategy = flag:amputation
-						 			var:treatment_strategy = flag:disfigurement
-						 			var:treatment_strategy = flag:eye
-						 			var:treatment_strategy = flag:castration
-						 			var:treatment_strategy = flag:occult
-						 			var:treatment_strategy = flag:occult_cannibal
-						 			var:treatment_strategy = flag:occult_deviant
-						 		}
-						 	}
+							scope:physician = { has_character_modifier = chastised_physician_modifier }
+							trigger_if = {
+								limit = { has_variable = treatment_strategy }
+								OR = {
+									var:treatment_strategy = flag:amputation
+									var:treatment_strategy = flag:disfigurement
+									var:treatment_strategy = flag:eye
+									var:treatment_strategy = flag:castration
+									var:treatment_strategy = flag:occult
+									var:treatment_strategy = flag:occult_cannibal
+									var:treatment_strategy = flag:occult_deviant
+								}
+							}
 						}
 					}
 					
@@ -3426,38 +3454,47 @@ add_failed_treatment_of_kin_opinions_effect = {
 
 
 downgrade_failed_treatment_of_me_opinions_effect = {
+	#Physician scope is set in the events that reference this effect
 	hidden_effect = {
 		if = {
 			limit = {
-				has_opinion_modifier = {
+				scope:physician = {
+					is_alive = yes
+				}
+				court_physician_available_trigger = yes
+			}
+			if = {
+				limit = {
+					has_opinion_modifier = {
+						target = scope:physician
+						modifier = botched_my_treatment_crime_opinion
+					}
+				}
+				remove_opinion = {
+					target = scope:physician
+					modifier = botched_my_treatment_crime_opinion
+				}
+				add_opinion = {
+					#add nice opinion version
 					target = scope:physician
 					modifier = botched_my_treatment_crime_opinion
 				}
 			}
-			remove_opinion = {
-				target = scope:physician
-				modifier = botched_my_treatment_crime_opinion
-			}
-			add_opinion = {
-				#add nice opinion version
-				target = scope:physician
-				modifier = botched_my_treatment_crime_opinion
-			}
-		}
-		if = {
-			limit = {
-				has_opinion_modifier = {
+			if = {
+				limit = {
+					has_opinion_modifier = {
+						target = scope:physician
+						modifier = failed_to_treat_me_crime_opinion
+					}
+				}
+				remove_opinion = {
 					target = scope:physician
 					modifier = failed_to_treat_me_crime_opinion
 				}
-			}
-			remove_opinion = {
-				target = scope:physician
-				modifier = failed_to_treat_me_crime_opinion
-			}
-			add_opinion = {
-				target = scope:physician
-				modifier = failed_to_treat_me_opinion
+				add_opinion = {
+					target = scope:physician
+					modifier = failed_to_treat_me_opinion
+				}
 			}
 		}
 	}

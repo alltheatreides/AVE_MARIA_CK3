@@ -185,3 +185,57 @@ new_warrior_character = {
 		}
 	}
 }
+
+new_siege_engineer = {
+	age = { 30 45 }
+	random_traits_list = {
+		count = 1
+		education_martial_3 = {}
+		education_martial_4 = {}
+	}
+	random_traits_list = {
+		count = 3
+		brave = {}
+		just = {}
+		lustful = {}
+		chaste = {}
+		wrathful = {}
+		arrogant = {}
+		impatient = {}
+		patient = {}
+		humble = {}
+		calm = {}
+		honest = {}
+		ambitious = {}
+		cynical = {}
+		zealous = {}
+		compassionate = {}
+		stubborn = {}
+		generous = {}
+		sadistic = {}
+		vengeful = {}
+	}
+	random_traits_list = {
+		count = { 0 1 }
+		overseer = {}
+		strategist = {}
+		architect = {}
+		administrator = {}
+	}
+	trait = military_engineer
+	random_traits = no
+	martial = {
+		min_template_average_skill
+		max_template_average_skill
+	}
+	martial = { 10 16 }
+	prowess = { 8 12 }
+
+	after_creation = {
+		#Chance of receiving an extra commander trait
+		random = {
+			chance = 25
+			give_random_commander_trait_effect = yes
+		}
+	}
+}

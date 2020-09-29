@@ -239,9 +239,10 @@ is_any_family_relation_or_spouse_trigger = {
 		}
 		#child/parent/sibling is married to other's child/parent/sibling
 		any_close_family_member = {
-			NOR = {
-				is_grandparent_of = scope:root_character
-				is_grandchild_of = scope:root_character
+			OR = {
+				is_parent_of = scope:root_character
+				is_child_of = scope:root_character
+				is_sibling_of = scope:root_character
 			}
 			any_spouse = {
 				OR = {

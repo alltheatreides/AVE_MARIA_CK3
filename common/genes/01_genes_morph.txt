@@ -41,6 +41,22 @@ age_presets = {
 			{ 0.95 0.5 }
 		}					
 	}
+	age_preset_aging_hunchback = {
+		mode = multiply
+		curve = {
+			{ 0.0 0.0 }
+			{ 0.7 0.0 }
+			{ 0.95 1.0 }
+		}					
+	}
+	age_preset_aging_gauntness = {
+		mode = add
+		curve = {
+			{ 0.0 0.0 }
+			{ 0.7 0.0 }
+			{ 0.95 0.8 }
+		}					
+	}
 	age_preset_aging_tertiary_reversed = {
 		mode = multiply
 		curve = {
@@ -184,12 +200,21 @@ age_presets = {
 			{ 0.18 0.0 }
 		}
 	}
+	age_preset_child_lean_reversed = {
+		mode = multiply
+		curve = {
+			{ 0.18 0.0 }
+			{ 0.24 1.0 }
+		}
+	}
 	age_preset_child_fat = {
 		mode = multiply
 		curve = {
 			{ 0.0 0.2 }
 			{ 0.10 0.5 }
 			{ 0.18 1.0 }
+			{ 0.7 1.0 }
+			{ 0.95 0.2 }
 		}
 	}
 	age_preset_child_fat_decal = {
@@ -5353,6 +5378,8 @@ complexion = {
                     # age = age_preset_aging_definition_male
             }
 		}
+		boy = male
+		girl = female
 	}
 
 	complexion_ugly_1 = {
@@ -5411,6 +5438,8 @@ complexion = {
                     # age = age_preset_aging_definition_male
             }
 		}
+		boy = male
+		girl = female
 	}
 
     complexion_no_face = {
@@ -5638,8 +5667,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -5668,8 +5698,8 @@ gene_bs_body_type = {
                     }
                     alpha_curve = {              #controls decal alpha relative to gene strength. Will give a linear interpolation if left unspecified
                         #character age%, decal alpha
-						{ 0.0  1.0 }
-						{ 0.4   0.0 }
+						{ 0.1  1.0 }
+						{ 0.5   0.0 }
                     }
                     blend_modes = {              #overlay/replace/hard_light/multiply
                         diffuse = multiply 
@@ -5727,8 +5757,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -5822,8 +5853,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -5911,8 +5943,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -6006,8 +6039,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -6095,8 +6129,9 @@ gene_bs_body_type = {
                     age = age_preset_child_fat_decal
             }
             # Gaunt body from 0.5 to 0.0 gene value
-			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	} 
-			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.0 }	} 
+			setting = { attribute = "bs_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_gaunt_1"	value = { min = 1.0 max = -1.5 }	age = age_preset_aging_gauntness } 
+			setting = { attribute = "bs_body_slim_1"	value = { min = 0.5 max = -0.5 }	age = age_preset_child_lean_reversed	}
 			decal = {   
 										 
 					body_part = head
@@ -7422,9 +7457,19 @@ gene_age = {
 			} 
 			setting = {
 				attribute = "eye_shut"	 
-				value = { min = @maleMax max = 0.3 }
+				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_tertiary
 			}
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -7606,6 +7651,16 @@ gene_age = {
 				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_primary
 			} 
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -7841,9 +7896,19 @@ gene_age = {
 			} 
 			setting = {
 				attribute = "eye_shut"	 
-				value = { min = @maleMax max = 0.3 }
+				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_tertiary
 			}
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -8024,6 +8089,16 @@ gene_age = {
 				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_primary
 			} 
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -8252,9 +8327,19 @@ gene_age = {
 			} 
 			setting = {
 				attribute = "eye_shut"	 
-				value = { min = @maleMax max = 0.3 }
+				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_tertiary
 			}
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -8430,6 +8515,16 @@ gene_age = {
 				value = { min = @femaleMax  max = @femaleMax }
 				age = age_preset_aging_secondary
 			} 
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -8663,9 +8758,19 @@ gene_age = {
 			} 
 			setting = {
 				attribute = "eye_shut"	 
-				value = { min = @maleMax max = 0.3 }
+				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_tertiary
 			}
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {
@@ -8846,6 +8951,16 @@ gene_age = {
 				value = { min = 0.3 max = 0.3 }
 				age = age_preset_aging_primary
 			} 
+			# setting = {
+			# 	attribute = "head_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
+			# setting = {
+			# 	attribute = "body_hunchbacked"	 
+			# 	value = { min = 0.5 max = 0.5 }
+			# 	age = age_preset_aging_hunchback
+			# }
 			decal = {							  
 				body_part = head
 				textures = {

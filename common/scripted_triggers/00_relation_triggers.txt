@@ -101,13 +101,13 @@ can_set_relation_nemesis_trigger = {
 
 ### FRIEND
 upgrade_ready_potential_friend_to_friend_trigger = {
-	$CHARACTER$ = { }
+	can_set_relation_friend_trigger = { CHARACTER = $CHARACTER$ }
 }
 
 
 ### BEST FRIEND
 upgrade_ready_friend_to_best_friend_trigger = {
-	$CHARACTER$ = { }
+	can_set_relation_best_friend_trigger = { CHARACTER = $CHARACTER$ }
 }
 
 
@@ -153,18 +153,18 @@ upgrade_ready_potential_lover_to_lover_trigger = {
 
 ### SOULMATE
 upgrade_ready_lover_to_soulmate_trigger = {
-	$CHARACTER$ = { }
+	can_set_relation_soulmate_trigger = { CHARACTER = $CHARACTER$ }
 }
 
 
 ### RIVAL
 upgrade_ready_potential_rival_to_rival_trigger = {
-	$CHARACTER$ = { }
+	can_set_relation_rival_trigger = { CHARACTER = $CHARACTER$ }
 }
 
 ### NEMESIS
 upgrade_ready_rival_to_nemesis_trigger = {
-	$CHARACTER$ = { }
+	can_set_relation_nemesis_trigger = { CHARACTER = $CHARACTER$ }
 }
 
 
@@ -884,6 +884,8 @@ has_RelationToMe_relation = {
 				scheme_is_character_agent = root
 			}
 		}
+		is_imprisoned_by = $CHARACTER$
+		$CHARACTER$ = { is_imprisoned_by = scope:relation_check }
 		AND = {
 			exists = host
 			host = $CHARACTER$

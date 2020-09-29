@@ -51,7 +51,7 @@ can_marry_common_trigger = {
 can_marry_trigger = {
 	can_marry_common_trigger = yes
 	allowed_more_spouses = yes
-	is_concubine = no # Concubines are generally blocked from marrying, while a special exception should be done for characters marrying their Concubiness
+	#To account for a person marrying their concubines/consorts please use can_marry_character_trigger
 }
 
 #two characters could potentially marry (does NOT check that they're unmarried)
@@ -99,6 +99,7 @@ could_marry_character_trigger = {
 
 #Two characters are able to marry right now
 can_marry_character_trigger = {
+	save_temporary_scope_as = can_marry_char_check
 	OR = {
 		AND = {
 			is_betrothed = yes
@@ -108,6 +109,18 @@ can_marry_character_trigger = {
 			can_marry_trigger = yes
 			$CHARACTER$ = { can_marry_trigger = yes }
 		}
+	}
+	trigger_if = {
+		limit = {
+			is_concubine = yes
+		}
+		is_concubine_of = $CHARACTER$
+	}
+	trigger_if = {
+		limit = {
+			$CHARACTER$ = { is_concubine = yes }
+		}
+		$CHARACTER$ = { is_concubine_of = scope:can_marry_char_check }
 	}
 	could_marry_character_trigger = { CHARACTER = $CHARACTER$ } #Gender, recent divorce, allowed to marry, no illegal incest etc.
 }
@@ -143,6 +156,8 @@ can_become_concubine_of_actor_trigger = {
 		}
 		is_married = no
 		is_betrothed = no
+		is_concubine = no
+		number_of_concubines = 0
 	}
 	trigger_if = {
 		limit = {
@@ -151,32 +166,13 @@ can_become_concubine_of_actor_trigger = {
 		}
 		NOT = { is_spouse_of = scope:actor }
 	}
-	is_concubine = no
+	NOT = {
+		is_concubine_of = scope:actor
+	}
 	is_ruler = no
 	is_landed = no
 	is_adult = yes
 	sex_opposite_of = scope:actor
-
-	save_temporary_scope_as = recipient_scope
-	scope:actor.faith = { # My faith allows this level of consanguinity
-		OR = {
-			NOT = { scope:actor = { is_close_or_extended_family_of = scope:recipient_scope } }
-			AND = {
-				scope:actor = { is_cousin_of = scope:recipient_scope }
-				has_doctrine_parameter = allows_cousin_marriage
-			}
-			AND = {
-				scope:actor = {
-					OR = {
-						is_uncle_or_aunt_of = scope:recipient_scope
-						is_nibling_of = scope:recipient_scope
-					}
-				}
-				has_doctrine_parameter = allows_aunt_nephew_and_uncle_niece_marriage
-			}
-			has_doctrine_parameter = allows_unrestricted_marriage
-		}
-	}
 }
 
 ready_to_marry_betrothed_trigger = {

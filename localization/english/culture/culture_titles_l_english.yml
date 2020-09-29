@@ -328,6 +328,23 @@
  emperor_theocracy_female_islam_religion:0 "Grand Calipha"
  empire_theocracy_islam_religion:0 "Grand Caliphate"
 
+# Yazidi 
+ baron_theocracy_male_yazidi_religion:0 "Kochek"
+ baron_theocracy_female_yazidi_religion:0 "$baron_theocracy_male_yazidi_religion$"
+ barony_theocracy_yazidi_religion:0 "Shrine"
+ count_theocracy_male_yazidi_religion:0 "Peshimam"
+ count_theocracy_female_yazidi_religion:0 "$count_theocracy_male_yazidi_religion$"
+ county_theocracy_yazidi_religion:0 "Temple"
+ duke_theocracy_male_yazidi_religion:0 "Pîr"
+ duke_theocracy_female_yazidi_religion:0 "$duke_theocracy_male_yazidi_religion$"
+ duchy_theocracy_yazidi_religion:0 "Grand Temple"
+ king_theocracy_male_yazidi_religion:0 "Sheikh"
+ king_theocracy_female_yazidi_religion:0 "$king_theocracy_male_yazidi_religion$"
+ kingdom_theocracy_yazidi_religion:0 "Sheikhdom"
+ emperor_theocracy_male_yazidi_religion:0 "Baba Sheikh"
+ emperor_theocracy_female_yazidi_religion:0 "$emperor_theocracy_male_yazidi_religion$"
+ empire_theocracy_yazidi_religion:0 "Baba Sheikhdom"
+
 # Jainism
  baron_theocracy_male_jainism_religion:0 "Nirgrantha"
  baron_theocracy_female_jainism_religion:0 "Nirgrantha"
@@ -498,6 +515,7 @@
  count_republic_female_roman:0 "Praefect"
  duke_republic_male_roman:0 "Tribune"
  duke_republic_female_roman:0 "Tribune"
+ duchy_republic_roman:0 "Duchy"
  king_republic_male_roman:0 "Consul"
  king_republic_female_roman:0 "Consul"
  kingdom_republic_roman:0 "League"
@@ -720,19 +738,35 @@
 ### Iranian ###
 # Feudal / Clan 
  baron_feudal_male_iranian_group:0 "Argbadh"
- baron_feudal_female_iranian_group:0 "Wâlia"
+ baron_feudal_female_iranian_group:1 "$baron_feudal_male_iranian_group$"
  barony_feudal_iranian_group:0 "Arg"
  count_feudal_male_iranian_group:0 "Marzoban"
- count_feudal_female_iranian_group:0 "Shaykhah"
+ count_feudal_female_iranian_group:1 "$count_feudal_male_iranian_group$"
  county_feudal_iranian_group:0 "Marzpanate"
  duke_feudal_male_iranian_group:0 "Satrap"
- duke_feudal_female_iranian_group:0 "Emira"
+ duke_feudal_female_iranian_group:1 "$duke_feudal_male_iranian_group$"
  duchy_feudal_iranian_group:0 "Satrapy"
  king_feudal_male_iranian_group:0 "Shah"
  king_feudal_female_iranian_group:0 "Banebshen"
  kingdom_feudal_iranian_group:1 "Shahdom"
  emperor_feudal_male_iranian_group:0 "Shahanshah"
+ emperor_feudal_female_iranian_group:0 "Banebshenan Banebshen"
  empire_feudal_iranian_group:0 "Empire"
+
+ # Muslim Feudal/Clan
+ baron_feudal_muslim_male_iranian_group:0 "Nā'ib"
+ baron_feudal_muslim_female_iranian_group:0 "Nā'iba"
+ barony_feudal_muslim_iranian_group:0 "$barony_feudal_iranian_group$"
+ count_feudal_muslim_male_iranian_group:0 "Vālī"
+ count_feudal_muslim_female_iranian_group:0 "Vālīa"
+ county_feudal_muslim_iranian_group:0 "Vilāyah"
+ duke_feudal_muslim_male_iranian_group:0 "Amir"
+ duke_feudal_muslim_female_iranian_group:0 "Amira"
+ duchy_feudal_muslim_iranian_group:0 "Amirate"
+ king_feudal_muslim_male_iranian_group:0 "Amir-e Amiran"
+ king_feudal_muslim_female_iranian_group:0 "Amira-e Amiran"
+ kingdom_feudal_muslim_iranian_group:0 "Grand Amirate"
+ # Muslim Iranian Empire titles are the same as non-Muslim Iranian Imperial titles
 
 ### Sogdian ###
 # Feudal / Clan 
@@ -1030,7 +1064,7 @@
  count_feudal_female_hausan:0 "Sarkina Gadi"
  duke_feudal_male_hausan:0 "Galadima"
  duke_feudal_female_hausan:0 "Magajiya"
- king_feudal_male_hausan:0 "Sarkī"
- king_feudal_female_hausan:0 "Sarkīa"
- emperor_feudal_male_hausan:0 "$emperor$"
- emperor_feudal_female_hausan:0 "$emperor_female$"
+ king_feudal_male_hausan:1 "Sarkin"
+ king_feudal_female_hausan:1 "Sarauniya"
+ emperor_feudal_male_hausan:1 "Sarkin Sarakuna"
+ emperor_feudal_female_hausan:1 "Sarauniyar Sarauniya"

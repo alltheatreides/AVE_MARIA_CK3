@@ -130,11 +130,20 @@ education_point_acquisition_support_effect = {
 					}
 				}
 			}
+			
 			#Affinity
 			modifier = {
 				has_$SKILL$_education_affinity_childhood_trait_trigger = yes
 				add = matching_childhood_trait_modifier_value
 			}
+
+			#Disaffinity
+			modifier = {
+				has_$SKILL$_education_disaffinity_childhood_trait_trigger = yes
+				add = mismatching_childhood_trait_modifier_value
+			}
+			
+
 			change_variable = {
 				name = education_$SKILL$_variable
 				add = 2
@@ -144,7 +153,10 @@ education_point_acquisition_support_effect = {
 		40 = {
 			#Child intelligence
 			modifier = {
-				has_trait = intellect_bad_3
+				OR = {
+					has_trait = intellect_bad_3
+					has_trait = inbred
+				}
 				add = 20
 			}
 			modifier = {
@@ -158,6 +170,7 @@ education_point_acquisition_support_effect = {
 				}
 				add = 10
 			}
+
 			#Educator intelligence & skill
 			modifier = {
 				exists = scope:educator
@@ -184,19 +197,12 @@ education_point_acquisition_support_effect = {
 					}
 				}
 			}
-			#Disaffinity
-			modifier = {
-				has_$SKILL$_education_disaffinity_childhood_trait_trigger = yes
-				add = mismatching_childhood_trait_modifier_value
-			}
 			modifier = {
 				add = 20
 				NOT = {
 					exists = scope:educator
 				}
 			}
-
-			#Nothing happens
 		}
 	}
 }

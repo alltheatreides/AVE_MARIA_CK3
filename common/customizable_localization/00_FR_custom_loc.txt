@@ -31,13 +31,14 @@
 # FR_OnAOpp (Sans espace avant)
 # FR_OuOlle (fou\folle, mou\molle ; Pluriel ; Sans espace avant)
 # FR_RSe (Pluriel ; Sans espace avant)
+# FR_Hesse (duc\duchesse ; Pluriel ; Sans espace avant)
 # FR_SSse (gros\grosse, las\lasse ; Sans espace avant)
 # FR_TTte (sot\sotte ; Pluriel ; Sans espace avant)
 # FR_XCe (doux\douce ; Sans espace avant)
 # FR_XSe (furieux\furieuse ; Sans espace avant)
 # FR_XSeOpp (Sans espace avant)
 # FR_XSse (faux\fausse, roux\rousse ; Sans espace avant)
-# FR_CChe (franc\franche ; Pluriel ; Sans espace avant)
+# FR_He (franc\franche ; Pluriel ; Sans espace avant)
 # FR_EfEve (bref\brève ; Pluriel ; Sans espace avant)
 # FR_Te (favori\favorite ; Sans espace avant)
 # FR_AuxAles (vassaux\vassales, égaux\égales ; Pluriel ; Sans espace avant)
@@ -79,12 +80,17 @@
 # II. REMPLACEMENT DE COMMANDES ANGLAISES #
 ###########################################
 # FR_RelationToMe_OnA - mon\ma + RelationToMe
+# FR_RelationToMe_Le - le\la + RelationToMe
 # FR_RelationToMeShort_OnA - mon\ma + RelationToMeShort
 # FR_Du_signature_weapon - signature_weapon
 # FR_OnA_signature_weapon - signature_weapon
 # FR_Un_signature_weapon - signature_weapon
 # FR_CompositionType_lela - CompositionType
 # FR_FaithGenderedAdj - GetFaith.GetAdjective\GetFaith.GetAdherentName (scope: character)
+# FR_LocalAnimal_e - Le 'e' du féminin pour LocalAnimal
+# FR_LocalAnimal_d - de\d' pour LocalAnimal (Sans espace après)
+# FR_LocalAnimal_he - Le 'he' du féminin pour LocalAnimal (blanc/blanche)
+# FR_LocalAnimal_le - devant LocalAnimal (Sans espace après)
 
 ##################################
 # III. ARTICLES DEVANT COMMANDES #
@@ -1195,7 +1201,7 @@ FR_XSse = {
 	}
 }
 
-FR_CChe = { 
+FR_He = { 
 	type = character
 	text = {
 		trigger = {
@@ -1215,10 +1221,10 @@ FR_CChe = {
 				scope:second = { is_female = yes }
 			}
 		}
-		localization_key = CustomLoc_FR_CChe_female
+		localization_key = CustomLoc_FR_He_female
 	}
 	text = {
-		localization_key = CustomLoc_FR_CChe_male
+		localization_key = CustomLoc_FR_He_male
 		fallback = yes
 	}
 }
@@ -1415,6 +1421,34 @@ FR_STes = {
 	}
 	text = {
 		localization_key = CustomLoc_FR_STes_male
+		fallback = yes
+	}
+}
+
+FR_Hesse = { 
+	type = character
+	text = {
+		trigger = {
+			trigger_if = {
+				limit = { 
+					exists = this
+					NOT = { exists = scope:second }
+				}
+				this = { is_female = yes }
+			}
+			trigger_if = {
+				limit = { 
+					exists = this
+					exists = scope:second
+				}
+				this = { is_female = yes }
+				scope:second = { is_female = yes }
+			}
+		}
+		localization_key = CustomLoc_FR_Hesse_female
+	}
+	text = {
+		localization_key = CustomLoc_FR_Hesse_male
 		fallback = yes
 	}
 }
@@ -2692,7 +2726,7 @@ FR_RelationToMe_OnA = {
 	}
 
 	text = {
-		localization_key = CustomLoc_FR_OnA_Relation_court_physician_female
+		localization_key = CustomLoc_FR_OnA_Relation_court_physician_male
 		trigger = {
 			scope:second = { is_male = yes }
 			has_relation_court_physician = scope:second
@@ -2820,6 +2854,46 @@ FR_RelationToMe_OnA = {
 	}
 
 	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_prisoner_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_prisoner_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_jailer_female
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_jailer_male
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
 		localization_key = CustomLoc_FR_OnA_Relation_guest_female
 		trigger = {
 			scope:second = {
@@ -2852,6 +2926,1263 @@ FR_RelationToMe_OnA = {
 
 	text = {
 		localization_key = CustomLoc_FR_OnA_Relation_acquaintance_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+}
+
+FR_RelationToMe_Le = {
+	type = character
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_motherwife
+		trigger = {
+			scope:second = {
+				OR = {
+					this = root.mother
+					this = root.mother.mother
+					this = root.father.mother
+				}
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sisterwife
+		trigger = {
+			scope:second = {
+				any_sibling = { this = root }
+				is_female = yes
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_daughterwife
+		trigger = {
+			scope:second = {
+				OR = {
+					any_parent = { this = root }
+					any_parent = { any_parent = { this = root } }
+				}
+				is_female = yes
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_fatherhusband
+		trigger = {
+			scope:second = {
+				OR = {
+					this = root.father
+					this = root.father.father
+					this = root.mother.father
+				}
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brotherhusband
+		trigger = {
+			scope:second = {
+				any_sibling = { this = root }
+				is_female = no
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sonhusband
+		trigger = {
+			scope:second = {
+				OR = {
+					any_parent = { this = root }
+					any_parent = {
+						even_if_dead = yes
+						any_parent = {
+							this = root
+						}
+					}
+				}
+				is_female = no
+				any_spouse = { this = root }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_wife
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_spouse = {
+					even_if_dead = yes
+					this = root
+				}
+				is_alive = yes
+				is_concubine = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_husband
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_spouse = {
+					even_if_dead = yes
+					this = root
+				}
+				is_alive = yes
+				is_concubine = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_wife_departed
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_spouse = {
+					even_if_dead = yes
+					this = root
+				}
+				is_alive = no
+				is_concubine = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_husband_departed
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_spouse = {
+					even_if_dead = yes
+					this = root
+				}
+				is_alive = no
+				is_concubine = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_concubine_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_consort = { this = root }
+				is_concubine = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_concubine_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_consort = { this = root }
+				is_concubine = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_mother
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_child = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_father
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_child = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_grandmother
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_grandparent_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_great_grandmother
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_great_grandparent_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_grandfather
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_grandparent_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_great_grandfather
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_great_grandparent_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_heir_daughter
+		trigger = {
+			exists = player_heir
+			player_heir = scope:second
+			scope:second = {
+				is_female = yes
+				is_child_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_heir_son
+		trigger = {
+			exists = player_heir
+			player_heir = scope:second
+			scope:second = {
+				is_male = yes
+				is_child_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_daughter
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_child_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_son
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_child_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_religious_head
+		trigger = {
+			faith.religious_head = scope:second
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_granddaughter
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_grandchild_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_grandson
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_grandchild_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_greatgranddaughter
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_great_grandchild_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_greatgrandson
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_great_grandchild_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_half_sister
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_sibling = {
+					this = root
+				}
+				any_parent = { NOT = { is_parent_of = root } }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_half_brother
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_sibling = {
+					this = root
+				}
+				any_parent = { NOT = { is_parent_of = root } }
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_daughter_in_law
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_spouse = {
+					is_child_of = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_son_in_law
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_spouse = {
+					is_child_of = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sister_rival
+		trigger = {
+			scope:second = {
+				has_relation_rival = root
+				is_female = yes
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brother_rival
+		trigger = {
+			scope:second = {
+				has_relation_rival = root
+				is_female = no
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sister_friend
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_relation = {
+					type = friend
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brother_friend
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_relation = {
+					type = friend
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sister_bully
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_relation = {
+					type = victim
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brother_bully
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_relation = {
+					type = victim
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sister_victim
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_relation = {
+					type = bully
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brother_victim
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_relation = {
+					type = bully
+					this = root
+				}
+				any_sibling = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sister
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_sibling_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brother
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_sibling_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_niece
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_sibling_child_of_root_trigger = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_nephew
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_sibling_child_of_root_trigger = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_aunt
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_parent_sibling_of_root_trigger = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_uncle
+		trigger = {
+			scope:second = {
+				is_female = no
+				is_parent_sibling_of_root_trigger = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_cousin
+		trigger = {
+			scope:second = {
+				is_cousin_of_root_trigger = yes
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_cousin_female
+		trigger = {
+			scope:second = {
+				is_cousin_of_root_trigger = yes
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepdaughter
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_parent = {
+					any_spouse = {
+						this = root
+						NOT = { is_parent_of = scope:second }
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepson
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_parent = {
+					any_spouse = {
+						this = root
+						NOT = { is_parent_of = scope:second }
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepsister
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_parent = {
+					any_spouse = {
+						any_child = {
+							this = root
+							NOT = { is_sibling_of = scope:second }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepbrother
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_parent = {
+					any_spouse = {
+						any_child = {
+							this = root
+							NOT = { is_sibling_of = scope:second }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepmother
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_spouse = {
+					any_child = {
+						this = root
+						NOT = { is_child_of = scope:second }
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_stepfather
+		trigger = {
+			scope:second = {
+				is_male = yes
+				any_spouse = {
+					any_child = {
+						this = root
+						NOT = { is_child_of = scope:second }
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_female_lover
+		trigger = {
+			scope:second = {
+				has_relation_lover = root
+				is_female = yes
+				any_vassal_or_below = {
+					this = root
+				}
+				trigger_if = { # not reflected in has_RelationToMe_relation trigger
+					limit = { has_secret_relation_lover = root }
+					any_secret = {
+						secret_type = secret_lover
+						secret_target = { this = root }
+						local_player_knows_this_secret = yes
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_male_lover
+		trigger = {
+			scope:second = {
+				has_relation_lover = root
+				is_female = no
+				any_vassal_or_below = {
+					this = root
+				}
+				trigger_if = { # not reflected in has_RelationToMe_relation trigger
+					limit = { has_secret_relation_lover = root }
+					any_secret = {
+						secret_type = secret_lover
+						secret_target = { this = root }
+						local_player_knows_this_secret = yes
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_lover_female
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = lover
+					this = root
+				}
+				is_female = yes
+				trigger_if = { # not reflected in has_RelationToMe_relation trigger
+					limit = { has_secret_relation_lover = root }
+					any_secret = {
+						secret_type = secret_lover
+						secret_target = { this = root }
+						local_player_knows_this_secret = yes
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_lover_male
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = lover
+					this = root
+				}
+				is_female = no
+				trigger_if = { # not reflected in has_RelationToMe_relation trigger
+					limit = { has_secret_relation_lover = root }
+					any_secret = {
+						secret_type = secret_lover
+						secret_target = { this = root }
+						local_player_knows_this_secret = yes
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_friend_female
+		trigger = {
+			scope:second = {
+				has_relation_friend = root
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_friend_male
+		trigger = {
+			scope:second = {
+				has_relation_friend = root
+				is_female = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_female_rival
+		trigger = {
+			scope:second = {
+				has_relation_rival = root
+				is_female = yes
+				any_vassal_or_below = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_male_rival
+		trigger = {
+			scope:second = {
+				has_relation_rival = root
+				is_female = no
+				any_vassal_or_below = {
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_vassal_female_rival
+		trigger = {
+			scope:second = {
+				is_female = yes
+				has_relation_rival = root				
+			}
+			any_vassal_or_below = {
+				this = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_vassal_male_rival
+		trigger = {
+			scope:second = {
+				is_female = no
+				has_relation_rival = root				
+			}
+			any_vassal_or_below = {
+				this = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_rival_female
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = rival
+					this = root
+				}
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_rival_male
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = rival
+					this = root
+				}
+				is_female = no
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_crush
+		trigger = {
+			any_relation = {
+				type = crush
+				this = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_bully
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = victim
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_victim
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = bully
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_ward
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = guardian
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_guardian
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = ward
+					this = root
+				}
+			}
+		}
+	}
+
+	text = { #intrigue-mentor
+		localization_key = CustomLoc_FR_Le_Relation_mentor
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = intrigue_student
+					this = root
+				}
+			}
+		}
+	}
+
+	text = { #intrigue-mentor
+		localization_key = CustomLoc_FR_Le_Relation_student
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = intrigue_mentor
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_mentor
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = student
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_student
+		trigger = {
+			scope:second = {
+				any_relation = {
+					type = mentor
+					this = root
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_sisterinlaw
+		trigger = {
+			scope:second = {
+				is_female = yes
+				any_sibling = {
+					any_spouse = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_brotherinlaw
+		trigger = {
+			scope:second = {
+				is_female = no
+				any_sibling = {
+					any_spouse = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				OR = {
+					any_vassal_or_below = {
+						this = root
+					}
+					any_courtier = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_liege_male
+		trigger = {
+			scope:second = {
+				is_female = no
+				OR = {
+					any_vassal_or_below = {
+						this = root
+					}
+					any_courtier = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_councillor_female
+		trigger = {
+			scope:second = {
+				is_female = yes			
+				is_councillor_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_councillor_male
+		trigger = {
+			scope:second = {
+				is_female = no				
+				is_councillor_of = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_court_physician_female
+		trigger = {
+			scope:second = { is_female = yes }
+			has_relation_court_physician = scope:second
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_court_physician_male
+		trigger = {
+			scope:second = { is_male = yes }
+			has_relation_court_physician = scope:second
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_vassal_female
+		trigger = {
+			scope:second = {
+				is_female = yes			
+			}
+			any_vassal_or_below = {
+				this = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_vassal_male
+		trigger = {
+			scope:second = {
+				is_female = no				
+			}
+			any_vassal_or_below = {
+				this = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_knight
+		trigger = {
+			scope:second = { is_knight_of = root }
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_kinswoman
+		trigger = {
+			scope:second = { is_female = yes }
+			scope:second.dynasty = root.dynasty
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_kinsman
+		trigger = {
+			scope:second = { is_male = yes }
+			scope:second.dynasty = root.dynasty
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_courtier_female
+		trigger = {
+			scope:second = {
+				is_courtier_of = root
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_courtier_male
+		trigger = {
+			scope:second = {
+				is_courtier_of = root
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_peasant_affair_female
+		trigger = {
+			any_owned_story = {
+				story_type = story_peasant_affair
+				var:peasant_character = {
+					this = scope:second
+					is_female = yes
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_peasant_affair_male
+		trigger = {
+			any_owned_story = {
+				story_type = story_peasant_affair
+				var:peasant_character = {
+					this = scope:second
+					is_male = yes
+				}
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_agent
+		trigger = {
+			any_scheme = {
+				scheme_is_character_agent = scope:second
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_host_female
+		trigger = {
+			exists = host
+			host = scope:second
+			scope:second = { is_female = yes }
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_host_male
+		trigger = {
+			exists = host
+			host = scope:second
+			scope:second = { is_male = yes }
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_prisoner_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_prisoner_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_jailer_female
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_jailer_male
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_guest_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				exists = host
+				host = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_guest_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				exists = host
+				host = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_acquaintance_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_Le_Relation_acquaintance_male
 		trigger = {
 			scope:second = {
 				is_male = yes
@@ -3679,7 +5010,7 @@ FR_RelationToMeShort_OnA = {
 	}
 
 	text = {
-		localization_key = CustomLoc_FR_OnA_Relation_court_physician_female
+		localization_key = CustomLoc_FR_OnA_Relation_court_physician_male
 		trigger = {
 			scope:second = { is_male = yes }
 			has_relation_court_physician = scope:second
@@ -3696,7 +5027,7 @@ FR_RelationToMeShort_OnA = {
 	text = {
 		localization_key = CustomLoc_FR_OnA_Relation_kinswoman
 		trigger = {
-			is_female = yes
+			scope:second = { is_female = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -3704,7 +5035,7 @@ FR_RelationToMeShort_OnA = {
 	text = {
 		localization_key = CustomLoc_FR_OnA_Relation_kinsman
 		trigger = {
-			is_male = yes
+			scope:second = { is_male = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -3779,6 +5110,46 @@ FR_RelationToMeShort_OnA = {
 			exists = host
 			host = scope:second
 			scope:second = { is_male = yes }
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_prisoner_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_prisoner_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_jailer_female
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = CustomLoc_FR_OnA_Relation_jailer_male
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
 		}
 	}
 
@@ -4000,6 +5371,72 @@ FR_FaithGenderedAdj = {
 	}
 }
 
+FR_LocalAnimal_e = {
+	type = character
+
+	text = {
+		localization_key = CustomLoc_FR_E_female
+		trigger = {
+			var:local_animal = flag:unicorn
+		}
+	}
+	text = {
+		localization_key = ""
+		fallback = yes
+	}
+}
+
+FR_LocalAnimal_d = {
+	type = character
+
+	text = {
+		localization_key = CustomLoc_FR_d
+		trigger = {
+			var:local_animal = flag:bear
+		}
+	}
+	text = {
+		localization_key = CustomLoc_FR_de
+		fallback = yes
+	}
+}
+
+FR_LocalAnimal_he = {
+	type = character
+
+	text = {
+		localization_key = CustomLoc_FR_He_female
+		trigger = {
+			var:local_animal = flag:unicorn
+		}
+	}
+	text = {
+		localization_key = ""
+		fallback = yes
+	}
+}
+
+FR_LocalAnimal_le = {
+	type = character
+
+	text = {
+		localization_key = CustomLoc_FR_l
+		trigger = {
+			var:local_animal = flag:bear
+		}
+	}
+	text = {
+		localization_key = CustomLoc_FR_la
+		trigger = {
+			var:local_animal = flag:unicorn
+		}
+	}
+	text = {
+		localization_key = CustomLoc_FR_le
+		fallback = yes
+	}
+}
+
 FR_only_le_GetTitledFirstName = { 
 	type = character
 	text = {
@@ -4059,7 +5496,7 @@ FR_only_le_GetTitledFirstName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -4152,28 +5589,28 @@ FR_only_le_GetTitledFirstName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
@@ -4287,7 +5724,7 @@ FR_only_du_GetTitledFirstName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -4380,28 +5817,28 @@ FR_only_du_GetTitledFirstName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
@@ -4515,7 +5952,7 @@ FR_only_au_GetTitledFirstName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -4608,28 +6045,28 @@ FR_only_au_GetTitledFirstName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
@@ -4749,7 +6186,7 @@ FR_only_le_GetShortUIName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -4842,28 +6279,28 @@ FR_only_le_GetShortUIName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
@@ -4983,7 +6420,7 @@ FR_only_du_GetShortUIName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -5076,28 +6513,28 @@ FR_only_du_GetShortUIName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
@@ -5217,7 +6654,7 @@ FR_only_au_GetShortUIName = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Calife
 						has_title = title:d_sunni # Calife
@@ -5310,28 +6747,28 @@ FR_only_au_GetShortUIName = {
 						has_government = clan_government
 					}
 				}
-				AND = {
-					is_female = no
-					highest_held_title_tier = tier_county
-					OR = {
-						AND = { # count_feudal_male_english (Earl)
-							has_government = feudal_government
-							primary_title = { 
-								target_is_de_jure_liege_or_above = title:e_britannia
-								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-							}
-						}
-						AND = { # count_feudal_male_e_britannia (Earl)
-							OR = {
-								has_government = feudal_government
-								has_government = tribal_government
-							}
-							culture = culture:english
-							culture = culture:anglo_saxon
-							culture = culture:scottish
-						}
-					}
-				}
+#				AND = {
+#					is_female = no
+#					highest_held_title_tier = tier_county
+#					OR = {
+#						AND = { # count_feudal_male_english (Earl)
+#							has_government = feudal_government
+#							primary_title = { 
+#								target_is_de_jure_liege_or_above = title:e_britannia
+#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
+#							}
+#						}
+#						AND = { # count_feudal_male_e_britannia (Earl)
+#							OR = {
+#								has_government = feudal_government
+#								has_government = tribal_government
+#							}
+#							culture = culture:english
+#							culture = culture:anglo_saxon
+#							culture = culture:scottish
+#						}
+#					}
+#				}
 				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government

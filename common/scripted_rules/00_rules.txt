@@ -35,11 +35,16 @@ faith_creation = {
 	}
 
 	is_adult = yes
+	is_at_war = no
 	custom_description = {
 		text = "character_is_not_real_head"
 		NOT = { faith.religious_head = root }
 	}
-	NOT = { exists = var:has_created_a_faith }
+
+	custom_description = {
+		text = "character_can_only_create_one_faith"
+		NOT = { exists = var:has_created_a_faith }
+	}
 
 	trigger_if = {
 		limit = {
@@ -55,7 +60,7 @@ faith_creation = {
 		}
 
 		faith = {
-			directly_controls_num_holy_sites = {
+			num_realm_holy_sites_faithful_holders = {
 				CHARACTER = root
 				COUNT = 3
 			}
@@ -82,7 +87,19 @@ should_mother_give_house_to_bastard = {
 # Determines if a character may be appointed as a knight. Checked during automatic knight assignment
 # Root is the potential knight
 can_be_knight = {
-	can_be_knight_trigger = { ARMY_OWNER = root.court_owner }
+	trigger_if = {
+		limit = { 
+			OR = {
+				is_landed = no
+				root = root.court_owner 
+			}
+			NOT = { exists = liege } 
+		}
+		can_be_knight_trigger = { ARMY_OWNER = root.court_owner }
+	} 
+	trigger_else = {
+		can_be_knight_trigger = { ARMY_OWNER = liege }
+	}
 }
 
 # Determines if a character is allowed to be granted titles by another character
@@ -157,6 +174,32 @@ passes_faction_hard_block = {
 	custom_description = {
 		text = "FACTION_CANT_JOIN_CREATE_INCAPABLE"
 		NOT = { has_trait = incapable }
+	}
+
+	custom_description = {
+		text = "character_blocked_from_joining"
+		NOT = { has_character_flag = joining_faction_block }
+	}
+
+	custom_description = {
+		text = "faction_relation_blocks_joining_friend"
+		trigger_if = {
+			limit = { exists = scope:target }
+			NOT = {
+				root = { has_relation_friend = scope:target }
+			}
+		}
+	}
+
+	custom_description = {
+		text = "faction_relation_blocks_joining_lover"
+		trigger_if = {
+			limit = { exists = scope:target }
+			NOR = {
+				root = { has_relation_lover = scope:target }
+				root = { has_secret_relation_lover = scope:target }
+			}
+		}
 	}
 }
 
@@ -300,4 +343,21 @@ can_traverse_river = {
 #Scope it to potential backer
 is_hard_blocked_from_schemes = {
 	is_incapable = yes
+}
+
+# Will AI for this character try to arrange matrilineal marriages?
+# Note that the AI can still arrange patrilineal marriages based on the SPOUSE_SCORE_LINEALITY_MISMATCH_SCORE AI define
+# root: the arranging AI character
+# scope:secondary_actor: the character to be married
+ai_wants_matrilineal_marriage = {
+	scope:secondary_actor = {
+		is_female = yes
+	}
+	OR = {
+		has_realm_law = female_only_law
+		has_realm_law = female_preference_law
+		faith = {
+			has_doctrine_parameter = female_dominated_law
+		}
+	}
 }

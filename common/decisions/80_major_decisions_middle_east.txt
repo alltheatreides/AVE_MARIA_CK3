@@ -11,11 +11,18 @@ create_outremer_empire_decision = {
 	is_shown = {
 		is_ruler = yes
 		is_landed = yes
-		highest_held_title_tier > 3 #Kings and Emperors only
+		#Visible to dukes and kings.
+		highest_held_title_tier >= tier_duchy
+		highest_held_title_tier <= tier_kingdom
+		#Must be in the right area.
 		capital_province = { geographical_region = world_middle_east }
+		#Must have the correct religion, and support from the rest of Catholicism.
 		religion = { exists = var:variable_ghw_unlocked } #The era of the Crusades must have started.
 		faith = faith:catholic
-		NOT = {  #Can only do it once.
+		#Exempt Byzantine group: this is such a huge slap in the face to _anyone_ even vaguely in the Greek sphere.
+		NOT = { has_culture_group = culture_group:byzantine_group }
+		#Can only do it once.
+		NOT = {
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_created_outremer_empire
@@ -24,7 +31,8 @@ create_outremer_empire_decision = {
 	}
 
 	is_valid = {
-		prestige >= 5000
+		prestige_level >= max_prestige_level
+		highest_held_title_tier = tier_kingdom
 		completely_controls_region = custom_outremer
 	}
 
@@ -83,7 +91,7 @@ restore_sunni_caliphate_decision = {
 		completely_controls = title:d_shammar
 		completely_controls = title:d_palestine
 		completely_controls = title:d_oultrejourdain
-		piety >= 3000
+		piety_level >= high_piety_level
 	}
 
 	is_valid_showing_failures_only = {
@@ -113,7 +121,7 @@ restore_sunni_caliphate_decision = {
 		}
 		modifier = {
 			factor = 0
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 }
@@ -178,7 +186,7 @@ embrace_outremer_culture_decision = {
 
 	is_valid = {
 		OR = {
-			prestige >= 10000
+			prestige_level >= very_high_prestige_level
 			has_title = title:e_outremer
 			custom_description = {
 				text = "under_outremer_liege"
@@ -196,36 +204,6 @@ embrace_outremer_culture_decision = {
 		custom_tooltip = embrace_outremer_culture_decision_provinces_embrace_outremer
 		custom_tooltip = embrace_outremer_culture_decision_capital_embraces_outremer
 		hidden_effect = {
-			if = {
-				limit = {
-					culture:outremer = {
-						NOT = {
-							has_innovation = innovation_men_at_arms
-						}
-					}
-				}
-				culture:outremer = {
-					add_innovation = innovation_men_at_arms
-				}
-			}
-			if = {
-				limit = {
-					culture:outremer = {
-						NOT = {
-							has_innovation = innovation_desert_tactics
-						}
-					}
-				}
-				culture:outremer = {
-					add_innovation = innovation_desert_tactics
-					get_random_innovation_from = culture:french
-					get_random_innovation_from = culture:french
-					get_random_innovation_from = culture:french
-					get_random_innovation_from = culture:french
-					get_random_innovation_from = culture:bedouin #Just a sprinkle...
-					get_random_innovation_from = culture:bedouin
-				}
-			}
 			every_courtier = {
 				limit = {
 					has_culture = root.culture
@@ -281,14 +259,20 @@ create_israel_kingdom_decision = {
 		is_ruler = yes
 		is_landed = yes
 		faith.religion = faith:rabbinism.religion
-		NOT = {  #Can be redone if the Kingdom is destroyed again.
+		NOT = {  
 			exists = title:k_israel.holder
+		}
+		NOT = {  #Can only do it once.
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:create_israel_kingdom
+			}
 		}
 	}
 
 	is_valid = {
-		prestige >= 1000
-		piety >= 1000
+		prestige_level >= high_prestige_level
+		piety_level >= high_piety_level
 		completely_controls = title:d_palestine
 		completely_controls = title:d_urdunn
 		completely_controls = title:d_oultrejourdain
@@ -312,6 +296,12 @@ create_israel_kingdom_decision = {
 		}
 		trigger_event = {
 			id = middle_east_decisions.0005
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:create_israel_kingdom
+			}
 		}
 	}
 	
@@ -350,7 +340,7 @@ jewish_restore_high_priesthood_decision = {
 	}
 
 	is_valid = {
-		piety >= 1000
+		piety_level >= high_piety_level
 		custom_description = {
 			text = "restore_high_priesthood_holy_sites"
 			faith = {
@@ -416,7 +406,7 @@ zoroastrian_restore_high_priesthood_decision = {
 	}
 
 	is_valid = {
-		piety >= 1000
+		piety_level >= high_piety_level
 		custom_description = {
 			text = "restore_high_priesthood_holy_sites"
 			faith = {
@@ -476,15 +466,9 @@ become_saoshyant_decision = {
 	}
 
 	is_valid = {
-		piety >= 1500
+		piety_level >= very_high_piety_level
 		has_title = title:e_persia
-		completely_controls_region = world_persia
-		completely_controls_region = world_khorasan
-		completely_controls_region = world_transoxiana
-		completely_controls_region = world_daylam
-		completely_controls_region = world_makran
-		completely_controls_region = world_kabulistan
-		completely_controls_region = world_mesopotamia
+		completely_controls = title:e_persia
 	}
 
 	is_valid_showing_failures_only = {
@@ -496,7 +480,9 @@ become_saoshyant_decision = {
 
 
 	effect = {
-		custom_tooltip = become_saoshyant_decision_effect_tooltip
+		show_as_tooltip = {
+			become_saoshyant_decision_effect = yes
+		}
 		trigger_event = {
 			id = middle_east_decisions.0011
 		}
@@ -562,8 +548,8 @@ form_rum_sultanate_decision = {
 	}
 
 	is_valid = {
-		prestige >= 3000
-		piety >= 1000
+		prestige_level >= high_prestige_level
+		piety_level >= high_piety_level
 		completely_controls = title:d_cibyrrhaeot
 		completely_controls = title:d_anatolia
 		completely_controls = title:d_cappadocia

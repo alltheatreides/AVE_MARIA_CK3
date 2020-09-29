@@ -1,5 +1,63 @@
-﻿suggestion_declare_war = {
+﻿suggestion_recruit_maa = {
+	weight = {
+		base = 0
 
+		modifier = { # Is the suggestion available at all?
+			add = 0.5
+			number_of_maa_regiments < recommended_num_maa_regiments_value
+			trigger_if = {
+				limit = { has_government = tribal_government }
+				prestige >= 150 # Cost of Archers for tribal rulers, a good middle-of-the-road MaA unit.
+			}
+			trigger_if = {
+				limit = { NOT = { has_government = tribal_government} }
+				gold >= 75 # Cost of Archers for non-trbal rulers, a good middle-of-the-road MaA unit.
+			}
+		}
+
+		modifier = { # Much more likely if you have no men-at-arms at all
+			add = 1
+			number_of_maa_regiments = 0
+		}
+
+		modifier = { # More likely if you have a lot of extra money
+			add = 0.5
+			trigger_if = {
+				limit = { has_government = tribal_government }
+				prestige >= 300 # Cost of some elite men-at-arms for tribal rulers
+			}
+			trigger_if = {
+				limit = { NOT = { has_government = tribal_government} }
+				gold >= 150 # Cost of some elite men-at-arms for tribal rulers
+			}
+		}
+	}
+
+	check_create_suggestion = {
+		try_create_suggestion = {
+			suggestion_type = suggestion_recruit_maa
+		}
+	}
+
+	effect = {
+		open_view = military
+	}
+
+	is_valid = {
+		is_local_player = yes
+		number_of_maa_regiments < recommended_num_maa_regiments_value # Still under the recommended regiment count.
+		trigger_if = {
+			limit = { has_government = tribal_government }
+			prestige >= 150 # Cost of Archers for tribal rulers, a good middle-of-the-road MaA unit.
+		}
+		trigger_if = {
+			limit = { NOT = { has_government = tribal_government} }
+			gold >= 75 # Cost of Archers for non-trbal rulers, a good middle-of-the-road MaA unit.
+		}
+	}
+}
+ 
+suggestion_declare_war = {
 	weight = {
 		base = 0
 
@@ -48,11 +106,6 @@
 		modifier = { #Less likely if you're at war
 			add = -0.75
 			is_at_war = yes
-		}
-
-		modifier = { #Less likely if you're bankrupt
-			add = -0.75
-			gold < 0
 		}
 
 		modifier = { #Less likely if they're possibly stronger than you
@@ -295,6 +348,7 @@
 				is_allied_to = scope:recipient
 				has_truce = scope:recipient
 			}
+			gold >= 0
 		}
 	}
 }
@@ -305,7 +359,7 @@ suggestion_construct_building = {
 		base = 0
 
 		modifier = { #Is the suggestion available at all?
-			add = 0.1
+			add = 0.5
 			any_directly_owned_province = {
 				has_free_building_slot = yes
 			}
@@ -1456,8 +1510,12 @@ suggestion_grant_title = {
 
 		modifier = { #Is the suggestion available at all?
 			add = 2
+			any_held_county = {
+				count > 1
+			}
 			any_held_title = {
 				tier < tier_empire
+				exists = de_jure_liege
 				de_jure_liege = {
 					exists = holder
 					NOT = { holder = root }

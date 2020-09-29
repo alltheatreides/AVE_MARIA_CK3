@@ -6,9 +6,10 @@ give_temujin_land_effect = {
 	# TODO: Good territory selection here (accounting for players)
 	save_scope_as = genghis_khan
 
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = conquest
+	create_title_and_vassal_change = {
+		type = conquest
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:c_khentii = {
 		change_title_holder = {
@@ -43,11 +44,19 @@ spawn_temujin_character_effect = {
 
 			add_trait = greatest_of_khans
 			give_temujin_land_effect = yes
-			add_gold = monumental_gold_max_value
+			add_gold = 5000
 			add_dread = high_dread
 			spawn_temujins_court_effect = yes
 			form_the_mongol_empire_effect = yes
-			add_prestige = 1000
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = warfare_legacy_1
+				add_dynasty_perk = warfare_legacy_2
+				add_dynasty_perk = warfare_legacy_3
+				add_dynasty_perk = warfare_legacy_4
+			}
 		}
 	}
 	else_if = {
@@ -71,11 +80,19 @@ spawn_temujin_character_effect = {
 
 					add_trait = greatest_of_khans
 					give_temujin_land_effect = yes
-					add_gold = monumental_gold_max_value
+					add_gold = 5000
 					add_dread = high_dread
 					spawn_temujins_court_effect = yes
 					form_the_mongol_empire_effect = yes
-					add_prestige = 1000
+					add_prestige = 25000
+					dynasty = {
+						add_dynasty_prestige_level = 5
+						add_dynasty_prestige = 10000
+						add_dynasty_perk = warfare_legacy_1
+						add_dynasty_perk = warfare_legacy_2
+						add_dynasty_perk = warfare_legacy_3
+						add_dynasty_perk = warfare_legacy_4
+					}
 				}
 			}
 			#Male Ghengis Khan.
@@ -95,11 +112,19 @@ spawn_temujin_character_effect = {
 
 					add_trait = greatest_of_khans
 					give_temujin_land_effect = yes
-					add_gold = monumental_gold_max_value
+					add_gold = 5000
 					add_dread = high_dread
 					spawn_temujins_court_effect = yes
 					form_the_mongol_empire_effect = yes
-					add_prestige = 1000
+					add_prestige = 25000
+					dynasty = {
+						add_dynasty_prestige_level = 5
+						add_dynasty_prestige = 10000
+						add_dynasty_perk = warfare_legacy_1
+						add_dynasty_perk = warfare_legacy_2
+						add_dynasty_perk = warfare_legacy_3
+						add_dynasty_perk = warfare_legacy_4
+					}
 				}
 			}
 		}
@@ -120,11 +145,19 @@ spawn_temujin_character_effect = {
 
 			add_trait = greatest_of_khans
 			give_temujin_land_effect = yes
-			add_gold = monumental_gold_max_value
+			add_gold = 5000
 			add_dread = high_dread
 			spawn_temujins_court_effect = yes
 			form_the_mongol_empire_effect = yes
-			add_prestige = 1000
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = warfare_legacy_1
+				add_dynasty_perk = warfare_legacy_2
+				add_dynasty_perk = warfare_legacy_3
+				add_dynasty_perk = warfare_legacy_4
+			}
 		}
 	}
 
@@ -139,9 +172,10 @@ form_the_mongol_empire_effect = {
 	save_scope_as = mongol_founder
 
 	#Create the title
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_mongol_empire = {
 		change_title_holder = {
@@ -188,30 +222,29 @@ spawn_mongol_troops_effect = {
 		uses_supply = no
 		inheritable = no
 		name = mongol_event_troops
-		levies = {
-			value = 4000
-			every_held_title = {
-				limit = {
-					tier = tier_duchy
-				}
-				add = 500
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_kingdom
-				}
-				add = 1000
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_empire
-				}
-				add = 2000
-			}
-		}
 		men_at_arms = {
 			type = horse_archers
-			stacks = 3
+			stacks = 14
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = armored_horsemen
+			stacks = 5
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
 		}
 		location = capital_province
 	}
@@ -220,29 +253,31 @@ spawn_mongol_troops_effect = {
 		inheritable = no
 		name = mongol_event_troops
 		levies = {
-			value = 4000
-			every_held_title = {
-				limit = {
-					tier = tier_duchy
-				}
-				add = 500
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_kingdom
-				}
-				add = 1000
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_empire
-				}
-				add = 2000
-			}
+			value = 5000
 		}
 		men_at_arms = {
 			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = armored_horsemen
 			stacks = 3
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
 		}
 		location = capital_province
 	}
@@ -251,29 +286,64 @@ spawn_mongol_troops_effect = {
 		inheritable = no
 		name = mongol_event_troops
 		levies = {
-			value = 4000
-			every_held_title = {
-				limit = {
-					tier = tier_duchy
-				}
-				add = 500
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_kingdom
-				}
-				add = 1000
-			}
-			every_held_title = {
-				limit = {
-					tier = tier_empire
-				}
-				add = 2000
-			}
+			value = 5000
 		}
 		men_at_arms = {
 			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = armored_horsemen
 			stacks = 3
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
+		}
+		location = capital_province
+	}
+	spawn_army = {
+		uses_supply = no
+		inheritable = no
+		name = mongol_event_troops
+		levies = {
+			value = 5000
+		}
+		men_at_arms = {
+			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = horse_archers
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = armored_horsemen
+			stacks = 3
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
 		}
 		location = capital_province
 	}
@@ -290,7 +360,7 @@ spawn_temujins_court_effect = {
 		# Create Temujin (husband)...
 		create_character = {
 			template = genghis_khan_character_template
-			name = "Temujin" # Wife of Temujin
+			name = "Temujin" # Husband of Temujin
 			employer = scope:temujin
 			save_scope_as = borte
 		}
@@ -376,6 +446,12 @@ spawn_temujins_court_effect = {
 			flag = immune_to_disease
 			years = 10
 		}
+
+		#Make it more likely that he gets a good martial education
+		hidden_effect = {
+			education_point_acquisition_effect = yes
+			education_point_acquisition_effect = yes
+		}
 	}
 
 	# Create Ögedei (son)...
@@ -393,6 +469,12 @@ spawn_temujins_court_effect = {
 		add_character_flag = {
 			flag = immune_to_disease
 			years = 10
+		}
+
+		#Make it more likely that he gets a good martial education
+		hidden_effect = {
+			education_point_acquisition_effect = yes
+			education_point_acquisition_effect = yes
 		}
 	}
 
@@ -431,6 +513,94 @@ spawn_temujins_court_effect = {
 		# Set friendship with Temujin
 		set_relation_friend = scope:temujin
 	}
+	
+	# Spawn some generic Bagathurs
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_warrior_character
+		faith = scope:temujin.faith
+		culture = scope:temujin.culture
+	}
+	
+	# Spawn some captured Han siege engineers
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_siege_engineer
+		faith = faith:shangqing
+		culture = culture:han
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_siege_engineer
+		faith = faith:shangqing
+		culture = culture:han
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_siege_engineer
+		faith = faith:shangqing
+		culture = culture:han
+	}
+	create_character = {
+		gender_female_chance = root_soldier_female_chance
+		employer = scope:temujin
+		template = new_siege_engineer
+		faith = faith:shangqing
+		culture = culture:han
+	}
 }
 
 ### Start war of conquest for the Mongolian heartland
@@ -456,7 +626,7 @@ start_wars_for_mongolia_effect = {
 		scope:mongol_conqueror = {
 			start_war = {
 				cb = mongol_realm_invasion_war
-				target = scope:new_war_target
+				target = scope:new_war_target.top_liege
 				target_title = scope:war_target_title.empire
 			}
 		}
@@ -661,9 +831,10 @@ assign_core_mongol_titles_to_heir_effect = {
 			NOT = { exists = title:e_mongolia.holder }
 		}
 		# Create and grant title
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = created
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		title:e_mongolia = {
 			change_title_holder = {
@@ -694,9 +865,10 @@ assign_core_mongol_titles_to_heir_effect = {
 }
 
 grant_ilkhanate_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_ilkhanate = {
 		change_title_holder = {
@@ -736,9 +908,10 @@ grant_ilkhanate_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -753,9 +926,10 @@ grant_ilkhanate_effect = {
 grant_golden_horde_effect = {
 	debug_log = "Golden Horde about to be created"
 	debug_log_scopes = no
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_golden_horde = {
 		change_title_holder = {
@@ -796,9 +970,10 @@ grant_golden_horde_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -812,9 +987,10 @@ grant_golden_horde_effect = {
 }
 
 grant_chagatai_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_chagatai = {
 		change_title_holder = {
@@ -855,9 +1031,10 @@ grant_chagatai_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -871,9 +1048,10 @@ grant_chagatai_effect = {
 }
 
 grant_black_horde_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_black_horde = {
 		change_title_holder = {
@@ -914,9 +1092,10 @@ grant_black_horde_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -930,9 +1109,10 @@ grant_black_horde_effect = {
 }
 
 grant_white_horde_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_white_horde = {
 		change_title_holder = {
@@ -973,9 +1153,10 @@ grant_white_horde_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -989,9 +1170,10 @@ grant_white_horde_effect = {
 }
 
 grant_aarlud_khanate_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_aarlud_khanate = {
 		change_title_holder = {
@@ -1032,9 +1214,10 @@ grant_aarlud_khanate_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -1048,9 +1231,10 @@ grant_aarlud_khanate_effect = {
 }
 
 grant_togskol_khanate_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_togskol_khanate = {
 		change_title_holder = {
@@ -1091,9 +1275,10 @@ grant_togskol_khanate_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -1107,9 +1292,10 @@ grant_togskol_khanate_effect = {
 }
 
 grant_baruun_khanate_effect = {
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_baruun_khanate = {
 		change_title_holder = {
@@ -1150,9 +1336,10 @@ grant_baruun_khanate_effect = {
 				save_scope_as = county_to_transfer
 			}
 		}
-		create_title_and_vassal_change = title_change
-		scope:title_change = {
-			set_title_and_vassal_change_type = granted
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = title_change
+			add_claim_on_loss = no
 		}
 		scope:county_to_transfer = {
 			change_title_holder = {
@@ -2055,9 +2242,10 @@ shift_counties_on_mongol_succession_effect = {
 			}
 		}
 	}
-	create_title_and_vassal_change = mongol_succession
-	scope:mongol_succession = {
-		set_title_and_vassal_change_type = granted
+	create_title_and_vassal_change = {
+		type = granted
+		save_scope_as = mongol_succession
+		add_claim_on_loss = no
 	}
 	
 	# Ilkhanate

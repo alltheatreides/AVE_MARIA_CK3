@@ -350,7 +350,7 @@ holy_site_mahabodhi_temple_01 = {
 	character_modifier = {
 		monthly_piety = 1
 		monthly_dynasty_prestige_mult = 0.05
-		# learning_per_piety_level = 2
+		learning_per_piety_level = 2
 		different_faith_opinion = 5
 		religious_vassal_opinion = 10
 		different_faith_county_opinion_mult = -0.2
@@ -491,17 +491,20 @@ holy_site_great_mosque_of_cordoba_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			scope:holder = {
-				faith = { religion_tag = christianity_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_christian_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				scope:holder = {
+					faith = { religion_tag = christianity_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -568,14 +571,17 @@ holy_site_great_mosque_of_djenne_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -633,14 +639,17 @@ holy_site_great_mosque_of_samarra_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -702,14 +711,17 @@ holy_site_cologne_cathedral_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = christianity_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_christian_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = christianity_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -777,14 +789,17 @@ holy_site_canterbury_cathedral_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = christianity_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_christian_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = christianity_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -846,14 +861,17 @@ holy_site_prophetic_mosque_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -1279,7 +1297,7 @@ stonehenge_01 = {
 	cost_gold = 3000
 
 	character_modifier = {
-		# learning = 2
+		learning = 2
 		monthly_learning_lifestyle_xp_gain_mult = 0.15
 		faith_conversion_piety_cost_mult = -0.2
 	}
@@ -1408,7 +1426,7 @@ buddhas_of_bamian_01 = {
 
 	character_modifier = {
 		monthly_piety_gain_mult = 0.1
-		# diplomacy_per_piety_level = 1
+		diplomacy_per_piety_level = 1
 	}
 	county_modifier = {
 		tax_mult = 0.1
@@ -1579,7 +1597,7 @@ house_of_wisdom_01 = {
 	cost_gold = 3000
 
 	character_modifier = {
-		# learning_per_prestige_level = 2
+		learning_per_prestige_level = 2
 		monthly_lifestyle_xp_gain_mult = 0.15
 		different_culture_opinion = 10
 		cultural_head_fascination_mult = 0.15
@@ -1686,7 +1704,7 @@ notre_dame_01 = {
 
 	character_modifier = {
 		monthly_piety = 1
-		# stewardship_per_piety_level = 1
+		stewardship_per_piety_level = 1
 		monthly_dynasty_prestige_mult = 0.05
 	}
 	county_modifier = {
@@ -1751,7 +1769,7 @@ brihadeeswarar_temple_01 = {
 		monthly_piety = 0.25
 		monthly_dynasty_prestige_mult = 0.05
 		same_faith_opinion = 5
-		# stewardship_per_piety_level = 1
+		stewardship_per_piety_level = 1
 	}
 	
 	county_modifier = {
@@ -1848,7 +1866,7 @@ ananda_temple_01 = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning = 2
+		learning = 2
 		monthly_piety_gain_mult = 0.05
 		county_opinion_add = 5
 		monthly_county_control_change_factor = 0.1
@@ -1888,17 +1906,20 @@ the_friday_mosque_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			scope:holder = {
-				faith = { religion_tag = zoroastrianism_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_or_zoroastrian_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				scope:holder = {
+					faith = { religion_tag = zoroastrianism_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -2049,8 +2070,8 @@ hagia_sophia_01 = {
 
 	character_modifier = {
 		monthly_piety_gain_per_knight_add = 0.1
-		# intrigue_per_prestige_level = 2
-		# learning = 2
+		intrigue_per_prestige_level = 2
+		learning = 2
 		knight_limit = 2
 		knight_effectiveness_mult = 0.2
 		monthly_dynasty_prestige_mult = 0.05
@@ -2091,14 +2112,17 @@ hagia_sophia_02 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			scope:holder = {
-				faith = { religion_tag = islam_religion }
-			}
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_muslim_or_holy_site_trigger
+			OR = {
+				scope:holder = {
+					faith = { religion_tag = islam_religion }
+				}
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
 			}
 		}
@@ -2111,8 +2135,8 @@ hagia_sophia_02 = {
 
 	character_modifier = {
 		monthly_piety_gain_per_knight_add = 0.1
-		# intrigue_per_prestige_level = 2
-		# learning = 2
+		intrigue_per_prestige_level = 2
+		learning = 2
 		knight_limit = 2
 		knight_effectiveness_mult = 0.2
 		monthly_dynasty_prestige_mult = 0.05
@@ -2156,7 +2180,7 @@ dome_of_the_rock_01 = {
 		monthly_piety_gain_per_knight_mult = 0.03
 		monthly_dynasty_prestige_mult = 0.05
 		monthly_county_control_change_factor = 0.1
-		# martial_per_piety_level = 1
+		martial_per_piety_level = 1
 		knight_effectiveness_mult = 0.2
 	}
 	
@@ -2199,15 +2223,18 @@ temple_in_jerusalem_01 = {
 	}
 	
 	is_enabled = {
-		OR = {
-			custom_description = {
-				text = holy_site_building_trigger
-				barony = {
-					is_holy_site_of = scope:holder.faith
+		custom_description = {
+			text = holy_site_jewish_or_holy_site_trigger
+			OR = {
+				custom_description = {
+					text = holy_site_building_trigger
+					barony = {
+						is_holy_site_of = scope:holder.faith
+					}
 				}
-			}
-			scope:holder = {
-				faith = { religion_tag = judaism_religion }
+				scope:holder = {
+					faith = { religion_tag = judaism_religion }
+				}
 			}
 		}
 	}
@@ -2221,8 +2248,8 @@ temple_in_jerusalem_01 = {
 		monthly_piety_gain_per_knight_mult = 0.03
 		monthly_dynasty_prestige_mult = 0.05
 		monthly_county_control_change_factor = 0.1
-		# martial_per_piety_level = 1
-		# learning_per_prestige_level = 2
+		martial_per_piety_level = 1
+		learning_per_prestige_level = 2
 		knight_effectiveness_mult = 0.2
 		same_faith_opinion = 5
 	}
@@ -3707,6 +3734,7 @@ hall_of_heroes_01 = {
 
 	is_enabled = {
 		building_hall_of_heroes_requirement = yes
+		building_disable_if_vastly_over_domain_limit_trigger = yes
 	}
 	
 	next_building = hall_of_heroes_02
@@ -3735,6 +3763,7 @@ hall_of_heroes_02 = {
 
 	is_enabled = {
 		building_hall_of_heroes_requirement = yes
+		building_disable_if_vastly_over_domain_limit_trigger = yes
 	}
 
 	
@@ -3764,6 +3793,7 @@ hall_of_heroes_03 = {
 
 	is_enabled = {
 		building_hall_of_heroes_requirement = yes
+		building_disable_if_vastly_over_domain_limit_trigger = yes
 	}
 
 	
@@ -3793,6 +3823,7 @@ hall_of_heroes_04 = {
 
 	is_enabled = {
 		building_hall_of_heroes_requirement = yes
+		building_disable_if_vastly_over_domain_limit_trigger = yes
 	}
 
 	
@@ -3822,6 +3853,7 @@ hall_of_heroes_05 = {
 
 	is_enabled = {
 		building_hall_of_heroes_requirement = yes
+		building_disable_if_vastly_over_domain_limit_trigger = yes
 	}
 
 	
@@ -3854,7 +3886,7 @@ generic_university = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning_per_prestige_level = 1
+		learning_per_prestige_level = 1
 		monthly_lifestyle_xp_gain_mult = 0.05
 		monthly_dynasty_prestige = 0.25
 	}
@@ -3888,8 +3920,8 @@ al_azhar_university = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning_per_prestige_level = 1
-		# diplomacy_per_prestige_level = 1
+		learning_per_prestige_level = 1
+		diplomacy_per_prestige_level = 1
 		monthly_lifestyle_xp_gain_mult = 0.1
 		monthly_dynasty_prestige = 0.25
 	}
@@ -3924,8 +3956,8 @@ sankore_university = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning_per_prestige_level = 1
-		# martial_per_prestige_level = 1
+		learning_per_prestige_level = 1
+		martial_per_prestige_level = 1
 		monthly_lifestyle_xp_gain_mult = 0.1
 		monthly_dynasty_prestige = 0.25
 	}
@@ -3960,8 +3992,8 @@ siena_university = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning_per_prestige_level = 1
-		# intrigue_per_prestige_level = 1
+		learning_per_prestige_level = 1
+		intrigue_per_prestige_level = 1
 		monthly_lifestyle_xp_gain_mult = 0.1
 		monthly_dynasty_prestige = 0.25
 	}
@@ -3996,8 +4028,8 @@ nalanda_university = {
 	cost_gold = 1000
 
 	character_modifier = {
-		# learning_per_prestige_level = 1
-		# stewardship_per_prestige_level = 1
+		learning_per_prestige_level = 1
+		stewardship_per_prestige_level = 1
 		monthly_lifestyle_xp_gain_mult = 0.1
 		monthly_dynasty_prestige = 0.25
 	}

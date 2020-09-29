@@ -17,11 +17,15 @@ decide_what_options_to_present_effect = {
 	hidden_effect = {
 		random_list = {
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_malicious_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_vengefulness = medium_chance_impact_positive_vengefulness
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:malicious
@@ -29,11 +33,16 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_benevolent_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_compassion = medium_chance_impact_positive_compassion
+					ai_rationality = low_chance_impact_positive_rationality
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:benevolent
@@ -41,11 +50,15 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_dominant_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:dominant
@@ -53,11 +66,16 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_submissive_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
+					ai_energy = low_chance_impact_negative_energy
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:submissive
@@ -65,11 +83,16 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_extroverted_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
+					ai_compassion = low_chance_impact_positive_boldness
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:extroverted
@@ -77,11 +100,15 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_introverted_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:introverted
@@ -89,11 +116,15 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_emotional_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_energy = medium_chance_impact_positive_energy
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:emotional
@@ -101,98 +132,102 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
 						has_trait_levelheaded_trigger = yes
 					}
 				}
+				ai_value_modifier = {
+					ai_rationality = medium_chance_impact_positive_rationality
+				}
 				set_variable = {
 					name = option_to_present
 					value = flag:levelheaded
 					days = 800
 				}
 			}
-			1 = { #fallback
-				trigger = {
-					scope:courtier_spy = {
-						NOR = {
-							has_trait_malicious_trigger = yes
-							has_trait_benevolent_trigger = yes
-							has_trait_dominant_trigger = yes
-							has_trait_submissive_trigger = yes
-							has_trait_extroverted_trigger = yes
-							has_trait_introverted_trigger = yes
-							has_trait_emotional_trigger = yes
-							has_trait_levelheaded_trigger = yes
-						}
+		}
+		#Fallback
+		if = {
+			limit = {
+				NOT = {
+					exists = var:option_to_present
+				}
+			}
+			random_list = {
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:malicious
+						days = 800
 					}
 				}
-				random_list = {
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:malicious
-							days = 800
-						}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:benevolent
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:benevolent
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:dominant
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:dominant
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:submissive
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:submissive
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:extroverted
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:extroverted
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:introverted
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:introverted
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:emotional
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:emotional
-							days = 800
-						}
-					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:levelheaded
-							days = 800
-						}
+				}
+				1 = {
+					set_variable = {
+						name = option_to_present
+						value = flag:levelheaded
+						days = 800
 					}
 				}
 			}
 		}
+		#Bad option 1
 		random_list = {
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:malicious }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_malicious_trigger = no
+						has_trait_malicious_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_vengefulness = medium_chance_impact_positive_vengefulness
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -201,10 +236,18 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:benevolent }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_benevolent_trigger = no
+						has_trait_benevolent_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_compassion = medium_chance_impact_positive_compassion
+					ai_rationality = low_chance_impact_positive_rationality
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -213,10 +256,17 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:dominant }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_dominant_trigger = no
+						has_trait_dominant_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -225,10 +275,18 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:submissive }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_submissive_trigger = no
+						has_trait_submissive_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
+					ai_energy = low_chance_impact_negative_energy
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -237,10 +295,18 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:extroverted }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_extroverted_trigger = no
+						has_trait_extroverted_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
+					ai_compassion = low_chance_impact_positive_boldness
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -249,10 +315,17 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:introverted }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_introverted_trigger = no
+						has_trait_introverted_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -261,10 +334,17 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:emotional }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_emotional_trigger = no
+						has_trait_emotional_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_energy = medium_chance_impact_positive_energy
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -273,10 +353,17 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
+				trigger = {
+					NOT = { var:option_to_present = flag:levelheaded }
+				}
+				modifier = {	
+					add = 2
 					scope:courtier_spy = {
-						has_trait_levelheaded_trigger = no
+						has_trait_levelheaded_trigger = yes
 					}
+				}
+				ai_value_modifier = {
+					ai_rationality = medium_chance_impact_positive_rationality
 				}
 				set_variable = {
 					name = option_1_fail_to_present
@@ -284,90 +371,114 @@ decide_what_options_to_present_effect = {
 					days = 800
 				}
 			}
-			1 = { #fallback
-				trigger = {
-					scope:courtier_spy = {
-						NOR = {
-							has_trait_malicious_trigger = no
-							has_trait_benevolent_trigger = no
-							has_trait_dominant_trigger = no
-							has_trait_submissive_trigger = no
-							has_trait_extroverted_trigger = no
-							has_trait_introverted_trigger = no
-							has_trait_emotional_trigger = no
-							has_trait_levelheaded_trigger = no
-						}
+		}
+		#Fallback
+		if = {
+			limit = {
+				NOT = {
+					exists = var:option_1_fail_to_present
+				}
+			}
+			random_list = {
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:malicious }
+					}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:malicious
+						days = 800
 					}
 				}
-				random_list = {
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:malicious
-							days = 800
-						}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:benevolent }
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:benevolent
-							days = 800
-						}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:benevolent
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:dominant
-							days = 800
-						}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:dominant }
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:submissive
-							days = 800
-						}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:dominant
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:extroverted
-							days = 800
-						}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:submissive }
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:introverted
-							days = 800
-						}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:submissive
+						days = 800
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:emotional
-							days = 800
-						}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:extroverted }
 					}
-					1 = {
-						set_variable = {
-							name = option_to_present
-							value = flag:levelheaded
-							days = 800
-						}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:extroverted
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:introverted }
+					}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:introverted
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:emotional }
+					}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:emotional
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOT = { var:option_to_present = flag:levelheaded }
+					}
+					set_variable = {
+						name = option_1_fail_to_present
+						value = flag:levelheaded
+						days = 800
 					}
 				}
 			}
 		}
+		#Bad option 2
 		random_list = {
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_malicious_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:malicious }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:malicious
+						var:option_1_fail_to_present = flag:malicious
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_malicious_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_vengefulness = medium_chance_impact_positive_vengefulness
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -376,13 +487,21 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_benevolent_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:benevolent }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:benevolent
+						var:option_1_fail_to_present = flag:benevolent
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_benevolent_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_compassion = medium_chance_impact_positive_compassion
+					ai_rationality = low_chance_impact_positive_rationality
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -391,13 +510,20 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_dominant_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:dominant }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:dominant
+						var:option_1_fail_to_present = flag:dominant
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_dominant_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -406,13 +532,21 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_submissive_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:submissive }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:submissive
+						var:option_1_fail_to_present = flag:submissive
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_submissive_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
+					ai_energy = low_chance_impact_negative_energy
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -421,13 +555,21 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_extroverted_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:extroverted }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:extroverted
+						var:option_1_fail_to_present = flag:extroverted
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_extroverted_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_positive_boldness
+					ai_compassion = low_chance_impact_positive_boldness
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -436,13 +578,20 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_introverted_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:introverted }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:introverted
+						var:option_1_fail_to_present = flag:introverted
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_introverted_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_boldness = medium_chance_impact_negative_boldness
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -451,13 +600,20 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_emotional_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:emotional }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:emotional
+						var:option_1_fail_to_present = flag:emotional
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_emotional_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_energy = medium_chance_impact_positive_energy
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -466,13 +622,20 @@ decide_what_options_to_present_effect = {
 				}
 			}
 			1 = {
-				trigger = {	
-					AND = {
-						scope:courtier_spy = {
-							has_trait_levelheaded_trigger = no
-						}
-						NOT = { var:option_1_fail_to_present = flag:levelheaded }
+				trigger = {
+					NOR = {
+						var:option_to_present = flag:levelheaded
+						var:option_1_fail_to_present = flag:levelheaded
 					}
+				}
+				modifier = {	
+					add = 2
+					scope:courtier_spy = {
+						has_trait_levelheaded_trigger = yes
+					}
+				}
+				ai_value_modifier = {
+					ai_rationality = medium_chance_impact_positive_rationality
 				}
 				set_variable = {
 					name = option_2_fail_to_present
@@ -480,101 +643,117 @@ decide_what_options_to_present_effect = {
 					days = 800
 				}
 			}
-			1 = { #fallback
-				trigger = {
-					scope:courtier_spy = {
+		}
+		#Fallback
+		if = {
+			limit = {
+				NOT = {
+					exists = var:option_2_fail_to_present
+				}
+			}
+			random_list = {
+				1 = {
+					trigger = {
 						NOR = {
-							has_trait_malicious_trigger = no
-							has_trait_benevolent_trigger = no
-							has_trait_dominant_trigger = no
-							has_trait_submissive_trigger = no
-							has_trait_extroverted_trigger = no
-							has_trait_introverted_trigger = no
-							has_trait_emotional_trigger = no
-							has_trait_levelheaded_trigger = no
+							var:option_to_present = flag:malicious
+							var:option_1_fail_to_present = flag:malicious
 						}
+					}
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:malicious
+						days = 800
 					}
 				}
-				random_list = {
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:malicious }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:malicious
-							days = 800
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:benevolent
+							var:option_1_fail_to_present = flag:benevolent
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:benevolent }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:benevolent
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:benevolent
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:dominant
+							var:option_1_fail_to_present = flag:dominant
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:dominant }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:dominant
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:dominant
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:submissive
+							var:option_1_fail_to_present = flag:submissive
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:submissive }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:submissive
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:submissive
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:extroverted
+							var:option_1_fail_to_present = flag:extroverted
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:extroverted }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:extroverted
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:extroverted
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:introverted
+							var:option_1_fail_to_present = flag:introverted
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:introverted }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:introverted
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:introverted
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:emotional
+							var:option_1_fail_to_present = flag:emotional
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:emotional }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:emotional
-							days = 800
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:emotional
+						days = 800
+					}
+				}
+				1 = {
+					trigger = {
+						NOR = {
+							var:option_to_present = flag:levelheaded
+							var:option_1_fail_to_present = flag:levelheaded
 						}
 					}
-					1 = {
-						trigger = {
-							NOT = { var:option_1_fail_to_present = flag:levelheaded }
-						}
-						set_variable = {
-							name = option_to_present
-							value = flag:levelheaded
-							days = 800
-						}
+					set_variable = {
+						name = option_2_fail_to_present
+						value = flag:levelheaded
+						days = 800
 					}
 				}
 			}

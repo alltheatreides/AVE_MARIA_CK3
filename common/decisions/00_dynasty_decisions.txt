@@ -87,6 +87,14 @@
 				has_trait = devoted
 			}
 		}
+		trigger_if = {
+			limit = {
+				has_trait = bastard
+			}
+			NOT = {
+				has_trait = bastard
+			}
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -110,18 +118,6 @@
 			save_scope_as = new_head
 			house = {
 				save_scope_as = new_house
-			}
-			every_player = {
-				limit = {
-					exists = house
-					house = scope:former_house
-				}
-				send_interface_toast = {
-					type = msg_created_new_house_former_house
-					title = created_cadet_branch_toast_former_house_desc
-					left_icon = scope:new_head
-					desc = created_cadet_branch_toast_former_house_tt
-				}
 			}
 			every_player = {
 				limit = {

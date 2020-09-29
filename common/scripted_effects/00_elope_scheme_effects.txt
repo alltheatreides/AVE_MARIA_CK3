@@ -116,7 +116,7 @@ elope_success_effect = {
 
 
 	hidden_effect = {
-		#Owner's personal consequences, divorce happens here
+		#Target's personal consequences, divorce happens here
 		elope_success_personal_consequences_effect = { CHARACTER = $TARGET$ }
 
 		#Marriage
@@ -264,11 +264,11 @@ elope_success_personal_consequences_effect = {
 		#Break betrothal
 		if = {
 			limit = { is_betrothed = yes }
-			break_betrothal = betrothed
 			reverse_add_opinion = {
 				modifier = broke_betrothal_opinion
 				target = betrothed
 			}
+			break_betrothal = betrothed
 		}
 
 		#End concubinage

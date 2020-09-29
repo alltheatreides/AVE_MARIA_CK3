@@ -9,42 +9,42 @@ form_switzerland_kingdom_decision = {
 	ai_check_interval = 120
 
 	is_shown = {
-		faith.religion = faith:catholic.religion #Christian
-		is_ruler = yes
 		is_landed = yes
 		is_independent_ruler = no
-		NOT = {
-			exists = title:k_switzerland.holder
-		}
+		NOT = { exists = title:k_switzerland.holder }
 		NOT = {  #Can only do it once.
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_switzerland_kingdom
 			}
 		}
-		highest_held_title_tier < 4 #No Kings or Emperors.
+		#No kings or emperors.
+		highest_held_title_tier <= tier_duchy
+		#Must be within an empire.
+		top_liege.primary_title.tier >= tier_empire
 		OR = {
-			has_culture = culture:german
+			culture_group = culture_group:central_germanic_group
 			has_culture = culture:frankish
 			has_culture = culture:occitan
 			has_culture = culture:italian
 			has_culture = culture:lombard
+			has_culture = culture:cisalpine
 		}
-		liege = { has_title = title:e_hre }
-		OR = {
-			has_title = title:d_currezia
-			has_title = title:d_upper_burgundy
-			has_title = title:d_savoie
+		any_sub_realm_county = {
+			OR = {
+				title_province = { geographical_region = custom_core_switzerland }
+				this = title:c_geneva
+				this = title:c_aosta
+			}
 		}
 	}
 
 	is_valid = {
-		liege = title:e_hre.holder
-		prestige >= 3000
-		gold >= 500
-		completely_controls = title:d_currezia
-		completely_controls = title:d_upper_burgundy
-		completely_controls = title:d_savoie
+		#Must have imperial immediacy.
+		liege = top_liege
+		prestige_level >= high_prestige_level
+		#And the core of the Old Confederacy.
+		completely_controls_region = custom_core_switzerland
 	}
 
 	is_valid_showing_failures_only = {
@@ -55,11 +55,10 @@ form_switzerland_kingdom_decision = {
 	}
 
 	cost = {
-		gold = 500
+		gold = 250
 	}
 
 	effect = {
-		custom_tooltip = form_switzerland_kingdom_decision_effect_tooltip
 		show_as_tooltip = {
 			form_switzerland_scripted_effect = yes
 		}
@@ -93,43 +92,56 @@ form_austria_kingdom_decision = {
 	ai_goal = yes
 
 	is_shown = {
-		faith.religion = faith:catholic.religion #Christian
-		is_ruler = yes
 		is_landed = yes
-		is_independent_ruler = no
-		NOT = {
-			exists = title:k_austria.holder
-		}
+		NOT = { exists = title:k_austria.holder }
 		NOT = {  #Can only do it once.
 			is_target_in_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_austria_kingdom
 			}
 		}
-		highest_held_title_tier < 4 #No Kings or Emperors.
-		liege = { has_title = title:e_hre }
-		has_title = title:d_osterreich
+		OR = {
+			#No kings or emperors...
+			AND = {
+				highest_held_title_tier <= tier_duchy
+				is_independent_ruler = no
+			}
+			#... *unless* you hold the HRE itself.
+			has_title = title:e_hre
+		}
+		#Must be within the HRE, else the bid & flavour make no sense.
+		top_liege = { has_title = title:e_hre }
+		#Must hold land within the relevant areas directly.
+		any_held_title = {
+			tier = tier_county
+			OR = {
+				title_province = { geographical_region = custom_core_austria }
+				title_province = { geographical_region = custom_stretch_austria }
+			}
+		}
 	}
 
 	is_valid = {
+		#Must enjoy imperial immediacy.
 		liege = title:e_hre.holder
-		prestige >= 3000
-		gold >= 1000
-		completely_controls = title:d_osterreich
-		completely_controls = title:d_carinthia
-		completely_controls = title:d_steyermark
-		completely_controls = title:d_salzburg
-		custom_description = {
-			text = "form_austria_hre_dynasty_trigger"
-			dynasty = title:e_hre.holder.dynasty
+		#Must be suitably prestigious.
+		prestige_level >= high_prestige_level
+		#Must control core Austria
+		completely_controls_region = custom_core_austria
+		OR = {
+			custom_description = {
+				text = "form_austria_hre_dynasty_trigger"
+				dynasty = title:e_hre.holder.dynasty
+			}
+			has_strong_usable_hook = title:e_hre.holder
 		}
 	}
 
 	is_valid_showing_failures_only = {
 		is_capable_adult = yes
 		is_imprisoned = no
-		is_independent_ruler = no
 		is_at_war = no
+		faith = top_liege.faith	#Must share the faith of your emperor.
 	}
 
 	cost = {
@@ -137,7 +149,6 @@ form_austria_kingdom_decision = {
 	}
 
 	effect = {
-		custom_tooltip = form_austria_kingdom_decision_effect_tooltip
 		show_as_tooltip = {
 			form_austria_scripted_effect = yes
 		}
@@ -157,9 +168,18 @@ form_austria_kingdom_decision = {
 	}
 
 	ai_will_do = {
-		base = 10
+		base = 0
+
+		#Only worth considering if you actually have your capital in Austria.		
+		modifier = {
+			add = 20
+			capital_county.title_province = { geographical_region = custom_core_austria }
+		}
+
+		#More brazen characters are more likely to have a bash.
 		ai_value_modifier = {
-			ai_boldness = 1.0
+			ai_boldness = 0.75
+			ai_greed = 0.25
 		}
 	}
 }
@@ -192,10 +212,10 @@ reform_carolingian_empire_decision = {
 	}
 
 	is_valid = {
-		prestige >= 3000
+		prestige_level >= high_prestige_level
 		has_title = title:e_france
 		#All of starting e_france
-		completely_controls_region = world_europe_west_francia
+		completely_controls_region = custom_carolingian_francia
 		#Frisia
 		completely_controls_region = custom_frisia
 		#Lotharingia
@@ -203,15 +223,11 @@ reform_carolingian_empire_decision = {
 		#Bavaria
 		completely_controls_region = custom_bavaria
 		#Germany
-		completely_controls_region = custom_germany
-		#Northern Italy (except Corsica/Sardinia)
+		completely_controls_region = custom_carolingian_germany
+		#Aragon (except Mallorca) & Navarra
+		completely_controls_region = custom_carolingian_iberia
+		#Northern Italy (except Venice & Sardinia), exempting any regions controlled by your HoF
 		completely_controls_region = custom_northern_italy
-		#Navarra
-		completely_controls_region = custom_navarra
-		#Aragon (except Mallorca)
-		completely_controls = title:d_aragon
-		completely_controls = title:d_barcelona
-		completely_controls = title:d_valencia
 	}
 
 	is_valid_showing_failures_only = {
@@ -283,8 +299,7 @@ unify_burgundy_kingdom_decision = {
 	}
 	
 	is_valid = {
-		prestige >= 3000
-		gold >= 1000
+		prestige_level >= high_prestige_level
 		completely_controls_region = custom_burgundy
 	}
 
@@ -300,8 +315,13 @@ unify_burgundy_kingdom_decision = {
 	}
 
 	effect = {
-		set_culture = culture:occitan
-		add_character_flag = converted_culture_this_lifetime
+		if = {
+			limit = {
+				NOT = { has_culture = culture:occitan }
+			}
+			set_culture = culture:occitan
+			add_character_flag = converted_culture_this_lifetime
+		}
 		custom_tooltip = unify_burgundy_kingdom_decision_effect_tooltip
 		show_as_tooltip = {
 			unite_burgundies_scripted_effect = yes
@@ -359,8 +379,6 @@ empower_sicilian_parliament_decision = {
 	
 	is_valid = {
 		prestige_level >= 3
-		prestige >= 3000
-		gold >= 1500
 		learning >= 10
 		NOT = { has_realm_law = crown_authority_0 }
 		OR = {
@@ -463,9 +481,7 @@ promote_gothic_innovations_decision = { #12th century Renaissance
 	}
 	
 	is_valid = {
-		prestige_level >= 5
-		prestige >= 3000
-		gold >= 500
+		prestige_level >= 4
 		learning >= 10
 		NOT = { has_realm_law = crown_authority_0 }
 		#Must control core provinces either in the North or the South:
@@ -552,9 +568,8 @@ restore_holy_roman_empire_decision = {
 				religion_tag = christianity_religion
 				has_doctrine_parameter = spiritual_head_of_faith	#Gotta be invested with the authority by someone other than yourself.
 			}
-			NOR = {	#No need for Orthodoxy to sponsor a competitor, or to have a competing empire if your faith controls the ERE.
-				faith = faith:orthodox
-				faith = faith:iconoclast
+			NAND = {	#No need for a competing empire if your faith controls the ERE.
+				exists = title:e_byzantium.holder
 				faith = title:e_byzantium.holder.faith
 			}
 		}
@@ -566,10 +581,12 @@ restore_holy_roman_empire_decision = {
 	}
 
 	is_valid = {
+		#Standard requirements.
 		is_independent_ruler = yes
-		AND = {	#Title ownership conditions.
-			#title:k_italy.holder = root	#Gotta be King of the Romans.
-			title:k_east_francia.holder = root	#Gotta be King of the Germans.
+		prestige_level >= high_prestige_level
+		#Title ownership conditions.
+		AND = {
+			has_title = title:k_east_francia #Gotta be King of the Germans.
 			custom_description = {	#And have some additional royal dignity for good measure.
 				text = decision_refound_hre_own_three_kingdoms.tt
 				any_held_title = {
@@ -577,99 +594,28 @@ restore_holy_roman_empire_decision = {
 					count >= 3
 				}
 			}
-			sub_realm_size >= 120	#Plus your various kingdoms should be ruling something.
-			custom_description = {	#You must control the traditional electors.
-				text = decision_refound_hre_control_the_electors.tt
-				OR = {
-					primary_title = { is_de_facto_liege_or_above_target = title:c_cologne }
-					title:c_cologne.holder = root
-				}
-				OR = {
-					primary_title = { is_de_facto_liege_or_above_target = title:c_mainz }
-					title:c_mainz.holder = root
-				}
-				OR = {
-					primary_title = { is_de_facto_liege_or_above_target = title:c_trier }
-					title:c_trier.holder = root
-				}
-				OR = {
-					AND = {
-						exists = title:d_bohemia.holder
-						OR = {
-							primary_title = { is_de_facto_liege_or_above_target = title:d_bohemia }
-							title:d_bohemia.holder = root
-						}
-					}
-					AND = {
-						NOT = {
-							exists = title:d_bohemia.holder
-						}
-						completely_controls = title:d_bohemia
-					}
-				}
-				OR = {
-					AND = {
-						exists = title:d_east_franconia.holder
-						OR = {
-							primary_title = { is_de_facto_liege_or_above_target = title:d_east_franconia }
-							title:d_east_franconia.holder = root
-						}
-					}
-					AND = {
-						NOT = {
-							exists = title:d_east_franconia.holder
-						}
-						completely_controls = title:d_east_franconia
-					}
-				}
-				OR = {
-					AND = {
-						exists = title:d_ostfalen.holder
-						OR = {
-							primary_title = { is_de_facto_liege_or_above_target = title:d_ostfalen }
-							title:d_ostfalen.holder = root
-						}
-					}
-					AND = {
-						NOT = {
-							exists = title:d_ostfalen.holder
-						}
-						completely_controls = title:d_ostfalen
-					}
-				}
-				OR = {
-					AND = {
-						exists = title:d_ostmark.holder
-						OR = {
-							primary_title = { is_de_facto_liege_or_above_target = title:d_ostmark }
-							title:d_ostmark.holder = root
-						}
-					}
-					AND = {
-						NOT = {
-							exists = title:d_ostmark.holder
-						}
-						completely_controls = title:d_ostmark
-					}
+			sub_realm_size >= 140	#Plus your various kingdoms should be ruling something.
+		}
+		#HoF preference conditions.
+		OR = {
+			faith.religious_head = {	#And they have to actually like you enough to want to invest you.
+				opinion = {
+					target = root
+					value >= high_positive_opinion
 				}
 			}
-			OR = {
-				faith.religious_head = {	#And they have to actually like you enough to want to invest you.
-					opinion = {
-						target = root
-						value >= high_positive_opinion
-					}
-				}
-				root = { has_strong_usable_hook = faith.religious_head }	#Or you have a strong hook on them that you can actually use.
-				root = { has_hook = faith.religious_head }	#Or a regular hook, to be fair, provided you meet the other criteria.
-			}
+			root = { has_strong_usable_hook = faith.religious_head }	#Or you have a strong hook on them that you can actually use.
+			root = { has_weak_hook = faith.religious_head }	#Or a regular hook, to be fair, provided you meet the other criteria.
 		}
 	}
 
 	is_valid_showing_failures_only = {
 		is_available_adult = yes
-		NOT = { has_trait = excommunicated }
 		faith.religious_head = { is_available_adult = yes }
+		NOR = {
+			has_trait = excommunicated
+			is_at_war_with = faith.religious_head
+		}
 	}
 
 	effect = {
@@ -701,7 +647,7 @@ restore_holy_roman_empire_decision = {
 	}
 
 	cost = {
-		prestige = 500
+		gold = 500
 		piety = 200
 	}
 
@@ -814,7 +760,11 @@ establish_norman_culture_decision = {
 					limit = { this = root }
 					trigger_event = global_culture.3003
 				}
-				else = {
+				else_if = {
+					limit = {
+						exists = capital_province
+						capital_province = { geographical_region = world_europe }
+					}
 					trigger_event = global_culture.3005
 				}
 			}
@@ -850,12 +800,13 @@ establish_norman_culture_decision = {
 		# Summary of above hidden effects to inform players of the decision's impact.
 		show_as_tooltip = {
 			custom_tooltip = establish_norman_culture_decision_effect.tt
+			culture:norman = {
+				get_all_innovations_from = scope:old_culture_1
+				get_all_innovations_from = scope:old_culture_2
+			}
 		}
 
 		# Rename the duchy to Normandy
-		culture:norman = {
-			get_random_innovation_from = culture:french
-		}
 		title:d_normandy = {
 			save_scope_as = normandy_title
 			hidden_effect = {
@@ -940,8 +891,11 @@ form_the_kingdom_of_aragon_decision = {
 		}
 
 		# Create kingdom title.
-		create_title_and_vassal_change = change
-		scope:change = { set_title_and_vassal_change_type = created	}
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = change
+			add_claim_on_loss = no
+		}
 		title:k_aragon = {
 			change_title_holder = {
 				holder = root

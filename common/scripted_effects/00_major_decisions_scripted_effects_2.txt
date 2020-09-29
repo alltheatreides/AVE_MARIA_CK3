@@ -3,9 +3,12 @@
 		name = hall_of_heroes
 		value = yes
 	}
-	add_building_slot = 1
-	add_building = hall_of_heroes_01
-	
+	if = {
+		limit = {
+			has_special_building_slot = no 
+		}
+		add_special_building_slot = hall_of_heroes_01
+	}
 }
 
 defenders_of_highgod_decision_effects = {
@@ -99,6 +102,6 @@ dynasty_of_many_crowns_effects = {
 		add_dynasty_modifier = {
 			modifier = dynasty_of_many_crowns
 		}
-		add_dynasty_prestige = medium_dynasty_prestige_gain
+		add_dynasty_prestige = monumental_dynasty_prestige_gain
 	}
 }

@@ -43,8 +43,8 @@
 		}
 
 		###RELATION TO LIEGE###
-		#Max: 9
-		#Min: -10
+		#Max: 10
+		#Min: -12
 		opinion_modifier = {
 			opinion_target = scope:liege
 			multiplier = -0.1
@@ -66,6 +66,14 @@
 		modifier = {
 			has_relation_rival = scope:liege
 			add = 5
+		}
+		modifier = {
+			any_child = {
+				any_parent = {
+					this = scope:liege
+				}
+			}
+			add = -1
 		}
 
 		###RELATION TO OTHER COURTIERS###

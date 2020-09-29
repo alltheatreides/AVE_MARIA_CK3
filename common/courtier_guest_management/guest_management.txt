@@ -7,6 +7,13 @@
 			count = all
 			guest_allowed_to_arrive_trigger = { HOST = scope:host }
 		}
+		#If claimant, make sure that they don't have a claim on the new host.
+		trigger_if = {
+			limit = { is_claimant = yes }
+			any_claim = {
+				courtier_or_guest_claim_trigger = { RULER = scope:host }
+			}
+		}
 	}
 
 	# If guest_can_arrive is true, the host decides which guests arrive using this weight. Will randomly select a few of the best candidates.
@@ -264,7 +271,7 @@
 
 
 		###RELATIONS###
-		#Max: 1100 (assuming lover isn't combined with family, dynasty or friend)
+		#Max: 3500 (if you have an obscenely strong connection to them)
 		modifier = {
 			exists = dynasty
 			dynasty = scope:host.dynasty
@@ -286,6 +293,24 @@
 		modifier = {
 			has_relation_lover = scope:host
 			add = 1000
+		}
+		modifier = {
+			has_relation_ward = scope:host
+			add = 800
+		}
+		modifier = {
+			has_relation_guardian = scope:host
+			add = 800
+		}
+		modifier = { #The enemy of my enemy...
+			any_relation = {
+				type = rival
+				any_relation = {
+					type = rival
+					this = scope:host
+				}
+			}
+			add = 600
 		}
 
 
@@ -610,6 +635,13 @@
 				num_of_good_genetic_traits > this.num_of_bad_genetic_traits
 				fertility > low_fertility
 				can_marry_trigger = yes
+				#To account for a person marrying their concubines/consorts
+				trigger_if = {
+					limit = {
+						is_concubine = yes
+					}
+					is_concubine_of = scope:host
+				}
 			}
 			weight = {
 				base = 200
@@ -981,15 +1013,15 @@
 				desc = guest_description.vassal_start.desc
 				first_valid = {
 					triggered_desc = {
-						trigger = { has_trait = am_conventional }
+						trigger = { has_trait = content }
 						desc = guest_description.vassal_content.desc
 					}
 					triggered_desc = {
-						trigger = { has_trait = am_humble }
+						trigger = { has_trait = humble }
 						desc = guest_description.vassal_humble.desc
 					}
 					triggered_desc = {
-						trigger = { has_trait = am_mild }
+						trigger = { has_trait = trusting }
 						desc = guest_description.vassal_trusting.desc
 					}
 					triggered_desc = {

@@ -571,6 +571,7 @@ expose_lover_secret_or_run_consequence_effect = {
 	# Look for a Lover Secret and save it if one exists
 	if = {
 		limit = {
+			$TARGET$ = { is_alive = yes} # Check whether the other party is still alive
 			any_secret = {
 				secret_type = secret_lover
 				secret_target = $TARGET$
@@ -581,18 +582,20 @@ expose_lover_secret_or_run_consequence_effect = {
 				secret_type = secret_lover
 				secret_target = $TARGET$
 			}
-			save_scope_as = secret
+			save_scope_as = lover_secret_to_expose
 		}
 	}
 
 	# Expose the Secret if it exists
 	if = {
-		limit = { exists = scope:secret }
-		#custom_tooltip = expose_lover_secret_custom_tt
-		scope:secret = {
+		limit = {
+			exists = scope:lover_secret_to_expose
+		}
+		scope:lover_secret_to_expose = {
 			expose_secret = $EXPOSER$
 		}
 	}
+
 	# Otherwise run the expose effects
 	else = {
 		if = {

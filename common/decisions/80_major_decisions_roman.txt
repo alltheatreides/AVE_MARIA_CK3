@@ -26,7 +26,14 @@ restore_roman_empire_decision = {
 	}
 
 	is_valid = {
-		prestige >= 5000
+		prestige_level >= max_prestige_level
+
+		OR = {
+			religion = religion:christianity_religion
+			religion = religion:hellenism_religion
+			culture = culture:roman
+		}
+
 		completely_controls = title:d_latium
 		completely_controls = title:d_venice
 		completely_controls = title:d_romagna
@@ -48,11 +55,6 @@ restore_roman_empire_decision = {
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_independent_ruler = yes
-		OR = {
-			faith.religion = faith:catholic.religion #Either Christian
-			faith.religion = faith:hellenic_pagan.religion #Or Hellenic
-			culture = culture:roman
-		}
 	}
 
 	effect = {
@@ -109,7 +111,7 @@ restore_roman_empire_holy_decision = {
 	}
 
 	is_valid = {
-		prestige >= 5000
+		prestige_level >= max_prestige_level
 		completely_controls = title:d_latium
 		completely_controls = title:d_venice
 		completely_controls = title:d_romagna
@@ -197,7 +199,7 @@ restore_roman_empire_italian_decision = {
 	}
 
 	is_valid = {
-		prestige >= 5000
+		prestige_level >= max_prestige_level
 		completely_controls = title:d_latium
 		completely_controls = title:d_venice
 		completely_controls = title:d_romagna
@@ -274,7 +276,7 @@ mend_the_great_schism_decision = {
 	}
 
 	is_valid = {
-		piety >= 5000
+		piety_level >= max_piety_level
 		completely_controls = title:c_byzantion
 		completely_controls = title:c_antiocheia
 		completely_controls = title:c_jerusalem
@@ -364,9 +366,10 @@ set_capital_constantinople_decision = {
 			limit = {
 				NOT = { title:c_byzantion.holder = { this = root } }
 			}
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = returned
+			create_title_and_vassal_change = {
+				type = returned
+				save_scope_as = change
+				add_claim_on_loss = no
 			}
 			title:c_byzantion = {
 				change_title_holder = {
@@ -422,9 +425,10 @@ set_capital_rome_decision = {
 			limit = {
 				NOT = { title:c_roma.holder = { this = root } }
 			}
-			create_title_and_vassal_change = change
-			scope:change = {
-				set_title_and_vassal_change_type = returned
+			create_title_and_vassal_change = {
+				type = returned
+				save_scope_as = change
+				add_claim_on_loss = no
 			}
 			title:c_roma = {
 				change_title_holder = {
@@ -466,7 +470,7 @@ establish_iconoclast_patriarchate_decision = {
 
 	is_valid = {
 		completely_controls = title:c_byzantion
-		piety >= 1500
+		piety_level >= medium_piety_level
 	}
 
 	is_valid_showing_failures_only = {
@@ -493,7 +497,7 @@ establish_iconoclast_patriarchate_decision = {
 		}
 		modifier = {
 			factor = 0
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 }
@@ -517,7 +521,7 @@ restore_ecumenical_patriarchate_decision = {
 
 	is_valid = {
 		completely_controls = title:c_byzantion
-		piety >= 1500
+		piety_level >= medium_piety_level
 	}
 
 	is_valid_showing_failures_only = {
@@ -544,7 +548,7 @@ restore_ecumenical_patriarchate_decision = {
 		}
 		modifier = {
 			factor = 0
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 }
@@ -572,7 +576,7 @@ restore_papacy_decision = {
 		completely_controls = title:d_spoleto
 		completely_controls = title:d_ancona
 		completely_controls = title:d_romagna
-		piety >= 3000
+		piety_level >= high_piety_level
 	}
 
 	is_valid_showing_failures_only = {
@@ -602,7 +606,7 @@ restore_papacy_decision = {
 		}
 		modifier = {
 			factor = 0
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 }
@@ -660,9 +664,10 @@ restore_pope_in_rome_decision = {
 	effect = {
 		add_piety = 1000
 		add_character_flag = flag_already_given_rome_once
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = returned
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
 		}
 		title:c_roma = {
 			change_title_holder = {
@@ -698,7 +703,7 @@ restore_pope_in_rome_decision = {
 		}
 		modifier = {
 			factor = 0
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		modifier = {
 			factor = 0
@@ -820,7 +825,7 @@ unify_italian_empire_decision = {
 	}
 
 	is_valid = {
-		prestige >= 8000
+		prestige_level >= very_high_prestige_level
 		has_title = title:e_italy
 		#All the Peninsula
 		completely_controls_region = world_europe_south_italy
@@ -889,7 +894,7 @@ dismantle_holy_pretender_decision = {
 	}
 
 	is_valid = {
-		prestige >= 10000
+		prestige_level >= max_prestige_level
 		#All the Italian Peninsula
 		completely_controls_region = world_europe_south_italy
 		#And Lotharingia (the Rhine).
@@ -905,6 +910,10 @@ dismantle_holy_pretender_decision = {
 		is_imprisoned = no
 		is_independent_ruler = yes
 		is_at_war = no
+	}
+
+	cost = {
+		prestige = 2000
 	}
 
 	effect = {
@@ -940,7 +949,7 @@ dismantle_byz_pretender_decision = {
 		OR = {
 			has_culture = culture:frankish
 			has_culture = culture:french
-			has_culture = culture:german
+			culture_group = culture_group:central_germanic_group
 			has_culture = culture:roman
 			has_culture = culture:italian
 		}
@@ -956,7 +965,7 @@ dismantle_byz_pretender_decision = {
 	}
 
 	is_valid = {
-		prestige >= 10000
+		prestige_level >= max_prestige_level
 		#All the Italian Peninsula
 		completely_controls_region = world_europe_south_italy
 		#And Epirus/Hellas (Greek foothold).
@@ -972,6 +981,10 @@ dismantle_byz_pretender_decision = {
 		is_imprisoned = no
 		is_independent_ruler = yes
 		is_at_war = no
+	}
+
+	cost = {
+		prestige = 2000
 	}
 
 	effect = {

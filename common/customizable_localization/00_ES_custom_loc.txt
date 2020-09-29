@@ -56,6 +56,11 @@
 # ES_SirvienteSirvienta (sirviente/sirvienta)
 
 ##################################
+# II. REEMPLAZO DE COMANDOS EN INGLÉS
+##################################
+# ES_FaithGenderedAdj - GetFaith.GetAdjective\GetFaith.GetAdherentName (scope: CHARACTER)
+
+##################################
 # II. ARTICULOS DELANTE DE COMANDOS #
 ##################################
 # ES_only_el_GetTitledFirstName delante de TitledFirstName, TitleAsName
@@ -2380,6 +2385,25 @@ ES_ElLa_Relation = {
 	}
 }
 
+ES_FaithGenderedAdj = { 
+	type = character
+	text = {
+		trigger = {
+			trigger_if = {
+				limit = { 
+					exists = this
+				}
+				this = { is_female = yes }
+			}
+		}
+		localization_key = CustomLoc_ES_FaithGenderedAdj_female
+	}
+	text = {
+		localization_key = CustomLoc_ES_FaithGenderedAdj_male
+		fallback = yes
+	}
+}
+
 ES_only_el_GetTitledFirstName = {
 	type = character
 	text = {
@@ -2440,7 +2464,7 @@ ES_only_el_GetTitledFirstName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa
@@ -2642,7 +2666,7 @@ ES_only_del_GetTitledFirstName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa
@@ -2844,7 +2868,7 @@ ES_only_al_GetTitledFirstName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa
@@ -3052,7 +3076,7 @@ ES_only_el_GetShortUIName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa
@@ -3260,7 +3284,7 @@ ES_only_de_GetShortUIName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa
@@ -3468,7 +3492,7 @@ ES_only_a_GetShortUIName = {
 					holds_landed_title = yes
 					primary_title.tier = tier_empire
 					NOT = {
-						culture = culture:german # Kaiser
+						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
 						has_title = title:d_shiite # Califa
 						has_title = title:d_sunni # Califa

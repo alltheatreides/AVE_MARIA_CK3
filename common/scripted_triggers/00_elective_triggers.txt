@@ -131,6 +131,7 @@ parent_for_elective_succession_trigger = { #This trigger is used to prevent gran
 }
 
 feudal_elective_potential_landed_candidate_trigger = {
+	save_temporary_scope_as = potential_candidate
 	has_same_government = scope:holder
 	#Either the candidate is in the realm, or the title is independent, or the realm of the title does NOT have protected inheritance.
 	OR = {
@@ -139,8 +140,15 @@ feudal_elective_potential_landed_candidate_trigger = {
 		}
 		scope:holder = { is_independent_ruler = yes }
 		scope:holder = {
+			exists = liege
 			NOT = {
+				any_liege_or_above = {
 				has_realm_law_flag = titles_cannot_leave_realm_on_succession
+					NOR = {
+						this = scope:potential_candidate
+						target_is_vassal_or_below = scope:potential_candidate
+					}
+				}
 			}
 		}
 	}
@@ -174,6 +182,7 @@ feudal_elective_potential_landed_candidate_trigger = {
 }
 
 feudal_elective_potential_landless_claimant_candidate_trigger = {
+	save_temporary_scope_as = potential_candidate
 	#Either the candidate is in the realm, or is landless, or the title is independent, or the realm of the title does NOT have protected inheritance.
 	OR = {
 		any_liege_or_above = {
@@ -182,8 +191,15 @@ feudal_elective_potential_landless_claimant_candidate_trigger = {
 		is_ruler = no
 		scope:holder = { is_independent_ruler = yes }
 		scope:holder = {
+			exists = liege
 			NOT = {
+				any_liege_or_above = {
 				has_realm_law_flag = titles_cannot_leave_realm_on_succession
+					NOR = {
+						this = scope:potential_candidate
+						target_is_vassal_or_below = scope:potential_candidate
+					}
+				}
 			}
 		}
 	}
@@ -209,6 +225,7 @@ feudal_elective_potential_landless_claimant_candidate_trigger = {
 }
 
 feudal_elective_potential_landless_dynastic_candidate_trigger = {
+	save_temporary_scope_as = potential_candidate
 	#Either the candidate is in the realm, or is landless, or the title is independent, or the realm of the title does NOT have protected inheritance.
 	OR = {
 		any_liege_or_above = {
@@ -217,8 +234,15 @@ feudal_elective_potential_landless_dynastic_candidate_trigger = {
 		is_ruler = no
 		scope:holder = { is_independent_ruler = yes }
 		scope:holder = {
+			exists = liege
 			NOT = {
+				any_liege_or_above = {
 				has_realm_law_flag = titles_cannot_leave_realm_on_succession
+					NOR = {
+						this = scope:potential_candidate
+						target_is_vassal_or_below = scope:potential_candidate
+					}
+				}
 			}
 		}
 	}

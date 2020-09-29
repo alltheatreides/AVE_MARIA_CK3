@@ -332,6 +332,8 @@ diplomacy_foreign_special_1010_clean_up_court_visit_effect = {
 	remove_character_flag = court_visit_dance_or_holy_place
 	remove_character_flag = private_dinner
 	remove_character_flag = compliment
+	remove_character_flag = in_success_event
+	remove_character_flag = in_failure_event
 }
 
 diplomacy_foreign_special_1010_court_visit_interesting_relation_okay_effect = {
@@ -654,9 +656,10 @@ diplomacy_foreign_1150_successful_county_switch_effect = {
 		limit = {
 			scope:county.holder = scope:neighbor
 		}
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = returned
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
 		}
 		scope:county = {
 			change_title_holder = {
@@ -667,7 +670,11 @@ diplomacy_foreign_1150_successful_county_switch_effect = {
 		resolve_title_and_vassal_change = scope:change
 	}
 	else = {
-		create_title_and_vassal_change = change
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
+		}
 		scope:ruler_vassal = {
 			change_liege = {
 				liege = scope:ruler
@@ -681,9 +688,10 @@ diplomacy_foreign_1150_successful_county_switch_effect = {
 		limit = {
 			scope:neighbor_county.holder = scope:ruler
 		}
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = returned
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
 		}
 		scope:neighbor_county = {
 			change_title_holder = {
@@ -694,7 +702,11 @@ diplomacy_foreign_1150_successful_county_switch_effect = {
 		resolve_title_and_vassal_change = scope:change
 	}
 	else = {
-		create_title_and_vassal_change = change
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
+		}
 		scope:neighbor_vassal = {
 			change_liege = {
 				liege = scope:neighbor

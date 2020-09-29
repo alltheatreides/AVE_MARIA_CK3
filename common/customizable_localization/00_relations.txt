@@ -1049,7 +1049,7 @@ RelationToMe = {
 	}
 
 	text = {
-		localization_key = relation_court_physician_female
+		localization_key = relation_court_physician_male
 		trigger = {
 			scope:second = { is_male = yes }
 			has_relation_court_physician = scope:second
@@ -1177,6 +1177,46 @@ RelationToMe = {
 	}
 
 	text = {
+		localization_key = relation_prisoner_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_prisoner_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_female
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_male
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
 		localization_key = relation_guest_female
 		trigger = {
 			scope:second = {
@@ -1188,7 +1228,7 @@ RelationToMe = {
 	}
 
 	text = {
-		localization_key = relation_guest_female
+		localization_key = relation_guest_male
 		trigger = {
 			scope:second = {
 				is_male = yes
@@ -2339,7 +2379,7 @@ RelationToMePossessive = {
 	}
 
 	text = {
-		localization_key = relation_court_physician_female_possessive
+		localization_key = relation_court_physician_male_possessive
 		trigger = {
 			scope:second = { is_male = yes }
 			has_relation_court_physician = scope:second
@@ -2349,7 +2389,7 @@ RelationToMePossessive = {
 	text = {
 		localization_key = relation_kinswoman_possessive
 		trigger = {
-			is_female = yes
+			scope:second = { is_female = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -2357,7 +2397,7 @@ RelationToMePossessive = {
 	text = {
 		localization_key = relation_kinsman_possessive
 		trigger = {
-			is_male = yes
+			scope:second = { is_male = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -2418,6 +2458,46 @@ RelationToMePossessive = {
 	}
 
 	text = {
+		localization_key = relation_prisoner_female_possessive
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_prisoner_male_possessive
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_female_possessive
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_male_possessive
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
 		localization_key = relation_host_female_possessive
 		trigger = {
 			exists = host
@@ -2447,7 +2527,7 @@ RelationToMePossessive = {
 	}
 
 	text = {
-		localization_key = relation_guest_female_possessive
+		localization_key = relation_guest_male_possessive
 		trigger = {
 			scope:second = {
 				is_male = yes
@@ -3296,7 +3376,7 @@ RelationToMeShort = {
 	}
 
 	text = {
-		localization_key = relation_court_physician_female
+		localization_key = relation_court_physician_male
 		trigger = {
 			scope:second = { is_male = yes }
 			has_relation_court_physician = scope:second
@@ -3313,7 +3393,7 @@ RelationToMeShort = {
 	text = {
 		localization_key = relation_kinswoman
 		trigger = {
-			is_female = yes
+			scope:second = { is_female = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -3321,7 +3401,7 @@ RelationToMeShort = {
 	text = {
 		localization_key = relation_kinsman
 		trigger = {
-			is_male = yes
+			scope:second = { is_male = yes }
 			scope:second.dynasty = root.dynasty
 		}
 	}
@@ -3400,6 +3480,46 @@ RelationToMeShort = {
 	}
 
 	text = {
+		localization_key = relation_prisoner_female
+		trigger = {
+			scope:second = {
+				is_female = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_prisoner_male
+		trigger = {
+			scope:second = {
+				is_male = yes
+				is_imprisoned_by = root
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_female
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_female = yes
+			}
+		}
+	}
+
+	text = {
+		localization_key = relation_jailer_male
+		trigger = {
+			is_imprisoned_by = scope:second
+			scope:second = {
+				is_male = yes
+			}
+		}
+	}
+
+	text = {
 		localization_key = relation_guest_female
 		trigger = {
 			scope:second = {
@@ -3411,7 +3531,7 @@ RelationToMeShort = {
 	}
 
 	text = {
-		localization_key = relation_guest_female
+		localization_key = relation_guest_male
 		trigger = {
 			scope:second = {
 				is_male = yes
@@ -3831,13 +3951,20 @@ MyCharacterIntroductionNoComma = {
 		trigger = {
 			NOT = { exists = primary_title }
 			exists = liege
-			OR = {
-				is_knight_of = liege
-				is_councillor_of = liege
-			}
+			is_councillor_of = liege
 		}
-		localization_key = MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_servant
+		localization_key = MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_councillor
 	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_knight
+	}
+
 
 	#Uses "CharacterIntroductionNoComma"
 	text = {
@@ -3898,12 +4025,17 @@ YourCharacterIntroductionNoComma = {
 		trigger = {
 			NOT = { exists = primary_title }
 			exists = liege
-			OR = {
-				is_knight_of = liege
-				is_councillor_of = liege
-			}
+			is_councillor_of = liege
 		}
-		localization_key = YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_servant
+		localization_key = YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_councillor
+	}
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_knight
 	}
 
 	#Uses "CharacterIntroductionNoComma"
@@ -3967,12 +4099,18 @@ HerHisCharacterIntroductionNoComma = {
 		trigger = {
 			NOT = { exists = primary_title }
 			exists = liege
-			OR = {
-				is_knight_of = liege
-				is_councillor_of = liege
-			}
+			is_councillor_of = liege
 		}
-		localization_key = HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_servant
+		localization_key = HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_knight
 	}
 
 	#Uses "CharacterIntroductionNoComma"
@@ -4035,12 +4173,18 @@ NamePossessiveCharacterIntroductionNoComma = {
 		trigger = {
 			NOT = { exists = primary_title }
 			exists = liege
-			OR = {
-				is_knight_of = liege
-				is_councillor_of = liege
-			}
+			is_councillor_of = liege
 		}
-		localization_key = NamePossessiveCharacterIntroductionNoComma_the_relation_of_NamePossessiveCharacterIntroductionNoComma_servant
+		localization_key = NamePossessiveCharacterIntroductionNoComma_the_relation_of_NamePossessiveCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = NamePossessiveCharacterIntroductionNoComma_the_relation_of_NamePossessiveCharacterIntroductionNoComma_knight
 	}
 
 	#Uses "CharacterIntroductionNoComma"

@@ -254,10 +254,10 @@
 	}
 	
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 		
 		setup_invasion_cb = {
@@ -643,10 +643,10 @@ clan_invasion_war = {
 	}
 	
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 		
 		setup_invasion_cb = {
@@ -1020,10 +1020,10 @@ mongol_invasion_war = {
 	}
 	
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 		
 
@@ -1447,10 +1447,10 @@ mongol_realm_invasion_war = {
 	}
 	
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = conquest
-			set_add_claim_on_loss = yes
+		create_title_and_vassal_change = {
+			type = conquest
+			save_scope_as = change
+			add_claim_on_loss = yes
 		}
 
 		# Target titles + dominant empires only
@@ -1475,6 +1475,7 @@ mongol_realm_invasion_war = {
 			# Mark any empire-level titles for destruction after transfer
 			every_realm_de_jure_empire = {
 				limit = {
+					holder = scope:defender
 					is_in_list = target_titles
 				}
 				add_to_list = titles_to_destroy
@@ -1508,9 +1509,10 @@ mongol_realm_invasion_war = {
 						tier = tier_kingdom
 					}
 				}
-				create_title_and_vassal_change = change_two
-				scope:change_two = {
-					set_title_and_vassal_change_type = conquest
+				create_title_and_vassal_change = {
+					type = conquest
+					save_scope_as = change_two
+					add_claim_on_loss = yes
 				}
 				every_held_title = {
 					limit = {

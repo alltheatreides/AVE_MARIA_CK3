@@ -3,6 +3,7 @@
 independence_faction_war = {
 	group = civil_war
 	ai_only_against_liege = yes
+	target_titles = independence_domain
 	allowed_for_character = {
 		scope:attacker = {
 			is_leading_faction_type = independence_faction
@@ -72,11 +73,10 @@ independence_faction_war = {
 	}
 
 	on_victory = {
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = independency
+		create_title_and_vassal_change = {
+			type = independency
+			save_scope_as = change
 		}
-
 		scope:attacker.joined_faction = {
 			every_faction_member = {
 				change_liege_or_become_independent = {
@@ -98,11 +98,9 @@ independence_faction_war = {
 				}
 			}
 		}
-
 		scope:attacker = {
 			add_prestige = medium_prestige_value
 		}
-
 		scope:defender = {
 			add_prestige = {
 				value = medium_prestige_value
@@ -121,7 +119,6 @@ independence_faction_war = {
 				add_realm_law = crown_authority_2
 			}
 		}
-
 		resolve_title_and_vassal_change = scope:change
 	
 	}
@@ -163,7 +160,7 @@ independence_faction_war = {
 		scope:defender = {
 			add_character_flag = {
 				flag = recent_independence_faction_war
-				years = independence_war_white_peace_cooldown
+				years = faction_war_white_peace_cooldown
 			}
 			add_prestige = minor_prestige_value
 		}
@@ -185,7 +182,7 @@ independence_faction_war = {
 				}
 				desc = independence_defeat_attacker_desc
 			}
-			desc = independence_war_defeat_desc
+			desc = player_independence_war_defeat_desc #same loc as for player
 		}
 		desc = independence_defeat_end_desc
 	}
@@ -194,7 +191,7 @@ independence_faction_war = {
 		scope:defender = {
 			add_character_flag = {
 				flag = recent_independence_faction_war
-				years = independence_war_defeat_cooldown
+				years = faction_war_defeat_cooldown
 			}
 			add_dread = medium_dread_gain
 			# Prestige for Defender
@@ -283,17 +280,23 @@ liberty_faction_war = {
 			}
 			add_prestige = -500
 
-			every_war_enemy = {
-				if = {
-					limit = {
-						can_add_hook = {
-							type = favor_hook
-							target = prev
+			every_character_war = {
+				limit = {
+					is_attacker = scope:attacker
+					is_defender = scope:defender
+				}
+				every_war_attacker = {
+					if = {
+						limit = {
+							can_add_hook = {
+								type = favor_hook
+								target = scope:defender
+							}
 						}
-					}
-					add_hook = {
-						target = prev
-						type = favor_hook
+						add_hook = {
+							type = favor_hook
+							target = scope:defender
+						}
 					}
 				}
 			}
@@ -358,7 +361,7 @@ liberty_faction_war = {
 		scope:defender = {
 			add_character_flag = {
 				flag = recent_liberty_faction_war
-				years = liberty_war_white_peace_cooldown
+				years = faction_war_white_peace_cooldown
 			}
 		}
 		on_white_peace_faction_revolt_war = yes
@@ -387,7 +390,7 @@ liberty_faction_war = {
 		scope:defender = {
 			add_character_flag = {
 				flag = recent_liberty_faction_war
-				years = liberty_war_defeat_cooldown
+				years = faction_war_defeat_cooldown
 			}
 			add_dread = medium_dread_gain
 			add_achievement_flag = { FLAG = achievement_know_your_place_flag }
@@ -433,11 +436,13 @@ populist_war = {
 	}
 
 	allowed_against_character = {
-		any_in_list = {
-			list = target_titles
-			OR = {
-				NOT = { exists = holder }
-				holder = scope:defender
+		save_temporary_scope_as = faction_target
+		any_targeting_faction = {
+			faction_leader = scope:attacker
+			any_faction_county_member = {
+				holder = {
+					is_vassal_or_below_of = scope:faction_target
+				}
 			}
 		}
 	}
@@ -869,7 +874,9 @@ refused_liege_demand_war = {
 
 	should_invalidate = {
 		scope:attacker = {
-			NOT = { liege = scope:defender }
+			NOT = {
+				any_liege_or_above = { this = scope:defender }
+			}
 		}
 	}
 
@@ -1058,7 +1065,11 @@ independence_war = {
 			}
 		}
 		prestige = {
-			value = 500
+			value = 0
+			add = {
+				value = 500
+				desc = CB_BASE_COST
+			}
 			if = {
 				limit = {
 					scope:attacker = {
@@ -1216,11 +1227,10 @@ independence_war = {
 		scope:attacker = {
 			add_character_flag = ai_should_not_transfer
 		}
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = independency
+		create_title_and_vassal_change = {
+			type = independency
+			save_scope_as = change
 		}
-
 		scope:attacker = {
 			change_liege_or_become_independent = {
 				CHANGE = scope:change
@@ -1330,9 +1340,6 @@ independence_war = {
 	defender_allies_inherit = yes
 
 	transfer_behavior = transfer
-
-	attacker_allies_inherit = no
-	defender_allies_inherit = yes
 
 	war_name = "INDEPENDENCE_WAR_NAME"
 

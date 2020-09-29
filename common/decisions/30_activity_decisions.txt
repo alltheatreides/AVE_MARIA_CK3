@@ -84,7 +84,7 @@
 		if = {
 			limit = {
 				OR = {
-					has_trait = am_withdrawn
+					has_trait = shy
 				}
 			}
 			custom_tooltip = host_feast_decision_desc_shy
@@ -93,7 +93,7 @@
 			limit = {
 				OR = {
 					has_trait = gluttonous
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = reveler_1
 					has_trait = reveler_2
 					has_trait = reveler_3
@@ -122,6 +122,9 @@
 	
 	ai_potential = {
 		short_term_gold > standard_activity_cost
+		NOT = {
+			has_trait = reclusive
+		}
 	}
 
 	ai_will_do = {
@@ -195,7 +198,7 @@ start_hunt_decision = {
 		#Stress loss
 		if = {
 			limit = {
-				has_trait = am_lazy
+				has_trait = lazy
 			}
 			custom_tooltip = start_hunt_decision_stress_lazy
 		}
@@ -282,7 +285,6 @@ host_witch_ritual_decision = {
 		is_witch_trigger = yes
 		exists = house
 		house = { has_house_modifier = witch_coven }
-		debug_only = yes
 	}
 
 	is_valid_showing_failures_only = {

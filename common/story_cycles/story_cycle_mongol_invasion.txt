@@ -187,11 +187,12 @@
 
 	#Start a new war if none is ongoing
 	effect_group = {
-		days = { 300 380 }
+		days = { 30 60 }
 
 		trigger = {
 			story_owner = {
 				is_at_war = no
+				gold > 0
 				any_held_title = {
 					this = title:e_mongol_empire
 				}

@@ -1,14 +1,14 @@
 ﻿
 intimidated_from_faction_modifier = {
 	modifier = {
-		add = -100
+		add = -50 # Notable deterrent, but Intimidated vassals should still join Factions if they hate you enough.
 		has_dread_level_towards = {
 			target = $TARGET$
 			level = 1
 		}
 	}
 	modifier = {
-		add = -1000
+		add = -1000 # Effectively a full blocker — Terrified vassals should never join Factions.
 		has_dread_level_towards = {
 			target = $TARGET$
 			level = 2
@@ -167,4 +167,48 @@ pluralism_fundamentalism_modifier = {
 		}
 	}	
 
+}
+
+liege_debt_modifier = {
+	modifier = {
+		$TARGET$ = { gold <= 0 }
+		add = {
+			value = 0
+			if = {
+				limit = { $TARGET$ = { debt_level = 0 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 1
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 1 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 2
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 2 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 3
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 3 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 4
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 4 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 5
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 5 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 6
+			}
+			else_if = {
+				limit = { $TARGET$ = { debt_level = 6 }}
+				add = $SCORE_PER_DEBT_LEVEL$
+				multiply = 7
+			}
+		}
+	}
 }

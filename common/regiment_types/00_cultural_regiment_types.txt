@@ -2,7 +2,7 @@
 @maa_buy_cost = 150
 @maa_low_maintenance_cost = 1.0
 @maa_high_maintenance_cost = 5.0
-@cultural_maa_extra_ai_score = 25 # Equivalent to having 2.5 extra regiments beyond what the code scoring would indicate (see NEGATIVE_SCORE_PER_EXISTING_REGIMENT)
+@cultural_maa_extra_ai_score = 45 # Equivalent to having 4.5 extra regiments beyond what the code scoring would indicate (see NEGATIVE_SCORE_PER_EXISTING_REGIMENT)
 
 huscarl = {
 	type = heavy_infantry
@@ -112,7 +112,7 @@ gendarme = {
 	type = heavy_cavalry
 	
 	damage = 125
-	toughness = 35
+	toughness = 40
 	pursuit = 20
 	screen = 10
 	
@@ -276,7 +276,7 @@ cataphract = {
 	
 	stack = 50
 	ai_quality = { value = @cultural_maa_extra_ai_score }
-	icon = cataphract
+	icon = heavy_cavalry
 }
 
 hobelar = {
@@ -393,6 +393,27 @@ horse_archers = {
 	stack = 100
 	ai_quality = { value = @cultural_maa_extra_ai_score }
 	icon = horse_archers
+}
+
+ayyar = {
+	type = heavy_infantry
+	
+	damage = 35
+	toughness = 22
+	pursuit = 12
+	screen = 0
+	
+	counters = {
+		pikemen = 1
+	}
+	
+	buy_cost = { gold = ayyar_recruitment_cost }
+	low_maintenance_cost = { gold = ayyar_low_maint_cost }
+	high_maintenance_cost = { gold = ayyar_high_maint_cost }
+	
+	stack = 100
+	ai_quality = { value = @cultural_maa_extra_ai_score }
+	icon = heavy_infantry
 }
 
 mubarizun = {
@@ -729,6 +750,7 @@ zbrojnosh = {
 	}
 
 	counters = {
+		pikemen = 1
 		archers = 1
 	}
 	
@@ -762,10 +784,8 @@ palace_guards = {
 	low_maintenance_cost = { gold = palace_guards_low_maint_cost }
 	high_maintenance_cost = { gold = palace_guards_high_maint_cost }
 	
-	mercenary_fallback = yes
-	holy_order_fallback = yes
-	
 	stack = 100
+	ai_quality = { value = @cultural_maa_extra_ai_score }
 	icon = heavy_infantry
 }
 
@@ -792,5 +812,6 @@ chu_ko_nu = {
 	high_maintenance_cost = { gold = chu_ko_nu_high_maint_cost }
 	
 	stack = 100
+	ai_quality = { value = @cultural_maa_extra_ai_score }
 	icon = crossbowmen
 }

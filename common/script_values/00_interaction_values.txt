@@ -206,3 +206,33 @@ grant_title_opinion_sum_discontent_calc = {
 council_position_locked_value = {
 	value = 25
 }
+
+marriage_fertile_age_value = {
+	value = {
+		add = 16
+		subtract = scope:secondary_recipient.age
+		add = scope:secondary_actor.age
+	}
+}
+
+marriage_cutoff_age_value = {
+	value = {
+		add = define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+		add = -3
+		if = {
+			limit = {
+				has_trait = fecund
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				exists = dynasty
+				dynasty = {
+					has_dynasty_perk = blood_legacy_5
+				}
+			}
+			add = 5
+		}
+	}
+}

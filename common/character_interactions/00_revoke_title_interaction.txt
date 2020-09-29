@@ -118,21 +118,8 @@
 			}
 		}
 	}
-	
-	# whether a character can be picked for the interaction, interface only (e.g. picking the first character in the marriage interaction)
-	# in character scope, actor and recipient event tagets can be used, but not the secondary characters
-	can_be_picked = {
-		AND =  {
-			NOT = {
-				scope:actor = scope:recipient	
-			}
- 			scope:recipient = {
-				is_vassal_of = scope:actor
-			}
-		}
-	}
-	
-	has_valid_target_showing_failures_only = {
+		
+	can_be_picked_title = {
 		scope:target = {
 			is_contested = no
 			NOT = {
@@ -181,7 +168,7 @@
 	}
 
 	on_accept = {
-		revoke_title_interaction_effect = yes
+		show_as_tooltip = { revoke_title_interaction_effect = yes }
 
 		save_scope_value_as = {
 			name = revoke_title_interaction
@@ -201,6 +188,15 @@
 	}
 
 	on_decline = {
+		if = {
+			limit = {
+				scope:landed_title.tier != tier_barony
+			}
+			scope:actor = {
+				revocation_tyranny_effect = yes
+				title_revocation_stress_effect = yes
+			}
+		}
 		war_for_revoke_effect = yes
 		scope:recipient = {
 			add_opinion = {
@@ -286,20 +282,25 @@
 
 		ai_value_modifier = {
 			who = scope:recipient
-			ai_greed = -0.75
-	  	  	trigger = {
-	  	  		scope:recipient = { NOT = { ai_greed = 0 } }
-	  		}
-		}
-		ai_value_modifier = {
-			who = scope:recipient
-			ai_honor = 0.5
-			trigger = {
-				scope:recipient = { #If AI is honorable and the law compels to obey the liege, AI will be more likely to obey.
-					ai_honor > 0
+			ai_greed = {
+				if = {
+					limit = {
+						scope:recipient = { NOT = { ai_greed = 0 } }
+					}
+					value = -0.75
 				}
-				scope:actor = {
-					has_realm_law_flag = vassal_refusal_is_treason
+			}
+			ai_honor  = {
+				if = {
+					limit = {
+						scope:recipient = { #If AI is honorable and the law compels to obey the liege, AI will be more likely to obey.
+							ai_honor > 0
+						}
+						scope:actor = {
+							has_realm_law_flag = vassal_refusal_is_treason
+						}
+					}
+					value = 0.5
 				}
 			}
 		}
@@ -381,7 +382,7 @@
 						OR = {
 							has_trait = lunatic
 							has_trait = possessed
-							has_trait = am_inconstant
+							has_trait = arbitrary
 						}
 					}
 				}
@@ -419,6 +420,9 @@
 			OR = {
 				NOT = { scope:actor.faith.religion = scope:recipient.faith.religion }
 				scope:actor.ai_zeal >= low_negative_ai_value
+				NOT = {
+					scope:actor.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+				}
 			}
 			OR = { # Chill a bit until you've dealth with the ones already in your prison
 				scope:recipient = {

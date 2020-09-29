@@ -1,4 +1,36 @@
-﻿#On actions governing Lover random events
+﻿#On actions relating to relationships between characters
+
+####################
+# Relationship upgrade
+####################
+#Events to upgrade relationships (potential -> full)
+relation_upgrade_quarterly_pulse = {
+	trigger = {
+		is_available_adult = yes
+		any_relation = { #You have a relationship to change
+			type = potential_rival
+			type = rival
+			type = potential_friend
+			type = friend
+			type = potential_lover
+			type = lover
+		}
+	}
+
+	random_events = {
+		chance_to_happen = 30
+		500 = 0
+		100 = relation_upgrade.0001
+		100 = relation_upgrade.1001
+		100 = relation_upgrade.2001
+		100 = relation_upgrade.2101
+	}
+}
+
+
+##################
+# Lover relation on_action
+##################
 
 #Fired from the a quarterly pulse once a year
 lover_quarterly_pulse = {
@@ -121,9 +153,6 @@ lover_status_changes = {
 }
 
 
-##################
-# Lover relation on_action
-##################
 on_set_relation_lover = {
 	effect = {
 		give_incest_secret_or_nothing_with_target_effect = { CHARACTER = scope:target }
@@ -430,7 +459,3 @@ on_death_relation_ward = {
 		}
 	}
 }
-
-
-#TODO
-# REmove opinion when relation is removed. Checked if it happens if you remove from both sides. Leave comment on the jira so you know what you've done.

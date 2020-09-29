@@ -104,6 +104,10 @@
 				text = incompatible_tenet_pacifism_trigger
 				NOT = { flag:tenet_pacifism = { is_in_list = selected_doctrines } }
 			}
+			custom_description = {
+				text = incompatible_tenet_dharmic_pacifism_trigger
+				NOT = { flag:tenet_dharmic_pacifism = { is_in_list = selected_doctrines } }
+			}
 		}
 
 		parameters = {
@@ -251,6 +255,19 @@
 
 	tenet_consolamentum = {
 		icon = core_tenet_prayer
+
+		name = {
+			first_valid = {
+				triggered_desc = {
+					trigger = {
+						religion_tag = christianity_religion
+					}
+					desc = tenet_consolamentum_name
+				}
+				desc = tenet_consolamentum_name_alternate
+			}
+		}
+
 		piety_cost = {
 			if = {
 				limit = {
@@ -370,6 +387,15 @@
 		traits = {
 			virtues = { temperate }
 			sins = { gluttonous }
+		}
+
+		can_pick = {
+			custom_description = {
+				text = incompatible_tenet_eastern_syncretism_trigger
+				NOT = {
+					flag:tenet_eastern_syncretism = { is_in_list = selected_doctrines }
+				}
+			}
 		}
 
 		parameters = {
@@ -538,16 +564,13 @@
 			piety_from_long_peace = 1
 		}
 
-		character_modifier = {
-			domain_limit = 1
-		}
-
 		traits = {
 			virtues = { calm }
 			sins = { wrathful }
 		}
 		
 		character_modifier = {
+			domain_limit = 1
 			ai_war_chance = -0.25
 			ai_war_cooldown = 0.25
 		}
@@ -775,7 +798,10 @@
 		can_pick = {
 			custom_description = {
 				text = doctrine_inverted_pluralism_pluralistic_trigger
-				NOT = {	flag:doctrine_pluralism_righteous = { is_in_list = selected_doctrines }}
+				NOR = {
+					flag:doctrine_pluralism_fundamentalist = { is_in_list = selected_doctrines }
+					flag:doctrine_pluralism_righteous = { is_in_list = selected_doctrines }
+				}
 			}
 		}
 
@@ -1268,15 +1294,22 @@
 			}
 		}
 
+		can_pick = {
+			custom_description = {
+				text = incompatible_tenet_human_sacrifice_trigger
+				NOT = { flag:tenet_human_sacrifice = { is_in_list = selected_doctrines } }
+			}
+			custom_description = {
+				text = incompatible_tenet_armed_pilgrimages_trigger
+				NOT = { flag:tenet_armed_pilgrimages = { is_in_list = selected_doctrines } }
+			}
+		}
+		
 		parameters = {
 			reincarnation_resistance_to_conversion = yes
 			holy_wars_forbidden = yes
 			pacifist_opinion_active = yes
 			opinion_of_pacifist_opinion_active = 10
-		}
-
-		character_modifier = {
-			domain_limit = 1
 		}
 
 		traits = {
@@ -1285,6 +1318,7 @@
 		}
 		
 		character_modifier = {
+			domain_limit = 1
 			ai_war_chance = -0.25
 			ai_war_cooldown = 0.25
 		}
@@ -1585,8 +1619,13 @@
 		}
 
 		can_pick = {
-			NOR = {
-				flag:tenet_pacifism = { is_in_list = selected_doctrines }
+			custom_description = {
+				text = incompatible_tenet_pacifism_trigger
+				NOT = { flag:tenet_pacifism = { is_in_list = selected_doctrines } }
+			}
+			custom_description = {
+				text = incompatible_tenet_dharmic_pacifism_trigger
+				NOT = { flag:tenet_dharmic_pacifism = { is_in_list = selected_doctrines } }
 			}
 		}
 
@@ -1841,13 +1880,13 @@
 		}
 
 		can_pick = {
-			NOR = {
-				flag:tenet_pacifism = {
-					is_in_list = selected_doctrines
+			custom_description = {
+				text = incompatible_tenet_pacifism_trigger
+				NOT = { flag:tenet_pacifism = { is_in_list = selected_doctrines } }
 				}
-				flag:tenet_dharmic_pacifism = {
-					is_in_list = selected_doctrines
-				}
+			custom_description = {
+				text = incompatible_tenet_dharmic_pacifism_trigger
+				NOT = { flag:tenet_dharmic_pacifism = { is_in_list = selected_doctrines } }
 			}
 		}
 
@@ -2310,7 +2349,7 @@
 		piety_cost = {
 			if = {
 				limit = {
-					has_variable = accepted_cannibalsim
+					has_variable = accepted_cannibalism
 				}
 				value = faith_tenet_cost_low
 			}

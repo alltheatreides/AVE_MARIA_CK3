@@ -207,8 +207,11 @@ create_almohads_effect = {
 
 find_almohad_titles_and_assign_to_ibn_tumart_effect = {
 
-	create_title_and_vassal_change = change
-	scope:change = { set_title_and_vassal_change_type = usurped }
+	create_title_and_vassal_change = {
+		type = usurped
+		save_scope_as = change
+		add_claim_on_loss = no
+	}
 	scope:almohad_county = {
 		change_title_holder = {
 			holder = scope:ibn_tumart
@@ -218,8 +221,11 @@ find_almohad_titles_and_assign_to_ibn_tumart_effect = {
 	}
 	resolve_title_and_vassal_change = scope:change
 
-	create_title_and_vassal_change = change
-	scope:change = { set_title_and_vassal_change_type = created }
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = change
+		add_claim_on_loss = no
+	}
 	scope:ibn_tumart.faith.religious_head_title = {
 		change_title_holder = {
 			holder = scope:ibn_tumart
@@ -244,8 +250,11 @@ almohads_become_independent_effect = {
 			scope:ibn_tumart = { release_from_prison = yes }
 		}
 	}
-	create_title_and_vassal_change = going_independent
-	scope:going_independent = { set_title_and_vassal_change_type = independency }
+	create_title_and_vassal_change = {
+		type = independency
+		save_scope_as = going_independent
+		add_claim_on_loss = no
+	}
 	scope:ibn_tumart = {
 		becomes_independent = {
 			change = scope:going_independent

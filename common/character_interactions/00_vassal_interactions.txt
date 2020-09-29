@@ -41,7 +41,24 @@ grant_vassal_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:recipient = { is_diplomatically_available = yes }
 		NOT = { scope:actor = { is_at_war_with = scope:recipient } }
+		trigger_if = {
+			limit = { exists = scope:secondary_actor }
+			NOT = { scope:secondary_actor = { is_at_war_with = scope:recipient } }
+			scope:secondary_actor = { is_diplomatically_available = yes }
+			scope:recipient.primary_title.tier > scope:secondary_actor.primary_title.tier
+		}
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+				exists = scope:secondary_actor
+			}
+			scope:secondary_actor = {
+				NOT = { has_character_flag = ai_should_not_transfer }
+			}
+		}
+
 		trigger_if = {
 			limit = { scope:recipient.highest_held_title_tier <= tier_county }
 			scope:recipient = { highest_held_title_tier > tier_county }
@@ -55,26 +72,6 @@ grant_vassal_interaction = {
 						NOT = { highest_held_title_tier = tier_barony }
 						scope:recipient.highest_held_title_tier > highest_held_title_tier
 					}
-				}
-			}
-		}
-		
-		scope:recipient = { is_diplomatically_available = yes }
-		trigger_if = {
-			limit = { exists = scope:secondary_actor }
-			scope:secondary_actor = { is_diplomatically_available = yes }
-			scope:recipient.primary_title.tier > scope:secondary_actor.primary_title.tier
-		}
-		trigger_if = {
-			limit = {
-				scope:actor = {
-					is_ai = yes
-				}
-				exists = scope:secondary_actor
-			}
-			scope:secondary_actor = {
-				NOT = {
-					has_character_flag = ai_should_not_transfer
 				}
 			}
 		}
@@ -139,7 +136,11 @@ grant_vassal_interaction = {
 				right_icon = scope:recipient
 				left_icon = scope:secondary_actor
 
-				create_title_and_vassal_change = change
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
 
 				scope:secondary_actor = {
 					change_liege = {
@@ -377,20 +378,25 @@ retract_vassal_interaction = {
 
 		ai_value_modifier = {
 			who = scope:recipient
-			ai_greed = -0.25
-	  	  	trigger = {
-	  	  		scope:recipient = { NOT = { ai_greed = 0 } }
-	  		}
-		}
-		ai_value_modifier = {
-			who = scope:recipient
-			ai_honor = 0.75
-			trigger = {
-				scope:recipient = { #If AI is honorable and the law compels to obey the liege, AI will be more likely to obey.
-					ai_honor > 0
+			ai_greed = {
+				if = {
+					limit = {
+						scope:recipient = { NOT = { ai_greed = 0 } }
+					}
+					value = -0.25
 				}
-				scope:actor = {
-					has_realm_law_flag = vassal_refusal_is_treason
+			}
+			ai_honor  = {
+				if = {
+					limit = {
+						scope:recipient = { #If AI is honorable and the law compels to obey the liege, AI will be more likely to obey.
+							ai_honor > 0
+						}
+						scope:actor = {
+							has_realm_law_flag = vassal_refusal_is_treason
+						}
+					}
+					value = 0.75
 				}
 			}
 		}
@@ -452,14 +458,14 @@ retract_vassal_interaction = {
 		}
 		modifier = { #Comparative military strength.
 			desc = offer_vassalization_interaction_aibehavior_power_tt
-	  	  	add = {
+			add = {
 				value = 1
 					subtract = {
 					value = scope:recipient.max_military_strength
 					divide = { value = scope:actor.max_military_strength min = 1 }
 					}
 				multiply = 100
-	  		}
+			}
 		}
 		modifier = { #Different faith, no pluralism.
 			desc = AI_REFUSAL_SPLITTING_SAME_FAITH_VASSALS
@@ -545,7 +551,7 @@ retract_vassal_interaction = {
 						OR = {
 							has_trait = lunatic
 							has_trait = possessed
-							has_trait = am_inconstant
+							has_trait = arbitrary
 						}
 					}
 				}
@@ -703,13 +709,6 @@ start_independence_faction_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			custom_description = {
-				text = "create_faction_adult"
-				subject = scope:actor
-				is_adult = yes
-			}
-		}
-		scope:actor = {
 			can_create_faction = {
 				target = scope:recipient
 				type = independence_faction
@@ -774,13 +773,6 @@ join_independence_faction_interaction = {
 					faction_is_type = independence_faction
 					faction_is_at_war = no
 				}
-			}
-		}
-		scope:actor = {
-			custom_description = {
-				text = "create_faction_adult"
-				subject = scope:actor
-				is_adult = yes
 			}
 		}
 		scope:actor = {
@@ -874,11 +866,6 @@ create_claimant_faction_against_interaction = {
 		}
 
 		scope:actor = {
-			custom_description = {
-				text = "create_faction_adult"
-				subject = scope:actor
-				is_adult = yes
-			}
 			custom_description = {
 				text = character_blocked_from_joining
 				NOT = {
@@ -1124,6 +1111,9 @@ force_onto_council = {
 				}
 			}
 			is_adult = yes
+			NOT = {
+				is_at_war_with = scope:recipient
+			}
 		}
 	}
 
@@ -1584,9 +1574,13 @@ ask_for_pardon_interaction = {
 	}
 
 	on_decline = {
-		send_interface_toast = {
-			title = ask_for_pardon_interaction_decline_toast
-			left_icon = scope:recipient
+		scope:recipient = {
+			send_interface_toast = {
+				title = ask_for_pardon_interaction_decline_toast
+				left_icon = scope:actor
+
+				custom_tooltip = ask_for_pardon_interaction_accept_decline
+			}
 		}
 	}
 

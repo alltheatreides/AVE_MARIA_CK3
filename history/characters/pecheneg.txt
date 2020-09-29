@@ -7,7 +7,7 @@
 	stewardship = 5
 	religion = "tengri_pagan"
 	culture = "pecheneg"
-	trait = pretentious
+	trait = arrogant
 	trait = greedy
 	trait = chaste
 	trait = education_martial_3
@@ -74,7 +74,7 @@
 	stewardship = 5
 	religion = "tengri_pagan"
 	culture = "pecheneg"
-	trait = intolerant
+	trait = zealous
 	trait = temperate
 	trait = craven
 	trait = education_martial_2
@@ -95,8 +95,8 @@
 	stewardship = 5
 	religion = "tengri_pagan"
 	culture = "pecheneg"
-	trait = honest
-	trait = pretentious
+	trait = just
+	trait = arrogant
 	trait = education_stewardship_3
 	1039.1.1 = {
 		birth = "1039.1.1"
@@ -134,11 +134,24 @@
 	stewardship = 6
 	religion = "tengri_pagan"
 	culture = "pecheneg"
+	father = pecheneg000006
+
 	trait = generous
 	trait = gluttonous
 	trait = education_martial_2
+
 	1039.1.1 = {
 		birth = "1039.1.1"
+	}
+	1066.1.1 = {		
+		effect = {
+			spawn_army = { #To balance the start and avoid losing in independence wars within a year
+				name = event_troop_default_name
+				levies = 1200
+				location = 5268
+				origin = 5268 #Odessa
+			}
+		}
 	}
 	1091.1.1 = {
 		death = "1091.1.1"
@@ -174,8 +187,8 @@
 	religion = "tengri_pagan"
 	culture = "pecheneg"
 	trait = lustful
-	trait = intolerant
-	trait = wroth
+	trait = zealous
+	trait = wrathful
 	trait = brave
 	trait = education_stewardship_3
 	1300.1.1 = {
@@ -196,7 +209,7 @@
 	stewardship = 6
 	religion = "tengri_pagan"
 	culture = "pecheneg"
-	trait = pretentious
+	trait = arrogant
 	trait = education_intrigue_2
 	1300.1.1 = {
 		birth = "1300.1.1"
@@ -796,8 +809,8 @@
 	culture = "pecheneg"
 	father = 180233
 	mother = 180246
-	trait = patient
-	trait = pretentious
+	trait = calm
+	trait = arrogant
 	trait = ambitious
 	811.1.1 = {
 		birth = "810.1.1"
@@ -1296,6 +1309,98 @@
 		birth = yes
 	}
 	885.9.5 = {
+		death = yes
+	}
+}
+
+pecheneg000001 = {
+	name = "KU_re"
+	dynasty = 100542
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+
+	928.1.1 = {
+		birth = yes
+	}
+	988.1.1 = {
+		death = yes
+	}
+}
+
+pecheneg000002 = {
+	name = "Metiga"
+	dynasty = 100542	#Not necessarily actually of this dynasty, but for convenience
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+	father = pecheneg000001
+
+	948.1.1 = {
+		birth = yes
+	}
+	988.1.1 = {
+		faith = orthodox	#Converted alongside Vladimir the Great.
+	}
+	991.1.1 = {
+		death = yes
+	}
+}
+
+pecheneg000003 = {
+	name = "Kuchug"
+	dynasty = 100542	#Not necessarily actually of this dynasty, but for convenience
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+	father = pecheneg000001
+
+	953.1.1 = {
+		birth = yes
+	}
+	990.1.1 = {
+		faith = orthodox #Converted for political reasons, probably.
+	}
+	999.1.1 = {
+		death = yes
+	}
+}
+
+pecheneg000004 = {	#Fictional
+	name = "Sol"
+	dynasty = 100542
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+	father = pecheneg000003
+	976.1 = {
+		birth = yes
+	}
+	1015.1.1 = {
+		death = yes
+	}
+}
+
+pecheneg000005 = {	#Fictional
+	name = "Tyrach"
+	dynasty = 100542
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+	father = pecheneg000004
+	997.1.1 = {
+		birth = yes
+	}
+	1034.1.1 = {
+		death = yes
+	}
+}
+
+pecheneg000006 = {	#Fictional
+	name = "Balgor"
+	dynasty = 100542
+	religion = "tengri_pagan"
+	culture = "pecheneg"
+	father = pecheneg000005
+	1020.1.1 = {
+		birth = yes
+	}
+	1066.1.1 = {
 		death = yes
 	}
 }

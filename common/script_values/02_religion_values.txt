@@ -50,6 +50,8 @@ hostility_multiplier_righteous = 1
 hostility_multiplier_fundamentalist = 2
 hostility_multiplier_reduction_adaptive = -0.25
 
+heretical_defector_fervor_gain = 15 # How much fervor Old Faith gains when a ruler splits off to a New Heresy
+
 regional_heresy_factor = {
 	if = {
 		limit = { has_game_rule = default_regional_heresy }
@@ -237,13 +239,13 @@ demand_conversion_likelihood_calculation = {
 	
 	if = {
 		limit = {
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		add = -50
 	}
 	if = {
 		limit = {
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		add = 30
 	}
@@ -2544,7 +2546,7 @@ great_holy_war_target_kingdom_weight = {
 		}
 		#Waaqi Paganism
 		if = {
-			limit = { scope:the_faith.religion = religion: }
+			limit = { scope:the_faith.religion = religion:waaqism_religion }
 			if = {
 				limit = {
 					title_capital_county = {
@@ -2920,7 +2922,7 @@ great_holy_war_target_kingdom_weight = {
 		}
 		#Waaqi Paganism
 		if = {
-			limit = { scope:the_faith.religion = religion: }
+			limit = { scope:the_faith.religion = religion:waaqism_religion }
 			if = {
 				limit = {
 					title_capital_county = {
@@ -3296,7 +3298,7 @@ great_holy_war_target_kingdom_weight = {
 		}
 		#Waaqi Paganism
 		if = {
-			limit = { scope:the_faith.religion = religion: }
+			limit = { scope:the_faith.religion = religion:waaqism_religion }
 			if = {
 				limit = {
 					title_capital_county = {
@@ -3487,6 +3489,11 @@ ghw_score_mult = {
 # Referenced in code; don't delete this. When determining GHW participation score, the character's score percentage is capped at this. ROOT is the character
 ghw_max_score_percentage = {
 	value = 20
+}
+
+# Referenced in code; don't delete this. Used by the GHW screen to show the player how much of the pot they'll get when the war starts. Should be used where you hand it out: divide_war_chest = { fraction = ghw_war_start_handout_percentage }
+ghw_war_start_handout_percentage = {
+	value = 0.2
 }
 
 # Referenced in code; don't delete this

@@ -33,7 +33,10 @@
 
 portrait_wear_armor_trigger = {
 	OR = {
+		AND = {
+			is_ruler = yes
 		has_government = mercenary_government
+		}
 		is_commanding_army = yes
 		AND = {
 			is_knight = yes
@@ -57,7 +60,15 @@ portrait_wear_armor_trigger = {
 
 portrait_wear_helmet_trigger = { # Different from Armor, as Counts+ should show their crowns!
 	OR = {
+		AND = {
+			is_ruler = yes
 		has_government = mercenary_government
+		}
+		AND = {
+			is_ruler = yes
+			has_government = holy_order_government
+		}
+		has_trait = order_member
 		AND = {
 			is_commanding_army = yes
 			OR = {

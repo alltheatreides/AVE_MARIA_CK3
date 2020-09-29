@@ -313,7 +313,7 @@ befriend_interaction = {
 			if = { #Stubborness effect
 				limit = {
 					scope:recipient = {
-						has_trait = am_stubborn
+						has_trait = stubborn
 					}
 				}
 				scope:actor = {
@@ -364,8 +364,8 @@ befriend_interaction = {
 	
 	ai_potential = {
 		NOR = {
-			has_trait = am_withdrawn
-			has_trait = am_deceitful
+			has_trait = shy
+			has_trait = callous
 			any_scheme = {
 				OR = {
 					scheme_type = befriend
@@ -462,7 +462,7 @@ befriend_interaction = {
 			factor = 2
 			scope:actor = {
 				OR = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = diplomat
 					has_trait = family_first
 					has_trait = august
@@ -548,7 +548,6 @@ seduce_interaction = {
 	ai_frequency = 36
 
 	is_shown = {
-		#debug_only = yes
 		NOT = { scope:actor = scope:recipient }
 		scope:recipient = { is_adult = yes }
 		scope:actor = { is_adult = yes }
@@ -607,12 +606,14 @@ seduce_interaction = {
 
 					show_as_tooltip = { seduce_interaction_stress_effect = yes }
 				}
-				if = {
-					limit = {
-						NOT = { is_attracted_to_gender_of = scope:recipient }
-					}
-					custom_tooltip = scheme_interaction_tt.wrong_gender_no_lover
+			}
+		}
+		scope:actor = {
+			if = {
+				limit = {
+					NOT = { is_attracted_to_gender_of = scope:recipient }
 				}
+				custom_tooltip = scheme_interaction_tt_wrong_gender_no_lover
 			}
 		}
 	}
@@ -644,7 +645,7 @@ seduce_interaction = {
 	auto_accept = yes
 	
 	ai_will_do = {
-		base = 0
+		base = 5
 
 		modifier = {
 			add = -50
@@ -683,7 +684,7 @@ seduce_interaction = {
 		}
 		
 		modifier = { # Seducing your unmarried courtiers is good for producing bastards, which the AI will want to do if they have few heirs
-			add = 5
+			add = 10
 			scope:actor = {
 				any_child = {
 					count <= 1
@@ -700,14 +701,14 @@ seduce_interaction = {
 		}
 		
 		modifier = {
-			add = 60
+			add = 30
 			scope:actor = {
 				has_trait = lustful
 			}
 		}
 
 		modifier = { # ( ͡° ͜ʖ ͡°)
-			add = 0
+			add = 50
 			scope:actor = {
 				is_close_or_extended_family_of = scope:recipient
 				is_deviant_trigger = yes
@@ -721,7 +722,7 @@ seduce_interaction = {
 		}
 		
 		modifier = {
-			add = 0
+			add = 25
 			scope:actor = {
 				is_close_or_extended_family_of = scope:recipient
 				is_deviant_trigger = yes
@@ -735,7 +736,7 @@ seduce_interaction = {
 		}
 		
 		modifier = {
-			add = 0
+			add = 50
 			scope:actor = {
 				is_close_or_extended_family_of = scope:recipient
 				faith = { has_doctrine = tenet_divine_marriage }
@@ -743,7 +744,7 @@ seduce_interaction = {
 		}
 		
 		modifier = { # Seducing the spouse of your rival is good drama...
-			add = 0
+			add = 25
 			scope:recipient = {
 				exists = primary_spouse
 				primary_spouse = {
@@ -760,7 +761,7 @@ seduce_interaction = {
 			scope:actor = {
 				NOR = {
 					has_trait = lustful
-					has_trait = am_inconstant
+					has_trait = arbitrary
 					is_deviant_trigger = yes
 					faith = { has_doctrine = tenet_divine_marriage }
 					has_perk = subtle_desire_perk
@@ -1019,7 +1020,7 @@ court_interaction = {
 		hidden_effect = {
 			scope:actor = {
 				send_interface_toast = {
-					title = seduce_interaction_notification
+					title = court_interaction_notification
 
 					left_icon = scope:actor					
 					right_icon = scope:recipient
@@ -1242,8 +1243,8 @@ sway_interaction = {
 	ai_potential = {
 		primary_title.tier >= tier_county
 		NOR = {
-			has_trait = am_withdrawn
-			has_trait = am_deceitful
+			has_trait = shy
+			has_trait = callous
 			any_scheme = {
 				OR = {
 					scheme_type = befriend
@@ -1330,7 +1331,7 @@ sway_interaction = {
 			factor = 2
 			scope:actor = {
 				OR = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = diplomat
 					has_trait = family_first
 					has_trait = august

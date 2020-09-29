@@ -131,7 +131,7 @@ hostile_scheme_base_chance_modifier = {
 	modifier = { # Vengeful Bonus
 		add = vengeful_scheme_success_chance_modifier
 		scope:owner = {
-			has_trait = am_quarrelsome
+			has_trait = vengeful
 			OR = {
 				has_relation_rival = scope:target	
 				has_relation_nemesis = scope:target
@@ -301,6 +301,7 @@ hostile_murder_agent_base_join_chance_modifier = {
 		add = -100
 		OR = {
 			is_great_grandparent_of = scope:target
+			is_grandparent_of = scope:target
 			is_parent_of = scope:target
 		}
 		desc = SCHEME_NOT_AGAINST_DESCENDANTS
@@ -435,6 +436,7 @@ hostile_murder_agent_base_join_chance_modifier = {
 			}
 			NOR = {
 				is_great_grandparent_of = scope:target
+				is_grandparent_of = scope:target
 				is_parent_of = scope:target
 			}
 			opinion = {
@@ -457,7 +459,7 @@ hostile_murder_agent_base_join_chance_modifier = {
 				any_held_title = {
 					place_in_line_of_succession = {
 						target = root
-						value <=3
+						value <= 3
 					}
 				}
 			}
@@ -477,12 +479,18 @@ hostile_murder_agent_base_join_chance_modifier = {
 				any_held_title = {
 					place_in_line_of_succession = {
 						target = root
-						value <=10
+						value <= 10
 					}
-					NOT = {
+					place_in_line_of_succession = {
+						target = root
+						value > 3
+					}
+				}
+				NOT = {
+					any_held_title = {
 						place_in_line_of_succession = {
 							target = root
-							value <=3
+							value <= 3
 						}
 					}
 				}

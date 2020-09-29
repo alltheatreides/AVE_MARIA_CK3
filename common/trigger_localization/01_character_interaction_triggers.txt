@@ -63,6 +63,10 @@ can_start_more_schemes_of_category = {
 	first_not = I_AM_AT_SCHEME_CATEGORY_LIMIT
 }
 
+befriend_already_lover = {
+	first = befriend_already_lover
+} 
+
 befriend_already_friend = {
 	first = I_AM_ALREADY_FRIEND
 }
@@ -135,8 +139,7 @@ actor_is_house_head = {
 }
 
 basic_can_marry_check_recipient = {
-	third = RECIPIENT_CAN_MARRY
-	third_not = RECIPIENT_CAN_MARRY
+	first_not = RECIPIENT_CAN_MARRY
 }
 
 character_to_marry_exists = {
@@ -171,6 +174,14 @@ cannot_call_same_character_multiple_times = {
 
 cannot_call_vassal_to_war = {
 	first_not = I_CANNOT_CALL_A_VASSAL_AS_ALLY
+	third_not = I_CANNOT_CALL_A_VASSAL_AS_ALLY
+	global_not = I_CANNOT_CALL_A_VASSAL_AS_ALLY
+}
+
+cannot_call_liege_to_war = {
+	first_not = I_CANNOT_CALL_A_LIEGE_AS_ALLY
+	third_not = I_CANNOT_CALL_A_LIEGE_AS_ALLY
+	global_not = I_CANNOT_CALL_A_LIEGE_AS_ALLY
 }
 
 cannot_call_liege_ally_against_fellow_vassal = {
@@ -401,6 +412,20 @@ is_already_war_enemy_of_primary_enemy = {
 	third_not = IS_ALREADY_WAR_ENEMY_OF_PRIMARY_ENEMY
 }
 
+is_married_matrilineally = {
+	global = IS_MARRIED_MATRILINEALLY
+	third = CHARACTER_IS_MARRIED_MATRILINEALLY
+}
+
+is_married_patrilineally_and_spouse_is_dominant_partner = {
+	third = is_married_patrilineally_and_spouse_is_dominant_partner
+}
+
+is_married_patrilineally = {
+	global = IS_MARRIED_PATRILINEALLY
+	third = CHARACTER_IS_MARRIED_PATRILINEALLY
+}
+
 is_escaped_prisoner = {
 	global = is_escaped_prisoner
 }
@@ -414,8 +439,8 @@ has_usable_hook_or_council_rights_through_vassal_contract = {
 }
 
 is_blocked_from_being_fired_from_council = {
-	third = IS_NOT_BLOCKED_FROM_BEING_FIRED_FROM_COUNCIL
-	third_not = IS_BLOCKED_FROM_BEING_FIRED_FROM_COUNCIL
+	third = IS_BLOCKED_FROM_BEING_FIRED_FROM_COUNCIL
+	third_not = IS_NOT_BLOCKED_FROM_BEING_FIRED_FROM_COUNCIL
 }
 
 is_war_enemy_with_my_war_ally = {
@@ -424,6 +449,10 @@ is_war_enemy_with_my_war_ally = {
 
 is_war_ally_of_primary_enemy = {
 	third_not = IS_WAR_ALLY_OF_PRIMARY_ENEMY
+}
+
+is_of_wrong_faith_for_holy_war = {
+	first_not = IS_OF_WRONG_FAITH_FOR_HOLY_WAR
 }
 
 is_war_ally_of_another_target_enemy = {
@@ -438,12 +467,21 @@ bastard_of_same_house_or_without_dynasty = {
 	third_not = MUST_BE_OF_SAME_HOUSE_OR_WITHOUT_DYNASTY
 }
 
-create_faction_adult = {
+FACTION_CANT_JOIN_CREATE_ADULT = {
+	global_not = FACTION_CANT_JOIN_CREATE_ADULT
 	first_not = FACTION_CANT_JOIN_CREATE_ADULT_INT
 }
 
-befriend_cooldown = {
-	first_not = I_HAVE_BEFRIEND_COOLDOWN_ON_THIS_CHARACTER
+FACTION_CANT_JOIN_CREATE_INCAPABLE = {
+	first_not = NOT_FACTION_CANT_JOIN_CREATE_INCAPABLE
+}
+
+create_faction_imprisoned = {
+	first_not = NOT_FACTION_CANT_JOIN_CREATE_IMPRISONED
+}
+
+join_faction_target = {
+	first_not = NOT_FACTION_CANT_JOIN_IF_TARGET
 }
 
 sway_blocked = {
@@ -462,7 +500,12 @@ vassal_modify_vassal_contract_obligation_change_limit = {
 liege_modify_vassal_contract_cannot_exceed_tyranny_cap = {
 	first_not = LIEGE_MODIFY_VASSAL_CONTRACT_CANNOT_EXCEED_TYRANNY_CAP
 }
-
+vassal_modify_vassal_contract_unnecessary_hook_usage_vassal_favor = {
+	first_not = vassal_modify_vassal_contract_unnecessary_hook_usage_vassal_favor
+}
+vassal_modify_vassal_contract_unnecessary_hook_usage_equal = {
+	first_not = vassal_modify_vassal_contract_unnecessary_hook_usage_equal
+}
 
 is_dynast = {
 	first = I_AM_A_DYNAST
@@ -513,7 +556,7 @@ character_interactions_hostile_actions_disabled_delay = {
 }
 
 character_interactions_not_rel_head_title = {
-	third = NOT_TITLE_IS_REAL_HEAD
+	third = TITLE_IS_REAL_HEAD
 }
 
 character_is_not_real_head = {
@@ -521,7 +564,11 @@ character_is_not_real_head = {
 }
 
 cannot_demand_religious_head_conversion = {
-	global_not = CANNOT_DEMAND_CONVERSION_FROM_RELIGIOUS_HEAD
+	third_not = CANNOT_DEMAND_CONVERSION_FROM_RELIGIOUS_HEAD
+}
+
+cannot_demand_unsubordinate_landed_ruler_conversion = {
+	third_not = CANNOT_DEMAND_CONVERSION_FROM_UNSUBORDINATE_LANDED_RULER
 }
 
 release_banish_invalid_take_vows = {
@@ -630,10 +677,6 @@ join_war_interaction_recipient_warring_with_my_liege = {
 	third_not = join_war_interaction_recipient_warring_with_my_liege
 }
 
-join_war_interaction_already_in_target_war = {
-	third_not = join_war_interaction_already_in_target_war
-}
-
 join_war_interaction_recipient_not_def_GHW = {
 	third_not = join_war_interaction_recipient_not_def_GHW
 }
@@ -731,5 +774,28 @@ literalist_debate_interaction_has_been_debated = {
 }
 
 literalist_debate_timing = {
-	first_not = literalist_debate_timing
+	first = literalist_debate_timing
+	first_not = not_literalist_debate_timing
+}
+
+is_already_in_all_wars = {
+	third_not = is_already_in_all_wars
+}
+
+is_character_interaction_valid = {
+	global = IS_CHARACTER_INTERACTION_VALID_TRIGGER
+}
+
+is_character_interaction_potentially_accepted = {
+	global = IS_CHARACTER_INTERACTION_POTENTIALLY_ACCEPTED_TRIGGER
+}
+
+TAKE_VOWS_INTERACTION_HAS_MONASTERY = {
+	global = TAKE_VOWS_INTERACTION_HAS_MONASTERY
+	third_not = NOT_TAKE_VOWS_INTERACTION_HAS_MONASTERY
+}
+
+TAKE_VOWS_INTERACTION_MARTIAL_EDUCATION = {
+	global = TAKE_VOWS_INTERACTION_MARTIAL_EDUCATION
+	third_not = NOT_TAKE_VOWS_INTERACTION_MARTIAL_EDUCATION
 }

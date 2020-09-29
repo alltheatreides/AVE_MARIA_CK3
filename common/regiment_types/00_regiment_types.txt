@@ -29,6 +29,7 @@ light_footmen = {
 	holy_order_fallback = yes
 	
 	stack = 100
+	ai_quality = { value = culture_ai_weight_skirmishers }
 	icon = skirmishers
 }
 
@@ -58,6 +59,7 @@ bowmen = {
 	holy_order_fallback = yes
 	
 	stack = 100
+	ai_quality = { value = culture_ai_weight_archers }
 }
 
 light_horsemen = {
@@ -89,13 +91,14 @@ light_horsemen = {
 	holy_order_fallback = yes
 	
 	stack = 100
+	ai_quality = { value = culture_ai_weight_light_cavalry }
 	icon = light_cavalry
 }
 
 pikemen_unit = {
 	type = pikemen
 	
-	damage = 26
+	damage = 22
 	toughness = 24
 	pursuit = 0
 	screen = 0
@@ -119,6 +122,7 @@ pikemen_unit = {
 	holy_order_fallback = yes
 	
 	stack = 100
+	ai_quality = { value = culture_ai_weight_pikemen }
 	icon = pikemen
 }
 
@@ -145,6 +149,7 @@ armored_footmen = {
 	holy_order_fallback = yes
 	
 	stack = 100
+	ai_quality = { value = culture_ai_weight_heavy_infantry }
 	icon = heavy_infantry
 }
 
@@ -156,7 +161,7 @@ onager = {
 	toughness = 12
 	
 	siege_tier = 1
-	siege_value = 0.3
+	siege_value = 0.2
 	
 	buy_cost = { gold = onager_recruitment_cost }
 	low_maintenance_cost = { gold = onager_low_maint_cost }
@@ -171,7 +176,7 @@ armored_horsemen = {
 	type = heavy_cavalry
 	
 	damage = 100
-	toughness = 30
+	toughness = 35
 	pursuit = 20
 	screen = 0
 	
@@ -194,6 +199,7 @@ armored_horsemen = {
 	
 	stack = 50
 	allowed_in_hired_troops = no
+	ai_quality = { value = culture_ai_weight_heavy_cavalry }
 	icon = heavy_cavalry
 }
 
@@ -205,7 +211,7 @@ mangonel = {
 	toughness = 12
 	
 	siege_tier = 2
-	siege_value = 0.6
+	siege_value = 0.3
 	
 	buy_cost = { gold = mangonel_recruitment_cost }
 	low_maintenance_cost = { gold = mangonel_low_maint_cost }
@@ -253,7 +259,7 @@ trebuchet = {
 	toughness = 12
 	
 	siege_tier = 3
-	siege_value = 1
+	siege_value = 0.4
 	
 	buy_cost = { gold = trebuchet_recruitment_cost }
 	low_maintenance_cost = { gold = trebuchet_low_maint_cost }
@@ -273,7 +279,7 @@ bombard = {
 	toughness = 12
 	
 	siege_tier = 4
-	siege_value = 1.5
+	siege_value = 0.6
 	
 	buy_cost = { gold = bombard_recruitment_cost }
 	low_maintenance_cost = { gold = bombard_low_maint_cost }

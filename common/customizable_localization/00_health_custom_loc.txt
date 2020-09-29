@@ -100,7 +100,7 @@ PossessedEpisode = {
 				is_witch_trigger = yes
 				has_character_modifier = possessed_prophetic_visions
 				has_trait = lifestyle_mystic
-				has_trait = am_intolerant
+				has_trait = zealous
 			}
 		}
 		localization_key = possessed_vision
@@ -161,5 +161,9 @@ EventTitleDisease = {
 	text = {
 		trigger = { scope:disease_type = flag:bubonic_plague }
 		localization_key = trait_bubonic_plague
+	}
+	text = {
+		trigger = { has_trait = wounded }
+		localization_key = trait_wounded
 	}
 }

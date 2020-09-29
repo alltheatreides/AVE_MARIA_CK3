@@ -34,7 +34,7 @@ starting_prestige = {
 				if = {
 					limit = {
 						OR = {
-							has_trait = am_pretentious
+							has_trait = arrogant
 							has_trait = ambitious
 						}
 					}
@@ -43,8 +43,8 @@ starting_prestige = {
 				else_if = {
 					limit = {
 						OR = {
-							has_trait = am_humble
-							has_trait = am_conventional
+							has_trait = humble
+							has_trait = content
 						}
 					}
 					add = -1
@@ -72,11 +72,11 @@ starting_piety = {
 				add = num_virtuous_traits
 				subtract = num_sinful_traits
 				if = {
-					limit = { has_trait = am_intolerant }
+					limit = { has_trait = zealous }
 					add = 1
 				}
 				else_if = {
-					limit = { has_trait = am_hypocritical }
+					limit = { has_trait = cynical }
 					add = -1
 				}
 			}

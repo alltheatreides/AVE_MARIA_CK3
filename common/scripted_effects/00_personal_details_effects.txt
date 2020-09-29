@@ -8,7 +8,7 @@
 #
 
 #assign_quirk_effect
-#get_quirk_character_effect
+#get_quirk_character_effect 			= Used to make sure that a character used for a quirk has one, and utilises assign_quirk_effect if they're missing one.
 #set_signature_weapon_effect
 #pick_servant_romance_target_effect
 #set_favorite_treat_effect
@@ -20,6 +20,7 @@
 
 
 #Used to find a permanent quirk for a character
+# Use get_quirk_character_effect for better performence as it also checks if root in an event is an AI!
 assign_quirk_effect = {
 	if = {
 		limit = {
@@ -37,7 +38,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_withdrawn
+							has_trait = shy
 							has_trait = pensive
 						}
 					}
@@ -47,14 +48,14 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_pretentious }
+					trigger = { has_trait = arrogant }
 					set_variable = {
 						name = my_quirk
 						value = flag:arrogant
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_illtempered }
+					trigger = { has_trait = impatient }
 					set_variable = {
 						name = my_quirk
 						value = flag:impatient
@@ -89,7 +90,7 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_greedy }
+					trigger = { has_trait = greedy }
 					set_variable = {
 						name = my_quirk
 						value = flag:greedy
@@ -98,7 +99,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_diligent
+							has_trait = diligent
 							has_trait = bossy
 							has_trait = curious
 						}
@@ -109,14 +110,14 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_lazy }
+					trigger = { has_trait = lazy }
 					set_variable = {
 						name = my_quirk
 						value = flag:lazy
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_wroth }
+					trigger = { has_trait = wrathful }
 					set_variable = {
 						name = my_quirk
 						value = flag:wrathful
@@ -125,7 +126,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_patient
+							has_trait = calm
 							has_trait = pensive
 						}
 					}
@@ -135,14 +136,14 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_illtempered }
+					trigger = { has_trait = impatient }
 					set_variable = {
 						name = my_quirk
 						value = flag:impatient
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_humble }
+					trigger = { has_trait = humble }
 					set_variable = {
 						name = my_quirk
 						value = flag:humble
@@ -151,7 +152,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_deceitful
+							has_trait = deceitful
 							has_trait = charming
 						}
 					}
@@ -161,21 +162,21 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_honest }
+					trigger = { has_trait = honest }
 					set_variable = {
 						name = my_quirk
 						value = flag:honest
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_generous }
+					trigger = { has_trait = generous }
 					set_variable = {
 						name = my_quirk
 						value = flag:generous
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_craven }
+					trigger = { has_trait = craven }
 					set_variable = {
 						name = my_quirk
 						value = flag:craven
@@ -184,7 +185,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_brave
+							has_trait = brave
 							has_trait = rowdy
 						}
 					}
@@ -196,7 +197,7 @@ assign_quirk_effect = {
 				1 = {
 					trigger = {
 						OR = {
-							has_trait = am_outgoing
+							has_trait = gregarious
 							has_trait = charming
 							has_trait = curious
 						}
@@ -214,49 +215,49 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_inconstant }
+					trigger = { has_trait = arbitrary }
 					set_variable = {
 						name = my_quirk
 						value = flag:arbitrary
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_faithful }
+					trigger = { has_trait = just }
 					set_variable = {
 						name = my_quirk
 						value = flag:just
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_hypocritical }
+					trigger = { has_trait = cynical }
 					set_variable = {
 						name = my_quirk
 						value = flag:cynical
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_intolerant }
+					trigger = { has_trait = zealous }
 					set_variable = {
 						name = my_quirk
 						value = flag:zealous
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_fearful }
+					trigger = { has_trait = paranoid }
 					set_variable = {
 						name = my_quirk
 						value = flag:paranoid
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_mild }
+					trigger = { has_trait = trusting }
 					set_variable = {
 						name = my_quirk
 						value = flag:trusting
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_tolerant }
+					trigger = { has_trait = compassionate }
 					set_variable = {
 						name = my_quirk
 						value = flag:compassionate
@@ -270,14 +271,14 @@ assign_quirk_effect = {
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_quarrelsome }
+					trigger = { has_trait = vengeful }
 					set_variable = {
 						name = my_quirk
 						value = flag:vengeful
 					}
 				}
 				1 = {
-					trigger = { has_trait = am_tolerant }
+					trigger = { has_trait = forgiving }
 					set_variable = {
 						name = my_quirk
 						value = flag:forgiving

@@ -72,43 +72,63 @@ on_war_won_attacker = {
 	# `effect` fires on THIS tick, `events` fires on the NEXT tick, and the war gets destroyed between this tick and the next.
 	effect = {
 		# Save scopes for localization.
-		scope:attacker = {
-			random_character_war = {
-				limit = {
-					primary_defender = scope:defender
-				}
-				save_scope_as = this_war
-			}
-		}
 		scope:attacker = { save_scope_as = winner }
 		scope:defender = { save_scope_as = loser }
 
 		# Run scripted effect that iterates through all players and notifies them if necessary.
 		notify_players_about_neighboring_war_resolution_effect = yes
+		
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						is_ai = yes
+						has_character_flag = delayed_cleanse
+					}
+					trigger_event = { id = game_rule.3 days = 1 }
+				}
+			}
+		}
 	}
 }
 
 on_war_won_defender = {
 	effect = {
 		# Save scopes for localization.
-		scope:defender = {
-			random_character_war = {
-				limit = {
-					primary_attacker = scope:attacker
-				}
-				save_scope_as = this_war
-			}
-		}
 		scope:attacker = { save_scope_as = loser }
 		scope:defender = { save_scope_as = winner }
 
 		# Run scripted effect that iterates through all players and notifies them if necessary.
 		notify_players_about_neighboring_war_resolution_effect = yes
+		
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						is_ai = yes
+						has_character_flag = delayed_cleanse
+					}
+					trigger_event = { id = game_rule.3 days = 1 }
+				}
+			}
+		}
 	}
 }
 
 on_war_white_peace = {
-
+	effect = {
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						is_ai = yes
+						has_character_flag = delayed_cleanse
+					}
+					trigger_event = { id = game_rule.3 days = 1 }
+				}
+			}
+		}
+	}
 }
 
 on_war_invalidated = {
@@ -120,6 +140,18 @@ on_war_invalidated = {
 				desc = END_WAR_INVALIDATED_MESSAGE_DESC
 				left_icon = scope:attacker
 				right_icon = scope:defender
+			}
+		}
+		
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						is_ai = yes
+						has_character_flag = delayed_cleanse
+					}
+					trigger_event = { id = game_rule.3 days = 1 }
+				}
 			}
 		}
 	}

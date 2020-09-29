@@ -373,6 +373,12 @@ select_and_move_to_pool_effect = {
 				limit = {
 					NOT = { is_in_pool_at = scope:destination }
 					is_ruler = no
+					trigger_if = {
+						limit = {
+							is_child_of = scope:mover.host
+						}
+						NOT = { dynasty = scope:mover.host.dynasty }
+					}
 				}
 				move_to_pool_at = scope:destination
 			}
@@ -444,7 +450,7 @@ courtier_guest_pool_character_secret_giving_effect = {
 		500 = {
 			trigger = {
 				NOR = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					any_secret = { secret_type = secret_non_believer }
 					has_character_modifier = known_non_believer
 				}
@@ -456,7 +462,7 @@ courtier_guest_pool_character_secret_giving_effect = {
 		100 = {
 			trigger = {
 				NOR = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					any_secret = { secret_type = secret_witch }
 					has_trait = witch
 				}
@@ -521,10 +527,11 @@ pool_character_development_effect = {
 		# GET MARRIED
 		15 = {
 			trigger = {
-				is_adult = yes
+				is_physically_able_adult = yes
 				age <= 40
 				is_married = no
 				can_marry_trigger = yes
+				is_concubine = no
 				is_lowborn = no
 				#The triggers below are here to avoid low fertility marriages
 				OR = {
@@ -539,15 +546,55 @@ pool_character_development_effect = {
 			}
 			
 			save_temporary_scope_as = template
-
-			create_character = {
-				location = scope:template.location
-				opposite_gender = scope:template
-				template = pool_repopulate_spouse
-				save_temporary_scope_as = spouse
+			
+			if = {
+				limit = {
+					exists = scope:pool_character.location
+					any_pool_character = {
+						province = scope:pool_character.location
+						sex_opposite_of = scope:pool_character
+						is_physically_able_adult = yes
+						age <= 40
+						is_married = no
+						can_marry_trigger = yes
+						is_concubine = no
+						is_attracted_to_gender_of = scope:pool_character
+					}
+				}
+				random_pool_character = {
+					province = scope:pool_character.location
+					limit = {
+						sex_opposite_of = scope:pool_character
+						is_physically_able_adult = yes
+						age <= 40
+						is_married = no
+						can_marry_trigger = yes
+						is_concubine = no
+						is_attracted_to_gender_of = scope:pool_character
+					}
+					save_temporary_scope_as = spouse
+				}
+			}
+			else = {
+				create_character = {
+					location = scope:template.location
+					opposite_gender = scope:template
+					template = pool_repopulate_spouse
+					save_temporary_scope_as = spouse
+				}
 			}
 
+
 			marry = scope:spouse
+			
+			scope:spouse = {
+				if = {
+					limit = {
+						exists = scope:template.host
+					}
+					visit_court_of = scope:template.host
+				}
+			}
 		}
 
 		# GET A LIFESTYLE TRAIT
@@ -566,7 +613,7 @@ pool_character_development_effect = {
 					trigger = {
 						NOT = { has_trait = reveler_3 }
 						NOR = {
-							has_trait = am_withdrawn
+							has_trait = shy
 							has_trait = celibate
 							has_trait = temperate
 							has_trait = chaste
@@ -766,7 +813,7 @@ pool_character_development_effect = {
 				1 = { #Does not use the can_be_contrite to reduce performance hit
 					trigger = {
 						NOR = {
-							has_trait = am_deceitful
+							has_trait = deceitful
 							has_trait = contrite
 						}
 					}
@@ -820,4 +867,154 @@ pool_character_development_effect = {
 			courtier_guest_pool_character_secret_giving_effect = yes
 		}
 	} #RANDOM_LIST ENDS HERE
+	
+	
+	while = {
+		limit = {
+			gold >= 1000
+		}
+		random_list = {
+			100 = { # Spend gold on getting a friend
+				trigger = {
+					ai_sociability > low_negative_ai_value
+					is_physically_able_adult = yes
+					NOR = {
+						has_trait = shy
+						has_trait = reclusive
+					}
+					exists = scope:pool_character.location
+					any_pool_character = {
+						province = scope:pool_character.location
+						is_physically_able_adult = yes
+						NOT = { this = scope:pool_character }
+						NOT = { has_any_scripted_relation = scope:pool_character }
+					}
+				}
+				random_pool_character = {
+					province = scope:pool_character.location
+					limit = {
+						is_physically_able_adult = yes
+						NOT = { this = scope:pool_character }
+						NOT = { has_any_scripted_relation = scope:pool_character }
+					}
+					save_temporary_scope_as = new_friend
+				}
+				add_prestige = major_prestige_value
+				set_relation_friend = scope:new_friend
+				pay_short_term_gold = {
+					target = scope:new_friend
+					gold = 500
+				}
+			}
+			
+			100 = { # Spend gold on for religious purposes
+				trigger = {
+					ai_zeal >= medium_positive_ai_value
+				}
+				add_learning_skill = 3
+				add_piety = major_piety_value
+				remove_short_term_gold = 500
+			}
+			
+			100 = { # Spend gold on gaining prestige and training prowess!
+				trigger = {	
+					can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = scope:pool_character }
+				}
+				add_martial_skill = 2
+				knight_increase_prowess_chance_effect = yes
+				add_prestige = major_prestige_value
+				remove_short_term_gold = 500
+			}
+			
+			100 = { # Spend gold on gaining prestige and skill!
+				add_intrigue_skill = 3
+				add_prestige = major_prestige_value
+				remove_short_term_gold = 500
+			}
+			
+			100 = { # Spend gold on gaining prestige and skill!
+				add_stewardship_skill = 3
+				add_prestige = major_prestige_value
+				remove_short_term_gold = 500
+			}
+			
+			100 = { # Spend gold on gaining prestige and skill!
+				add_diplomacy_skill = 3
+				add_prestige = major_prestige_value
+				remove_short_term_gold = 500
+			}
+			
+			100 = { # Lavish wedding!
+				trigger = {
+					is_physically_able_adult = yes
+					age <= 40
+					is_married = no
+					can_marry_trigger = yes
+					is_concubine = no
+					#The triggers below are here to avoid low fertility marriages
+					OR = {
+						has_sexuality = heterosexual
+						has_sexuality = bisexual
+					}
+					NOR = {
+						has_trait = celibate
+						has_trait = chaste
+					}
+					fertility > low_fertility
+				}
+				
+				save_temporary_scope_as = template
+				
+				if = {
+					limit = {
+						exists = scope:pool_character.location
+						any_pool_character = {
+							province = scope:pool_character.location
+							sex_opposite_of = scope:pool_character
+							is_physically_able_adult = yes
+							age <= 40
+							is_married = no
+							can_marry_trigger = yes
+							is_concubine = no
+							is_attracted_to_gender_of = scope:pool_character
+						}
+					}
+					random_pool_character = {
+						province = scope:pool_character.location
+						limit = {
+							sex_opposite_of = scope:pool_character
+							is_physically_able_adult = yes
+							age <= 40
+							is_married = no
+							can_marry_trigger = yes
+							is_concubine = no
+							is_attracted_to_gender_of = scope:pool_character
+						}
+						save_temporary_scope_as = spouse
+					}
+				}
+				else = {
+					create_character = {
+						location = scope:template.location
+						opposite_gender = scope:template
+						template = pool_repopulate_spouse
+						save_temporary_scope_as = spouse
+					}
+				}
+
+
+				marry = scope:spouse
+				
+				scope:spouse = {
+					if = {
+						limit = {
+							exists = scope:template.host
+						}
+						visit_court_of = scope:template.host
+					}
+				}
+				remove_short_term_gold = 500
+			}
+		}
+	}
 }

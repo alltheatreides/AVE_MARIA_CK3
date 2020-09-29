@@ -16,13 +16,11 @@ attacker_offensive = {
 	objectives = {
 		enemy_unit_province = {
 			priority = 300
-			area = primary_defender
 		}
-		
-		enemy_capital_province = 200
 	}
 	
 	objectives = {
+		enemy_capital_province = 150
 		enemy_province = 100
 	}
 
@@ -36,6 +34,10 @@ attacker_offensive = {
 	
 	objectives = {
 		province = 25
+	}
+
+	objectives = {
+		defend_wargoal_province = 5
 	}
 }
 
@@ -45,16 +47,13 @@ attacker_defensive = {
 	objectives = {
 		enemy_unit_province = {
 			priority = 500
-			area = wargoal
-			area = primary_attacker
-			area = primary_defender
 		}		
 
 		wargoal_province = 300
 	}
 	
 	objectives = {
-		enemy_capital_province = 200
+		enemy_capital_province = 150
 		enemy_province = 100
 	}
 
@@ -68,6 +67,10 @@ attacker_defensive = {
 	
 	objectives = {
 		province = 25
+	}
+
+	objectives = {
+		defend_wargoal_province = 5
 	}
 }
 
@@ -83,9 +86,15 @@ defender_offensive = {
 			area = primary_defender
 		}
 	}
+
+	objectives = {
+		enemy_unit_province = {
+			priority = 200
+		}
+	}
 	
 	objectives = {
-		enemy_capital_province = 200
+		enemy_capital_province = 150
 		enemy_province = 100
 	}
 
@@ -96,6 +105,10 @@ defender_offensive = {
 	objectives = {
 		capital_province = 50
 		province = 25
+	}
+
+	objectives = {
+		defend_wargoal_province = 5
 	}
 }
 
@@ -111,9 +124,15 @@ defender_defensive = {
 			area = primary_defender
 		}
 	}
+
+	objectives = {
+		enemy_unit_province = {
+			priority = 200
+		}
+	}
 	
 	objectives = {
-		enemy_capital_province = 200
+		enemy_capital_province = 150
 		enemy_province = 100
 	}
 
@@ -125,6 +144,10 @@ defender_defensive = {
 		capital_province = 50
 		province = 25
 	}	
+
+	objectives = {
+		defend_wargoal_province = 5
+	}
 }
 
 ### HARD CODED - DO NOT REMOVE ###

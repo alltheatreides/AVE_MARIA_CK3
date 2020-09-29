@@ -237,6 +237,7 @@ not_pledged_not_donated_tooltip = {
 				root = { has_character_flag = ghw_pledged_gold }
 			}
 			is_directed_ghw = no
+			NOT = { has_pledged_defender = root }
 		}
 	}
 
@@ -276,6 +277,7 @@ change_target = {
 		scope:great_holy_war = { # Only un-directed great holy wars in the preparation phase can be re-directed
 			is_directed_ghw = no
 			NOT = { exists = ghw_war }
+			has_pledged_attacker = root
 		}
 	}
 

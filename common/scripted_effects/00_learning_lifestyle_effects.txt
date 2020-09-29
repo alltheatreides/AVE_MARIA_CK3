@@ -21,14 +21,14 @@ scholarship_focus_progress_effect = {
 zealous_progression_effect = {
 	if = {
 		limit = {
-			NOT = { has_trait = am_intolerant }
+			NOT = { has_trait = zealous }
 		}
 		custom_tooltip = learning_zealous_path_tt
 		if = {
 			limit = { NOT = { has_variable = scholarship_zealous_cynical_value } }
 			if = {
 				limit = {
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 				set_variable = {
 					name = scholarship_zealous_cynical_value
@@ -42,12 +42,12 @@ zealous_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				has_trait = am_hypocritical
+				has_trait = cynical
 				var:scholarship_zealous_cynical_value = {
 					compare_value <= 1
 				}
 			}
-			remove_trait = am_hypocritical
+			remove_trait = cynical
 			set_variable = {
 				name = scholarship_zealous_cynical_value
 				value = 0
@@ -59,7 +59,7 @@ zealous_progression_effect = {
 					compare_value < scholarship_zealous_threshold
 				}
 			}
-			add_trait = am_intolerant
+			add_trait = zealous
 		}
 		else = {
 			change_variable = {
@@ -77,13 +77,13 @@ zealous_progression_effect = {
 #Scholarship Progression
 cynical_progression_effect = {
 	if = {
-		limit = { NOT = { has_trait = am_hypocritical } }
+		limit = { NOT = { has_trait = cynical } }
 		custom_tooltip = learning_cynical_path_tt
 		if = {
 			limit = {NOT = { has_variable = scholarship_zealous_cynical_value } }
 			if = {
 				limit = {
-					has_trait = am_intolerant
+					has_trait = zealous
 				}
 				set_variable = {
 					name = scholarship_zealous_cynical_value
@@ -97,12 +97,12 @@ cynical_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				has_trait = am_intolerant
+				has_trait = zealous
 				var:scholarship_zealous_cynical_value = {
 					compare_value >= -1
 				}
 			}
-			remove_trait = am_intolerant
+			remove_trait = zealous
 			set_variable = {
 				name = scholarship_zealous_cynical_value
 				value = 0
@@ -110,12 +110,12 @@ cynical_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				NOT = { has_trait = am_hypocritical }
+				NOT = { has_trait = cynical }
 				var:scholarship_zealous_cynical_value = {
 					compare_value > scholarsip_cynical_threshold
 				}
 			}
-			add_trait = am_hypocritical
+			add_trait = cynical
 		}
 		else = {
 			change_variable = {
@@ -756,7 +756,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_brave }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_brave }
+				scope:court_chaplain = { has_trait = brave }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_brave days = 1 }
@@ -767,7 +767,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_just }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_faithful }
+				scope:court_chaplain = { has_trait = just }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_just days = 1 }
@@ -800,7 +800,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_compassionate }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_tolerant }
+				scope:court_chaplain = { has_trait = compassionate }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_compassionate days = 1 }
@@ -811,7 +811,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_honest }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_honest }
+				scope:court_chaplain = { has_trait = honest }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_honest days = 1 }
@@ -822,7 +822,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_forgiving }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_tolerant }
+				scope:court_chaplain = { has_trait = forgiving }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_forgiving days = 1 }
@@ -833,7 +833,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_wrathful }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_wroth }
+				scope:court_chaplain = { has_trait = wrathful }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_wrathful days = 1 }
@@ -844,7 +844,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_vengeful }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_quarrelsome }
+				scope:court_chaplain = { has_trait = vengeful }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_vengeful days = 1 }
@@ -855,7 +855,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_content }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_conventional }
+				scope:court_chaplain = { has_trait = content }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_content days = 1 }
@@ -866,7 +866,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_patient }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_patient }
+				scope:court_chaplain = { has_trait = patient }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_patient days = 1 }
@@ -877,7 +877,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_calm }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_patient }
+				scope:court_chaplain = { has_trait = calm }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_calm days = 1 }
@@ -888,7 +888,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_humble }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_humble }
+				scope:court_chaplain = { has_trait = humble }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_humble days = 1 }
@@ -899,7 +899,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_diligent }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_diligent }
+				scope:court_chaplain = { has_trait = diligent }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_diligent days = 1 }
@@ -910,7 +910,7 @@ learning_theology_2020_randomize_virtue_options_effect = {
 				NOT = { has_character_flag = virtue_generous }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = am_generous }
+				scope:court_chaplain = { has_trait = generous }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_generous days = 1 }

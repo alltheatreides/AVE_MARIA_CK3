@@ -186,19 +186,15 @@ has_quarterly_recovery_disease_trigger = {
 	}
 }
 
-
-
-#LIST OF TRIGGERS
-has_std_disease_trigger = {
+has_short_disease_trigger = {
 	OR = {
-		has_trait = lovers_pox
-		has_trait = great_pox
-		has_trait = early_great_pox
+		has_trait = ill
+		has_trait = pneumonic
+		has_trait = typhus
+		has_trait = smallpox
+		has_trait = bubonic_plague
 	}
 }
-
-
-
 
 has_serious_disease_trigger = {
 	has_trait = bubonic_plague
@@ -225,6 +221,12 @@ court_physician_available_trigger = {
 		any_relation = {
 			type = court_physician
 			can_be_court_physician_of = { EMPLOYER = scope:available_physician_employer }
+			trigger_if = { #You can't treat yourself
+				limit = {
+					exists = scope:sick_character
+				}
+				NOT = { this = scope:sick_character }
+			}
 		}
 	}
 }

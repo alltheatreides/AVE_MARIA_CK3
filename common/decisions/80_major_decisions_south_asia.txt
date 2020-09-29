@@ -76,8 +76,6 @@ become_chakravarti_decision = {
 			}
 		}
 
-
-
 		save_scope_as = chakravarti
 
 		trigger_event = south_asia.0001 #I became the Chakravarti
@@ -124,15 +122,7 @@ take_stewardship_of_the_sacred_river_decision = {
 	major = yes
 	ai_check_interval = 120
 
-	desc = {
-		desc = take_stewardship_of_the_sacred_river_decision_desc
-		triggered_desc = {
-			trigger = {
-
-			}
-			desc = vassal_or_liege_seizure_warning
-		}
-	}
+	desc = take_stewardship_of_the_sacred_river_decision_desc
 
 	is_shown = {
 		religion = religion:hinduism_religion
@@ -141,26 +131,10 @@ take_stewardship_of_the_sacred_river_decision = {
 	}
 
 	is_valid = {
-		completely_controls = title:d_kasi
-		completely_controls = title:d_kanyakubja
-		completely_controls = title:d_magadha
-		completely_controls = title:d_gauda
-		completely_controls = title:d_nadia
-		completely_controls = title:d_vanga
-		completely_controls = title:d_tirabhukti
-		completely_controls = title:d_suhma
-		completely_controls = title:d_varendra
-		completely_controls = title:d_jharkand
-		completely_controls = title:d_ajmer
-		completely_controls = title:d_jejakabhukti
-		completely_controls = title:d_mathura
-		completely_controls = title:d_haritanaka
-		completely_controls = title:d_kuru
+		completely_controls_region = custom_ganges_plain
 		custom_description = {
 			text = capital_province_in_ganges_region
-			capital_province = {
-				geographical_region = custom_ganges_plain
-			}
+			capital_province = { geographical_region = custom_ganges_plain }
 		}
 		prestige_level >= 3
 		piety_level >= 1
@@ -170,11 +144,9 @@ take_stewardship_of_the_sacred_river_decision = {
 		is_adult = yes
 		is_available = yes
 		trigger_if = {
-			limit = {
-				has_global_variable = ruler_of_ganges
-			}
+			limit = { has_global_variable = ruler_of_ganges }
 			custom_description = {
-				text = my_vassal_or_liege_is_ruler_of_ganges
+				text = capital_province_in_ganges_region
 				NOR = {
 					AND = {
 						global_var:ruler_of_ganges = {

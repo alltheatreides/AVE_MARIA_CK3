@@ -74,7 +74,7 @@
 	on_end = {
 		story_owner = {
 			remove_cat_story_modifiers_effect = yes
-			remove_variable = story_cycle_cat_name
+			remove_cat_name_effect = yes
 		}
 	}
 
@@ -262,58 +262,9 @@
 				NOT = { exists = story_owner.var:story_cycle_cat_name }
 			}
 			effect = {
-				if = {
-					limit = { has_multiple_players = yes }
-					story_owner = {
-						assign_name_options_cat_story_cycle_effect = yes
-						assign_name_options_cat_story_cycle_effect = yes
-						assign_name_options_cat_story_cycle_effect = yes
-						random_list = {
-							1 = {
-								trigger = { has_character_flag = name_gyb }
-								set_variable = { name = story_cycle_cat_name value = flag:Gyb }
-							}
-							1 = {
-								trigger = { has_character_flag = name_mite }
-								set_variable = { name = story_cycle_cat_name value = flag:Mite }
-							}
-							1 = {
-								trigger = { has_character_flag = name_gray }
-								set_variable = { name = story_cycle_cat_name value = flag:Gray }
-							}
-							1 = {
-								trigger = { has_character_flag = name_flame }
-								set_variable = { name = story_cycle_cat_name value = flag:Flame }
-							}
-							1 = {
-								trigger = { has_character_flag = name_meone }
-								set_variable = { name = story_cycle_cat_name value = flag:Meone }
-							}
-							1 = {
-								trigger = { has_character_flag = name_cruibne }
-								set_variable = { name = story_cycle_cat_name value = flag:Cruibne }
-							}
-							1 = {
-								trigger = { has_character_flag = name_snow }
-								set_variable = { name = story_cycle_cat_name value = flag:Snow }
-							}
-							1 = {
-								trigger = { has_character_flag = name_shadow }
-								set_variable = { name = story_cycle_cat_name value = flag:Shadow }
-							}
-							1 = {
-								trigger = { has_character_flag = name_paws }
-								set_variable = { name = story_cycle_cat_name value = flag:Paws }
-							}
-						}
-						clear_name_options_cat_story_cycle_effect = yes
-					}
-				}
-				else = {
-					story_owner = {
-						add_character_flag = is_naming_cat
-						trigger_event = pet_animal.0001
-					}
+				story_owner = {
+					add_character_flag = is_naming_cat
+					trigger_event = pet_animal.0001
 				}
 			}
 		}

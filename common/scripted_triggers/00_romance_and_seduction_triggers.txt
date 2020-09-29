@@ -325,37 +325,73 @@ object_of_importance_exist_trigger = {
 might_cheat_on_partner_trigger = {
 	trigger_if = {
 		limit = {
+			# If $PARTNER$ isn't actually my partner, it's not cheating!
 			OR = {
 				has_relation_lover = $PARTNER$
-				is_consort_of = $PARTNER$
+				is_consort_of = $PARTNER$ # Includes both spouses and concubines
 			}
+
+			# Additionally, in faiths with the Polyamory doctrine, extramarital relationships aren't considered to be cheating on partners.
+			NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active }}
 		}
+
+		# Soulmates never cheat, unless they're Lustful/Seducer
+		trigger_if = {
+			limit = { has_relation_soulmate = $PARTNER$ }
+			has_trait = lustful
+			has_trait = seducer
+		}
+
+		# Non-soulmates have slightly more complex criteria
+		trigger_else = {
+			OR = {
+				# Having one of these things that makes characters always willing to cheat:
 		OR = {
-			NOR = { # Doesn't have any strong reason to like partner
-				has_relation_soulmate = $PARTNER$
+					has_trait = lustful
+					has_trait = seducer
+
+					AND = {
+						# Dishonorable and callous enough to not care about current partners (regardless of opinion).
+						ai_compassion <= high_negative_ai_value
+						ai_honor <= high_negative_ai_value 
+					}
+					AND = {
+						# Needs aren't getting met
+						is_deviant_trigger = yes
+						$PARTNER$ = { is_deviant_trigger = no }
+					}
+				}
+
+				# Otherwise, they need to be morally ambigious and not have a strong like of this partner
+				AND = {
+					ai_honor <= medium_negative_ai_value
+					NOR = { 
 				AND = {
 					is_consort_of = $PARTNER$
 					opinion = {
 						target =  $PARTNER$
-						value >= high_positive_opinion
+								value >= medium_positive_opinion # 40 for spouses/concubines
 					}
 				}
 				opinion = {
 					target = $PARTNER$
-					value >= very_high_positive_opinion
+							value >= very_high_positive_opinion # 80 for lovers
+						}
 				}
 			}
-			# Or has one of these things that make them always cheat:
-			has_trait = lustful
-			has_trait = seducer
+
+				# Might also cheat if they strongly dislike this partner and aren't super honorable
 			AND = {
-				is_deviant_trigger = yes
-				$PARTNER$ = { is_deviant_trigger = no }
+					ai_honor <= medium_positive_ai_value
+					opinion = {
+						target = $PARTNER$
+						value <= medium_negative_opinion # -40 for spouses, concubines, or lovers
+					}
+				}
 			}
-			ai_honor <= medium_negative_ai_value
 		}
 	}
-	trigger_else = { always = yes } # Partner isn't my partner, so it's not even cheating
+	trigger_else = { always = yes } # Having an extramarital relationship with someone else would not count as cheating on this person.
 }
 
 might_cheat_on_every_partner_trigger = {

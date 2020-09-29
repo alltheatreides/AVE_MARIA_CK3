@@ -5,14 +5,38 @@ send_child_to_holy_order_tooltip_effect = {
 		add_trait = order_member
 		add_piety_level = 1
 		custom_tooltip = character_will_leave_court_holy_order
-	}
-	if = { # No piety gain for asking random people to take the vows
-		limit = {
-			scope:recipient = {
-				is_close_family_of = scope:actor
+		if = {
+			limit = {
+				is_married = yes
+			}
+			every_spouse = {
+				divorce = scope:recipient
 			}
 		}
-		add_piety = medium_piety_gain
+		if = {
+			limit = {
+				exists = betrothed
+			}
+			break_betrothal = betrothed
+		}
+		if = {
+			limit = {
+				is_concubine = yes
+			}
+			this.concubinist = {
+				remove_concubine = scope:recipient
+			}
+		}
+		if = {
+			limit = {
+				number_of_concubines > 0
+			}
+			every_concubine = {
+				scope:recipient = {
+					remove_concubine = prev
+				}
+			}
+		}
 	}
 }
 
@@ -30,14 +54,45 @@ send_child_to_holy_order_effect = {
 			}
 			set_character_faith = scope:$GRANDMASTER$.faith
 		}
+		if = {
+			limit = {
+				is_married = yes
+			}
+			every_spouse = {
+				divorce = scope:recipient
+			}
+		}
+		if = {
+			limit = {
+				exists = betrothed
+			}
+			break_betrothal = betrothed
+		}
+		if = {
+			limit = {
+				is_concubine = yes
+			}
+			this.concubinist = {
+				remove_concubine = scope:recipient
+			}
+		}
+		if = {
+			limit = {
+				number_of_concubines > 0
+			}
+			every_concubine = {
+				scope:recipient = {
+					remove_concubine = prev
+				}
+			}
+		}
 	}
-	if = { # No piety gain for asking random people to take the vows
+	if = {
 		limit = {
 			scope:recipient = {
 				is_close_family_of = scope:actor
 			}
 		}
-		add_piety = medium_piety_gain
 		scope:$GRANDMASTER$ = {
 			add_courtier = scope:recipient
 			add_opinion = {
@@ -61,13 +116,37 @@ send_child_to_clergy_effect = {
 			limit = { is_ruler = yes }
 			depose = yes
 		}
-	}
-	if = { # No piety gain for asking random people to take the vows
-		limit = {
-			scope:recipient = {
-				is_close_family_of = scope:actor
+		if = {
+			limit = {
+				is_married = yes
+			}
+			every_spouse = {
+				divorce = scope:recipient
 			}
 		}
-		add_piety = minor_piety_gain
+		if = {
+			limit = {
+				exists = betrothed
+			}
+			break_betrothal = betrothed
+		}
+		if = {
+			limit = {
+				is_concubine = yes
+			}
+			this.concubinist = {
+				remove_concubine = scope:recipient
+			}
+		}
+		if = {
+			limit = {
+				number_of_concubines > 0
+			}
+			every_concubine = {
+				scope:recipient = {
+					remove_concubine = prev
+				}
+			}
+		}
 	}
 }

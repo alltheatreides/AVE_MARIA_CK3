@@ -44,9 +44,10 @@
 
 establish_bactrian_supremacy_effect = {
 	#Create the title and make it primary
-	create_title_and_vassal_change = title_change
-	scope:title_change = {
-		set_title_and_vassal_change_type = created
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
 	}
 	title:e_bactria = {
 		change_title_holder = {
@@ -207,9 +208,10 @@ create_custom_kingdom_effect = {
 			tier = kingdom
 			name = NEW_CREATED_TITLE_NAME
 		}
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = created
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = change
+			add_claim_on_loss = no
 		}
 		
 		scope:new_title = {
@@ -421,9 +423,10 @@ create_custom_empire_effect = {
 			tier = empire
 			name = NEW_CREATED_TITLE_NAME
 		}
-		create_title_and_vassal_change = change
-		scope:change = {
-			set_title_and_vassal_change_type = created
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = change
+			add_claim_on_loss = no
 		}
 
 		scope:new_title = {

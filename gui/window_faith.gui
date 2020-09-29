@@ -56,7 +56,6 @@ window = {
 			blockoverride "header_text"
 			{
 				text = "FAITH_VIEW_HEADING"
-				tooltip = "[Faith.GetDesc]"
 				using = tooltip_es
 
 				state = {
@@ -103,7 +102,10 @@ window = {
 					name = "faith_icon"
 					size = { 100 100 }
 					texture = "[Faith.GetIcon]"
-					tooltip = "[Faith.GetDesc]"
+					using = tooltip_se
+					tooltipwidget = {
+						faith_tooltip = {}
+					}
 
 					state = {
 						name = "faith_view_refresh"
@@ -195,7 +197,7 @@ window = {
 								}
 							}
 
-							button_group = {
+							button_sidepanel_right = {
 								name = "religion_information"
 								datacontext = "[Faith.GetReligion]"
 								onclick = "[FaithWindow.ToggleReligionWindow]"
@@ -203,16 +205,11 @@ window = {
 
 								using = tooltip_nw
 
-								hbox = {
-
-									text_single = {
+	                            blockoverride "button_text"
+	                            {
 										text = "TOGGLE_RELIGION_VIEW"
-										default_format = "#clickable"
-										align = nobaseline
 									}
 
-									button_expand = {}
-								}
 							}
 						}
 					}
@@ -518,7 +515,7 @@ window = {
 									text_single = {
 										name = "doctrine_name"
 										align = center
-										text = "[FaithDoctrine.GetName( GuiFaithDoctrineItem.GetFaith )]"
+										text = "[FaithDoctrine.GetNameNoTooltip( GuiFaithDoctrineItem.GetFaith )]"
 										default_format = "#high"
 										multiline = yes
 										max_width = 100   ##### minimum in order to look good in german
@@ -542,7 +539,7 @@ window = {
 						fixedgridbox = {
 							datamodel = "[FaithWindow.GetGroupingHelper( 'marriage' ).GetGrouping]"
 							flipdirection = yes
-							addcolumn = 270
+							addcolumn = 230
 							addrow = 65
 							datamodel_wrap = 2
 
@@ -560,7 +557,7 @@ window = {
 						fixedgridbox = {
 							datamodel = "[FaithWindow.GetGroupingHelper( 'crimes' ).GetGrouping]"
 							flipdirection = yes
-							addcolumn = 270
+							addcolumn = 230
 							addrow = 65
 							datamodel_wrap = 2
 
@@ -578,7 +575,7 @@ window = {
 						fixedgridbox = {
 							datamodel = "[FaithWindow.GetGroupingHelper( 'clergy' ).GetGrouping]"
 							flipdirection = yes
-							addcolumn = 270
+							addcolumn = 230
 							addrow = 65
 							datamodel_wrap = 2
 
@@ -872,7 +869,7 @@ window = {
 				fittype = end
 
 				modify_texture = {
-					texture = "gfx/interface/buttons/background_button_fade.dds"
+					texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 					blend_mode = alphamultiply
 				}
 			}
@@ -1158,7 +1155,7 @@ window = {
 							overframe = 2
 							downframe = 3
 							disableframe = 1
-							texture = "gfx/interface/character_interaction/interaction_menu_button.dds"
+							texture = "gfx/interface/buttons/button_interaction_menu.dds"
 							framesize = { 317 30 }
 
 							text_single = {
@@ -1196,18 +1193,21 @@ window = {
 			### Only Selected religion faiths
 			hbox = {
 				spacing = 5
-				tooltip = "[ReligionWindow.GetShowOnlyReligionFaithsTooltip]"
 
-				using = tooltip_nw
-
-				button_checkbox = {
-					checked = "[ReligionWindow.ShowOnlyReligionFaiths]"
+				button_checkbox_label = {
 					onclick = "[ReligionWindow.OnShowOnlyReligionFaiths]"
+				tooltip = "[ReligionWindow.GetShowOnlyReligionFaithsTooltip]"
+					using = tooltip_ne
+
+					blockoverride "checkbox"
+					{
+					checked = "[ReligionWindow.ShowOnlyReligionFaiths]"
 				}
 
-				text_single = {
+					blockoverride "text"
+					{
 					text = "RELIGION_SHOW_ONLY"
-					align = nobaseline
+					}
 				}
 			}
 		}
@@ -1226,7 +1226,6 @@ window = {
 					item = {
 						button_list = {
 							name = "show_faith_info"
-							datacontext = "[FaithRef.Get]"
 							layoutpolicy_horizontal = expanding
 							size = { 0 75 }
 							tooltipwidget = { faith_tooltip_click = {} }
@@ -1241,7 +1240,7 @@ window = {
 							}
 
 							background = {
-								visible = "[FaithRef.Get.IsSelected]"
+								visible = "[Faith.IsSelected]"
 								using = Background_Area
 							}
 
@@ -1419,7 +1418,7 @@ types FaithShared
 			multiline = yes
 			align = center
 			elide = right
-			text = "[FaithDoctrine.GetName( GuiFaithDoctrineItem.GetFaith )]"
+			text = "[FaithDoctrine.GetNameNoTooltip( GuiFaithDoctrineItem.GetFaith )]"
 			default_format = "#high"
 
 			using = Font_Size_Medium
@@ -1430,7 +1429,6 @@ types FaithShared
 types FaithWindow
 {
 	type widget_doctrine_item = widget {
-		# size = { 240 53 }
 		size = { 210 53 }
 		block "wdi_context"
 		{
@@ -1450,7 +1448,7 @@ types FaithWindow
 			tooltip = "FAITH_WINDOW_DOCTRINE_TOOLTIP_WITH_FAITH"
 			spacing = 8
 
-			using = tooltip_nw
+			using = tooltip_ne
 
 			icon_doctrine = {
 				name = "doctrine_group_icon"
@@ -1482,7 +1480,7 @@ types FaithWindow
 					autoresize = no
 					fontsize_min = 12
 					align = left
-					text = "[FaithDoctrine.GetName( Faith.Self )]"
+					text = "[FaithDoctrine.GetNameNoTooltip( Faith.Self )]"
 				}
 			}
 		}

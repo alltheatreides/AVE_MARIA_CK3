@@ -76,6 +76,35 @@
 				}
 			}
 		}
+
+		custom_description = {
+			text = grant_titles_interaction_children_not_allowed_temple 
+			subject = scope:recipient
+			NOR = {
+				AND = {
+					scope:recipient = {
+						is_adult = no
+					}
+					scope:target = {
+						tier = tier_barony
+						title_province = { has_building_with_flag = temple }
+					}
+				}
+				AND = {
+					scope:recipient = {
+						is_adult = no
+					}
+					scope:target = {
+						tier = tier_county 
+
+						title_province = { 
+							is_county_capital = yes
+							has_building_with_flag = temple 
+						}
+					}
+				}
+			}
+		}
 	}
 
 	auto_accept = yes
@@ -235,58 +264,6 @@
 						}
 					}
 				}
-
-				# Gnostics lose stress for giving away titles.
-				if = {
-					limit = {
-						exists = scope:landed_title
-						scope:actor = {
-							faith = {
-								has_doctrine_parameter = granting_titles_gives_stress
-							}
-						}
-					}
-					scope:actor = {
-						add_stress = {
-							value = 0
-							# Base stress value scaled on title tier.
-							if = {
-								limit = { scope:landed_title.tier = tier_county	}
-								add = minor_stress_loss
-							}
-							else_if = {
-								limit = { scope:landed_title.tier = tier_duchy	}
-								add = medium_stress_loss
-							}
-							else_if = {
-								limit = { scope:landed_title.tier = tier_kingdom }
-								add = major_stress_loss
-								multiply = 1.60
-							}
-							else_if = {
-								limit = { scope:landed_title.tier = tier_empire	}
-								add = massive_stress_loss
-								multiply = 2.2
-							}
-
-							# Lose more stress for giving away titles of your primary tier; lose less stress for giving away titles far below your primary in tier.
-							multiply = {
-								value = scope:landed_title.tier
-								add = 1
-								divide = primary_title.tier
-							}
-
-							# Round to the nearest multiple of 5.
-							divide = 5
-							round = yes
-							multiply = 5
-
-							# For a Duke, this will be x1.25 for Duchies (-30) and x1 for Counties(-10)
-							# For a King, this will be x1.25 for a Kingdom (-100), x1 for a Duchy (-25) and x0.75 for Counties(-10)
-							# For an Emperor, this will be x1.25 for an Empire(-200), x1 for a Kingdom(-80), x0.75 for a Duchy(-20 and x0.4 for a Counties (-5)
-						}
-					}
-				}
 			}
 			if = {
 				limit = {
@@ -357,9 +334,81 @@
 					any_in_list = {
 						list = target_titles
 						tier <= tier_county # Title counts toward domain limit
+						title_province.barony = {
+							has_wrong_holding_type = no
+						}
 						count >= 1
 					}
 				}
+
+				# Gnostics lose stress for giving away titles.
+				if = {
+					limit = {
+						scope:actor = {
+							faith = {
+								has_doctrine_parameter = granting_titles_gives_stress
+							}
+						}
+					}
+					scope:actor = {
+						add_stress = {
+							value = 0
+
+							# Base stress value scaled on title tier.
+							every_in_list = {
+								list = target_titles
+
+								add = {
+									value = 0
+
+									if = {
+										limit = { this.tier = tier_county }
+										add = minor_stress_loss # 10 base
+									}
+									else_if = {
+										limit = { this.tier = tier_duchy }
+										add = {
+											value = medium_stress_loss
+											multiply = 1.25 # 25 base
+										}
+									}
+									else_if = {
+										limit = { this.tier = tier_kingdom }
+										add = {
+											value = major_stress_loss
+											multiply = 2 # 80 base
+										}
+									}
+									else_if = {
+										limit = { this.tier = tier_empire }
+										add = {
+											value = monumental_stress_loss 
+											multiply = 2 # 200 base
+										}
+									}
+
+									# Lose more stress for giving away titles of your primary tier; lose less stress for giving away titles far below your primary in tier.
+									multiply = {
+										value = this.tier
+										add = 1
+										divide = scope:actor.primary_title.tier
+									}
+
+									# Round to the nearest multiple of 5.
+									divide = 5
+									round = yes
+									multiply = 5
+
+									# For a Duke, this will be x1.25 for Duchies (-30) and x1 for Counties(-10)
+									# For a King, this will be x1.25 for a Kingdom (-100), x1 for a Duchy (-25) and x0.75 for Counties(-10)
+									# For an Emperor, this will be x1.25 for an Empire(-200), x1 for a Kingdom(-80), x0.75 for a Duchy(-20) and x0.4 for a Counties (-5)
+								}
+							}
+						}
+					}
+				}
+
+				# Greedy rules gain stress for giving away titles if they would normally be able to keep them.
 				if = {
 					limit = {
 						domain_size = domain_limit
@@ -386,7 +435,8 @@
 					limit = {
 						any_in_list = {
 							list = target_titles
-							count <= 1
+							count = 1
+							NOT = { tier = scope:actor.highest_held_title_tier }
 						}
 						scope:recipient = {
 							any_held_title = {
@@ -415,6 +465,7 @@
 						any_in_list = {
 							list = target_titles
 							count > 1
+							NOT = { tier = scope:actor.highest_held_title_tier }
 						}
 						scope:recipient = {
 							any_held_title = {
@@ -436,6 +487,24 @@
 						right_icon = scope:recipient
 					
 						custom_tooltip = grant_titles_interaction_notification_effect_3
+					}
+				}
+				else_if = {
+					limit = {
+						scope:recipient = {
+							any_in_list = { #Became independent
+								list = target_titles
+								tier = scope:actor.highest_held_title_tier
+							}
+						}
+					}
+					send_interface_toast = {
+						title = grant_titles_interaction_notification
+					
+						left_icon = scope:actor					
+						right_icon = scope:recipient
+					
+						custom_tooltip = grant_titles_interaction_notification_effect_4
 					}
 				}
 				else = {

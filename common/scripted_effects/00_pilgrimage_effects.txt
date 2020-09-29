@@ -128,7 +128,7 @@ short_pilgrimage_reward_effect = {
 	add_piety = short_pilgrimage_piety_gain
 	if = {
 		limit = {
-			faith.religion = religion:islam_religion
+			can_perform_the_hajj_trigger = yes
 			exists = scope:activity.var:is_hajj
 		}
 		add_trait = pilgrim
@@ -141,9 +141,7 @@ medium_pilgrimage_reward_effect = {
 	if = {
 		limit = {
 			trigger_if = {
-				limit = {
-					faith.religion = religion:islam_religion
-				}
+				limit = { can_perform_the_hajj_trigger = yes }
 				exists = scope:activity.var:is_hajj
 			}
 			trigger_else = { always = yes }
@@ -158,9 +156,7 @@ long_pilgrimage_reward_effect = {
 	if = {
 		limit = {
 			trigger_if = {
-				limit = {
-					faith.religion = religion:islam_religion
-				}
+				limit = { can_perform_the_hajj_trigger = yes }
 				exists = scope:activity.var:is_hajj
 			}
 			trigger_else = { always = yes }
@@ -175,9 +171,7 @@ very_long_pilgrimage_reward_effect = {
 	if = {
 		limit = {
 			trigger_if = {
-				limit = {
-					faith.religion = religion:islam_religion
-				}
+				limit = { can_perform_the_hajj_trigger = yes }
 				exists = scope:activity.var:is_hajj
 			}
 			trigger_else = { always = yes }

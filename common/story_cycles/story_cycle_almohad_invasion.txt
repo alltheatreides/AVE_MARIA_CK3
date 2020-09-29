@@ -40,8 +40,11 @@ story_almohad_invasion = {
 						limit = {
 							NOT = { var:ibn_tumart.primary_heir = var:al_mumin }
 						}
-						create_title_and_vassal_change = change
-						scope:change = { set_title_and_vassal_change_type = inheritance }
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = no
+						}
 						var:ibn_tumart = {
 							save_scope_as = ibn_tumart
 							every_held_title = {
@@ -92,6 +95,7 @@ story_almohad_invasion = {
 		trigger = {
 			debug_log_details = "Almohad effect group"
 			story_owner = var:ibn_tumart
+			story_owner = { is_alive = yes }
 			exists = global_var:almohads_were_defeated
 		}
 

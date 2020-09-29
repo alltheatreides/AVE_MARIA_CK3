@@ -24,7 +24,10 @@ force_join_faction_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			has_strong_usable_hook = scope:recipient
+			has_strong_usable_hook = scope:recipient # Make sure to update the NFaction::POTENTIAL_FORCE_JOIN_HOOK_TYPE define if you change the type of hook used here
+			NOT = {
+				is_at_war_with = scope:recipient
+			}
 		}
 		scope:recipient = {
 			trigger_if = {

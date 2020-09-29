@@ -713,7 +713,7 @@ individual_recruit_guest_interaction_cost = {
 		limit = {
 			OR = {
 				ai_greed >= high_positive_ai_value
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 		}
 		multiply = 1.2
@@ -722,7 +722,7 @@ individual_recruit_guest_interaction_cost = {
 		limit = {
 			OR = {
 				ai_greed <= high_negative_ai_value
-				has_trait = am_humble
+				has_trait = humble
 			}
 		}
 		multiply = 0.8
@@ -923,4 +923,14 @@ comfortable_ai_gold_value_for_tyranny_wars = {
 	value = yearly_character_income
 	multiply = 3
 	min = 25
+}
+
+uncomfortable_ai_bancruptcy_for_wars = {
+	value = yearly_character_income
+	multiply = -2
+}
+
+very_uncomfortable_ai_bancruptcy_for_wars = {
+	value = yearly_character_income
+	multiply = -4
 }

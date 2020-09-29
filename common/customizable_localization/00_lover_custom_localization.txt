@@ -229,7 +229,7 @@ lover_activity = { #Is in present particle
 			modifier = {
 				OR = {
 					has_trait = lifestyle_herbalist
-					has_trait = am_withdrawn
+					has_trait = shy
 				}
 				factor = 5
 			}
@@ -247,7 +247,7 @@ lover_activity = { #Is in present particle
 			base = 1
 			modifier = {
 				OR = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = gluttonous
 				}
 				factor = 5
@@ -266,7 +266,7 @@ lover_activity = { #Is in present particle
 			base = 1
 			modifier = {
 				OR = {
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 				factor = 5
 			}
@@ -280,8 +280,8 @@ lover_activity = { #Is in present particle
 				AND = {
 					NOT = { has_variable = lover_activity }
 					NOR = {
-						has_trait = am_withdrawn
-						has_trait = am_deceitful
+						has_trait = shy
+						has_trait = callous
 						has_trait = sadistic
 					}
 				}
@@ -291,7 +291,7 @@ lover_activity = { #Is in present particle
 			base = 1
 			modifier = {
 				OR = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = diplomat
 				}
 				factor = 5
@@ -315,7 +315,7 @@ lover_activity = { #Is in present particle
 				AND = {
 					NOT = { has_variable = lover_activity }
 					NOR = {
-						has_trait = am_withdrawn
+						has_trait = shy
 						has_trait = temperate
 					}
 				}
@@ -340,7 +340,7 @@ lover_activity = { #Is in present particle
 				AND = {
 					NOT = { has_variable = lover_activity }
 					NOR = {
-						has_trait = am_craven
+						has_trait = craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
@@ -364,8 +364,8 @@ lover_activity = { #Is in present particle
 				AND = {
 					NOT = { has_variable = lover_activity }
 					NOR = {
-						has_trait = am_hypocritical
-						has_trait = am_illtempered
+						has_trait = cynical
+						has_trait = impatient
 					}
 				}
 			}
@@ -378,14 +378,14 @@ lover_activity = { #Is in present particle
 				var:lover_activity = flag:flatter
 				AND = {
 					NOT = { has_variable = lover_activity }
-					NOT = { has_trait = am_humble }
+					NOT = { has_trait = humble }
 				}
 			}
 		}
 		weight_multiplier = {
 			base = 0.5
 			modifier = {
-				has_trait = am_pretentious
+				has_trait = arrogant
 				factor = 5
 			}
 		}
@@ -397,14 +397,14 @@ lover_activity = { #Is in present particle
 				var:lover_activity = flag:talk_about_god
 				AND = {
 					NOT = { has_variable = lover_activity }
-					NOT = { has_trait = am_hypocritical }
+					NOT = { has_trait = cynical }
 				}
 			}
 		}
 		weight_multiplier = {
 			base = 0.5
 			modifier = {
-				has_trait = am_intolerant
+				has_trait = zealous
 				factor = 5
 			}
 		}
@@ -417,7 +417,7 @@ lover_activity = { #Is in present particle
 				AND = {
 					NOT = { has_variable = lover_activity }
 					NOR = {
-						has_trait = am_craven
+						has_trait = craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
@@ -428,7 +428,7 @@ lover_activity = { #Is in present particle
 		weight_multiplier = {
 			base = 0.5
 			modifier = {
-				has_trait = am_brave
+				has_trait = brave
 				factor = 5
 			}
 		}
@@ -440,7 +440,7 @@ lover_activity = { #Is in present particle
 				var:lover_activity = flag:talk_about_future
 				AND = {
 					NOT = { has_variable = lover_activity }
-					NOT = { has_trait = am_hypocritical }
+					NOT = { has_trait = cynical }
 				}
 			}
 		}
@@ -449,7 +449,7 @@ lover_activity = { #Is in present particle
 			modifier = {
 				OR = {
 					has_trait = family_first
-					has_trait = am_outgoing
+					has_trait = gregarious
 					has_trait = ambitious
 					has_trait = pregnant
 				}
@@ -464,7 +464,7 @@ lover_activity = { #Is in present particle
 				var:lover_activity = flag:fight
 				AND = {
 					NOT = { has_variable = lover_activity }
-					has_trait = am_wroth
+					has_trait = wrathful
 				}
 			}
 		}
@@ -533,7 +533,7 @@ lover_reason =  {
 				has_trait = lustful
 				has_trait = seducer
 				has_trait = deviant
-				has_trait = am_brave
+				has_trait = brave
 				has_trait = reveler_1
 			}
 		}
@@ -541,18 +541,18 @@ lover_reason =  {
 	}
 	text = {
 		trigger = {
-			has_trait = am_honest
-			has_trait = am_mild
+			has_trait = honest
+			has_trait = trusting
 		}
 		localization_key = lover_reason_romance
 	}
 	text = {
 		trigger = {
 			has_trait = sadistic
-			has_trait = am_deceitful
-			has_trait = am_pretentious
+			has_trait = callous
+			has_trait = arrogant
 			has_trait = ambitious
-			has_trait = am_inconstant
+			has_trait = arbitrary
 		}
 		localization_key = lover_reason_attention
 	}
@@ -560,7 +560,7 @@ lover_reason =  {
 		trigger = {
 			has_trait = chaste
 			has_trait = celibate
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		localization_key = lover_reason_devotion
 	}

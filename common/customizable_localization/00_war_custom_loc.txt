@@ -50,7 +50,7 @@ WarDeclaredFlavor = {
 				root.primary_attacker = {
 					# Attacker must be Zealous
 					OR = {
-						has_trait = am_intolerant
+						has_trait = zealous
 						ai_zeal >= medium_positive_zeal
 					}
 					# Defender must belong to a Hostile/Evil Faith, OR must be Sinful in the eyes of the Attacker's Faith.
@@ -89,7 +89,7 @@ WarDeclaredFlavor = {
 		trigger = {
 			root.primary_attacker = {
 				OR = {
-					has_trait = am_greedy
+					has_trait = greedy
 					has_trait = ambitious
 				}
 			}
@@ -127,7 +127,7 @@ WarDeclaredFlavor = {
 				using_hierarchical_cb_trigger = yes
 			}
 			root.primary_attacker = {
-				has_trait = am_pretentious
+				has_trait = arrogant
 
 				# Attacker must also personally dislike the defender, because this text is quite insult-y.
 				opinion = {

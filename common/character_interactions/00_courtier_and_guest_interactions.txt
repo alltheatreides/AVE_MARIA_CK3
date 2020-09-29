@@ -145,6 +145,15 @@
 	ai_frequency = 12
 
 	ai_potential = {
+		is_at_war = no # Try to avoid wasting your war chest!
+		trigger_if = {
+			limit = {
+				NOT = {
+					has_government = tribal_government # Tribes pay very little for their guests
+				}
+			}
+			short_term_gold >= yearly_character_income
+		}
 		any_courtier_or_guest = {
 			is_alive = yes
 			count <= 30
@@ -226,18 +235,38 @@
 		}
 		
 
+		#Vested interest
+		modifier = {
+			add = 20
+			scope:recipient = {
+				OR = {
+					has_relation_lover = scope:actor
+					has_relation_friend = scope:actor
+					has_secret_relation_lover = scope:actor
+					has_relation_soulmate = scope:actor
+					has_relation_best_friend = scope:actor
+					is_child_of = scope:actor
+				}
+			}
+		}
+		
+
 		#Claimants
 		modifier = {
-			any_claim = {
-				useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+			scope:recipient = {
+				any_claim = {
+					neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+				}
 			}
 			add = {
 				value = 0
 				if = {
 					limit = {
-						any_claim = {
-							useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
-							tier >= tier_duchy
+						scope:recipient = {
+							any_claim = {
+								neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:actor }
+								tier >= tier_duchy
+							}
 						}
 					}
 					add = 40
@@ -327,17 +356,139 @@ kick_from_court_interaction = {
 				gregarious = minor_stress_impact_gain
 				compassionate = minor_stress_impact_gain
 			}
-			send_interface_message = {
-				type = event_generic_neutral
-				title = msg_kicked_courtier_from_court_interaction_title
-				
-				right_icon = scope:recipient
+			
+			hidden_effect = {
+				send_interface_message = {
+					type = event_generic_neutral
+					title = msg_kicked_courtier_from_court_interaction_title
+					
+					right_icon = scope:recipient
 
-				show_as_tooltip = {
-					scope:actor = {
-						custom_tooltip = msg_kicked_courtier_from_court_interaction_message
+					show_as_tooltip = {
+						scope:actor = {
+							remove_courtier_or_guest = scope:recipient
+						}
 					}
-		   		}
+
+			   		#Remove them as guardian/ward for any courtier
+			   		if = {
+						limit = {
+							any_courtier = {
+								has_relation_guardian = scope:recipient
+							}
+						}
+						every_courtier = {
+							limit = {
+								has_relation_guardian = scope:recipient
+							}
+							save_scope_as = ward
+							scope:recipient = { remove_relation_ward = scope:ward }
+							if = {
+								limit = {
+									NOT = { host = liege }
+								}
+								return_to_court = yes
+							}
+							guardian_remove_opinion_effect = {
+								GUARDIAN = scope:recipient
+								WARD = this
+								WARD_LIEGE = scope:actor
+							}
+						}
+						scope:recipient = { trigger_event = char_interaction.0090 }
+					}
+					if = {
+						limit = {
+							any_courtier = {
+								has_relation_ward = scope:recipient
+							}
+						}
+						random_courtier = {
+							limit = {
+								has_relation_ward = scope:recipient
+							}
+							save_scope_as = guardian
+
+							send_interface_message = {
+								type = event_generic_neutral
+								title = remove_guardian_interaction_notification
+								left_icon = scope:recipient
+								right_icon = scope:guardian
+
+								scope:guardian = {
+									remove_relation_ward = scope:recipient
+									if = {
+										limit = {
+											NOT = { host = liege }
+										}
+										return_to_court = yes
+									}
+									guardian_remove_opinion_effect = {
+										GUARDIAN = this
+										WARD = scope:recipient
+										WARD_LIEGE = scope:actor
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			#To be able to send a cohesive interface message AND show a good tooltip
+			show_as_tooltip = {
+				#Remove them as guardian for any child
+		   		if = {
+					limit = {
+						any_courtier = {
+							has_relation_guardian = scope:recipient
+						}
+					}
+					every_courtier = {
+						limit = {
+							has_relation_guardian = scope:recipient
+						}
+						save_scope_as = ward
+						scope:recipient = { remove_relation_ward = scope:ward }
+						if = {
+							limit = {
+								NOT = { host = liege }
+							}
+							return_to_court = yes
+						}
+						guardian_remove_opinion_effect = {
+							GUARDIAN = scope:recipient
+							WARD = this
+							WARD_LIEGE = scope:actor
+						}
+					}
+				}
+
+				#Remove them as ward of any courtier
+				if = {
+					limit = {
+						any_courtier = {
+							has_relation_ward = scope:recipient
+						}
+					}
+					random_courtier = {
+						limit = {
+							has_relation_ward = scope:recipient
+						}
+						remove_relation_ward = scope:recipient
+						if = {
+							limit = {
+								NOT = { host = liege }
+							}
+							return_to_court = yes
+						}
+						guardian_remove_opinion_effect = {
+							GUARDIAN = this
+							WARD = scope:recipient
+							WARD_LIEGE = scope:actor
+						}
+					}
+				}
 			}
 		}
 
@@ -414,6 +565,100 @@ invite_to_court_interaction = {
 						pressing_claim_of_character_trigger = { CHARACTER = scope:recipient }
 					}
 				}
+
+				#Do they have the "wrong" marriage type and the spouse is employed?
+				custom_description = {
+					text = is_married_matrilineally
+					subject = scope:recipient
+					any_spouse = {
+						is_female = yes
+						matrilinear_marriage = yes
+						exists = host
+						host = scope:recipient.host
+						save_temporary_scope_as = spouse
+						OR = { #Is employed in some way
+							is_councillor_of = scope:recipient.host
+							is_knight_of = scope:recipient.host
+							any_relation = {
+								type = ward
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = guardian
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = mentor
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = student
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							scope:recipient.host = {
+								has_relation_court_physician = scope:spouse
+							}
+						}
+					}
+				}
+				custom_description = {
+					text = is_married_patrilineally_and_spouse_is_dominant_partner
+					subject = scope:recipient
+					any_spouse = {
+						is_male = yes
+						patrilinear_marriage = yes
+						exists = host
+						host = scope:recipient.host
+						save_temporary_scope_as = spouse
+						OR = { #Is employed in some way
+							is_councillor_of = scope:recipient.host
+							is_knight_of = scope:recipient.host
+							any_relation = {
+								type = ward
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = guardian
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = mentor
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							any_relation = {
+								type = student
+								OR = {
+									this = scope:recipient.host
+									is_close_family_of = scope:recipient.host
+								}
+							}
+							scope:recipient.host = {
+								has_relation_court_physician = scope:spouse
+							}
+						}
+					}
+				}
 				custom_description = {
 					text = "is_escaped_prisoner"
 					subject = scope:recipient
@@ -425,6 +670,10 @@ invite_to_court_interaction = {
 						has_opinion_modifier = {
 							modifier = treasonous_imprison_refusal
 							target = scope:actor
+						}
+						AND = {
+							exists = var:escaped_imprisonment_from
+							var:escaped_imprisonment_from = scope:actor
 						}
 					}
 				}
@@ -547,6 +796,28 @@ invite_to_court_interaction = {
  			any_child_not_in_traveling_family_trigger = yes
  			desc = AI_LEAVING_MY_CHILD
  			add = -100
+ 		}
+
+ 		modifier = {
+ 			add = -50
+ 			desc = AI_MARRIED_MATRILINIALLY
+ 			is_married = yes
+ 			is_male = yes
+ 			any_spouse = {
+ 				matrilinear_marriage = yes
+ 				host = scope:recipient.host
+ 			}
+ 		}
+
+ 		modifier = {
+ 			add = -50
+ 			desc = AI_MARRIED_PATRILINIALLY
+ 			is_married = yes
+ 			is_female = yes
+ 			any_spouse = {
+ 				patrilinear_marriage = yes
+ 				host = scope:recipient.host
+ 			}
  		}
 	}
 

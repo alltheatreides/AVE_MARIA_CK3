@@ -219,7 +219,7 @@ ConcubineConsort = {
 	}
 }
 
-ConcubineConsortGameConcept = {
+ConcubineConsortWomanManGameConcept = {
 	type = character
 
 	text = {
@@ -233,6 +233,40 @@ ConcubineConsortGameConcept = {
 			is_female = no
 		}
 		localization_key = CONCUBINE_MAN
+	}
+}
+
+ConcubineConsortGameConcept = {
+	type = character
+
+	text = {
+		trigger = {
+			is_female = yes
+		}
+		localization_key = GAME_CONCEPT_CONCUBINE
+	}
+	text = {
+		trigger = {
+			is_female = no
+		}
+		localization_key = GAME_CONCEPT_CONSORT
+	}
+}
+
+ConcubineConsortGameConceptOpp = {
+	type = character
+
+	text = {
+		trigger = {
+			is_female = no
+		}
+		localization_key = GAME_CONCEPT_CONCUBINE
+	}
+	text = {
+		trigger = {
+			is_female = yes
+		}
+		localization_key = GAME_CONCEPT_CONSORT
 	}
 }
 
@@ -862,7 +896,7 @@ ThisIsYou = {
 	}
 	text = {
 		trigger = {
-			has_trait = am_pretentious
+			has_trait = arrogant
 			OR = {
 				has_trait = beauty_good_1
 				has_trait = beauty_good_2

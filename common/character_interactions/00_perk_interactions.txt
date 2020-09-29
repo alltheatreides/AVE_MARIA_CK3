@@ -27,7 +27,7 @@ claim_throne_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			is_available_adult = yes
+			is_physically_able_adult = yes
 			can_start_scheme = {
 				target = scope:recipient
 				type = claim_throne
@@ -74,7 +74,7 @@ claim_throne_interaction = {
 		learning >= medium_skill_rating
 		intrigue >= mediocre_skill_rating
 		NOR = {
-			has_trait = am_conventional
+			has_trait = content
 			opinion = {
 				target = liege
 				value >= high_positive_opinion
@@ -126,7 +126,7 @@ fabricate_hook_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			is_available_adult = yes
+			is_physically_able_adult = yes
 			can_start_scheme = {
 				target = scope:recipient
 				type = fabricate_hook
@@ -189,7 +189,7 @@ fabricate_hook_interaction = {
 		ai_greed >= low_positive_ai_value
 		intrigue >= medium_skill_rating
 		NOR = {
-			has_trait = am_conventional
+			has_trait = content
 			any_scheme = {
 				OR = {
 					scheme_type = murder
@@ -281,15 +281,18 @@ demand_payment_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			is_available_adult = yes
+			is_physically_able_adult = yes
+			NOT = {
+				is_at_war_with = scope:recipient
+			}
 		}
 		scope:recipient = {
-			is_available = yes
+			is_imprisoned = no
 		}
 		scope:recipient = {
 			custom_description = {
 				text = demand_payment_too_little_gold
-				gold >= scope:actor.minor_gold_value
+				gold >= 1
 			}
 		}
 	}
@@ -350,7 +353,7 @@ demand_payment_interaction = {
 	
 	ai_potential = {
 		NOT = {
-			has_trait = am_generous
+			has_trait = generous
 		}
 		OR = {
 			ai_greed >= low_positive_ai_value
@@ -370,6 +373,11 @@ demand_payment_interaction = {
 	
 	ai_will_do = {
 		base = 100
+
+		modifier = { #ai won't use the interaction if they'll get nothing out of it
+			factor = 0
+			scope:recipient.gold < 8
+		}
 		
 		modifier = {
 			factor = 0

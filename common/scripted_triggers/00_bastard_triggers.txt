@@ -44,39 +44,6 @@ should_mother_give_house_to_bastard_trigger = {
 		}
 		always = yes
 	}
-	trigger_else_if = {
-		limit = {
-			mother = {
-				exists = house
-				faith = {
-					OR = {
-						has_doctrine = doctrine_gender_equal
-						has_doctrine = doctrine_gender_female_dominated
-					}
-				}
-			}
-		}
-		always = yes
-	}
-	trigger_else_if = {
-		limit = {
-			father.faith = {
-				OR = {
-					has_doctrine = doctrine_gender_equal
-					has_doctrine = doctrine_gender_male_dominated
-				}
-			}	
-		}
-		always = no
-	}
-	trigger_else_if = {
-		limit = {
-			mother = {
-				exists = house
-			}
-		}
-		always = yes
-	}
 	# making the default behavior explicit if no other trigger_(else_)ifs are valid
 	trigger_else = {
 		always = yes

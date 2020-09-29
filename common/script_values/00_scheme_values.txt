@@ -58,8 +58,12 @@ bribe_value = {
 		limit = {
 			scope:recipient.ai_greed > 0
 		}
-		add = scope:recipient.ai_greed
+		add = {
+			value = scope:recipient.ai_greed
+			divide = 4
+		}
 	}
+	
 	if = {
 		limit = {
 			scope:recipient = { is_landed = yes }
@@ -70,6 +74,27 @@ bribe_value = {
 	else_if = {
 		limit = {
 			scope:recipient.primary_title.tier >= tier_duchy
+		}
+		multiply = 3
+	}
+	
+	if = {
+		limit = {
+			scope:recipient = {
+				liege = scope:actor
+				is_theocratic_lessee = yes
+			}
+			scope:actor.primary_title.tier < tier_duchy
+		}
+		multiply = 2
+	}
+	else_if = {
+		limit = {
+			scope:recipient = {
+				liege = scope:actor
+				is_theocratic_lessee = yes
+			}
+			scope:actor.primary_title.tier >= tier_duchy
 		}
 		multiply = 3
 	}

@@ -91,7 +91,29 @@ renounce_vow_of_poverty_decision = {
 initiate_consolamentum_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 
-	desc = initiate_consolamentum_decision_desc
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					religion = religion:christianity_religion
+				}
+				desc = initiate_consolamentum_decision
+			}
+			desc = initiate_consolamentum_decision_alternate
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					religion = religion:christianity_religion
+				}
+				desc = initiate_consolamentum_decision_desc
+			}
+			desc = initiate_consolamentum_decision_desc_alternate
+		}
+	}
+
 	selection_tooltip = initiate_consolamentum_decision_tooltip
 
 	is_shown = {
@@ -467,8 +489,7 @@ revoke_false_conversion_decision = {	#Reveal yourself as a crypto-religionist.
 
 	is_valid = {
 		is_adult = yes
-		NOT = { has_trait = am_intolerant }
-		piety >= major_piety_value
+		NOT = { has_trait = zealous }
 	}
 
 	is_valid_showing_failures_only = {
@@ -476,6 +497,10 @@ revoke_false_conversion_decision = {	#Reveal yourself as a crypto-religionist.
 			text = cannot_be_atoned_krstjani_leader_flag
 			NOT = { has_character_flag = atoned_krstjani_leader_flag }
 		}
+	}
+
+	cost = {
+		piety = major_piety_value
 	}
 
 	cooldown = { years = 20 }
@@ -564,11 +589,14 @@ encourage_confession_of_false_conversions_decision = {	#Ask that crypto-religion
 	is_valid = {
 		is_adult = yes
 		NOR = {
-			has_trait = am_intolerant
+			has_trait = zealous
 			dread >= low_dread
 			tyranny >= 1
 		}
-		piety >= major_piety_value
+	}
+
+	cost = {
+		piety = major_piety_value
 	}
 
 	effect = {
@@ -613,9 +641,9 @@ encourage_confession_of_false_conversions_decision = {	#Ask that crypto-religion
 		modifier = {
 			add = 10
 			OR = {
-				has_trait = am_tolerant
-				has_trait = am_agreeable
-				has_trait = am_honest
+				has_trait = compassionate
+				has_trait = forgiving
+				has_trait = honest
 			}
 		}
 	}
@@ -655,7 +683,48 @@ go_on_pilgrimage_decision = {
 	effect = {
 		custom_tooltip = pilgrimage_effect_1
 		custom_tooltip = pilgrimage_effect_2
-		custom_tooltip = pilgrimage_effect_3
+		if = { #What is the minimum you will have to pay?
+			limit = {
+				faith = {
+					any_holy_site = {
+						squared_distance = {
+							target = root.capital_province
+							value <= short_pilgrimage_max_length
+						}
+					}
+				}
+			}
+			custom_tooltip = pilgrimage_effect_3
+		}
+		else_if = {
+			limit = {
+				faith = {
+					any_holy_site = {
+						squared_distance = {
+							target = root.capital_province
+							value <= medium_pilgrimage_max_length
+						}
+					}
+				}
+			}
+			custom_tooltip = pilgrimage_effect_4
+		}
+		else_if = {
+			limit = {
+				faith = {
+					any_holy_site = {
+						squared_distance = {
+							target = root.capital_province
+							value <= long_pilgrimage_max_length
+						}
+					}
+				}
+			}
+			custom_tooltip = pilgrimage_effect_5
+		}
+		else = {
+			custom_tooltip = pilgrimage_effect_6
+		}
 		if = {
 			limit = { has_trait = ill }
 			custom_tooltip = line_break
@@ -690,16 +759,16 @@ go_on_pilgrimage_decision = {
 		}
 		modifier = {
 			add = 20
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		modifier = {
 			add = 20
-			has_trait = am_intolerant
+			has_trait = zealous
 			NOT = { has_trait = pilgrim }
 		}
 		modifier = {
 			add = -30
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		modifier = {
 			add = -30
@@ -712,19 +781,15 @@ go_on_hajj_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
 	ai_check_interval = 36
 
-	desc = go_on_pilgrimage_decision_desc
-	selection_tooltip = go_on_pilgrimage_decision_tooltip
+	desc = go_on_hajj_decision_desc
+	selection_tooltip = go_on_hajj_decision_tooltip
 
 	cooldown = { years = pilgrimage_cooldown_year_amount }
 
 	is_shown = {
 		NOT = { has_trait = pilgrim }
 		is_landed = yes
-		faith.religion = religion:islam_religion
-		NOR = {
-			faith = faith:druze
-			faith = faith:alevi
-		}
+		can_perform_the_hajj_trigger = yes
 	}
 
 	is_valid_showing_failures_only = {
@@ -815,7 +880,7 @@ go_on_hajj_decision = {
 			value = age
 			trigger = {
 				NOT = {
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 			}
 			max = 70
@@ -859,8 +924,11 @@ return_rome_decision = {
 	}
 
 	effect = {
-		create_title_and_vassal_change = change
-		scope:change = { set_title_and_vassal_change_type = returned }
+		create_title_and_vassal_change = {
+			type = returned
+			save_scope_as = change
+			add_claim_on_loss = no
+		}
 		title:c_roma = {
 			change_title_holder = {
 				holder = faith.religious_head

@@ -96,8 +96,10 @@ add_opinion_imprison_reason_unusable = {
 
 remove_opinion = {
 	global = REMOVE_OPINION_EFFECT
+	global_past = REMOVED_OPINION_EFFECT
 	first = REMOVE_OPINION_EFFECT_FIRST
 	third = REMOVE_OPINION_EFFECT_THIRD
+	third_past = REMOVED_OPINION_EFFECT_THIRD
 }
 
 add_dread = {
@@ -412,6 +414,9 @@ return_to_court = {
 
 remove_courtier_or_guest = {
 	global = REMOVE_COURT_CHARACTER_EFFECT
+	first_past = REMOVED_COURT_CHARACTER_EFFECT
+	first = REMOVE_COURT_CHARACTER_EFFECT
+	third = REMOVE_COURT_CHARACTER_EFFECT
 }
 
 add_focus_progress = {
@@ -433,7 +438,10 @@ set_relation_guardian = {
 }
 
 remove_relation_guardian = {
+	first = I_LOSE_A_GUARDIAN
+	first_past = I_LOST_A_GUARDIAN
 	third = THEY_LOSE_A_GUARDIAN
+	third_past = THEY_LOSE_A_GUARDIAN
 	global = GLOBAL_LOSE_A_GUARDIAN
 	global_past = GLOBAL_LOST_A_GUARDIAN
 }
@@ -445,6 +453,9 @@ set_relation_ward = {
 
 remove_relation_ward = {
 	third = THEY_LOSE_A_WARD
+	third_past = THEY_LOST_A_WARD
+	global = LOSE_A_WARD
+	global_past = LOST_A_WARD
 }
 
 educate_child_option_convert_culture_effect = {
@@ -799,6 +810,21 @@ add_piety = {
 	global_neg = LOSE_PIETY_EFFECT
 }
 
+add_piety_no_experience = {
+	first_past = I_GAINED_PIETY_EFFECT
+	first_past_neg = I_LOST_PIETY_EFFECT
+	third_past = THEY_GAINED_PIETY_EFFECT
+	third_past_neg = THEY_LOST_PIETY_EFFECT
+	global_past = GAINED_PIETY_EFFECT
+	global_past_neg = LOST_PIETY_EFFECT
+	first = I_GAIN_PIETY_EFFECT
+	first_neg = I_LOSE_PIETY_EFFECT
+	third = THEY_GAIN_PIETY_EFFECT
+	third_neg = THEY_LOSE_PIETY_EFFECT
+	global = GAIN_PIETY_EFFECT
+	global_neg = LOSE_PIETY_EFFECT
+}
+
 add_piety_experience = {
 	first_past = I_GAINED_PIETY_EXPERIENCE_EFFECT
 	first_past_neg = I_LOST_PIETY_EXPERIENCE_EFFECT
@@ -833,6 +859,7 @@ set_culture = {
 	global = SET_CULTURE_GLOBAL
 	first = SET_CULTURE_FIRST
 	third = SET_CULTURE_THIRD
+	global_past = SET_CULTURE_GLOBAL_PAST
 	first_past = SET_CULTURE_FIRST_PAST
 	third_past = SET_CULTURE_THIRD_PAST
 }
@@ -1539,4 +1566,21 @@ set_vassal_contract_modification_blocked = {
 	first_past = CONTRACT_MODIFICATION_BLOCKED_FIRST_PAST
 	third = CONTRACT_MODIFICATION_BLOCKED_THIRD
 	third_past = CONTRACT_MODIFICATION_BLOCKED_THIRD_PAST
+}
+
+copy_localized_text = {
+	global = COPY_LOCALIZED_TEXT
+}
+
+remove_localized_text = {
+	global = REMOVE_LOCALIZED_TEXT
+}
+
+set_mother = {
+	global = SET_MOTHER_OF_CHARACTER
+	first = SET_MY_MOTHER
+	third = SET_THEIR_MOTHER
+	global_past = SAT_MOTHER_OF_CHARACTER
+	first_past = SAT_MY_MOTHER
+	third_past = SAT_THEIR_MOTHER
 }

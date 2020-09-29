@@ -293,35 +293,6 @@ spouse_martial_event_troop_size = {
 	round = yes
 }
 
-#Years that the personal guard modifier will last
-spouse_martial_personal_guard_duration = {
-	add = 1
-
-	multiply = scope:councillor.martial
-
-	if = {
-		limit = {
-			scope:councillor = { has_trait = strategist }
-		}
-		add = 1
-	}
-	else_if = {
-		limit = {
-			scope:councillor = { has_trait = overseer }
-		}
-		add = 2
-	}
-	if = {
-		limit = {
-			scope:councillor = { has_trait = gallant }
-		}
-		add = 3
-	}
-
-	min = 8
-	max = 25
-}
-
 councillor_spouse_martial_1005_a_value = {
 	add = scope:councillor.martial
 	divide = 2

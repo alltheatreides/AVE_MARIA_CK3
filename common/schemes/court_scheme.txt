@@ -11,6 +11,9 @@
 	allow = {
 		is_adult = yes
 		scope:target = { is_adult = yes }
+		scope:target = {
+			NOT = { this = scope:owner }
+		}
 				
 		#Have I been blocked from targeting this character?
 		custom_description = { #Permanent
@@ -141,13 +144,22 @@
 				}
 			}
 		}
+
+		# They can't consent
+		NOT = { scope:target = { has_trait = intellect_bad_3 } } # Implies a mental development level akin to an average child
+		NOT = { scope:target = { has_trait = incapable } } # Bed-ridden at best, but in many cases comatose or in a vegetative state
+		
+		# One of you is celibate
 		NOT = { has_trait = celibate }
 		scope:target = { NOT = { has_trait = celibate } }
 		
+		# One of you is imprisoned
 		is_imprisoned = no
 		scope:target = {
 			is_imprisoned = no
 		}
+
+		# You're too far away
 		scope:target = {
 			OR = {
 				exists = location
@@ -564,10 +576,7 @@
 
 	on_start = {
 		scheme_owner = {
-			trigger_event = {
-				id = court_ongoing.0501
-				days = 3
-			}
+			trigger_event = court_ongoing.0501
 		}
 	}
 

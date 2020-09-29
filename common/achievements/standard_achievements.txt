@@ -256,11 +256,7 @@ turning_to_diamonds_achievement = {
 
 reconquista_achievement = {
 	possible = {
-		OR = {
-			culture_group = culture_group:iberian_group
-			culture = culture:andalusian
-		}
-		has_religion = religion:christianity_religion
+		exists = global_var:started_reconquista_achievement
 	}
 	happened = {
 		custom_description = {
@@ -436,8 +432,7 @@ rise_from_the_ashes_achievement = {
 
 the_emerald_isle_achievement = {
 	possible = {
-		culture = culture:irish
-		capital_province = { geographical_region = custom_ireland }
+		exists = global_var:started_the_emerald_isle_achievement
 	}
 	happened = {
 		custom_description = {
@@ -461,8 +456,7 @@ from_rags_to_riches_achievement = {
 
 give_a_dog_a_bone_achievement = {
 	possible = {
-		exists = character:7757
-		root = character:7757
+		exists = global_var:started_give_a_dog_a_bone_achievement
 	}
 	happened = {
 		custom_description = {
@@ -478,24 +472,14 @@ give_a_dog_a_bone_achievement = {
 					is_alive = yes
 				}
 			}
-			has_character_flag = achievement_give_a_dog_a_bone_flag
+			exists = global_var:holy_order_give_a_dog_a_bone_achievement
 		}
 	}
 }
 
 al_andalus_achievement = {
 	possible = {
-		OR = {
-			culture = culture:castilian
-			culture = culture:basque
-			culture = culture:portuguese
-			culture = culture:catalan
-			culture = culture:andalusian
-			culture = culture:visigothic
-			culture = culture:suebi
-		}
-		has_religion = religion:islam_religion
-		capital_province = { geographical_region = world_europe_west_iberia }
+		exists = global_var:started_al_andalus_achievement
 	}
 	happened = {
 		custom_description = {
@@ -508,8 +492,7 @@ al_andalus_achievement = {
 
 wily_as_the_fox_achievement = {
 	possible = {
-		exists = character:1128
-		root = character:1128
+		exists = global_var:started_wily_as_the_fox_achievement
 	}
 	happened = {
 		custom_description = {
@@ -548,28 +531,7 @@ wily_as_the_fox_achievement = {
 
 sibling_rivalry_achievement = {
 	possible = {
-		OR = {
-			AND = {
-				exists = character:108501
-				root = character:108501
-			}
-			AND = {
-				exists = character:107500
-				root = character:107500
-			}
-			AND = {
-				exists = character:107501
-				root = character:107501
-			}
-			AND = {
-				exists = character:108500
-				root = character:108500
-			}
-			AND = {
-				exists = character:109500
-				root = character:109500
-			}
-		}
+		exists = global_var:started_sibling_rivalry_achievement
 	}
 	happened = {
 		custom_description = {
@@ -583,41 +545,19 @@ sibling_rivalry_achievement = {
 
 blood_eagle_achievement = {
 	possible = {
-		OR = {
-			AND = {
-				exists = character:163108
-				root = character:163108
-			}
-			AND = {
-				exists = character:163110
-				root = character:163110
-			}
-			AND = {
-				exists = character:163111
-				root = character:163111
-			}
-			AND = {
-				exists = character:163112
-				root = character:163112
-			}
-			AND = {
-				exists = character:163119
-				root = character:163119
-			}
-		}
+		exists = global_var:started_blood_eagle_achievement
 	}
 	happened = {
 		custom_description = {
 			text = blood_eagle_achievement_trigger
-			completely_controls = title:e_britannia
+			completely_controls_region = world_europe_west_britannia
 		}
 	}
 }
 
 kings_to_the_seventh_generation_achievement = {
 	possible = {
-		exists = character:6448
-		root = character:6448
+		exists = global_var:started_kings_to_the_seventh_generation_achievement
 	}
 	happened = {
 		custom_description = {
@@ -631,8 +571,7 @@ kings_to_the_seventh_generation_achievement = {
 
 norman_yoke_achievement = {
 	possible = {
-		exists = character:140
-		root = character:140
+		exists = global_var:started_norman_yoke_achievement
 	}
 	happened = {
 		custom_description = {
@@ -674,8 +613,7 @@ norman_yoke_achievement = {
 
 royal_dignity_achievement = {
 	possible = {
-		exists = character:522
-		root = character:522
+		exists = global_var:started_royal_dignity_achievement
 	}
 	happened = {
 		custom_description = {
@@ -708,8 +646,7 @@ going_places_achievement = {
 
 land_of_the_rus_achievement = {
 	possible = {
-		exists = character:40605
-		root = character:40605
+		exists = global_var:started_land_of_the_rus_achievement
 	}
 	happened = {
 		custom_description = {
@@ -728,6 +665,7 @@ above_god_achievement = {
 	happened = {
 		custom_description = {
 			text = above_god_achievement_trigger
+			exists = root.faith.religious_head
 			has_strong_hook = root.faith.religious_head
 		}
 	}
@@ -956,8 +894,7 @@ beacon_of_progress_achievement = {
 
 mother_of_us_all_achievement = {
 	possible = {
-		exists = character:251187
-		root = character:251187
+		exists = global_var:started_mother_of_us_all_achievement
 	}
 	happened = {
 		custom_description = {

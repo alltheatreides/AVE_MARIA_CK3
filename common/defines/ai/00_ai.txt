@@ -35,6 +35,15 @@
 		180
 	}
 
+	STRATEGY_TASK_TICK = {									# Number of days between recalculating strategy tasks (per tier)
+		180
+		720
+		360
+		180
+		180
+		180
+	}
+
 	TITLE_AND_VASSAL_GRANT_TICK = {						# Number of days between checking title and vassal grants (per tier). If a grant happens, it'll always get rechecked on the next day
 		720
 		720
@@ -55,13 +64,13 @@
 
 	MINIMUM_TASKS_IN_TICK = 128							# How many tasks do we need in each tick?
 	MAX_TASKS_IN_TICK = 192								# How high do we cap out? (If the frequency of a tick means we should do even more than this, we ignore this)
-	MAX_TICK_STALENESS = 10								# How long can we delay a tick for better load-balancing?
+	MAX_TICK_STALENESS = 8								# How long can we delay a tick for better load-balancing?
 
 	BUDGET_CATEGORY = {									# The last category is the main category
 		0.0												# Reserved (only used for certain types of characters, like the Pope)
 		0.0												# War chest; has its own logic
-		0.25											# LongTerm
-		0.75											# ShortTerm
+		0.20											# LongTerm
+		0.80											# ShortTerm
 	}
 	
 	BUDGET_CATEGORY_MAX = {								# Over max it will try to redistribute overflow to other category
@@ -90,7 +99,7 @@
 		200
 		300
 	}
-	MONTHS_OF_MAINTENANCE_IN_WAR_CHEST = 24				# The AI will want this many months of max maintenance in their war chest, if that's more than what MIN_WAR_CHEST says
+	MONTHS_OF_MAINTENANCE_IN_WAR_CHEST = 18				# The AI will want this many months of max maintenance in their war chest, if that's more than what MIN_WAR_CHEST says
 	PERCENTAGE_INTO_WAR_CHEST = 0.75					# When the war chest hasn't been filled, the AI will put this much of the money it earns into the war chest (reserved gold still gets filled first)
 	BUILDING_MIN_SCORE_COMPARED_TO_BEST = 0.8			# Any potential building with a score lower than this ratio of the best available building (even if the AI can't afford it right now) will be discarded
 	
@@ -103,13 +112,13 @@
 		3
 	}
 
-	MEN_AT_ARMS_EXPENSE_GOAL = 0.4						# The AI will try to spend this much of its income on MAA maintenance
+	MEN_AT_ARMS_EXPENSE_GOAL = 0.15						# The AI will try to spend this much of its income on MAA maintenance
 	MEN_AT_ARMS_EXPENSE_MAX = 0.6						# The AI will disband MAA if it ends up spending more than this amount of its income on maintenance
 
 	MEN_AT_ARMS_PRESTIGE_EXPENSE_GOAL = 0.4				# The AI will try to spend this much of its prestige income on MAA maintenance
 	MEN_AT_ARMS_PRESTIGE_EXPENSE_MAX = 0.6				# The AI will disband MAA if it ends up spending more than this amount of its prestige income on maintenance
 	MEN_AT_ARMS_CHANCE_EXPENSE_ZERO = 1					# Chance the AI will prefer MaA to buildings when spending nothing on MaA
-	MEN_AT_ARMS_CHANCE_EXPENSE_MIN = 0.2				# Chance the AI will prefer MaA to buildings when spending the goal amount on MaA. For values between that and zero, we interpolate
+	MEN_AT_ARMS_CHANCE_EXPENSE_MIN = 0.5				# Chance the AI will prefer MaA to buildings when spending the goal amount on MaA. For values between that and zero, we interpolate
 	MEN_AT_ARMS_REALM_SIZE_FOR_COST_EFFECTIVENESS_START = 5	# At realm sizes of this and below, men at arms quality is based on stat points compared to cost
 	MEN_AT_ARMS_REALM_SIZE_FOR_COST_EFFECTIVENESS_END = 50	# At realm sizes after this, men at arms quality is completely unaffected by cost. Between the two values, we interpolate between the unmodified and modified quality
 
@@ -128,6 +137,7 @@
 	MARRIAGE_FEMALE_DESPERATION_AGE = 25				# Over this age the AI will consider less enticing marriages
 	MARRIAGE_DESPERATION_AGE_MULTIPLIER = 50			# Multiplied with age minus desperation age
 	MARRIAGE_NO_PRESTIGE_LOSS_BONUS = 50				# If a marriage causes no prestige loss, a bit of score is added
+	MARRIAGE_OWNER_IS_MATCHMAKER = yes 					# Can we simply check the "matchmaker" link rather than having to use the interaction's redirect effect? Allows for better AI performance
 	
 	MAX_NUMBER_OF_COURTS_TO_SEARCH_FOR_SPOUSES = {		# Number of courts that are searched for spouse candidates, per tier.
 		0
@@ -158,6 +168,8 @@
 	SPOUSE_SCORE_FEMALE_AGE_PENALTY_AGE = 30			# Over this age a female spouse score penalty is applied
 	SPOUSE_SCORE_MALE_AGE_PENALTY_MULTIPLIER = 10		# Multiplied with male spouse's age above SPOUSE_SCORE_MALE_AGE_PENALTY_AGE
 	SPOUSE_SCORE_FEMALE_AGE_PENALTY_MULTIPLIER = 10		# Multiplied with female spouse's age above SPOUSE_SCORE_FEMALE_AGE_PENALTY_AGE
+	
+	SPOUSE_SCORE_LINEALITY_MISMATCH_SCORE = -500			# This value is added to the spouse score if the marriage is not of the desired lineality (matrilineal vs. patrilineal)
 	
 	THREAT_MIN_STRENGTH_RATIO = 0.5						# Only consider threats above this ratio
 	THREAT_CLAIM_TIER_MULTIPLIER = 10					# Multiplied with each claim's tier squared
@@ -195,8 +207,11 @@
 	RAISE_TROOPS_MIN_RATIO_OF_SELF = 0.3				# If the AI doesn't have troops raised, it won't raise them unless the troops amount to at least this much compared to its max troops
 	RAISE_TROOPS_MIN_RATIO_OF_ENEMY = 0.5				# Or this much compared to its enemy
 	REDUCED_EFFECTIVE_WEALTH_PER_HIRED_MERC = 100		# For each hired merc, the AI pretends to have less money so that it ends up keeping some reserves
+	MAX_WEALTH_EXPENDITURE_MERCS = 0.8					# The AI will never spend more than this fraction of its current wealth on buying mercs
+	MERC_OVERMATCHING_TARGET = 1.25						# The AI will try to outnumber the enemy by this ratio if it can afford it based on its warchest
+	MAX_WAR_CHEST_EXPENDITURE_MERC_OVERMATCHING = 0.7	# The AI will use up to this much of its warchest when trying to outnumber the enemy
 	MIN_HIRING_GOAL = 500								# If missing less than this amount to outnumber its enemies, the AI will hire as if were actually missing this amount
-	MAX_HIRING_GOAL_OVERFLOW_RATIO = 2					# The AI won't hire more than this times as many men as it is missing. It'll hire the most expensive merc that fits within this. E.G., this means that if the AI is missing 1000 men, it'll hire the most expensive merc with less than 2000 men
+	MAX_HIRING_GOAL_OVERFLOW_RATIO = 1.5				# The AI won't hire more than this times as many men as it is missing (using MERC_OVERMATCHING_TARGET). It'll hire the most expensive merc that fits within this. E.G., this means that if the AI is missing 1000 men, it'll hire the most expensive merc with less than 2000 men
 	MONTHS_BEFORE_CONTRACT_END_TO_REHIRE = 3			# This many months before a merc contract ends, the AI will rehire mercs if it can afford it and thinks it still needs them
 
 	TITLE_GRANT_HATE_THRESHOLD = -25					# The AI will mostly avoid giving titles to people whose opinion of them is below this
@@ -216,9 +231,9 @@
 	REGIMENT_OBSOLETION_SCORE_DIFFERENCE = 20			# The AI will disband a regiment if it is this much worse than the best available regiment, and it is unable to hire more regiments (due to cost or being at cap). Quick math: 10 damage * 100 men / 200 cost = 5 score difference
 
 
-	AI_BASE_WAR_CHANCE = 0.5							# Basic chance of declaring war. Further reduced by energy; x0 at -100, x1 at 100, x0.5 at 0 energy
+	AI_BASE_WAR_CHANCE = 0.4							# Basic chance of declaring war. Further reduced by energy; x0 at -100, x1 at 100, x0.5 at 0 energy
 	AI_WAR_BASE_COOLDOWN = 365							# How long, in days, does the AI have to wait between wars?
-	AI_WAR_COOLDOWN_RATIO_FOR_FULL_CHANCE = 3			# How far beyond the cooldown do you have to go before the time since the last war stops reducing the chance? With these numbers, chance at day 3650 would be 0x, 1x at 3650*2, and 0.5x at 3650*1.5
+	AI_WAR_COOLDOWN_RATIO_FOR_FULL_CHANCE = 5			# How far beyond the cooldown do you have to go before the time since the last war stops reducing the chance? With these numbers, chance at day 3650 would be 0x, 1x at 3650*2, and 0.5x at 3650*1.5
 	AI_WAR_MAX_OFFENSIVE_WAR_PENALTY = 0.0				# If your offensive war penalty is higher than this, don't declare war unless you're a warmonger (faith doctrine) or irrational
 	AI_WAR_MIN_RATIONALITY_FOR_OFFENSIVE_WAR_PENALTY = -30	# At or below this value, the AI will declare war even if their offensive war penalty is high
 	MIN_SCORE_RATIO_FOR_CASUS_BELLI = 0.6				# The AI will never declare a war below this ratio of the best war it has available
@@ -233,7 +248,14 @@
 	OTHER_RAID_ARMY_COMBINED_STRENGTH_MAX_DISTANCE = 200	# Other raid armies no more than this far away will be considered as part of the same raid army for strength purposes
 	VASSAL_COUNTER_RAID_MIN_STRENGTH_RATIO = 0.9		# A vassal at least this strong as the raid will be responsible for countering it
 	INDEPENDENT_COUNTER_RAID_MIN_STRENGTH_RATIO = 0.6	# An independent ruler at least this strong as the raid will be responsible for countering it if no vassal does
-	MAX_RAID_DISTANCE = 1500							# How far away will the AI raid?
+	MAX_RAID_DISTANCE = {								# How far away will the AI raid? Uses naval distance
+		0
+		0
+		1000 # Agder to Britanny/Ireland
+		1200 # Agder to Western France
+		3000 # Agder to southern Spain
+		4000 # Agder to Rome
+	}							
 	MAX_RAID_DISTANCE_NEXT_COUNTY = 200					# After raiding one county, how far is the AI willing to go to the next?
 	MIN_STRENGTH_TO_RAID_VASSAL = 500					# How strong do vassals have to be for the AI to go raiding?
 	MIN_STRENGTH_TO_RAID_INDEPENDENT = 300				# How strong do independent rulers have to be for the AI to go raiding?
@@ -264,6 +286,7 @@
 	# The AI will only retreat if the following are true:
 	# It predicts it'll lose according to RETREAT_COMBAT_PREDICTION_RATIO
 	# AND it either has significant forces elsewhere, or there's a better defensive location nearby as defined by RETREAT_TO_BETTER_TERRAIN_DISTANCE
+	ASK_FOR_HELP_COMBAT_PREDICTION_RATIO = 0.66			# Below this combat prediction ratio the AI will try to call in more troops
 	RETREAT_COMBAT_PREDICTION_RATIO = 0.45				# Below this combat prediction ratio the AI will retreat
 	RETREAT_TO_BETTER_TERRAIN_DISTANCE = 2				# The AI will retreat to better terrain this many provinces away (might do another retreat once it gets there)
 	RETREAT_IF_MISSING_STRENGTH = 0.25					# The AI will retreat if it has this many troops elsewhere compared to the potentially retreating army. E.G., if 2000 men are considered for retreat, it'll do so if there's at least 0.25 * 2000 = 500 men elsewhere
@@ -274,6 +297,15 @@
 	MIN_SUPPLY_COMPARED_TO_AVERAGE_SUPPLY_FACTOR = 0.7	# For the purpose of army sizes, the AI uses the highest of this factor times the average supply in the war area, and the lowest supply in the war area. E.G., if average supply is 2k, and lowest supply is 1k, the AI will act as if available supply is 0.7 * 2k = 1.4k. But if the lowest supply was 1.5k, it'd be using that instead
 	RESUPPLY_MAX_DISTANCE = 3							# How far out can splinters of the army spread when trying to resupply? In # of provinces. AI will try to keep it lower if possible
 	RESUPPLY_COOLDOWN_DAYS = 250						# If supplying is interrupted due to insufficient supply, wait for this long before trying to resupply again
+
+
+	POTENTIAL_PROVINCE_TARGET_ADJACENT_TO_FRIENDLY_SCORE = 300 # When deciding where to send its armies, locations that are adjacent to a friendly controlled county are given extra score
+	POTENTIAL_PROVINCE_TARGET_ADJACENT_TO_NEUTRAL_SCORE = 150 # When deciding where to send its armies, locations that are adjacent to a neutral controlled county are given extra score (skipped if adjacent to friendly)
+
+	# How much space to reserve for various lookup tables. Only affects performance
+	PROVINCE_LOOKUP_SIZE_HINT = 64
+	COUNTY_LOOKUP_SIZE_HINT = 128
+	UNIT_LOOKUP_SIZE_HINT = 256
 }
 
 NFaction = {

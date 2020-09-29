@@ -2,6 +2,7 @@
 
 easteregg_fredrik_wester = {
 	name = "Fredrik"
+	dna = easteregg_fredrik_wester
 	dynasty = 3951 # Wester
 	martial = 7
 	diplomacy = 7
@@ -14,12 +15,16 @@ easteregg_fredrik_wester = {
 
 	trait = education_stewardship_4
 	trait = deceitful
-	trait = deceitful
+	trait = callous
 	trait = greedy
 	trait = avaricious
 
 	1020.6.2 = {
 		birth = "1030.6.2"
+		effect = {
+			add_character_flag = has_scripted_appearance
+			add_character_flag = no_headgear
+		}	
 	}
 	1066.1.1 = {
 		employer = 20015 #Umeå
@@ -44,7 +49,7 @@ easteregg_johan_andersson = {
 	trait = education_learning_3
 	trait = intellect_good_1
 	trait = greedy
-	trait = sociable
+	trait = gregarious
 	trait = ambitious
 
 	1020.8.28 = {
@@ -70,9 +75,9 @@ easteregg_thomas_johansson = {
 	religion = "catholic"
 	culture = "swedish"
 	trait = education_learning_2
-	trait = intolerant
-	trait = mild
-	trait = patient
+	trait = zealous
+	trait = trusting
+	trait = calm
 	trait = avaricious
 
 	#rules b_skara
@@ -87,6 +92,7 @@ easteregg_thomas_johansson = {
 
 easteregg_henrik_fahraeus = { #Game Director
 	name = "Henrik"
+	dna = easteregg_henrik_fahraeus
 	dynasty = 1031017 # Fåhraeus
 
 	martial = 7
@@ -101,10 +107,14 @@ easteregg_henrik_fahraeus = { #Game Director
 	trait = reveler_1
 	trait = lustful
 	trait = diligent
-	trait = hypocritical
+	trait = cynical
 
 	1019.6.29 = {
 		birth = yes
+		effect = {
+			add_character_flag = has_scripted_appearance
+			add_character_flag = no_headgear
+		}	
 	}
 	1066.1.1 = {
 		employer = 100546
@@ -156,7 +166,7 @@ easteregg_tobias_bodlund = { #Content Designer
 
 	trait = education_martial_2
 	trait = scholar
-	trait = hypocritical
+	trait = cynical
 	trait = ambitious
 	trait = strategist
 
@@ -184,7 +194,7 @@ easteregg_emil_tisander = { #Game Designer
 	trait = education_stewardship_3
 	trait = honest
 	trait = diligent
-	trait = patient
+	trait = calm
 	trait = twin
 	trait = administrator
 
@@ -222,8 +232,8 @@ easteregg_alexander_oltner = { #Designer
 
 	trait = education_diplomacy_3
 	trait = gluttonous
-	trait = patient
-	trait = conventional
+	trait = calm
+	trait = content
 	trait = overseer
 	trait = whole_of_body
 	trait = comfort_eater
@@ -235,7 +245,7 @@ easteregg_alexander_oltner = { #Designer
 		effect = {
 			add_character_flag = has_scripted_appearance
 			add_character_flag = has_scripted_weight
-		}    
+		}
 	}
 	1066.9.15 = {
 		employer = 100525 # Sweden
@@ -267,7 +277,7 @@ easteregg_linda_tiger = { # Senior Producer
 	trait = intellect_good_1
 	trait = physique_bad_1
 	trait = stubborn
-	trait = hypocritical
+	trait = cynical
 	trait = diligent
 	disallow_random_traits = yes
 	
@@ -304,7 +314,7 @@ easteregg_charna_frostwhisper = { # Producer
 	trait = education_intrigue_3
 	trait = stubborn
 	trait = ambitious
-	trait = withdrawn
+	trait = shy
 	trait = administrator
 	trait = albino
 	trait = journaller
@@ -375,8 +385,8 @@ easteregg_sara_wendel = { #Localization manager
 
 	trait = education_diplomacy_3
 	trait = diligent
-	trait = honest
-	trait = pretentious
+	trait = just
+	trait = arrogant
 
 	1041.10.29 = {
 		birth="1041.10.29"
@@ -397,8 +407,8 @@ easteregg_pernilla_sparrhult = { #Design manager
 	culture=ethiopian
 
 	trait = education_diplomacy_4
-	trait = pretentious
-	trait = fearful
+	trait = arrogant
+	trait = paranoid
 	trait = generous
 
 	disallow_random_traits = yes
@@ -425,9 +435,9 @@ easteregg_mathilda_bjarnehed = { #Content Designer
 	trait = education_learning_3
 	trait = intellect_good_1
 	trait = administrator
-	trait = conventional
-	trait = tolerant
-	trait = honest
+	trait = content
+	trait = compassionate
+	trait = just
 
 	1040.9.13 = {
 		birth = yes
@@ -452,7 +462,7 @@ easteregg_magne_skjaeran = { # Programmer
 	trait = education_learning_4
 	trait = intellect_good_1
 	trait = lazy
-	trait = pretentious
+	trait = arrogant
 	trait = scholar
 	trait = ambitious
 	trait = physique_bad_1
@@ -491,7 +501,7 @@ easteregg_matthew_frary = { #QA
 	trait = inbred
 	trait = intellect_bad_1
 	trait = physique_good_1
-	trait = tolerant
+	trait = compassionate
 
 	disallow_random_traits = yes
 
@@ -527,9 +537,9 @@ easteregg_matthew_clohessy = { #Programmer
 	trait = education_diplomacy_3
 
 	# Personality
-	trait = sociable
-	trait = hypocritical
-	trait = tolerant
+	trait = gregarious
+	trait = cynical
+	trait = compassionate
 
 	# Lifestyle
 	trait = reveler_3
@@ -570,9 +580,9 @@ easteregg_linnea_thimren = { #Content Designer
 	prowess = 9
 
 	trait = education_learning_3
-	trait = hypocritical
+	trait = cynical
 	trait = diligent
-	trait = tolerant
+	trait = compassionate
 	trait = lifestyle_herbalist
 	trait = reclusive
 	disallow_random_traits = yes
@@ -601,7 +611,7 @@ easteregg_flavio_verna = { #Content Design Freelancer
 	trait = celibate
 	trait = temperate
 	trait = diligent
-	trait = hypocritical
+	trait = cynical
 	disallow_random_traits = yes
 
 	1041.9.15 = {
@@ -626,7 +636,7 @@ easteregg_sean_hughes = { #Content Designer
 	trait = beauty_good_1
 	trait = scholar
 	trait = shrewd
-	trait = tolerant
+	trait = compassionate
 	trait = honest
 	trait = gluttonous
 	trait = reclusive
@@ -662,8 +672,8 @@ easteregg_petter_vilberg = { # Content Designer
 
 	trait = education_diplomacy_3
 	trait = diligent
-	trait = sociable
-	trait = illtempered
+	trait = gregarious
+	trait = impatient
 	trait = architect
 	trait = forest_fighter
 	disallow_random_traits = yes
@@ -683,6 +693,7 @@ easteregg_petter_vilberg = { # Content Designer
 
 easteregg_maximilian_olbers = { # Content Design Lead
 	name = Maximilian
+	dna = easteregg_maximilian_olbers
 	dynasty = 1053022 # Olbers
 	religion = catholic
 	culture = swedish
@@ -704,6 +715,7 @@ easteregg_maximilian_olbers = { # Content Design Lead
 
 	1034.8.3 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.1.1 = {
 		employer = 102534
@@ -729,7 +741,7 @@ easteregg_milla_lankinen = { # Content Designer
 	prowess = 10
 
 	trait = education_diplomacy_3
-	trait = tolerant
+	trait = compassionate
 	trait = humble
 	trait = lustful
 	trait = shrewd
@@ -759,13 +771,14 @@ easteregg_jakub_potapczyk = { #QA
 	health = 7
 	trait = education_diplomacy_3
 	trait = ambitious
-	trait = illtempered
-	trait = sociable
+	trait = impatient
+	trait = gregarious
 	trait = adventurer
 	disallow_random_traits = yes
 	1040.9.3 = {
 		birth = yes
 		effect = {
+			add_character_flag = has_scripted_appearance
 			add_character_modifier = { modifier = prison_pet_stone_modifier }
 		}
 	}
@@ -805,7 +818,7 @@ easteregg_ewan_cowhig_croft = { #QA/Content Designer
 	#Other
 	trait = schemer
 	trait = drunkard
-	trait = henbane_addict
+#	trait = henbane_addict
 	trait = one_eyed
 	trait = one_legged
 	trait = physique_bad_3
@@ -856,17 +869,18 @@ easteregg_joacim_carlberg = { #Art Lead
 	#Other
 	trait = legitimized_bastard
 	trait = intellect_good_1
-	#trait = patient
+	#trait = calm
 	#trait = honest
 	#trait = ambitious
-	#trait = hypocritical
-	#trait = tolerant
+	#trait = cynical
+	#trait = compassionate
 	trait = flexible_leader
 
 	disallow_random_traits = yes
 
 	1035.10.20 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.1.1 = {
 		employer = 20008 #Jarl Faste of Dal
@@ -894,6 +908,7 @@ easteregg_david_horler = { # Technical Artist
 
 easteregg_paul_depre = { #QA
 	name = "Paul"
+	dna = easteregg_paul_depre
 	dynasty = 1053037 # Depre
 	religion = catholic
 	culture = franconian
@@ -906,8 +921,8 @@ easteregg_paul_depre = { #QA
 	prowess = 0
 
 	trait = education_diplomacy_3
-	trait = hypocritical
-	trait = illtempered
+	trait = cynical
+	trait = impatient
 	trait = honest
 	trait = depressed_genetic
 	trait = diplomat
@@ -917,6 +932,7 @@ easteregg_paul_depre = { #QA
 
 	1037.12.03 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.9.15 = {
 		employer = 100525 #Sweden
@@ -933,6 +949,7 @@ easteregg_paul_depre = { #QA
 
 easteregg_debbie_lane = { #Customer Support Specialist
 	name = "Debbie"
+	dna = easteregg_debbie_lane
 	dynasty = 1053038 # Lane
 	religion = catholic
 	culture = norse
@@ -952,7 +969,7 @@ easteregg_debbie_lane = { #Customer Support Specialist
 	#Personality Traits
 	trait = lustful
 	trait = stubborn
-	trait = wroth
+	trait = wrathful
 
 	#Other Traits
 	trait = impotent
@@ -967,6 +984,11 @@ easteregg_debbie_lane = { #Customer Support Specialist
 
 	1035.6.27 = {
 		birth = yes
+		effect = { 
+			add_character_flag = has_scripted_appearance
+			add_character_flag = no_drunkard_visual
+			add_character_flag = no_headgear	
+		}
 	}
 	1066.1.1 = {
 		employer = 132	#Essex
@@ -996,8 +1018,8 @@ easteregg_petter_lundh = { # 2D Artist
 	trait = education_martial_3
 
 	# Personality Traits
-	trait = hypocritical
-	trait = illtempered
+	trait = cynical
+	trait = impatient
 	trait = gluttonous
 
 	# Other Traits
@@ -1036,9 +1058,9 @@ easteregg_nicholas_meredith = { #QA
 	#Education
 	trait = education_intrigue_2
 	#Personality Traits
-	trait = pretentious
-	trait = hypocritical
-	trait = conventional
+	trait = arrogant
+	trait = cynical
+	trait = content
 	
 	#Other Traits
 	trait = shrewd
@@ -1070,9 +1092,9 @@ easteregg_william_riggott = { #QA
 	#Education
 	trait = education_learning_2
 	#Personality Traits
-	trait = sociable
+	trait = gregarious
 	trait = diligent
-	trait = agreeable
+	trait = forgiving
 	
 	#Other Traits
 	trait = drunkard
@@ -1102,7 +1124,7 @@ easteregg_anna_johansson = { #QA
 	#Personality Traits
 	trait = stubborn
 	trait = diligent
-	trait = fearful
+	trait = paranoid
 	
 	#Other Traits
 	trait = reclusive
@@ -1145,7 +1167,7 @@ easteregg_arkadiusz_majewski = { #QA
 	#Personality Traits
 	trait = lazy
 	trait = patient
-	trait = conventional
+	trait = content
 	
 	#Other Traits
 	trait = mystic_1
@@ -1182,7 +1204,7 @@ easteregg_artur_kacprzak = { #QA
 
 	#Personality Traits
 	trait = brave
-	trait = illtempered
+	trait = impatient
 	trait = ambitious
 
 	#Other Traits
@@ -1223,7 +1245,7 @@ easteregg_anton_leirnes = { #3D Environment Artist
 	#Personality Traits
 	trait = lazy
 	trait = patient
-	trait = conventional
+	trait = content
 	
 	#Other Traits
 	trait = berserker
@@ -1257,8 +1279,8 @@ easteregg_anton_sorokin = { # Programmer
 
 	#Personality Traits
 	trait = patient
-	trait = hypocritical
-	trait = pretentious
+	trait = cynical
+	trait = arrogant
 	
 	#Other Traits
 	trait = scholar
@@ -1316,7 +1338,7 @@ easteregg_joel_hansson = {
 	trait = education_learning_2
 	trait = humble
 	trait = patient
-	trait = tolerant
+	trait = compassionate
 	
 	sexuality = bisexual
 	disallow_random_traits = yes
@@ -1325,6 +1347,7 @@ easteregg_joel_hansson = {
 		birth = yes
 		effect = {
 			add_character_flag = has_scripted_appearance
+			add_character_flag = no_headgear
 		}	
 	}
 	1066.1.1 = {
@@ -1356,7 +1379,7 @@ easteregg_malin_jonsson = { #Junior 2D Artist
 	trait = education_intrigue_3
 	#Personality Traits
 	trait = ambitious
-	trait = quarrelsome
+	trait = vengeful
 	trait = stubborn
 	#Other Traits
 	trait = irritable
@@ -1400,8 +1423,8 @@ easteregg_max_weltz = { #Product Manager
 	#Education
 	trait = education_stewardship_3
 	#Personality Traits
-	trait = patient
-	trait = hypocritical
+	trait = calm
+	trait = cynical
 	trait = diligent
 	
 	#Other Traits
@@ -1417,7 +1440,7 @@ easteregg_max_weltz = { #Product Manager
 		birth = yes
 		effect = {
 			add_character_flag = has_scripted_appearance
-		}    
+		}	
 	}
 	1066.1.1 = {
 		effect = {
@@ -1435,6 +1458,7 @@ easteregg_jonas_wickerstrom = { # UX Designer
 	dynasty = 904 # Wickerström
 	religion= "orthodox"
 	culture = "swedish"
+	dna = easteregg_jonas_wickerstrom
 	
 	diplomacy = 3
 	martial = 4
@@ -1445,9 +1469,9 @@ easteregg_jonas_wickerstrom = { # UX Designer
 	
 	trait = education_diplomacy_1
 
-	trait = inconstant
-	trait = quarrelsome
-	trait = wroth
+	trait = arbitrary
+	trait = vengeful
+	trait = wrathful
 
 	trait = irritable
 	trait = varangian
@@ -1457,6 +1481,9 @@ easteregg_jonas_wickerstrom = { # UX Designer
 	
 	1036.9.10 = {
 		birth = yes
+		effect = {
+			add_character_flag = has_scripted_appearance
+		}	
 	}
 	1066.1.1 = {
 		employer = 1746 #Optimatoi
@@ -1475,7 +1502,7 @@ easteregg_arthur_bialecki = { #Maps Design
 	trait = education_diplomacy_2
 	trait = ambitious
 	trait = honest
-	trait = wroth
+	trait = wrathful
 	
 	sexuality = heterosexual
 	disallow_random_traits = yes
@@ -1499,7 +1526,7 @@ easteregg_patrick_mauffrey = { # CoA designer
 	
 	trait = education_intrigue_1
 
-	trait = hypocritical
+	trait = cynical
 	trait = patient
 	trait = drunkard
 
@@ -1536,7 +1563,7 @@ easteregg_viktor_stadler = { #Commercial Manager
 	trait = education_stewardship_4
 	#Personality Traits
 	trait = greedy
-	trait = hypocritical
+	trait = cynical
 	trait = lustful
 	
 	#Other Traits
@@ -1572,7 +1599,7 @@ easteregg_jesse_henning = { #PR
 	#Education
 	trait = education_diplomacy_4
 	#Personality Traits
-	trait = sociable
+	trait = gregarious
 	trait = diligent
 	trait = brave
 	
@@ -1601,9 +1628,9 @@ easteregg_rodrigue_delrue = { #Community Developer
 	#Education
 	trait = education_diplomacy_4
 	#Personality Traits
-	trait = sociable
-	trait = agreeable
-	trait = tolerant
+	trait = gregarious
+	trait = forgiving
+	trait = compassionate
 	
 	#Other Traits
 	trait = gallant
@@ -1623,6 +1650,7 @@ easteregg_rodrigue_delrue = { #Community Developer
 
 easteregg_hanna_lohman = { #User Research
 	name = "Hanna"
+	dna = easteregg_hanna_lohman
 	dynasty = easteregg_dynasty_0046 # Löhman
 	religion = catholic
 	culture = norse
@@ -1640,9 +1668,9 @@ easteregg_hanna_lohman = { #User Research
 	trait = education_learning_3
 
 	#Personality Traits
-	trait = patient
+	trait = calm
 	trait = temperate
-	trait = withdrawn
+	trait = shy
 	
 	#Other Traits
 	trait = scholar
@@ -1657,6 +1685,7 @@ easteregg_hanna_lohman = { #User Research
 	
 	1035.8.29 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.1.1 = {
 		employer = 20005 #Ovre Dalarna
@@ -1686,7 +1715,7 @@ easteregg_daniel_moore = { #Associate Producer
 
 	#Personality Traits
 	trait = ambitious
-	trait = fearful
+	trait = paranoid
 	trait = honest
 
 	#Other Traits
@@ -1728,8 +1757,8 @@ easteregg_bartosz_byczynski = { #QA
 	trait = education_diplomacy_3
 
 	#Personality Traits
-	trait = tolerant
-	trait = sociable
+	trait = compassionate
+	trait = gregarious
 	trait = stubborn
 
 	#Other Traits
@@ -1774,8 +1803,8 @@ easteregg_joseph_gardener = { #QA
 
 	#Personality Traits
 	trait = lustful
-	trait = quarrelsome
-	trait = tolerant
+	trait = vengeful
+	trait = compassionate
 	
 	#Other Traits
 	trait = blademaster_1
@@ -1808,9 +1837,9 @@ easteregg_peter_johannesson = { #UX Designer
 	trait = education_diplomacy_1
 
 	#Personality Traits
-	trait = hypocritical
-	trait = sociable
-	trait = illtempered
+	trait = cynical
+	trait = gregarious
+	trait = impatient
 	
 	#Other Traits
 	trait = possessed_1
@@ -1820,6 +1849,7 @@ easteregg_peter_johannesson = { #UX Designer
 	
 	1040.1.1 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.9.15 = {
 		employer = 100525 # Sweden
@@ -1847,9 +1877,9 @@ easteregg_troy_goodfellow = { #PR
 	trait = education_diplomacy_4
 
 	#Personality Traits
-	trait = conventional
+	trait = content
 	trait = diligent
-	trait = tolerant
+	trait = compassionate
 	
 	#Other Traits
 	trait = diplomat
@@ -1887,9 +1917,9 @@ easteregg_katya_boestad = { #QA/Data Scientist
 	trait = education_learning_3
 
 	#Personality Traits
-	trait = tolerant
+	trait = compassionate
 	trait = patient
-	trait = mild
+	trait = trusting
 	
 	#Other Traits
 	trait = intellect_good_3
@@ -1901,6 +1931,7 @@ easteregg_katya_boestad = { #QA/Data Scientist
 
 	1034.8.10 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.9.15 = {
 		employer = 100525 # Sweden
@@ -1915,6 +1946,7 @@ easteregg_katya_boestad = { #QA/Data Scientist
 
 easteregg_bianca_savazzi = { #Content designer
 	name = "Bianca"
+	dna = easteregg_bianca_savazzi
 	dynasty = easteregg_dynasty_0053 # Savazzi
 	religion = catholic
 	culture = italian
@@ -1932,7 +1964,7 @@ easteregg_bianca_savazzi = { #Content designer
 	trait = education_learning_2
 
 	#Personality Traits
-	trait = withdrawn
+	trait = shy
 	trait = stubborn
 	trait = diligent
 	
@@ -1946,6 +1978,10 @@ easteregg_bianca_savazzi = { #Content designer
 
 	1038.5.19 = {
 		birth = yes
+		effect = {
+			add_character_flag = has_scripted_appearance
+			add_character_flag = no_headgear
+		}
 	}
 	1066.9.15 = {
 		employer = 7757 # Mantova
@@ -1977,7 +2013,7 @@ easteregg_steacy_mcilwham = { #Data Scientist
 	trait = education_diplomacy_3
 
 	# Personality
-	trait = sociable
+	trait = gregarious
 	trait = ambitious
 	trait = gluttonous
 
@@ -1989,6 +2025,7 @@ easteregg_steacy_mcilwham = { #Data Scientist
 
 	1040.11.14 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.1.1 = {
 		employer = 131002
@@ -2023,6 +2060,7 @@ easteregg_nils_wadensten = { # Character Artist
 		birth = yes
 		effect = {
 			add_character_flag = has_scripted_appearance
+			add_character_flag = no_headgear
 		}	
 	}
 	1066.9.15 = {
@@ -2054,7 +2092,7 @@ easteregg_andreas_olsson = { #QA Project Coordinator
 	#Personality Traits
 	trait = ambitious
 	trait = stubborn
-	trait = fearful
+	trait = paranoid
 	
 	#Other Traits
 	trait = drunkard
@@ -2096,7 +2134,7 @@ easteregg_henrik_lohmander = { #Cartography
 	trait = education_learning_3
 	
 	#Personality Traits
-	trait = fearful
+	trait = paranoid
 	trait = lustful
 	trait = diligent
 	
@@ -2129,9 +2167,9 @@ easteregg_ismael_serrano = { # Programmer
 	sexuality = heterosexual
 
 	trait = education_diplomacy_3
-	trait = tolerant
+	trait = compassionate
 	trait = diligent
-	trait = conventional
+	trait = content
 
 	diplomacy = 8
 	martial = 5
@@ -2165,8 +2203,8 @@ easteregg_fawn_rowe = { # Community Ambassador
 
 	trait = education_diplomacy_3
 	trait = greedy
-	trait = patient
-	trait = mild
+	trait = calm
+	trait = trusting
 	trait = schemer
 
 	disallow_random_traits = yes
@@ -2191,7 +2229,7 @@ easteregg_lenaic_riedinger = { # Community Ambassador
 
 	trait = education_diplomacy_3
 	trait = patient
-	trait = honest
+	trait = just
 	trait = brave
 	trait = strategist
 	trait = scholar
@@ -2218,8 +2256,8 @@ easteregg_niall_bird = { # QA
 
 	trait = education_diplomacy_2
 	trait = honest
-	trait = wroth
-	trait = sociable
+	trait = wrathful
+	trait = gregarious
 	trait = reveler_2
 
 	disallow_random_traits = yes
@@ -2234,7 +2272,6 @@ easteregg_niall_bird = { # QA
 		death="1066.9.16"
 	}
 }
-
 
 easteregg_christian_daflos = { #PMM
 	name = "Christian"
@@ -2269,6 +2306,7 @@ easteregg_christian_daflos = { #PMM
 	
 	1049.10.7 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.9.15 = {
 		employer = 1764
@@ -2298,9 +2336,9 @@ easteregg_max_collin = { #Marketing Creative Producer
 	trait = education_learning_2
 
 	#Personality Traits
-	trait = patient
-	trait = mild
-	trait = agreeable
+	trait = calm
+	trait = trusting
+	trait = forgiving
 	
 	#Other Traits
 	trait = drunkard
@@ -2312,11 +2350,100 @@ easteregg_max_collin = { #Marketing Creative Producer
 	
 	1020.5.28 = {
 		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
 	}
 	1066.9.15 = {
 		employer = 115
 	}
 	1066.9.16 = {
+		death = yes
+	}
+}
+
+easteregg_tegan_harris = { #Junior Producer
+	name = "Tegan"
+	dna = easteregg_tegan_harris
+	dynasty = easteregg_dynasty_0064
+	religion = "catholic"
+	culture = "anglo_saxon"
+	female = yes
+
+	#Skills
+	diplomacy = 8
+	martial = 5
+	stewardship = 5
+	intrigue = 7
+	learning = 8
+	prowess = 4
+	
+	#Education
+	trait = education_intrigue_2
+   
+	#Personality Traits
+	trait = ambitious
+	trait = compassionate
+	trait = stubborn
+	
+	#Other Traits
+	trait = administrator
+	trait = intellect_good_1
+	
+	sexuality = bisexual
+	disallow_random_traits = yes
+	
+	1034.8.5 = {
+		birth = yes
+		effect = { add_character_flag = has_scripted_appearance	}
+	}
+	1066.1.5 = {	#Slightly later date due to Edgar the Aetheling not receiving his county till five days into 1066.
+		employer = 112
+		effect = {
+			add_secret = { type = secret_witch }
+		}
+	}
+	1066.9.16 = {
+		death = yes
+	}
+}
+
+easteregg_wojciech_cywinski = { #QA
+	name = "Wojciech"
+	dynasty = easteregg_dynasty_0065
+	religion = "baltic_pagan"
+	culture = "prussian"
+
+	#Skills
+	diplomacy = 2
+	martial = 5
+	stewardship = 3
+	intrigue = 1
+	learning = 7
+	prowess = 9
+
+	#Education
+	trait = education_martial_3	
+
+	#Personality Traits
+	trait = cynical
+	trait = calm
+	trait = stubborn
+
+	#Other Traits
+	trait = family_first
+
+	sexuality = heterosexual
+	disallow_random_traits = yes
+
+	1039.8.15 = {
+		birth = yes
+	}
+	1066.1.1 = {
+		employer = 28015
+		effect = {
+			add_secret = { type = secret_non_believer }
+		}
+	}
+	1069.8.16 = {
 		death = yes
 	}
 }

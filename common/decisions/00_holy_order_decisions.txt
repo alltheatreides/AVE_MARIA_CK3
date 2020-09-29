@@ -2,7 +2,7 @@
 	picture = "gfx/interface/illustrations/decisions/decision_major_religion.dds"
 	major = yes
 
-	ai_check_interval = 360
+	ai_goal = yes
 
 	is_shown = {
 		is_landed = yes
@@ -80,10 +80,10 @@
 		hidden_effect = {
 			if = {
 				limit = { NOT = { scope:barony.holder = root } }
-				create_title_and_vassal_change = change
-				scope:change = {
-					set_title_and_vassal_change_type = revoked
-					set_add_claim_on_loss = no
+				create_title_and_vassal_change = {
+					type = leased_out
+					save_scope_as = change
+					add_claim_on_loss = no
 				}
 				scope:barony = {
 					change_title_holder_include_vassals = {
@@ -150,7 +150,16 @@
 			}
 
 			add_achievement_flag = { FLAG = achievement_non_nobis_domine_flag }
-			add_achievement_flag = { FLAG = achievement_give_a_dog_a_bone_flag }
+
+			hidden_effect = {
+				if = {
+					limit = { exists = global_var:started_give_a_dog_a_bone_achievement }
+					add_achievement_global_variable = {
+						VARIABLE = holy_order_give_a_dog_a_bone_achievement
+						VALUE = yes
+					}
+				}
+			}
 		}
 	}
 	
@@ -172,7 +181,17 @@
 	}
 
 	ai_will_do = {
-		base = 25
+		base = 100
+		modifier = {
+			add = {
+				faith = {
+					# Don't create more than 5 holy orders for a faith
+					every_faith_holy_order = {
+						subtract = 20
+					}
+				}
+			}
+		}
 	}
 	
 	ai_priority = 100
@@ -265,6 +284,23 @@ borrow_from_holy_order_decision = { #by Linnéa Thimrén
 
 cancel_holy_order_lease_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_major_religion.dds"
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+			    trigger = {
+					faith = {
+						faith_hostility_level = {
+							target = scope:barony.lessee_title.holder.faith
+							value >= faith_hostile_level
+						}
+					}
+			    }
+			    desc = cancel_holy_order_lease_hostile_decision_desc
+			}
+			desc = cancel_holy_order_lease_decision_desc
+		}
+	}
 
 	ai_check_interval = 360
 
@@ -397,7 +433,7 @@ cancel_holy_order_lease_decision = {
 	
 	ai_potential = {
 		is_landed = yes
-		highest_held_title_tier >= tier_kingdom
+		highest_held_title_tier >= tier_county
 		any_held_title = {
 			tier = tier_barony
 			is_leased_out = yes
@@ -409,14 +445,9 @@ cancel_holy_order_lease_decision = {
 		# revoke titles leased to holy orders of the wrong faith
 		modifier = {
 			add = 100
-			root.faith = {
-				any_faith_holy_order = {
-					holy_order_patron = root
-					leader = {
-						has_government = holy_order_government
-						NOT = { faith = root.faith }
-					}
-				}
+			exists = scope:barony.lessee_title.holder
+			NOT = {
+				scope:barony.lessee_title.holder.faith = root.faith
 			}
 		}
 	}

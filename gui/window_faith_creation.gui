@@ -485,32 +485,6 @@ window = {
 						spacing = 20
 						margin = { 30 0 }
 
-						hbox = {
-							name = "starting_fervor"
-							layoutpolicy_horizontal = expanding
-
-							icon = {
-								texture = "gfx/interface/icons/icon_fervor.dds"
-								size = { 40 40 }
-							}
-
-							vbox = {
-								layoutpolicy_horizontal = expanding
-
-								text_single = {
-									name = "header"
-									layoutpolicy_horizontal = expanding
-									text = "FAITH_CREATION_STARTING_FERVOR"
-								}
-
-								text_single = {
-									name = "desc"
-									layoutpolicy_horizontal = expanding
-									text = "[FaithCreationWindow.GetStartingFervor|0]%"
-								}
-							}
-						}
-
 						vbox = {
 							name = "old_faith_tolerance"
 							layoutpolicy_horizontal = expanding
@@ -1040,7 +1014,7 @@ window = {
 											text_single = {
 												name = "doctrine_name"
 												position = { 75 25 }
-												text = "[FaithDoctrine.GetName( GuiFaithDoctrineItem.GetFaith )]"
+												text = "[FaithDoctrine.GetNameNoTooltip( GuiFaithDoctrineItem.GetFaith )]"
 												default_format = "#high"
 												using = Font_Size_Medium
 											}
@@ -1238,7 +1212,7 @@ types "FaithCreation"
 			margin = { 5 5 }
 		}
 
-		flowcontainer = {
+		hbox = {
 			name = "faith_list_item"
 			datacontext = "[GuiFaithDoctrineItem.GetDoctrine]"
 			spacing = 5
@@ -1256,22 +1230,28 @@ types "FaithCreation"
 				alpha = "[Select_float( GetPlayer.GetFaith.HasDoctrine( GuiFaithDoctrineItem.GetDoctrine ), '(float)0.4', '(float)1.0' )]"
 			}
 
-			flowcontainer = {
-				direction = vertical
+			vbox = {
+				layoutpolicy_horizontal = expanding
 
 				text_single = {
 					name = "doctrine_group_name"
-					align = left
 					text = "[FaithDoctrine.GetGroup.GetName( GuiFaithDoctrineItem.GetFaith )]"
+					align = left
 					default_format = "#low"
+					layoutpolicy_horizontal = expanding
+					autoresize = no
+					fontsize_min = 12
 				}
 
 				text_single = {
 					name = "faith_name"
-					elide = right
-					align = left
+					text = "[FaithDoctrine.GetNameNoTooltip( GuiFaithDoctrineItem.GetFaith )]"
 					datacontext = "[GuiFaithDoctrineItem.GetFaith]"
-					text = "[FaithDoctrine.GetName( GuiFaithDoctrineItem.GetFaith )]"
+					layoutpolicy_horizontal = expanding
+					elide = right
+					autoresize = no
+					fontsize_min = 12
+					align = left
 				}
 			}
 		}
@@ -1331,6 +1311,8 @@ types "FaithCreation"
 
 				blockoverride "scrollbox_content"
 				{
+					visible = "[GreaterThan_int32( VassalConversionWindow.GetNumberOfVassals, '(int32)0' )]"
+
 					vbox = {
 						name = "vassals_grid"
 						datacontext = "[VassalConversionWindow.GetVassalList]"
@@ -1386,6 +1368,13 @@ types "FaithCreation"
 								}
 							}
 						}
+					}
+				}
+
+				vbox = {
+					visible = "[EqualTo_int32( VassalConversionWindow.GetNumberOfVassals, '(int32)0' )]"
+					text_single = {
+						text = "NO_VASSALS_TO_DISPLAY"
 					}
 				}
 			}

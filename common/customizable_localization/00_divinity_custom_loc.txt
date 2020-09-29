@@ -489,14 +489,14 @@ GetFaithCreationReaction = {
 					has_doctrine_parameter = great_holy_wars_active_if_reformed
 				}
 				OR = {
-					has_doctrine = tenet_human_sacrifice
-					has_doctrine = tenet_ritual_cannibalism
+					has_doctrine_parameter = cannibalism_legal
+					has_doctrine_parameter = human_sacrifice_active
 				}
 			}
 			NOR = {
 				faith = {
-					has_doctrine = tenet_human_sacrifice
-					has_doctrine = tenet_ritual_cannibalism
+					has_doctrine_parameter = cannibalism_legal
+					has_doctrine_parameter = human_sacrifice_active
 				}
 			}
 		}
@@ -1018,6 +1018,24 @@ GetActualBishopTitle = {
 	text = {
 		trigger = { liege.highest_held_title_tier < tier_duchy faith.religion = faith:ashari.religion }
 		localization_key = councillor_court_chaplain_islam_county
+	}
+
+	#Yazidi
+	text = {
+		trigger = { liege.highest_held_title_tier >= tier_empire faith.religion = faith:yazidi.religion }
+		localization_key = councillor_court_chaplain_yazidi_empire
+	}
+	text = {
+		trigger = { liege.highest_held_title_tier >= tier_kingdom faith.religion = faith:yazidi.religion }
+		localization_key = councillor_court_chaplain_yazidi_kingdom
+	}
+	text = {
+		trigger = { liege.highest_held_title_tier >= tier_duchy faith.religion = faith:yazidi.religion }
+		localization_key = councillor_court_chaplain_yazidi_duchy
+	}
+	text = {
+		trigger = { liege.highest_held_title_tier < tier_duchy faith.religion = faith:yazidi.religion }
+		localization_key = councillor_court_chaplain_yazidi_county
 	}
 
 	#Orthodox

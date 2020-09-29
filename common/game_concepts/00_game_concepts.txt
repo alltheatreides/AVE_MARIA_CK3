@@ -45,12 +45,12 @@ domain_limit = {
 
 recently_acquired_holding = {
 	alias = { recently_acquired_holdings }
-	texture = "gfx/interface/mapitems/onmap_holding_icon.dds"
+	texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
 }
 
 county = {
 	parent = title
-	texture = "gfx/interface/coats_of_arms/crown_strip_115_gameconcept.dds"
+	texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
 	framesize = { 104 104 }
 
 	frame = 2
@@ -102,7 +102,7 @@ secular_opinion = {
 	parent = opinion
 }
 faction = {
-	texture = "gfx/interface/hud/tab_factions.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_factions.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -135,12 +135,12 @@ hostile_scheme = {
 	parent = scheme
 }
 personal_scheme = {
-	texture = "gfx/interface/icons/personal_scheme.dds"
+	texture = "gfx/interface/icons/schemes/icon_scheme_personal.dds"
 	alias = { personal personal_schemes }
 	parent = scheme
 }
 secret_scheme = {
-	texture = "gfx/interface/icons/secrecy_icon.dds"
+	texture = "gfx/interface/icons/schemes/icon_secrecy.dds"
 	alias = { secret_schemes secret_scheme_single }
 	parent = scheme
 }
@@ -192,10 +192,10 @@ secret = {
 }
 
 barony = {
-	alias = { baronies barons }
+	alias = { baronies barons baron }
 	parent = title
 
-	texture = "gfx/interface/coats_of_arms/crown_strip_115_gameconcept.dds"
+	texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
 	framesize = { 104 104 }
 	frame = 1
 }
@@ -203,7 +203,7 @@ duchy = {
 	alias = { duchies duke }
 	parent = title
 
-	texture = "gfx/interface/coats_of_arms/crown_strip_115_gameconcept.dds"
+	texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
 	framesize = { 104 104 }
 
 	frame = 3
@@ -212,7 +212,7 @@ kingdom = {
 	alias = { kingdoms king }
 	parent = title
 
-	texture = "gfx/interface/coats_of_arms/crown_strip_115_gameconcept.dds"
+	texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
 	framesize = { 104 104 }
 	frame = 4
 }
@@ -220,7 +220,7 @@ empire = {
 	alias = { empires emperor }
 	parent = title
 
-	texture = "gfx/interface/coats_of_arms/crown_strip_115_gameconcept.dds"
+	texture = "gfx/interface/coat_of_arms/crown_strip_115_gameconcept.dds"
 	framesize = { 104 104 }
 	frame = 5
 }
@@ -238,15 +238,15 @@ county_opinion = {
 
 faith = {
 	alias = { faiths faithpossessive }
-	texture = "gfx/interface/event_window/type_faith.dds"
+	texture = "gfx/interface/icons/event_types/type_faith.dds"
 }
 religion = {
 	alias = {religions}
-	texture = "gfx/interface/event_window/type_faith.dds"
+	texture = "gfx/interface/icons/event_types/type_faith.dds"
 }
 religious_family = {
 	alias = {religious_families}
-	texture = "gfx/interface/event_window/type_faith.dds"
+	texture = "gfx/interface/icons/event_types/type_faith.dds"
 }
 head_of_faith = {
 	alias = {heads_of_faith}
@@ -287,6 +287,9 @@ heir = {
 	alias = { heirs }
 }
 
+designated_heir = {
+}
+
 primary_heir = {
 	texture = "gfx/interface/icons/message_feed/heir.dds"
 	alias = { primary_heirs }
@@ -295,9 +298,25 @@ primary_heir = {
 
 player_heir = {
 	texture = "gfx/interface/icons/message_feed/heir.dds"
-	alias = { player_heirs }
+	parent = heir
+
+	# no plural alias please, focus on the one player heir you (could) have.
+}
+
+title_heir = {
+	alias = { title_heirs }
 	parent = heir
 }
+
+realm_heir = {
+	alias = { realm_heirs }
+	parent = heir
+}
+
+nominate = {
+	alias = { nomination nominations nominate_heir }
+}
+
 
 liege = {
 	alias = { lieges }
@@ -317,12 +336,12 @@ top_liege = {
 
 holding = {
 	alias = { holdings }
-	texture = "gfx/interface/mapitems/onmap_holding_icon.dds"
+	texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
 }
 
 holding_type = {
 	alias = { holding_types }
-	texture = "gfx/interface/mapitems/onmap_holding_icon.dds"
+	texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
 }
 
 castle_holding = {
@@ -366,7 +385,7 @@ regiment = {
 	alias = { regiments }
 }
 realm = {
-	texture = "gfx/interface/hud/tab_my_realm.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_my_realm.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -411,15 +430,15 @@ piety_level = {
 prestige = {
 	alias = { prestige_i }
 
-	texture = "gfx/interface/icons/icon_prestige_01.dds"
+	texture = "gfx/interface/icons/currencies/icon_prestige_01.dds"
 }
 
 prestige_experience = {
-	texture = "gfx/interface/icons/icon_prestige_05.dds"
+	texture = "gfx/interface/icons/currencies/icon_prestige_05.dds"
 }
 
 prestige_level = {
-	texture = "gfx/interface/icons/icon_prestige_05.dds"
+	texture = "gfx/interface/icons/currencies/icon_prestige_05.dds"
 	alias = { prestige_levels }
 }
 
@@ -443,16 +462,16 @@ dynast_interaction = {
 
 dynasty = {
 	texture = "gfx/interface/icons/message_feed/dynasty.dds"
-	alias = { dynasties dynastic }
+	alias = { dynasties }
 }
 
 dynasty_prestige = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_04.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_04.dds"
 	alias = { dynasty_prestige_i }
 }
 
 dynasty_prestige_level = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_04.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_04.dds"
 }
 
 house = {
@@ -574,7 +593,7 @@ learning_skill =
 }
 
 health = {
-	texture = "gfx/interface/icons/icon_health.dds"
+	texture = "gfx/interface/icons/character_status/icon_health.dds"
 	framesize = { 60 60 }
 	frame = 2
 }
@@ -588,7 +607,7 @@ fertility = {
 }
 
 life_expectancy = {
-	texture = "gfx/interface/icons/icon_health.dds"
+	texture = "gfx/interface/icons/character_status/icon_health.dds"
 	framesize = { 60 60 }
 	frame = 1
 }
@@ -614,7 +633,7 @@ concubinage = {
 
 stress = {
 	alias = { stress_i stress_gain_i stress_loss_i stress_critical_i }
-	texture = "gfx/interface/icons/icon_stress.dds"
+	texture = "gfx/interface/icons/stress/icon_stress.dds"
 }
 
 marriage = {
@@ -642,21 +661,21 @@ alliance = {
 }
 siege = {
 	alias = { besiege besieged sieges besieging }
-	texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
+	texture = "gfx/interface/icons/map_icons/onmap_siege_icon.dds"
 }
 assault = {
 	alias = { assaults assaulting assaulted }
 }
 fort_level = {
 	alias = { fort_level_i }
-	texture = "gfx/interface/siege_window/fort_icon.dds"
+	texture = "gfx/interface/window_siege/fort_icon.dds"
 }
 
 garrison = {
 	texture = "gfx/interface/icons/icon_garrison.dds"
 }
 army = {
-	texture = "gfx/interface/hud/tab_military.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_military.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -696,14 +715,14 @@ education_focus = {
 }
 
 lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_can_choose_lifestyle.dds"
+	texture = "gfx/interface/icons/alerts/action_can_choose_lifestyle.dds"
 	framesize = { 192 192 }
 	frame = 2
 	alias = { lifestyles }
 }
 
 lifestyle_experience = {
-	texture = "gfx/interface/icons/important_action_types/action_can_choose_lifestyle.dds"
+	texture = "gfx/interface/icons/alerts/action_can_choose_lifestyle.dds"
 	framesize = { 192 192 }
 	frame = 2
 	alias = { experience }
@@ -725,14 +744,14 @@ dynasty_perk = {
 }
 
 martial_lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_lifestyle_martial.dds"
+	texture = "gfx/interface/icons/alerts/action_lifestyle_martial.dds"
 	framesize = { 192 192 }
 	frame = 2
 	parent = focus
 }
 
 intrigue_lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_lifestyle_intrigue.dds"
+	texture = "gfx/interface/icons/alerts/action_lifestyle_intrigue.dds"
 	framesize = { 192 192 }
 	frame = 2
 	alias = { intrigue_rigueint }
@@ -742,21 +761,21 @@ intrigue_lifestyle = {
 }
 
 diplomacy_lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_lifestyle_diplo.dds"
+	texture = "gfx/interface/icons/alerts/action_lifestyle_diplo.dds"
 	framesize = { 192 192 }
 	frame = 2
 	parent = focus
 }
 
 stewardship_lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_lifestyle_stewarship.dds"
+	texture = "gfx/interface/icons/alerts/action_lifestyle_stewarship.dds"
 	framesize = { 192 192 }
 	frame = 2
 	parent = focus
 }
 
 learning_lifestyle = {
-	texture = "gfx/interface/icons/important_action_types/action_lifestyle_learning.dds"
+	texture = "gfx/interface/icons/alerts/action_lifestyle_learning.dds"
 	framesize = { 192 192 }
 	frame = 2
 	parent = focus
@@ -770,7 +789,7 @@ truce = {
 }
 
 decision = {
-	texture = "gfx/interface/hud/tab_decisions.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_decisions.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -794,7 +813,7 @@ hunt = {
 
 
 holder = {
-	alias = { holders holder_possessive holders_possessive }
+	alias = { holders holder_possessive holders_possessive hold }
 }
 
 building = {
@@ -831,7 +850,7 @@ fortification_building = {
 }
 
 battle = {
-	texture = "gfx/interface/mapitems/combat_map_icon.dds"
+	texture = "gfx/interface/icons/map_icons/combat_map_icon.dds"
 	alias = {battles}
 }
 
@@ -841,7 +860,7 @@ retreat = {
 }
 
 war = {
-	texture = "gfx/interface/war_overview/war_icon.dds"
+	texture = "gfx/interface/icons/war_status/war_icon.dds"
 	alias = {wars}
 }
 
@@ -852,7 +871,7 @@ civil_war = {
 
 raid = {
 	alias = { raiding raids raider raiders }
-	texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
+	texture = "gfx/interface/icons/map_icons/onmap_raid_icon.dds"
 }
 
 raid_loot = {
@@ -920,12 +939,12 @@ casus_belli = {
 }
 
 battle_advantage = {
-	texture = "gfx/interface/icons/icon_commander_advantage.dds"
+	texture = "gfx/interface/icons/icon_battle_advantage.dds"
 	alias = { advantage }
 }
 
 war_score = {
-	texture = "gfx/interface/icons/icon_war_score_battles.dds"
+	texture = "gfx/interface/icons/war_score/icon_war_score_battles.dds"
 }
 
 war_target = {
@@ -938,6 +957,33 @@ war_leaders = {
 
 men_at_arms = {
 	texture = "gfx/interface/icons/regimenttypes/_default.dds"
+}
+
+skirmishers = {
+	alias = { skirmisher }
+	parent = men_at_arms
+}
+
+archers = {
+	alias = { archer }
+	parent = men_at_arms
+}
+
+
+light_cavalry = {
+	parent = men_at_arms
+}
+
+heavy_cavalry = {
+	parent = men_at_arms
+}
+
+spearmen = {
+	parent = men_at_arms
+}
+
+heavy_infantry = {
+	parent = men_at_arms
 }
 
 special_troops = {
@@ -976,32 +1022,32 @@ top_realm = {
 
 prison = {
 	alias = { imprisons imprison imprisoned prisons imprisoning imprisonment prisoner prisoners jailor }
-	texture = "gfx/interface/event_window/type_prison.dds"
+	texture = "gfx/interface/icons/event_types/type_prison.dds"
 }
 
 dungeon = {
-	texture = "gfx/interface/event_window/type_prison.dds"
+	texture = "gfx/interface/icons/event_types/type_prison.dds"
 }
 
 house_arrest = {
-	texture = "gfx/interface/event_window/type_prison.dds"
+	texture = "gfx/interface/icons/event_types/type_prison.dds"
 }
 
 close_family = {
 	parent = family
 	alias = { close_family_members close_family_member }
-	texture = "gfx/interface/event_window/type_family.dds"
+	texture = "gfx/interface/icons/event_types/type_family.dds"
 }
 
 extended_family = {
 	parent = family
 	alias = { extended_family_members }
-	texture = "gfx/interface/event_window/type_family.dds"
+	texture = "gfx/interface/icons/event_types/type_family.dds"
 }
 
 family = {
 	alias = { family_members family_member }
-	texture = "gfx/interface/event_window/type_family.dds"
+	texture = "gfx/interface/icons/event_types/type_family.dds"
 }
 
 kinslaying = {
@@ -1024,7 +1070,7 @@ claimant = {
 }
 
 court = {
-	texture = "gfx/interface/hud/tab_court.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_court.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -1032,7 +1078,7 @@ court = {
 }
 
 courtier = {
-	texture = "gfx/interface/hud/tab_court.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_court.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -1047,7 +1093,7 @@ noble = {
 }
 
 commoner = {
-	texture = "gfx/interface/coats_of_arms/lowborn_62.dds"
+	texture = "gfx/interface/coat_of_arms/lowborn.dds"
 	alias = { commoners lowborn }
 }
 
@@ -1106,7 +1152,7 @@ faction_military_power = {
 }
 
 council = {
-	texture = "gfx/interface/hud/tab_council.dds"
+	texture = "gfx/interface/icons/hud_maintab/maintab_council.dds"
 	framesize = { 132 108 }
 
 	frame = 3
@@ -1193,7 +1239,7 @@ promote_culture = {
 }
 
 victory = {
-	texture = "gfx/interface/icons/reports/report_war_victory.dds"
+	texture = "gfx/interface/icons/alerts_reports/report_war_victory.dds"
 	frame = 2
 	framesize = { 97 96 }
 	parent = peace
@@ -1201,14 +1247,14 @@ victory = {
 }
 
 defeat = {
-	texture = "gfx/interface/icons/reports/report_war_defeat.dds"
+	texture = "gfx/interface/icons/alerts_reports/report_war_defeat.dds"
 	frame = 2
 	framesize = { 97 96 }
 	parent = peace
 }
 
 white_peace = {
-	texture = "gfx/interface/icons/reports/report_war_white_peace.dds"
+	texture = "gfx/interface/icons/alerts_reports/report_war_white_peace.dds"
 	frame = 2
 	framesize = { 97 96 }
 	parent = peace
@@ -1243,7 +1289,7 @@ religious_head_succession_law = {
 }
 
 title_law = {
-	texture = "gfx/interface/icons/icon_title_law.dds"
+	texture = "gfx/interface/icons/title_status/icon_title_law.dds"
 	alias = { title_laws }
 	parent = law
 }
@@ -1293,7 +1339,7 @@ war_contribution = {
 }
 
 scheme_power = {
-	texture = "gfx/interface/icons/scheme_power_icon.dds"
+	texture = "gfx/interface/icons/schemes/icon_scheme_power.dds"
 }
 
 scheme_resistance = {
@@ -1303,7 +1349,7 @@ hostile_scheme_resistance = {
 }
 
 success_chance = {
-	texture = "gfx/interface/icons/success_icon.dds"
+	texture = "gfx/interface/icons/schemes/icon_scheme_success.dds"
 }
 
 critical_failure = {
@@ -1312,7 +1358,7 @@ critical_failure = {
 }
 
 secrecy = {
-	texture = "gfx/interface/icons/secrecy_icon.dds"
+	texture = "gfx/interface/icons/schemes/icon_secrecy.dds"
 }
 
 hook = {
@@ -1352,19 +1398,19 @@ manipulation = {
 pressed_claim = {
 	parent = claim
 	alias = { pressed_claims pressed pressed_claim_i }
-	texture = "gfx/interface/icons/icon_claim_pressed.dds"
+	texture = "gfx/interface/icons/title_status/icon_claim_pressed.dds"
 }
 
 unpressed_claim = {
 	parent = claim
 	alias = { unpressed_claims unpressed unpressed_claim_i }
-	texture = "gfx/interface/icons/icon_claim_unpressed.dds"
+	texture = "gfx/interface/icons/title_status/icon_claim_unpressed.dds"
 }
 
 implicit_claim = {
 	alias = { implicit_claim_i implicit_claims }
 	parent = claim
-	texture = "gfx/interface/icons/icon_claim_implicit.dds"
+	texture = "gfx/interface/icons/title_status/icon_claim_implicit.dds"
 }
 
 county_development = {
@@ -1532,7 +1578,7 @@ absolute_tribal_authority = {
 }
 
 crime = {
-	texture = "gfx/interface/icons/important_action_types/action_can_righteously_imprison.dds"
+	texture = "gfx/interface/icons/text_icons/action_can_righteously_imprison.dds"
 	alias = {crimes criminal criminals crime_i }
 }
 
@@ -1541,7 +1587,7 @@ shunned = {
 
 refuse_conversion_crime = {
 	parent = demand_conversion
-	texture = "gfx/interface/icons/important_action_types/action_can_righteously_imprison.dds"
+	texture = "gfx/interface/icons/text_icons/action_can_righteously_imprison.dds"
 	alias = { refusing_conversion_crime refused_conversion_crime }
 }
 
@@ -1637,47 +1683,58 @@ legalism = {
 }
 
 dynasty_prestige_level_0 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_00.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_00.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_1 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_00.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_00.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_2 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_01.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_01.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_3 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_01.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_01.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_4 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_02.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_02.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_5 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_02.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_02.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_6 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_03.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_03.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_7 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_03.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_03.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_8 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_04.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_04.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_9 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_04.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_04.dds"
+	shown_in_encyclopedia = no
 }
 
 dynasty_prestige_level_10 = {
-	texture = "gfx/interface/icons/icon_dynasty_prestige_05.dds"
+	texture = "gfx/interface/icons/currencies/icon_dynasty_prestige_05.dds"
+	shown_in_encyclopedia = no
 } 
 
 core_tenet = {
@@ -1692,7 +1749,7 @@ holy_war = {
 great_holy_war = {
 	alias = {great_holy_wars}
 	texture = "gfx/interface/icons/message_feed/great_holy_war.dds"
-	#texture = "gfx/interface/war_overview/holy_war_icon_started.dds"
+	#texture = "gfx/interface/icons/war_status/holy_war_icon_started.dds"
 }
 
 directed_great_holy_war = {
@@ -1709,7 +1766,7 @@ undirected_great_holy_war = {
 
 preparation_phase = {
 	texture = "gfx/interface/icons/message_feed/great_holy_war.dds"
-	texture = "gfx/interface/war_overview/holy_war_icon_prep.dds"
+	texture = "gfx/interface/icons/war_status/holy_war_icon_prep.dds"
 }
 
 war_chest = {
@@ -1718,7 +1775,12 @@ war_chest = {
 
 title_tier = {
 	texture = "gfx/interface/icons/message_feed/titles.dds"
-	alias = { rank ranks title_rank title_tiers }
+	alias = {  title_tiers }
+}
+
+title_rank = {
+	texture = "gfx/interface/icons/message_feed/titles.dds"
+	alias = { rank ranks title_ranks }
 }
 
 church_property = {
@@ -1727,7 +1789,7 @@ church_property = {
 }
 
 embarking = {
-	texture = "gfx/interface/mapitems/naval_transportation.dds"
+	texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
 	alias = { embarked embark embarkation embarked_i }
 }
 
@@ -1780,7 +1842,7 @@ cadet_branching = {
 }
 
 complete_control = {
-	alias = { completely_controls completely_control }
+	alias = { completely_controls completely_control completely_controlled }
 }
 
 complete_control_region = {
@@ -1792,7 +1854,7 @@ region = {
 }
 
 recently_disembarked = {
-	texture = "gfx/interface/mapitems/naval_transportation.dds"
+	texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
 }
 
 diplomatic_range = {
@@ -1815,11 +1877,11 @@ hungarian_invasion_casus_belli = {
 
 knight = { # Don't directly use this as [knight/knights|E] in loc, do $knight_culture_player/_plural$ or do what that key does manually with a different character
 	alias = { knights knight_i }
-	texture = "gfx/interface/icons/knight_icon_big.dds"
+	texture = "gfx/interface/icons/icon_knight.dds"
 }
 
 knight_effectiveness = {
-	texture = "gfx/interface/icons/knight_icon_big.dds"
+	texture = "gfx/interface/icons/icon_knight.dds"
 }
 
 court_physician = {
@@ -1840,7 +1902,7 @@ troop_quality = {
 }
 
 beneficiary = {
-	texture = "gfx/interface/icons/important_action_types/action_missing_ghw_beneficiary.dds"
+	texture = "gfx/interface/icons/alerts/action_missing_ghw_beneficiary.dds"
 	framesize = { 192 192 }
 	frame = 2
 	alias = { beneficiaries }
@@ -1856,27 +1918,24 @@ realm_size = {
 }
 
 voter_strength = {
-	alias = { voting_strength voting_power }
+	alias = { voting_strength voting_power vote_strength}
 }
 
 stress_level = {
 	alias = { stressed stress_levels }
-	texture = "gfx/interface/icons/icon_stress_level.dds"
-	framesize = { 60 60 }
+	texture = "gfx/interface/icons/stress/icon_stress_level.dds"
+	framesize = { 70 70 }
 	frame = 4
 }
 
 mental_break = {
 	alias = { mental_breaks }
-	texture = "gfx/interface/icons/icon_stress_gain_critical.dds"
+	texture = "gfx/interface/icons/stress/icon_stress_gain_critical.dds"
 }
 
 title_allegiance = {
 }
 
-nominate = {
-	alias = { nomination nominations nominate_heir }
-}
 
 elector = {
 	alias = { electors }
@@ -1917,8 +1976,6 @@ asexual = {
 	frame = 4
 }
 
-designated_heir = {
-}
 
 attraction = {
 	texture = "gfx/interface/icons/modifiers/love_positive.dds"
@@ -2140,9 +2197,10 @@ highlighted_text_example = { #only used in tutorial!
 	shown_in_encyclopedia = no
 }
 
-tutorial_education_trait = {
+tutorial_education_trait = { #only used in tutorial!
 	alias = { tutorial_education_trait_i }
 	texture = "gfx/interface/icons/traits/education_martial_3.dds"
+	shown_in_encyclopedia = no
 }
 
 organized = {
@@ -2173,7 +2231,7 @@ execute_reason = {
 
 movement_locked = {
 	alias = { movement_lock }
-	texture = "gfx/interface/icons/movement_locked.dds"
+	texture = "gfx/interface/icons/map_icons/movement_locked.dds"
 }
 
 extramarital_sex = {
@@ -2254,3 +2312,9 @@ modifier_contribution = {
 modifier_base_contribution = {
 	alias = { modifier_base_contributes modifier_base_contributions }
 }
+
+unreformed_pagan_combat_bonus = {}
+
+personality = {}
+
+gift = {}

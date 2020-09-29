@@ -27,7 +27,7 @@ embrace_celibacy_decision = {
 			has_trait = lifestyle_reveler
 			has_trait = seducer
 		}
-		is_available_adult = yes
+		is_available_adult_or_is_commanding = yes
 	}
 
 	is_valid = {
@@ -79,7 +79,7 @@ abandon_celibacy_decision = {
 	}
 
 	is_valid_showing_failures_only = {
-		is_available_adult = yes
+		is_available_adult_or_is_commanding = yes
 	}
 
 	is_valid = {
@@ -93,10 +93,6 @@ abandon_celibacy_decision = {
 			left_icon = root
 
 			remove_trait = celibate
-		}
-
-		stress_impact = {
-			lustful = medium_stress_impact_loss
 		}
 	}
 	
@@ -145,7 +141,7 @@ sale_of_titles_decision = {
 				chance = 2
 				modifier = {
 					add = 3
-					has_trait = am_greedy
+					has_trait = greedy
 				}
 				send_interface_toast = {
 					title = sell_titles_nickname_gained

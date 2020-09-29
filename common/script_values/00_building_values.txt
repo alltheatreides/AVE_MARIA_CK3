@@ -99,14 +99,14 @@
 @cheap_cost_base = 100
 @normal_cost_base = 150
 @expensive_cost_base = 200
-@main_cost_base = 600
+@main_cost_base = 400
 @tribal_cost_base = 75
 
 # We have four 'building cost classes', each one has a better scale than the others.
 @cheap_cost_scale_addition_per_tier = 50
 @normal_cost_scale_addition_per_tier = 75
 @expensive_cost_scale_addition_per_tier = 100
-@main_cost_scale_addition_per_tier = 200
+@main_cost_scale_addition_per_tier = 150
 @tribal_cost_scale_addition_per_tier = 25
 
 #####################
@@ -133,6 +133,17 @@
 @normal_build_speed_scale_addition_per_tier = -0.01
 @good_build_speed_scale_addition_per_tier = -0.025
 @great_build_speed_scale_addition_per_tier = -0.05
+
+########
+# Misc #
+########
+
+building_disable_inefficient_value = {
+	add = scope:holder.domain_limit
+	add = building_disable_inefficient_value_add
+}
+
+building_disable_inefficient_value_add = 5
 
 ###########################################################################################
 # Nothing below this line should need to be edited if you want to change building balance #
@@ -311,12 +322,12 @@
 
 @great_fort_level_tier_1 = @[great_fort_level_base]
 @great_fort_level_tier_2 = @[great_fort_level_tier_1 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_3 = @[great_fort_level_tier_2 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_4 = @[great_fort_level_tier_3 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_5 = @[great_fort_level_tier_4 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_6 = @[great_fort_level_tier_5 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_7 = @[great_fort_level_tier_6 + great_fort_level_scale_addition_per_tier]
-@great_fort_level_tier_8 = @[great_fort_level_tier_7 + great_fort_level_scale_addition_per_tier]
+@great_fort_level_tier_3 = @[great_fort_level_tier_2 + great_fort_level_scale_addition_per_tier + 1]
+@great_fort_level_tier_4 = @[great_fort_level_tier_3 + great_fort_level_scale_addition_per_tier + 2]
+@great_fort_level_tier_5 = @[great_fort_level_tier_4 + great_fort_level_scale_addition_per_tier + 3]
+@great_fort_level_tier_6 = @[great_fort_level_tier_5 + great_fort_level_scale_addition_per_tier + 4]
+@great_fort_level_tier_7 = @[great_fort_level_tier_6 + great_fort_level_scale_addition_per_tier + 5]
+@great_fort_level_tier_8 = @[great_fort_level_tier_7 + great_fort_level_scale_addition_per_tier + 6]
 
 @normal_advantage_tier_1 = @[normal_advantage_base]
 @normal_advantage_tier_2 = @[normal_advantage_tier_1 + normal_advantage_scale_addition_per_tier]

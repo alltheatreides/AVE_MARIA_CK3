@@ -21,6 +21,14 @@ special_succession_tanistry_trigger = {
 historical_succession_access_single_heir_succession_law_trigger = {
 	OR = {
 		has_title = title:e_byzantium
+		has_title = title:k_austria
+		AND = {
+			has_title = title:e_france
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_reformed_carolingian_empire
+			}
+		}
 		#Add any subsequent exceptions here.
 		roman_administration_tagma_title_trigger = yes
 	}

@@ -27,7 +27,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = craven
-	trait = sociable
+	trait = gregarious
 	trait = education_stewardship_3
 	
 	1020.1.1 = {
@@ -236,7 +236,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = intolerant
+	trait = zealous
 	trait = education_martial_2
 	father = 70210
 	mother = 70211
@@ -257,7 +257,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "castilian"
-	trait = honest
+	trait = just
 	father = 207510
 	mother = 204512
 	1204.4.14 = {
@@ -674,7 +674,7 @@
 	intrigue = 3
 	stewardship = 6
 
-	trait = wroth
+	trait = wrathful
 	trait = honest
 	trait = education_martial_1
 
@@ -3166,9 +3166,9 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = honest
+	trait = just
 	trait = humble
-	trait = wroth
+	trait = wrathful
 	trait = education_learning_4
 	1042.1.2 = {
 		birth = "1042.1.2"
@@ -11183,7 +11183,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "castilian"
-	trait = hypocritical
+	trait = cynical
 	trait = craven
 	trait = education_martial_2
 	father = 106060
@@ -11212,8 +11212,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = wroth
-	trait = hypocritical
+	trait = wrathful
+	trait = cynical
 	trait = education_intrigue_1
 	father = 106060
 	mother = 70068
@@ -11278,7 +11278,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = ambitious
-	trait = wroth
+	trait = wrathful
 	trait = brave
 	trait = education_martial_2
 	father = 107510
@@ -11342,7 +11342,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = chaste
-	trait = hypocritical
+	trait = cynical
 	trait = education_diplomacy_1
 	father = 107510
 	mother = 107511
@@ -11444,24 +11444,50 @@
 107590 = {
 	name = "Rodrigo" #AKA: El Cid
 	dynasty = 407
-	martial = 15
-	diplomacy = 6
-	intrigue = 3
-	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = diligent
-	trait = patient
-	trait = generous
-	trait = brave
-	trait = education_martial_4
 	father = 107600
 	mother = 107601
+
+	#Skills
+	diplomacy = 10
+	martial = 10
+	stewardship = 7
+	intrigue = 0
+	learning = 6
+	prowess = 10
+	
+	#Education
+	trait = education_martial_4
+	trait = education_martial_prowess_4	#Technologically unavailable, but it *is* El Cid.
+
+	#Personality Traits
+	trait = trusting
+	trait = diligent
+	trait = brave
+	trait = calm
+	
+	#Other Traits
+	trait = open_terrain_expert
+	trait = rough_terrain_expert
+	trait = flexible_leader
+	trait = gallant
+	trait = strategist
+	
+	sexuality = heterosexual
+	disallow_random_traits = yes
 	1043.1.1 = {
 		birth = "1043.1.1"
 	}
 	1066.1.1 = {
 		employer = 107500
+		
+		give_nickname = nick_the_campeador
+
+		effect = {
+			set_relation_potential_rival = character:106050	#Garcia Ordonez: they haven't started fighting at this point, so we just give them a little nudge.
+			set_relation_potential_rival = character:108500	#Alfonso VI: likewise, the animosity here doesn't actually materialise till Alfonso's murder of his brother Sancho II in 1071, but we give it a little nudge just the same.
+		}
 	}
 	1072.10.7 = {
 		employer = 108500
@@ -11538,8 +11564,8 @@
 	culture = "castilian"
 	trait = diligent
 	trait = honest
-	trait = hypocritical
-	trait = patient
+	trait = cynical
+	trait = calm
 	trait = education_martial_2
 	father = 107620
 	mother = 107621
@@ -11584,7 +11610,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = lazy
-	trait = wroth
+	trait = wrathful
 	trait = education_intrigue_2
 	990.1.1 = {
 		birth = "990.1.1"
@@ -12040,9 +12066,9 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
+	trait = calm
 	trait = deceitful
-	trait = hypocritical
+	trait = cynical
 	trait = education_intrigue_4
 	father = 107510
 	mother = 107511
@@ -12115,8 +12141,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = intolerant
-	trait = pretentious
+	trait = zealous
+	trait = arrogant
 	trait = deceitful
 	trait = education_intrigue_2
 	father = 107510
@@ -12147,9 +12173,9 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = mild
-	trait = wroth
-	trait = intolerant
+	trait = trusting
+	trait = wrathful
+	trait = zealous
 	trait = education_diplomacy_1
 	father = 107510
 	mother = 107511
@@ -12465,7 +12491,7 @@
 	father = 194451
 	
 	trait = education_diplomacy_2
-	trait = hypocritical
+	trait = cynical
 	
 	disallow_random_traits = yes
 
@@ -12965,7 +12991,7 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "castilian"
-	trait = wroth
+	trait = wrathful
 	trait = brave
 	trait = education_diplomacy_4
 	father = 207520
@@ -13066,7 +13092,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = honest
+	trait = just
 	trait = education_intrigue_1
 	father = 207539
 	mother = 71359
@@ -13182,7 +13208,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = honest
+	trait = just
 	trait = humble
 	trait = education_intrigue_1
 	father = 207545
@@ -13770,7 +13796,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = lunatic_1
-	trait = honest
+	trait = just
 	trait = education_intrigue_1
 	father = 457020
 	mother = 457021
@@ -13813,7 +13839,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = lazy
-	trait = hypocritical
+	trait = cynical
 	trait = education_intrigue_2
 	father = 457520
 	mother = 459511
@@ -13845,8 +13871,8 @@
 	intrigue = 7
 	stewardship = 5
 	religion = "catholic"
-	trait = fearful
-	trait = inconstant
+	trait = paranoid
+	trait = arbitrary
 	trait = deceitful
 	culture = "castilian"
 	father = 457500
@@ -13920,7 +13946,7 @@
 	culture = "castilian"
 	trait = bastard
 	trait = ambitious
-	trait = honest
+	trait = just
 	father = 457500
 	mother = 73146
 	1332.1.13 = {
@@ -14022,7 +14048,7 @@
 	culture = "castilian"
 	trait = greedy
 	trait = deceitful
-	trait = wroth
+	trait = wrathful
 	trait = honest
 	trait = education_martial_2
 	father = 457530
@@ -14069,7 +14095,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
+	trait = calm
 	trait = education_intrigue_1
 	father = 457530
 	mother = 457666
@@ -14232,7 +14258,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "castilian"
-	trait = inconstant
+	trait = arbitrary
 	father = 457550
 	mother = 458009
 	1325.1.1 = {
@@ -14356,7 +14382,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = inconstant
+	trait = arbitrary
 	trait = education_stewardship_2
 	father = 457580
 	mother = 457680
@@ -14378,7 +14404,7 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "castilian"
-	trait = intolerant
+	trait = zealous
 	trait = education_intrigue_2
 	father = 457580
 	mother = 457680
@@ -14478,7 +14504,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
+	trait = calm
 	trait = education_stewardship_2
 	father = 457540
 	mother = 460611
@@ -14591,7 +14617,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = humble
-	trait = wroth
+	trait = wrathful
 	trait = education_learning_2
 	father = 457562
 	mother = 71509
@@ -14612,7 +14638,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
+	trait = calm
 	trait = education_intrigue_2
 	father = 457650
 	mother = 457651
@@ -14990,8 +15016,8 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
-	trait = hypocritical
+	trait = calm
+	trait = cynical
 	trait = education_intrigue_1
 	father = 457660
 	mother = 457661
@@ -15015,7 +15041,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = patient
+	trait = calm
 	trait = gluttonous
 	trait = education_martial_2
 	father = 457662
@@ -15041,7 +15067,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = chaste
-	trait = patient
+	trait = calm
 	trait = education_intrigue_2
 	father = 457663
 	mother = 459525
@@ -15147,7 +15173,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = pretentious
+	trait = arrogant
 	trait = bastard
 	trait = education_intrigue_2
 	father = 457530
@@ -15223,7 +15249,7 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "castilian"
-	trait = inconstant
+	trait = arbitrary
 	trait = education_learning_3
 	1272.1.1 = {
 		birth = "1272.1.1"
@@ -15274,8 +15300,8 @@
 	religion = "catholic"
 	culture = "castilian"
 	father = 73130
-	trait = pretentious
-	trait = intolerant
+	trait = arrogant
+	trait = zealous
 	trait = bastard
 	trait = education_martial_3
 	1256.1.24 = {
@@ -15315,7 +15341,7 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = diligent
-	trait = inconstant
+	trait = arbitrary
 	trait = education_diplomacy_3
 	father = 458007
 	mother = 458008
@@ -15426,7 +15452,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "castilian"
-	trait = honest
+	trait = just
 	trait = education_learning_2
 	father = 458020
 	mother = 458010
@@ -15474,7 +15500,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "castilian"
-	trait = wroth
+	trait = wrathful
 	trait = education_stewardship_2
 	father = 458021
 	mother = 458024
@@ -15516,7 +15542,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = wroth
+	trait = wrathful
 	trait = education_martial_2
 	father = 458021
 	mother = 458024
@@ -15537,7 +15563,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "castilian"
-	trait = inconstant
+	trait = arbitrary
 	trait = education_stewardship_2
 	father = 458021
 	mother = 458024
@@ -15633,8 +15659,8 @@
 	religion = "catholic"
 	culture = "castilian"
 	trait = honest
-	trait = intolerant
-	trait = wroth
+	trait = zealous
+	trait = wrathful
 	trait = education_intrigue_1
 	father = 207510
 	mother = 204512
