@@ -236,7 +236,8 @@ on_game_start_after_lobby = {
 				roman_administration_tagma_title_trigger = yes
 			}
 			trigger_event = ave_maria_roman_administration_events.0002
-				}
+			trigger_event = ave_maria_roman_administration_events.00012
+		}
 		every_ruler = {
 			limit = {
 				any_held_title = {
@@ -245,6 +246,14 @@ on_game_start_after_lobby = {
 			}
 			trigger_event = ave_maria_roman_administration_events.0001
 			trigger_event = ave_maria_roman_administration_events.00021
+		}
+		every_ruler = {
+			limit = {
+				any_held_title = {
+					this = title:k_papal_state
+				}
+			}
+			trigger_event = ave_maria_christian_flavour.0001
 		}
 	}
 

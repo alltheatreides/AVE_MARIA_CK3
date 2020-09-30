@@ -95,6 +95,7 @@ ave_maria_roman_administration_events.0001 = {
 					}
 					scope:civilian_theme_holder = {
 						get_title = scope:the_county_to_give
+						change_government = roman_administration_civilian_government
 					}
 				}
 			}
@@ -171,7 +172,7 @@ ave_maria_roman_administration_events.00021 = {
 
 	## Create the Man at Arms Regiments
 	immediate = {
-		add_maa = cataphract
+		#add_maa = cataphract
 		spawn_army = {
 			name = "Varangian Guard"
 			men_at_arms = {
@@ -550,11 +551,11 @@ ave_maria_roman_administration_events.0007 = {
 			days = 20
 		}
 		stress_impact = {
-			outgoing = minor_stress_loss
-			lively =  minor_stress_loss
-			sociable = minor_stress_loss
-			talkative = minor_stress_loss
-			cheerful = minor_stress_loss
+			am_outgoing = minor_stress_loss
+			am_lively =  minor_stress_loss
+			am_sociable = minor_stress_loss
+			am_talkative = minor_stress_loss
+			am_cheerful = minor_stress_loss
 		}
 		ai_chance = {
 			base = 100
@@ -582,11 +583,11 @@ ave_maria_roman_administration_events.0007 = {
 			days = 20
 		}
 		stress_impact = {
-			outgoing = minor_stress_loss
-			lively =  minor_stress_loss
-			sociable = minor_stress_loss
-			talkative = minor_stress_loss
-			cheerful = minor_stress_loss
+			am_outgoing = minor_stress_loss
+			am_lively =  minor_stress_loss
+			am_sociable = minor_stress_loss
+			am_talkative = minor_stress_loss
+			am_cheerful = minor_stress_loss
 		}
 		ai_chance = {
 			base = 100
@@ -608,11 +609,11 @@ ave_maria_roman_administration_events.0007 = {
 			decline_invitation_for_character = prev
 		}
 		stress_impact = {
-			passive = minor_stress_loss
-			withdrawn = minor_stress_loss
-			reserved = minor_stress_loss
-			quiet = minor_stress_loss
-			introverted = minor_stress_loss
+			am_passive = minor_stress_loss
+			am_withdrawn = minor_stress_loss
+			am_reserved = minor_stress_loss
+			am_quiet = minor_stress_loss
+			am_introverted = minor_stress_loss
 		}
 		add_piety = -75
 		ai_chance = {
@@ -644,11 +645,11 @@ ave_maria_roman_administration_events.0007 = {
 			decline_invitation_for_character = prev
 		}
 		stress_impact = {
-			passive = minor_stress_loss
-			withdrawn = minor_stress_loss
-			reserved = minor_stress_loss
-			quiet = minor_stress_loss
-			introverted = minor_stress_loss
+			am_passive = minor_stress_loss
+			am_withdrawn = minor_stress_loss
+			am_reserved = minor_stress_loss
+			am_quiet = minor_stress_loss
+			am_introverted = minor_stress_loss
 		}
 		add_piety = -75
 		ai_chance = {
@@ -729,11 +730,11 @@ ave_maria_roman_administration_events.0008 = {
 			days = 20
 		}
 		stress_impact = {
-			outgoing = minor_stress_loss
-			lively =  minor_stress_loss
-			sociable = minor_stress_loss
-			talkative = minor_stress_loss
-			cheerful = minor_stress_loss
+			am_outgoing = minor_stress_loss
+			am_lively =  minor_stress_loss
+			am_sociable = minor_stress_loss
+			am_talkative = minor_stress_loss
+			am_cheerful = minor_stress_loss
 		}
 		ai_chance = {
 			base = 100
@@ -749,11 +750,11 @@ ave_maria_roman_administration_events.0008 = {
 			decline_invitation_for_character = prev
 		}
 		stress_impact = {
-			passive = minor_stress_loss
-			withdrawn = minor_stress_loss
-			reserved = minor_stress_loss
-			quiet = minor_stress_loss
-			introverted = minor_stress_loss
+			am_passive = minor_stress_loss
+			am_withdrawn = minor_stress_loss
+			am_reserved = minor_stress_loss
+			am_quiet = minor_stress_loss
+			am_introverted = minor_stress_loss
 		}
 		ai_chance = {
 			base = 1
@@ -790,109 +791,394 @@ ave_maria_roman_administration_events.0008 = {
 #############################################
 
 ## On gaining a new administrative title this event is triggered and loops each year until you end your office term
-ave_maria_roman_administration_events.00010 = {
+# ave_maria_roman_administration_events.00012 = {
+# 	type = character_event
+# 	hidden = yes
+
+# 	trigger = {
+# 		roman_administration_tagma_title_trigger = yes
+# 	}
+	
+# 	immediate = {
+# 		## Second year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 0
+# 				var:roman_administration_term_count = 0
+# 				# var:roman_administration_term_count < 1
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_0
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_1
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Third year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 1
+# 				var:roman_administration_term_count = 1
+# 				# var:roman_administration_term_count < 2
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_1
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_2
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Fourth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 2
+# 				var:roman_administration_term_count = 2
+# 				# var:roman_administration_term_count < 3
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_2
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_3
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Fifth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 3
+# 				var:roman_administration_term_count = 3
+# 				# var:roman_administration_term_count < 4
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_3
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_4
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Sixth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 4
+# 				var:roman_administration_term_count = 4
+# 				# var:roman_administration_term_count < 5
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_4
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_5
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## End of the sixth year and title change
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				var:roman_administration_term_count >= 5
+# 			}
+# 			remove_character_modifier = roman_administration_terms_of_office_5
+
+# 			## Give title to successor
+# 			primary_title = {
+# 				create_title_and_vassal_change = {
+# 					type = conquest
+# 					save_scope_as = change
+# 					add_claim_on_loss = yes
+# 				}
+# 				save_temporary_scope_as = title_to_inherit
+# 				current_heir = {
+# 					save_scope_as = title_heir
+# 				}
+# 				change_title_holder = {
+# 					holder = scope:title_heir
+# 					change = scope:change
+# 				}
+# 			}
+# 			resolve_title_and_vassal_change = scope:change
+
+# 			## Clear variable
+# 			remove_variable = roman_administration_term_count
+# 		}
+
+# 		## First year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				NOT = { 
+# 					has_variable = roman_administration_term_count
+# 				}
+# 			}
+# 			set_variable = { name = roman_administration_term_count value = 0 }
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_0
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+# 		# else = {
+# 		# 	set_variable = { name = roman_administration_term_count value = 0 }
+# 		# 	add_character_modifier = {
+# 		# 		modifier = roman_administration_terms_of_office_0
+# 		# 	}
+# 		# 	trigger_event = { id = ave_maria_roman_administration_events.00012 days = 365 }
+# 		# }
+# 	}
+
+# }
+
+## ON gaining an administrative title: set up the variable and visual modifier
+ave_maria_roman_administration_events.00012 = {
 	type = character_event
 	hidden = yes
 
 	trigger = {
 		roman_administration_tagma_title_trigger = yes
 	}
-	
+
 	immediate = {
-		## Second year of Office (numbering starts at 0 in code)
+	
+		## First year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				NOT = { 
+					has_variable = roman_administration_term_count
+				}
+			}
+			set_variable = { name = roman_administration_term_count value = 0 }
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_0
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00013
+				days = 365 
+			}
+		}
+	}
+
+}
+
+ave_maria_roman_administration_events.00013 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# Second year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count > 0
-				var:roman_administration_term_count = 1
-				var:roman_administration_term_count < 2
+				# var:roman_administration_term_count >= 0
+				var:roman_administration_term_count = 0
+				# var:roman_administration_term_count < 1
 			}
 			change_variable = { name = roman_administration_term_count add = 1 }
 			remove_character_modifier = roman_administration_terms_of_office_0
 			add_character_modifier = {
 				modifier = roman_administration_terms_of_office_1
+				years = 10
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00014
+				days = 365 
+			}
 		}
+	}
 
-		## Third year of Office (numbering starts at 0 in code)
+}
+
+ave_maria_roman_administration_events.00014 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# Third year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count > 1
-				var:roman_administration_term_count = 2
-				var:roman_administration_term_count < 3
+				# var:roman_administration_term_count >= 1
+				var:roman_administration_term_count = 1
+				# var:roman_administration_term_count < 2
 			}
 			change_variable = { name = roman_administration_term_count add = 1 }
 			remove_character_modifier = roman_administration_terms_of_office_1
 			add_character_modifier = {
 				modifier = roman_administration_terms_of_office_2
+				years = 10
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00015
+				days = 365 
+			}
 		}
+	}
 
-		## Fourth year of Office (numbering starts at 0 in code)
+}
+
+ave_maria_roman_administration_events.00015 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# Fourth year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count > 2
-				var:roman_administration_term_count = 3
-				var:roman_administration_term_count < 4
+				# var:roman_administration_term_count >= 2
+				var:roman_administration_term_count = 2
+				# var:roman_administration_term_count < 3
 			}
 			change_variable = { name = roman_administration_term_count add = 1 }
 			remove_character_modifier = roman_administration_terms_of_office_2
 			add_character_modifier = {
 				modifier = roman_administration_terms_of_office_3
+				years = 10
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00016
+				days = 365 
+			}
 		}
+	}
 
-		## Fifth year of Office (numbering starts at 0 in code)
+}
+
+ave_maria_roman_administration_events.00016 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# Fifth year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count > 3
-				var:roman_administration_term_count = 4
-				var:roman_administration_term_count < 5
+				# var:roman_administration_term_count >= 3
+				var:roman_administration_term_count = 3
+				# var:roman_administration_term_count < 4
 			}
 			change_variable = { name = roman_administration_term_count add = 1 }
 			remove_character_modifier = roman_administration_terms_of_office_3
 			add_character_modifier = {
 				modifier = roman_administration_terms_of_office_4
+				years = 10
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00017
+				days = 365 
+			}
 		}
+	}
 
-		## Sixth year of Office (numbering starts at 0 in code)
+}
+
+ave_maria_roman_administration_events.00017 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# Sixth year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count > 4
-				var:roman_administration_term_count = 5
-				var:roman_administration_term_count < 6
+				# var:roman_administration_term_count >= 4
+				var:roman_administration_term_count = 4
+				# var:roman_administration_term_count < 5
 			}
 			change_variable = { name = roman_administration_term_count add = 1 }
 			remove_character_modifier = roman_administration_terms_of_office_4
 			add_character_modifier = {
 				modifier = roman_administration_terms_of_office_5
+				years = 10
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00018
+				days = 365 
+			}
 		}
+	}
 
-		## End of the sixth year and title change
+}
+
+ave_maria_roman_administration_events.00018 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		# End of the sixth year and title change
 		if = {
 			limit = {
 				has_variable = roman_administration_term_count
-				var:roman_administration_term_count >= 6
+				var:roman_administration_term_count >= 5
 			}
 			remove_character_modifier = roman_administration_terms_of_office_5
 
 			## Give title to successor
 			primary_title = {
-				create_title_and_vassal_change = change
-				scope:change = {
-					set_title_and_vassal_change_type = conquest
-					set_add_claim_on_loss = yes
+				create_title_and_vassal_change = {
+					type = conquest
+					save_scope_as = change
+					add_claim_on_loss = yes
 				}
 				save_temporary_scope_as = title_to_inherit
 				current_heir = {
@@ -908,14 +1194,34 @@ ave_maria_roman_administration_events.00010 = {
 			## Clear variable
 			remove_variable = roman_administration_term_count
 		}
+	}
 
-		## First year of Office (numbering starts at 0 in code)
-		else = {
-			set_variable = { name = roman_administration_term_count value = 0 }
-			add_character_modifier = {
-				modifier = roman_administration_terms_of_office_0
+}
+
+## On losing an administrative title: remove the variable and visual modifier
+ave_maria_roman_administration_events.00019 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		roman_administration_tagma_title_trigger = yes
+	}
+
+	immediate = {
+	
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
 			}
-			trigger_event = { id = ave_maria_roman_administration_events.00010 years = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_0
+			remove_character_modifier = roman_administration_terms_of_office_1
+			remove_character_modifier = roman_administration_terms_of_office_2
+			remove_character_modifier = roman_administration_terms_of_office_3
+			remove_character_modifier = roman_administration_terms_of_office_4
+			remove_character_modifier = roman_administration_terms_of_office_5
+			 
+			## Clear variable
+			remove_variable = roman_administration_term_count
 		}
 	}
 

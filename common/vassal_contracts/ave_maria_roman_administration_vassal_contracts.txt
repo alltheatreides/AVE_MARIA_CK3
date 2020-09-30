@@ -110,6 +110,47 @@ ave_maria_roman_administration_theme_taxe = {
 			ai_liege_desire = 5
 			ai_vassal_desire = 5
 		}
+
+		ave_maria_roman_administration_theme_corruption_high = {
+			parent = ave_maria_roman_administration_theme_corruption_exuberant
+			position = { 1 0 }
+
+			tax = -0.4
+			vassal_opinion = 25
+
+			ai_liege_desire = 2
+			ai_vassal_desire = 2
+		}
+		ave_maria_roman_administration_theme_corruption_normal = {
+			
+			parent = ave_maria_roman_administration_theme_corruption_high
+			position = { 2 0 }
+
+			tax = -0.3
+
+			ai_liege_desire = 3
+			ai_vassal_desire = 3
+		}
+		ave_maria_roman_administration_theme_corruption_low = {
+			parent = ave_maria_roman_administration_theme_corruption_normal
+			position = { 3 0 }
+			
+			tax = -0.2
+			#vassal_opinion = -15
+
+			ai_liege_desire = 4
+			ai_vassal_desire = 4
+		}
+		ave_maria_roman_administration_theme_corruption_very_low = {
+			parent = ave_maria_roman_administration_theme_corruption_low
+			position = { 4 0 }
+			default = yes
+			tax = -0.1
+			#vassal_opinion = -25
+
+			ai_liege_desire = 5
+			ai_vassal_desire = 5
+		}
 	}
 }
 
