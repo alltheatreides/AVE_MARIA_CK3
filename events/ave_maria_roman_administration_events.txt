@@ -22,12 +22,15 @@ namespace = ave_maria_roman_administration_events
 ##### 2) ARMY CREATION
 ##### Creates the various armies of the tagma and strategos themes
 
-##### 3) TERMS OF OFFICE EVENTS
+##### 3) IMPERIAL CORONATION
+##### Events regarding the Imperial Coronation
+
+##### 4) TERMS OF OFFICE EVENTS
 ##### Events to track how many years of office on a particular office a character has spent and managing the succession
 ######## When inheriting a title, checks that it is a term of office title and give a variable of term count to the holder and add him to the scripted list of title holders
 
-##### 4) IMPERIAL CORONATION
-##### Events regarding the Imperial Coronation
+##### 5) MAINTENANCE
+##### Various Events regarding maintenance 
 
 #############################################
 # DYNAMIC TITLE CREATION					#
@@ -75,33 +78,39 @@ ave_maria_roman_administration_events.0001 = {
 				roman_administration_tagma_title_trigger = no
 			}
 			change_government = roman_administration_civilian_government
-			every_held_title = {
-				limit = {
-					tier = tier_county
-					NOR = {
-						this = title:c_byzantion
-						this = title:c_roman_family_1
-						is_capital_barony = yes
-					}
-				}
-				save_scope_as = the_county_to_give
-				prev = {
-					create_character = {
-						location = root.location
-						gender_female_chance = 0
-						culture = root.culture
-						faith = root.faith
-						save_scope_as = civilian_theme_holder
-					}
-					scope:civilian_theme_holder = {
-						get_title = scope:the_county_to_give
-						change_government = roman_administration_civilian_government
-					}
-				}
-			}
+			# every_held_title = {
+			# 	limit = {
+			# 		tier = tier_county
+			# 		NOR = {
+			# 			this = title:c_byzantion
+			# 			this = title:c_roman_family_1
+			# 			is_capital_barony = yes
+			# 		}
+			# 	}
+			# 	save_scope_as = the_county_to_give
+			# 	prev = {
+			# 		create_character = {
+			# 			location = root.location
+			# 			gender_female_chance = 0
+			# 			culture = root.culture
+			# 			faith = root.faith
+			# 			save_scope_as = civilian_theme_holder
+			# 		}
+			# 		scope:civilian_theme_holder = {
+			# 			get_title = scope:the_county_to_give
+			# 			change_government = roman_administration_civilian_government
+			# 		}
+			# 	}
+			# }
 			every_vassal = {
 				change_government = roman_administration_civilian_government
 			}
+		}
+		every_vassal = {
+			limit = {
+				roman_administration_tagma_title_trigger = yes
+			}
+			change_government = roman_administration_military_government
 		}
 	}
 }
@@ -112,6 +121,7 @@ ave_maria_roman_administration_events.0001 = {
 
 ## Create the tagma and the theme armies 
 
+## Tagma Armies
 ave_maria_roman_administration_events.0002 = {
 	type = character_event 				
 	hidden = yes
@@ -155,9 +165,19 @@ ave_maria_roman_administration_events.0002 = {
 			location = root.capital_province
 			origin = root.capital_province
 		}
+
+		create_character = {
+			location = root.location
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
+		}
 	}
 }
 
+## Varangian Creation
 ave_maria_roman_administration_events.00021 = {
 	type = character_event 				
 	hidden = yes
@@ -187,14 +207,14 @@ ave_maria_roman_administration_events.00021 = {
 			origin = root.capital_province
 		}
 
-		# create_character = {
-		# 	employer = root
-		# 	gender_female_chance = 0
-		# 	location = root.capital_province
-		# 	template = varangian_guard_commander_character
-		# 	save_scope_as = varangian_guard_leader
-		# 	dynasty = generate
-		# }
+		create_character = {
+			employer = root
+			gender_female_chance = 0
+			#location = root.capital_province
+			template = varangian_guard_commander_character
+			save_scope_as = varangian_guard_leader
+			dynasty = generate
+		}
 
 		# title:d_varangian_guard = {
 		# 	change_government = roman_administration_military_government
@@ -206,6 +226,11 @@ ave_maria_roman_administration_events.00021 = {
 		# scope:varangian_guard_leader = { get_title = title:d_varangian_guard }
 
 		## Do the effect on the titles
+
+		create_character = {
+			employer = root
+			template = eunuch_character
+		}
 	}
 }
 
@@ -958,7 +983,7 @@ ave_maria_roman_administration_events.0008 = {
 
 # }
 
-## ON gaining an administrative title: set up the variable and visual modifier
+## ON gaining an administrative title: set up the variable and visual modifier - First year of office
 ave_maria_roman_administration_events.00012 = {
 	type = character_event
 	hidden = yes
@@ -968,7 +993,7 @@ ave_maria_roman_administration_events.00012 = {
 	}
 
 	immediate = {
-	
+		remove_character_modifier = roman_administration_emperor_favourite
 		## First year of Office (numbering starts at 0 in code)
 		if = {
 			limit = {
@@ -990,6 +1015,7 @@ ave_maria_roman_administration_events.00012 = {
 
 }
 
+## Second year of office
 ave_maria_roman_administration_events.00013 = {
 	type = character_event
 	hidden = yes
@@ -1023,6 +1049,7 @@ ave_maria_roman_administration_events.00013 = {
 
 }
 
+## Third year of office
 ave_maria_roman_administration_events.00014 = {
 	type = character_event
 	hidden = yes
@@ -1056,6 +1083,7 @@ ave_maria_roman_administration_events.00014 = {
 
 }
 
+## Fourth year of office
 ave_maria_roman_administration_events.00015 = {
 	type = character_event
 	hidden = yes
@@ -1089,6 +1117,7 @@ ave_maria_roman_administration_events.00015 = {
 
 }
 
+## Fifth year of office
 ave_maria_roman_administration_events.00016 = {
 	type = character_event
 	hidden = yes
@@ -1122,6 +1151,7 @@ ave_maria_roman_administration_events.00016 = {
 
 }
 
+## Sixth year of office
 ave_maria_roman_administration_events.00017 = {
 	type = character_event
 	hidden = yes
@@ -1155,6 +1185,7 @@ ave_maria_roman_administration_events.00017 = {
 
 }
 
+## End of the sixth year of office
 ave_maria_roman_administration_events.00018 = {
 	type = character_event
 	hidden = yes
@@ -1198,6 +1229,11 @@ ave_maria_roman_administration_events.00018 = {
 
 }
 
+
+#############################################
+# MAINTENANCE								#
+#############################################
+
 ## On losing an administrative title: remove the variable and visual modifier
 ave_maria_roman_administration_events.00019 = {
 	type = character_event
@@ -1226,3 +1262,35 @@ ave_maria_roman_administration_events.00019 = {
 	}
 
 }
+
+## On gaining a title, if you are a vassal of the roman emperor, make sure you are of the proper government
+ave_maria_roman_administration_events.00020 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		top_liege = {
+			any_held_title = {
+				title = this:e_byzantium
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				roman_administration_tagma_title_trigger = yes
+			}
+			change_government = roman_administration_military_government
+		}
+		if = {
+			limit = {
+				roman_administration_tagma_title_trigger = no
+			}
+			change_government = roman_administration_civilian_government
+		}
+	}
+
+}
+
+## Populate the tagma

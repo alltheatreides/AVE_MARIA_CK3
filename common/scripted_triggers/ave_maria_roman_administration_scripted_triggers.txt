@@ -39,12 +39,21 @@ roman_administration_realm_law_special_crown_authority = {
 # ELECTION TRIGGERS							#
 #############################################
 roman_administration_can_vote_in_emperor_election_trigger = {
-	joined_faction = {
-		OR = {
-			faction_is_type = roman_administration_army_faction
+	OR = {
+		AND = {
+			joined_faction = {
+				OR = {
+					faction_is_type = roman_administration_army_faction
+					faction_is_type = roman_administration_bureaucracy_faction
+					faction_is_type = roman_administration_palace_faction
+				}
+			}
+			is_a_faction_leader = yes
+		}		
+		any_held_title = {
+			this = title:k_orthodox
 		}
-	}
-	is_a_faction_leader = yes
+	}	
 }
 
 #############################################
@@ -83,28 +92,28 @@ roman_administration_is_a_tagma_title_trigger = {
 
 
 ## Councillor job
-can_be_roman_empire_court_chaplain_trigger = {
-	save_temporary_scope_as = court_chaplain_check
-	$COURT_OWNER$ = { save_temporary_scope_as = basileus }
-	can_be_councillor_basics_trigger = yes
-	NOT = { has_council_position = councillor_spouse }
-	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
-	faith = $COURT_OWNER$.faith	
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-		}
-		scope:court_chaplain_check = {
-			any_held_title = {
-				this = title:k_orthodox
-			}
-		}		
-	}
-}
+# can_be_roman_empire_court_chaplain_trigger = {
+	# save_temporary_scope_as = court_chaplain_check
+	# $COURT_OWNER$ = { save_temporary_scope_as = basileus }
+	# can_be_councillor_basics_trigger = yes
+	# NOT = { has_council_position = councillor_spouse }
+	# $COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
+	# faith = $COURT_OWNER$.faith	
+	# trigger_if = {
+		# limit = {
+			# $COURT_OWNER$ = {
+				# any_held_title = {
+					# OR = {
+						# this = title:e_byzantium
+						# this = title:e_roman_empire
+					# }
+				# }
+			# }
+		# }
+		# scope:court_chaplain_check = {
+			# any_held_title = {
+				# this = title:k_orthodox
+			# }
+		# }		
+	# }
+# }

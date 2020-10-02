@@ -40,7 +40,6 @@ tagma_commander_character = {
 	}
 }
 
-
 varangian_guard_commander_character = {
 	age = { 30 45 }
 	random_traits_list = {
@@ -69,5 +68,27 @@ varangian_guard_commander_character = {
 			chance = 25
 			give_random_commander_trait_effect = yes
 		}
+	}
+}
+
+eunuch_character = {
+	age = { 25 40 }
+	gender_female_chance = 0
+	culture = scope:county.culture
+	faith = scope:county.faith
+	random_traits_list = {
+		count = 1
+		education_diplomacy_3 = {}
+		education_diplomacy_4 = {}
+		education_stewardship_3 = {}
+		education_stewardship_4 = {}
+	}
+	random_traits_list = {
+		count = 1
+		eunuch = {}
+	}
+	stewardship = {
+		min_template_decent_skill
+		max_template_decent_skill
 	}
 }

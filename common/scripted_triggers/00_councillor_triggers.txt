@@ -81,8 +81,11 @@ can_be_court_chaplain_trigger = {
 			faith = { has_doctrine = doctrine_theocracy_temporal }
 		}
 		OR = {
-			is_ruler = no
+			#is_ruler = no
 			has_government = theocracy_government
+			any_held_title = {
+				tier > tier_barony
+			}
 		}
 	}
 	trigger_if = {
@@ -90,6 +93,18 @@ can_be_court_chaplain_trigger = {
 			exists = var:escaped_imprisonment_from
 		}
 		NOT = { var:escaped_imprisonment_from = $COURT_OWNER$ }
+	}
+	trigger_if = {
+		limit = {
+			liege = { any_held_title = { this = title:e_byzantium } }
+		}
+		has_government = theocracy_government
+		any_held_title = {
+			tier > tier_barony
+		}
+		# any_held_title = {
+		# 	this = title:k_orthodox
+		# }
 	}
 }
 

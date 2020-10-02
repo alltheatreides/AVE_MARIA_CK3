@@ -18,7 +18,7 @@ roman_administration_elective = {
 		}
 		modifier = { #Imperial Dignity
 			desc = tooltip_feudal_vote_strength_emperor_tier
-			add = 3
+			add = 6
 			highest_held_title_tier = 5
 		}
 		modifier = { #Royal Dignity
@@ -56,6 +56,42 @@ roman_administration_elective = {
 			faith = scope:holder.faith
 			faith = { has_doctrine = doctrine_theocracy_lay_clergy }
 			#TODO_CD:Possible trigger checking for investiture succession?
+		}
+
+		## AVE MARIA - Factions Power Army
+		modifier = {
+			desc = tooltip_faction_vote_strength_army
+			add = 3
+			joined_faction = {
+				faction_is_type = roman_administration_army_faction
+			}
+			is_a_faction_leader = yes
+		}
+		## AVE MARIA - Factions Power Bureaucracy
+		modifier = {
+			desc = tooltip_faction_vote_strength_bureaucracy
+			add = 2
+			joined_faction = {
+				faction_is_type = roman_administration_bureaucracy_faction
+			}
+			is_a_faction_leader = yes
+		}
+		## AVE MARIA - Factions Power Palace
+		modifier = {
+			desc = tooltip_faction_vote_strength_palace
+			add = 2
+			joined_faction = {
+				faction_is_type = roman_administration_palace_faction
+			}
+			is_a_faction_leader = yes
+		}
+		## AVE MARIA - Factions Power Patriarch
+		modifier = {
+			desc = tooltip_faction_vote_strength_patriarch
+			add = 2
+			primary_title = {
+				title = this:k_orthodox
+			}
 		}
 	}
 	
@@ -205,8 +241,31 @@ roman_administration_tagma_elective = {
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
 	candidates = {
 		add = holder
-		add = holder_direct_vassals
-		add = title_dejure_vassals
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
+			}
+		} 
+		add = {
+			type = title_dejure_vassals
+			limit = {
+				age >= 20
+				is_female = no
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
+			}
+		} 
 		add = {
 			type = title_claimants
 			limit = {
@@ -214,6 +273,11 @@ roman_administration_tagma_elective = {
 				is_female = no
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
+				}
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
 				}
 			}
 		}
@@ -224,6 +288,11 @@ roman_administration_tagma_elective = {
 				is_female = no
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		}
 	}
@@ -303,8 +372,30 @@ roman_administration_civilian_administration_elective = {
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
 	candidates = {
 		add = holder
-		add = holder_direct_vassals
-		add = title_dejure_vassals
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				age >= 20
+				is_female = no
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
+			}
+		} 
+		add = {
+			type = title_dejure_vassals
+			limit = {
+				age >= 20
+				is_female = no
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
+			}
+		} 
 		add = {
 			type = title_claimants
 			limit = {
@@ -312,6 +403,11 @@ roman_administration_civilian_administration_elective = {
 				is_female = no
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
+				}
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
 				}
 			}
 		}
@@ -322,6 +418,11 @@ roman_administration_civilian_administration_elective = {
 				is_female = no
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
+				NOT = {
+					any_heir_to_title = {
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		}
 	}

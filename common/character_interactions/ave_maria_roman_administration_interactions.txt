@@ -154,6 +154,12 @@ roman_administration_favour_successor = {
 			every_vassal = {
 				limit = {
 					roman_administration_tagma_title_trigger = no
+					any_held_title = {
+						tier < tier_duchy
+					}
+					NOT = {
+						has_government = theocracy_government
+					}
 				}
 				add_to_list = characters
 			}
@@ -170,6 +176,15 @@ roman_administration_favour_successor = {
 		scope:secondary_recipient = {
 			add_unpressed_claim = scope:recipient.primary_title
 			## Add some flag so it has a better score in the election
+			add_character_modifier = roman_administration_emperor_favourite
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_fired_me
+				opinion = -10
+			}
+		}
+		scope:actor = {
+			add_tyranny = 15
 		}
 	}
 
@@ -267,6 +282,18 @@ roman_administration_fire_bureaucrat = {
 				}
 			}
 			resolve_title_and_vassal_change = scope:change
+
+			## Clear variable and modifiers
+			hidden_effect = {
+				remove_character_modifier = roman_administration_terms_of_office_0
+				remove_character_modifier = roman_administration_terms_of_office_1
+				remove_character_modifier = roman_administration_terms_of_office_2
+				remove_character_modifier = roman_administration_terms_of_office_3
+				remove_character_modifier = roman_administration_terms_of_office_4
+				remove_character_modifier = roman_administration_terms_of_office_5
+				remove_variable = roman_administration_term_count
+			}
+			
 		}
 	}
 

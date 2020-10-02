@@ -1,7 +1,7 @@
 ﻿roman_administration_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
-	dynasty_named_realms = yes
+	dynasty_named_realms = no
 
 	fallback = 1
 	
@@ -47,6 +47,10 @@
 		war_declaration_rights
 		council_rights
 		title_revocation_rights
+	}
+
+	character_modifier = {
+		levy_size = -10
 	}
 	
 	color = hsv{ 0.67 1.00 0.78 }
@@ -110,6 +114,10 @@ roman_administration_military_government = {
 		council_rights
 		title_revocation_rights
 	}
+
+	character_modifier = {
+		levy_size = -10
+	}
 	
 	color = hsv{ 0.67 1.00 0.78 }
 }
@@ -168,10 +176,15 @@ roman_administration_civilian_government = {
 	
 	vassal_contract = {
 		ave_maria_roman_administration_theme_taxe
+		ave_maria_roman_administration_theme_corruption
 		religious_rights
 		fortification_rights
 		council_rights
 		title_revocation_rights
+	}
+
+	character_modifier = {
+		levy_size = -10
 	}
 	
 	color = hsv{ 0.67 1.00 0.78 }

@@ -1051,6 +1051,14 @@ roman_administration_palace_faction = {
 
 	ai_create_score = {
 		base = 100
+		modifier = {
+			add = 1000
+			any_spouse = {
+				any_held_title = {
+					title = this:e_byzantium
+				}
+			}
+		}
 	}
 
 	ai_demand_chance = {

@@ -746,6 +746,12 @@
 			holy_order_names = {
 				{ name = "holy_order_order_of_saint_addai" }
 			}
+
+			localization = { # Utilizes the 'West Christian' Saints, shared by Catholics and Orthodox
+				# Patriarchs instead of Popes
+				ReligiousHeadName = nestorian_religious_head_title
+				ReligiousHeadTitleName = nestorian_religious_head_title_name				
+			}	
 		}
 
 		messalian = {
@@ -838,13 +844,13 @@
 
 		insular_celtic = {
 			color = { 0.5 0.5 0.3 }
-			religious_head = k_papal_state
+			#religious_head = k_papal_state
 			icon = insular_celtic
 			graphical_faith = "catholic_gfx"
 			
 			holy_site = jerusalem
 			holy_site = rome
-			holy_site = kent
+			holy_site = kent	#Though Lindisfarne was certainly more important to them, Armagh & Iona already cover the northern & western British Isles, and Canterbury is symbolic of Rome's control over the Isles as a whole.
 			holy_site = armagh
 			holy_site = iona
 
