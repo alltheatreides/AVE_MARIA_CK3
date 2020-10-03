@@ -9,54 +9,21 @@
 roman_administration_elective = {
 	elector_vote_strength = {
 		base = 1
+
+		## AVE MARIA - Emperor
 		modifier = {
-			desc = tooltip_feudal_vote_strength_parliament
-			add = 1
-			is_landed = yes
-			exists = capital_county
-			capital_county.county_opinion > 25
-		}
-		modifier = { #Imperial Dignity
-			desc = tooltip_feudal_vote_strength_emperor_tier
-			add = 6
-			highest_held_title_tier = 5
-		}
-		modifier = { #Royal Dignity
-			desc = tooltip_feudal_vote_strength_king_tier
-			add = 2
-			highest_held_title_tier = 4
-		}
-		modifier = { #Princely Dignity
-			desc = tooltip_feudal_vote_strength_duke_tier
-			add = 1
-			highest_held_title_tier = 3
-		}
-		modifier = { #Powerful Vassal
-			desc = tooltip_feudal_vote_strength_powerful_vassal
-			add = {
-				value = 1
-				if = { #Additional point if the vassal is more powerful than the current ruler (Vassal King who meets this condition will have more voting power than the Emperor himself (1+1+1+2 = 5))
-					limit = {
-						max_military_strength > scope:holder.max_military_strength
-					}
-					add = 1
-				}
+			desc = tooltip_faction_vote_strength_basileus
+			add = 4
+			primary_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}				
 			}
-			NOT = { this = scope:holder }
-			is_powerful_vassal = yes
 		}
-		modifier = { #Clerical Influence
-			desc = tooltip_feudal_vote_strength_theocrat
-			add = 1
-			NOT = { this = scope:holder }
-			OR = {
-				has_government = theocracy_government
-				has_council_position = councillor_court_chaplain
-			}
-			faith = scope:holder.faith
-			faith = { has_doctrine = doctrine_theocracy_lay_clergy }
-			#TODO_CD:Possible trigger checking for investiture succession?
-		}
+
+		## AVE MARIA - Co emperor
+
 
 		## AVE MARIA - Factions Power Army
 		modifier = {
@@ -79,7 +46,7 @@ roman_administration_elective = {
 		## AVE MARIA - Factions Power Palace
 		modifier = {
 			desc = tooltip_faction_vote_strength_palace
-			add = 2
+			add = 1
 			joined_faction = {
 				faction_is_type = roman_administration_palace_faction
 			}
@@ -88,9 +55,9 @@ roman_administration_elective = {
 		## AVE MARIA - Factions Power Patriarch
 		modifier = {
 			desc = tooltip_faction_vote_strength_patriarch
-			add = 2
+			add = 1
 			primary_title = {
-				title = this:k_orthodox
+				this = title:k_orthodox
 			}
 		}
 	}
@@ -125,9 +92,6 @@ roman_administration_elective = {
 		##########################	Holder voting pattern	##########################
 		holder_voting_pattern_feudal_elective_modifier = yes
 
-		##########################	Elector voting patterns (circumstances)	##########################
-		elector_voting_pattern_circumstances_feudal_elective_modifier = yes
-
 		##########################	Elector voting patterns (prestige/piety)	##########################
 		elector_voting_pattern_prestige_piety_feudal_elective_modifier = yes
 
@@ -136,6 +100,9 @@ roman_administration_elective = {
 
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+
+		## Elector Roman Administration Voting Pattern (favor co emperor)
+		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
@@ -144,24 +111,28 @@ roman_administration_elective = {
 			type = holder_direct_vassals
 			limit = {
 				age >= 16
+				NOT = { has_government = theocracy_government }
 			}
 		}
 		add = {
 			type = title_dejure_vassals
 			limit = {
 				age >= 16
+				NOT = { has_government = theocracy_government }
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
 				age >= 16
+				NOT = { has_government = theocracy_government }
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
 				age >= 16
+				NOT = { has_government = theocracy_government }
 			}
 		}
 	}
@@ -185,20 +156,6 @@ roman_administration_tagma_elective = {
 			add = 1
 			highest_held_title_tier = 3
 		}
-		modifier = { #Powerful Vassal
-			desc = tooltip_feudal_vote_strength_powerful_vassal
-			add = {
-				value = 1
-				if = { #Additional point if the vassal is more powerful than the current ruler (Vassal King who meets this condition will have more voting power than the Emperor himself (1+1+1+2 = 5))
-					limit = {
-						max_military_strength > scope:holder.max_military_strength
-					}
-					add = 1
-				}
-			}
-			NOT = { this = scope:holder }
-			is_powerful_vassal = yes
-		}
 		modifier = { #Clerical Influence
 			desc = tooltip_feudal_vote_strength_theocrat
 			add = 1
@@ -211,13 +168,26 @@ roman_administration_tagma_elective = {
 			faith = { has_doctrine = doctrine_theocracy_lay_clergy }
 			#TODO_CD:Possible trigger checking for investiture succession?
 		}
+
+		## If you are favoured by the emperor, higher vote power
+		modifier = {
+			desc = tooltip_faction_vote_strength_emperor_favourite
+			add = 1
+			has_character_modifier = roman_administration_emperor_favourite
+		}
 	}
 	
 	electors = {
 		add = holder
 		add = holder_direct_vassals
 		add = title_dejure_vassals
-		add = title_claimants
+		add = {
+			type = title_claimants
+			limit = {
+				is_female = no
+				age >= 20
+			}
+		}
 	}
 
 	candidate_score = {
@@ -236,65 +206,79 @@ roman_administration_tagma_elective = {
 
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+
+		## Roman Administration voting patterns (co emperor or favoured by the emperor)
+		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
 	candidates = {
-		add = holder
+		#add = holder
 		add = {
 			type = holder_direct_vassals
 			limit = {
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				age >= 20
+				is_female = no
+				NOT = { has_government = theocracy_government }
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		this = title:scope:title
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		} 
 		add = {
 			type = title_dejure_vassals
 			limit = {
+				scope:title = { save_scope_as = title_to_check }
 				age >= 20
 				is_female = no
+				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		this = title_to_check
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
+				scope:title = { save_scope_as = title_to_check }
 				age >= 20
 				is_female = no
+				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		this = title_to_check
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		}
-		add = {
-			type = holder_close_or_extended_family
-			limit = {
-				age >= 20
-				is_female = no
-				dynasty = scope:holder.dynasty
-				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
-			}
-		}
+		# add = {
+		# 	type = holder_close_or_extended_family
+		# 	limit = {
+		# 		age >= 20
+		# 		is_female = no
+		# 		dynasty = scope:holder.dynasty
+		# 		feudal_elective_potential_landless_dynastic_candidate_trigger = yes
+		# 		NOT = { has_government = theocracy_government }
+		# 		NOT = {
+		# 			any_heir_to_title = {
+		# 				roman_administration_is_a_tagma_title_trigger = yes
+		# 			}
+		# 		}
+		# 	}
+		# }
 	}
 }
 
@@ -316,31 +300,11 @@ roman_administration_civilian_administration_elective = {
 			add = 1
 			highest_held_title_tier = 3
 		}
-		modifier = { #Powerful Vassal
-			desc = tooltip_feudal_vote_strength_powerful_vassal
-			add = {
-				value = 1
-				if = { #Additional point if the vassal is more powerful than the current ruler (Vassal King who meets this condition will have more voting power than the Emperor himself (1+1+1+2 = 5))
-					limit = {
-						max_military_strength > scope:holder.max_military_strength
-					}
-					add = 1
-				}
-			}
-			NOT = { this = scope:holder }
-			is_powerful_vassal = yes
-		}
-		modifier = { #Clerical Influence
-			desc = tooltip_feudal_vote_strength_theocrat
+		## If you are favoured by the emperor, higher vote power
+		modifier = {
+			desc = tooltip_faction_vote_strength_emperor_favourite
 			add = 1
-			NOT = { this = scope:holder }
-			OR = {
-				has_government = theocracy_government
-				has_council_position = councillor_court_chaplain
-			}
-			faith = scope:holder.faith
-			faith = { has_doctrine = doctrine_theocracy_lay_clergy }
-			#TODO_CD:Possible trigger checking for investiture succession?
+			has_character_modifier = roman_administration_emperor_favourite
 		}
 	}
 	
@@ -348,7 +312,13 @@ roman_administration_civilian_administration_elective = {
 		add = holder
 		add = holder_direct_vassals
 		add = title_dejure_vassals
-		add = title_claimants
+		add = {
+			type = title_claimants
+			limit = {
+				is_female = no
+				age >= 20
+			}
+		}
 	}
 
 	candidate_score = {
@@ -367,6 +337,9 @@ roman_administration_civilian_administration_elective = {
 
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+
+		## Roman Administration voting patterns (co emperor or favoured by the emperor)
+		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
@@ -377,11 +350,12 @@ roman_administration_civilian_administration_elective = {
 			limit = {
 				age >= 20
 				is_female = no
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				NOT = { has_government = theocracy_government }
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		} 
 		add = {
@@ -389,11 +363,12 @@ roman_administration_civilian_administration_elective = {
 			limit = {
 				age >= 20
 				is_female = no
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				NOT = { has_government = theocracy_government }
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		} 
 		add = {
@@ -404,11 +379,12 @@ roman_administration_civilian_administration_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				NOT = {
-					any_heir_to_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				NOT = { has_government = theocracy_government }
+				# NOT = {
+				# 	any_heir_to_title = {
+				# 		roman_administration_is_a_tagma_title_trigger = yes
+				# 	}
+				# }
 			}
 		}
 		add = {
@@ -418,6 +394,7 @@ roman_administration_civilian_administration_elective = {
 				is_female = no
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
+				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_heir_to_title = {
 						roman_administration_is_a_tagma_title_trigger = yes
@@ -506,6 +483,9 @@ roman_administration_family_elective = {
 
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+
+		## Roman Administration voting patterns (co emperor or favoured by the emperor)
+		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.

@@ -6,20 +6,10 @@
 	fallback = 1
 	
 	can_get_government = {
-		OR = {
-			# top_liege = { 
-			# 	any_held_title = {
-			# 		OR = {
-			# 			this = title:e_byzantium
-			# 			this = title:e_roman_empire
-			# 		}
-			# 	}
-			# }
-			any_held_title = {
-				OR = {
-					this = title:e_byzantium
-					this = title:e_roman_empire
-				}
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
 			}
 		}
 	}
@@ -27,14 +17,6 @@
 	primary_holding = castle_holding
 	valid_holdings = { city_holding church_holding metropolis_constantinople_holding }
 	required_county_holdings = { }
-
-	# primary_cultures = {
-	# 	armenian
-	# 	greek
-	# 	alan
-	# 	georgian
-	# 	assyrian
-	# }
 	
 	vassal_contract = {
 		feudal_government_taxes
@@ -61,7 +43,7 @@ roman_administration_military_government = {
 	rulers_should_have_dynasty = yes
 	dynasty_named_realms = yes
 
-	# fallback = 1
+	fallback = 5
 	
 	can_get_government = {
 		roman_administration_tagma_title_trigger = yes
@@ -100,14 +82,6 @@ roman_administration_military_government = {
 			}
 		}
 	}
-
-	# primary_cultures = {
-	# 	armenian
-	# 	greek
-	# 	alan
-	# 	georgian
-	# 	assyrian
-	# }
 	
 	vassal_contract = {
 		ave_maria_roman_administration_tagma_salary
@@ -130,19 +104,19 @@ roman_administration_civilian_government = {
 	fallback = 5
 	
 	can_get_government = {
+		roman_administration_tagma_title_trigger = no
 		top_liege = {
 			any_held_title = {
-		OR = {
+				OR = {
 					this = title:e_byzantium
 					this = title:e_roman_empire
 				}
 			}
 		}
 		any_held_title = {
-			NOR = {
+			NOT = {
 				this = title:e_byzantium
-				this = title:e_roman_empire
-		}
+			}
 		}
 	}
 	
@@ -165,14 +139,6 @@ roman_administration_civilian_government = {
 			}
 		}
 	}
-
-	# primary_cultures = {
-	# 	armenian
-	# 	greek
-	# 	alan
-	# 	georgian
-	# 	assyrian
-	# }
 	
 	vassal_contract = {
 		ave_maria_roman_administration_theme_taxe

@@ -180,7 +180,7 @@
  ave_maria_roman_administration_theme_taxe_low:0 "Low Taxation"
  ave_maria_roman_administration_theme_taxe_normal:0 "Normal Taxation"
  ave_maria_roman_administration_theme_taxe_high:0 "High Taxes"
- ave_maria_roman_administration_theme_taxe_exuberant_short:0 "Exortionate"
+ ave_maria_roman_administration_theme_taxe_exuberant:0 "Exortionate Taxation"
  ave_maria_roman_administration_theme_taxe_very_low_short:0 "Very Low"
  ave_maria_roman_administration_theme_taxe_low_short:0 "Low"
  ave_maria_roman_administration_theme_taxe_normal_short:0 "Normal"
@@ -192,7 +192,7 @@
  ave_maria_roman_administration_theme_corruption_low:0 "Low Corruption"
  ave_maria_roman_administration_theme_corruption_normal:0 "Minor Corruption"
  ave_maria_roman_administration_theme_corruption_high:0 "High Corruption"
- ave_maria_roman_administration_theme_corruption_exuberant_short:0 "Criminal Corruption"
+ ave_maria_roman_administration_theme_corruption_exuberant:0 "Criminal Corruption"
  ave_maria_roman_administration_theme_corruption_very_low_short:0 "Very Low"
  ave_maria_roman_administration_theme_corruption_low_short:0 "Low"
  ave_maria_roman_administration_theme_corruption_normal_short:0 "Minor"
@@ -220,25 +220,37 @@
  ave_maria_roman_administration_tagma_succession_law:0 "Nepotism"
  ave_maria_roman_administration_family_succession_law:0 "Family Succession"
  roman_administration_tagma_elective_electors:0 "Influential Bureaucrats"
+ roman_administration_tagma_elective_electors_tooltip:0 "In order to be a valid Elector under the Nepotism Succession, a character must fulfill the following conditions:\n$EFFECT_LIST_BULLET$Have a claim on the title either from his parents, the Basileus's favor or his own desire.\n$EFFECT_LIST_BULLET$Be a direct vassal of the title.\n$EFFECT_LIST_BULLET$Be at least 20 years old."
  roman_administration_tagma_elective_candidates:0 "Great Nobles"
+ roman_administration_tagma_elective_candidates_tooltip:0 "In order to be a valid Candidate under the Nepotism Succession, a character must fulfill the following conditions:\n$EFFECT_LIST_BULLET$Have a claim on the title either from his parents, the Basileus's favor or his own desire.\n$EFFECT_LIST_BULLET$Not be the primary heir of another administrative title.\n$EFFECT_LIST_BULLET$Be at least 20 years old."
  ave_maria_roman_administration_basileus_succession_law:0 "Imperial Succession"
  roman_administration_civilian_administration_elective_electors:0 "Influential Bureaucrats"
+ roman_administration_civilian_administration_elective_electors_tooltip:0 "In order to be a valid Elector under the Nepotism Succession, a character must fulfill the following conditions:\n$EFFECT_LIST_BULLET$Have a claim on the title either from his parents, the Basileus's favor or his own desire.\n$EFFECT_LIST_BULLET$Be a direct vassal of the title.\n$EFFECT_LIST_BULLET$Be at least 20 years old."
  roman_administration_civilian_administration_elective_candidates:0 "Great Nobles"
+ roman_administration_civilian_administration_elective_candidates_tooltip:0 "In order to be a valid Candidate under the Nepotism Succession, a character must fulfill the following conditions:\n$EFFECT_LIST_BULLET$Have a claim on the title either from his parents, the Basileus's favor or his own desire.\n$EFFECT_LIST_BULLET$Not be the primary heir of another administrative title.\n$EFFECT_LIST_BULLET$Be at least 20 years old."
  roman_administration_family_elective_electors:0 "Family Head"
+ roman_administration_family_elective_electors_tooltip:0 "The Family head is the only elector in this type of succession."
  roman_administration_family_elective_candidates:0 "Potential Heirs"
+ roman_administration_family_elective_candidates_tooltip:0 "In order to be a valid Candidate under the Family Succession, a character must be part of the close family of the ruler."
  roman_administration_elective_electors:0 "Influential Notables"
+ roman_administration_elective_electors_tooltip:0 "In order to be a valid [elector|E] under the Imperial Succession, a character must fulfill one of the following conditions:\n$EFFECT_LIST_BULLET$Be the leader of the Army [faction|E].\n$EFFECT_LIST_BULLET$Be the leader of the Bureaucracy [faction|E]\n$EFFECT_LIST_BULLET$Be the leader of the Palace [faction|E]\n$EFFECT_LIST_BULLET$Be the Orthodox Patriarch."
  roman_administration_elective_candidates:0 "Potential Heirs"
-
- tooltip_faction_vote_strength_army:0 "Army Faction Leader"
- tooltip_faction_vote_strength_bureaucracy:0 "Bureaucracy Faction Leader"
- tooltip_faction_vote_strength_palace:0 "Palace Faction Leader"
- tooltip_faction_vote_strength_patriarch:0 "Patriarch Influence"
+ roman_administration_elective_candidates_tooltip:0 "In order to be a valid Candidate under the Imperial Succession, a character must fulfill one of the following conditions:\n$EFFECT_LIST_BULLET$Be a legitimate [close_family|E] member of the current ruler, who is not in line to inherit a Theocracy or Republic\n$EFFECT_LIST_BULLET$Be a [claimant|E] to the title, who is not in line to inherit a Theocracy or Republic\n$EFFECT_LIST_BULLET$Be a valid Vassal to the title."
+ tooltip_faction_vote_strength_basileus:0 "Basileus: $VALUE|=+0$"
+ tooltip_faction_vote_strength_army:0 "Army Faction Leader: $VALUE|=+0$"
+ tooltip_faction_vote_strength_bureaucracy:0 "Bureaucracy Faction Leader: $VALUE|=+0$"
+ tooltip_faction_vote_strength_palace:0 "Palace Faction Leader: $VALUE|=+0$"
+ tooltip_faction_vote_strength_patriarch:0 "Patriarch Influence: $VALUE|=+0$"
+ tooltip_faction_vote_strength_emperor_favourite:0 "Favoured by the Basileus: $VALUE|=+0$"
 
  
  ### TRAITS
- trait_crowned_basileus:0 "Basileus"
- trait_crowned_basileus_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
- trait_crowned_basileus_character_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_basileus:0 "Basileus"
+ trait_basileus_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_basileus_character_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_coemperor:0 "Co-Emperor"
+ trait_coemperor_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Co-Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ trait_basileus_character_desc:0 "[ROOT.GetCharacter.GetFullNameNoTooltip] has been crowned Co-Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
 
  ### MODIFIERS
  crowned_basileus:0 "Basileus"
@@ -261,7 +273,8 @@
  roman_administration_emperor_favourite:0 "Basileus's Favourite"
  roman_administration_emperor_favourite_desc:0 "This character has been favoured by the Basileus to be the next in line on an official post and has more chance to be elected to the function."
 
- roman_administration_fired_me:0 "Fired me from my post."
+ roman_administration_fired_me:0 "Fired me from my post"
+ roman_administration_favoured_me:0 "Favoured me"
  
  
  ### DECISIONS

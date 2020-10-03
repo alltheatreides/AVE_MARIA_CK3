@@ -74,10 +74,21 @@ ave_maria_roman_administration_events.0001 = {
 			}
 		}
 		every_vassal = {
-			limit = {
-				roman_administration_tagma_title_trigger = no
+			if = {
+				limit = {
+					roman_administration_tagma_title_trigger = no
+				}
+				change_government = roman_administration_civilian_government
 			}
-			change_government = roman_administration_civilian_government
+			create_character = {
+				employer = this
+				template = bureaucrat_character
+				save_scope_as = new_guy
+			}
+			scope:new_guy = {
+				add_unpressed_claim = prev.primary_title
+			}
+
 			# every_held_title = {
 			# 	limit = {
 			# 		tier = tier_county
@@ -107,10 +118,12 @@ ave_maria_roman_administration_events.0001 = {
 			}
 		}
 		every_vassal = {
-			limit = {
-				roman_administration_tagma_title_trigger = yes
-			}
-			change_government = roman_administration_military_government
+			if = {
+				limit = {
+					roman_administration_tagma_title_trigger = yes
+				}
+				change_government = roman_administration_military_government
+			}			
 		}
 	}
 }
@@ -167,7 +180,7 @@ ave_maria_roman_administration_events.0002 = {
 		}
 
 		create_character = {
-			location = root.location
+			employer = root
 			template = tagma_commander_character
 			save_scope_as = new_guy
 		}
@@ -184,48 +197,21 @@ ave_maria_roman_administration_events.00021 = {
 
 	## Event only happen for the Emperor at the start of the game
 	trigger = {
-		OR = {
-			has_title = title:e_byzantium
-			has_title = title:e_roman_empire			
-		}	
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
 	}
 
 	## Create the Man at Arms Regiments
 	immediate = {
-		#add_maa = cataphract
-		spawn_army = {
-			name = "Varangian Guard"
-			men_at_arms = {
-				type = house_guard
-				stacks = 50
-			}
-			men_at_arms = {
-				type = bowmen
-				stacks = 25
-			}
-			location = root.capital_province
-			origin = root.capital_province
-		}
-
 		create_character = {
 			employer = root
-			gender_female_chance = 0
-			#location = root.capital_province
 			template = varangian_guard_commander_character
 			save_scope_as = varangian_guard_leader
-			dynasty = generate
 		}
-
-		# title:d_varangian_guard = {
-		# 	change_government = roman_administration_military_government
-		# 	add_title_law = ave_maria_roman_administration_tagma_succession_law
-		# 	set_de_jure_liege_title = title:e_byzantium
-		# 	change_liege = { liege = root change = title:d_varangian_guard }
-		# }
-		## Grant title of varangian guard to the guy
-		# scope:varangian_guard_leader = { get_title = title:d_varangian_guard }
-
-		## Do the effect on the titles
 
 		create_character = {
 			employer = root
@@ -1011,6 +997,29 @@ ave_maria_roman_administration_events.00012 = {
 				days = 365 
 			}
 		}
+
+		## Give the appropriate counties associated to the job
+		if = {
+			limit = {
+				scope:title = title:d_megas_domestikos
+			}
+			root = { add_character_flag = test }
+			title:c_selymbria = {
+				create_title_and_vassal_change = {
+					type = inheritance
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				save_temporary_scope_as = title_to_inherit
+				root = {
+					save_scope_as = title_heir
+				}
+				change_title_holder = {
+					holder = scope:title_heir
+					change = scope:change
+				}
+			}
+		}
 	}
 
 }
@@ -1263,15 +1272,27 @@ ave_maria_roman_administration_events.00019 = {
 
 }
 
-## On gaining a title, if you are a vassal of the roman emperor, make sure you are of the proper government
+## On gaining/losing a title, if you are a vassal of the roman emperor, make sure you are of the proper government
+## Gaining
+# root = the new holder
+# scope:title = the title that changes hands
+# scope:previous_holder = previous holder. Might be dead
+## Losing
+# root = the old holder
+# scope:title = the title that changes hands
+# scope:new_holder = new holder.
 ave_maria_roman_administration_events.00020 = {
 	type = character_event
 	hidden = yes
 
 	trigger = {
+		scope:title = { roman_administration_is_a_tagma_title_trigger = yes }
 		top_liege = {
 			any_held_title = {
-				title = this:e_byzantium
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
 			}
 		}
 	}
@@ -1279,18 +1300,99 @@ ave_maria_roman_administration_events.00020 = {
 	immediate = {
 		if = {
 			limit = {
-				roman_administration_tagma_title_trigger = yes
+				primary_title = { roman_administration_tagma_title_trigger = yes }
 			}
 			change_government = roman_administration_military_government
 		}
 		if = {
 			limit = {
-				roman_administration_tagma_title_trigger = no
+				primary_title = { roman_administration_tagma_title_trigger = no }				
 			}
 			change_government = roman_administration_civilian_government
+		}
+		# change_government = roman_administration_military_government
+		# change_government = roman_administration_civilian_government
+	}
+
+}
+
+## When the Emperor ascends he loses all his other postings except his familial holdings
+ave_maria_roman_administration_events.00021 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		any_held_title = {
+			this = title:e_byzantium
+		}
+	}
+
+	immediate = {
+		every_held_title = {
+			limit = {
+				tier < tier_empire
+				NOT = {
+					has_title_law = ave_maria_roman_administration_family_succession_law
+				}
+				NOT = { this = title:c_byzantion }
+			}
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
+			save_temporary_scope_as = title_to_inherit
+			current_heir = {
+				save_scope_as = title_heir
+			}
+			change_title_holder = {
+				holder = scope:title_heir
+				change = scope:change
+			}
 		}
 	}
 
 }
 
-## Populate the tagma
+## When an official gains a post he loses all his other postings except his familial holdings
+ave_maria_roman_administration_events.00022 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		# OR = {
+			# roman_administration_tagma_title_trigger = yes
+		# }
+		scope:title = {
+			roman_administration_is_a_tagma_title_trigger = yes
+		}
+	}
+
+	immediate = {
+		every_held_title = {
+			limit = {
+				NOR = {
+					roman_administration_is_a_tagma_title_trigger = yes
+				}
+				NOT = {
+					has_title_law = ave_maria_roman_administration_family_succession_law
+				}
+				# Put here the exception for the official tagma capital title which should have a special flag
+			}
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
+			save_temporary_scope_as = title_to_inherit
+			current_heir = {
+				save_scope_as = title_heir
+			}
+			change_title_holder = {
+				holder = scope:title_heir
+				change = scope:change
+			}
+		}
+	}
+
+}
