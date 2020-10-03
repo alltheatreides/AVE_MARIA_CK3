@@ -51,28 +51,6 @@ ave_maria_roman_administration_events.0001 = {
 	
 	immediate = {
 		save_scope_as = roman_administration_basileus
-		every_held_title = {
-			limit = {
-				tier = tier_county
-				NOR = {
-					this = title:c_byzantion
-					this = title:c_roman_family_1
-				}
-			}
-			save_scope_as = the_county_to_give
-			prev = {
-				create_character = {
-					location = root.location
-					gender_female_chance = 0
-					culture = root.culture
-					faith = root.faith
-					save_scope_as = civilian_theme_holder
-				}
-				scope:civilian_theme_holder = {
-					get_title = scope:the_county_to_give
-				}
-			}
-		}
 		every_vassal = {
 			if = {
 				limit = {
@@ -88,31 +66,6 @@ ave_maria_roman_administration_events.0001 = {
 			scope:new_guy = {
 				add_unpressed_claim = prev.primary_title
 			}
-
-			# every_held_title = {
-			# 	limit = {
-			# 		tier = tier_county
-			# 		NOR = {
-			# 			this = title:c_byzantion
-			# 			this = title:c_roman_family_1
-			# 			is_capital_barony = yes
-			# 		}
-			# 	}
-			# 	save_scope_as = the_county_to_give
-			# 	prev = {
-			# 		create_character = {
-			# 			location = root.location
-			# 			gender_female_chance = 0
-			# 			culture = root.culture
-			# 			faith = root.faith
-			# 			save_scope_as = civilian_theme_holder
-			# 		}
-			# 		scope:civilian_theme_holder = {
-			# 			get_title = scope:the_county_to_give
-			# 			change_government = roman_administration_civilian_government
-			# 		}
-			# 	}
-			# }
 			every_vassal = {
 				change_government = roman_administration_civilian_government
 			}
@@ -124,6 +77,42 @@ ave_maria_roman_administration_events.0001 = {
 				}
 				change_government = roman_administration_military_government
 			}			
+		}
+
+		## 
+		every_vassal = {
+			if = {
+				limit = {
+					is_adult = yes
+					is_female = no
+					roman_administration_tagma_title_trigger = no
+					any_held_title = {
+						tier = tier_duchy
+					}					
+				}
+				save_scope_as = strategos
+				add_to_list = list_roman_administration_strategos			
+
+				# Giving away the titles except strategos and familial title
+				every_held_title = {
+					limit = {
+						NOT = {
+							de_jure_liege = title:k_strategos_titles
+							has_title_law = ave_maria_roman_administration_family_succession_law
+						}
+					}
+					create_character = {
+						employer = prev
+						template = bureaucrat_character
+						save_scope_as = new_guy
+					}
+					save_scope_as = title_to_give
+					scope:new_guy = {
+						get_title = scope:title_to_give
+						change_government = roman_administration_civilian_government
+					}
+				}
+			}
 		}
 	}
 }
@@ -149,34 +138,25 @@ ave_maria_roman_administration_events.0002 = {
 	}
 
 	## Scope to all the tagma and strategos commanders 
-	## Create the Man at Arms Regiments
+	## Create the Man at Arms Regiments - WRONG, no way to create MAA regiment as of writing (1.0 to 1.1) so activated through a decision for tagma leaders
 	immediate = {
-		# spawn_army = {
-		# 	name = "Scholai Tagma"
-		# 	men_at_arms = {
-		# 		type = cataphract
-		# 		stacks = 10
-		# 	}
-		# 	location = root.capital_province
-		# 	origin = root.capital_province
-		# }
-		spawn_army = {
-			name = "Tagma"
-			# levies = 0
-			men_at_arms = {
-				type = cataphract
-				stacks = 25
-			}
-			men_at_arms = {
-				type = house_guard
-				stacks = 25
-			}
-			men_at_arms = {
-				type = bowmen
-				stacks = 10
-			}
-			location = root.capital_province
-			origin = root.capital_province
+		## Create a bunch of officers and claimants to the office
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
+		}
+
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
 		}
 
 		create_character = {
@@ -190,7 +170,7 @@ ave_maria_roman_administration_events.0002 = {
 	}
 }
 
-## Varangian Creation
+## Varangian Creation for the Emperor
 ave_maria_roman_administration_events.00021 = {
 	type = character_event 				
 	hidden = yes
@@ -970,6 +950,9 @@ ave_maria_roman_administration_events.0008 = {
 # }
 
 ## ON gaining an administrative title: set up the variable and visual modifier - First year of office
+# root = the new holder
+# scope:title = the title that changes hands
+# scope:previous_holder = previous holder. Might be dead
 ave_maria_roman_administration_events.00012 = {
 	type = character_event
 	hidden = yes
@@ -1001,24 +984,23 @@ ave_maria_roman_administration_events.00012 = {
 		## Give the appropriate counties associated to the job
 		if = {
 			limit = {
-				scope:title = title:d_megas_domestikos
+				primary_title = {
+					this = title:d_megas_domestikos
+				}
+				#scope:title = title:d_megas_domestikos
 			}
-			root = { add_character_flag = test }
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
 			title:c_selymbria = {
-				create_title_and_vassal_change = {
-					type = inheritance
-					save_scope_as = change
-					add_claim_on_loss = no
-				}
-				save_temporary_scope_as = title_to_inherit
-				root = {
-					save_scope_as = title_heir
-				}
 				change_title_holder = {
-					holder = scope:title_heir
+					holder = root
 					change = scope:change
 				}
-			}
+			}	
+			resolve_title_and_vassal_change = scope:change
 		}
 	}
 
@@ -1272,7 +1254,7 @@ ave_maria_roman_administration_events.00019 = {
 
 }
 
-## On gaining/losing a title, if you are a vassal of the roman emperor, make sure you are of the proper government
+## On GAINING a TAGMA/ title, if you are a vassal of the roman emperor, make sure you are of the proper government
 ## Gaining
 # root = the new holder
 # scope:title = the title that changes hands
@@ -1304,11 +1286,39 @@ ave_maria_roman_administration_events.00020 = {
 			}
 			change_government = roman_administration_military_government
 		}
-		if = {
+		else_if = {
 			limit = {
 				primary_title = { roman_administration_tagma_title_trigger = no }				
 			}
 			change_government = roman_administration_civilian_government
+		}
+		scope:previous_holder = {
+			if = {
+				limit = {
+					primary_title = { roman_administration_tagma_title_trigger = yes }
+				}
+				change_government = roman_administration_military_government
+			}
+			else_if = {
+				limit = {
+					primary_title = { roman_administration_tagma_title_trigger = no }				
+				}
+				change_government = roman_administration_civilian_government
+			}
+		}
+		scope:new_holder = {
+			if = {
+				limit = {
+					primary_title = { roman_administration_tagma_title_trigger = yes }
+				}
+				change_government = roman_administration_military_government
+			}
+			else_if = {
+				limit = {
+					primary_title = { roman_administration_tagma_title_trigger = no }				
+				}
+				change_government = roman_administration_civilian_government
+			}
 		}
 		# change_government = roman_administration_military_government
 		# change_government = roman_administration_civilian_government
@@ -1316,8 +1326,10 @@ ave_maria_roman_administration_events.00020 = {
 
 }
 
+## On losing a TAGMA/STRATEGOS Title, make sure you are of the proper government
+
 ## When the Emperor ascends he loses all his other postings except his familial holdings
-ave_maria_roman_administration_events.00021 = {
+ave_maria_roman_administration_events.00022 = {
 	type = character_event
 	hidden = yes
 
@@ -1355,7 +1367,7 @@ ave_maria_roman_administration_events.00021 = {
 }
 
 ## When an official gains a post he loses all his other postings except his familial holdings
-ave_maria_roman_administration_events.00022 = {
+ave_maria_roman_administration_events.00023 = {
 	type = character_event
 	hidden = yes
 
@@ -1393,6 +1405,33 @@ ave_maria_roman_administration_events.00022 = {
 				change = scope:change
 			}
 		}
+	}
+
+}
+
+## When a war ends for a Tagma leader, remove his mustered flag
+ave_maria_roman_administration_events.00025 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}	
+	}
+
+	immediate = {
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_tagma_title_trigger = yes
+				}
+				remove_character_flag = mustered
+			}			
+		}		
 	}
 
 }

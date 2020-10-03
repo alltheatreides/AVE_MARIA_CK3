@@ -10,16 +10,19 @@
 # Written by Atreides
 
 # TABLE OF CONTENT:
-##### 1) ROMAN ADMINISTRATION TITLES
-##### History of the Tagma titles, Civilian Administration Titles
+##### 1) TAGMA TITLES
+##### a) History of the Tagma titles
+##### b) Give "regimental grounds" counties to the tagma
 
-##### 2) OPUS RURALIUM COMMODORUM TITLE HISTORY ADJUSTMENT
-##### Adjustment of the newly created counties titles to their historical owners in 1066
+##### 2) CIVILIAN ADMINISTRATION TITLES
+##### History of the Civilian Administration titles
+
 
 #############################################
-# ROMAN ADMINISTRATION TITLES				#
+# TAGMA TITLES								#
 #############################################
 
+##### a) COUNTY DISTRIBUTION
 ## Tagma Titles
 d_megas_domestikos = {
 	
@@ -173,7 +176,45 @@ d_regular_tagma_2 = {
 	}
 }
 
-## Civilian Administration Titles
+##### b) COUNTY DISTRIBUTION
+##### Give the tagma some counties so they can deploy their troops
+
+## Fictional guy, gave a county to allow troop spawning
+c_bizye = {
+	1066.1.1 = {
+		holder = 111114
+	}
+}
+## Fictional guy, gave a county to allow troop spawning
+c_herakleiaperinthos = {
+	1066.1.1 = {
+		holder = 111115
+	}
+}
+## Fictional guy, gave a county to allow troop spawning
+c_raidestos = {
+	1066.1.1 = {
+		holder = 111118
+	}
+}
+## Historical holder, gave a county to allow troop spawning
+c_selymbria = {
+	1066.1.1 = {
+		holder = 1746
+	}
+}
+## Fictional guy, gave a county to allow troop spawning
+c_bithynia = {
+	1066.1.1 = {
+		holder = 111117
+	}
+}
+
+
+#############################################
+# CIVILIAN ADMINISTRATION TITLES			#
+#############################################
+
 d_sakellion = {
 	
 	600.1.1 = {
@@ -256,74 +297,2401 @@ d_quaestor = {
 	}
 }
 
-##### 2) COUNTY DISTRIBUTION
-##### Give the tagma some counties so they can deploy their troops
-
-## Fictional guy, gave a county to allow troop spawning
-c_bizye = {
-	1066.1.1 = {
-		holder = 111114
-	}
-}
-## Fictional guy, gave a county to allow troop spawning
-c_herakleiaperinthos = {
-	1066.1.1 = {
-		holder = 111115
-	}
-}
-## Fictional guy, gave a county to allow troop spawning
-c_raidestos = {
-	1066.1.1 = {
-		holder = 111118
-	}
-}
-## Historical holder, gave a county to allow troop spawning
-c_selymbria = {
-	1066.1.1 = {
-		holder = 1746
-	}
-}
-## Fictional guy, gave a county to allow troop spawning
-c_bithynia = {
-	1066.1.1 = {
-		holder = 111117
-	}
-}
 
 ##### 3) ROMAN FAMILY COUNTY TITLES
 ##### Distribution of county family titles to historical characters
 
-## First family county title goes to the emperor
-c_roman_family_1 = {
+# ## First family county title goes to the emperor
+# c_roman_family_1 = {
 	
-	600.1.1 = {
+# 	600.1.1 = {
+# 		liege = "e_byzantium"
+# 		government = roman_administration_government
+# 		succession_laws = { 
+# 			ave_maria_roman_administration_family_succession_law 
+# 			# male_only_law 
+# 		}
+# 	}
+# 	1066.1.1 = {
+# 		holder = 1732
+# 	}
+# }
+
+# ## Doukas family - To Emperor half brother
+# c_roman_family_2 = {
+	
+# 	600.1.1 = {
+# 		liege = "e_byzantium"
+# 		government = roman_administration_government
+# 		succession_laws = { 
+# 			ave_maria_roman_administration_family_succession_law 
+# 			male_only_law 
+# 		}
+# 	}
+# 	1066.1.1 = {
+# 		holder = 1746
+# 	}
+# }
+
+
+#############################################
+# STRATEGOS THEME TITLES					#
+#############################################
+
+d_thrace_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}	
+	330.1.1 = {
 		liege = "e_byzantium"
-		government = roman_administration_government
-		succession_laws = { 
-			ave_maria_roman_administration_family_succession_law 
-			# male_only_law 
-		}
+		holder = 70523
+	}
+	337.5.22 = {
+		holder = 70520
+	}
+	340.4.1 = {
+		holder = 70522
+	}
+	350.2.1 = {
+		holder = 70521
+	}
+	361.11.3 = {
+		holder = 145237
+	}
+	363.6.26 = {
+		holder = 145235
+	}
+	364.2.17 = {
+		holder = 145231
+	}
+	364.3.28 = {
+		holder = 145232
+	}
+	378.8.9 = {
+		holder = 145233
+	}
+	379.1.19 = {
+		holder = 70534
+	}
+	395.1.17 = {
+		holder = 70519
+	}
+	408.5.1 = {
+		holder = 145227
+	}
+	421.2.8 = {
+		holder = 145228
+	}
+	421.9.2 = {
+		holder = 70533
+	}
+	450.7.28 = {
+		holder = 70531
+	}
+	450.8.25 = {
+		holder = 70518
+	}
+	457.1.27 = {
+		holder = 70517
+	}
+	474.1.18 = {
+		holder = 70516
+	}
+	474.11.17 = {
+		holder = 70515
+	}
+	475.1.9 = {
+		holder = 145226
+	}
+	476.8.15 = {
+		holder = 70515
+	}
+	491.4.9 = {
+		holder = 70514
+	}
+	518.7.9 = {
+		holder = 70513
+	}
+	527.8.1 = {
+		holder = 70512
+	}
+	565.11.14 = {
+		holder = 70511
+	}
+	578.10.5 = {
+			holder = 145073
+	}
+	582.8.14 = {
+		holder = 70510
+	}
+	602.11.27 = {
+			holder = 145072
+	}
+	610.10.5 = {
+			holder = 145071
+	}
+	641.2.11 = {
+		holder = 70509
+	}
+	641.4.20 = {
+			holder = 145070
+	}
+	641.10.1 = {
+		holder = 70508
+	}
+	668.7.15 = {
+		holder = 70507
+	}
+	685.9.14 = {
+		holder = 70506
+	}
+	695.11.1 = {
+		holder = 70505
+	}
+	698.11.1 = {
+		holder = 145069
+	}
+	705.8.21 = {
+		holder = 70506
+	}
+	711.11.24 = {
+			holder = 145068
+	}
+	713.6.3 = {
+		holder = 70504
+	}
+	715.11.1 = {
+		holder = 70532
+	}
+	717.3.25 = {
+		holder = 70502
+	}
+	741.6.18 = {
+		holder = 70501
+	}
+	742.7.1 = {
+		holder = 145225
+	}
+	743.11.2 = {
+		holder = 70501
+	}
+	775.9.14 = {
+		holder = 70500
+	}
+	780.9.8 = {
+		holder = 70499
+	}
+	797.8.15 = {
+		holder = 70498
+	}
+	802.10.31 = {
+		holder = 70497
+	}
+	811.7.26 = {
+		holder = 70496
+	}
+	811.10.2 = {
+		holder = 70494
+	}
+	813.7.11 = {
+		holder = 70493
+	}
+	820.12.27 = {
+		holder = 70492
+	}
+	829.10.2 = {
+		holder = 70491
+	}
+	842.1.20 = {
+		holder = 70490
+	}
+	866.9.24 = {
+		holder = 1700
+	}
+	#867.9.24 = { # The historical date, but we want the Macedonian dynasty in place at the bookmark start
+	#	holder = 1700
+	#}
+	886.8.29 = {
+		holder = 1702
+	}
+	912.5.11 = {
+		holder = 1704
+	}
+	913.6.6 = {
+		holder = 1708
+	}
+	920.12.17 = {
+		holder = 1706
+	}
+	944.12.16 = {
+		holder = 145223
+	}
+	945.1.27 = {
+		holder = 1708
+	}
+	959.11.9 = {
+		holder = 1710
+	}
+	963.3.15 = {
+		holder = 1712
+	}
+	969.12.10 = {
+		holder = 1714
+	}
+	976.1.10 = {
+		holder = 1716
+	}
+	1025.12.15 = {
+		holder = 1718
+	}
+	1028.11.15 = {
+		holder = 1720
+	}
+	1034.4.11 = {
+		holder = 1722
+	}
+	1041.12.10 = {
+		holder = 1724
+	}
+	1042.4.20 = {
+		holder = 1717
+	}
+	1042.6.11 = {
+		holder = 1726
+	}
+	1055.1.11 = {
+		holder = 1719
+	}
+	1056.8.31 = {
+		holder = 70432
+	}
+	1057.8.31 = {
+		holder = 1730
+	}
+	# 1059.11.22 = {
+	# 	holder = 1732
+	# }
+	1067.5.22 = {
+		holder = 1733
+	}
+	1068.1.1 = {
+		holder = 1734
+	}
+	1071.8.26 = {
+		holder = 1736
+	}
+	1078.3.31 = {
+		holder = 1740
+	}
+	1081.4.1 = {
+		holder = 1742
+	}
+	1118.8.15 = {
+		holder = 223023
+	}
+	1143.4.8 = {
+		holder = 215530
+	}
+	1180.9.24 = {
+		holder = 215531
+	}
+	1183.9.24 = {
+		holder = 215529
+	}
+	1185.9.12 = {
+		holder = 215500
+	}
+	1195.6.1 = {
+		holder = 215503
+	}
+	1203.7.18 = {
+		holder = 215507
+	}
+	1204.1.28 = {
+		holder = 125710
+	}
+	1204.5.16 = {
+		holder = 215674
+	}
+	1222.8.2 = {
+		holder = 125741
+	}
+	1254.11.3 = {
+		holder = 125742
+	}
+	1258.8.18 = {
+		holder = 125743
+	}
+	1261.7.25 = {
+		holder = 465527
+	}
+	1282.12.11 = {
+		holder = 465521
+	}
+	1328.5.1 = {
+		holder = 465500
+	}					
+}							
+d_strymon_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	745.1.1 = {
+		holder = 145795
+	}
+	790.1.1 = {
+		holder = 145796
+	}
+	866.9.24 = {
+		holder = 1700
+	}
+	
+	1066.1.1 = {
+		holder = 20512	#Devlitzenos Pleustes 20512
+	}
+	1089.1.1 = {
+		holder = 34586
+	}
+	1113.1.1 = {
+		holder = 34587
+	}
+	1168.1.1 = {
+		holder = 34273
+	}
+	1185.9.12 = {
+		holder = 215060
+	}
+	1186.1.1 = {
+		holder = 34273
+	}
+	1202.1.1 = {
+		holder = 34590
+	}
+	#emperors of Nicaea
+	1204.5.16 = {
+		holder = 215674
+	}
+	1222.8.2 = {
+		holder = 125741
+	}
+	1254.11.3 = {
+		holder = 125742
+	}
+	1258.8.18 = {
+		holder = 125743
+	}
+	#restoration of the Byzantine Empire
+	1261.7.25 = {
+		holder = 465527
+	}
+	1272.1.1 = {
+		holder = 465521
+	}
+	1282.12.11 = {
+	}
+	1332.2.13 = {
+		holder = 465530
+	}					
+}							
+d_aegean_islands_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	762.1.1 = {
+		holder = 145819
+	}
+	801.1.1 = {
+		holder = 145930
+	}
+	842.1.1 = {
+		holder = 145931
+	}
+	1025.1.1 = {
+		holder = 20528
+	}
+	1040.1.1 = {
+		holder = 20514
+	}
+	1097.1.1 = {
+		holder = 70402
+	}
+	1100.1.1 = {
+		holder = 70404
+	}
+	1115.1.1 = {
+		holder = 232507
+	}
+	1130.1.1 = {
+		holder = 232542
+	}
+	1146.1.2 = {
+		holder = 215019
+	}
+	1194.1.1 = {
+		holder = 34414
+	}
+	1204.5.16 = { # Collapse of Byzantine Empire
+		liege = 0
+	}
+	1207.1.1 = {
+		liege = "e_latin_empire"
+		holder = 31421
+	}
+	1227.1.1 = {
+		holder = 31422
+	}
+	1261.7.25 = {
+		liege = "k_venice"
+	}
+	1262.1.1 = {
+		holder = 31423
+	}
+	1303.1.1 = {
+		holder = 31425
+	}
+	1323.1.1 = {
+		holder = 31427
+	}					
+}							
+d_thessalonika_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	754.1.1 = {
+		holder = 145814
+	}
+	855.1.1 = {
+		holder = 145185
+	}
+	1030.1.1 = {
+		holder = 1744
+	}
+	1050.1.1 = {
+	holder = 1732
+	}
+	1060.1.1 = {
+		holder = 41308	#Nikephoros Basiliakos, strategos of Thessalonika
+	}
+	1067.5.22 = {
+		holder = 1736
+	}
+	1074.1.2 = {
+		holder = 125700
+	}
+	1078.3.31 = {
+		holder = 1742
+	}
+	1118.8.15 = {
+		holder = 223023
+	}
+	1143.4.8 = {
+		holder = 215530
+	}
+	1180.9.24 = {
+		holder = 215531
+	}
+	1183.9.24 = {
+		holder = 215529
+	}
+	1185.9.12 = {
+		holder = 215503
+	}
+	#4th crusade
+	1204.5.16 = { # Collapse of Byzantine Empire
+		liege = 0
+	}
+	1204.8.1 = {
+		liege = "e_latin_empire"
+	}
+	1204.8.1 = {
+		holder = 213523 #Bonifazio I
+	}
+	1207.9.4 = {
+		holder = 31346 #Demetrio I
+	}
+	
+	#conqued by Epirus
+	1224.1.1 = {
+		holder = 215514
+	}
+	1224.1.1 = {
+		liege = 0
+	}
+	1230.3.9 = {
+		holder = 215516
+	}
+	1237.1.1 = {
+		holder = 125711
+	}
+	1244.1.1 = {
+		holder = 125714
+	}
+	1246.1.1 = {
+		holder = 125741
+	}
+	1246.1.1 = {
+		liege = "e_byzantium"
+	}
+	1254.11.3 = {
+		holder = 125742
+	}
+	1258.8.18 = {
+		holder = 125743
+	}
+	1261.7.25 = {
+		holder = 465527
+	}
+	1282.12.11 = {
+		holder = 465521
+	}
+	1295.5.1 = {
+	holder = 465501
+	}
+	1320.10.12 = {
+		holder = 465530
+	}				
+}							
+d_thessaly_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	733.1.1 = {
+		holder = 145802
+	}
+	765.1.1 = {
+		holder = 145804
+	}
+	788.1.1 = {
+		holder = 145805
+	}
+	812.1.1 = {
+		holder = 145148
+	}
+	820.1.1 = {
+		holder = 145149
+	}
+	845.1.1 = {
+		holder = 145150
+	}
+	1060.1.1 = {
+		holder = 41303
+	}
+	1107.2.1 = {
+		holder = 34576
+	}
+	1120.1.1 = {
+		holder = 34577
+	}
+	1150.1.1 = {
+		holder = 34578
+	}
+	1176.1.1 = {
+		holder = 215013
+	}
+	1204.5.16 = { # Collapse of Byzantine Empire
+		liege = 0
+	}
+	1204.8.1 = {
+		liege = "e_latin_empire"
+	}
+	1204.8.1 = {
+		holder = 31211 #Othon I
+	}
+	1216.6.11 = {
+		liege = 0
+	}
+	1225.1.1 = {
+		holder = 31216 #Guy I
+	}
+	1263.1.1 = {
+		holder = 31217 #Jean I
+	}
+	1280.1.1 = {
+		holder = 31218 #Guillaume I
+	}
+	1287.1.1 = {
+		holder = 31223 #Guy II
+	}
+	1308.10.5 = {
+		holder = 461733 #Gauthier I
+	}
+	1311.3.15 = {
+		holder = 31225 #Roger
+	}
+	1312.1.1 = {
+		liege = "k_trinacria"
+	}
+	1312.1.1 = {
+		holder = 71753 #Manfredo
+	}
+	1317.11.19 = {
+		holder = 461510 #Gugliemo
+	}				
+}							
+d_epirus_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	766.1.1 = {
+		holder = 145799
+	}
+	865.1.1 = {
+		holder = 145180
+	}
+	1060.1.1 = {
+		holder = 1764
+	}
+	1081.10.18 = {
+		holder = 90093
+	}
+	1093.1.1 = {
+		holder = 90092
+	}
+	1098.1.1 = {
+		holder = 232512
+	}
+	1149.1.1 = {
+		holder = 215035
+	}
+	1185.9.12 = {
+		holder = 215508
+	}
+	1200.1.1 = {
+		holder = 215513
+	}
+	1203.1.2 = {
+		holder = 215514
+	}
+	1204.5.16 = {
+		liege = 0
+	}
+	1204.5.16 = {
+		holder = 215517
+	}
+	1215.1.1 = {
+		holder = 215514
+	}
+	1230.3.9 = {
+		holder = 125715
+	}
+	1268.1.1 = {
+		holder = 125726
+	}
+	1297.1.1 = {
+		holder = 125728
+	}
+	
+	1318.1.1 = {
+		holder = 31440 #Nicolo Orsini
+	}
+	1323.1.1 = {
+		holder = 31441 #Giovanni II Orsini
+	}
+	1335.1.1 = {
+		holder = 31443 #Nikephoros Orsini
+	}				
+}							
+d_dyrrachion_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	759.1.1 = {
+		holder = 145817
+	}
+	843.1.1 = {
+		liege = "k_bulgaria"
+	}
+	860.1.1 = {
+		holder = 0
+	}
+	896.1.1 = {
+		holder = 0
+	liege = 0
+	}
+	
+	1018.2.1 = {
+		liege = "e_byzantium"
+	}
+	1050.1.1 = {
+		holder = 20487
+	}
+	1060.1.1 = {
+		holder = 20488
+	}
+	1070.1.1 = {
+		holder = 90035
+	}
+	
+	1081.10.18 = {
+		holder = 42014
+	}
+	1108.1.1 = {
+		holder = 34441
+	}
+	1143.1.1 = {
+		holder = 34442
+	}
+	1168.1.1 = {
+		holder = 34281
+	}
+	1203.1.1 = {
+		holder = 34282
+	}
+	1204.5.16 = {
+		liege = "k_venice"
+	holder = 167602 # Domenico Contarini
+	}
+	1215.1.1 = {
+		holder = 0
+	}
+	1230.1.1 = {
+		liege = "k_bulgaria"
+	holder = 31160 #Ivan II
+	}
+	1241.6.24 = {
+		holder = 31165 #Koloman I
+	}
+	1246.8.1 = {
+		liege = "k_serbia"
+	}
+	1246.8.1 = {
+		holder = 34088
+	}
+	1276.1.1 = {
+		holder = 34117
+	}
+	1282.1.1 = {
+		holder = 468505
+	}
+	1321.10.29 = {
+		holder = 34122
+	}
+	1322.6.1 = {
+		holder = 468510
+	}
+	1331.11.3 = {
+		holder = 468500
+	}				
+}							
+d_cephalonia_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	766.1.1 = {
+		holder = 145799
+	}
+	865.1.1 = {
+		holder = 145180
+	}
+	1060.1.1 = {
+		holder = 1764
+	}
+	1081.10.18 = {
+		holder = 90093
+	}
+	1093.1.1 = {
+		holder = 90092
+	}
+	1098.1.1 = {
+		holder = 232512
+	}
+	1149.1.1 = {
+		holder = 215035
+	}
+	1185.9.12 = {
+		holder = 215508
+	}
+	1200.1.1 = {
+		holder = 215513
+	}
+	1203.1.2 = {
+		holder = 215514
+	}
+	1204.5.16 = {
+		liege = 0
+	}
+	1204.5.16 = {
+		holder = 215517
+	}
+	1215.1.1 = {
+		holder = 215514
+	}
+	1230.3.9 = {
+		holder = 125715
+	}
+	1268.1.1 = {
+		holder = 125726
+	}
+	1297.1.1 = {
+		holder = 125728
+	}
+	
+	1318.1.1 = {
+		holder = 31440 #Nicolo Orsini
+	}
+	1323.1.1 = {
+		holder = 31441 #Giovanni II Orsini
+	}
+	1335.1.1 = {
+		holder = 31443 #Nikephoros Orsini
+	}				
+}							
+d_athens_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}		
+	867.1.1 = { change_development_level = 10 }
+	1066.1.1 = { change_development_level = 15 }
+	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	733.1.1 = {
+		holder = 145802
+	}
+	765.1.1 = {
+		holder = 145804
+	}
+	788.1.1 = {
+		holder = 145805
+	}
+	812.1.1 = {
+		holder = 145148
+	}
+	820.1.1 = {
+		holder = 145149
+	}
+	845.1.1 = {
+		holder = 145150
+	}
+	1060.1.1 = {
+		holder = 41303
+	}
+	1107.2.1 = {
+		holder = 34576
+	}
+	1120.1.1 = {
+		holder = 34577
+	}
+	1150.1.1 = {
+		holder = 34578
+	}
+	1176.1.1 = {
+		holder = 215013
+	}
+	1204.5.16 = { # Collapse of Byzantine Empire
+		liege = 0
+	}
+	1204.8.1 = {
+		liege = "e_latin_empire"
+	}
+	1204.8.1 = {
+		holder = 31211 #Othon I
+	}
+	1216.6.11 = {
+		liege = 0
+	}
+	1225.1.1 = {
+		holder = 31216 #Guy I
+	}
+	1263.1.1 = {
+		holder = 31217 #Jean I
+	}
+	1280.1.1 = {
+		holder = 31218 #Guillaume I
+	}
+	1287.1.1 = {
+		holder = 31223 #Guy II
+	}
+	1308.10.5 = {
+		holder = 461733 #Gauthier I
+	}
+	1311.3.15 = {
+		holder = 31225 #Roger
+	}
+	1312.1.1 = {
+		liege = "k_trinacria"
+	}
+	1312.1.1 = {
+		holder = 71753 #Manfredo
+	}
+	1317.11.19 = {
+		holder = 461510 #Gugliemo
+	}				
+}							
+d_achaia_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}
+	330.1.1 = {
+		liege = e_byzantium
+	}
+	736.1.1 = {
+		holder = 145807
+	}
+	775.1.1 = {
+		holder = 145808
+	}
+	865.1.1 = {
+		holder = 145182
+	}
+	1060.1.1 = {
+		holder = 1766
+	}
+	1089.1.1 = {
+		holder = 232504
+	}
+	1107.1.1 = {
+		holder = 231057
+	}
+	1151.1.1 = {
+		holder = 215010
+	}
+	1204.5.16 = { # Collapse of Byzantine Empire
+		liege = 0
+	}
+	1204.8.1 = {
+		liege = e_latin_empire
+	}
+	1204.8.1 = {
+		holder = 31334 #Guillaume I
+	}
+	1210.1.1 = {
+		holder = 31336 #Geoffory I
+	}
+	1216.6.11 = {
+		liege = 0
+	}
+	1218.9.1 = {
+		holder = 31337 #Geoffory II
+	}
+	1246.5.6 = {
+		holder = 31338 #Guillaume II
+	}
+	1278.1.4 = {
+		liege = k_sicily
+	}
+	1278.1.14 = {
+		holder = 455406 #Charles I d'Anjou
+	}
+	1285.1.7 = {
+		holder = 461710 #Charles II d'Anjou
+	}
+	1289.1.1 = {
+		holder = 31103 #Floris I d'Avesnes
+	}
+	1297.1.23 = {
+		holder = 31341 #Isabelle I
+	}
+	1301.1.1 = {
+		holder = 462691 #Phillipe I
+	}
+	1302.8.31 = {
+		liege = k_naples
+	}
+	1307.1.1 = {
+		holder = 461712 #Phillipe II
+	}
+	1313.1.1 = {
+		holder = 31344 #Louis I
+	}
+	1316.8.2 = {
+		holder = 31343 #Mathilda
+	}
+	1318.1.1 = {
+		holder = 455910 #Eudes
+	}
+	1320.1.1 = {
+		holder = 455650 #Louis II
+	}
+	1322.1.1 = {
+		holder = 461721 #Jean I
+	}
+	1336.1.2 = {
+		holder = 461718 #Robert I
+	}						
+}							
+d_krete_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	752.1.1 = {
+		holder = 145812
+	}
+	827.1.1 = {
+		liege = 0
+		holder = 159524 # Umar I
+	}
+	855.1.1 = {
+		holder = 159525 # Shu'ayb I
+	}
+	880.1.1 = {
+		holder = 159526 # Umar II
+	}
+	895.1.1 = {
+		holder = 159527 # Muhammad I
+	}
+	910.1.1 = {
+		holder = 159528 # Yusuf I
+	}
+	915.1.1 = {
+		holder = 159530 # Ali I
+	}
+	925.1.1 = {
+		holder = 159529 # Ahmad I
+	}
+	940.1.1 = {
+		holder = 159531 # Shu'ayb II
+	}
+	943.1.1 = {
+		holder = 159532 # Ali II
+	}
+	949.1.1 = {
+		holder = 159533 # Abd-al-Aziz I
+	}
+	964.1.1 = {
+		holder = 1712 # Nikephoros Phokas
+	}
+	1057.1.1 = {
+		holder = 20516
 	}
 	1066.1.1 = {
-		holder = 1732
-	}
-}
-
-## Doukas family - To Emperor half brother
-c_roman_family_2 = {
-	
-	600.1.1 = {
 		liege = "e_byzantium"
-		government = roman_administration_government
+	}
+	1093.1.1 = {
+		holder = 1781
+	}
+	1137.1.1 = {
+		holder = 93453
+	}
+	1145.1.1 = {
+		holder = 93454
+	}
+	1167.1.1 = {
+		holder = 215028
+	}
+	
+	#4th crusade
+	1204.5.16 = {
+		liege = "k_venice"
+	}
+	1204.5.16 = {
+		holder = 31403 #Enrico de Candia
+	}
+	1211.1.1 = {
+		holder = 32120 #Pietro Ziani
+	}
+	1229.3.13 = {
+		holder = 32124 #Iacopo Tiepolo
+	}
+	1249.7.19 = {
+		holder = 32125 #Marino Morosini
+	}
+	1253.1.1 = {
+		holder = 32126 #Reniero Zeno
+	}
+	1268.7.7 = {
+		holder = 32127 #Lorenzo Tiepolo
+	}
+	1275.8.15 = {
+		holder = 32128 #Iacopo Contarini
+	}
+	1280.3.6 = {
+		holder = 32129 #Giovanni Dandalo
+	}
+	1289.11.2 = {
+		holder = 32130 #Pietro Gradenigo
+	}
+	1311.8.13 = {
+		holder = 32131 #Marino Zorzi
+	}
+	1312.7.3 = {
+		holder = 32132 #Giovannia Soranza
+	}
+	1328.12.31 = {
+		holder = 463600 #Francesco Dandalo
+	}					
+}	
+d_cyprus_strategos = {							
+	330.1.1 = {						
+		liege = "e_byzantium"					
+		government = roman_administration_military_government					
+		succession_laws = { 					
+			ave_maria_roman_administration_tagma_succession_law				
+			male_only_law 				
+		}					
+		realm_laws = {					
+			ave_maria_roman_administration_realm_law_military				
+		}					
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	688.1.1 = {
+		liege = 0
+		holder = 0
+	}
+	965.1.1 = {
+		liege = "e_byzantium"
+	}
+	1060.1.1 = {
+		holder = 20563
+	}
+	1075.1.1 = {
+		holder = 34348
+	}
+	1091.1.1 = {
+		holder = 34429
+	}
+	1094.1.1 = {
+		holder = 34348
+	}
+	1118.1.1 = {
+		holder = 34344
+	}
+	1150.1.1 = {
+		holder = 34345
+	}
+	1165.1.1 = {
+		holder = 34275
+	}
+	1172.1.1 = {
+		holder = 34347
+	}
+	
+	1185.9.12 = {
+		liege = 0
+		holder = 223020
+		
+	}
+	1191.5.1 = {
+		holder = 204510
+	}
+	
+	1192.5.3 = {
+		liege = "k_cyprus"
+	}
+	1192.5.3 = {
+		holder = 223500 #Guy of Lusignan
+	}
+	1194.4.1 = {
+		holder = 223505 #Amalric II of Jerusalem / Amalric II of Lusignan
+	}
+	1205.4.1 = {
+		holder = 138018 # Hugh I of Cyprus / Huguhes Ier de Lusignan
+	}
+	1218.1.10 = {
+		holder = 138020 # Henri I of Cyprus / de Lusignan
+	}
+	1254.1.18 = {
+		holder = 138022 # Hugues II de Chypre
+	}
+	1267.12.5 = {
+		holder = 461905 #Hugues III of Cyprus
+	}
+	1284.3.24 = {
+		holder = 138023 # John/Jean I of Cyprus
+	}
+	1285.5.20 = {
+		holder = 138024 # Henri II of Cyprus
+	}
+	1306.4.26 = {
+		holder = 461916 #Amaury II Prince of Tyr Regent of Cyprus and Titular Regent of Jerusalem
+	}
+	1310.6.5 = {
+		holder = 138024 # Henri II of Cyprus
+	}
+	1324.8.31 = {
+		holder = 461900 # Hugues IV of Cyprus
+	}
+	1359.10.10 = {
+		holder = 461910 #Peter I of Cyprus
+	}
+	1369.1.17 = {
+		holder = 461912 #James I of Cyprus
+	}					
+}	
+d_opsikion_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
 		succession_laws = { 
-			ave_maria_roman_administration_family_succession_law 
+			ave_maria_roman_administration_civilian_administration_succession_law 
 			male_only_law 
 		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	758.1.1 = {
+		holder = 145826
+	}
+	855.1.1 = {
+		holder = 145111
+	}
+	1060.1.1 = {
+		holder = 20527
+	}
+	1071.8.26 = {
+		holder = 1740
+	}
+	1078.3.31 = {
+		liege = "k_rum"
+		holder = 41701
+	}
+	#1st crusade takes Nikaea
+	1097.7.19 = {
+		liege = "e_byzantium"
+		holder = 1742
+	}
+	1118.8.15 = {
+		holder = 1762
+	}
+	1143.10.1 = {
+		holder = 215504
+	}
+	1160.1.1 = {
+		holder = 215670
+	}
+	1190.1.2 = {
+		holder = 215674
+	}
+	1222.8.2 = {
+		holder = 125741
+	}
+	1254.11.3 = {
+		holder = 125742
+	}
+	1258.8.18 = {
+		holder = 125743
+	}
+	1261.7.25 = {
+		holder = 465527
+	}
+	1282.12.11 = {
+		holder = 465521
+	}
+	#The Ottomans arrive
+	1310.1.1 = {
+		liege = "k_ottoman"
+	}
+	1310.1.1 = {
+		holder = 71841
+	}
+	1332.1.1 = {
+		holder = 476500
+	}
+			
+}				
+d_ephese_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}		
+	867.1.1 = {	change_development_level = 7 }
+	1066.1.1 = { change_development_level = 11 }
+	
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	750.1.1 = {
+		holder = 145830
+	}
+	792.1.1 = {
+		holder = 145831
+	}
+	847.1.1 = {
+		holder = 145194
+	}
+	1060.1.1 = {
+		holder = 42003
+	}
+	1070.1.1 = {
+		holder = 20518
+	}
+	1081.1.1 = {
+		liege = "k_rum"
+		holder = 34262
+	}
+	1092.1.1 = {
+		holder = 34264
+	}
+	1095.1.1 = {
+		liege = "e_byzantium"
+		holder = 20518
+	}
+	1108.1.1 = {
+		holder = 215509
+	}
+	1166.1.16 = {
+		holder = 215526
+	}
+	1180.1.2 = {
+		holder = 34276
+	}
+	1199.1.1 = {
+		holder = 34277
+	}
+	1202.1.1 = {
+		holder = 215000
+	}
+	1261.1.1 = {
+		holder = 34283
+	}
+	1279.1.1 = {
+		holder = 34286
+	}
+	1308.1.1 = {
+		liege = "k_saruhan"
+		holder = 71871
+	}
+	1310.1.1 = {
+		holder = 71870
+	}	
+}				
+d_thracesia_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	755.1.1 = {
+		holder = 145841
+	}
+	792.7.20 = {
+		holder = 145842
+	}
+	847.1.1 = {
+		holder = 145116
+	}
+	1060.1.1 = {
+		holder = 20526
+	}
+	1077.1.1 = {
+		liege = "k_rum"
+		holder = 3046
+	}
+	1086.1.1 = {
+		holder = 41701
+	}
+	1099.1.1 = {
+		liege = "e_byzantium"
+		holder = 1742
+	}
+	1118.8.15 = {
+		holder = 223023
+	}
+	1143.4.8 = {
+		holder = 215530
+	}
+	#battle of Myriokephalon
+	1176.9.17 = {
+		liege = "k_rum"
+		holder = 225000
+	}
+	1192.1.1 = {
+		holder = 225002
+	}
+	1196.1.1 = {
+		holder = 225004
+	}
+	1204.1.1 = {
+		holder = 34187
+	}
+	1205.1.1 = {
+		holder = 225002
+	}
+	1211.1.1 = {
+		holder = 34188
+	}
+	1220.1.1 = {
+		holder = 34189
+	}
+	1237.1.1 = {
+		holder = 34190
+	}
+	1246.1.1 = {
+		holder = 34191
+	}
+	1248.1.1 = {
+		holder = 34192
+	}
+	1249.1.1 = {
+		holder = 34193
+	}
+	1257.1.1 = {
+		holder = 34192
+	}
+	1265.1.1 = {
+		holder = 34194
+	}
+	1284.1.1 = {
+		holder = 34195
+	}
+	1296.1.1 = {
+		holder = 34196
+	}
+	1300.1.1 = {
+		liege = "k_germiyan"
+		holder = 71867
+	}
+	1327.1.1 = {
+		holder = 71868
+	}		
+}				
+d_optimatoi_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}		
+	867.1.1 = {	change_development_level = 7 }
+	1066.1.1 = { change_development_level = 11 }
+	
+	330.1.1={
+		liege="e_byzantium"
+	}
+	752.1.1={
+		holder=145827
+	}
+	855.1.1={
+		holder=145191
+	}
+	1060.1.1= {
+		# holder=1746
+		holder=0
+	}
+	1071.8.26={
+		holder=1740
+	}
+	1078.3.31={
+	
+		holder=0
+	}
+	1095.1.1={
+		holder=1742
+	}
+	1118.8.15={
+		holder=1762
+	}
+	1143.10.1={
+		holder=215504
+	}
+	1160.1.1={
+		holder=215670
+	}
+	1190.1.2={
+		holder=215674
+	}
+	1204.5.16 = {
+		#liege = "e_nicaea"
+	}
+	1222.8.2={
+		holder=125741
+	}
+	1254.11.3={
+		holder=125742
+	}
+	1258.8.18={
+		holder=125743
+	}
+	1261.7.25={
+		liege = "e_byzantium"
+		holder=465527
+	}
+	1282.12.11={
+		holder=465521
+	}
+	#The Ottomans arrive
+	
+	1310.1.1={
+		holder=0
+	}	
+}				
+d_bucellaria_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}
+	753.1.1={
+		liege = "e_byzantium"
+		holder=145839
+	}
+	855.1.1={
+		holder=145115
+	}
+	1060.1.1= {
+		holder=1742
+	}
+	#Seljuks
+	1077.1.1= {
+		holder = 0
+	}			
+}				
+d_cilicia_strategos = {			
+	330.1.1 = {		
+		liege = "e_byzantium"	
+		government = roman_administration_military_government	
+		succession_laws = { 	
+			ave_maria_roman_administration_tagma_succession_law
+			male_only_law 
+		}	
+		realm_laws = {	
+			ave_maria_roman_administration_realm_law_military
+		}	
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	637.1.1 = {
+		holder = 0
+		liege = 0
+	}
+	786.1.1 = {
+		liege = "e_arabia"
+		holder = 146040
+	}
+	805.1.1 = {
+		holder = 146041
+	}
+	824.1.1 = {
+		holder = 159729
+	}
+	852.1.1 = {
+		holder = 163135
+	}
+	862.1.1 = {
+		holder = armenian.000084
+	}
+	962.1.1 = {
+		liege = "e_byzantium"
+	}
+	1060.1.1 = {
+		holder = 20559
+	}
+	1071.8.26 = {
+		liege = 0
+	}
+	1074.1.1 = {
+		holder = 90040
+	}
+	1080.1.1 = {
+		holder = 232561 #Roupen I Rubenid
+	}
+	1095.1.1 = {
+		holder = 232563 #Gosdantin I Rubenid
+	}
+	1102.1.25 = {
+		holder = 232564 #Thoros I Rubenid
+	}
+	1129.1.1 = {
+		holder = 232565 #Gosdantin II Rubenid
+	}
+	1130.1.1 = {
+		holder = 223012 #Levon I Rubenid
+	}
+	1137.1.1 = {
+		liege = "e_byzantium"
+	}
+	1140.2.14 = {
+		holder = 223010 #Stepané I Rubenid
+	}
+	1145.1.1 = {
+		holder = 223014 #Thoros II Rubenid
+	}
+	1151.1.1 = {
+		liege = 0
+	}
+	1169.1.1 = {
+		holder = 232569 #Roupen II Rubenid
+	}
+	1170.1.1 = {
+		holder = 232571 #Mleh Rubenid
+	}
+	1175.1.16 = {
+		holder = 223003 #Roupen III Rubenid
+	}
+	1186.1.1 = {
+		holder = 223000 #Levon II Rubenid
+	}
+	1199.1.1 = {
+		liege = "k_armenia"
+	}
+	1219.5.2 = {
+		holder = 30998 #Zabel I Rubenid
+	}
+	1226.1.1 = {
+		holder = 31830 #Hethun I
+	}
+	1270.10.28 = {
+		holder = 461802 #Levon II
+	}
+	1289.1.1 = {
+		holder = 31857 #Hethum II
+	}
+	1293.1.1 = {
+		holder = 461801 #Thoros I
+	}
+	1294.1.1 = {
+		holder = 31857 #Hethum II
+	}
+	1296.1.1 = {
+		holder = 31860 #Smbat I
+	}
+	1298.1.1 = {
+		holder = 31879 #Gosdantin I
+	}
+	1299.1.1 = {
+		holder = 31857 #Hethum II
+	}
+	1305.1.1 = {
+		holder = 31878 #Levon III
+	}
+	1307.1.1 = {
+		holder = 461803 #Oshim I
+	}
+	1320.7.20 = {
+		holder = 461800 #Levon IV
+	}	
+}			
+d_cibyrrhaeot_strategos = {			
+	330.1.1 = {		
+		liege = "e_byzantium"	
+		government = roman_administration_military_government	
+		succession_laws = { 	
+			ave_maria_roman_administration_tagma_succession_law
+			male_only_law 
+		}	
+		realm_laws = {	
+			ave_maria_roman_administration_realm_law_military
+		}	
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	751.1.1 = {
+		holder = 145834
+	}
+	780.1.1 = {
+		holder = 70494
+	}
+	813.7.11 = {
+		holder = 0
+	}
+	860.1.1 = {
+		holder = 145196
+	}
+	1060.1.1 = {
+		holder = 20502
+	}
+	1072.1.1 = {
+		holder = 90090
+	}
+	1078.1.1 = {
+		holder = 232531
+	}
+	1090.1.1 = {
+	liege = "k_rum"
+	holder = 34262
+	}
+	1092.1.1 = {
+		holder = 34264
+	}
+	1093.1.1 = {
+	liege = "e_byzantium"
+	holder = 232531
+	}
+	1136.1.1 = {
+		holder = 34382
+	}
+	1156.3.31 = {
+		holder = 34387
+	}
+	1185.9.12 = {
+		holder = 215025
+	}
+	1230.1.1 = {
+	liege = "k_rum"
+	}
+	1230.1.1 = {
+		holder = 34189
+	}
+	1237.1.1 = {
+		holder = 34190
+	}
+	1245.1.1 = {
+		holder = 34190
+	}
+	1246.1.1 = {
+		holder = 34191
+	}
+	1280.1.1 = {
+		holder = 34195
+	}
+	1300.1.1 = {
+		liege = "k_tekke"
+	holder = 71886
+	}
+	1324.1.1 = {
+		holder = 71887
+	}
+	1327.1.1 = {
+		holder = 476400
+	}
+}			
+d_anatolia_strategos = {			
+	330.1.1 = {		
+		liege = "e_byzantium"	
+		government = roman_administration_military_government	
+		succession_laws = { 	
+			ave_maria_roman_administration_tagma_succession_law
+			male_only_law 
+		}	
+		realm_laws = {	
+			ave_maria_roman_administration_realm_law_military
+		}	
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
+	}
+	750.1.1 = {
+		holder = 145134
+	}
+	790.1.1 = {
+		holder = 145135
+	}
+	840.1.1 = {
+		holder = 145136
+	}
+	860.1.1 = {
+		holder = 145137
+	}
+	1060.1.1 = {
+		holder = 1734
+	}
+	1072.8.1 = {
+		holder = 1740
+	}
+	1077.1.1 = {
+		liege = 0
+		holder = 0
+	}
+}			
+d_cappadocia_strategos = {			
+	330.1.1 = {		
+		liege = "e_byzantium"	
+		government = roman_administration_military_government	
+		succession_laws = { 	
+			ave_maria_roman_administration_tagma_succession_law
+			male_only_law 
+		}	
+		realm_laws = {	
+			ave_maria_roman_administration_realm_law_military
+		}	
+	}		
+	330.1.1={
+		liege = "e_byzantium"
+	}
+	823.1.2 = {
+		holder = 302341 #fictional Alexandros Maleios
+	}
+	859.7.16 = {
+		holder = 302342 #fictional Alexios Maleios
+	}
+	893.9.11 = {
+		holder = 302344 #fictional Matthaois Maleios
+	}
+	
+	#Senekerim-Hovhannes Artsruni
+	1022.1.1 = {
+		holder = 41576 #Senekerim-Hovhannes Artsruni (SHA)
+	}
+	1026.1.1 = {
+		holder = 41578 #Son of SHA
+	}
+	1050.1.2 = {
+		holder = 41579 #Granddaughter of SHA
+	}
+	
+	#k_rum
+	1077.1.1 = {
+		holder = 0
+	}
+}			
+d_charsianon_strategos = {			
+	330.1.1 = {		
+		liege = "e_byzantium"	
+		government = roman_administration_military_government	
+		succession_laws = { 	
+			ave_maria_roman_administration_tagma_succession_law
+			male_only_law 
+		}	
+		realm_laws = {	
+			ave_maria_roman_administration_realm_law_military
+		}	
+	}	
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	767.1.1 = {
+		holder = 145823
+	}
+	845.1.1 = {
+		holder = 145144
 	}
 	1066.1.1 = {
-		holder = 1746
+		holder = 20534
 	}
-}
+	1067.1.1 = {
+		holder = 20536
+	}
+	1071.8.26 = {
+		liege = 0
+		holder = 34220
+	}
+	1074.1.1 = {
+		liege = "e_byzantium"
+		holder = 1742
+	}
+	1077.1.1 = {
+		holder = 0
+	}
+	1336.1.1 = {
+		liege = k_eretnid
+		holder = 71864
+	}
+	
+}	
+d_paphlagonia_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	759.1.1 = {
+		holder = 145838
+	}
+	835.1.1 = {
+		holder = 145164
+	}
+	1060.1.1 = {
+		holder = 20537
+	}
+	#Seljuks
+	1077.1.1 =
+		
+	{
+		liege = "k_rum"
+		holder = 3046
+	}
+	1086.1.1 = {
+		holder = 41701
+	}
+	#First Crusade
+	1097.6.19 = {
+		liege = "e_byzantium"
+	}
+	1097.6.19 = {
+		holder = 20537
+	}
+	1100.1.1 = {
+		holder = 20530
+	}
+	1107.1.1 = {
+		holder = 20532
+	}
+	1123.1.1 = {
+		holder = 34290
+	}
+	1150.1.1 = {
+		holder = 232551
+	}
+	1185.1.1 = {
+		holder = 34297
+	}
+	#4th crusade
+	#to Trebizond
+	1204.5.16 =
+		
+	{
+		liege = "k_trebizond"
+		holder = 215519
+	}
+	#to Rum
+	1214.1.1 = {
+	
+		liege = "k_rum"
+		holder = 34189
+	}
+	1237.1.1 = {
+		holder = 34190
+	}
+	1246.1.1 = {
+		holder = 34191
+	}
+	1248.1.1 = {
+		holder = 34192
+	}
+	1249.1.1 = {
+		holder = 34193
+	}
+	1257.1.1 = {
+		holder = 34192
+	}
+	1265.1.1 = {
+		holder = 34194
+	}
+	1284.1.1 = {
+		holder = 34195
+	}
+	1296.1.1 = {
+		holder = 34196
+	}
+	1302.1.1 = {
+		holder = 476501
+		liege = "k_ottoman"
+	}
+	1324.1.1 = {
+		holder = 476500
+	}	
+}				
+d_armeniac_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}		
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	763.1.1 = {
+		holder = 145847
+	}
+	860.1.1 = {
+		holder = 145171
+	}
+	1059.12.25 = {
+		holder = 1752
+	}
+	1067.7.12 = {
+		holder = 1756
+	}
+	1071.4.17 = {
+		holder = 1758
+	}
+	#To Seljuks
+	1077.1.1 = {
+		liege = "k_rum"
+		holder = 3046
+	}
+	1086.1.1 = {
+		holder = 41701
+	}
+	1097.6.19 = {
+		liege = "e_byzantium"
+		holder = 34338
+	}
+	1147.1.1 = {
+		holder = 34340
+	}
+	1156.1.1 = {
+		holder = 34342
+	}
+	1193.1.1 = {
+		holder = 215037
+	}
+	1204.4.1 = {
+		liege = "k_trebizond"
+		holder = 215519
+	}
+	1211.1.1 = {
+		liege = "k_rum"
+		holder = 71860
+	}
+	1227.1.1 = {
+		holder = 71861
+	}
+	1248.1.1 = {
+		holder = 71862
+	}
+	1280.1.1 = {
+		holder = 71863
+	}
+	1307.1.1 = {
+		liege = 0
+	}
+	1309.1.1 = {
+		liege = "k_candar"
+		holder = 476350
+	}
+	1314.1.1 = {
+		holder = 476351
+	}	
+}				
+d_sebasteia_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}		
+	750.1.1 = {
+		liege = e_byzantium
+	}
+	
+	#867
+	830.5.10 = {
+		holder = 302353	#fictional Gerasimos Kardias
+	}
+	861.6.16 = {
+		holder = 302355	#fictional Leontios Kardias
+	}
+	
+	#Senekerim-Hovhannes Artsruni
+	1022.1.1 = {
+		holder = 41576 #Senekerim-Hovhannes Artsruni (SHA)
+	}
+	1026.1.1 = {
+		holder = 41578 #Son of SHA
+	}
+	1050.1.2 = {
+		holder = 41579 #Granddaughter of SHA
+	}
+	
+	#k_krum
+	1077.1.1 = {
+		holder = 0
+	}	
+}				
+d_chaldia_strategos = {				
+	330.1.1 = {			
+		liege = "e_byzantium"		
+		government = roman_administration_military_government		
+		succession_laws = { 		
+			ave_maria_roman_administration_tagma_succession_law	
+			male_only_law 	
+		}		
+		realm_laws = {		
+			ave_maria_roman_administration_realm_law_military	
+		}		
+	}	
+	#Byz
+	330.1.1 = {
+		liege = "e_byzantium"
+	}
+	758.1.1 = {
+		holder = 145852
+	}
+	
+	#860
+	844.1.1 = {
+		holder = 145123
+	}
+	
+	#Byz
+	1060.1.1 = {
+		holder = 41537
+		liege = "e_byzantium"
+	}
+	
+	#Persia/Seljuk
+	1071.8.26 = {
+		liege = "k_persia"
+		holder = 41704
+	}
+	
+	#Rum
+	1077.1.1 = {
+		liege = "k_rum"
+	}
+	1104.1.1 = {
+		holder = 34197
+	}
+	1134.1.1 = {
+		holder = 34198
+	}
+	1142.1.1 = {
+		holder = 34199
+	}
+	1164.1.1 = {
+		holder = 34201
+	}
+	1171.1.1 = {
+		holder = 34207
+	}
+	1174.1.1 = {
+		holder = 215043
+	}
+	1178.1.1 = {
+		holder = 225000
+	}
+	1192.1.1 = {
+		holder = 225002
+	}
+	1196.1.1 = {
+		holder = 225004
+	}
+	1204.1.1 = {
+		holder = 34187
+	}
+	1205.1.1 = {
+		holder = 225002
+	}
+	1211.1.1 = {
+		holder = 34188
+	}
+	1220.1.1 = {
+		holder = 34189
+	}
+	1237.1.1 = {
+		holder = 34190
+	}
+	1246.1.1 = {
+		holder = 34191
+	}
+	1248.1.1 = {
+		holder = 34192
+	}
+	1249.1.1 = {
+		holder = 34193
+	}
+	1257.1.1 = {
+		holder = 34192
+	}
+	1265.1.1 = {
+		holder = 34194
+	}
+	1284.1.1 = {
+		holder = 34195
+	}
+	1296.1.1 = {
+		holder = 34196
+	}
+	1302.1.1 = {
+		holder = 34195
+	}
+	1307.1.1 = {
+		liege = "e_ilkhanate"
+		holder = 93417
+	}
+	1335.1.1 = {
+		liege = 0
+	}		
+}				
+
+
 
 
 #############################################

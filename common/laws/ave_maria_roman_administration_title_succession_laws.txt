@@ -32,11 +32,19 @@
 	
 	ave_maria_roman_administration_tagma_succession_law = {
 		can_have = {
-			roman_administration_tagma_title_trigger = yes
+			OR = {
+				roman_administration_tagma_title_trigger = yes
+				any_held_title = {
+					de_jure_liege = title:k_strategos_titles
+				}
+			}
+			
 			top_liege = {
-				OR = {
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire			
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire			
+					}
 				}
 			}
 		}
@@ -65,9 +73,11 @@
 	ave_maria_roman_administration_civilian_administration_succession_law = {
 		can_have = {
 			top_liege = {
-				OR = {
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire			
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire			
+					}
 				}
 			}
 		}

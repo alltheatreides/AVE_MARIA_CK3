@@ -220,12 +220,12 @@ roman_administration_tagma_elective = {
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		this = title:scope:title
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		} 
 		add = {
@@ -238,30 +238,29 @@ roman_administration_tagma_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		this = title_to_check
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
-				scope:title = { save_scope_as = title_to_check }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		this = title_to_check
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		}
 		# add = {
@@ -351,11 +350,12 @@ roman_administration_civilian_administration_elective = {
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		} 
 		add = {
@@ -364,11 +364,12 @@ roman_administration_civilian_administration_elective = {
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		} 
 		add = {
@@ -380,11 +381,12 @@ roman_administration_civilian_administration_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				NOT = { has_government = theocracy_government }
-				# NOT = {
-				# 	any_heir_to_title = {
-				# 		roman_administration_is_a_tagma_title_trigger = yes
-				# 	}
-				# }
+				NOT = {
+					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+						roman_administration_is_a_tagma_title_trigger = yes
+					}
+				}
 			}
 		}
 		add = {
@@ -397,6 +399,7 @@ roman_administration_civilian_administration_elective = {
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_heir_to_title = {
+						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
 						roman_administration_is_a_tagma_title_trigger = yes
 					}
 				}
