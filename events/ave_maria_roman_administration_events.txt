@@ -1435,3 +1435,88 @@ ave_maria_roman_administration_events.00025 = {
 	}
 
 }
+
+
+#############################################
+# OFFICIALS PAY								#
+#############################################
+
+## TAGMA PAY
+ave_maria_roman_administration_events.00050 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}	
+	}
+
+	immediate = {
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_tagma_title_trigger = yes
+				}
+				add_to_list = list_roman_administration_paid_officials
+			}
+		}
+		every_in_list = {
+			list = list_roman_administration_paid_officials
+			root = {
+				pay_short_term_gold = {
+					gold = 50
+					target = prev
+				}
+			}
+		}
+
+		trigger_event = { 
+			id = ave_maria_roman_administration_events.00050
+			days = 31
+		}
+	}
+}
+
+## STRATEGOS PAY
+ave_maria_roman_administration_events.00051 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}	
+	}
+
+	immediate = {
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_holds_strategos_title_trigger = yes
+				}
+				add_to_list = list_roman_administration_paid_strategos
+			}
+		}
+		every_in_list = {
+			list = list_roman_administration_paid_strategos
+			root = {
+				pay_short_term_gold = {
+					gold = 25
+					target = prev
+				}
+			}
+		}
+
+		trigger_event = { 
+			id = ave_maria_roman_administration_events.00051
+			days = 365
+		}
+	}
+}

@@ -71,7 +71,11 @@ roman_administration_get_claim = {
 		}
 		scope:recipient = { 
 			is_landed = yes 
-			roman_administration_tagma_title_trigger = yes
+			OR = {
+				roman_administration_holds_strategos_title_trigger = yes
+				roman_administration_tagma_title_trigger = yes
+			}
+			NOT = { this = scope:actor }
 		}
 	}
 	
@@ -88,7 +92,7 @@ roman_administration_get_claim = {
 	ai_targets = {
 		ai_recipients = peer_vassals
 	}
-	ai_frequency = 12
+	ai_frequency = 6
 
 	ai_potential = {
 		is_at_war = no # Try to avoid wasting your war chest!
@@ -123,7 +127,10 @@ roman_administration_favour_successor = {
 		}
 		scope:recipient = { 
 			is_landed = yes 
-			roman_administration_tagma_title_trigger = yes
+			OR = {
+				roman_administration_holds_strategos_title_trigger = yes
+				roman_administration_tagma_title_trigger = yes
+			}
 		}
 	}
 
@@ -194,7 +201,7 @@ roman_administration_favour_successor = {
 	ai_targets = {
 		ai_recipients = vassals
 	}
-	ai_frequency = 24
+	ai_frequency = 6
 	
 	ai_will_do = {
 		base = 100
@@ -310,7 +317,7 @@ roman_administration_fire_bureaucrat = {
 		max = 20
 	}
 
-	ai_frequency = 96
+	ai_frequency = 24
 
 	ai_will_do = {
 		base = 0
@@ -433,6 +440,156 @@ roman_administration_fire_bureaucrat = {
 			factor = 0
 			scope:recipient = {
 				is_ai = no
+			}
+		}
+	}
+}
+
+roman_administration_favour_family_member = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+	# target_type = title
+	# target_filter = secondary_recipient_domain_titles	
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
+			OR = {
+				roman_administration_holds_strategos_title_trigger = yes
+				roman_administration_tagma_title_trigger = yes
+			}
+		}
+		scope:recipient = { 
+			OR = {
+				roman_administration_holds_strategos_title_trigger = yes
+				roman_administration_tagma_title_trigger = yes
+			}			
+		}
+	}
+
+	redirect = {
+		if = {
+			limit = {
+				scope:recipient = { 
+					is_landed = yes 
+					OR = {
+						roman_administration_holds_strategos_title_trigger = yes
+						roman_administration_tagma_title_trigger = yes
+					}
+				}
+			}
+			scope:recipient = {
+				save_scope_as = secondary_recipient
+			}
+			scope:actor = {
+				any_close_family_member = {
+					limit = {
+						is_landed = no
+						age >= 20
+						is_female = no
+						NOT = { has_trait = devoted }
+						NOT = {
+							has_government = theocracy_government
+						}
+					}
+					save_scope_as = recipient
+				}			
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			any_close_family_member = {
+				limit = {
+					is_landed = no
+					age >= 20
+					is_female = no
+					NOT = { has_trait = devoted }
+					NOT = {
+						has_government = theocracy_government
+					}
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	# can_be_picked_title = {
+	# 	scope:target = {
+	# 		roman_administration_is_a_tagma_title_trigger = yes
+	# 	}
+	# }
+	
+	on_accept = {
+		scope:secondary_recipient = {
+			add_unpressed_claim = scope:recipient.primary_title
+			## Add some flag so it has a better score in the election
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 10
+			}
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = peer_vassals
+	}
+	ai_frequency = 6
+	
+	ai_will_do = {
+		base = 100
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1000
+			scope:secondary_recipient = {
+				is_close_family_of = scope:actor
 			}
 		}
 	}

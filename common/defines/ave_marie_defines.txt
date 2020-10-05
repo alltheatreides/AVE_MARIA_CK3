@@ -1,7 +1,4 @@
 ﻿NArmy = {
-	MOVEMENT_SPEED_RETREAT = 3					# Movement speed while retreating
-	MOVEMENT_SPEED = 2								# Normal movement speed
-	MOVEMENT_SPEED_BONUS_FRIENDLY_AREA = 0.2		# In friendly areas you get a 20% speed bonus
 	REGIMENT_MONTHLY_REINFORCE_SPEED = 0.02			# Monthly reinforcement percentage of unraised chunks [0-1]
 	REGIMENT_MONTHLY_MAA_REINFORCE_SPEED = 0.06		# Monthly reinforcement percentage of unraised MAA chunks [0-1]
 }
@@ -12,21 +9,22 @@ NCharacter = {
 	RANDOM_PERSONALITY_TRAITS_BASE = 8
 }
 NCharacterOpinion = {
-	DE_JURE_COUNTY = -5
-	DE_JURE_DUCHY = -25
-	DE_JURE_KINGDOM = -30
+	DE_JURE_COUNTY = 0
+	DE_JURE_DUCHY = 0
+	DE_JURE_KINGDOM = 0
 	PARTIALLY_NON_RIGHTFUL_LIEGE_TAX_MULT = 1 		# Tax mult when partially non-rightful liege (liege doesn't hold dejure liege title of the vassal's primary, or empire for a duke if EMPIRE_IS_VALID_DE_JURE_LIEGE_FOR_DUCHY)
-	PARTIALLY_NON_RIGHTFUL_LIEGE_LEVY_MULT = 1
+	PARTIALLY_NON_RIGHTFUL_LIEGE_LEVY_MULT = 1 		# Tax mult when partially non-rightful liege
+	NON_RIGHTFUL_LIEGE_TAX_MULT = 1					# Tax mult when non-rightful liege (liege doesn't hold *any* dejure liege title)
+	NON_RIGHTFUL_LIEGE_LEVY_MULT = 1	
 	NON_RIGHTFUL_LIEGE_OPINION = 0
-	COUNT_LIEGE_HOLDS_MY_DUCHY = -5
+	COUNT_LIEGE_HOLDS_MY_DUCHY = 0
+	SAME_REALM_DIFFERENT_CULTURE_SAME_GROUP = 0
+	SAME_REALM_DIFFERENT_CULTURE = 0
 }
 NChildbirth = {
-	MALE_FERTILITY_MULTIPLIER = { 0.4 0.5 0.6 0.7 0.8 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
-	FEMALE_FERTILITY_MULTIPLIER = { 0.1 0.25 0.4 0.6 0.8 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
 	PRIMARY_SPOUSE_FERTILITY_MULTIPLIER = 1
 	SECONDARY_SPOUSE_FERTILITY_MULTIPLIER = 1
 	NON_RULER_FERTILITY_MULTIPLIER = 1	# If neither parent is a ruler, resulting fertility gets multiplied by this
-	FERTILITY_CHANCE_MULTIPLIER = 2.2 # Fertility is an average between the father and the mother (if the mother has 0.3 and the father 0.5, the average is 0.4), this number is then multiplied by this multiplier to produce the percentage chance of impregnation. Impregnation is checked every month.
 }
 NDomain = {
 	ABOVE_LIMIT_LEVY_PENALTY = 0.2				# How much levies are reduced per holding over the limit

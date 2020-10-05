@@ -2,6 +2,8 @@
 @holding_illustration_mena = "gfx/interface/illustrations/holding_types/castle_mena.dds"
 @holding_illustration_india = "gfx/interface/illustrations/holding_types/castle_india.dds"
 @holding_illustration_mediterranean = "gfx/interface/illustrations/holding_types/castle_mediterranean.dds"
+@holding_illustration_paris = "gfx/interface/illustrations/holding_types/z_orc_holding_paris.dds"
+
 
 castle_01 = {
 	construction_time = slow_construction_time
@@ -46,7 +48,7 @@ castle_01 = {
 		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
 		graphical_regions = { graphical_india }
 	}
-	
+		
 	### INDIAN ###
 	asset = {
 		type = pdxmesh
@@ -146,7 +148,112 @@ castle_01 = {
 		graphical_regions = { graphical_india }
 	}
 	
-	
+	## AVE MARIA
+	## Paris
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_01_mesh"
+			"building_western_castle_01_b_mesh"
+		}
+		illustration = @holding_illustration_paris
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_paris }
+	}
+	## LYON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_01_mesh"
+			"building_western_castle_01_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_lyon.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_lyon }
+	}
+	## LONDON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_01_mesh"
+			"building_western_castle_01_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_london.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_london }
+	}
+	## ATHENS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_01_mesh"
+			"building_western_castle_01_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_athens.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_athens }
+	}
+	## ROME
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_01_mesh"
+			"building_western_castle_01_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_rome.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_rome }
+	}
+	## ALEXANDRIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_01_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_alexandria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_alexandria }
+	}
+	## TUNIS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_01_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_tunis.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_tunis }
+	}
+	## ALMERIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_01_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_almeria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_almeria }
+	}
+	## CORDOBA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_01_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_cordoba.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_cordoba }
+	}
+	## TOLEDO
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_01_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_toledo.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 0 } }
+		graphical_regions = { graphical_orc_toledo }
+	}
 	
 	can_construct_potential = {
 		building_requirement_tribal = no
@@ -323,7 +430,111 @@ castle_02 = {
 		graphical_regions = { graphical_india }
 	}
 	
-	
+	## AVE MARIA
+	## PARIS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+		}
+		illustration = @holding_illustration_paris
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_paris }
+	}
+	## LYON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+			"building_western_castle_02_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_lyon.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_lyon }
+	}
+	## LONDON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+			"building_western_castle_02_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_london.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_london }
+	}
+	## ATHENS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+			"building_western_castle_02_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_athens.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_athens }
+	}
+	## ROME
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+			"building_western_castle_02_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_rome.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_rome }
+	}
+	## ALEXANDRIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_02_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_alexandria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_alexandria }
+	}
+	## TUNIS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_02_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_tunis.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_tunis }
+	}
+	## ALMERIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_02_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_almeria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_almeria }
+	}
+	## CORDOBA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_02_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_cordoba.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_cordoba }
+	}
+	## TOLEDO
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_02_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_toledo.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 1 } }
+		graphical_regions = { graphical_orc_toledo }
+	}
 	
 	can_construct_potential = {
 		building_requirement_tribal = no
@@ -495,6 +706,112 @@ castle_03 = {
 		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/mediterranean_castle" soundparameter = { "Tier" = 2 } }
 		graphical_cultures = { mediterranean_building_gfx }
 		graphical_regions = { graphical_india }
+	}
+
+	## AVE MARIA
+	# Paris
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+		}
+		illustration = @holding_illustration_paris
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_paris }
+	}
+	## LYON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+			"building_western_castle_03_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_lyon.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_lyon }
+	}
+	## LONDON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+			"building_western_castle_03_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_london.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_london }
+	}
+	## ATHENS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+			"building_western_castle_03_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_athens.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_athens }
+	}
+	## ROME
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_02_mesh"
+			"building_western_castle_02_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_rome.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_rome }
+	}
+	## ALEXANDRIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_alexandria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_alexandria }
+	}
+	## TUNIS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_tunis.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_tunis }
+	}
+	## ALMERIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_almeria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_almeria }
+	}
+	## CORDOBA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_cordoba.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_cordoba }
+	}
+	## TOLEDO
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_toledo.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 2 } }
+		graphical_regions = { graphical_orc_toledo }
 	}
 	
 	
@@ -670,7 +987,112 @@ castle_04 = {
 		graphical_cultures = { mediterranean_building_gfx }
 		graphical_regions = { graphical_india }
 	}
-	
+
+	## AVE MARIA
+	# Paris
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_04_mesh"
+		}
+		illustration = @holding_illustration_paris
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_paris }
+	}
+	## LYON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_04_mesh"
+			"building_western_castle_04_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_lyon.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_lyon }
+	}
+	## LONDON
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_04_mesh"
+			"building_western_castle_04_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_london.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_london }
+	}
+	## ATHENS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+			"building_western_castle_03_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_athens.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_athens }
+	}
+	## ROME
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_western_castle_03_mesh"
+			"building_western_castle_03_b_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_rome.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_rome }
+	}
+	## ALEXANDRIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_alexandria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_alexandria }
+	}
+	## TUNIS
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_tunis.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_tunis }
+	}
+	## ALMERIA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_almeria.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_almeria }
+	}
+	## CORDOBA
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_cordoba.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_cordoba }
+	}
+	## TOLEDO
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_castle_03_mediterranean_mesh"
+		}
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_holding_toledo.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/Castle/western_castle" soundparameter = { "Tier" = 3 } }
+		graphical_regions = { graphical_orc_toledo }
+	}
 	
 	
 	can_construct_potential = {
