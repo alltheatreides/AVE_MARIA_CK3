@@ -2,6 +2,19 @@
 # Empty scope
 on_game_start = {
 	effect = {
+
+### KJH PROVINCE CALCULATOR
+		init_prov_data = yes
+	
+		every_province = {
+			get_land_cost = { return = prov_cost }
+		}
+		every_in_global_list = {
+			variable = every_water
+			
+			get_land_cost = { return = prov_cost }
+		}
+		
 		### 867 - WRATH OF THE NORTHMEN ###
 		#Æthelred dying (probably)
 		character:33358 = {

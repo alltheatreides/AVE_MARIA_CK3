@@ -159,7 +159,7 @@ grant_vassal_interaction = {
 				}
 
 				stress_impact = {
-					greedy = medium_stress_impact_gain
+					am_greedy = medium_stress_impact_gain
 				}
 			}
 		}
@@ -551,7 +551,7 @@ retract_vassal_interaction = {
 						OR = {
 							has_trait = lunatic
 							has_trait = possessed
-							has_trait = arbitrary
+							has_trait = am_inconstant
 						}
 					}
 				}
@@ -733,7 +733,7 @@ start_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						just = medium_stress_impact_gain
+						am_honest = medium_stress_impact_gain
 					}
 				}
 			}
@@ -806,7 +806,7 @@ join_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						just = minor_stress_impact_gain
+						am_honest = minor_stress_impact_gain
 					}
 				}
 			}
@@ -1152,7 +1152,7 @@ force_onto_council = {
 					custom_tooltip = force_onto_council.actor.tt.duration
 				}
 			}
-			stress_impact = { content = minor_stress_impact_gain }
+			stress_impact = { am_conventional = minor_stress_impact_gain }
 		}
 		scope:recipient = {
 			assign_council_task = {

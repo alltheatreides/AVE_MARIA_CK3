@@ -690,8 +690,8 @@ marriage_ai_accept_modifier = {
 		}
 		scope:recipient = { #The Recipient needs to want well for both candidates
 			NOT = { has_trait = sadistic }
-			NOT = { has_trait = callous }
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_deceitful }
+			NOT = { has_trait = am_hypocritical }
 			opinion = {
 				target = scope:secondary_actor
 				value > 0

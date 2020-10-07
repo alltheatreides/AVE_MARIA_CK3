@@ -1603,8 +1603,8 @@ risky_disease_treatment_effect = {
 
 		scope:treatment_picker = {
 			stress_impact = {
-				craven = medium_stress_impact_gain
-				content = minor_stress_impact_gain
+				am_craven = medium_stress_impact_gain
+				am_conventional = minor_stress_impact_gain
 			}
 		}
 
@@ -1755,9 +1755,9 @@ mystic_disease_treatment_effect = {
 
 		scope:treatment_picker = {
 			stress_impact = {
-				paranoid = minor_stress_impact_gain
-				zealous = major_stress_impact_gain
-				craven = medium_stress_impact_gain
+				am_fearful = minor_stress_impact_gain
+				am_intolerant = major_stress_impact_gain
+				am_craven = medium_stress_impact_gain
 			}
 		}
 
@@ -2448,11 +2448,11 @@ disease_treatment_result_tooltip_effect = {
 					}
 					else_if = {
 						limit = { var:mystic_side_effect = flag:craven }
-						add_trait_force_tooltip = craven
+						add_trait_force_tooltip = am_craven
 					}
 					else_if = {
 						limit = { var:mystic_side_effect = flag:paranoid }
-						add_trait_force_tooltip = paranoid
+						add_trait_force_tooltip = am_fearful
 					}
 					else_if = {
 						limit = { var:mystic_side_effect = flag:massive_stress_gain }
@@ -2738,22 +2738,22 @@ disease_treatment_results_effect = {
 					add_trait_force_tooltip = dull
 				}
 				10 = {
-					trigger = { NOT = { has_trait = craven } }
+					trigger = { NOT = { has_trait = am_craven } }
 					set_variable = {
 						name = mystic_side_effect
 						value = flag:craven
 						days = 30
 					}
-					add_trait_force_tooltip = craven
+					add_trait_force_tooltip = am_craven
 				}
 				10 = {
-					trigger = { NOT = { has_trait = paranoid } }
+					trigger = { NOT = { has_trait = am_fearful } }
 					set_variable = {
 						name = mystic_side_effect
 						value = flag:paranoid
 						days = 30
 					}
-					add_trait_force_tooltip = paranoid
+					add_trait_force_tooltip = am_fearful
 				}
 				15 = {
 					set_variable = {
@@ -2772,20 +2772,20 @@ disease_treatment_results_effect = {
 			if = {
 				limit = { var:treatment_strategy = flag:occult }
 				stress_impact = {
-					zealous = major_stress_impact_gain
+					am_intolerant = major_stress_impact_gain
 				}
 			}
 			else_if = {
 				limit = { var:treatment_strategy = flag:occult_cannibal }
 				stress_impact = {
-					zealous = major_stress_impact_gain
-					compassionate = major_stress_impact_gain
+					am_intolerant = major_stress_impact_gain
+					am_tolerant = major_stress_impact_gain
 				}
 			}
 			else_if = {
 				limit = { var:treatment_strategy = flag:occult_deviant }
 				stress_impact = {
-					zealous = major_stress_impact_gain
+					am_intolerant = major_stress_impact_gain
 					chaste = major_stress_impact_gain
 				}
 			}
@@ -3547,9 +3547,9 @@ execute_physician_effect = {
 
 	
 	stress_impact = {
-		compassionate = major_stress_impact_gain
-		just = minor_stress_impact_gain
-		forgiving = medium_stress_impact_gain
+		am_tolerant = major_stress_impact_gain
+		am_honest = minor_stress_impact_gain
+		am_agreeable = medium_stress_impact_gain
 	}
 }
 
@@ -3564,9 +3564,9 @@ imprison_physician_effect = {
 	root = { remove_relation_court_physician = scope:physician }
 
 	stress_impact = {
-		compassionate = medium_stress_impact_gain
-		just = minor_stress_impact_gain
-		forgiving = minor_stress_impact_gain
+		am_tolerant = medium_stress_impact_gain
+		am_honest = minor_stress_impact_gain
+		am_agreeable = minor_stress_impact_gain
 	}
 }
 
@@ -3586,7 +3586,7 @@ chastise_physician_effect = {
 	}
 
 	stress_impact = {
-		vengeful = medium_stress_impact_gain
+		am_quarrelsome = medium_stress_impact_gain
 	}
 }
 
@@ -3606,8 +3606,8 @@ forgive_physician_effect = {
 	}
 	
 	stress_impact = {
-		vengeful = major_stress_impact_gain
-		wrathful = medium_stress_impact_gain
+		am_quarrelsome = major_stress_impact_gain
+		am_wroth = medium_stress_impact_gain
 	}
 }
 

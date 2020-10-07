@@ -1,0 +1,2822 @@
+﻿namespace = east_europe
+
+#decision_unite_the_western_slavs, by Mathilda Bjarnehed
+# 0001 - I united the western slavs
+# 0002 - Someone else united the western slavs
+
+#decision_unite_the_southern_slavs, by Mathilda Bjarnehed
+# 0005 - I united the southern slavs
+# 0006- Someone united the southern slavs
+
+#decision_unite_the_slavs, by Mathilda Bjarnehed
+# 0010 - I united the southern slavs
+# 0011 - Someone united the southern slavs
+
+#decision_defenders_of_highgod, by Mathilda Bjarnehed
+# 0015 - I am the Defender of Defensive Pagan Highgod (pick holy site)
+# 0016 - I am the Defender of Defensive Pagan Highgod (actual event)
+# 0017 - someone is the Defender of Defensive Pagan Highgod
+
+#decision_promote_hungarian_settlement, by Flavio Verna
+# 0030
+# 0031
+
+# decision_revive_magyar_paganism, by Flavio Verna
+# 0032
+# 0033
+# 0034
+
+
+#I united the western slavs
+east_europe.0001 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0001.t
+	desc = east_europe.0001.desc
+	theme = realm
+	left_portrait = {
+		character = scope:western_slav_uniter
+		animation = personality_honorable
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		unite_the_western_slavs_decision_effects = yes
+	}
+	
+	option = {
+		name = east_europe.0001.a
+		
+		give_nickname = nick_the_wend
+	}
+}
+
+#Someone united the western slavs
+east_europe.0002 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0001.t
+	desc = east_europe.0002.desc
+	theme = realm
+	left_portrait = {
+		character = scope:western_slav_uniter
+		animation = personality_honorable
+	}
+	
+	option = {
+		name = name_i_see
+	}
+}
+
+#I united the southern slavs
+east_europe.0005 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0005.t
+	desc = east_europe.0005.desc
+	theme = realm
+	left_portrait = {
+		character = scope:southern_slav_uniter
+		animation = personality_honorable
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		unite_the_southern_slavs_decision_effects = yes
+	}
+	
+	option = {
+		name = east_europe.0001.a
+		
+		give_nickname = nick_the_crowned
+	}
+}
+
+#Someone united the southern slavs
+east_europe.0006 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0005.t
+	desc = east_europe.0006.desc
+	theme = realm
+	left_portrait = {
+		character = scope:southern_slav_uniter
+		animation = personality_honorable
+	}
+	
+	option = {
+		name = name_i_see
+	}
+}
+
+#I united all the slavs
+east_europe.0010 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0010.t
+	desc = east_europe.0010.desc
+	theme = realm
+	left_portrait = {
+		character = scope:slav_uniter
+		animation = personality_honorable
+	}
+
+	immediate = {
+		unite_the_slavs_decision_effects = yes
+		play_music_cue = "mx_cue_epic_sacral_moment"
+	}
+	
+	option = {
+		name = east_europe.0010.a
+		
+		if = {
+			limit = { is_female = yes }
+			give_nickname = nick_the_polyanitsa
+		}
+		else = {
+			give_nickname = nick_the_bogatyr
+		}
+	}
+}
+
+
+#someone united all the slavs
+east_europe.00011 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0010.t
+	desc = east_europe.00011.desc
+	theme = realm
+	left_portrait = {
+		character = scope:slav_uniter
+		animation = personality_honorable
+	}
+	
+	option = {
+		name = name_i_see
+	}
+}
+
+#I am the Defender of Defensive Pagan Highgod (pick holy site)
+east_europe.0015 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0015.t
+	desc = east_europe.0015.desc
+	theme = faith
+	left_portrait = {
+		character = root
+		animation = personality_zealous
+	}
+
+	immediate = {
+		#Music cue in follow-up event.
+		faith = {
+			every_holy_site = {
+				limit = {
+					county.holder = root
+					# barony = { }
+				}
+				add_to_list = holy_sites
+			}
+		}
+
+		save_target_list_as_separate_scopes_effect = { TARGET_LIST = holy_sites }
+	}
+
+	option = {
+		name = east_europe.0015.a
+		scope:target_list_member_a = {
+			save_scope_as = holy_site
+			show_as_tooltip = { defenders_of_highgod_decision_hall_of_heroes_effect = yes }
+		}
+	}
+
+	option = {
+		name = east_europe.0015.b
+		scope:target_list_member_b = {
+			save_scope_as = holy_site
+			show_as_tooltip = { defenders_of_highgod_decision_hall_of_heroes_effect = yes }
+		}
+	}
+
+	option = {
+		trigger = { exists = scope:target_list_member_c }
+		name = east_europe.0015.c
+		scope:target_list_member_c = {
+			save_scope_as = holy_site
+			show_as_tooltip = { defenders_of_highgod_decision_hall_of_heroes_effect = yes }
+		}
+	}
+
+	option = {
+		trigger = { exists = scope:target_list_member_d }
+		name = east_europe.0015.d
+		scope:target_list_member_d = {
+			save_scope_as = holy_site
+			show_as_tooltip = { defenders_of_highgod_decision_hall_of_heroes_effect = yes }
+		}
+	}
+
+	after = {
+		trigger_event = east_europe.0016
+	}
+}
+
+#I am the Defender of Defensive Pagan Highgod (actual event)
+east_europe.0016 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0015.t
+	desc = east_europe.0016.desc
+	theme = faith
+	left_portrait = {
+		character = scope:defender_of_highgod
+		animation = personality_zealous
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_sacredrite"
+		defenders_of_highgod_decision_effects = yes
+	}
+	
+	option = {
+		name = east_europe.0016.a
+		
+		give_nickname = nick_the_defender_of_highgod
+	}
+
+	after = {
+		every_player = {
+			limit = {
+				NOT = { this = scope:defender_of_highgod }
+				is_within_diplo_range = { CHARACTER = root }
+			}
+			trigger_event = east_europe.0017
+		}
+	}
+}
+
+
+#someone is the Defender of Defensive Pagan Highgod
+east_europe.0017 = { #by Mathilda Bjarnehed
+	type = character_event
+	title = east_europe.0015.t
+	desc = east_europe.0017.desc
+	theme = faith
+	left_portrait = {
+		character = scope:defender_of_highgod
+		animation = personality_zealous
+	}
+	
+	immediate = {
+		#If the character shares the hero's faith, _then_ cue the music.
+		if = {
+			limit = { faith = scope:defender_of_highgod.faith }
+			play_music_cue = "mx_cue_sacredrite"
+		}
+	}
+
+	option = {
+		name = {
+			trigger = { faith = scope:defender_of_highgod.faith }
+			text = east_europe.0016.a
+		}
+		name = {
+			trigger = { NOT = { faith = scope:defender_of_highgod.faith } }
+			text = name_i_see
+		}
+	}
+}
+
+
+#Hungarian Resettlement decision
+
+east_europe.0030 = { # by Flavio Verna
+	type = character_event
+	title = east_europe.0030.t
+	desc = east_europe.0030.desc
+	theme = faith
+	left_portrait = {
+		character = scope:scoped_ruler
+		animation = personality_rational
+	}
+	
+	immediate = {
+		play_music_cue = "mx_cue_faith_conversion"
+		save_scope_as = scoped_ruler
+		promote_hungarian_settlement_decision_scripted_effect = yes
+	}
+	
+	option = {
+		name = east_europe.0030.a
+		every_player = {
+			limit = {
+				NOT = { this = root }
+				capital_province = {
+					geographical_region = world_europe_east
+				}
+			}
+			trigger_event = east_europe.0031
+		}
+	}
+}
+
+east_europe.0031 = { # by Flavio Verna
+	type = character_event
+	title = east_europe.0031.t
+	desc = {
+		first_valid = {
+			# Hungarian Vassal reaction.
+			triggered_desc = {
+				trigger = {
+					culture = culture:hungarian
+					target_is_liege_or_above = scope:scoped_ruler
+				}
+				desc = east_europe.0031.desc.vassals
+			}
+			desc = east_europe.0031.desc.others
+		}
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:scoped_ruler
+		animation = personality_rational
+	}
+	
+	option = {
+		name = {
+			trigger = {
+				culture = culture:hungarian
+				target_is_liege_or_above = scope:scoped_ruler
+			}	
+			text = east_europe.0031.a
+		}
+		name = {
+			trigger = {
+				NAND = {
+					culture = culture:hungarian
+					target_is_liege_or_above = scope:scoped_ruler
+				}
+			}
+			text = east_europe.0031.b
+		}
+	}
+}
+
+##################################################
+# Reviving Magyarism
+# by Flavio Verna & Ewan Cowhig Croft
+# 0032-0034
+##################################################
+
+scripted_effect revive_magyar_paganism_notify_players_effect = {
+	every_player = {
+		limit = {
+			NOT = { this = root }
+			capital_province = {
+				geographical_region = world_europe_east
+			}
+		}
+		trigger_event = east_europe.0034
+	}
+}
+
+east_europe.0032 = {
+	type = character_event
+	title = east_europe.0032.t
+	desc = east_europe.0032.desc
+	theme = faith
+	left_portrait = {
+		character = scope:scoped_ruler
+		animation = personality_zealous
+	}
+	override_background = { event_background = throne_room }
+	
+	immediate = {
+		play_music_cue = "mx_cue_faith_conversion"
+		save_scope_as = scoped_ruler
+		faith = { save_scope_as = old_faith }
+		revive_magyar_paganism_decision_scripted_effect = yes
+	}
+
+	#The Old Ways need no adjustment.
+	option = {
+		name = east_europe.0032.a
+		#Get a nice reward for your adherence to the true faith.
+		add_piety_level = 1
+		#Sort notification copy for players.
+		save_scope_value_as = {
+			name = hungarian_return
+			value = flag:vanilla
+		}
+		revive_magyar_paganism_notify_players_effect = yes
+	}
+	#Syncretism: perhaps we don't leave behind *all* the new teachings...
+	option = {
+		name = east_europe.0032.b
+		#Requires you to have been in a religion that actually has a syncretic tenet available.
+		trigger = {
+			scope:old_faith.religion = {
+				OR = {
+					this = religion:christianity_religion
+					this = religion:islam_religion
+					this = religion:judaism_religion
+					is_in_family = rf_eastern
+				}
+			}
+		}
+		#Reasonable carrot for your efforts.
+		add_piety_experience = major_piety_value
+		#Christian/Islamic/Jewish/Eastern syncretism replaces astrology.
+		if = {
+			limit = { scope:old_faith.religion = religion:christianity_religion }
+			faith:magyar_pagan = {
+				remove_doctrine = tenet_astrology
+				add_doctrine = tenet_christian_syncretism
+			}
+		}
+		else_if = {
+			limit = { scope:old_faith.religion = religion:islam_religion }
+			faith:magyar_pagan = {
+				remove_doctrine = tenet_astrology
+				add_doctrine = tenet_islamic_syncretism
+			}
+		}
+		else_if = {
+			limit = { scope:old_faith.religion = religion:judaism_religion }
+			faith:magyar_pagan = {
+				remove_doctrine = tenet_astrology
+				add_doctrine = tenet_jewish_syncretism
+			}
+		}
+		else = {
+			faith:magyar_pagan = {
+				remove_doctrine = tenet_astrology
+				add_doctrine = tenet_eastern_syncretism
+			}
+		}
+		#Sort notification copy for players.
+		save_scope_value_as = {
+			name = hungarian_return
+			value = flag:syncretic
+		}
+		revive_magyar_paganism_notify_players_effect = yes
+	}
+	#Human Sacrifice: we must assert our differences with blood and skulls!
+	option = {
+		name = east_europe.0032.c
+		#Reasonable carrot for your efforts.
+		add_piety_experience = major_piety_value
+		#Human sacrifice replaces ancestor worship-
+		faith:magyar_pagan = {
+			remove_doctrine = tenet_ancestor_worship
+			add_doctrine = tenet_human_sacrifice
+		}
+		#Sort notification copy for players.
+		save_scope_value_as = {
+			name = hungarian_return
+			value = flag:bloodthirsty
+		}
+		revive_magyar_paganism_notify_players_effect = yes
+	}
+	#Adaptive: we should always remain protean.
+	option = {
+		name = east_europe.0032.d
+		#Reasonable carrot for your efforts.
+		add_piety_experience = major_piety_value
+		#Adaptive replaces auspicious birthright.
+		faith:magyar_pagan = {
+			remove_doctrine = tenet_mystical_birthright
+			add_doctrine = tenet_adaptive
+		}
+		#Sort notification copy for players.
+		save_scope_value_as = {
+			name = hungarian_return
+			value = flag:adaptive
+		}
+		revive_magyar_paganism_notify_players_effect = yes
+	}
+}
+
+east_europe.0034 = {
+	type = character_event
+	title = east_europe.0034.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { top_liege = root }
+				desc = east_europe.0034.desc.vassals
+			}
+			desc = east_europe.0034.desc.outsiders
+		}
+		desc = east_europe.0034.desc.intro
+		triggered_desc = {
+			trigger = { scope:hungarian_return = flag:vanilla }
+			desc = east_europe.0034.desc.conversion_vanilla
+		}
+		triggered_desc = {
+			trigger = { scope:hungarian_return = flag:syncretic }
+			desc = east_europe.0034.desc.conversion_syncretic
+		}
+		triggered_desc = {
+			trigger = { scope:hungarian_return = flag:bloodthirsty }
+			desc = east_europe.0034.desc.conversion_bloodthirsty
+		}
+		triggered_desc = {
+			trigger = { scope:hungarian_return = flag:adaptive }
+			desc = east_europe.0034.desc_conversion_adaptive
+		}
+	}
+	theme = faith
+	left_portrait = scope:scoped_ruler
+	override_background = { event_background = wilderness_forest_pine }
+	
+	#Magyar_pagans are happy about this unexpected turn of events!
+	option = {
+		name = east_europe.0034.a
+		trigger = { religion = religion:magyar_religion }
+		add_stress = minor_stress_loss
+	}
+
+	#Vassals who do not follow the faith may decide to convert after all.
+	option = {
+		name = east_europe.0034.b
+		trigger = {
+			top_liege = root
+			NOT = { religion = religion:magyar_religion }
+		}
+		set_character_faith_with_conversion = faith:magyar_pagan
+	}
+
+	#Those who aren't pagans are probably horrified.
+	option = {
+		name = east_europe.0034.c
+		trigger = {
+			NOT = {
+				religion = { is_in_family = rf_pagan }
+			}
+		}
+	}
+
+	#And, as a fallback, some people just won't care.
+	option = { name = east_europe.0034.d }
+}
+
+##################################################
+# Founding the Kingdom of Bosnia
+# by Ewan Cowhig Croft
+# 0101-0102
+##################################################
+
+#	You founded the kingdom!
+east_europe.0101 = {
+	type = character_event
+	title = east_europe.0101.t
+	desc = east_europe.0101.desc
+	theme = crown
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+	override_background = { event_background = wilderness_mountains }
+
+	immediate = {
+		play_music_cue = "mx_cue_postive_effect"
+		found_kingdom_of_bosnia_decision_scripted_effect = yes
+	}
+
+	#I was motivated by nobility!
+	option = {
+		name = east_europe.0101.a
+
+		#Your legacy will be remembered.
+		add_prestige_experience = major_prestige_gain
+
+		stress_impact = { am_pretentious = minor_stress_impact_loss }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_honor = 0.5
+				ai_boldness = 0.5
+			}
+		}
+	}
+
+	#I was motivated by faith!
+	option = {
+		name = east_europe.0101.b
+
+		#Your piety will be remembered.
+		add_piety_experience = major_piety_gain
+
+		stress_impact = { am_intolerant = minor_stress_impact_loss }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.5
+				ai_boldness = 0.25
+			}
+		}
+	}
+
+	#I was motivated by a cynical lust for power!
+	option = {
+		name = east_europe.0101.c
+
+		#Your wry smile walking away from your coronation will be remembered.
+		add_stress = major_stress_loss
+
+		stress_impact = { am_hypocritical = minor_stress_impact_loss }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_greed = 0.5
+				ai_rationality = 0.25
+				ai_honor = -0.25
+			}
+		}
+	}
+}
+
+#	Someone else founded the kingdom!
+east_europe.0102 = {
+	type = character_event
+	title = east_europe.0102.t
+	desc = east_europe.0102.desc
+	theme = crown
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+	override_background = { event_background = wilderness_mountains }
+
+	immediate = {
+		play_music_cue = "mx_cue_postive_effect"
+		found_kingdom_of_bosnia_decision_scripted_effect = yes
+	}
+
+	#Kings and Emperors consider them an upstart.
+	option = {
+		name = east_europe.0102.a
+		trigger = { highest_held_title_tier >= tier_kingdom }
+
+		#AI option is inconsequential.
+		ai_chance = { base = 100 }
+	}
+
+	#Same-culture rulers are probably quite happy.
+	##Deliberately same-culture rather than Bosnian, since it's mechanically possible to found the kingdom as a Croatian or Serbian just looking to get a ruler-title.
+	option = {
+		name = east_europe.0102.b
+		trigger = { culture = scope:founder.culture }
+
+		#AI option is inconsequential.
+		ai_chance = { base = 100 }
+	}
+
+	#Everyone else is a bit wary.
+	option = {
+		name = east_europe.0102.c
+		trigger = {
+			NOR = {
+				highest_held_title_tier >= tier_kingdom
+				culture = scope:founder.culture
+			}
+		}
+
+		#AI option is inconsequential.
+		ai_chance = { base = 100 }
+	}
+}
+
+##################################################
+# I Think I Smell HERESY
+# by Ewan Cowhig Croft
+# 0111-0130
+##################################################
+
+##Local Scripted Triggers
+
+scripted_trigger krstjani_manipulate_hof_valid_critical_success_target_trigger = {
+	exists = scope:critical_success
+	#The accuser must still be around/eligible to actually *be* excommunicated.
+	scope:accuser = {
+		is_alive = yes
+		NOT = { has_trait = excommunicated }
+	}
+}
+
+scripted_trigger generic_invalidation_criteria_trigger = {
+	OR = {
+		scope:hof = {
+			OR = {
+				#Scope:hof has died.
+				is_alive = no
+				#Scope:hof has been deposed.
+				NOT = { this = scope:hof.faith.religious_head }
+			}
+		}
+		scope:heretic = {
+			OR = {
+				#Scope:heretic has died.
+				is_alive = no
+				#Scope:heretic is no longer an independent ruler (including being deposed).
+				is_independent_ruler = no
+				#Scope:heretic has become a different flavour of ecumenical Christian.
+				faith = {
+					NOT = { this = faith:bosnian_church }
+					has_doctrine = special_doctrine_ecumenical_christian
+				}
+				#Scope:heretic has become a different heretic.
+				faith = {
+					NAND = {
+						this = faith:bosnian_church
+						has_doctrine = special_doctrine_ecumenical_christian
+					}
+				}
+				#Scope:heretic has converted to a different Abrahamic religion.
+				faith.religion = {
+					NOT = { this = religion:christianity_religion }
+					is_in_family = rf_abrahamic
+				}
+				#Scope:heretic has converted to a totally different religious family.
+				faith.religion = {
+					NOT = { is_in_family = rf_abrahamic }
+				}
+			}
+		}
+	}
+}
+
+##Local Scripted Effects
+
+scripted_effect on_trigger_fail_no_heretic_notification_effect = {
+	#First, we trigger notification events. These have limited mechanical effects, so we're not too worried if they get lost in the system.
+	#All actual core mechanical functionality is carried out in east_europe.0122, which is a hidden maintenance event, and goes off regardless of whether or not there are players there to witness it.
+
+	scope:accuser = {
+		#Inform scope:accuser.
+		if = {
+			limit = {
+				is_alive = yes
+				is_landed = yes
+			}
+			#Trigger the notification event.
+			trigger_event = east_europe.0123
+		}
+		#... Or their probable heir.
+		else_if = {
+			limit = {
+				AND = {	#Just here to prevent errors in the event that their primary title has been destroyed.
+					exists = primary_title.holder
+					primary_title.holder = { dynasty = scope:accuser.dynasty }
+				}
+			}
+			primary_title.holder = { trigger_event = east_europe.0123 }
+		}
+	}
+	#No notice for scope:heretic, as they've not been informed at all at this stage in the chain.
+	#Clear the variable from the list after a reasonable cooldown.
+	trigger_event = {
+		id = east_europe.0122
+		years = accuse_the_krstjani_of_heresy_cancellation_cooldown_value
+	}
+}
+
+scripted_effect on_trigger_fail_full_notifications_effect = {
+	#First, we trigger notification events. These have limited mechanical effects, so we're not too worried if they get lost in the system.
+	#All actual core mechanical functionality is carried out in east_europe.0122, which is a hidden maintenance event, and goes off regardless of whether or not there are players there to witness it.
+
+	scope:accuser = {
+		#Inform scope:accuser.
+		if = {
+			limit = {
+				is_alive = yes
+				is_landed = yes
+			}
+			trigger_event = east_europe.0123
+		}
+		#... Or their probable heir.
+		else_if = {
+			limit = {
+				AND = {	#Just here to prevent errors in the event that their primary title has been destroyed.
+					exists = primary_title.holder
+					primary_title.holder = { dynasty = scope:accuser.dynasty }
+				}
+			}
+			primary_title.holder = { trigger_event = east_europe.0123 }
+		}
+	}
+	scope:heretic = {
+		#Inform scope:heretic.
+		if = {
+			limit = {
+				is_alive = yes
+				is_landed = yes
+			}
+			trigger_event = east_europe.0124
+		}
+		#... Or their probable heir.
+		else_if = {
+			limit = {
+				AND = {	#Just here to prevent errors in the event that their primary title has been destroyed.
+					exists = primary_title.holder
+					primary_title.holder = { dynasty = scope:heretic.dynasty }
+				}
+			}
+			primary_title.holder = { trigger_event = east_europe.0124}
+		}
+	}
+	#Clear the variable from the list after a reasonable cooldown.
+	trigger_event = {
+		id = east_europe.0122
+		years = accuse_the_krstjani_of_heresy_cancellation_cooldown_value
+	}
+}
+
+##Event Block
+
+#	Accuser POV: gatekeeper event.
+east_europe.0111 = {
+	type = character_event
+	title = east_europe.0111.t
+	desc = east_europe.0111.desc
+	theme = faith
+	left_portrait = {
+		character = scope:heretic
+		animation = personality_cynical
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_zealous
+	}
+	override_background = { event_background = council_chamber }
+
+	#Novit enim Dominus qui sunt eius!
+	option = {
+		name = east_europe.0111.a
+
+		#This is here to cover a _very_ niche invalidation, where the Papacy is abolished and the Pope converts to Islam, so that the invalidation event doesn't refer to the Caliphate by mistake.
+		faith = { save_scope_as = absolute_faith }
+
+		#"You write a letter to the [HoF]..."
+		custom_tooltip = east_europe.0111.a.tt
+		trigger_event = east_europe.0125
+
+		ai_chance = {
+			#The AI will always pick this.
+			base = 100
+		}
+	}
+	
+	#On seconds thoughts, better not...
+	option = {
+		name = east_europe.0111.b
+
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.cancellation_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_cancellation_cooldown_value
+		}
+
+		ai_chance = {
+			#The AI never backs down from this event.
+			base = 0
+		}
+	}
+}
+
+#	Accuser POV: HoF rejects out of hand.
+east_europe.0112 = {
+	type = letter_event
+	opening = east_europe.0112.t
+	desc = {
+		desc = east_europe.0112.desc.intro
+		first_valid = {
+			#These are ordered in a rough reverse-rarity for maximum variety.
+			##HoF is same-culture as the heretic.
+			triggered_desc = {
+				trigger = { scope:hof.culture = scope:heretic.culture }
+				desc = east_europe.0112.desc.culture
+			}
+			##HoF is your rival.
+			triggered_desc = {
+				trigger = {
+					any_relation = {
+						type = rival
+						this = scope:hof
+					}
+				}
+				desc = east_europe.0112.desc.rival
+			}
+			##HoF thinks you're sinful as hell.
+			triggered_desc = {
+				trigger = { num_sinful_traits >= 3 }
+				desc = east_europe.0112.desc.sinful
+			}
+			##HoF just really dislikes you.
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:hof
+						value <= high_negative_opinion
+					}
+				}
+				desc = east_europe.0112.desc.negative_opinion
+			}
+			desc = east_europe.0112.desc.fallback
+		}
+		desc = east_europe.0112.desc.outro
+	}
+	sender = {
+		character = scope:hof
+		animation = dismissal
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_no_heretic_notification_effect = yes
+	}
+
+	#What is HoF thinking?!
+	option = {
+		name = east_europe.0112.a
+
+		#Your HoF dislikes your cavalier attitude.
+		reverse_add_opinion = {
+			modifier = cavalier_accusations_opinion
+			target = scope:hof
+		}
+
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.regular_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_failure_cooldown_value
+		}
+
+		ai_chance = {
+			#The AI will always choose this.
+			base = 100
+		}
+	}
+}
+
+#	Accuser POV: HoF agrees, and will consult with Krstjani.
+east_europe.0113 = {
+	type = letter_event
+	opening = east_europe.0113.t
+	desc = east_europe.0113.desc
+	sender = {
+		character = scope:hof
+		animation = personality_rational
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_no_heretic_notification_effect = yes
+	}
+
+	#The ecclesiastic wheels are in motion!
+	option = {
+		name = east_europe.0113.a
+
+		#HoF appreciates being alerted.
+		reverse_add_opinion = {
+			modifier = brought_heretics_to_my_notice_opinion
+			target = scope:hof
+		}
+
+		#HoF contacts scope: heretic...
+		custom_tooltip = east_europe.0113.a.tt
+		scope:heretic = {
+			trigger_event = {
+				id = east_europe.0114
+				days = { 7 14 }
+			}
+		}
+
+		ai_chance = {
+			#AI will always choose this option.
+			base = 100
+		}
+	}
+}
+
+#	Heretic POV: Krstjani given choice.
+east_europe.0114 = {
+	type = character_event
+	title = east_europe.0114.t
+	desc = east_europe.0114.desc
+	theme = faith
+	left_portrait = {
+		character = scope:accuser
+		animation = schadenfreude
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_zealous
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_no_heretic_notification_effect = yes
+	}
+
+	#Learning: attempt to engage theologically.
+	option = {
+		name = east_europe.0114.a
+
+		#Save the response type for later loc.
+		save_scope_value_as = {
+			name = krstjani_response
+			value = flag:theological_debate
+		}
+
+		#You try to tackle scope:HoF on their own ground.
+		duel = {
+			skill = learning
+			target = scope:hof
+			#You convince scope:HoF of your status as genuine Christians!
+			40 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = east_europe.0114.a.tt_success
+				custom_tooltip = east_europe.0114.a.tt_success.tt
+				trigger_event = {
+					id = east_europe.0118
+					days = { 7 14 }
+				}
+			}
+			#Scope:HoF remains critical of your religious practices.
+			60 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = east_europe.0114.a.tt_failure
+				custom_tooltip = east_europe.0114.a.tt_failure.tt
+				trigger_event = {
+					id = east_europe.0120
+					days = { 7 14 }
+				}
+			}
+		}
+
+		stress_impact = {
+			am_intolerant = medium_stress_impact_loss
+			am_lazy = minor_stress_impact_gain
+			am_craven = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.75
+				ai_boldness = 0.5
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = am_intolerant
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_lazy
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_craven
+			}
+		}
+	}
+
+	#Intrigue: use your hook.
+	option = {
+		name = east_europe.0114.b
+		trigger = { has_usable_hook = scope:hof }
+
+		#Save the response type for later loc.
+		save_scope_value_as = {
+			name = krstjani_response
+			value = flag:political_leverage
+		}
+
+		#If the hook is strong, and scope:accuser both uses a communion faith & has no counter-hook, then this is a critical success.
+		if = {
+			limit = {
+				has_strong_usable_hook = scope:hof
+				scope:hof.faith = { has_doctrine_parameter = excommunication_active }
+				NOT = {
+					scope:accuser = { has_strong_hook = scope:hof}
+				}
+			}
+			save_scope_value_as = {
+				name = critical_success
+				value = yes
+			}
+		}
+		#Spend hooks appropriately.
+		use_hook = scope:hof
+		#Send the response event.
+		custom_tooltip = east_europe.0114.b.tt
+		trigger_event = {
+			id = east_europe.0118
+			days = { 7 14 }
+		}
+
+		stress_impact = {
+			am_deceitful = medium_stress_impact_loss
+			am_inconstant = medium_stress_impact_loss
+			am_honest = medium_stress_impact_gain
+			am_honest = medium_stress_impact_gain
+		}
+		ai_chance = {
+			base = 10000	#Since this is an autosuccess, the AI should pretttty much always take it if they have the choice (barring stress traits).
+			ai_value_modifier = {
+				ai_boldness = 0.75
+				ai_honor = -0.5
+			}
+			#Stress values here are set up so that, if scope:heretic has appropriate traits, they might actually _not_ choose this, even with the auto-win.
+			modifier = {	#Weight up for stress.
+				add = 9920
+				has_trait = am_deceitful
+			}
+			modifier = {	#Weight up for stress.
+				add = 9920
+				has_trait = am_inconstant
+			}
+			modifier = {	#Weight down for stress.
+				add = -9920
+				has_trait = am_honest
+			}
+			modifier = {	#Weight down for stress.
+				add = -9920
+				has_trait = am_honest
+			}
+		}
+	}
+	
+	#Intrigue: attempt to manipulate scope:HoF.
+	option = {
+		name = east_europe.0114.c
+		trigger = {
+			NOT = { has_usable_hook = scope:hof }
+		}
+
+		#Save the response type for later loc.
+		save_scope_value_as = {
+			name = krstjani_response
+			value = flag:political_manoeuvrings
+		}
+
+		#You try to argue the point politically.
+		duel = {
+			skill = intrigue
+			target = scope:hof
+			#You convince scope:HoF that scope:Accuser is just being political.
+			40 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = east_europe.0114.c.tt_success
+				custom_tooltip = east_europe.0114.a.tt_success.tt
+				trigger_event = {
+					id = east_europe.0118
+					days = { 7 14 }
+				}
+			}
+			#Scope:HoF remains critical of your religious practices.
+			60 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = east_europe.0114.c.tt_failure
+				custom_tooltip = east_europe.0114.a.tt_failure.tt
+				trigger_event = {
+					id = east_europe.0120
+					days = { 7 14 }
+				}
+			}
+		}
+
+		stress_impact = {
+			am_deceitful = medium_stress_impact_loss
+			am_inconstant = medium_stress_impact_loss
+			am_honest = medium_stress_impact_gain
+			am_honest = medium_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_boldness = 0.75
+				ai_honor = -0.5
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = am_deceitful
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = am_inconstant
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = am_honest
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = am_honest
+			}
+		}
+	}
+
+	#Faith: convert as requested.
+	option = {
+		name = east_europe.0114.d
+
+		#Announce your conversion.
+		custom_tooltip = east_europe.0114.d.tt
+		trigger_event = east_europe.0116
+
+		stress_impact = {
+			am_humble = minor_stress_impact_loss
+			am_hypocritical = major_stress_impact_loss
+			am_pretentious = minor_stress_impact_gain
+			am_intolerant = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				#Intentionally set these to be a bit more realpolitik than usual: it's not necessarily a sincere conversion, after all.
+				ai_rationality = 0.75
+				ai_zeal = -0.25
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_humble
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = am_hypocritical
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_pretentious
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = am_intolerant
+			}
+		}
+	}
+
+	#Faith: refuse to submit to scope:HoF!
+	option = {
+		name = east_europe.0114.e
+
+		#Save the response type for later loc.
+		save_scope_value_as = {
+			name = krstjani_response
+			value = flag:unrepentant_heretics
+		}
+
+		#Fallout begins.
+		custom_tooltip = east_europe.0114.e.tt
+		trigger_event = {
+			id = east_europe.0120
+			days = { 7 14 }
+		}
+
+		stress_impact = {
+			am_pretentious = minor_stress_impact_loss
+			am_intolerant = major_stress_impact_loss
+			am_humble = minor_stress_impact_gain
+			am_hypocritical = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				#Intentionally set these to be a bit more realpolitik than usual: it's not necessarily a sincere conversion, after all.
+				ai_zeal = 0.25
+				ai_rationality = -0.75
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_pretentious
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = am_intolerant
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_humble
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = am_hypocritical
+			}
+		}
+	}
+}
+
+#	Accuser POV: Krstjani convert.
+east_europe.0115 = {
+	type = character_event
+	title = east_europe.0115.t
+	desc = {
+		desc = east_europe.0115.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:heretic_conversion = flag:political }
+				desc = east_europe.0115.desc.political
+			}
+			triggered_desc = {
+				trigger = { scope:heretic_conversion = flag:wholehearted }
+				desc = east_europe.0115.desc.wholehearted
+			}
+		}
+		desc = east_europe.0115.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:heretic
+		animation = shame
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_bold
+	}
+	override_background = { event_background = council_chamber }
+
+	immediate = {
+		if = {
+			limit = { scope:heretic_conversion = flag:political }
+			show_as_tooltip = {
+				scope:heretic = { set_character_faith = scope:hof.faith }
+			}
+		}
+		else_if = {
+			limit = { scope:heretic_conversion = flag:wholehearted }
+			show_as_tooltip = {
+				scope:heretic = { set_character_faith_with_conversion = scope:hof.faith }
+			}
+		}
+	}
+
+	#Pah! A false conversion!
+	option = {
+		name = east_europe.0115.a
+
+		#Recoup some of your lost piety, at least.
+		add_piety = medium_piety_gain
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.regular_cooldown
+
+		ai_chance = {
+			#The AI will always take this option.
+			base = 100
+		}
+	}
+	
+	#Once a heretic, always a heretic!
+	option = {
+		name = east_europe.0115.b
+		trigger = {
+			#Option for players to vent.
+			is_ai = no
+			can_set_relation_rival_trigger = { CHARACTER = scope:heretic }
+		}
+
+		#Still recoup that lost piety.
+		add_piety = medium_piety_gain
+		#Set the "convert" as your rival.
+		set_relation_rival = scope:heretic
+		hidden_effect = {
+			scope:heretic = {
+				send_interface_toast = {	
+					title = east_europe.0115.b.toast
+					left_icon = scope:accuser
+					show_as_tooltip = { set_relation_rival = scope:accuser }
+				}
+			}
+		}
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.regular_cooldown
+
+		ai_chance = {
+			#The AI does not have access to this option.
+			base = 0
+		}
+	}
+}
+
+#	Heretic POV: Krstjani convert.
+east_europe.0116 = {
+	type = character_event
+	title = east_europe.0116.t
+	desc = east_europe.0116.desc
+	theme = faith
+	left_portrait = {
+		character = scope:accuser
+		animation = shock
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_bold
+	}
+	override_background = { event_background = council_chamber }
+
+	immediate = {
+		#Reduced cooldown for ordinary successes.
+		custom_tooltip = east_europe.0111.tt.regular_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_failure_cooldown_value
+		}
+		#Flag them as a converted Krstjani leader, so that they can't just reconvert for free via false conversions.
+		add_character_flag = {
+			flag = atoned_krstjani_leader_flag
+			years = 20
+		}
+	}
+
+	#A personal admission of faith will do.
+	option = {
+		name = east_europe.0116.a
+
+		#I'll just quietly convert by myself.
+		set_character_faith = scope:hof.faith
+		#Costs you some piety, but easier to flip back from.
+		add_piety = minor_piety_loss
+		#Set up scope:accuser loc.
+		save_scope_value_as = {
+			name = heretic_conversion
+			value = flag:political
+		}
+		#Aaaand notify scope:accuser.
+		scope:accuser = { trigger_event = east_europe.0115 }
+
+		stress_impact = {
+			am_stubborn = minor_stress_impact_loss
+			am_intolerant = minor_stress_impact_loss
+			am_inconstant = minor_stress_impact_gain
+			am_inconstant = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.5
+				ai_vengefulness = -0.25
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_stubborn
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_intolerant
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_inconstant
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_inconstant
+			}
+		}
+	}
+	
+	#I whole-heartedly embrace this opportunity!
+	option = {
+		name = east_europe.0116.b
+
+		#The realm must join me!
+		set_character_faith_with_conversion = scope:hof.faith
+		#A pious act, from the POV of your new faith.
+		add_piety = medium_piety_gain
+		#Set up scope:accuser loc.
+		save_scope_value_as = {
+			name = heretic_conversion
+			value = flag:wholehearted
+		}
+		#Aaaand notify scope:accuser.
+		scope:accuser = { trigger_event = east_europe.0115 }
+
+		stress_impact = {
+			am_inconstant = minor_stress_impact_loss
+			am_inconstant = minor_stress_impact_loss
+			am_stubborn = medium_stress_impact_gain
+			am_intolerant = medium_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_honor = 0.25
+				ai_vengefulness = 0.25
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_inconstant
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = am_inconstant
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = am_stubborn
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = am_intolerant
+			}
+		}
+	}
+}
+
+#	Accuser POV: Krstjani manipulate HoF.
+east_europe.0117 = {
+	type = character_event
+	title = east_europe.0117.t
+	desc = {
+		desc = east_europe.0117.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { exists = scope:excommunicated_just_now }
+				desc = east_europe.0117.desc.critical_success
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:theological_debate }
+				desc = east_europe.0117.desc.theological_debate
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_leverage }
+				desc = east_europe.0117.desc.political_leverage
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_manoeuvrings }
+				desc = east_europe.0117.desc.political_manoeuvrings
+			}
+		}
+		desc = east_europe.0117.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:heretic
+		animation = schadenfreude
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_forgiving
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_full_notifications_effect = yes
+	}
+
+	immediate = {
+		#Apply excommunication if necessary.
+		if = {
+			limit = { krstjani_manipulate_hof_valid_critical_success_target_trigger = yes }
+			add_excommunication_actual_effect = yes
+			save_scope_value_as = {
+				name = excommunicated_just_now
+				value = yes
+			}
+		}
+		#If possible, quietly make scope:hof a potential rival. Just for funsies.
+		hidden_effect = {
+			if = {
+				limit = {
+					can_set_relation_potential_rival_trigger = { CHARACTER = scope:hof }
+				}
+				set_relation_potential_rival = scope:hof
+			}
+		}
+	}
+
+	#This is a travesty!
+	option = {
+		name = east_europe.0117.a
+		trigger = {
+			NOT = { exists = scope:excommunicated_just_now }
+		}
+
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.regular_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_failure_cooldown_value
+		}
+
+		ai_chance = {
+			#The AI will always take this option if available.
+			base = 100
+		}
+	}
+	
+	#Scope:HoF excommunicated *me*?!
+	option = {
+		name = east_europe.0117.b
+		trigger = { exists = scope:excommunicated_just_now }
+
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a LONG cooldown.
+		custom_tooltip = east_europe.0111.tt.critical_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_critical_failure_cooldown_value
+		}
+
+		ai_chance = {
+			#The AI will always take this option if available.
+			base = 100
+		}
+	}
+	
+	#This is the start of a beautiful rivalry.
+	option = {
+		name = east_europe.0117.c
+		trigger = {
+			#Option for players to vent.
+			is_ai = no
+			can_set_relation_rival_trigger = { CHARACTER = scope:heretic }
+		}
+
+		#Set the heretic as your rival.
+		set_relation_rival = scope:heretic
+		hidden_effect = {
+			scope:heretic = {
+				send_interface_toast = {	
+					title = east_europe.0117.c.toast
+					left_icon = scope:accuser
+					show_as_tooltip = { set_relation_rival = scope:accuser }
+				}
+			}
+		}
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		if = {
+			limit = { exists = scope:excommunicated_just_now }
+			#Clear the variable from the list after a LONG cooldown.
+			custom_tooltip = east_europe.0111.tt.critical_cooldown
+		}
+		else = {
+			#Clear the variable from the list after a reasonable cooldown.
+			custom_tooltip = east_europe.0111.tt.regular_cooldown
+		}
+
+		stress_impact = { am_agreeable = minor_stress_impact_gain }
+		ai_chance = {
+			#The AI does not have access to this option.
+			base = 0
+		}
+	}
+
+	#I'll found my own church! With divorce and carnal exultations!
+	option = {
+		name = east_europe.0117.d
+		trigger = { exists = scope:excommunicated_just_now }
+
+		#Players are allowed to choose a consolation prize, for the inconvenience.
+		add_character_modifier = {
+			modifier = feud_with_the_church_modifier
+			years = 20
+		}
+
+		#Set up some rivalries from your bluster.
+		if = {
+			limit = {
+				can_set_relation_rival_trigger = { CHARACTER = scope:heretic }
+			}
+			set_relation_rival = scope:heretic
+		}
+		if = {
+			limit = {
+				can_set_relation_rival_trigger = { CHARACTER = scope:hof }
+			}
+			set_relation_rival = scope:hof
+		}
+
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a LONG cooldown.
+		custom_tooltip = east_europe.0111.tt.critical_cooldown
+		trigger_event = {
+			id = east_europe.0122
+			years = accuse_the_krstjani_of_heresy_critical_failure_cooldown_value
+		}
+
+
+		stress_impact = { am_intolerant = major_stress_impact_loss }
+		ai_chance = {
+			#The AI doesn't use custom faith reformation, so it'll never take this option.
+			base = 0
+		}
+	}
+}
+
+#	Heretic POV: Krstjani manipulate HoF.
+east_europe.0118 = {
+	type = character_event
+	title = east_europe.0118.t
+	desc = {
+		desc = east_europe.0118.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:accuser = { krstjani_manipulate_hof_valid_critical_success_target_trigger = yes }
+				}
+				desc = east_europe.0118.desc.critical_success
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:theological_debate }
+				desc = east_europe.0118.desc.theological_debate
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_leverage }
+				desc = east_europe.0118.desc.political_leverage
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_manoeuvrings }
+				desc = east_europe.0118.desc.political_manoeuvrings
+			}
+		}
+		desc = east_europe.0118.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:acuser
+		animation = disbelief
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_zealous
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_full_notifications_effect = yes
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				scope:accuser = { krstjani_manipulate_hof_valid_critical_success_target_trigger = yes }
+			}
+			scope:accuser = { add_excommunication_tooltip_only_effect = yes }
+			#Clear the variable from the list after a reasonable cooldown.
+			custom_tooltip = east_europe.0111.tt.critical_cooldown
+			trigger_event = {
+				id = east_europe.0122
+				years = accuse_the_krstjani_of_heresy_critical_failure_cooldown_value
+			}
+		}
+		else = {
+			#Reduced cooldown for ordinary successes.
+			custom_tooltip = east_europe.0111.tt.regular_cooldown
+			trigger_event = {
+				id = east_europe.0122
+				years = accuse_the_krstjani_of_heresy_failure_cooldown_value
+			}
+		}
+		scope:accuser = { trigger_event = east_europe.0117 }
+	}
+
+	#God smiles upon us!
+	option = {
+		name = east_europe.0118.a
+
+		#Give them a little reward for doing well.
+		add_piety = medium_piety_value
+
+		stress_impact = {
+			am_intolerant = medium_stress_impact_loss
+			am_hypocritical = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.5
+				ai_boldness = 0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = 20
+				has_trait = am_intolerant
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_hypocritical
+			}
+		}
+	}
+
+	#I'm just glad this issue is surely settled.
+	option = {
+		name = east_europe.0118.b
+
+		add_stress = massive_stress_loss
+
+		stress_impact = {
+			am_hypocritical = medium_stress_impact_loss
+			am_intolerant = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_energy = 0.25
+				ai_zeal = -0.5
+			}
+			modifier = {	#Weight down for stress.
+				add = 20
+				has_trait = am_hypocritical
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = am_intolerant
+			}
+		}
+	}
+}
+
+#	Accuser POV: Krstjani formally declared heretics.
+east_europe.0119 = {
+	type = character_event
+	title = east_europe.0119.t
+	desc = {
+		desc = east_europe.0119.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:theological_debate }
+				desc = east_europe.0119.desc.theological_debate
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_manoeuvrings }
+				desc = east_europe.0119.desc.political_manoeuvrings
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:unrepentant_heretics }
+				desc = east_europe.0119.desc.unrepentant_heretics
+			}
+		}
+		desc = east_europe.0119.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:heretic
+		animation = shock
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_vengeful
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_full_notifications_effect = yes
+	}
+
+	immediate = {
+		show_as_tooltip = {
+			#The Krstjani are formally declared to be heretical.
+			faith:bosnian_church = { remove_doctrine = special_doctrine_ecumenical_christian }
+		}
+	}
+
+	#Vindication!
+	option = {
+		name = east_europe.0119.a
+
+		add_piety_experience = major_piety_value
+
+		ai_chance = {
+			#The AI will always take this option.
+			base = 100
+		}
+	}
+}
+
+#	Heretic POV: Krstjani formally declared heretics.
+east_europe.0120 = {
+	type = letter_event
+	opening = east_europe.0120.t
+	desc = {
+		desc = east_europe.0120.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:theological_debate }
+				desc = east_europe.0120.desc.theological_debate
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_manoeuvrings }
+				desc = east_europe.0120.desc.political_manoeuvrings
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:unrepentant_heretics }
+				desc = east_europe.0120.desc.unrepentant_heretics
+			}
+		}
+		desc = east_europe.0120.desc.outro
+	}
+	sender = {
+		character = scope:hof
+		animation = personality_vengeful
+	}
+
+	trigger = { generic_invalidation_criteria_trigger = no }
+
+	on_trigger_fail = {
+		on_trigger_fail_full_notifications_effect = yes
+	}
+
+	immediate = {
+		#The Krstjani are formally declared to be heretical.
+		faith:bosnian_church = { remove_doctrine = special_doctrine_ecumenical_christian }
+		#The accuser is told of their triumph!
+		scope:accuser = { trigger_event = east_europe.0119 }
+		#Relevant players (neighbouring realms and Krstjani ones) are informed.
+		every_player = {
+			limit = {
+				NOR = {
+					this = scope:heretic	#Not the actual chief heretic.
+					this = scope:accuser	#Nor the chief accuser.
+				}
+				OR = {
+					faith = faith:bosnian_church
+					any_neighboring_top_liege_realm = { holder = scope:heretic }
+				}
+			}
+			trigger_event = east_europe.0121
+		}
+	}
+
+	#This is terrible!
+	option = {
+		name = east_europe.0120.a
+
+		custom_tooltip = east_europe.0120.a.tt
+
+		ai_chance = {
+			#The AI will always pick this option.
+			base = 100
+		}
+	}
+}
+
+#	Other POV: Krstjani stripped of ecumenism notification for neighbouring rulers.
+east_europe.0121 = {
+	type = character_event
+	title = east_europe.0121.t
+	desc = {
+		desc = east_europe.0121.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:theological_debate }
+				desc = east_europe.0121.desc.theological_debate
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:political_manoeuvrings }
+				desc = east_europe.0121.desc.political_manoeuvrings
+			}
+			triggered_desc = {
+				trigger = { scope:krstjani_response = flag:unrepentant_heretics }
+				desc = east_europe.0121.desc.unrepentant_heretics
+			}
+		}
+		desc = east_europe.0121.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:heretic
+		animation = shock
+	}
+	right_portrait = {
+		character = scope:hof
+		animation = personality_vengeful
+	}
+	lower_right_portrait = scope:accuser
+	override_background = { event_background = council_chamber }
+
+	#Heretics? In our midst?!
+	option = {
+		name = east_europe.0121.a
+		trigger = {
+			#Can't be Krstjani yourself.
+			NOT = { faith = faith:bosnian_church }
+			OR = {
+				#Either a non-cynical member of the same church.
+				AND = {
+					faith = scope:hof.faith
+					NOT = { has_trait = am_hypocritical }
+				}
+				#Or a zealous member of another ecumenical church.
+				AND = {
+					faith = {
+						religion = religion:christianity_religion
+						has_doctrine = special_doctrine_ecumenical_christian
+					}
+					has_trait = am_intolerant
+				}
+			}
+		}
+
+		show_as_tooltip = {
+			faith:bosnian_church = { remove_doctrine = special_doctrine_ecumenical_christian }
+		}
+
+		ai_chance = {
+			#AI choice is irrelevant.
+			base = 100
+		}
+	}
+	
+	#I genuinely don't care.
+	option = {
+		name = east_europe.0121.b
+		trigger = {
+			NOR = {
+				#Can't be Krstjani yourself.
+				faith = faith:bosnian_church
+				#Must not be a non-cynical member of the same church.
+				AND = {
+					faith = scope:hof.faith
+					NOT = { has_trait = am_hypocritical }
+				}
+				#Nor a zealous member of another ecumenical church.
+				AND = {
+					faith = {
+						religion = religion:christianity_religion
+						has_doctrine = special_doctrine_ecumenical_christian
+					}
+					has_trait = am_intolerant
+				}
+			}
+		}
+
+		show_as_tooltip = {
+			faith:bosnian_church = { remove_doctrine = special_doctrine_ecumenical_christian }
+		}
+
+		ai_chance = {
+			#AI choice is irrelevant.
+			base = 100
+		}
+	}
+	
+	#We just wanted to be left alone!
+	option = {
+		name = east_europe.0121.c
+		trigger = { faith = faith:bosnian_church }
+
+		show_as_tooltip = {
+			faith:bosnian_church = { remove_doctrine = special_doctrine_ecumenical_christian }
+		}
+
+		ai_chance = {
+			#AI choice is irrelevant.
+			base = 100
+		}
+	}
+}
+
+#	Maintenance: accusation failure maintenance timer.
+east_europe.0122 = {
+	hidden = yes
+
+	immediate = {
+		#Quietly reenable the decision to accuse of heresy.
+		remove_list_global_variable = {
+			name = unavailable_unique_decisions
+			target = flag:flag_krstjani_accused_of_heresy
+		}
+	}
+}
+
+#	Accuser POV: decision has invalidated for some reason.
+east_europe.0123 = {
+	type = character_event
+	title = east_europe.0123.t
+	desc = {
+		desc = east_europe.0123.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:hof_died }
+				desc = east_europe.0123.desc.hof_died
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_died }
+				desc = east_europe.0123.desc.heretic_died
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:hof_no_longer_hof}
+				desc = east_europe.0123.desc.hof_no_longer_hof
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_not_independent_ruler }
+				desc = east_europe.0123.desc.heretic_not_independent_ruler
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_ecumenical_christian }
+				desc = east_europe.0123.desc.heretic_now_ecumenical_christian
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_different_heresy }
+				desc = east_europe.0123.desc.heretic_now_different_heresy
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_infidel }
+				desc = east_europe.0123.desc.heretic_now_infidel
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_heathen }
+				desc = east_europe.0123.desc.heretic_now_heathen
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:fallback }
+				desc = east_europe.0123.desc.fallback
+			}
+		}
+		desc = east_europe.0123.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:dead_character
+		animation = sadness
+	}
+	right_portrait = {
+		character = scope:escaped_on_technicality
+		animation = dismissal
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = {
+		#Just some basic triggers, since this is mostly, but not entirely, just a notification.
+		is_alive = yes
+		is_adult = yes
+		#Tonally required to not have converted/been inherited by a Krstjan.
+		NOT = { faith = faith:bosnian_church }
+	}
+
+	immediate = {
+		#Check to see why we've invalidated.
+		##Scope:hof has died.
+		if = {
+			limit = {
+				scope:hof = { is_alive = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:hof_died
+			}
+			#Set-up portraits.
+			scope:hof = { save_scope_as = dead_character }
+		}
+		##Scope:heretic has died.
+		else_if = {
+			limit = {
+				scope:heretic = { is_alive = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_died
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = dead_character }
+		}
+		##Scope:hof is no longer actually the hof.
+		else_if = {
+			limit = {
+				scope:hof = {
+					NOT = { this = scope:hof.faith.religious_head}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:hof_no_longer_hof
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic is no longer independent.
+		else_if = {
+			limit = {
+				scope:heretic = { is_independent_ruler = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_not_independent_ruler
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to a different ecumenical faith.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith = {
+						NOT = { this = faith:bosnian_church }
+						has_doctrine = special_doctrine_ecumenical_christian
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_ecumenical_christian
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to another heresy.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith = {
+						NAND = {
+							this = faith:bosnian_church
+							has_doctrine = special_doctrine_ecumenical_christian
+						}
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_different_heresy
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to another Abrahamic religion.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith.religion = {
+						NOT = { this = religion:christianity_religion }
+						is_in_family = rf_abrahamic
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_infidel
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to a non-Abrahamic religion.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith.religion = {
+						NOT = { is_in_family = rf_abrahamic }
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_heathen
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Aaaaand a fallback, in case something goes weird.
+		else = {
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:fallback
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+	}
+
+	#Accuser POV: it wasn't supposed to end this way!
+	option = {
+		name = east_europe.0123.a
+
+		#Recoup some of the lost piety.
+		add_piety = medium_piety_gain
+
+		#Announce failure.
+		custom_tooltip = east_europe.0111.tt.announce_failure
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.cancellation_cooldown
+
+		ai_chance = {
+			#The AI will always pick this option.
+			base = 100
+		}
+	}
+}
+
+#	Heretic POV: decision has invalidated for some reason.
+east_europe.0124 = {
+	type = character_event
+	title = east_europe.0124.t
+	desc = {
+		desc = east_europe.0124.desc.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:hof_died }
+				desc = east_europe.0124.desc.hof_died
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_died }
+				desc = east_europe.0124.desc.heretic_died
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:hof_no_longer_hof}
+				desc = east_europe.0123.desc.hof_no_longer_hof
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_not_independent_ruler }
+				desc = east_europe.0124.desc.heretic_not_independent_ruler
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_ecumenical_christian }
+				desc = east_europe.0124.desc.heretic_now_ecumenical_christian
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_different_heresy }
+				desc = east_europe.0124.desc.heretic_now_different_heresy
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_infidel }
+				desc = east_europe.0124.desc.heretic_now_infidel
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:heretic_now_heathen }
+				desc = east_europe.0124.desc.heretic_now_heathen
+			}
+			triggered_desc = {
+				trigger = { scope:invalidation_type = flag:fallback }
+				desc = east_europe.0124.desc.fallback
+			}
+		}
+		desc = east_europe.0124.desc.outro
+	}
+	theme = faith
+	left_portrait = {
+		character = scope:dead_character
+		animation = sadness
+	}
+	right_portrait = {
+		character = scope:escaped_on_technicality
+		animation = dismissal
+	}
+	override_background = { event_background = council_chamber }
+
+	trigger = {
+		#Just some basic triggers, since this is mostly, but not entirely, just a notification.
+		is_alive = yes
+		is_adult = yes
+	}
+
+	immediate = {
+		#Check to see why we've invalidated.
+		##Scope:hof has died.
+		if = {
+			limit = {
+				scope:hof = { is_alive = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:hof_died
+			}
+			#Set-up portraits.
+			scope:hof = { save_scope_as = dead_character }
+		}
+		##Scope:heretic has died.
+		else_if = {
+			limit = {
+				scope:heretic = { is_alive = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_died
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = dead_character }
+		}
+		##Scope:hof is no longer actually the hof.
+		else_if = {
+			limit = {
+				scope:hof = {
+					NOT = { this = scope:hof.faith.religious_head}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:hof_no_longer_hof
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic is no longer independent.
+		else_if = {
+			limit = {
+				scope:heretic = { is_independent_ruler = no }
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_not_independent_ruler
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to a different ecumenical faith.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith = {
+						NOT = { this = faith:bosnian_church }
+						has_doctrine = special_doctrine_ecumenical_christian
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_ecumenical_christian
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to another heresy.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith = {
+						NAND = {
+							this = faith:bosnian_church
+							has_doctrine = special_doctrine_ecumenical_christian
+						}
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_different_heresy
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to another Abrahamic religion.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith.religion = {
+						NOT = { this = religion:christianity_religion }
+						is_in_family = rf_abrahamic
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_infidel
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Scope:heretic has converted to a non-Abrahamic religion.
+		else_if = {
+			limit = {
+				scope:heretic = {
+					faith.religion = {
+						NOT = { is_in_family = rf_abrahamic }
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:heretic_now_heathen
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+		##Aaaaand a fallback, in case something goes weird.
+		else = {
+			save_scope_value_as = {
+				name = invalidation_type
+				value = flag:fallback
+			}
+			#Set-up portraits.
+			scope:heretic = { save_scope_as = escaped_on_technicality }
+		}
+	}
+
+	#Heretic POV: well, that's settled, at least.
+	option = {
+		name = east_europe.0124.a
+
+		add_stress = medium_stress_loss
+
+		#No need to announce failure to scope:heretic, as this is a success from their POV.
+		#Clear the variable from the list after a reasonable cooldown.
+		custom_tooltip = east_europe.0111.tt.cancellation_cooldown
+
+		ai_chance = {
+			#The AI will always pick this option.
+			base = 100
+		}
+	}
+}
+
+#	Maintenance: HoF decides who they dislike most.
+east_europe.0125 = {
+	hidden = yes
+
+	immediate = {
+		#What is the HoF's reply?
+		random_list = {
+			#Default to yes.
+			100 = {
+				trigger_event = {
+					id = east_europe.113
+					days = { 7 14 }
+				}
+
+				#Always do it if you have a strong hook on the HoF (though you're not *technically* using it).
+				modifier = {
+					add = 1000
+					has_strong_hook = scope:hof
+				}
+				#Weight up nicely if you have a regular hook (though you're still not *technically* using it).
+				modifier = {
+					add = 25
+					has_hook = scope:hof
+				}
+				#A friendly HoF wants to agree with you.
+				modifier = {
+					add = 30
+					any_relation = {
+						type = friend
+						this = scope:hof
+					}
+				}
+				#A lover HoF wants to agree with you.
+				modifier = {
+					add = 50
+					any_relation = {
+						type = lover
+						this = scope:hof
+					}
+				}
+				#An extremely-friendly HoF wants to agree with you.
+				modifier = {
+					add = 20
+					reverse_opinion = {
+						target = scope:hof
+						value >= high_positive_opinion
+					}
+				}
+				#Potentially-negative values from this point on need to be added to the refusal branch.
+				##An extremely-unfriendly HoF wants to disagree with you.
+				modifier = {
+					add = -20
+					reverse_opinion = {
+						target = scope:hof
+						value <= high_negative_opinion
+					}
+				}
+				##Weight down a bit for sin (no weight up for virtue, since this is already overwhelmingly likely: we're really just checking to see if your HoF is going to call you out for hypocrisy).
+				modifier = {
+					add = -10
+					num_sinful_traits = 1
+				}
+				modifier = {
+					add = -20
+					num_sinful_traits = 2
+				}
+				modifier = {
+					add = -30
+					num_sinful_traits = 3
+				}
+				modifier = {
+					add = -40
+					num_sinful_traits = 4
+				}
+				modifier = {
+					add = -50
+					num_sinful_traits >= 5
+				}
+				##A rivalling HoF wants to disagree with you.
+				modifier = {
+					add = -50
+					any_relation = {
+						type = rival
+						this = scope:hof
+					}
+				}
+				##A HoF that shares scope:heretic's culture is less likely to want to pick on a fellow countryman.
+				modifier = {
+					add = -20
+					scope:hof.culture = scope:heretic.culture
+				}
+			}
+			#Disable no by default: this option is weighted upwards according to how visibly unchristian scope:accuser is.
+			0 = {
+				trigger_event = {
+					id = east_europe.0112
+					days = 5
+				}
+
+				#And now, we invert the values from the acceptance branch:
+				##An extremely-unfriendly HoF wants to disagree with you.
+				modifier = {
+					add = 20
+					reverse_opinion = {
+						target = scope:hof
+						value <= high_negative_opinion
+					}
+				}
+				##Weight down a bit for sin (no weight up for virtue, since this is already overwhelmingly likely: we're really just checking to see if your HoF is going to call you out for hypocrisy).
+				modifier = {
+					add = 10
+					num_sinful_traits = 1
+				}
+				modifier = {
+					add = 20
+					num_sinful_traits = 2
+				}
+				modifier = {
+					add = 30
+					num_sinful_traits = 3
+				}
+				modifier = {
+					add = 40
+					num_sinful_traits = 4
+				}
+				modifier = {
+					add = 50
+					num_sinful_traits >= 5
+				}
+				##A rivalling HoF wants to disagree with you.
+				modifier = {
+					add = 50
+					any_relation = {
+						type = rival
+						this = scope:hof
+					}
+				}
+				##A HoF that shares scope:heretic's culture is less likely to want to pick on a fellow countryman.
+				modifier = {
+					add = 20
+					scope:hof.culture = scope:heretic.culture
+				}
+			}
+		}
+	}
+}
+
+##################################################
+# Last Gasp of the Great Migrations
+# by Ewan Cowhig Croft
+# 0131-0150
+##################################################
+
+#	Invader POV: decided to mobilise the Mogyer people.
+east_europe.0141 = {
+	type = character_event
+	title = east_europe.0141.t
+	desc = east_europe.0141.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:invader
+		animation = personality_bold
+	}
+	override_background = { event_background = wilderness_steppe }
+
+	immediate = {
+		save_scope_as = mogyer_invader
+		every_player = {
+			limit = {
+				NOT = { this = scope:mogyer_invader }
+			}
+			if = {
+				limit = {
+					any_vassal_or_below = { this = scope:mogyer_invader }
+				}
+				trigger_event = east_europe.0142
+			}
+			if = {
+				limit = {
+					any_sub_realm_county = {
+						title_province = { geographical_region = custom_hungary }
+					}
+					#Exempt the liege from getting this message: should be edge case, but the declaration of war should be enough to let them know that they're gonna have a bad time.
+					NOT = {
+						any_vassal_or_below = { this = scope:mogyer_invader }
+					}
+				}
+				trigger_event = east_europe.0143
+			}
+		}
+	}
+
+	#We ride west!
+	option = {
+		name = east_europe.0141.a
+
+		custom_tooltip = east_europe.0141.a.tt
+
+		ai_chance = {
+			#The AI will always pick this.
+			base = 100
+		}
+	}
+}
+
+#	Liege POV: decided to mobilise the Mogyer people.
+east_europe.0142 = {
+	type = character_event
+	title = east_europe.0142.t
+	desc = east_europe.0142.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:invader
+		animation = personality_greedy
+	}
+	override_background = { event_background = wilderness_steppe }
+
+
+	#A foolhardy errand.
+	option = {
+		name = east_europe.0142.a
+
+		custom_tooltip = east_europe.0142.a.tt
+
+		ai_chance = {
+			#The AI will always pick this.
+			base = 100
+		}
+	}
+}
+
+#	Pannonian POV: decided to mobilise the Mogyer people.
+east_europe.0143 = {
+	type = character_event
+	title = east_europe.0143.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					capital_province = { geographical_region = custom_hungary }
+				}
+				desc = east_europe.0143.desc.pannonian_capital
+			}
+			triggered_desc = {
+				trigger = {
+					any_held_title = {
+						tier = tier_county
+						title_province = { geographical_region = custom_hungary }
+					}
+				}
+				desc = east_europe.0143.desc.pannonian_territory
+			}
+			desc = east_europe.0143.desc.fallback
+		}
+		desc = east_europe.0143.desc.outro
+	}
+	theme = culture_change
+	left_portrait = {
+		character = scope:invader
+		animation = personality_greedy
+	}
+	override_background = { event_background = wilderness_steppe }
+
+	#They'll never cross the Carpathians!
+	option = {
+		name = east_europe.0143.a
+
+		custom_tooltip = east_europe.0143.a.tt
+
+		ai_chance = {
+			#The AI will always pick this.
+			base = 100
+		}
+	}
+}

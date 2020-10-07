@@ -44,8 +44,8 @@ claim_throne_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				content = medium_stress_impact_gain
-				just = medium_stress_impact_gain
+				am_conventional = medium_stress_impact_gain
+				am_honest = medium_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_toast = {
@@ -59,8 +59,8 @@ claim_throne_interaction = {
 					}
 					show_as_tooltip = {
 						stress_impact = {
-							content = medium_stress_impact_gain
-							just = medium_stress_impact_gain
+							am_conventional = medium_stress_impact_gain
+							am_honest = medium_stress_impact_gain
 						}
 					}
 				}
@@ -74,7 +74,7 @@ claim_throne_interaction = {
 		learning >= medium_skill_rating
 		intrigue >= mediocre_skill_rating
 		NOR = {
-			has_trait = content
+			has_trait = am_conventional
 			opinion = {
 				target = liege
 				value >= high_positive_opinion
@@ -137,9 +137,9 @@ fabricate_hook_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				just = medium_stress_impact_gain
-				honest = medium_stress_impact_gain
-				compassionate = minor_stress_impact_gain
+				am_honest = medium_stress_impact_gain
+				am_honest = medium_stress_impact_gain
+				am_tolerant = minor_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_toast = {
@@ -153,9 +153,9 @@ fabricate_hook_interaction = {
 					}
 					show_as_tooltip = {
 						stress_impact = {
-							just = medium_stress_impact_gain
-							honest = medium_stress_impact_gain
-							compassionate = minor_stress_impact_gain
+							am_honest = medium_stress_impact_gain
+							am_honest = medium_stress_impact_gain
+							am_tolerant = minor_stress_impact_gain
 						}
 					}
 				}
@@ -189,7 +189,7 @@ fabricate_hook_interaction = {
 		ai_greed >= low_positive_ai_value
 		intrigue >= medium_skill_rating
 		NOR = {
-			has_trait = content
+			has_trait = am_conventional
 			any_scheme = {
 				OR = {
 					scheme_type = murder
@@ -346,14 +346,14 @@ demand_payment_interaction = {
 				}
 			}
 			stress_impact = {
-				generous = medium_stress_impact_gain
+				am_generous = medium_stress_impact_gain
 			}
 		}
 	}
 	
 	ai_potential = {
 		NOT = {
-			has_trait = generous
+			has_trait = am_generous
 		}
 		OR = {
 			ai_greed >= low_positive_ai_value
@@ -579,7 +579,7 @@ buy_claim_interaction = {
 				add_unpressed_claim = scope:target
 			}
 			stress_impact = {
-				just = medium_stress_impact_gain
+				am_honest = medium_stress_impact_gain
 			}
 		}
 		scope:recipient = {

@@ -1,0 +1,38 @@
+﻿get_land_cost = {
+	if = {
+		limit = {
+			var:prov_sea == yes
+		}
+		if = {
+			limit = {
+				has_variable_list = prov_port
+			}
+			set_variable = { name = $return$ value = 0.5 }
+		}
+		else = {
+			set_variable = { name = $return$ value = 2 }
+		}
+	}
+	else = {
+		set_variable = { name = $return$ value = 8 }
+	
+		switch = {
+			trigger = terrain
+			
+			forest = { set_variable = { name = $return$ value = 3 } }
+			mountains = { set_variable = { name = $return$ value = 5 } }
+			hills = { set_variable = { name = $return$ value = 3 } }
+			wetlands = { set_variable = { name = $return$ value = 4 } }
+			plains = { set_variable = { name = $return$ value = 1 } }
+			farmlands = { set_variable = { name = $return$ value = 1 } }
+			taiga = { set_variable = { name = $return$ value = 4 } }
+			steppe = { set_variable = { name = $return$ value = 2 } }
+			desert = { set_variable = { name = $return$ value = 4 } }
+			jungle = { set_variable = { name = $return$ value = 5 } }
+			drylands = { set_variable = { name = $return$ value = 2 } }
+			oasis = { set_variable = { name = $return$ value = 2 } }
+			desert_mountains = { set_variable = { name = $return$ value = 6 } }
+			floodplains = { set_variable = { name = $return$ value = 2 } }
+		}
+	}
+}

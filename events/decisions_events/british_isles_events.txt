@@ -1,0 +1,414 @@
+﻿namespace = british_isles
+
+##################################################
+
+### British Isles Major Decision Events
+
+# 0001 - Reclaiming Britannia
+# 1001 - Restoring the Danelaw
+# 2001 - Embrace English Culture
+# 3001 - Request Laudabiliter
+
+##################################################
+
+##################################################
+# Reclaim Britannia
+# by Linnéa Thimrén
+##################################################
+
+british_isles.0001 = {
+	type = character_event
+	title = british_isles.0001.t
+	desc = british_isles.0001.desc
+	theme = realm
+	left_portrait = {
+		character = scope:reclaimer
+		animation = personality_honorable
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_epic_sacral_moment"
+		save_scope_as = reclaimer
+		reclaim_britannia_decision_effect = yes
+	}
+
+	option = {
+		name = british_isles.0001.a
+	}
+}
+
+# Players informed
+british_isles.0002 = {
+	type = character_event
+	title = british_isles.0001.t
+	desc = british_isles.0002.desc
+	theme = realm
+	left_portrait = {
+		character = scope:reclaimer
+		animation = personality_honorable
+	}
+
+	option = { # Not celtic
+		name = british_isles.0002.a
+		trigger = {
+			NOR = {
+				has_culture_group = culture_group:goidelic_group
+				has_culture_group = culture_group:brythonic_group
+			}
+		}
+	}
+	option = { # Also celtic
+		name = british_isles.0002.b
+		trigger = {
+			OR = {
+				has_culture_group = culture_group:goidelic_group
+				has_culture_group = culture_group:brythonic_group
+			}
+		}
+	}
+}
+
+##################################################
+# Restoring the Danelaw
+# by Linnéa Thimrén
+##################################################
+
+british_isles.1001 = {
+	type = character_event
+	title = british_isles.1001.t
+	desc = british_isles.1001.desc
+	theme = realm
+	left_portrait = {
+		character = scope:restorer
+		animation = personality_honorable
+	}
+
+	immediate = {
+		save_scope_as = restorer
+		
+		restore_the_danelaw_effect = yes
+	}
+
+	option = {
+		name = british_isles.1001.a
+	}
+}
+
+# Players informed of the Danelaw being created
+british_isles.1002 = {
+	type = character_event
+	title = british_isles.1002.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_culture_group = culture_group:north_germanic_group
+				}
+				desc = british_isles.1002.desc_same_culture
+			}
+			desc = british_isles.1002.desc
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:restorer
+		animation = personality_honorable
+	}
+
+	option = { # Not Danish
+		name = british_isles.1002.a
+		trigger = {
+			NOT = { has_culture_group = culture_group:north_germanic_group }
+		}
+	}
+
+	option = { # Also Danish
+		name = british_isles.1002.b
+		trigger = {
+			has_culture_group = culture_group:north_germanic_group
+		}
+	}
+
+	option = { # Give players close to restorer a chance to convert
+		name = british_isles.1002.c
+		trigger = {
+			NOT = { root.culture = scope:restorer.culture }
+			OR = {
+				is_close_family_of = scope:restorer
+				is_vassal_of = scope:restorer
+			}
+		}
+		set_culture = scope:restorer.culture
+		hidden_effect = {
+			if = {
+				limit = { any_spouse = { is_landed = no } }
+				every_spouse = {
+					set_culture = culture:english
+				}
+			}
+			if = {
+				limit = {
+					any_close_family_member = {
+						is_landed = no
+						NOT = { is_spouse_of = prev }
+					}
+				}
+				every_close_family_member = {
+					limit = {
+						is_landed = no
+						NOT = { is_spouse_of = prev }
+					}
+					set_culture = culture:english
+				}
+			}
+		}
+	}
+}
+
+##################################################
+# Embrace English culture
+# by Linnéa Thimrén
+##################################################
+
+british_isles.2001 = {
+	type = character_event
+	title = british_isles.2001.t
+	desc = british_isles.2001.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:embracer
+		animation = personality_bold
+	}
+
+	immediate = {
+		save_scope_as = embracer
+		culture = { save_scope_as = embracer_former_culture }
+	}
+
+	option = {
+		name = british_isles.2001.a
+		embrace_english_culture_effect = yes
+		hidden_effect = { # Moved here from embrace_english_culture_decision
+			# Send event to other players
+			every_player = {
+				limit = {
+					NOT = { this = root }
+					OR = {
+						primary_title = {
+							OR = {
+								de_jure_liege = title:e_britannia
+								de_jure_liege.de_jure_liege = title:e_britannia
+								de_jure_liege.de_jure_liege.de_jure_liege = title:e_britannia
+							}
+						}
+						has_culture_group = culture_group:north_germanic_group
+						has_culture_group = culture_group:central_germanic_group
+						has_culture_group = culture_group:west_germanic_group
+						has_culture_group = culture_group:goidelic_group
+						has_culture_group = culture_group:brythonic_group
+						has_culture = culture:norman
+					}
+				}
+				trigger_event = british_isles.2002
+			}
+		}
+	}
+}
+
+# Players informed
+british_isles.2002 = {
+	type = character_event
+	title = british_isles.2001.t
+	desc = british_isles.2002.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:embracer
+		animation = personality_bold
+	}
+
+	option = { # Not norman
+		name = british_isles.2002.a
+		trigger = {
+			NOT = { has_culture = culture:norman }
+		}
+	}
+	option = { # Also norman
+		name = british_isles.2002.b
+		trigger = {
+			has_culture = culture:norman
+		}
+	}
+}
+
+##################################################
+# Laudabiliter
+# by Flavio Verna
+##################################################
+
+british_isles.3001 = {
+	type = letter_event
+	opening = {
+		desc = british_isles.3001.t
+	}
+	desc = british_isles.3001.desc
+	sender = {
+		character = scope:scoped_pope
+		animation = personality_zealous
+	}
+
+	immediate = {
+		save_scope_as = scoped_ruler
+		root.faith.religious_head = {
+			save_scope_as = scoped_pope
+		}
+		house = {
+			add_house_modifier = {
+				modifier = ireland_laudabiliter_modifier
+				years = 100
+			}
+		}
+	}
+
+	option = { #Inform relevant players.
+		name = british_isles.3001.a
+		every_player = {
+			limit = {
+				NOT = { this = root }
+				OR = {
+					has_culture_group = culture_group:west_germanic_group
+					has_culture_group = culture_group:goidelic_group
+					has_culture = culture:norman
+				}
+			}
+			trigger_event = british_isles.3002
+		}
+	}
+}
+
+british_isles.3002 = {
+	type = character_event
+	title = british_isles.3002.t
+	desc = british_isles.3002.desc.irish
+	theme = war
+	left_portrait = {
+		character = scope:scoped_pope
+		animation = personality_zealous
+	}
+	right_portrait = {
+		character = scope:scoped_ruler
+		animation = scheme
+	}
+
+	option = {
+		name = {
+			trigger = {
+				capital_province = {
+					geographical_region = custom_roman_hibernia
+				}
+				NOT = { target_is_liege_or_above = scope:scoped_ruler }
+			}
+			text = british_isles.3002.a
+		}
+		name = {
+			trigger = {
+				OR = {
+					target_is_liege_or_above = scope:scoped_ruler
+					NOT = {
+						capital_province = {
+							geographical_region = custom_roman_hibernia
+						}
+					}
+				}
+			}
+			text = british_isles.3002.b
+		}
+		if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_roman_hibernia
+				}
+				NOT = { target_is_liege_or_above = scope:scoped_ruler }
+			}
+			add_opinion = {
+				target = scope:scoped_ruler
+				modifier = treacherous_invader_opinion
+			}
+		}
+	}
+}
+
+################
+# Restore Dumnonia
+# by Ewan Cowhig Croft
+################
+
+#The kingdom revived.
+british_isles.4001 = {
+	type = character_event
+	title = british_isles.4001.t
+	desc = british_isles.4001.desc
+	theme = realm
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+
+	immediate = { restore_dumnonia_decision_scripted_effect = yes }
+
+	#Take the nickname.
+	option = {
+		name = british_isles.4001.a
+		give_nickname = nick_the_trojan
+		add_prestige = minor_prestige_gain
+	}
+	#No thanks on the nickname, more prestige instead please.
+	option = {
+		name = british_isles.4001.b
+		add_prestige = medium_prestige_gain
+	}
+}
+
+
+#Inform any players.
+british_isles.4002 = {
+	type = character_event
+	title = british_isles.4001.t
+	desc = british_isles.4002.desc
+	theme = realm
+	theme = diplomacy
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+
+	option = {
+		name = { #Brythonic peoples are happy.
+			trigger = {
+				has_culture_group = culture_group:brythonic_group
+				NOT = { has_title = title:k_england }
+			}
+			text = british_isles.4002.a
+		}
+		name = { #Anglo-Saxons, the English, & the monarch of England are outraged.
+			trigger = {
+				OR = {
+					has_culture = culture:anglo_saxon
+					has_culture = culture:english
+					has_title = title:k_england
+				}
+			}
+			text = british_isles.4002.b
+		}
+		name = { #Noone else especially cares.
+			trigger = {
+				NOR = {
+					has_culture_group = culture_group:brythonic_group
+					has_culture = culture:anglo_saxon
+					has_culture = culture:english
+					has_title = title:k_england
+				}
+			}
+			text = british_isles.4002.c
+		}
+	}
+}

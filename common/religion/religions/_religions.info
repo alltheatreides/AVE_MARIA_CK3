@@ -12,17 +12,17 @@ religion_name = {
 	# Doctrines cannot be defined after the faiths section
 	
 	traits = {
-		virtues = { brave generous }	# List traits that are virtues for all followers. Trait groups also work. If more than one trait in a group is defined (or the group itself), only the first will be shown in the UI
+		virtues = { am_brave am_generous }	# List traits that are virtues for all followers. Trait groups also work. If more than one trait in a group is defined (or the group itself), only the first will be shown in the UI
 		sins = { ... }					#					  (sins)
 		# Virtues and sins give an opinion bonus/penalty (see VIRTUOUS_TRAIT and SINFUL_TRAIT defines). For that it is the "viewer's" faith that matters.
-		# E.g. if generous is a christian virtue, all christian characters will think more highly of all others with that trait, even if the others are not christian.
+		# E.g. if am_generous is a christian virtue, all christian characters will think more highly of all others with that trait, even if the others are not christian.
 		# Holders of the traits will also get the virtue_owner_modifier/sin_owner_modifier for each matching trait.
 		# Virtues and sins can optionally have a multiplier to scale the effects (default is 1):
-		virtues = { brave = 0.5 }		# scales both the opinion effect and the modifier
+		virtues = { am_brave = 0.5 }		# scales both the opinion effect and the modifier
 		# And they can specify a custom modifier (default is virtue_owner_modifier/sin_owner_modifier):
-		sins = { stubborn = { monthly_prestige = -0.1 } }
+		sins = { am_stubborn = { monthly_prestige = -0.1 } }
 		# When using a custom modifier you can specify a scale as well (default is 1):
-		sins = { stubborn = { monthly_prestige = -0.1 scale = 2 } }		# scales both the opinion effect and the modifier
+		sins = { am_stubborn = { monthly_prestige = -0.1 scale = 2 } }		# scales both the opinion effect and the modifier
 	}
 
 	reserved_male_names = { ... }	# Names listed here will be applied to all faiths that don't define reserved_male_names themselves.

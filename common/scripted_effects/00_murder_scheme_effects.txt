@@ -131,25 +131,25 @@ murder_success_effect = {
 		if = {
 			limit = {
 				scope:scheme.scheme_owner = {
-					has_trait = vengeful
+					has_trait = am_quarrelsome
 				}
 			}
 			scope:scheme.scheme_owner = {
 				stress_impact = {
-					vengeful = massive_stress_impact_loss
+					am_quarrelsome = massive_stress_impact_loss
 				}
 			}
 		}
 		else_if = {
 			limit = {
 				scope:scheme.scheme_owner = {
-					has_trait = forgiving
+					has_trait = am_agreeable
 				}
 			}
 			scope:scheme.scheme_owner = {
 				stress_impact = {
 					base = medium_stress_impact_loss
-					forgiving = minor_stress_impact_gain
+					am_agreeable = minor_stress_impact_gain
 				}
 			}
 		}

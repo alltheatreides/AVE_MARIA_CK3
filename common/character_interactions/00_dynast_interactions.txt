@@ -43,8 +43,8 @@ disinherit_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				forgiving = minor_stress_impact_gain
-				compassionate = minor_stress_impact_gain
+				am_agreeable = minor_stress_impact_gain
+				am_tolerant = minor_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_toast = {
@@ -123,7 +123,7 @@ disinherit_interaction = {
 	ai_potential = {
 		is_at_war = no
 		NOT = {
-			has_trait = forgiving
+			has_trait = am_agreeable
 		}
 	}
 	
@@ -295,8 +295,8 @@ restore_inheritance_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				vengeful = minor_stress_impact_gain
-				stubborn = minor_stress_impact_gain
+				am_quarrelsome = minor_stress_impact_gain
+				am_stubborn = minor_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_message = {
@@ -409,8 +409,8 @@ denounce_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				forgiving = minor_stress_impact_gain
-				compassionate = minor_stress_impact_gain
+				am_agreeable = minor_stress_impact_gain
+				am_tolerant = minor_stress_impact_gain
 			}
 
 			hidden_effect = {
@@ -490,7 +490,7 @@ denounce_interaction = {
 	ai_potential = {
 		is_adult = yes
 		NOT = {
-			has_trait = forgiving
+			has_trait = am_agreeable
 		}
 	}
 	
@@ -639,8 +639,8 @@ forgive_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				vengeful = minor_stress_impact_gain
-				stubborn = minor_stress_impact_gain
+				am_quarrelsome = minor_stress_impact_gain
+				am_stubborn = minor_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_message = {
@@ -1167,7 +1167,7 @@ dynast_legitimize_bastard_interaction = {
 		}
 		scope:actor = {
 			stress_impact = {
-				arrogant = minor_stress_impact_gain
+				am_pretentious = minor_stress_impact_gain
 			}
 			send_interface_message = {
 				type = event_generic_neutral

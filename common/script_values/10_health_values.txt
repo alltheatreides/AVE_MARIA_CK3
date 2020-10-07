@@ -272,7 +272,7 @@ character_weight_base_value = {
 		add = 50
 	}
 	if = {
-		limit = { has_trait = lazy }
+		limit = { has_trait = am_lazy }
 		add = 35
 	}
 	if = {
@@ -288,27 +288,27 @@ character_weight_base_value = {
 		add = 20
 	}
 	if = {
-		limit = { has_trait = gregarious }
+		limit = { has_trait = am_outgoing }
 		add = 20
 	}
 	if = {
-		limit = { has_trait = greedy }
+		limit = { has_trait = am_greedy }
 		add = 15
 	}
 	if = {
-		limit = { has_trait = calm }
+		limit = { has_trait = am_patient }
 		add = 15
 	}
 	if = {
-		limit = { has_trait = trusting }
+		limit = { has_trait = am_mild }
 		add = 15
 	}
 	if = {
-		limit = { has_trait = patient }
+		limit = { has_trait = am_patient }
 		add = 10
 	}
 	if = {
-		limit = { has_trait = arrogant }
+		limit = { has_trait = am_pretentious }
 		add = 10
 	}
 	if = {
@@ -349,19 +349,19 @@ character_weight_base_value = {
 
 	#SUBTRACT
 	if = {
-		limit = { has_trait = shy }
+		limit = { has_trait = am_withdrawn }
 		add = -10
 	}
 	if = {
-		limit = { has_trait = humble }
+		limit = { has_trait = am_humble }
 		add = -10
 	}	
 	if = {
-		limit = { has_trait = zealous }
+		limit = { has_trait = am_intolerant }
 		add = -10
 	}
 	if = {
-		limit = { has_trait = craven }
+		limit = { has_trait = am_craven }
 		add = -10
 	}
 	if = {
@@ -369,35 +369,35 @@ character_weight_base_value = {
 		add = -10 # Further 'moderation' impact below.
 	}
 	if = {
-		limit = { has_trait = impatient }
+		limit = { has_trait = am_illtempered }
 		add = -15
 	}
 	if = {
-		limit = { has_trait = content }
+		limit = { has_trait = am_conventional }
 		add = -15
 	}
 	if = {
-		limit = { has_trait = fickle}
+		limit = { has_trait = am_inconstant}
 		add = -15
 	}
 	if = {
-		limit = { has_trait = vengeful }
+		limit = { has_trait = am_quarrelsome }
 		add = -15
 	}
 	if = {
-		limit = { has_trait = generous }
+		limit = { has_trait = am_generous }
 		add = -15
 	}
 	if = {
-		limit = { has_trait = diligent }
+		limit = { has_trait = am_diligent }
 		add = -20 # Further 'moderation' impact below.
 	}
 	if = {
-		limit = { has_trait = wrathful }
+		limit = { has_trait = am_wroth }
 		add = -20
 	}
 	if = {
-		limit = { has_trait = paranoid }
+		limit = { has_trait = am_fearful }
 		add = -35
 	}
 	if = {
@@ -430,7 +430,7 @@ character_weight_base_value = {
 	}
 	if = {
 		limit = {
-			has_trait = diligent
+			has_trait = am_diligent
 		}
 		multiply = 0.9 # And Diligent.
 	}

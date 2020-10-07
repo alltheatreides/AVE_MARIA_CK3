@@ -130,14 +130,14 @@
 					has_imprisonment_reason = scope:recipient
 				}
 				stress_impact = {
-					compassionate = minor_stress_impact_gain
-					forgiving = minor_stress_impact_gain
+					am_tolerant = minor_stress_impact_gain
+					am_agreeable = minor_stress_impact_gain
 				}
 			}
 			else = {
 				stress_impact = {
-					just = medium_stress_impact_gain
-					compassionate = medium_stress_impact_gain
+					am_honest = medium_stress_impact_gain
+					am_tolerant = medium_stress_impact_gain
 				}
 				if = {
 					limit = { exists = scope:retaliating_faction}
@@ -218,14 +218,14 @@
 					has_imprisonment_reason = scope:recipient
 				}
 				stress_impact = {
-					compassionate = minor_stress_impact_gain
-					forgiving = minor_stress_impact_gain
+					am_tolerant = minor_stress_impact_gain
+					am_agreeable = minor_stress_impact_gain
 				}
 			}
 			else = {
 				stress_impact = {
-					just = medium_stress_impact_gain
-					compassionate = medium_stress_impact_gain
+					am_honest = medium_stress_impact_gain
+					am_tolerant = medium_stress_impact_gain
 				}
 				if = {
 					limit = { exists = scope:retaliating_faction}
@@ -887,8 +887,8 @@ move_to_dungeon_interaction = {
 		}
 		scope:actor = {
 			stress_impact = {
-				compassionate = medium_stress_impact_gain
-				forgiving = medium_stress_impact_gain
+				am_tolerant = medium_stress_impact_gain
+				am_agreeable = medium_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_message = {
@@ -976,7 +976,7 @@ move_to_house_arrest_interaction = {
 		scope:actor = {
 			stress_impact = {
 				sadistic = medium_stress_impact_gain
-				vengeful = medium_stress_impact_gain
+				am_quarrelsome = medium_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_message = {
@@ -2083,7 +2083,7 @@ ransom_me_interaction = {
 					}
 					OR = {
 						time_in_prison = { years > 1 }
-						has_trait = impatient #LET ME OUT! I want out! NOW!
+						has_trait = am_illtempered #LET ME OUT! I want out! NOW!
 					}
 					scope:current_gold = yes
 				}
@@ -2345,7 +2345,7 @@ release_from_prison_interaction = {
 							add_dread = minor_dread_loss
 							stress_impact = {
 								sadistic = medium_stress_impact_gain
-								callous = minor_stress_impact_gain
+								am_deceitful = minor_stress_impact_gain
 							}
 						}
 					}
@@ -2883,7 +2883,7 @@ release_from_prison_interaction = {
 			add = -40
 			scope:actor = {
 				NOT = {
-					has_trait = forgiving
+					has_trait = am_agreeable
 				}
 			}
 			scope:recipient = {
@@ -2901,7 +2901,7 @@ release_from_prison_interaction = {
 			add = -100
 			scope:actor = {
 				NOT = {
-					has_trait = forgiving
+					has_trait = am_agreeable
 				}
 			}
 			scope:actor.ai_vengefulness >= very_high_positive_ai_value
@@ -3185,8 +3185,8 @@ execute_prisoner_interaction = {
 					custom_tooltip = devour_as_execution_tooltip
 					stress_impact = {
 						base = medium_stress_impact_loss
-						compassionate = minor_stress_impact_gain
-						forgiving = minor_stress_impact_gain
+						am_tolerant = minor_stress_impact_gain
+						am_agreeable = minor_stress_impact_gain
 					}
 					random = {
 						chance = 20
@@ -3209,16 +3209,16 @@ execute_prisoner_interaction = {
 					}
 					scope:actor = {			
 						stress_impact = {
-							compassionate = medium_stress_impact_gain
-							forgiving = minor_stress_impact_gain
+							am_tolerant = medium_stress_impact_gain
+							am_agreeable = minor_stress_impact_gain
 						}
 					}
 				}
 				else = {
 					scope:actor = {			
 						stress_impact = {
-							compassionate = medium_stress_impact_gain
-							just = medium_stress_impact_gain
+							am_tolerant = medium_stress_impact_gain
+							am_honest = medium_stress_impact_gain
 						}
 					}
 				}

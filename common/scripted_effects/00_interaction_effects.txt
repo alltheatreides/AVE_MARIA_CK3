@@ -22,11 +22,11 @@ blackmail_interaction_effect = {
 			}
 		}
 		stress_impact = {
-			compassionate = medium_stress_impact_gain
-			trusting = medium_stress_impact_gain
-			honest = minor_stress_impact_gain
-			just = minor_stress_impact_gain
-			forgiving = minor_stress_impact_gain
+			am_tolerant = medium_stress_impact_gain
+			am_mild = medium_stress_impact_gain
+			am_honest = minor_stress_impact_gain
+			am_honest = minor_stress_impact_gain
+			am_agreeable = minor_stress_impact_gain
 		}
 	}
 	scope:recipient = { #Nudge towards rivalry
@@ -114,9 +114,9 @@ torture_interaction_actor_effect = {
 				limit = {
 					NOR = {
 						has_trait = sadistic #Extra stress
-						has_trait = vengeful #Extra stress
-						has_trait = compassionate #Lessened impact
-						has_trait = forgiving #Lessened impact
+						has_trait = am_quarrelsome #Extra stress
+						has_trait = am_tolerant #Lessened impact
+						has_trait = am_agreeable #Lessened impact
 					}
 				}
 				add_stress = medium_stress_loss
@@ -124,9 +124,9 @@ torture_interaction_actor_effect = {
 			else = {
 				stress_impact = {
 					sadistic = major_stress_impact_loss
-					vengeful = major_stress_impact_loss
-					compassionate = minor_stress_impact_gain
-					forgiving = minor_stress_impact_gain
+					am_quarrelsome = major_stress_impact_loss
+					am_tolerant = minor_stress_impact_gain
+					am_agreeable = minor_stress_impact_gain
 				}
 			}
 		}
@@ -134,13 +134,13 @@ torture_interaction_actor_effect = {
 		else = {
 			stress_impact = {
 				sadistic = minor_stress_impact_loss
-				compassionate = massive_stress_impact_gain
-				craven = major_stress_impact_gain
-				just = medium_stress_impact_gain
-				forgiving = medium_stress_impact_gain
-				generous = medium_stress_impact_gain
-				trusting = minor_stress_impact_gain
-				content = minor_stress_impact_gain
+				am_tolerant = massive_stress_impact_gain
+				am_craven = major_stress_impact_gain
+				am_honest = medium_stress_impact_gain
+				am_agreeable = medium_stress_impact_gain
+				am_generous = medium_stress_impact_gain
+				am_mild = minor_stress_impact_gain
+				am_conventional = minor_stress_impact_gain
 			}
 		}
 
@@ -296,16 +296,16 @@ torturer_interaction_recipient_effect = {
 		if = {
 			limit = {
 				NOR = {
-					has_trait = craven
-					has_trait = brave
+					has_trait = am_craven
+					has_trait = am_brave
 				}
 			}
 			add_stress = massive_stress_impact_gain
 		}
 		else = {
 			stress_impact = {
-				craven = monumental_stress_gain
-				brave = medium_stress_impact_gain
+				am_craven = monumental_stress_gain
+				am_brave = medium_stress_impact_gain
 			}
 		}
 		
@@ -358,9 +358,9 @@ blind_and_castrate_actor_effect = {
 				limit = {
 					NOR = {
 						has_trait = sadistic #Extra stress
-						has_trait = vengeful #Extra stress
-						has_trait = compassionate #Lessened impact
-						has_trait = forgiving #Lessened impact
+						has_trait = am_quarrelsome #Extra stress
+						has_trait = am_tolerant #Lessened impact
+						has_trait = am_agreeable #Lessened impact
 					}
 				}
 				add_stress = medium_stress_loss
@@ -368,9 +368,9 @@ blind_and_castrate_actor_effect = {
 			else = {
 				stress_impact = {
 					sadistic = major_stress_impact_loss
-					vengeful = major_stress_impact_loss
-					compassionate = minor_stress_impact_gain
-					forgiving = minor_stress_impact_gain
+					am_quarrelsome = major_stress_impact_loss
+					am_tolerant = minor_stress_impact_gain
+					am_agreeable = minor_stress_impact_gain
 				}
 			}
 		}
@@ -378,16 +378,16 @@ blind_and_castrate_actor_effect = {
 		else = {
 			stress_impact = {
 				sadistic = minor_stress_impact_loss
-				compassionate = massive_stress_impact_gain
-				craven = major_stress_impact_gain
-				just = medium_stress_impact_gain
-				forgiving = medium_stress_impact_gain
-				generous = medium_stress_impact_gain
-				trusting = minor_stress_impact_gain
-				gregarious = minor_stress_impact_gain
-				calm = minor_stress_impact_gain
-				content = minor_stress_impact_gain
-				honest = minor_stress_impact_gain
+				am_tolerant = massive_stress_impact_gain
+				am_craven = major_stress_impact_gain
+				am_honest = medium_stress_impact_gain
+				am_agreeable = medium_stress_impact_gain
+				am_generous = medium_stress_impact_gain
+				am_mild = minor_stress_impact_gain
+				am_outgoing = minor_stress_impact_gain
+				am_patient = minor_stress_impact_gain
+				am_conventional = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
 			}
 		}
 
@@ -481,16 +481,16 @@ blind_and_castrated_recipient_support_effect = { #To be used in other effects
 	if = {
 		limit = {
 			NOR = {
-				has_trait = craven
-				has_trait = brave
+				has_trait = am_craven
+				has_trait = am_brave
 			}
 		}
 		add_stress = major_stress_impact_gain
 	}
 	else = {
 		stress_impact = {
-			craven = massive_stress_gain
-			brave = medium_stress_impact_gain
+			am_craven = massive_stress_gain
+			am_brave = medium_stress_impact_gain
 		}
 	}
 	add_character_flag = { #TO make sure that they don't get spammed about the release
@@ -1286,8 +1286,8 @@ dynast_claim_title_effect = {
 	scope:actor = {
 		add_unpressed_claim = scope:target
 		stress_impact = {
-			content = minor_stress_impact_gain
-			generous = minor_stress_impact_gain
+			am_conventional = minor_stress_impact_gain
+			am_generous = minor_stress_impact_gain
 		}
 		dynasty = {
 			add_dynasty_prestige = major_dynasty_prestige_loss
@@ -1680,7 +1680,7 @@ offer_ward_interaction_effect = {
 		}
 
 		stress_impact = {
-			paranoid = minor_stress_impact_gain
+			am_fearful = minor_stress_impact_gain
 		}
 	}
 }
@@ -1895,7 +1895,7 @@ offer_guardianship_interaction = {
 				this = scope:secondary_actor
 			}
 			stress_impact = {
-				shy = minor_stress_impact_gain
+				am_withdrawn = minor_stress_impact_gain
 			}
 		}
 	}
@@ -1962,7 +1962,7 @@ offer_fealty_interaction_effect = {
 		
 		stress_impact = {
 			ambitious = minor_stress_impact_gain
-			arrogant = minor_stress_impact_gain
+			am_pretentious = minor_stress_impact_gain
 		}
 	}
 	resolve_title_and_vassal_change = scope:change
@@ -2047,9 +2047,9 @@ seduce_interaction_stress_effect = {
 		scope:actor = {		
 			stress_impact = {
 				chaste = medium_stress_impact_gain
-				zealous = minor_stress_impact_gain
-				honest = minor_stress_impact_gain
-				just = minor_stress_impact_gain
+				am_intolerant = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
 			}
 		}
 	}
@@ -2070,14 +2070,14 @@ retract_vassal_interaction_effect = {
 				vassal_revocation_is_tyrannical_trigger = yes
 			}
 			stress_impact = {
-				generous = medium_stress_impact_gain
-				just = medium_stress_impact_gain
+				am_generous = medium_stress_impact_gain
+				am_honest = medium_stress_impact_gain
 			}
 		}
 		else = {
 			stress_impact = {
-				generous = medium_stress_impact_gain
-				forgiving = minor_stress_impact_gain
+				am_generous = medium_stress_impact_gain
+				am_agreeable = minor_stress_impact_gain
 			}
 		}
 		consume_revoke_title_reason = scope:recipient
@@ -2148,7 +2148,7 @@ ask_for_pardon_interaction_effect = {
 			}
 		}
 		stress_impact = {
-			stubborn = minor_stress_impact_gain
+			am_stubborn = minor_stress_impact_gain
 		}
 	}
 	if = {
@@ -2207,7 +2207,7 @@ revoke_title_interaction_effect = {
 				limit = {
 					is_a_faction_member = yes
 				}
-				add_joined_faction_discontent = 25
+				add_joined_faction_disam_conventional = 25
 			}
 		}
 		
@@ -2388,7 +2388,7 @@ declaration_of_repentance_interaction_effect = {
 		}
 		
 		stress_impact = {
-			cynical = minor_stress_impact_gain
+			am_hypocritical = minor_stress_impact_gain
 		}
 	}
 	scope:recipient = {
@@ -2572,8 +2572,8 @@ seek_indulgences_interaction_effect = {
 			opinion = 15
 		}
 		stress_impact = {
-			greedy = minor_stress_impact_gain
-			cynical = minor_stress_impact_gain
+			am_greedy = minor_stress_impact_gain
+			am_hypocritical = minor_stress_impact_gain
 		}
 	}
 }
@@ -2648,7 +2648,7 @@ convert_at_war_interaction_effect = {
 			add_piety_level = -3
 		}
 		stress_impact = {
-			zealous = medium_stress_impact_gain
+			am_intolerant = medium_stress_impact_gain
 		}
 	}
 	scope:recipient = {
@@ -2709,14 +2709,14 @@ title_revocation_stress_effect = {
 			title_revocation_is_tyrannical_trigger = yes
 		}
 		stress_impact = {
-			generous = medium_stress_impact_gain
-			just = medium_stress_impact_gain
+			am_generous = medium_stress_impact_gain
+			am_honest = medium_stress_impact_gain
 		}
 	}
 	else = {
 		stress_impact = {
-			generous = medium_stress_impact_gain
-			forgiving = minor_stress_impact_gain
+			am_generous = medium_stress_impact_gain
+			am_agreeable = minor_stress_impact_gain
 		}
 	}
 }

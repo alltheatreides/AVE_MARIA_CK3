@@ -21,14 +21,14 @@ scholarship_focus_progress_effect = {
 zealous_progression_effect = {
 	if = {
 		limit = {
-			NOT = { has_trait = zealous }
+			NOT = { has_trait = am_intolerant }
 		}
 		custom_tooltip = learning_zealous_path_tt
 		if = {
 			limit = { NOT = { has_variable = scholarship_zealous_cynical_value } }
 			if = {
 				limit = {
-					has_trait = cynical
+					has_trait = am_hypocritical
 				}
 				set_variable = {
 					name = scholarship_zealous_cynical_value
@@ -42,12 +42,12 @@ zealous_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				has_trait = cynical
+				has_trait = am_hypocritical
 				var:scholarship_zealous_cynical_value = {
 					compare_value <= 1
 				}
 			}
-			remove_trait = cynical
+			remove_trait = am_hypocritical
 			set_variable = {
 				name = scholarship_zealous_cynical_value
 				value = 0
@@ -59,7 +59,7 @@ zealous_progression_effect = {
 					compare_value < scholarship_zealous_threshold
 				}
 			}
-			add_trait = zealous
+			add_trait = am_intolerant
 		}
 		else = {
 			change_variable = {
@@ -69,7 +69,7 @@ zealous_progression_effect = {
 		}
 	}
 	stress_impact = {
-		cynical = minor_stress_impact_gain
+		am_hypocritical = minor_stress_impact_gain
 	}
 }
 
@@ -77,13 +77,13 @@ zealous_progression_effect = {
 #Scholarship Progression
 cynical_progression_effect = {
 	if = {
-		limit = { NOT = { has_trait = cynical } }
+		limit = { NOT = { has_trait = am_hypocritical } }
 		custom_tooltip = learning_cynical_path_tt
 		if = {
 			limit = {NOT = { has_variable = scholarship_zealous_cynical_value } }
 			if = {
 				limit = {
-					has_trait = zealous
+					has_trait = am_intolerant
 				}
 				set_variable = {
 					name = scholarship_zealous_cynical_value
@@ -97,12 +97,12 @@ cynical_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				has_trait = zealous
+				has_trait = am_intolerant
 				var:scholarship_zealous_cynical_value = {
 					compare_value >= -1
 				}
 			}
-			remove_trait = zealous
+			remove_trait = am_intolerant
 			set_variable = {
 				name = scholarship_zealous_cynical_value
 				value = 0
@@ -110,12 +110,12 @@ cynical_progression_effect = {
 		}
 		else_if = {
 			limit = {
-				NOT = { has_trait = cynical }
+				NOT = { has_trait = am_hypocritical }
 				var:scholarship_zealous_cynical_value = {
 					compare_value > scholarsip_cynical_threshold
 				}
 			}
-			add_trait = cynical
+			add_trait = am_hypocritical
 		}
 		else = {
 			change_variable = {
@@ -125,7 +125,7 @@ cynical_progression_effect = {
 		}
 	}
 	stress_impact = {
-		zealous = minor_stress_impact_gain
+		am_intolerant = minor_stress_impact_gain
 	}
 }
 
@@ -752,22 +752,22 @@ learning_theology_2020_randomize_virtue_options_effect = {
 	random_list = {
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = brave }
+				faith = { trait_is_virtue = am_brave }
 				NOT = { has_character_flag = virtue_brave }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = brave }
+				scope:court_chaplain = { has_trait = am_brave }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_brave days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = just }
+				faith = { trait_is_virtue = am_honest }
 				NOT = { has_character_flag = virtue_just }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = just }
+				scope:court_chaplain = { has_trait = am_honest }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_just days = 1 }
@@ -796,121 +796,121 @@ learning_theology_2020_randomize_virtue_options_effect = {
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = compassionate }
+				faith = { trait_is_virtue = am_tolerant }
 				NOT = { has_character_flag = virtue_compassionate }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = compassionate }
+				scope:court_chaplain = { has_trait = am_tolerant }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_compassionate days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = honest }
+				faith = { trait_is_virtue = am_honest }
 				NOT = { has_character_flag = virtue_honest }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = honest }
+				scope:court_chaplain = { has_trait = am_honest }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_honest days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = forgiving }
+				faith = { trait_is_virtue = am_agreeable }
 				NOT = { has_character_flag = virtue_forgiving }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = forgiving }
+				scope:court_chaplain = { has_trait = am_agreeable }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_forgiving days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = wrathful }
+				faith = { trait_is_virtue = am_wroth }
 				NOT = { has_character_flag = virtue_wrathful }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = wrathful }
+				scope:court_chaplain = { has_trait = am_wroth }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_wrathful days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = vengeful }
+				faith = { trait_is_virtue = am_quarrelsome }
 				NOT = { has_character_flag = virtue_vengeful }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = vengeful }
+				scope:court_chaplain = { has_trait = am_quarrelsome }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_vengeful days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = content }
+				faith = { trait_is_virtue = am_conventional }
 				NOT = { has_character_flag = virtue_content }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = content }
+				scope:court_chaplain = { has_trait = am_conventional }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_content days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = patient }
+				faith = { trait_is_virtue = am_patient }
 				NOT = { has_character_flag = virtue_patient }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = patient }
+				scope:court_chaplain = { has_trait = am_patient }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_patient days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = calm }
+				faith = { trait_is_virtue = am_patient }
 				NOT = { has_character_flag = virtue_calm }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = calm }
+				scope:court_chaplain = { has_trait = am_patient }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_calm days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = humble }
+				faith = { trait_is_virtue = am_humble }
 				NOT = { has_character_flag = virtue_humble }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = humble }
+				scope:court_chaplain = { has_trait = am_humble }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_humble days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = diligent }
+				faith = { trait_is_virtue = am_diligent }
 				NOT = { has_character_flag = virtue_diligent }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = diligent }
+				scope:court_chaplain = { has_trait = am_diligent }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_diligent days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { trait_is_virtue = generous }
+				faith = { trait_is_virtue = am_generous }
 				NOT = { has_character_flag = virtue_generous }
 			}
 			modifier = {
-				scope:court_chaplain = { has_trait = generous }
+				scope:court_chaplain = { has_trait = am_generous }
 				factor = 10
 			}
 			add_character_flag = { flag = virtue_generous days = 1 }
@@ -922,14 +922,14 @@ learning_theology_2020_randomize_bad_virtue_options_effect = {
 	random_list = {
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = brave } }
+				faith = { NOT = { trait_is_virtue = am_brave } }
 				NOT = { has_character_flag = virtue_brave }
 			}
 			add_character_flag = { flag = virtue_brave days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = just } }
+				faith = { NOT = { trait_is_virtue = am_honest } }
 				NOT = { has_character_flag = virtue_just }
 			}
 			add_character_flag = { flag = virtue_just days = 1 }
@@ -950,77 +950,77 @@ learning_theology_2020_randomize_bad_virtue_options_effect = {
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = compassionate } }
+				faith = { NOT = { trait_is_virtue = am_tolerant } }
 				NOT = { has_character_flag = virtue_compassionate }
 			}
 			add_character_flag = { flag = virtue_compassionate days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = honest } }
+				faith = { NOT = { trait_is_virtue = am_honest } }
 				NOT = { has_character_flag = virtue_honest }
 			}
 			add_character_flag = { flag = virtue_honest days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = forgiving } }
+				faith = { NOT = { trait_is_virtue = am_agreeable } }
 				NOT = { has_character_flag = virtue_forgiving }
 			}
 			add_character_flag = { flag = virtue_forgiving days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = wrathful } }
+				faith = { NOT = { trait_is_virtue = am_wroth } }
 				NOT = { has_character_flag = virtue_wrathful }
 			}
 			add_character_flag = { flag = virtue_wrathful days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = vengeful } }
+				faith = { NOT = { trait_is_virtue = am_quarrelsome } }
 				NOT = { has_character_flag = virtue_vengeful }
 			}
 			add_character_flag = { flag = virtue_vengeful days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = content } }
+				faith = { NOT = { trait_is_virtue = am_conventional } }
 				NOT = { has_character_flag = virtue_content }
 			}
 			add_character_flag = { flag = virtue_content days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = patient } }
+				faith = { NOT = { trait_is_virtue = am_patient } }
 				NOT = { has_character_flag = virtue_patient }
 			}
 			add_character_flag = { flag = virtue_patient days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = calm } }
+				faith = { NOT = { trait_is_virtue = am_patient } }
 				NOT = { has_character_flag = virtue_calm }
 			}
 			add_character_flag = { flag = virtue_calm days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = humble } }
+				faith = { NOT = { trait_is_virtue = am_humble } }
 				NOT = { has_character_flag = virtue_humble }
 			}
 			add_character_flag = { flag = virtue_humble days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = diligent } }
+				faith = { NOT = { trait_is_virtue = am_diligent } }
 				NOT = { has_character_flag = virtue_diligent }
 			}
 			add_character_flag = { flag = virtue_diligent days = 1 }
 		}
 		1 = {
 			trigger = {
-				faith = { NOT = { trait_is_virtue = generous } }
+				faith = { NOT = { trait_is_virtue = am_generous } }
 				NOT = { has_character_flag = virtue_generous }
 			}
 			add_character_flag = { flag = virtue_generous days = 1 }
@@ -1190,7 +1190,7 @@ medicine_2050_a_failure_effect = {
 		limit = { ai_compassion >= 0 }
 		stress_impact = {
 			base = minor_stress_impact_gain
-			compassionate = minor_stress_impact_gain
+			am_tolerant = minor_stress_impact_gain
 		}
 	}
 }
@@ -1206,7 +1206,7 @@ medicine_2050_b_failure_effect = {
 		limit = { ai_compassion > 0 }
 		stress_impact = {
 			base = minor_stress_impact_gain
-			compassionate = minor_stress_impact_gain
+			am_tolerant = minor_stress_impact_gain
 		}
 	}
 }
@@ -1284,7 +1284,7 @@ theology_3021_a_failure_effect = {
 		limit = { ai_zeal >= 0 }
 		stress_impact = {
 			base = minor_stress_impact_gain
-			zealous = minor_stress_impact_gain
+			am_intolerant = minor_stress_impact_gain
 		}
 	}
 }

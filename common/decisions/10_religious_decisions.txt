@@ -18,8 +18,8 @@
 		}
 
 		stress_impact = {
-			greedy = major_stress_impact_gain
-			cynical = medium_stress_impact_gain
+			am_greedy = major_stress_impact_gain
+			am_hypocritical = medium_stress_impact_gain
 			ambitious = minor_stress_impact_gain
 		}
 	}
@@ -61,9 +61,9 @@ renounce_vow_of_poverty_decision = {
 		remove_character_modifier = vow_of_poverty_modifier
 
 		stress_impact = {
-			generous = major_stress_impact_gain
-			zealous = medium_stress_impact_gain
-			humble = minor_stress_impact_gain
+			am_generous = major_stress_impact_gain
+			am_intolerant = medium_stress_impact_gain
+			am_humble = minor_stress_impact_gain
 		}
 	}
 	
@@ -489,7 +489,7 @@ revoke_false_conversion_decision = {	#Reveal yourself as a crypto-religionist.
 
 	is_valid = {
 		is_adult = yes
-		NOT = { has_trait = zealous }
+		NOT = { has_trait = am_intolerant }
 	}
 
 	is_valid_showing_failures_only = {
@@ -589,7 +589,7 @@ encourage_confession_of_false_conversions_decision = {	#Ask that crypto-religion
 	is_valid = {
 		is_adult = yes
 		NOR = {
-			has_trait = zealous
+			has_trait = am_intolerant
 			dread >= low_dread
 			tyranny >= 1
 		}
@@ -641,9 +641,9 @@ encourage_confession_of_false_conversions_decision = {	#Ask that crypto-religion
 		modifier = {
 			add = 10
 			OR = {
-				has_trait = compassionate
-				has_trait = forgiving
-				has_trait = honest
+				has_trait = am_tolerant
+				has_trait = am_agreeable
+				has_trait = am_honest
 			}
 		}
 	}
@@ -759,16 +759,16 @@ go_on_pilgrimage_decision = {
 		}
 		modifier = {
 			add = 20
-			has_trait = zealous
+			has_trait = am_intolerant
 		}
 		modifier = {
 			add = 20
-			has_trait = zealous
+			has_trait = am_intolerant
 			NOT = { has_trait = pilgrim }
 		}
 		modifier = {
 			add = -30
-			has_trait = cynical
+			has_trait = am_hypocritical
 		}
 		modifier = {
 			add = -30
@@ -880,7 +880,7 @@ go_on_hajj_decision = {
 			value = age
 			trigger = {
 				NOT = {
-					has_trait = cynical
+					has_trait = am_hypocritical
 				}
 			}
 			max = 70
@@ -948,7 +948,7 @@ return_rome_decision = {
 		}
 
 		stress_impact = {
-			cynical = medium_stress_impact_gain
+			am_hypocritical = medium_stress_impact_gain
 			ambitious = minor_stress_impact_gain
 		}
 	}

@@ -179,7 +179,7 @@ herhis_subject_of_interest = {
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_wealth_focus }
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_domain_focus }
 					stewardship >= high_skill_rating
-					has_trait = greedy
+					has_trait = am_greedy
 				}
 			}
 		}
@@ -194,7 +194,7 @@ herhis_subject_of_interest = {
 			trigger_else = {
 				OR = {
 					has_education_stewardship_trigger = yes
-					has_trait = greedy
+					has_trait = am_greedy
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_wealth_focus }
 				}
 			}
@@ -208,7 +208,7 @@ herhis_subject_of_interest = {
 				var:subject_of_interest = flag:lawmaking
 			}
 			trigger_else = {
-				has_trait = just
+				has_trait = am_honest
 				has_focus_or_focus_trait_trigger = { FOCUS = stewardship_domain_focus }
 			}
 		}
@@ -414,7 +414,7 @@ herhis_subject_of_interest = {
 				always = no #not used yet: var:subject_of_interest = flag:herselfhimself
 			}
 			trigger_else = {
-				has_trait = arrogant
+				has_trait = am_pretentious
 			}
 		}
 		localization_key = herselfhimself
@@ -577,7 +577,7 @@ my_subject_of_interest = {
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_wealth_focus }
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_domain_focus }
 					stewardship >= high_skill_rating
-					has_trait = greedy
+					has_trait = am_greedy
 				}
 			}
 		}
@@ -592,7 +592,7 @@ my_subject_of_interest = {
 			trigger_else = {
 				OR = {
 					has_education_stewardship_trigger = yes
-					has_trait = greedy
+					has_trait = am_greedy
 					has_focus_or_focus_trait_trigger = { FOCUS = stewardship_wealth_focus }
 				}
 			}
@@ -606,7 +606,7 @@ my_subject_of_interest = {
 				var:subject_of_interest = flag:lawmaking
 			}
 			trigger_else = {
-				has_trait = just
+				has_trait = am_honest
 				has_focus_or_focus_trait_trigger = { FOCUS = stewardship_domain_focus }
 			}
 		}
@@ -812,7 +812,7 @@ my_subject_of_interest = {
 				always = no #not used yet: var:subject_of_interest = flag:herselfhimself
 			}
 			trigger_else = {
-				has_trait = arrogant
+				has_trait = am_pretentious
 			}
 		}
 		localization_key = myself
@@ -906,7 +906,7 @@ subject_of_interest = {
 		trigger = {
 			OR = {
 				has_education_stewardship_trigger = yes
-				has_trait = greedy
+				has_trait = am_greedy
 			}
 		}
 		localization_key = investment_opportunities
@@ -978,7 +978,7 @@ subject_of_interest = {
 		localization_key = sugary_treats
 	}
 	text = {
-		trigger = { has_trait = just }
+		trigger = { has_trait = am_honest }
 		localization_key = lawmaking
 	}
 }
@@ -1068,7 +1068,7 @@ MatchingConversationSubject = {
 				has_lifestyle = diplomacy_lifestyle
 				has_trait = lifestyle_reveler
 				has_diplomacy_lifestyle_trait_trigger = yes
-				has_trait = gregarious
+				has_trait = am_outgoing
 			}
 			scope:second = {
 				OR = {
@@ -1076,7 +1076,7 @@ MatchingConversationSubject = {
 					has_trait = education_diplomacy
 					has_trait = lifestyle_reveler
 					has_diplomacy_lifestyle_trait_trigger = yes
-					has_trait = gregarious
+					has_trait = am_outgoing
 				}
 			}
 		}
@@ -1088,14 +1088,14 @@ MatchingConversationSubject = {
 				has_trait = education_diplomacy
 				has_lifestyle = diplomacy_lifestyle
 				has_diplomacy_lifestyle_trait_trigger = yes
-				has_trait = gregarious
+				has_trait = am_outgoing
 			}
 			scope:second = {
 				OR = {
 					has_lifestyle = diplomacy_lifestyle
 					has_trait = education_diplomacy
 					has_diplomacy_lifestyle_trait_trigger = yes
-					has_trait = gregarious
+					has_trait = am_outgoing
 				}
 			}
 		}
@@ -1125,8 +1125,8 @@ MatchingConversationSubject = {
 				has_trait = lunatic
 				has_lifestyle = learning_lifestyle
 				has_learning_lifestyle_trait_trigger = yes
-				has_trait = zealous
-				has_trait = cynical
+				has_trait = am_intolerant
+				has_trait = am_hypocritical
 			}
 			scope:second = {
 				OR = {
@@ -1134,8 +1134,8 @@ MatchingConversationSubject = {
 					has_trait = lunatic
 					has_lifestyle = learning_lifestyle
 					has_learning_lifestyle_trait_trigger = yes
-					has_trait = zealous
-					has_trait = cynical
+					has_trait = am_intolerant
+					has_trait = am_hypocritical
 				}
 			}
 		}
@@ -1147,11 +1147,11 @@ MatchingConversationSubject = {
 				has_trait = education_stewardship
 				has_lifestyle = stewardship_lifestyle
 				has_stewardship_lifestyle_trait_trigger = yes
-				has_trait = greedy
+				has_trait = am_greedy
 			}
 			scope:second = {
 				OR = {
-					has_trait = greedy
+					has_trait = am_greedy
 					has_trait = education_stewardship
 					has_lifestyle = stewardship_lifestyle
 					has_stewardship_lifestyle_trait_trigger = yes
@@ -1166,11 +1166,11 @@ MatchingConversationSubject = {
 				has_trait = education_stewardship
 				has_lifestyle = stewardship_lifestyle
 				has_stewardship_lifestyle_trait_trigger = yes
-				has_trait = diligent
+				has_trait = am_diligent
 			}
 			scope:second = {
 				OR = {
-					has_trait = diligent
+					has_trait = am_diligent
 					has_trait = education_stewardship
 					has_lifestyle = stewardship_lifestyle
 					has_stewardship_lifestyle_trait_trigger = yes
@@ -1185,13 +1185,13 @@ MatchingConversationSubject = {
 				has_trait = education_stewardship
 				has_lifestyle = stewardship_lifestyle
 				has_stewardship_lifestyle_trait_trigger = yes
-				has_trait = diligent
-				has_trait = greedy
+				has_trait = am_diligent
+				has_trait = am_greedy
 			}
 			scope:second = {
 				OR = {
-					has_trait = diligent
-					has_trait = greedy
+					has_trait = am_diligent
+					has_trait = am_greedy
 					has_trait = education_stewardship
 					has_lifestyle = stewardship_lifestyle
 					has_stewardship_lifestyle_trait_trigger = yes
@@ -1206,14 +1206,14 @@ MatchingConversationSubject = {
 				has_trait = education_intrigue
 				has_lifestyle = intrigue_lifestyle
 				has_intrigue_lifestyle_trait_trigger = yes
-				has_trait = paranoid
+				has_trait = am_fearful
 			}
 			scope:second = {
 				OR = {
 					has_trait = education_intrigue
 					has_lifestyle = intrigue_lifestyle
 					has_intrigue_lifestyle_trait_trigger = yes
-					has_trait = paranoid
+					has_trait = am_fearful
 				}	
 			}
 		}
@@ -1225,10 +1225,10 @@ MatchingConversationSubject = {
 				has_trait = education_intrigue
 				has_lifestyle = intrigue_lifestyle
 				has_intrigue_lifestyle_trait_trigger = yes
-				has_trait = paranoid
+				has_trait = am_fearful
 				AND = {
 					has_trait = ambitious
-					has_trait = deceitful
+					has_trait = am_deceitful
 				}
 			}
 			scope:second = {
@@ -1236,10 +1236,10 @@ MatchingConversationSubject = {
 					has_trait = education_intrigue
 					has_lifestyle = intrigue_lifestyle
 					has_intrigue_lifestyle_trait_trigger = yes
-					has_trait = paranoid
+					has_trait = am_fearful
 					AND = {
 						has_trait = ambitious
-						has_trait = deceitful
+						has_trait = am_deceitful
 					}
 				}	
 			}

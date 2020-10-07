@@ -362,7 +362,7 @@ arrange_marriage_interaction = {
 			limit = {
 				scope:actor = {
 					is_ai = yes
-					NOT = { has_trait = cynical }
+					NOT = { has_trait = am_hypocritical }
 				}
 			}
 			scope:recipient.faith = {
@@ -1838,7 +1838,7 @@ dismiss_concubine_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				compassionate = minor_stress_impact_gain
+				am_tolerant = minor_stress_impact_gain
 			}
 			hidden_effect = {
 				send_interface_toast = {
@@ -2647,8 +2647,8 @@ elope_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				honest = minor_stress_impact_gain
-				just = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
 			}
 			show_as_tooltip = {
 				elope_success_effect = {
@@ -2672,8 +2672,8 @@ elope_interaction = {
 
 					show_as_tooltip = {
 						stress_impact = {
-							honest = minor_stress_impact_gain
-							just = minor_stress_impact_gain
+							am_honest = minor_stress_impact_gain
+							am_honest = minor_stress_impact_gain
 						}
 					}
 				}

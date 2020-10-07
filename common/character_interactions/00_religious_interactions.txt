@@ -826,7 +826,7 @@ convert_at_war_interaction = {
 		scope:actor = {
 			show_as_tooltip = {
 				add_piety_level = -1
-				stress_impact = { zealous = major_stress_impact_gain }
+				stress_impact = { am_intolerant = major_stress_impact_gain }
 			}
 			trigger_event = religious_interaction.2501
 		}
@@ -1091,7 +1091,7 @@ seek_indulgences_interaction = {
 	ai_potential = {
 		short_term_gold >= head_of_faith_gold_value
 		NOT = {
-			has_trait = cynical
+			has_trait = am_hypocritical
 		}
 	}
 
@@ -2092,14 +2092,14 @@ send_to_holy_order_interaction = {
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = content
+				has_trait = am_conventional
 			}
 			desc = TAKE_THE_VOWS_CONTENT
 		}
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = humble
+				has_trait = am_humble
 			}
 			desc = TAKE_THE_VOWS_HUMBLE
 		}
@@ -2897,14 +2897,14 @@ take_vows_interaction = {
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = content
+				has_trait = am_conventional
 			}
 			desc = TAKE_THE_VOWS_CONTENT
 		}
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = humble
+				has_trait = am_humble
 			}
 			desc = TAKE_THE_VOWS_HUMBLE
 		}
@@ -2925,7 +2925,7 @@ take_vows_interaction = {
 		modifier = {
 			add = 50
 			scope:recipient = {
-				has_trait = trusting
+				has_trait = am_mild
 			}
 			desc = TAKE_THE_VOWS_TRUSTING
 		}
@@ -3435,7 +3435,7 @@ temporal_condemnation_interaction = {
 				}
 			}
 			stress_impact = {
-				cynical = minor_stress_impact_gain
+				am_hypocritical = minor_stress_impact_gain
 			}
 		}
 		scope:recipient = {
@@ -3565,8 +3565,8 @@ host_honored_guest_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				cynical = minor_stress_impact_gain
-				shy = minor_stress_impact_gain
+				am_hypocritical = minor_stress_impact_gain
+				am_withdrawn = minor_stress_impact_gain
 			}
 		}
 		scope:recipient = {
@@ -3620,7 +3620,7 @@ host_honored_guest_interaction = {
 					# Zealous characters more likely to appreciate the religious ceremony (if of your faith)
 					if = {
 						limit = {
-							has_trait = zealous
+							has_trait = am_intolerant
 							faith = scope:actor.faith
 						}
 						add = 10
@@ -3629,7 +3629,7 @@ host_honored_guest_interaction = {
 					else_if = {
 						limit = {
 							OR = {
-								has_trait = cynical
+								has_trait = am_hypocritical
 								NOT = {
 									faith = {
 										has_doctrine_parameter = host_honored_guests_active
@@ -3643,7 +3643,7 @@ host_honored_guest_interaction = {
 					# But arrogant characters like it more regardless.
 					if = {
 						limit = {
-							has_trait = arrogant
+							has_trait = am_pretentious
 						}
 						add = 10
 					}
@@ -4131,7 +4131,7 @@ hof_ask_for_gold_interaction = {
 				piety > massive_piety_value
 				NOR = {
 					has_character_modifier = vow_of_poverty_modifier
-					has_trait = generous
+					has_trait = am_generous
 				}
 			}
 		}
@@ -5126,7 +5126,7 @@ literalist_debate_interaction = {
 		custom_tooltip = literalist_debate_interaction.tt_modifiers
 		scope:actor = {
 			stress_impact = {
-				cynical = minor_stress_impact_gain
+				am_hypocritical = minor_stress_impact_gain
 			}
 			custom_tooltip = literalist_debate_interaction.tt_winnings_actor
 		}

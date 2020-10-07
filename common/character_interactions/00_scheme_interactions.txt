@@ -70,9 +70,9 @@ start_murder_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				compassionate = major_stress_impact_gain
-				honest = medium_stress_impact_gain
-				just = medium_stress_impact_gain
+				am_tolerant = major_stress_impact_gain
+				am_honest = medium_stress_impact_gain
+				am_honest = medium_stress_impact_gain
 			}
 		}
 		hidden_effect = {
@@ -90,9 +90,9 @@ start_murder_interaction = {
 
 					show_as_tooltip = {
 						stress_impact = {
-							compassionate = major_stress_impact_gain
-							honest = medium_stress_impact_gain
-							just = medium_stress_impact_gain
+							am_tolerant = major_stress_impact_gain
+							am_honest = medium_stress_impact_gain
+							am_honest = medium_stress_impact_gain
 						}
 					}
 				}
@@ -180,9 +180,9 @@ start_abduct = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				compassionate = medium_stress_impact_gain
-				honest = minor_stress_impact_gain
-				just = minor_stress_impact_gain
+				am_tolerant = medium_stress_impact_gain
+				am_honest = minor_stress_impact_gain
+				am_honest = minor_stress_impact_gain
 			}
 		}
 		hidden_effect = {
@@ -200,9 +200,9 @@ start_abduct = {
 
 					show_as_tooltip = {
 						stress_impact = {
-							compassionate = medium_stress_impact_gain
-							honest = minor_stress_impact_gain
-							just = minor_stress_impact_gain
+							am_tolerant = medium_stress_impact_gain
+							am_honest = minor_stress_impact_gain
+							am_honest = minor_stress_impact_gain
 						}
 					}
 				}
@@ -293,7 +293,7 @@ befriend_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				shy = medium_stress_impact_gain
+				am_withdrawn = medium_stress_impact_gain
 			}
 		}
 		hidden_effect = {
@@ -313,7 +313,7 @@ befriend_interaction = {
 			if = { #Stubborness effect
 				limit = {
 					scope:recipient = {
-						has_trait = stubborn
+						has_trait = am_stubborn
 					}
 				}
 				scope:actor = {
@@ -364,8 +364,8 @@ befriend_interaction = {
 	
 	ai_potential = {
 		NOR = {
-			has_trait = shy
-			has_trait = callous
+			has_trait = am_withdrawn
+			has_trait = am_deceitful
 			any_scheme = {
 				OR = {
 					scheme_type = befriend
@@ -462,7 +462,7 @@ befriend_interaction = {
 			factor = 2
 			scope:actor = {
 				OR = {
-					has_trait = gregarious
+					has_trait = am_outgoing
 					has_trait = diplomat
 					has_trait = family_first
 					has_trait = august
@@ -761,7 +761,7 @@ seduce_interaction = {
 			scope:actor = {
 				NOR = {
 					has_trait = lustful
-					has_trait = arbitrary
+					has_trait = am_inconstant
 					is_deviant_trigger = yes
 					faith = { has_doctrine = tenet_divine_marriage }
 					has_perk = subtle_desire_perk
@@ -1004,7 +1004,7 @@ court_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				shy = medium_stress_impact_gain
+				am_withdrawn = medium_stress_impact_gain
 			}
 
 			# If you already have a soulmate, they get very mad
@@ -1032,7 +1032,7 @@ court_interaction = {
 
 					show_as_tooltip = {
 						stress_impact = {
-							shy = medium_stress_impact_gain
+							am_withdrawn = medium_stress_impact_gain
 						}
 
 						# If you already have a soulmate, they get very mad
@@ -1214,7 +1214,7 @@ sway_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				shy = medium_stress_impact_gain
+				am_withdrawn = medium_stress_impact_gain
 			}
 		}
 		hidden_effect = {
@@ -1232,7 +1232,7 @@ sway_interaction = {
 
 					show_as_tooltip = {
 						stress_impact = {
-							shy = medium_stress_impact_gain
+							am_withdrawn = medium_stress_impact_gain
 						}
 					}
 				}
@@ -1243,8 +1243,8 @@ sway_interaction = {
 	ai_potential = {
 		primary_title.tier >= tier_county
 		NOR = {
-			has_trait = shy
-			has_trait = callous
+			has_trait = am_withdrawn
+			has_trait = am_deceitful
 			any_scheme = {
 				OR = {
 					scheme_type = befriend
@@ -1331,7 +1331,7 @@ sway_interaction = {
 			factor = 2
 			scope:actor = {
 				OR = {
-					has_trait = gregarious
+					has_trait = am_outgoing
 					has_trait = diplomat
 					has_trait = family_first
 					has_trait = august

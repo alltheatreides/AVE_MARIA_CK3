@@ -61,7 +61,7 @@ lover_activity_set_variable_effect = {
 				modifier = {
 					OR = {
 						has_trait = lifestyle_herbalist
-						has_trait = shy
+						has_trait = am_withdrawn
 					}
 					factor = 5
 				}
@@ -74,7 +74,7 @@ lover_activity_set_variable_effect = {
 			10 = { #No trigger, always available
 				modifier = {
 					OR = {
-						has_trait = gregarious
+						has_trait = am_outgoing
 						has_trait = gluttonous
 					}
 					factor = 5
@@ -87,7 +87,7 @@ lover_activity_set_variable_effect = {
 			}
 			10 = { #No trigger, always available
 				modifier = {
-					has_trait = greedy
+					has_trait = am_greedy
 					factor = 5
 				}
 				set_variable = {
@@ -99,16 +99,16 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = shy
-						has_trait = callous
+						has_trait = am_withdrawn
+						has_trait = am_deceitful
 						has_trait = sadistic
 					}
-					NOT = { PREV = { has_trait = shy } }
+					NOT = { PREV = { has_trait = am_withdrawn } }
 				}
 				modifier = {
 					OR = {
 						has_trait = diplomat
-						has_trait = gregarious
+						has_trait = am_outgoing
 					}
 					factor = 5
 				}
@@ -121,8 +121,8 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					PREV = { stewardship > 10 }
-					NOT = { has_trait = greedy }
-					NOT = { PREV = { has_trait = generous } }
+					NOT = { has_trait = am_greedy }
+					NOT = { PREV = { has_trait = am_generous } }
 				}
 				set_variable = {
 					name = lover_activity
@@ -133,7 +133,7 @@ lover_activity_set_variable_effect = {
 			5 = {
 				trigger = {
 					NOR = {
-						has_trait = shy
+						has_trait = am_withdrawn
 						has_trait = temperate
 					}
 					NOT = { PREV = { has_trait = temperate } }
@@ -154,14 +154,14 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = craven
+						has_trait = am_craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
 					}
 					PREV = {
 						NOR  ={
-							has_trait = craven
+							has_trait = am_craven
 							has_trait = physique_bad_1
 							has_trait = physique_bad_2
 							has_trait = physique_bad_3
@@ -181,13 +181,13 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = cynical
-						has_trait = impatient
+						has_trait = am_hypocritical
+						has_trait = am_illtempered
 					}
 					PREV = {
 						NOR = {
-							has_trait = cynical
-							has_trait = impatient
+							has_trait = am_hypocritical
+							has_trait = am_illtempered
 						}
 					}
 				}
@@ -199,10 +199,10 @@ lover_activity_set_variable_effect = {
 			}
 			10 = {
 				trigger = {
-					NOT = { has_trait = humble }
+					NOT = { has_trait = am_humble }
 				}
 				modifier = {
-					has_trait = arrogant
+					has_trait = am_pretentious
 					factor = 5
 				}
 				set_variable = {
@@ -214,13 +214,13 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOT = {
-						has_trait = cynical
+						has_trait = am_hypocritical
 					}
-					PREV = { NOT = { has_trait = cynical } }
+					PREV = { NOT = { has_trait = am_hypocritical } }
 					religion = PREV.religion
 				}
 				modifier = {
-					has_trait = zealous
+					has_trait = am_intolerant
 					factor = 5
 				}
 				set_variable = {
@@ -232,14 +232,14 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = craven
+						has_trait = am_craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
 					}
 					PREV = {
 						NOR  ={
-							has_trait = craven
+							has_trait = am_craven
 							has_trait = physique_bad_1
 							has_trait = physique_bad_2
 							has_trait = physique_bad_3
@@ -247,7 +247,7 @@ lover_activity_set_variable_effect = {
 					}
 				}
 				modifier = {
-					has_trait = brave
+					has_trait = am_brave
 					factor = 5
 				}
 				set_variable = {
@@ -258,13 +258,13 @@ lover_activity_set_variable_effect = {
 			}
 			10 = {
 				trigger = {
-					NOT = { has_trait = cynical }
-					PREV = { NOT = { has_trait = cynical } }
+					NOT = { has_trait = am_hypocritical }
+					PREV = { NOT = { has_trait = am_hypocritical } }
 				}
 				modifier = {
 					OR = {
 						has_trait = family_first
-						has_trait = gregarious
+						has_trait = am_outgoing
 						has_trait = ambitious
 						has_trait = pregnant
 					}
@@ -279,20 +279,20 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOT = {
-						has_trait = calm
+						has_trait = am_patient
 					}
 					OR = {
 						opinion = { target = PREV value < 15 }
 						reverse_opinion = { target = PREV value < 15 }
-						has_trait = wrathful
+						has_trait = am_wroth
 					}
-					PREV = { NOT = { has_trait = calm } }
+					PREV = { NOT = { has_trait = am_patient } }
 				}
 				modifier = {
 					OR = {
 						opinion = { target = PREV value < 0 }
 						reverse_opinion = { target = PREV value < 0 }
-						has_trait = wrathful
+						has_trait = am_wroth
 					}
 					factor = 5
 				}

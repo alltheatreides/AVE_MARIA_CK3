@@ -141,43 +141,43 @@
 		}
 		modifier = {
 			add = -5
-			scope:owner = { has_trait = shy }
+			scope:owner = { has_trait = am_withdrawn }
 			desc = "SCHEME_BEFRIEND_MY_SHYNESS"
 		}
 		modifier = {
 			add = 5
-			scope:owner = { has_trait = gregarious }
+			scope:owner = { has_trait = am_outgoing }
 			desc = "SCHEME_BEFRIEND_MY_GREGARIOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:owner = { has_trait = callous }
+			scope:owner = { has_trait = am_deceitful }
 			desc = "SCHEME_BEFRIEND_MY_CALLOUSNESS"
 		}
 		#Target Traits
 		modifier = {
 			add = -5
-			scope:target = { has_trait = shy }
+			scope:target = { has_trait = am_withdrawn }
 			desc = "SCHEME_BEFRIEND_THEIR_SHYNESS"
 		}
 		modifier = {
 			add = 5
-			scope:target = { has_trait = gregarious }
+			scope:target = { has_trait = am_outgoing }
 			desc = "SCHEME_BEFRIEND_THEIR_GREGARIOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:target = { has_trait = callous }
+			scope:target = { has_trait = am_deceitful }
 			desc = "SCHEME_BEFRIEND_THEIR_CALLOUSNESS"
 		}
 		modifier = {
 			add = -4
-			scope:target = { has_trait = paranoid }
+			scope:target = { has_trait = am_fearful }
 			desc = "SCHEME_BEFRIEND_THEIR_PARANOIA"
 		}
 		modifier = {
 			add = 4
-			scope:target = { has_trait = trusting }
+			scope:target = { has_trait = am_mild }
 			desc = "SCHEME_BEFRIEND_THEIR_TRUST"
 		}
 		modifier = {
@@ -198,7 +198,7 @@
 		modifier = {
 			add = scope:target.var:recipient_stubborness_scheme
 			scope:target = {
-				has_trait = stubborn
+				has_trait = am_stubborn
 				exists = var:recipient_stubborness_scheme
 			}
 			desc = "SCHEME_BEFRIEND_THEIR_STUBBORNESS"
@@ -206,7 +206,7 @@
 		modifier = {
 			add = scope:target.var:recipient_fickleness_scheme
 			scope:target = {
-				has_trait = fickle
+				has_trait = am_inconstant
 				exists = var:recipient_fickleness_scheme
 				NOT = { var:recipient_fickleness_scheme = 0 }
 			}
@@ -404,9 +404,9 @@
 			add = 10
 			scope:target = {
 				OR = {
-					has_trait = arrogant
+					has_trait = am_pretentious
 					has_trait = ambitious
-					has_trait = greedy
+					has_trait = am_greedy
 				}
 				NOT = {
 					is_theocratic_lessee = yes
@@ -428,9 +428,9 @@
 			add = -10
 			scope:target = {
 				OR = {
-					has_trait = arrogant
+					has_trait = am_pretentious
 					has_trait = ambitious
-					has_trait = greedy
+					has_trait = am_greedy
 				}
 			}
 			OR = {
@@ -543,7 +543,7 @@
 		if = {
 			limit = {
 				scheme_target = {
-					has_trait = fickle
+					has_trait = am_inconstant
 					OR = {
 						NOT = { exists = var:recipient_fickleness_scheme }
 						var:recipient_fickleness_scheme >= 30 #Keep within reason.
@@ -561,7 +561,7 @@
 		if = {
 			limit = {
 				scheme_target = {
-					has_trait = fickle
+					has_trait = am_inconstant
 					exists = var:recipient_fickleness_scheme
 				}
 			}

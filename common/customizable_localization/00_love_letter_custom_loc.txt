@@ -135,7 +135,7 @@ love_letter_section_1_part_1 = {
 		trigger = {
 			scope:second = {
 				OR = {
-					has_trait = gregarious
+					has_trait = am_outgoing
 					intrigue >= 10
 					ai_rationality > 0
 				}
@@ -197,7 +197,7 @@ love_letter_section_1_part_1 = {
 	text = {
 		trigger = {
 			var:love_letter_quality >= 1
-			scope:second = { NOT = { has_trait = humble } }
+			scope:second = { NOT = { has_trait = am_humble } }
 		}
 		localization_key = ll_proud_stride
 	}
@@ -854,7 +854,7 @@ love_letter_compliment_single_adjective = {
 		trigger = {
 			OR = {
 				var:love_letter_quality <= 2
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		localization_key = ll_compliment_tolerable

@@ -187,11 +187,11 @@ execute_prisoner_effect = {
 		}
 		if = {
 			limit = { #Killing infidels is relaxing
-				has_trait = zealous
+				has_trait = am_intolerant
 				NOT = { scope:executioner.faith = scope:victim.faith }
 			}
 			stress_impact = {
-				zealous = minor_stress_impact_loss
+				am_intolerant = minor_stress_impact_loss
 			}
 		}
 		if = {
@@ -202,16 +202,16 @@ execute_prisoner_effect = {
 			if = {
 				limit = {
 					NOR = {
-						has_trait = vengeful
-						has_trait = forgiving
+						has_trait = am_quarrelsome
+						has_trait = am_agreeable
 					}
 				}
 				add_stress = major_stress_loss
 			}
 			else = {
 				stress_impact = {
-					vengeful = massive_stress_impact_loss
-					forgiving = 0 #No stress reduction
+					am_quarrelsome = massive_stress_impact_loss
+					am_agreeable = 0 #No stress reduction
 				}
 			}
 			
@@ -544,7 +544,7 @@ sacrifice_prisoner_effect = {
 		}
 		if = {
 			limit = { #Killing infidels is relaxing
-				has_trait = zealous
+				has_trait = am_intolerant
 				NOT = { scope:executioner.faith = scope:victim.faith }
 				NOT = {
 					scope:executioner.faith = {
@@ -553,19 +553,19 @@ sacrifice_prisoner_effect = {
 				}
 			}
 			stress_impact = {
-				zealous = minor_stress_impact_loss
+				am_intolerant = minor_stress_impact_loss
 			}
 		}
 		if = {
 			limit = { #Even more so if the religion is in favor of doing it.
-				has_trait = zealous
+				has_trait = am_intolerant
 				NOT = { scope:executioner.faith = scope:victim.faith }
 				scope:executioner.faith = {
 					has_doctrine_parameter = human_sacrifice_active
 				}
 			}
 			stress_impact = {
-				zealous = medium_stress_impact_loss
+				am_intolerant = medium_stress_impact_loss
 			}
 		}
 		if = {
@@ -576,16 +576,16 @@ sacrifice_prisoner_effect = {
 			if = {
 				limit = {
 					NOR = {
-						has_trait = vengeful
-						has_trait = forgiving
+						has_trait = am_quarrelsome
+						has_trait = am_agreeable
 					}
 				}
 				add_stress = major_stress_loss
 			}
 			else = {
 				stress_impact = {
-					vengeful = massive_stress_impact_loss
-					forgiving = 0 #No stress reduction
+					am_quarrelsome = massive_stress_impact_loss
+					am_agreeable = 0 #No stress reduction
 				}
 			}
 		}

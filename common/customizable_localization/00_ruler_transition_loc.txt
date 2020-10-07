@@ -777,7 +777,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_GREEDY
 		trigger = {
-			has_trait = greedy
+			has_trait = am_greedy
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -786,7 +786,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_LAZY
 		trigger = {
-			has_trait = lazy
+			has_trait = am_lazy
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -795,7 +795,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_FICKLE
 		trigger = {
-			has_trait = fickle
+			has_trait = am_inconstant
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -804,7 +804,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_WRATHFUL
 		trigger = {
-			has_trait = wrathful
+			has_trait = am_wroth
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -813,7 +813,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_ARROGANT
 		trigger = {
-			has_trait = arrogant
+			has_trait = am_pretentious
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -840,7 +840,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_GENEROUS
 		trigger = {
-			has_trait = generous
+			has_trait = am_generous
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -849,7 +849,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_DILIGENT
 		trigger = {
-			has_trait = diligent
+			has_trait = am_diligent
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -858,7 +858,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_COMPASSIONATE
 		trigger = {
-			has_trait = compassionate
+			has_trait = am_tolerant
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -867,7 +867,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_PATIENT
 		trigger = {
-			has_trait = patient
+			has_trait = am_patient
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -876,7 +876,7 @@ DeathMessageOutro = {
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_DEAD_OUTRO_PERSONALITY_HUMBLE
 		trigger = {
-			has_trait = humble
+			has_trait = am_humble
 		}
 		weight_multiplier = {
 			base = 0.01
@@ -955,7 +955,7 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_MILITARY
 		trigger = {
 			NOT = {
-				has_trait = craven
+				has_trait = am_craven
 			}
 			martial >= 12
 			has_trait = education_martial
@@ -965,7 +965,7 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_LEARNING
 		trigger = {
 			NOT = {
-				has_trait = lazy
+				has_trait = am_lazy
 			}
 			learning >= 12
 			has_trait = education_learning
@@ -985,7 +985,7 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_INTRIGUE
 		trigger = {
 			NOT = {
-				has_trait = honest
+				has_trait = am_honest
 			}
 			intrigue >= 12
 			has_trait = education_intrigue
@@ -995,7 +995,7 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_DIPLOMACY
 		trigger = {
 			NOT = {
-				has_trait = deceitful
+				has_trait = am_deceitful
 			}
 			diplomacy >= 12
 			has_trait = education_diplomacy
@@ -1098,7 +1098,7 @@ HeirMessageInterface = {
 		trigger = {
 			is_adult = yes
 			has_trait = beauty_bad
-			has_trait = deceitful
+			has_trait = am_deceitful
 		}
 	}
 	text = {
@@ -1106,30 +1106,30 @@ HeirMessageInterface = {
 		trigger = {
 			is_adult = yes
 			has_trait = gluttonous
-			has_trait = greedy
+			has_trait = am_greedy
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CYNICAL_JUST
 		trigger = {
 			is_adult = yes
-			has_trait = cynical
-			has_trait = just
+			has_trait = am_hypocritical
+			has_trait = am_honest
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CONTENT_ARBITRARY
 		trigger = {
 			is_adult = yes
-			has_trait = content
-			has_trait = arbitrary
+			has_trait = am_conventional
+			has_trait = am_inconstant
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CRAVEN_MILITARY_ED
 		trigger = {
 			is_adult = yes
-			has_trait = craven
+			has_trait = am_craven
 			has_trait = education_martial
 		}
 	}
@@ -1137,41 +1137,41 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_SHY_CONTENT
 		trigger = {
 			is_adult = yes
-			has_trait = shy
-			has_trait = content
+			has_trait = am_withdrawn
+			has_trait = am_conventional
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ZEALOUS_PARANOID
 		trigger = {
 			is_adult = yes
-			has_trait = zealous
-			has_trait = paranoid
+			has_trait = am_intolerant
+			has_trait = am_fearful
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ZEALOUS_GENEROUS
 		trigger = {
 			is_adult = yes
-			has_trait = zealous
-			has_trait = generous
+			has_trait = am_intolerant
+			has_trait = am_generous
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ARROGANT_BRAVE
 		trigger = {
 			is_adult = yes
-			has_trait = arrogant
-			has_trait = brave
+			has_trait = am_pretentious
+			has_trait = am_brave
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CYNICAL_CRUEL
 		trigger = {
 			is_adult = yes
-			has_trait = cynical
+			has_trait = am_hypocritical
 			OR = {
-				has_trait = callous
+				has_trait = am_deceitful
 				has_trait = sadistic
 			}
 		}
@@ -1180,31 +1180,31 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_HUMBLE_STUBBORN
 		trigger = {
 			is_adult = yes
-			has_trait = humble
-			has_trait = stubborn
+			has_trait = am_humble
+			has_trait = am_stubborn
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_DECEITFUL_CALLOUS
 		trigger = {
 			is_adult = yes
-			has_trait = deceitful
-			has_trait = callous
+			has_trait = am_deceitful
+			has_trait = am_deceitful
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_PATIENT_TRUSTING
 		trigger = {
 			is_adult = yes
-			has_trait = patient
-			has_trait = trusting
+			has_trait = am_patient
+			has_trait = am_mild
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_PARANOID_STRESSED
 		trigger = {
 			is_adult = yes
-			has_trait = paranoid
+			has_trait = am_fearful
 			stress >= medium_stress
 		}
 	}
@@ -1212,8 +1212,8 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_STUBBORN_COMPASSIONATE
 		trigger = {
 			is_adult = yes
-			has_trait = stubborn
-			has_trait = compassionate
+			has_trait = am_stubborn
+			has_trait = am_tolerant
 		}
 	}
 	text = {
@@ -1225,7 +1225,7 @@ HeirMessageInterface = {
 				has_trait = giant
 			}
 			OR = {
-				has_trait = brave
+				has_trait = am_brave
 				has_trait = berserker
 			}
 		}
@@ -1242,50 +1242,50 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_GENEROUS_JUST
 		trigger = {
 			is_adult = yes
-			has_trait = generous
-			has_trait = just
+			has_trait = am_generous
+			has_trait = am_honest
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_DILIGENT_GREEDY
 		trigger = {
 			is_adult = yes
-			has_trait = diligent
-			has_trait = greedy
+			has_trait = am_diligent
+			has_trait = am_greedy
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CRAVEN_HONEST
 		trigger = {
 			is_adult = yes
-			has_trait = craven
-			has_trait = honest
+			has_trait = am_craven
+			has_trait = am_honest
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_SHY_TRUSTING
 		trigger = {
 			is_adult = yes
-			has_trait = shy
-			has_trait = trusting
+			has_trait = am_withdrawn
+			has_trait = am_mild
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_GREGARIOUS_HONEST
 		trigger = {
 			is_adult = yes
-			has_trait = gregarious
-			has_trait = honest
+			has_trait = am_outgoing
+			has_trait = am_honest
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CYNICAL_ARBITRARY
 		trigger = {
 			is_adult = yes
-			has_trait = cynical
+			has_trait = am_hypocritical
 			OR = {
-				has_trait = arbitrary
-				has_trait = fickle
+				has_trait = am_inconstant
+				has_trait = am_inconstant
 			}
 		}
 	}
@@ -1295,12 +1295,12 @@ HeirMessageInterface = {
 			is_adult = yes
 			OR = {
 				AND = {
-					has_trait = callous
-					has_trait = wrathful
+					has_trait = am_deceitful
+					has_trait = am_wroth
 				}
 				AND = {
-					has_trait = callous
-					has_trait = vengeful
+					has_trait = am_deceitful
+					has_trait = am_quarrelsome
 				}
 				has_trait = sadistic
 				has_trait = torturer
@@ -1312,33 +1312,33 @@ HeirMessageInterface = {
 		trigger = {
 			is_adult = yes
 			AND = {
-				has_trait = vengeful
-				has_trait = wrathful
+				has_trait = am_quarrelsome
+				has_trait = am_wroth
 			}
-			has_trait = zealous
+			has_trait = am_intolerant
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_PARANOID_DECEITFUL
 		trigger = {
 			is_adult = yes
-			has_trait = paranoid
-			has_trait = deceitful
+			has_trait = am_fearful
+			has_trait = am_deceitful
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CALLOUS_LONER
 		trigger = {
 			is_adult = yes
-			has_trait = callous
-			NOT = { has_trait = gregarious }
+			has_trait = am_deceitful
+			NOT = { has_trait = am_outgoing }
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_VENGEFUL
 		trigger = {
 			is_adult = yes
-			has_trait = vengeful
+			has_trait = am_quarrelsome
 		}
 	}
 	text = {
@@ -1364,7 +1364,7 @@ HeirMessageInterface = {
 		trigger = {
 			is_adult = yes
 			has_trait = berserker
-			NOT = { has_trait = craven }
+			NOT = { has_trait = am_craven }
 		}
 	}
 	text = {
@@ -1435,35 +1435,35 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_COMPASSIONATE
 		trigger = {
 			is_adult = yes
-			has_trait = compassionate
+			has_trait = am_tolerant
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ARROGANT
 		trigger = {
 			is_adult = yes
-			has_trait = arrogant
+			has_trait = am_pretentious
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CYNICAL
 		trigger = {
 			is_adult = yes
-			has_trait = cynical
+			has_trait = am_hypocritical
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_GREGARIOUS
 		trigger = {
 			is_adult = yes
-			has_trait = gregarious
+			has_trait = am_outgoing
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ZEALOUS
 		trigger = {
 			is_adult = yes
-			has_trait = zealous
+			has_trait = am_intolerant
 		}
 	}
 	text = {
@@ -1477,7 +1477,7 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_DILIGENT
 		trigger = {
 			is_adult = yes
-			has_trait = diligent
+			has_trait = am_diligent
 		}
 	}
 	text = {
@@ -1485,7 +1485,7 @@ HeirMessageInterface = {
 		trigger = {
 			is_adult = yes
 			OR = {
-				has_trait = deceitful
+				has_trait = am_deceitful
 				has_intrigue_lifestyle_trait_trigger = yes
 			}
 		}
@@ -1494,21 +1494,21 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_SHY
 		trigger = {
 			is_adult = yes
-			has_trait = shy
+			has_trait = am_withdrawn
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_HUMBLE
 		trigger = {
 			is_adult = yes
-			has_trait = humble
+			has_trait = am_humble
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_ARBITRARY
 		trigger = {
 			is_adult = yes
-			has_trait = arbitrary
+			has_trait = am_inconstant
 		}
 	}
 	text = {
@@ -1542,28 +1542,28 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CONTENT
 		trigger = {
 			is_adult = yes
-			has_trait = content
+			has_trait = am_conventional
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_PATIENT
 		trigger = {
 			is_adult = yes
-			has_trait = patient
+			has_trait = am_patient
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_BRAVE
 		trigger = {
 			is_adult = yes
-			has_trait = brave
+			has_trait = am_brave
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_JUST
 		trigger = {
 			is_adult = yes
-			has_trait = just
+			has_trait = am_honest
 		}
 	}
 	text = {
@@ -1577,21 +1577,21 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CALLOUS
 		trigger = {
 			is_adult = yes
-			has_trait = callous
+			has_trait = am_deceitful
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_CRAVEN
 		trigger = {
 			is_adult = yes
-			has_trait = craven
+			has_trait = am_craven
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_GREEDY
 		trigger = {
 			is_adult = yes
-			has_trait = greedy
+			has_trait = am_greedy
 		}
 	}
 	text = {
@@ -1605,49 +1605,49 @@ HeirMessageInterface = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_TRUSTING
 		trigger = {
 			is_adult = yes
-			has_trait = trusting
+			has_trait = am_mild
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_HONEST
 		trigger = {
 			is_adult = yes
-			has_trait = honest
+			has_trait = am_honest
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_LAZY
 		trigger = {
 			is_adult = yes
-			has_trait = lazy
+			has_trait = am_lazy
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_GENEROUS
 		trigger = {
 			is_adult = yes
-			has_trait = generous
+			has_trait = am_generous
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_WRATHFUL
 		trigger = {
 			is_adult = yes
-			has_trait = wrathful
+			has_trait = am_wroth
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_PARANOID
 		trigger = {
 			is_adult = yes
-			has_trait = paranoid
+			has_trait = am_fearful
 		}
 	}
 	text = {
 		localization_key = SUCCESSION_EVENT_WINDOW_HEIR_TRAIT_STUBBORN
 		trigger = {
 			is_adult = yes
-			has_trait = stubborn
+			has_trait = am_stubborn
 		}
 	}
 	##################

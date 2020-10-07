@@ -1,39 +1,39 @@
 ﻿noun_immaterial = {
 	honor = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	truth = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	triumph = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -45,7 +45,7 @@
 	}
 	renown = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -57,67 +57,67 @@
 	}
 	valor = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	strength = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	courage = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	might = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	boldness = {
 		trigger = {
-			NOT = { has_trait = shy }
+			NOT = { has_trait = am_withdrawn }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	victory = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -137,7 +137,7 @@
 	}
 	conquest = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -157,12 +157,12 @@
 	}
 	wisdom = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 			if = {
@@ -177,24 +177,24 @@
 	}
 	vigilance = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = paranoid }
+				limit = { has_trait = am_fearful }
 				multiply = 3
 			}
 		}
 	}
 	peace = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
@@ -203,14 +203,14 @@
 		trigger = {
 			NOR = {
 				has_trait = sadistic
-				has_trait = callous
-				has_trait = paranoid
+				has_trait = am_deceitful
+				has_trait = am_fearful
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = gregarious }
+				limit = { has_trait = am_outgoing }
 				multiply = 3
 			}
 		}
@@ -219,7 +219,7 @@
 		trigger = {
 			NOR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -234,26 +234,26 @@
 		trigger = {
 			NOR = {
 				has_trait = sadistic
-				has_trait = callous
-				has_trait = paranoid
+				has_trait = am_deceitful
+				has_trait = am_fearful
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = compassionate }
+				limit = { has_trait = am_tolerant }
 				multiply = 2
 			}
 		}
 	}
 	goodness = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = compassionate }
+				limit = { has_trait = am_tolerant }
 				multiply = 3
 			}
 		}
@@ -261,14 +261,14 @@
 	deception = {
 		trigger = {
 			OR = {
-				has_trait = deceitful
-				has_trait = arbitrary
+				has_trait = am_deceitful
+				has_trait = am_inconstant
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = deceitful }
+				limit = { has_trait = am_deceitful }
 				multiply = 3
 			}
 		}
@@ -297,7 +297,7 @@
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -312,25 +312,25 @@
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
 	}
 	bribery = {
 		trigger = {
-			has_trait = deceitful
+			has_trait = am_deceitful
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = greedy }
+				limit = { has_trait = am_greedy }
 				multiply = 3
 			}
 		}
@@ -339,7 +339,7 @@
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -366,7 +366,7 @@
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -379,43 +379,43 @@
 	}
 	perseverance = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
 	}
 	faith = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	salvation = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 			if = {
@@ -430,24 +430,24 @@
 	}
 	trust = {
 		trigger = {
-			NOT = { has_trait = paranoid }
+			NOT = { has_trait = am_fearful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 3
 			}
 		}
 	}
 	piety = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 			if = {
@@ -462,12 +462,12 @@
 	}
 	devotion = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 			if = {
@@ -482,38 +482,38 @@
 	}
 	forgiveness = {
 		trigger = {
-			NOT = { has_trait = vengeful }
+			NOT = { has_trait = am_quarrelsome }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = forgiving }
+				limit = { has_trait = am_agreeable }
 				multiply = 3
 			}
 		}
 	}
 	innocence = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = shy }
+				limit = { has_trait = am_withdrawn }
 				multiply = 3
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	learning = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 		weight = {
 			value = 1000
@@ -525,28 +525,28 @@
 	}
 	prayer = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = humble }
+				limit = { has_trait = am_humble }
 				multiply = 3
 			}
 		}
 	}
 	hope = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = content }
+				limit = { has_trait = am_conventional }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 2
 			}
 		}
@@ -554,42 +554,42 @@
 	love = {
 		trigger = {
 			NOR = {
-				has_trait = paranoid
+				has_trait = am_fearful
 				has_trait = ambitious
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = content }
+				limit = { has_trait = am_conventional }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 2
 			}
 		}
 	}
 	safety = {
 		trigger = {
-			NOT = { has_trait = trusting }
+			NOT = { has_trait = am_mild }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = vengeful }
+				limit = { has_trait = am_quarrelsome }
 				multiply = 2
 			}
 		}
 	}
 	loyalty = {
 		trigger = {
-			NOT = { has_trait = paranoid }
+			NOT = { has_trait = am_fearful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 3
 			}
 		}
@@ -608,72 +608,72 @@
 	}
 	nobility = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 		}
 	}
 	labour = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	fortune = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = greedy }
+				limit = { has_trait = am_greedy }
 				multiply = 3
 			}
 		}
 	}
 	industry = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	prosperity = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	defence = {
 		trigger = {
-			has_trait = paranoid
+			has_trait = am_fearful
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 			if = {
@@ -688,12 +688,12 @@
 	}
 	bravery = {
 		trigger = {
-			NOT = { has_trait = craven }
+			NOT = { has_trait = am_craven }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -709,18 +709,18 @@
 	endurance = {
 		trigger = {
 			NOR = {
-				has_trait = fickle
-				has_trait = lazy
+				has_trait = am_inconstant
+				has_trait = am_lazy
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 2
 			}
 			if = {
@@ -735,12 +735,12 @@
 	}
 	liberty = {
 		trigger = {
-			NOT = { has_trait = arbitrary }
+			NOT = { has_trait = am_inconstant }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
@@ -752,19 +752,19 @@
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = humble }
+				limit = { has_trait = am_humble }
 				multiply = 3
 			}
 		}
 	}
 	splendour = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 			if = {
@@ -779,24 +779,24 @@
 	}
 	respect = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 		}
 	}
 	right = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 			if = {
@@ -844,39 +844,39 @@
 adjective_immaterial = {
 	honorable = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	truthful = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	triumphant = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -896,12 +896,12 @@ adjective_immaterial = {
 	}
 	valorous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -916,12 +916,12 @@ adjective_immaterial = {
 	}
 	strong = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -936,12 +936,12 @@ adjective_immaterial = {
 	}
 	courageous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -956,12 +956,12 @@ adjective_immaterial = {
 	}
 	mighty = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -976,12 +976,12 @@ adjective_immaterial = {
 	}
 	cunning = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 			if = {
@@ -996,12 +996,12 @@ adjective_immaterial = {
 	}
 	bold = {
 		trigger = {
-			NOT = { has_trait = shy }
+			NOT = { has_trait = am_withdrawn }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1016,7 +1016,7 @@ adjective_immaterial = {
 	}
 	victorious = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -1036,48 +1036,48 @@ adjective_immaterial = {
 	}
 	wise = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	vigilant = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = paranoid }
+				limit = { has_trait = am_fearful }
 				multiply = 3
 			}
 		}
 	}
 	peaceful = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	good = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = compassionate }
+				limit = { has_trait = am_tolerant }
 				multiply = 3
 			}
 		}
@@ -1086,7 +1086,7 @@ adjective_immaterial = {
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -1099,74 +1099,74 @@ adjective_immaterial = {
 	}
 	persevering = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
 	}
 	faithful = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	pious = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	devoted = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
-	forgiving = {
+	am_agreeable = {
 		trigger = {
-			NOT = { has_trait = vengeful }
+			NOT = { has_trait = am_quarrelsome }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = forgiving }
+				limit = { has_trait = am_agreeable }
 				multiply = 3
 			}
 		}
 	}
 	learned = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 		weight = {
 			value = 1000
@@ -1187,18 +1187,18 @@ adjective_immaterial = {
 	loving = {
 		trigger = {
 			NOR = {
-				has_trait = paranoid
+				has_trait = am_fearful
 				has_trait = ambitious
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = content }
+				limit = { has_trait = am_conventional }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 2
 			}
 			if = {
@@ -1213,48 +1213,48 @@ adjective_immaterial = {
 	}
 	loyal = {
 		trigger = {
-			NOT = { has_trait = paranoid }
+			NOT = { has_trait = am_fearful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 3
 			}
 		}
 	}
 	noble = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 		}
 	}
 	industrious = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	stalwart = {
 		trigger = {
-			NOT = { has_trait = fickle }
+			NOT = { has_trait = am_inconstant }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
@@ -1266,7 +1266,7 @@ adjective_immaterial = {
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = humble }
+				limit = { has_trait = am_humble }
 				multiply = 3
 			}
 			if = {
@@ -1279,14 +1279,14 @@ adjective_immaterial = {
 			}
 		}
 	}
-	brave = {
+	am_brave = {
 		trigger = {
-			NOT = { has_trait = craven }
+			NOT = { has_trait = am_craven }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1299,7 +1299,7 @@ adjective_immaterial = {
 			}
 		}
 	}
-	calm = {
+	am_patient = {
 		trigger = {
 			faith = {
 				religion = { is_in_family = rf_eastern }
@@ -1308,7 +1308,7 @@ adjective_immaterial = {
 		weight = {
 			value = 1250
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
@@ -1318,39 +1318,39 @@ adjective_immaterial = {
 the_adjective_immaterial = {
 	the_honorable = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	the_truthful = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	the_triumphant = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -1370,12 +1370,12 @@ the_adjective_immaterial = {
 	}
 	the_valorous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1390,12 +1390,12 @@ the_adjective_immaterial = {
 	}
 	the_strong = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1410,12 +1410,12 @@ the_adjective_immaterial = {
 	}
 	the_courageous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1430,12 +1430,12 @@ the_adjective_immaterial = {
 	}
 	the_mighty = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1450,12 +1450,12 @@ the_adjective_immaterial = {
 	}
 	the_cunning = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 			if = {
@@ -1470,12 +1470,12 @@ the_adjective_immaterial = {
 	}
 	the_bold = {
 		trigger = {
-			NOT = { has_trait = shy }
+			NOT = { has_trait = am_withdrawn }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1490,7 +1490,7 @@ the_adjective_immaterial = {
 	}
 	the_victorious = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -1510,48 +1510,48 @@ the_adjective_immaterial = {
 	}
 	the_wise = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	the_vigilant = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = paranoid }
+				limit = { has_trait = am_fearful }
 				multiply = 3
 			}
 		}
 	}
 	the_peaceful = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	the_good = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = compassionate }
+				limit = { has_trait = am_tolerant }
 				multiply = 3
 			}
 		}
@@ -1560,7 +1560,7 @@ the_adjective_immaterial = {
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -1573,74 +1573,74 @@ the_adjective_immaterial = {
 	}
 	the_persevering = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
 	}
 	the_faithful = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	the_pious = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	the_devoted = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
-	the_forgiving = {
+	the_am_agreeable = {
 		trigger = {
-			NOT = { has_trait = vengeful }
+			NOT = { has_trait = am_quarrelsome }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = forgiving }
+				limit = { has_trait = am_agreeable }
 				multiply = 3
 			}
 		}
 	}
 	the_learned = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 		weight = {
 			value = 1000
@@ -1661,66 +1661,66 @@ the_adjective_immaterial = {
 	the_loving = {
 		trigger = {
 			NOR = {
-				has_trait = paranoid
+				has_trait = am_fearful
 				has_trait = ambitious
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = content }
+				limit = { has_trait = am_conventional }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 2
 			}
 		}
 	}
 	the_loyal = {
 		trigger = {
-			NOT = { has_trait = paranoid }
+			NOT = { has_trait = am_fearful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 3
 			}
 		}
 	}
 	the_noble = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 		}
 	}
 	the_industrious = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	the_stalwart = {
 		trigger = {
-			NOT = { has_trait = fickle }
+			NOT = { has_trait = am_inconstant }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
@@ -1732,19 +1732,19 @@ the_adjective_immaterial = {
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = humble }
+				limit = { has_trait = am_humble }
 				multiply = 3
 			}
 		}
 	}
-	the_brave = {
+	the_am_brave = {
 		trigger = {
-			NOT = { has_trait = craven }
+			NOT = { has_trait = am_craven }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1757,7 +1757,7 @@ the_adjective_immaterial = {
 			}
 		}
 	}
-	the_calm = {
+	the_am_patient = {
 		trigger = {
 			faith = {
 				religion = { is_in_family = rf_eastern }
@@ -1766,7 +1766,7 @@ the_adjective_immaterial = {
 		weight = {
 			value = 1250
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
@@ -1776,39 +1776,39 @@ the_adjective_immaterial = {
 adjective_immaterial_a_or_an = {
 	an_honorable = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	a_truthful = {
 		trigger = {
-			NOT = { has_trait = deceitful }
+			NOT = { has_trait = am_deceitful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = honest }
+				limit = { has_trait = am_honest }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = just }
+				limit = { has_trait = am_honest }
 				multiply = 2
 			}
 		}
 	}
 	a_triumphant = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -1820,24 +1820,24 @@ adjective_immaterial_a_or_an = {
 	}
 	a_valorous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 		}
 	}
 	a_strong = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1852,12 +1852,12 @@ adjective_immaterial_a_or_an = {
 	}
 	a_courageous = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1872,12 +1872,12 @@ adjective_immaterial_a_or_an = {
 	}
 	a_mighty = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1892,12 +1892,12 @@ adjective_immaterial_a_or_an = {
 	}
 	a_cunning = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 			if = {
@@ -1912,12 +1912,12 @@ adjective_immaterial_a_or_an = {
 	}
 	a_bold = {
 		trigger = {
-			NOT = { has_trait = shy }
+			NOT = { has_trait = am_withdrawn }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -1932,7 +1932,7 @@ adjective_immaterial_a_or_an = {
 	}
 	a_victorious = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
@@ -1952,48 +1952,48 @@ adjective_immaterial_a_or_an = {
 	}
 	a_wise = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = patient }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	a_vigilant = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = paranoid }
+				limit = { has_trait = am_fearful }
 				multiply = 3
 			}
 		}
 	}
 	a_peaceful = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
 	}
 	a_good = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = compassionate }
+				limit = { has_trait = am_tolerant }
 				multiply = 3
 			}
 		}
@@ -2002,7 +2002,7 @@ adjective_immaterial_a_or_an = {
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = callous
+				has_trait = am_deceitful
 			}
 		}
 		weight = {
@@ -2015,74 +2015,74 @@ adjective_immaterial_a_or_an = {
 	}
 	a_persevering = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
 	}
 	a_faithful = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	a_pious = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
 	a_devoted = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = zealous }
+				limit = { has_trait = am_intolerant }
 				multiply = 3
 			}
 		}
 	}
-	a_forgiving = {
+	a_am_agreeable = {
 		trigger = {
-			NOT = { has_trait = vengeful }
+			NOT = { has_trait = am_quarrelsome }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = forgiving }
+				limit = { has_trait = am_agreeable }
 				multiply = 3
 			}
 		}
 	}
 	a_learned = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 		weight = {
 			value = 1000
@@ -2103,66 +2103,66 @@ adjective_immaterial_a_or_an = {
 	a_loving = {
 		trigger = {
 			NOR = {
-				has_trait = paranoid
+				has_trait = am_fearful
 				has_trait = ambitious
 			}
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = content }
+				limit = { has_trait = am_conventional }
 				multiply = 3
 			}
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 2
 			}
 		}
 	}
 	a_loyal = {
 		trigger = {
-			NOT = { has_trait = paranoid }
+			NOT = { has_trait = am_fearful }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = trusting }
+				limit = { has_trait = am_mild }
 				multiply = 3
 			}
 		}
 	}
 	a_noble = {
 		trigger = {
-			NOT = { has_trait = humble }
+			NOT = { has_trait = am_humble }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = arrogant }
+				limit = { has_trait = am_pretentious }
 				multiply = 3
 			}
 		}
 	}
 	an_industrious = {
 		trigger = {
-			NOT = { has_trait = lazy }
+			NOT = { has_trait = am_lazy }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = diligent }
+				limit = { has_trait = am_diligent }
 				multiply = 3
 			}
 		}
 	}
 	a_stalwart = {
 		trigger = {
-			NOT = { has_trait = fickle }
+			NOT = { has_trait = am_inconstant }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = stubborn }
+				limit = { has_trait = am_stubborn }
 				multiply = 3
 			}
 		}
@@ -2174,19 +2174,19 @@ adjective_immaterial_a_or_an = {
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = humble }
+				limit = { has_trait = am_humble }
 				multiply = 3
 			}
 		}
 	}
-	a_brave = {
+	a_am_brave = {
 		trigger = {
-			NOT = { has_trait = craven }
+			NOT = { has_trait = am_craven }
 		}
 		weight = {
 			value = 1000
 			if = {
-				limit = { has_trait = brave }
+				limit = { has_trait = am_brave }
 				multiply = 3
 			}
 			if = {
@@ -2199,7 +2199,7 @@ adjective_immaterial_a_or_an = {
 			}
 		}
 	}
-	a_calm = {
+	a_am_patient = {
 		trigger = {
 			faith = {
 				religion = { is_in_family = rf_eastern }
@@ -2208,7 +2208,7 @@ adjective_immaterial_a_or_an = {
 		weight = {
 			value = 1250
 			if = {
-				limit = { has_trait = calm }
+				limit = { has_trait = am_patient }
 				multiply = 3
 			}
 		}
@@ -2668,7 +2668,7 @@ annoying_action_verb = {
 negative_noun = {
 	envy = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 	}
 	fear = {
@@ -2677,7 +2677,7 @@ negative_noun = {
 	}
 	doubt = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 	}
 	malice = {
@@ -2692,17 +2692,17 @@ negative_noun = {
 	}
 	cruelty = {
 		trigger = {
-			NOT = { has_trait = callous }
+			NOT = { has_trait = am_deceitful }
 		}
 	}
 	greed = {
 		trigger = {
-			NOT = { has_trait = greedy }
+			NOT = { has_trait = am_greedy }
 		}
 	}
 	wrath = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 	}
 }
@@ -2710,7 +2710,7 @@ negative_noun = {
 negative_adjective = {
 	envious = {
 		trigger = {
-			NOT = { has_trait = impatient }
+			NOT = { has_trait = am_illtempered }
 		}
 	}
 	fearful = {
@@ -2719,7 +2719,7 @@ negative_adjective = {
 	}
 	doubtful = {
 		trigger = {
-			NOT = { has_trait = cynical }
+			NOT = { has_trait = am_hypocritical }
 		}
 	}
 	malicious = {
@@ -2734,17 +2734,17 @@ negative_adjective = {
 	}
 	cruel = {
 		trigger = {
-			NOT = { has_trait = callous }
+			NOT = { has_trait = am_deceitful }
 		}
 	}
-	greedy = {
+	am_greedy = {
 		trigger = {
-			NOT = { has_trait = greedy }
+			NOT = { has_trait = am_greedy }
 		}
 	}
-	wrathful = {
+	am_wroth = {
 		trigger = {
-			NOT = { has_trait = wrathful }
+			NOT = { has_trait = am_wroth }
 		}
 	}
 }

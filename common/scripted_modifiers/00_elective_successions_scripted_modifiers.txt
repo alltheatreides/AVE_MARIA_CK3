@@ -5,10 +5,10 @@
 		desc = tooltip_feudal_elector_vote_myself
 		this = scope:candidate
 		NOR = {
-			has_trait = humble
-			has_trait = content
-			has_trait = craven
-			has_trait = lazy
+			has_trait = am_humble
+			has_trait = am_conventional
+			has_trait = am_craven
+			has_trait = am_lazy
 			has_trait = depressed
 			has_trait = ambitious
 		}
@@ -24,10 +24,10 @@
 		this = scope:candidate
 		NOT = { has_trait = ambitious }
 		OR = {
-			has_trait = humble
-			has_trait = content
-			has_trait = craven
-			has_trait = lazy
+			has_trait = am_humble
+			has_trait = am_conventional
+			has_trait = am_craven
+			has_trait = am_lazy
 			has_trait = depressed
 		}
 	}
@@ -50,10 +50,10 @@
 		desc = tooltip_feudal_elector_vote_myself_heir
 		this = scope:candidate
 		NOR = {
-			has_trait = humble
-			has_trait = content
-			has_trait = craven
-			has_trait = lazy
+			has_trait = am_humble
+			has_trait = am_conventional
+			has_trait = am_craven
+			has_trait = am_lazy
 			has_trait = depressed
 			has_trait = ambitious
 		}
@@ -889,7 +889,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 	modifier = {
 		desc = tooltip_feudal_elector_vote_sinful
 		NOT = { this = scope:candidate } #Do not judge yourself.
-		NOT = { has_trait = cynical }
+		NOT = { has_trait = am_hypocritical }
 		ai_zeal > 0
 		scope:candidate = { num_sinful_traits >= 1 }
 		add = {
@@ -932,7 +932,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		desc = tooltip_feudal_elector_vote_virtuous
 		NOR = {
 			this = scope:candidate	#Do not judge yourself.
-			has_trait = cynical
+			has_trait = am_hypocritical
 		}
 		ai_zeal > 0
 		scope:candidate = { num_virtuous_traits >= 1 }
@@ -981,7 +981,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		root.faith.religious_head = scope:candidate.faith.religious_head #Must have been excommunicated by the same Pope.
 		OR = {
 			NOT = { has_trait = excommunicated }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = excommunicated }
 		add = {
@@ -1014,7 +1014,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 				has_trait = legitimized_bastard
 				has_trait = wild_oat
 			}
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = {
 			OR = {
@@ -1058,7 +1058,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = child_of_concubine }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = child_of_concubine }
 		add = {
@@ -1096,7 +1096,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		ai_zeal > 0
 		OR = {
 			NOT = { has_trait = sodomite }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = sodomite }
 		add = {
@@ -1133,7 +1133,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = kinslayer }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = kinslayer }
 		add = {
@@ -1227,7 +1227,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = deviant }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = deviant }
 		add = {
@@ -1262,7 +1262,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = cannibal }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = cannibal }
 		add = {
@@ -1285,7 +1285,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = incestuous }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = { has_trait = incestuous }
 		add = {
@@ -1308,7 +1308,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = adulterer }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = {
 			has_trait = adulterer
@@ -1346,7 +1346,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		}
 		OR = {
 			NOT = { has_trait = adulterer }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = {
 			has_trait = adulterer
@@ -1382,7 +1382,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		faith = { has_doctrine = doctrine_adultery_men_accepted }
 		OR = {
 			NOT = { has_trait = fornicator }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = {
 			has_trait = fornicator
@@ -1420,7 +1420,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		faith = { has_doctrine = doctrine_adultery_women_accepted }
 		OR = {
 			NOT = { has_trait = fornicator }
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 		}
 		scope:candidate = {
 			has_trait = fornicator
@@ -1930,7 +1930,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		desc = tooltip_feudal_elector_vote_evil_negative
 		NOT = { this = scope:candidate } #Do not judge yourself.
 		OR = {
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 			NOT = { has_personality_malicious_trigger = yes }
 		}
 		scope:candidate = { has_personality_malicious_trigger = yes }
@@ -1940,7 +1940,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 		desc = tooltip_feudal_elector_vote_lunatic_negative
 		NOT = { this = scope:candidate } #Do not judge yourself.
 		OR = {
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 			NOR = {
 				has_trait = lunatic
 				has_trait = possessed
@@ -1956,7 +1956,7 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 			faith = { has_doctrine_parameter = spirit_possession_active }
 		}
 		OR = {
-			has_trait = arbitrary #No need for consistency
+			has_trait = am_inconstant #No need for consistency
 			NOR = {
 				has_trait = lunatic
 				has_trait = possessed
@@ -2133,11 +2133,11 @@ elector_voting_pattern_traits_feudal_elective_modifier = {
 			}
 			OR = {
 				has_trait = deviant
-				has_trait = lazy
+				has_trait = am_lazy
 				has_trait = lifestyle_reveler
 				has_trait = seducer
 				has_trait = drunkard
-				has_trait = shy
+				has_trait = am_withdrawn
 			}
 		}
 	}
@@ -2154,8 +2154,8 @@ elector_voting_pattern_opinion_feudal_elective_modifier = {
 			this = scope:candidate	#But not if it's me.
 			has_trait = lunatic #Don't care
 			has_trait = possessed #Don't care
-			has_trait = arbitrary #Don't care
-			has_trait = zealous #Might be the gods speaking
+			has_trait = am_inconstant #Don't care
+			has_trait = am_intolerant #Might be the gods speaking
 			faith = { has_doctrine_parameter = spirit_possession_active } #Actually blessed
 		}
 		scope:holder = {
@@ -2172,7 +2172,7 @@ elector_voting_pattern_opinion_feudal_elective_modifier = {
 			this = scope:candidate	#But not if it's me.
 			has_trait = lunatic #Don't care
 			has_trait = possessed #Don't care
-			has_trait = arbitrary #Don't care
+			has_trait = am_inconstant #Don't care
 			faith = { has_doctrine_parameter = spirit_possession_active } #Actually blessed
 		}
 		scope:holder = {
@@ -2201,11 +2201,11 @@ elector_voting_pattern_opinion_feudal_elective_modifier = {
 		NOR = {
 			has_trait = lunatic #Don't care
 			has_trait = possessed #Don't care
-			has_trait = arbitrary #Don't like it
+			has_trait = am_inconstant #Don't like it
 			has_trait = sadistic #Don't care
-			faith = { trait_is_sin = just } #Not a positive.
+			faith = { trait_is_sin = am_honest } #Not a positive.
 		}
-		scope:holder = { has_trait = just }
+		scope:holder = { has_trait = am_honest }
 		add = {
 			value = 25
 			if = {
@@ -2227,9 +2227,9 @@ elector_voting_pattern_opinion_feudal_elective_modifier = {
 		NOR = {
 			has_trait = lunatic #Don't care
 			has_trait = possessed #Don't care
-			has_trait = arbitrary #Don't care
+			has_trait = am_inconstant #Don't care
 			has_trait = sadistic #Don't care
-			has_trait = callous #Don't care
+			has_trait = am_deceitful #Don't care
 		}
 		scope:holder = {
 			tyranny >= low_tyranny
@@ -2260,7 +2260,7 @@ elector_voting_pattern_opinion_feudal_elective_modifier = {
 		}
 		NOR = {
 			has_trait = lunatic #Don't care
-			has_trait = arbitrary #Don't care
+			has_trait = am_inconstant #Don't care
 		}
 		dread >= low_dread
 		dread_modified_ai_boldness = {

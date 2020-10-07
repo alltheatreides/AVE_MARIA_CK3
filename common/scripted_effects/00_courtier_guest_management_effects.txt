@@ -450,7 +450,7 @@ courtier_guest_pool_character_secret_giving_effect = {
 		500 = {
 			trigger = {
 				NOR = {
-					has_trait = zealous
+					has_trait = am_intolerant
 					any_secret = { secret_type = secret_non_believer }
 					has_character_modifier = known_non_believer
 				}
@@ -462,7 +462,7 @@ courtier_guest_pool_character_secret_giving_effect = {
 		100 = {
 			trigger = {
 				NOR = {
-					has_trait = zealous
+					has_trait = am_intolerant
 					any_secret = { secret_type = secret_witch }
 					has_trait = witch
 				}
@@ -613,7 +613,7 @@ pool_character_development_effect = {
 					trigger = {
 						NOT = { has_trait = reveler_3 }
 						NOR = {
-							has_trait = shy
+							has_trait = am_withdrawn
 							has_trait = celibate
 							has_trait = temperate
 							has_trait = chaste
@@ -813,7 +813,7 @@ pool_character_development_effect = {
 				1 = { #Does not use the can_be_contrite to reduce performance hit
 					trigger = {
 						NOR = {
-							has_trait = deceitful
+							has_trait = am_deceitful
 							has_trait = contrite
 						}
 					}
@@ -879,7 +879,7 @@ pool_character_development_effect = {
 					ai_sociability > low_negative_ai_value
 					is_physically_able_adult = yes
 					NOR = {
-						has_trait = shy
+						has_trait = am_withdrawn
 						has_trait = reclusive
 					}
 					exists = scope:pool_character.location
