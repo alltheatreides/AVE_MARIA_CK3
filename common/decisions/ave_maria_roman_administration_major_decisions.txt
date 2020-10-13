@@ -181,14 +181,17 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 		NOT = { 
 			any_vassal_or_below = {
 				any_held_title = {
-					roman_administration_tagma_title_trigger = yes
+					roman_administration_is_a_tagma_title_trigger = yes
 				}
-				any_character_war = {
-					NOR = {
-						is_attacker = PREV
-						is_defender = PREV
-					}
-				}				
+				any_war_ally = {
+					this = root
+				}
+				# any_character_war = {
+				# 	NOR = {
+				# 		is_attacker = PREV
+				# 		is_defender = PREV
+				# 	}
+				# }				
 			}
 		}
 	}
@@ -202,14 +205,17 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 		NOT = { 
 			any_vassal_or_below = {
 				any_held_title = {
-					roman_administration_tagma_title_trigger = yes
+					roman_administration_is_a_tagma_title_trigger = yes
 				}
-				any_character_war = {
-					NOR = {
-						is_attacker = PREV
-						is_defender = PREV
-					}
-				}				
+				any_war_ally = {
+					this = root
+				}
+				# any_character_war = {
+				# 	NOR = {
+				# 		is_attacker = PREV
+				# 		is_defender = PREV
+				# 	}
+				# }				
 			}
 		}
 	}

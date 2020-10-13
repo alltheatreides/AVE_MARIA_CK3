@@ -4673,6 +4673,7 @@ eunuch = {
 
 	flag = can_not_marry
 	can_inherit = no
+	blocks_from_claim_inheritance = yes
 	can_have_children = no
 
 	desc = {
@@ -6023,10 +6024,10 @@ inbred = {
 	intrigue = -5
 	learning = -5
 	prowess = -2
-	fertility = -0.3
+	fertility = -0.5
 	health = -1.5
 	
-	inherit_chance = 75
+	inherit_chance = 15
 	
 	attraction_opinion = -30
 	vassal_opinion = -10
@@ -6122,7 +6123,7 @@ impotent = {
 	
 	fertility = -0.5
 	ai_energy = -10
-
+	health_trait = yes
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -6385,10 +6386,34 @@ pilgrim = {
 				desc = trait_pilgrim
 			}
 			triggered_desc = {
-				trigger = { faith = { religion_tag = islam_religion } }
-				desc = trait_hajjaj
+				trigger = {
+					is_male = yes
+					can_perform_the_hajj_trigger = yes
+				}
+				desc = trait_hajji
+			}
+			triggered_desc = {
+				trigger = {
+					is_female = yes
+					can_perform_the_hajj_trigger = yes
+				}
+				desc = trait_hajjah
 			}
 			desc = trait_pilgrim
+		}
+	}
+
+	icon = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { NOT = { exists = this } }
+				desc = pilgrim.dds
+			}
+			triggered_desc = {
+				trigger = { can_perform_the_hajj_trigger = yes }
+				desc = hajjaj.dds
+			}
+			desc = pilgrim.dds
 		}
 	}
 
@@ -6399,7 +6424,7 @@ pilgrim = {
 				desc = trait_pilgrim_desc
 			}
 			triggered_desc = {
-				trigger = { faith = { religion_tag = islam_religion } }
+				trigger = { can_perform_the_hajj_trigger = yes }
 				desc = trait_hajjaj_desc
 			}
 			desc = trait_pilgrim_character_desc
@@ -6946,6 +6971,8 @@ bastard = {
 	dynasty_opinion = -15
 
 	can_inherit = no
+	blocks_from_claim_inheritance = yes
+
 	fame = yes
 	illegitimate_bastard = yes
 	
@@ -7024,9 +7051,11 @@ disputed_heritage = {
 }
 
 # Male version is called 'Child of Consort'
-child_of_concubine = {
+child_of_concubine_female = {
 	index = 184
 	fame = yes
+	group = child_of_concubine
+	level = 1
 	opposites = {
 		bastard
 		legitimized_bastard
@@ -7034,31 +7063,7 @@ child_of_concubine = {
 	}
 	diplomacy = -1
 	
-	name = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = this }
-				}
-				desc = trait_child_of_concubine
-			}
-			triggered_desc = {
-				trigger = {
-					exists = father
-					father = { save_temporary_scope_as = father }
-					OR = {
-						father = { is_concubine = yes }
-						mother = {
-							any_former_concubine = { this = scope:father }
-						}
-					}
-				}
-				desc = trait_child_of_consort
-			}
-			desc = trait_child_of_concubine
-		}
-	}
-
+	name = trait_child_of_concubine
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -7067,22 +7072,39 @@ child_of_concubine = {
 				}
 				desc = trait_child_of_concubine_desc
 			}
-			triggered_desc = {
-				trigger = {
-					exists = father
-					father = { save_temporary_scope_as = father }
-					OR = {
-						father = { is_concubine = yes }
-						mother = {
-							any_former_concubine = { this = scope:father }
+			desc = trait_child_of_consort_character_desc
 						}
 					}
+	icon = child_of_concubine.dds
+
+	ai_energy = 15
+}
+
+child_of_concubine_male = {
+	index = 280
+	fame = yes
+	group = child_of_concubine
+	level = 2
+	opposites = {
+		bastard
+		legitimized_bastard
+		wild_oat
 				}
+	diplomacy = -1
+	
+	name = trait_child_of_consort
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_child_of_concubine_desc
+			}
 				desc = trait_child_of_consort_character_desc
 			}
-			desc = trait_child_of_concubine_character_desc
-		}
 	}
+	icon = child_of_concubine.dds
 
 	ai_energy = 15
 }
@@ -7124,6 +7146,7 @@ bastard_founder = {
 	}
 
 	can_inherit = no
+	blocks_from_claim_inheritance = yes
 	fame = yes
 	diplomacy = -1
 	
@@ -7701,10 +7724,10 @@ heresiarch = {
 
 peasant_leader = {
 	index = 195
-	#diplomacy = -5
 	same_opinion = 25
 	general_opinion = -10
 	county_opinion_add = 10
+	army_maintenance_mult = -0.5
 
 	desc = {
 		first_valid = {
@@ -7759,6 +7782,7 @@ disinherited = {
 	index = 231
 
 	can_inherit_from_dynasty = no
+	blocks_from_claim_inheritance_from_dynasty = yes
 	
 	dynasty_opinion = -5
 	

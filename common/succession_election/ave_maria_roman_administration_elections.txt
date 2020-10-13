@@ -6,6 +6,7 @@
 # scope:holder_candidate scope - Favored Candidate, The title owner's candidate.
 # The voter will vote for the top score candidate calculated from this script.
 
+
 roman_administration_elective = {
 	elector_vote_strength = {
 		base = 1
@@ -67,19 +68,61 @@ roman_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
-				roman_administration_can_vote_in_emperor_election_trigger = yes
+				OR = {
+					AND = {
+						joined_faction = {
+							OR = {
+								faction_is_type = roman_administration_army_faction
+								faction_is_type = roman_administration_bureaucracy_faction
+								faction_is_type = roman_administration_palace_faction
+							}
+						}
+						is_a_faction_leader = yes
+					}		
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}	
 			}
 		}
 		add = {
 			type = title_dejure_vassals
 			limit = {
-				roman_administration_can_vote_in_emperor_election_trigger = yes
+				OR = {
+					AND = {
+						joined_faction = {
+							OR = {
+								faction_is_type = roman_administration_army_faction
+								faction_is_type = roman_administration_bureaucracy_faction
+								faction_is_type = roman_administration_palace_faction
+							}
+						}
+						is_a_faction_leader = yes
+					}		
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}	
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
-				roman_administration_can_vote_in_emperor_election_trigger = yes
+				OR = {
+					AND = {
+						joined_faction = {
+							OR = {
+								faction_is_type = roman_administration_army_faction
+								faction_is_type = roman_administration_bureaucracy_faction
+								faction_is_type = roman_administration_palace_faction
+							}
+						}
+						is_a_faction_leader = yes
+					}		
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}	
 			}
 		}
 	}
@@ -103,6 +146,9 @@ roman_administration_elective = {
 
 		## Elector Roman Administration Voting Pattern (favor co emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+
+		## Vanilla Byzantine voting pattern
+		#elector_voting_strength_byzantine_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
@@ -119,6 +165,11 @@ roman_administration_elective = {
 			limit = {
 				age >= 16
 				NOT = { has_government = theocracy_government }
+				top_liege = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}
 			}
 		}
 		add = {
@@ -209,6 +260,9 @@ roman_administration_tagma_elective = {
 
 		## Roman Administration voting patterns (co emperor or favoured by the emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+
+		## Vanilla Byzantine voting pattern
+		#elector_voting_strength_byzantine_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
@@ -339,6 +393,9 @@ roman_administration_civilian_administration_elective = {
 
 		## Roman Administration voting patterns (co emperor or favoured by the emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+
+		## Vanilla Byzantine voting pattern
+		#elector_voting_strength_byzantine_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
@@ -472,11 +529,11 @@ roman_administration_family_elective = {
 		elector_self_voting_pattern_feudal_elective_modifier = yes
 
 		##########################	Holder voting pattern	##########################
-		holder_voting_pattern_feudal_elective_modifier = yes
+		#holder_voting_pattern_feudal_elective_modifier = yes
 
 		##########################	Elector voting patterns (circumstances)	##########################
-		elector_voting_pattern_circumstances_feudal_elective_modifier = yes
-		elector_voting_pattern_circumstances_scandinavian_elective_modifier = yes
+		#elector_voting_pattern_circumstances_feudal_elective_modifier = yes
+		#elector_voting_pattern_circumstances_scandinavian_elective_modifier = yes
 
 		##########################	Elector voting patterns (prestige/piety)	##########################
 		elector_voting_pattern_prestige_piety_feudal_elective_modifier = yes
@@ -489,6 +546,9 @@ roman_administration_family_elective = {
 
 		## Roman Administration voting patterns (co emperor or favoured by the emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+
+		## Vanilla Byzantine voting pattern
+		#elector_voting_strength_byzantine_elective_modifier = yes
 	}
 	
 	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.

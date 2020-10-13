@@ -60,7 +60,6 @@ roman_administration_can_vote_in_emperor_election_trigger = {
 # SPECIFIC TITLES TRIGGERS					#
 #############################################
 
-
 ## Checks in character scope if you have a tagma titles
 roman_administration_tagma_title_trigger = {
 	any_held_title = {
@@ -96,7 +95,13 @@ roman_administration_is_a_tagma_title_trigger = {
 	}
 }
 
-
+## Checks in a title scope if it is a military title
+roman_administration_is_a_military_title_trigger = {
+	OR = {
+		roman_administration_is_a_tagma_title_trigger = yes
+		de_jure_liege = title:k_strategos_titles
+	}
+}
 
 ## Councillor job
 # can_be_roman_empire_court_chaplain_trigger = {

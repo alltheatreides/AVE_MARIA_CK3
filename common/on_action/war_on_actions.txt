@@ -89,14 +89,19 @@ on_war_won_attacker = {
 				}
 
 				## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-				ave_maria_roman_administration_events.00025
+				if = {
+					limit = {
+						is_at_war = no
+						has_character_flag = mustered
+					}
+					remove_character_flag = mustered
+				}				
 			}
 		}
 	}
 
 	events = {
-		## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-		ave_maria_roman_administration_events.00025
+		
 	}
 }
 
@@ -120,14 +125,19 @@ on_war_won_defender = {
 				}
 
 				## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-				ave_maria_roman_administration_events.00025
+				if = {
+					limit = {
+						is_at_war = no
+						has_character_flag = mustered
+					}
+					remove_character_flag = mustered
+				}
 			}
 		}
 	}
 
 	events = {
-		## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-		ave_maria_roman_administration_events.00025
+		
 	}
 }
 
@@ -144,14 +154,19 @@ on_war_white_peace = {
 				}
 
 				## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-				ave_maria_roman_administration_events.00025
+				if = {
+					limit = {
+						is_at_war = no
+						has_character_flag = mustered
+					}
+					remove_character_flag = mustered
+				}
 			}
 		}
 	}
 
 	events = {
-		## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-		ave_maria_roman_administration_events.00025
+		
 	}
 }
 
@@ -178,13 +193,18 @@ on_war_invalidated = {
 				}
 
 				## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-				ave_maria_roman_administration_events.00025
+				if = {
+					limit = {
+						is_at_war = no
+						has_character_flag = mustered
+					}
+					remove_character_flag = mustered
+				}
 			}
 		}
 	}
 
 	events = {
-		## AVE MARIA ROMAN administration clear the mustered flag for the Tagma leaders
-		ave_maria_roman_administration_events.00025
+		
 	}
 }

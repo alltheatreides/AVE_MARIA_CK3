@@ -37,6 +37,22 @@ innovation_late_roman_empire = {
 	
 	potential = {
 		this = culture:greek
+		# OR = {
+		# 	any_held_title = {
+		# 		OR = {
+		# 			this = title:e_byzantium
+		# 			this = title:e_roman_empire
+		# 		}
+		# 	}
+		# 	top_liege = {
+		# 		any_held_title = {
+		# 			OR = {
+		# 				this = title:e_byzantium
+		# 				this = title:e_roman_empire
+		# 			}
+		# 		}
+		# 	}
+		# }
 	}
 	
 	unlock_maa = cataphract
@@ -45,4 +61,73 @@ innovation_late_roman_empire = {
 	
 	flag = global_regional
 	flag = tribal_era_regional
+}
+
+## TAGMA
+innovation_tagma = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = @special_maa_01
+
+	potential = {
+		this = culture:greek
+		# primary_title = {
+		# 	OR = {
+		# 		this = title:e_byzantium
+		# 		this = title:e_roman_empire
+		# 		roman_administration_tagma_title_trigger = yes
+		# 	}
+		# }
+	}
+
+	#unlock_maa = cataphract
+
+	maa_upgrade = {
+		type = cataphract
+		toughness = 3
+	}
+	maa_upgrade = {
+		type = heavy_cavalry
+		toughness = 3
+	}
+	maa_upgrade = {
+		type = heavy_infantry
+		toughness = 3
+	}
+
+	flag = global_regional
+	flag = early_medieval_era_regional
+	flag = global_maa
+}
+
+## NORTH AFRICAN PIRATES INNOVATION
+innovation_north_african_piracy = {
+	group = culture_group_regional
+	culture_era = culture_era_tribal
+	icon = "gfx/interface/icons/culture_innovations/innovation_north_african_piracy.dds"
+	
+	potential = {
+		culture_group = culture_group:berber_group
+	}
+
+	custom = north_african_piracy_unlock
+	
+	flag = global_regional
+	flag = tribal_era_regional
+}
+
+## NORTH AFRICAN PIRATES INNOVATION
+innovation_mongol_warfare = {
+	group = culture_group_regional
+	culture_era = culture_era_high_medieval
+	icon = "gfx/interface/icons/culture_innovations/innovation_mongol_warfare.dds"
+	
+	potential = {
+		culture_group = culture_group:mongolic_group
+	}
+
+	#custom = mongol_warfare_unlock
+	
+	flag = global_regional
+	flag = high_medieval_era_regional
 }

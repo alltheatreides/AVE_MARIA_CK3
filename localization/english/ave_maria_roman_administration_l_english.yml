@@ -132,6 +132,8 @@
  innovation_late_roman_empire:0 "Eastern Roman Empire"
  innovation_late_roman_empire_desc:0 "The traditions of the Roman Empire still live in the East as it survived the fragmentation that fell upon the territories in the West. During most of its existence, the empire was the most powerful economic, cultural, and military force in Europe thanks to its sophisticated government and military system."
  roman_administration_innovation_late_roman_empire_unlock:0 "[rulers|E] of this tradition are able to use the Administrative government, [administrative_title|E] as well as special [regiments|E]."
+ innovation_tagma:0 "Tagmata"
+ innovation_tagma_desc:0 "The Tagma are the professional standing troops, garrisoned in and around the capital of Constantinople. In the mid-10th century, the decline in the numbers of the thematic forces and the exigencies of the new offensive strategy on the eastern border gave rise to an increasing number of provincial tagmata, permanent professional forces modelled after the imperial tagmata."
 
  ## TITLES HOLDER FLAVORIZATION NAMES
  varangian_guard_leader:0 "Akolouthos"
@@ -189,7 +191,7 @@
  ave_maria_roman_administration_special_contract:0 "Tagma Contract"
  ave_maria_roman_administration_tagma:0 "Tagma Organization"
 
- ave_maria_roman_administration_theme_taxe:0 "Theme Taxation"
+ ave_maria_roman_administration_theme_taxe:0 "Taxation"
  ave_maria_roman_administration_theme_taxe_very_low:0 "Very Low Taxation"
  ave_maria_roman_administration_theme_taxe_low:0 "Low Taxation"
  ave_maria_roman_administration_theme_taxe_normal:0 "Normal Taxation"
@@ -212,6 +214,20 @@
  ave_maria_roman_administration_theme_corruption_normal_short:0 "Minor"
  ave_maria_roman_administration_theme_corruption_high_short:0 "High"
  ave_maria_roman_administration_theme_corruption_exuberant_short:0 "Criminal"
+
+ ave_maria_roman_administration_tagma_tax_exemption:0 "Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_short:0 "Tagma Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_exuberant:0 "Lavish Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_exuberant_short:0 "Lavish"
+ ave_maria_roman_administration_tagma_tax_exemption_high:0 "High Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_high_short:0 "High"
+ ave_maria_roman_administration_tagma_tax_exemption_normal:0 "Normal Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_normal_short:0 "Normal"
+ ave_maria_roman_administration_tagma_tax_exemption_low:0 "Low Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_low_short:0 "Low"
+ ave_maria_roman_administration_tagma_tax_exemption_very_low:0 "Meagre Tax Exemption"
+ ave_maria_roman_administration_tagma_tax_exemption_very_low_short:0 "Meagre"
+
 
 
 
@@ -290,6 +306,9 @@
  roman_administration_fired_me:0 "Fired me from my post"
  roman_administration_favoured_me:0 "Favoured me"
  
+ emperor_salary_cost:0 "Salary Cost"
+ emperor_salary_cost_desc:0 "[ROOT.Var('global_var_tagma_officials_pay').GetValue]"
+ 
  
  ### DECISIONS
  ave_maria_roman_administration_imperial_coronation_decision:0 "Imperial Coronation"
@@ -316,11 +335,14 @@
  roman_administration_get_claim:0 "Compete for Office"
  roman_administration_favour_successor:0 "Favor Candidate"
  roman_administration_fire_bureaucrat:0 "Fire Official"
+ roman_administration_replace_bureaucrat:0 "Replace Official"
  roman_administration_favour_family_member:0 "Favour Family Member"
  
  sender_secondary_roman_administration_favour_successor:0 "Benefactor"
  recipient_secondary_roman_administration_favour_successor:0 "Successor"
  recipient_roman_administration_favour_successor:0 "Holder"
+ recipient_secondary_roman_administration_replace_bureaucrat:0 "Successor"
+ 
 
  
  ### EVENTS

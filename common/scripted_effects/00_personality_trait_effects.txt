@@ -111,7 +111,7 @@ personality_check_opposing_bad_ruler_traits_effect = {
 			CHAR1 = $CHAR1$
 			CHAR2 = $CHAR2$
 			TRAIT1 = am_inconstant
-			TRAIT2 = am_just
+			TRAIT2 = am_honest
 			FLAG_PREFIX = has_opposing_trait
 			FLAG_POSTFIX = am_inconstant
 			FLAG_SUCCESS = opposing_trait_flag_applied
@@ -567,10 +567,10 @@ personality_check_opposing_bad_ruler_traits_effect = {
 		personality_check_if_chars_have_opposing_traits_effect = {
 			CHAR1 = $CHAR1$
 			CHAR2 = $CHAR2$
-			TRAIT1 = am_just
+			TRAIT1 = am_honest
 			TRAIT2 = am_inconstant
 			FLAG_PREFIX = has_opposing_trait
-			FLAG_POSTFIX = am_just
+			FLAG_POSTFIX = am_honest
 			FLAG_SUCCESS = opposing_trait_flag_applied
 			STRICT = $STRICT$
 		}
@@ -699,7 +699,7 @@ personality_shift_effect = {
 	else_if = {
 		limit = { scope:has_opposing_trait = flag:arbitrary }
 		remove_trait = am_inconstant
-		add_trait_force_tooltip = am_just
+		add_trait_force_tooltip = am_honest
 	}
 	else_if = {
 		limit = { scope:has_opposing_trait = flag:just }
@@ -860,10 +860,10 @@ personality_check_shared_good_ruler_traits_effect = {
 		personality_check_if_chars_have_shared_trait_effect = {
 			CHAR1 = $CHAR1$
 			CHAR2 = $CHAR2$
-			TRAIT1 = am_just
+			TRAIT1 = am_honest
 			TRAIT2 = am_inconstant
 			FLAG_PREFIX = has_shared_trait
-			FLAG_POSTFIX = am_just
+			FLAG_POSTFIX = am_honest
 			FLAG_SUCCESS = shared_trait_flag_applied
 			STRICT = $STRICT$
 		}
@@ -1318,7 +1318,7 @@ personality_check_shared_good_ruler_traits_effect = {
 			CHAR1 = $CHAR1$
 			CHAR2 = $CHAR2$
 			TRAIT1 = am_inconstant
-			TRAIT2 = am_just
+			TRAIT2 = am_honest
 			FLAG_PREFIX = has_shared_trait
 			FLAG_POSTFIX = am_inconstant
 			FLAG_SUCCESS = shared_trait_flag_applied
