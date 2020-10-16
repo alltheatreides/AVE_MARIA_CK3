@@ -127,6 +127,14 @@ roman_administration_favour_successor = {
 			}			
 		}
 		scope:recipient = { 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
 			is_landed = yes 
 			OR = {
 				roman_administration_holds_strategos_title_trigger = yes
@@ -253,7 +261,18 @@ roman_administration_fire_bureaucrat = {
 			}		
 		}
 		scope:recipient = { 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
 				roman_administration_tagma_title_trigger = yes
 			}
@@ -476,6 +495,17 @@ roman_administration_replace_bureaucrat = {
 			limit = {
 				scope:recipient = { 
 					is_landed = yes 
+					top_liege = {
+						any_held_title = {
+							OR = {
+								this = title:e_byzantium
+								this = title:e_roman_empire
+							}
+						}
+					}
+					primary_title = {
+						tier = tier_duchy
+					}
 					OR = {
 						roman_administration_holds_strategos_title_trigger = yes
 						roman_administration_tagma_title_trigger = yes
@@ -733,12 +763,26 @@ roman_administration_favour_family_member = {
 				}
 			}
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
 				roman_administration_tagma_title_trigger = yes
 			}
 		}
 		scope:recipient = { 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
 				roman_administration_tagma_title_trigger = yes
 			}			
