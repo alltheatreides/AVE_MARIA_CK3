@@ -314,7 +314,8 @@
 		modifier = {
 			desc = "SCHEME_CHASTE_TRAIT"
 			scope:target = { has_trait = chaste }
-			add = -15
+			scope:target = { NOT = { is_spouse_of = scope:owner } }
+			add = -45
 		}
 		modifier = {
 			desc = "SCHEME_SHY_TRAIT"

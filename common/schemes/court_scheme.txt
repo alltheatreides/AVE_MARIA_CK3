@@ -177,6 +177,14 @@
 			scope:owner = { has_trait = gallant }
 			add = 30
 		}
+		
+		#Chaste
+		modifier = {
+			desc = "scheme_chaste"
+			scope:target = { has_trait = chaste }
+			scope:target = { NOT = { is_spouse_of = scope:owner } }
+			add = -25
+		}
 
 		#Beauty good
 		modifier = {
