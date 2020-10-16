@@ -51,10 +51,11 @@ ave_maria_roman_administration_events.0001 = {
 	
 	immediate = {
 		save_scope_as = roman_administration_basileus
+		change_government = roman_administration_government
 		every_vassal = {
 			if = {
 				limit = {
-					#roman_administration_tagma_title_trigger = no
+					#roman_administration_holds_tagma_title_trigger = no
 					primary_title = {
 						roman_administration_is_a_military_title_trigger = no
 					}
@@ -197,7 +198,7 @@ ave_maria_roman_administration_events.0001 = {
 		# 		limit = {
 		# 			is_adult = yes
 		# 			is_female = no
-		# 			roman_administration_tagma_title_trigger = no
+		# 			roman_administration_holds_tagma_title_trigger = no
 		# 			any_held_title = {
 		# 				tier = tier_duchy
 		# 			}					
@@ -226,6 +227,7 @@ ave_maria_roman_administration_events.0001 = {
 		# 		}
 		# 	}
 		# }
+		change_government = roman_administration_government
 	}
 }
 
@@ -367,7 +369,13 @@ ave_maria_roman_administration_events.0003 = {
 		# Scope to patriarch and give him a positive flag
 		add_character_flag = imperial_coronation_lavish_coronation
 		remove_short_term_gold = 300
-		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				years = 5
+			}
+		}
 	}
 
 	## Spend normal amount for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
@@ -377,17 +385,29 @@ ave_maria_roman_administration_events.0003 = {
 		# Scope to patriarch and give him a 60/40 flag
 		add_character_flag = imperial_coronation_normal_coronation
 		remove_short_term_gold = 150
-		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				years = 5
+			}
+		}
 	}
 
-	## Spend the minimum for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	## Spend the minimum for the preparatives, bribes and post coronation feast
 	option = {
 		name = ave_maria_roman_administration_events.0003.OPT_C
 		## "Save up as much as we can on the ceremony, we need the money elsewhere."
 		# Scope to patriarch and give him a negative flag
 		add_character_flag = imperial_coronation_stingy_coronation
 		remove_short_term_gold = 75
-		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 5
+			}
+		}
 	}
 
 
@@ -416,25 +436,17 @@ ave_maria_roman_administration_events.0004 = {
 	option = {
 		name = ave_maria_roman_administration_events.0004.OPT_A
 		trigger = {
-			has_character_flag = imperial_coronation_normal_coronation
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+			
 		}
 		## Add some prestige here
 		add_prestige = 75
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
-	}
-
-	option = {
-		name = ave_maria_roman_administration_events.0004.C
-		trigger = {
-			has_character_flag = imperial_coronation_lavish_coronation
-		}
-		## Add some prestige here
-		add_prestige = 100
-
-		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0005 }
 	}
 
 	## negative option because you spent below normal gold
@@ -447,7 +459,7 @@ ave_maria_roman_administration_events.0004 = {
 		add_prestige = -25
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0005 }
 
 	}
 
@@ -487,7 +499,7 @@ ave_maria_roman_administration_events.0005 = {
 		add_prestige = 75
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0006 }
 	}
 
 	## negative option because you spent below normal gold
@@ -500,11 +512,11 @@ ave_maria_roman_administration_events.0005 = {
 		add_prestige = -25
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 1 }
+		trigger_event = { id = ave_maria_roman_administration_events.0006 }
 	}
 }
 
-## Third part of the procession - Communion and Feast
+## Third  and last part of the procession - Communion and Feast
 ave_maria_roman_administration_events.0006 = {
 	type = character_event
 	title = ave_maria_roman_administration_events.0006.title
@@ -540,9 +552,8 @@ ave_maria_roman_administration_events.0006 = {
 		## Add some approval rating in Constantinople
 
 		## Add Crowned Basileus trait
-		add_character_modifier = {
-			modifier = crowned_basileus
-		}
+		add_trait = basileus
+
 		## Ends the coronation activity
 		hidden_effect = {
 			scope:activity = {
@@ -559,12 +570,11 @@ ave_maria_roman_administration_events.0006 = {
 		}
 		## Remove a bit of prestige here
 		add_prestige = 300
+		
 		## Remove some approval rating in Constantinople
 
 		## Add Crowned Basileus trait
-		add_character_modifier = {
-			modifier = crowned_basileus
-		} 
+		add_trait = basileus
 
 		## Ends the coronation activity
 		hidden_effect = {
@@ -907,7 +917,7 @@ ave_maria_roman_administration_events.0008 = {
 # 	hidden = yes
 
 # 	trigger = {
-# 		roman_administration_tagma_title_trigger = yes
+# 		roman_administration_holds_tagma_title_trigger = yes
 # 	}
 	
 # 	immediate = {
@@ -1078,7 +1088,7 @@ ave_maria_roman_administration_events.00012 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1132,7 +1142,7 @@ ave_maria_roman_administration_events.00013 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1166,7 +1176,7 @@ ave_maria_roman_administration_events.00014 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1200,7 +1210,7 @@ ave_maria_roman_administration_events.00015 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1234,7 +1244,7 @@ ave_maria_roman_administration_events.00016 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1268,7 +1278,7 @@ ave_maria_roman_administration_events.00017 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1302,7 +1312,7 @@ ave_maria_roman_administration_events.00018 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 	}
 
 	immediate = {
@@ -1351,7 +1361,7 @@ ave_maria_roman_administration_events.00018 = {
 # 	hidden = yes
 
 # 	trigger = {
-# 		roman_administration_tagma_title_trigger = yes
+# 		roman_administration_holds_tagma_title_trigger = yes
 # 	}
 
 # 	immediate = {
@@ -1402,26 +1412,26 @@ ave_maria_roman_administration_events.00018 = {
 # 	immediate = {
 # 		if = {
 # 			limit = {
-# 				primary_title = { roman_administration_tagma_title_trigger = yes }
+# 				primary_title = { roman_administration_holds_tagma_title_trigger = yes }
 # 			}
 # 			change_government = roman_administration_military_government
 # 		}
 # 		else_if = {
 # 			limit = {
-# 				primary_title = { roman_administration_tagma_title_trigger = no }				
+# 				primary_title = { roman_administration_holds_tagma_title_trigger = no }				
 # 			}
 # 			change_government = roman_administration_civilian_government
 # 		}
 # 		scope:previous_holder = {
 # 			if = {
 # 				limit = {
-# 					primary_title = { roman_administration_tagma_title_trigger = yes }
+# 					primary_title = { roman_administration_holds_tagma_title_trigger = yes }
 # 				}
 # 				change_government = roman_administration_military_government
 # 			}
 # 			else_if = {
 # 				limit = {
-# 					primary_title = { roman_administration_tagma_title_trigger = no }				
+# 					primary_title = { roman_administration_holds_tagma_title_trigger = no }				
 # 				}
 # 				change_government = roman_administration_civilian_government
 # 			}
@@ -1429,13 +1439,13 @@ ave_maria_roman_administration_events.00018 = {
 # 		scope:new_holder = {
 # 			if = {
 # 				limit = {
-# 					primary_title = { roman_administration_tagma_title_trigger = yes }
+# 					primary_title = { roman_administration_holds_tagma_title_trigger = yes }
 # 				}
 # 				change_government = roman_administration_military_government
 # 			}
 # 			else_if = {
 # 				limit = {
-# 					primary_title = { roman_administration_tagma_title_trigger = no }				
+# 					primary_title = { roman_administration_holds_tagma_title_trigger = no }				
 # 				}
 # 				change_government = roman_administration_civilian_government
 # 			}
@@ -1493,7 +1503,7 @@ ave_maria_roman_administration_events.00018 = {
 
 # 	trigger = {
 # 		# OR = {
-# 			# roman_administration_tagma_title_trigger = yes
+# 			# roman_administration_holds_tagma_title_trigger = yes
 # 		# }
 # 		scope:title = {
 # 			roman_administration_is_a_tagma_title_trigger = yes
@@ -1547,7 +1557,7 @@ ave_maria_roman_administration_events.00018 = {
 # 		every_vassal = {
 # 			if = {
 # 				limit = {
-# 					roman_administration_tagma_title_trigger = yes
+# 					roman_administration_holds_tagma_title_trigger = yes
 # 				}
 # 				remove_character_flag = mustered
 # 			}			
@@ -1579,7 +1589,7 @@ ave_maria_roman_administration_events.00050 = {
 		every_vassal = {
 			if = {
 				limit = {
-					roman_administration_tagma_title_trigger = yes
+					roman_administration_holds_tagma_title_trigger = yes
 				}
 				add_to_list = list_roman_administration_paid_officials
 			}

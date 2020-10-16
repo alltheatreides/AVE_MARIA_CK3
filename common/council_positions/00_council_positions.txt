@@ -308,23 +308,6 @@ councillor_court_chaplain = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
-		has_government = theocracy_government
-		# AVE MARIA
-		# trigger_if = {
-		# 	limit = {
-		# 		liege = { 
-		# 			any_held_title = {
-		# 				this = title:e_byzantium
-		# 			}
-		# 		}
-		# 	}
-		# 	OR = {
-		# 		has_government = theocracy_government
-		# 		any_held_title = {
-		# 			tier > tier_barony
-		# 		}
-		# 	}
-		# }
 	}
 
 	on_get_position = {

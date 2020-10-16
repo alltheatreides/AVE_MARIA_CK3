@@ -9,7 +9,7 @@
 
 ## Written by Atreides
 
-# Be crowned basileus choose your co emperor
+# Be crowned basileus
 ave_maria_roman_administration_imperial_coronation_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_imperial_coronation.dds"
 	major = yes
@@ -23,7 +23,7 @@ ave_maria_roman_administration_imperial_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		NOT = {
-			has_trait = basileus 
+			has_trait = basileus  
 			has_character_flag = imperial_coronation_started_preparations
 		}
 	}
@@ -34,7 +34,6 @@ ave_maria_roman_administration_imperial_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		NOT = {
-			has_character_modifier = basileus 
 			has_character_flag = imperial_coronation_started_preparations
 		}
 	}
@@ -235,7 +234,7 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 		}
 		every_vassal_or_below = {
 			limit = {
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 			if = {
 				limit = {
@@ -271,7 +270,7 @@ ave_maria_roman_administration_muster_tagmatic_troops_decision = {
 	ai_check_interval = 6
 
 	is_shown = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_tagma_title_trigger = yes
 		is_at_war = yes
 	}
 

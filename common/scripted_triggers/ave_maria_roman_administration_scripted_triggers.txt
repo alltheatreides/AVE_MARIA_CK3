@@ -60,8 +60,9 @@ roman_administration_can_vote_in_emperor_election_trigger = {
 # SPECIFIC TITLES TRIGGERS					#
 #############################################
 
+## CHARACTER SCOPE TRIGGERS
 ## Checks in character scope if you have a tagma titles
-roman_administration_tagma_title_trigger = {
+roman_administration_holds_tagma_title_trigger = {
 	any_held_title = {
 		OR = {
 			this = title:d_megas_domestikos
@@ -82,6 +83,15 @@ roman_administration_holds_strategos_title_trigger = {
 	}
 }
 
+## Checks in character scope if you have a military title, either strategos or tagma
+roman_administration_holds_military_title_trigger = {
+	OR = {
+		roman_administration_holds_tagma_title_trigger = yes
+		roman_administration_holds_strategos_title_trigger = yes
+	}
+}
+
+## TITLE SCOPE TRIGGERS
 ## Checks in title scope if you have a tagma titles
 roman_administration_is_a_tagma_title_trigger = {
 	OR = {

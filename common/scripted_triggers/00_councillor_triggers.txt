@@ -81,11 +81,8 @@ can_be_court_chaplain_trigger = {
 			faith = { has_doctrine = doctrine_theocracy_temporal }
 		}
 		OR = {
-			#is_ruler = no
+			is_ruler = no
 			has_government = theocracy_government
-			any_held_title = {
-				tier > tier_barony
-			}
 		}
 	}
 	trigger_if = {

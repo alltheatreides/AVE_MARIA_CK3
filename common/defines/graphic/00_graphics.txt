@@ -205,9 +205,9 @@ NCombatInterface = {
 	COMBAT_BALANCE_STEP_CHANGE = 10						# Balance change needed for increasing the steps of the indicator by one
 	UNIT_QUALITY_THRESHOLDS = { # If the weighted (damage + toughness)^2 per man is at least the threshold value, the quality level is considered one higher. Weight is damage + toughness or MAX_QUALITY_POWER_MULT. Whichever is lower
 		25
-		75
-		125
-		175
+		60
+		95
+		130
 	}
 	MAX_QUALITY_POWER_MULT = 50							# When multiplying damage + toughness with itself, we cap it at this value. So damage + toughness of 100 would result in 100 * MAX_QUALITY_POWER_MULT rather than 100^2, while a value of 20 would result in 20*20
 	MAX_COMBAT_PREDICTION_DISTANCE = 5					# How far along the path of your units should we bother to look? Higher means we can predict combat further away, but the situation is more likely to change before combat occurs

@@ -71,9 +71,20 @@ roman_administration_get_claim = {
 		}
 		scope:recipient = { 
 			is_landed = yes 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 			NOT = { this = scope:actor }
 		}
@@ -137,8 +148,11 @@ roman_administration_favour_successor = {
 			}
 			is_landed = yes 
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 		}
 	}
@@ -148,7 +162,7 @@ roman_administration_favour_successor = {
 			limit = {
 				scope:recipient = { 
 					is_landed = yes 
-					roman_administration_tagma_title_trigger = yes
+					roman_administration_holds_tagma_title_trigger = yes
 				}
 			}
 			scope:recipient = {
@@ -157,7 +171,7 @@ roman_administration_favour_successor = {
 			scope:actor = {
 				every_vassal = {
 					limit = {
-						roman_administration_tagma_title_trigger = no
+						roman_administration_holds_tagma_title_trigger = no
 						highest_held_title_tier < tier_duchy
 						NOT = {
 							has_government = theocracy_government
@@ -173,7 +187,7 @@ roman_administration_favour_successor = {
 		scope:actor = {
 			every_vassal = {
 				limit = {
-					roman_administration_tagma_title_trigger = no
+					roman_administration_holds_tagma_title_trigger = no
 					highest_held_title_tier < tier_duchy
 					NOT = {
 						has_government = theocracy_government
@@ -274,7 +288,7 @@ roman_administration_fire_bureaucrat = {
 					tier = tier_duchy
 				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 		}
 	}
@@ -483,9 +497,20 @@ roman_administration_replace_bureaucrat = {
 			}		
 		}
 		scope:recipient = { 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
 			OR = {
+				primary_title = {
+					tier = tier_duchy
+				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 		}
 	}
@@ -508,7 +533,7 @@ roman_administration_replace_bureaucrat = {
 					}
 					OR = {
 						roman_administration_holds_strategos_title_trigger = yes
-						roman_administration_tagma_title_trigger = yes
+						roman_administration_holds_tagma_title_trigger = yes
 					}
 				}
 			}
@@ -520,7 +545,7 @@ roman_administration_replace_bureaucrat = {
 					limit = {
 						OR = {
 							roman_administration_holds_strategos_title_trigger = no
-							roman_administration_tagma_title_trigger = no
+							roman_administration_holds_tagma_title_trigger = no
 						}
 						highest_held_title_tier < tier_duchy
 						NOT = {
@@ -539,7 +564,7 @@ roman_administration_replace_bureaucrat = {
 				limit = {
 					OR = {
 						roman_administration_holds_strategos_title_trigger = no
-						roman_administration_tagma_title_trigger = no
+						roman_administration_holds_tagma_title_trigger = no
 					}
 					highest_held_title_tier < tier_duchy
 					NOT = {
@@ -767,7 +792,7 @@ roman_administration_favour_family_member = {
 					tier = tier_duchy
 				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}
 		}
 		scope:recipient = { 
@@ -784,7 +809,7 @@ roman_administration_favour_family_member = {
 					tier = tier_duchy
 				}
 				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_tagma_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
 			}			
 		}
 	}
@@ -796,7 +821,7 @@ roman_administration_favour_family_member = {
 					is_landed = yes 
 					OR = {
 						roman_administration_holds_strategos_title_trigger = yes
-						roman_administration_tagma_title_trigger = yes
+						roman_administration_holds_tagma_title_trigger = yes
 					}
 				}
 			}

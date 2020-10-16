@@ -21,7 +21,7 @@ roman_administration_army_faction = {
 		primary_title = {
 			this = title:d_megas_domestikos
 		}
-		scope:target = { roman_administration_tagma_title_trigger = no }
+		scope:target = { roman_administration_holds_tagma_title_trigger = no }
 		custom_description = {
 			text = roman_administration_army_faction_TOOLTIP
 		}	
@@ -55,8 +55,8 @@ roman_administration_army_faction = {
 	}
 	
 	can_character_join = {
-		roman_administration_tagma_title_trigger = yes
-		scope:faction.faction_target = { roman_administration_tagma_title_trigger = no }
+		roman_administration_holds_military_title_trigger = yes
+		scope:faction.faction_target = { roman_administration_holds_military_title_trigger = no }
 		
 		is_adult = yes
 
@@ -78,7 +78,7 @@ roman_administration_army_faction = {
 	# }
 
 	is_character_valid = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_military_title_trigger = yes
 		scope:faction.faction_target = liege
 		highest_held_title_tier > tier_barony
 	}
@@ -397,9 +397,9 @@ roman_administration_bureaucracy_faction = {
 	sort_order = 2
 	
 	can_character_create = {	
-		roman_administration_tagma_title_trigger = no
+		roman_administration_holds_military_title_trigger = no
 		scope:target = { 
-			roman_administration_tagma_title_trigger = no 
+			roman_administration_holds_military_title_trigger = no 
 			any_held_title = {
 				OR = {
 					this = title:e_byzantium
@@ -440,8 +440,8 @@ roman_administration_bureaucracy_faction = {
 	}
 	
 	can_character_join = {
-		roman_administration_tagma_title_trigger = no
-		scope:faction.faction_target = { roman_administration_tagma_title_trigger = no }
+		roman_administration_holds_tagma_title_trigger = no
+		scope:faction.faction_target = { roman_administration_holds_tagma_title_trigger = no }
 		
 		is_adult = yes
 
@@ -458,7 +458,7 @@ roman_administration_bureaucracy_faction = {
 	# }
 
 	is_character_valid = {
-		roman_administration_tagma_title_trigger = no
+		roman_administration_holds_military_title_trigger = no
 		scope:faction.faction_target = liege
 		highest_held_title_tier > tier_barony
 
@@ -716,13 +716,13 @@ roman_administration_palace_faction = {
 	sort_order = 2
 	
 	can_character_create = {	
-		roman_administration_tagma_title_trigger = no
+		roman_administration_holds_military_title_trigger = no
 		OR = {
 			highest_held_title_tier = tier_county
 			is_landed = no
 		}
 		scope:target = { 
-			roman_administration_tagma_title_trigger = no 
+			roman_administration_holds_military_title_trigger = no 
 			any_held_title = {
 				OR = {
 					this = title:e_byzantium
@@ -767,7 +767,7 @@ roman_administration_palace_faction = {
 			highest_held_title_tier = tier_county
 			is_landed = no
 		}
-		scope:faction.faction_target = { roman_administration_tagma_title_trigger = no }		
+		scope:faction.faction_target = { roman_administration_holds_military_title_trigger = no }		
 		liege = {
 			any_held_title = {
 				this = title:e_byzantium
@@ -788,7 +788,7 @@ roman_administration_palace_faction = {
 	# }
 
 	is_character_valid = {
-		roman_administration_tagma_title_trigger = no
+		roman_administration_holds_military_title_trigger = no
 		scope:faction.faction_target = liege
 		highest_held_title_tier > tier_barony
 

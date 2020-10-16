@@ -2,11 +2,11 @@
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
 	dynasty_named_realms = no
-
+	primary_cultures = { greek }
 	fallback = 1
 	
 	can_get_government = {
-		any_held_title = {
+		primary_title = {
 			OR = {
 				this = title:e_byzantium
 				this = title:e_roman_empire
@@ -47,12 +47,12 @@
 roman_administration_military_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
-	dynasty_named_realms = yes
+	dynasty_named_realms = no
 
 	fallback = 5
 	
 	can_get_government = {
-		roman_administration_tagma_title_trigger = yes
+		roman_administration_holds_military_title_trigger = yes
 		top_liege = {
 			any_held_title = {
 				OR = {
@@ -107,12 +107,12 @@ roman_administration_military_government = {
 roman_administration_civilian_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
-	dynasty_named_realms = yes
+	dynasty_named_realms = no
 
 	fallback = 5
 	
 	can_get_government = {
-		roman_administration_tagma_title_trigger = no
+		roman_administration_holds_military_title_trigger = no
 		top_liege = {
 			any_held_title = {
 				OR = {
@@ -122,10 +122,11 @@ roman_administration_civilian_government = {
 			}
 		}
 		any_held_title = {
-			NOT = {
+			NOR = {
 				this = title:e_byzantium
+				this = title:e_roman_empire
 			}
-		}
+		}		
 	}
 	
 	primary_holding = castle_holding
