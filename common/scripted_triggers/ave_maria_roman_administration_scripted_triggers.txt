@@ -85,9 +85,17 @@ roman_administration_holds_strategos_title_trigger = {
 
 ## Checks in character scope if you have a military title, either strategos or tagma
 roman_administration_holds_military_title_trigger = {
-	OR = {
-		roman_administration_holds_tagma_title_trigger = yes
-		roman_administration_holds_strategos_title_trigger = yes
+	any_held_title = {
+		OR = {
+			de_jure_liege = title:k_strategos_titles
+			this = title:d_megas_domestikos
+			this = title:d_excubitor
+			this = title:d_vigla
+			this = title:d_hikanatoi
+			this = title:d_varangian_guard
+			this = title:d_regular_tagma_1
+			this = title:d_regular_tagma_2
+		}
 	}
 }
 

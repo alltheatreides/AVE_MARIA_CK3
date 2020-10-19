@@ -53,6 +53,7 @@ designate_heir_interaction = {
 ### Signal interest to be a title successor by adding a claim on it
 roman_administration_get_claim = {
 	category = interaction_category_roman_administration
+	common_interaction = yes
 	
 	use_diplomatic_range = yes
 
@@ -79,12 +80,10 @@ roman_administration_get_claim = {
 					}
 				}
 			}
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
 			}
 			NOT = { this = scope:actor }
 		}
@@ -108,7 +107,9 @@ roman_administration_get_claim = {
 			else = {
 				remove_short_term_gold = 25
 			}
-			## Add the stress impacts
+			## Add the stress impact
+			am_introverted = minor_stress_impact_gain
+			am_fearful = minor_stress_impact_gain
 		}
 	}
 
@@ -125,6 +126,7 @@ roman_administration_get_claim = {
 
 roman_administration_favour_successor = {
 	category = interaction_category_roman_administration
+	common_interaction = yes
 
 	use_diplomatic_range = yes
 	# target_type = title
@@ -146,54 +148,55 @@ roman_administration_favour_successor = {
 					}
 				}
 			}
-			is_landed = yes 
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
-			}
-		}
-	}
-
-	redirect = {
-		if = {
-			limit = {
-				scope:recipient = { 
-					is_landed = yes 
-					roman_administration_holds_tagma_title_trigger = yes
-				}
-			}
-			scope:recipient = {
-				save_scope_as = secondary_recipient
-			}
-			scope:actor = {
-				every_vassal = {
-					limit = {
-						roman_administration_holds_tagma_title_trigger = no
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					save_scope_as = recipient
-				}			
-			}
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}		
 		}
 	}
 
 	populate_recipient_list = {
 		scope:actor = {
-			every_vassal = {
+			every_courtier = {
 				limit = {
-					roman_administration_holds_tagma_title_trigger = no
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					#roman_administration_holds_military_title_trigger = no
 					highest_held_title_tier < tier_duchy
 					NOT = {
 						has_government = theocracy_government
 					}
 				}
 				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					#roman_administration_holds_military_title_trigger = no
+					highest_held_title_tier < tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						top_liege = scope:actor
+						is_female = no
+						age >= 18
+						#roman_administration_holds_military_title_trigger = no
+						highest_held_title_tier < tier_duchy
+						NOT = {
+							has_government = theocracy_government
+						}
+					}
+					add_to_list = characters
+				}
 			}
 		}
 	}
@@ -275,20 +278,11 @@ roman_administration_fire_bureaucrat = {
 			}		
 		}
 		scope:recipient = { 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
+			top_liege = scope:actor
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
 			}
 		}
 	}
@@ -346,6 +340,17 @@ roman_administration_fire_bureaucrat = {
 
 		scope:actor = {
 			add_tyranny = 5
+
+			## Add the stress impact
+			# am_introverted = minor_stress_impact_gain
+			# am_fearful = minor_stress_impact_gain
+			# am_sentimental = minor_stress_impact_gain
+			# am_craven = minor_stress_impact_gain
+			# am_faithful = minor_stress_impact_gain
+			# am_honest = minor_stress_impact_gain
+
+			# am_intolerant = minor_stress_impact_loss
+			# am_inconstant = minor_stress_impact_loss
 		}
 	}
 
@@ -497,81 +502,92 @@ roman_administration_replace_bureaucrat = {
 			}		
 		}
 		scope:recipient = { 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
+			top_liege = scope:actor
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
 			}
 		}
 	}
 
-	redirect = {
-		if = {
-			limit = {
-				scope:recipient = { 
-					is_landed = yes 
-					top_liege = {
-						any_held_title = {
-							OR = {
-								this = title:e_byzantium
-								this = title:e_roman_empire
-							}
-						}
-					}
-					primary_title = {
-						tier = tier_duchy
-					}
-					OR = {
-						roman_administration_holds_strategos_title_trigger = yes
-						roman_administration_holds_tagma_title_trigger = yes
-					}
-				}
-			}
-			scope:recipient = {
-				save_scope_as = secondary_recipient
-			}
-			scope:actor = {
-				every_vassal = {
-					limit = {
-						OR = {
-							roman_administration_holds_strategos_title_trigger = no
-							roman_administration_holds_tagma_title_trigger = no
-						}
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					save_scope_as = recipient
-				}			
-			}
-		}
-	}
+	# redirect = {
+	# 	if = {
+	# 		limit = {
+	# 			scope:recipient = { 
+	# 				is_landed = yes 
+	# 				top_liege = scope:actor
+	# 				highest_held_title_tier = tier_duchy 
+	# 				OR = {
+	# 					has_government = roman_administration_military_government
+	# 					has_government = roman_administration_civilian_government
+	# 				}
+	# 			}
+	# 		}
+	# 		scope:recipient = {
+	# 			save_scope_as = secondary_recipient
+	# 		}
+	# 		scope:actor = {	
+	# 			every_living_character = {
+	# 				if = {
+	# 					limit = {
+	# 						top_liege = scope:actor
+	# 						is_female = no
+	# 						age >= 18
+	# 						roman_administration_holds_military_title_trigger = no
+	# 						highest_held_title_tier < tier_duchy
+	# 						NOT = {
+	# 							has_government = theocracy_government
+	# 						}
+	# 					}
+	# 					save_scope_as = recipient
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# }
 
 	populate_recipient_list = {
 		scope:actor = {
-			every_vassal = {
+			every_courtier = {
 				limit = {
-					OR = {
-						roman_administration_holds_strategos_title_trigger = no
-						roman_administration_holds_tagma_title_trigger = no
-					}
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					#roman_administration_holds_military_title_trigger = no
 					highest_held_title_tier < tier_duchy
 					NOT = {
 						has_government = theocracy_government
 					}
 				}
 				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					#roman_administration_holds_military_title_trigger = no
+					highest_held_title_tier < tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						top_liege = scope:actor
+						is_female = no
+						age >= 18
+						#roman_administration_holds_military_title_trigger = no
+						highest_held_title_tier < tier_duchy
+						NOT = {
+							has_government = theocracy_government
+						}
+					}
+					add_to_list = characters
+				}
 			}
 		}
 	}
@@ -631,6 +647,17 @@ roman_administration_replace_bureaucrat = {
 
 		scope:actor = {
 			add_tyranny = 5
+
+			## Add the stress impact
+			# am_introverted = minor_stress_impact_gain
+			# am_fearful = minor_stress_impact_gain
+			# am_sentimental = minor_stress_impact_gain
+			# am_craven = minor_stress_impact_gain
+			# am_faithful = minor_stress_impact_gain
+			# am_honest = minor_stress_impact_gain
+
+			# am_intolerant = minor_stress_impact_loss
+			# am_inconstant = minor_stress_impact_loss
 		}
 	}
 
@@ -787,12 +814,10 @@ roman_administration_favour_family_member = {
 					}
 				}
 			}
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
 			}
 		}
 		scope:recipient = { 
@@ -804,60 +829,71 @@ roman_administration_favour_family_member = {
 					}
 				}
 			}
+			highest_held_title_tier = tier_duchy 
 			OR = {
-				primary_title = {
-					tier = tier_duchy
-				}
-				roman_administration_holds_strategos_title_trigger = yes
-				roman_administration_holds_tagma_title_trigger = yes
-			}			
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}		
 		}
 	}
 
-	redirect = {
-		if = {
-			limit = {
-				scope:recipient = { 
-					is_landed = yes 
-					OR = {
-						roman_administration_holds_strategos_title_trigger = yes
-						roman_administration_holds_tagma_title_trigger = yes
-					}
-				}
-			}
-			scope:recipient = {
-				save_scope_as = secondary_recipient
-			}
-			scope:actor = {
-				every_close_family_member = {
-					limit = {
-						is_landed = no
-						age >= 20
-						is_female = no
-						NOT = { has_trait = devoted }
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					save_scope_as = recipient
-				}			
-			}
-		}
-	}
+	# redirect = {
+	# 	if = {
+	# 		limit = {
+	# 			scope:recipient = { 
+	# 				is_landed = yes 
+	# 				highest_held_title_tier = tier_duchy 
+	# 				OR = {
+	# 					has_government = roman_administration_military_government
+	# 					has_government = roman_administration_civilian_government
+	# 				}
+	# 			}
+	# 		}
+	# 		scope:recipient = {
+	# 			save_scope_as = secondary_recipient
+	# 		}
+	# 		scope:actor = {
+	# 			every_close_family_member = {
+	# 				if = {
+	# 					limit = {
+	# 						is_landed = no
+	# 						age >= 20
+	# 						is_female = no
+	# 						NOR = { 
+	# 							has_trait = devoted 
+	# 							has_trait = blind
+	# 							has_trait = eunuch
+	# 						}
+	# 						NOT = {
+	# 							has_government = theocracy_government
+	# 						}
+	# 					}
+	# 					save_scope_as = recipient
+	# 				}					
+	# 			}			
+	# 		}
+	# 	}
+	# }
 
 	populate_recipient_list = {
 		scope:actor = {
 			every_close_family_member = {
-				limit = {
-					is_landed = no
-					age >= 20
-					is_female = no
-					NOT = { has_trait = devoted }
-					NOT = {
-						has_government = theocracy_government
+				if = {
+					limit = {
+						is_landed = no
+						age >= 20
+						is_female = no
+						NOR = { 
+							has_trait = devoted 
+							has_trait = blind
+							has_trait = eunuch
+						}
+						NOT = {
+							has_government = theocracy_government
+						}
 					}
-				}
-				add_to_list = characters
+					add_to_list = characters
+				}				
 			}
 		}
 	}
