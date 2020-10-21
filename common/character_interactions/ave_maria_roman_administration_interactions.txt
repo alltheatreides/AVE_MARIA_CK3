@@ -342,15 +342,15 @@ roman_administration_fire_bureaucrat = {
 			add_tyranny = 5
 
 			## Add the stress impact
-			# am_introverted = minor_stress_impact_gain
-			# am_fearful = minor_stress_impact_gain
-			# am_sentimental = minor_stress_impact_gain
-			# am_craven = minor_stress_impact_gain
-			# am_faithful = minor_stress_impact_gain
-			# am_honest = minor_stress_impact_gain
+			am_introverted = minor_stress_impact_gain
+			am_fearful = minor_stress_impact_gain
+			am_sentimental = minor_stress_impact_gain
+			am_craven = minor_stress_impact_gain
+			am_faithful = minor_stress_impact_gain
+			am_honest = minor_stress_impact_gain
 
-			# am_intolerant = minor_stress_impact_loss
-			# am_inconstant = minor_stress_impact_loss
+			am_intolerant = minor_stress_impact_loss
+			am_inconstant = minor_stress_impact_loss
 		}
 	}
 
@@ -511,42 +511,6 @@ roman_administration_replace_bureaucrat = {
 		}
 	}
 
-	# redirect = {
-	# 	if = {
-	# 		limit = {
-	# 			scope:recipient = { 
-	# 				is_landed = yes 
-	# 				top_liege = scope:actor
-	# 				highest_held_title_tier = tier_duchy 
-	# 				OR = {
-	# 					has_government = roman_administration_military_government
-	# 					has_government = roman_administration_civilian_government
-	# 				}
-	# 			}
-	# 		}
-	# 		scope:recipient = {
-	# 			save_scope_as = secondary_recipient
-	# 		}
-	# 		scope:actor = {	
-	# 			every_living_character = {
-	# 				if = {
-	# 					limit = {
-	# 						top_liege = scope:actor
-	# 						is_female = no
-	# 						age >= 18
-	# 						roman_administration_holds_military_title_trigger = no
-	# 						highest_held_title_tier < tier_duchy
-	# 						NOT = {
-	# 							has_government = theocracy_government
-	# 						}
-	# 					}
-	# 					save_scope_as = recipient
-	# 				}
-	# 			}
-	# 		}
-	# 	}
-	# }
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_courtier = {
@@ -649,15 +613,15 @@ roman_administration_replace_bureaucrat = {
 			add_tyranny = 5
 
 			## Add the stress impact
-			# am_introverted = minor_stress_impact_gain
-			# am_fearful = minor_stress_impact_gain
-			# am_sentimental = minor_stress_impact_gain
-			# am_craven = minor_stress_impact_gain
-			# am_faithful = minor_stress_impact_gain
-			# am_honest = minor_stress_impact_gain
+			am_introverted = minor_stress_impact_gain
+			am_fearful = minor_stress_impact_gain
+			am_sentimental = minor_stress_impact_gain
+			am_craven = minor_stress_impact_gain
+			am_faithful = minor_stress_impact_gain
+			am_honest = minor_stress_impact_gain
 
-			# am_intolerant = minor_stress_impact_loss
-			# am_inconstant = minor_stress_impact_loss
+			am_intolerant = minor_stress_impact_loss
+			am_inconstant = minor_stress_impact_loss
 		}
 	}
 
@@ -837,44 +801,6 @@ roman_administration_favour_family_member = {
 		}
 	}
 
-	# redirect = {
-	# 	if = {
-	# 		limit = {
-	# 			scope:recipient = { 
-	# 				is_landed = yes 
-	# 				highest_held_title_tier = tier_duchy 
-	# 				OR = {
-	# 					has_government = roman_administration_military_government
-	# 					has_government = roman_administration_civilian_government
-	# 				}
-	# 			}
-	# 		}
-	# 		scope:recipient = {
-	# 			save_scope_as = secondary_recipient
-	# 		}
-	# 		scope:actor = {
-	# 			every_close_family_member = {
-	# 				if = {
-	# 					limit = {
-	# 						is_landed = no
-	# 						age >= 20
-	# 						is_female = no
-	# 						NOR = { 
-	# 							has_trait = devoted 
-	# 							has_trait = blind
-	# 							has_trait = eunuch
-	# 						}
-	# 						NOT = {
-	# 							has_government = theocracy_government
-	# 						}
-	# 					}
-	# 					save_scope_as = recipient
-	# 				}					
-	# 			}			
-	# 		}
-	# 	}
-	# }
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_close_family_member = {
@@ -897,12 +823,6 @@ roman_administration_favour_family_member = {
 			}
 		}
 	}
-
-	# can_be_picked_title = {
-	# 	scope:target = {
-	# 		roman_administration_is_a_tagma_title_trigger = yes
-	# 	}
-	# }
 	
 	on_accept = {
 		scope:secondary_recipient = {
@@ -913,6 +833,18 @@ roman_administration_favour_family_member = {
 				modifier = roman_administration_favoured_me
 				opinion = 10
 			}
+		}
+		## Cost for bribes
+		if = {
+			limit = {
+				scope:recipient.primary_title = {
+					roman_administration_is_a_tagma_title_trigger = yes
+				}
+			}
+			remove_short_term_gold = 50
+		}
+		else = {
+			remove_short_term_gold = 25
 		}
 	}
 

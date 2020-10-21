@@ -292,6 +292,15 @@ on_game_start_after_lobby = {
 		title:k_papal_state.holder = {
 			add_trait = pope
 		}
+		every_ruler = {
+			limit = {
+				primary_title = { NOT = { this = title:k_papal_state } }
+				has_government = theocracy_government
+				religion = religion:christianity_religion
+				highest_held_title_tier = tier_duchy
+			}
+			add_trait = bishop
+		}
 	}
 
 	events = {

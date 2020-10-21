@@ -191,42 +191,25 @@ ave_maria_roman_administration_events.0001 = {
 			}			
 		}
 
+		set_global_variable = {
+			name = roman_administration_military_officials_number
+			value = 0
+		}
+		every_vassal = {
+			if = {
+				limit = { 
+					roman_administration_holds_military_title_trigger = yes
+				}
+				change_global_variable = {
+					name = roman_administration_military_officials_number
+					add = 50
+				}
+			}			
+		}
+		add_character_modifier = {
+			modifier = emperor_salary_cost
+		}
 
-		## 
-		# every_vassal = {
-		# 	if = {
-		# 		limit = {
-		# 			is_adult = yes
-		# 			is_female = no
-		# 			roman_administration_holds_tagma_title_trigger = no
-		# 			any_held_title = {
-		# 				tier = tier_duchy
-		# 			}					
-		# 		}
-		# 		save_scope_as = strategos
-		# 		add_to_list = list_roman_administration_strategos			
-
-		# 		# Giving away the titles except strategos and familial title
-		# 		every_held_title = {
-		# 			limit = {
-		# 				NOT = {
-		# 					de_jure_liege = title:k_strategos_titles
-		# 					has_title_law = ave_maria_roman_administration_family_succession_law
-		# 				}
-		# 			}
-		# 			create_character = {
-		# 				employer = prev
-		# 				template = bureaucrat_character
-		# 				save_scope_as = new_guy
-		# 			}
-		# 			save_scope_as = title_to_give
-		# 			scope:new_guy = {
-		# 				get_title = scope:title_to_give
-		# 				#change_government = roman_administration_civilian_government
-		# 			}
-		# 		}
-		# 	}
-		# }
 		change_government = roman_administration_government
 	}
 }
@@ -326,7 +309,7 @@ ave_maria_roman_administration_events.0003 = {
 	title = ave_maria_roman_administration_events.0003.title
 	theme = crown	
 	override_background = {
-		event_background = throne_room
+		event_background = ave_maria_constantinople_great_palace_interior
 	}
 	left_portrait = root
 	
