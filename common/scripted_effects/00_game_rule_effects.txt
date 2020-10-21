@@ -26,6 +26,10 @@ game_rule_create_spouse_and_children = {
 				save_scope_as = spouse
 			}
 
+			scope:spouse = {
+				add_random_hexaco_personality_trait = yes
+			}
+
 			if = {
 				limit = { is_male = yes }
 				marry = scope:spouse
@@ -35,7 +39,7 @@ game_rule_create_spouse_and_children = {
 			}
 		}
 		else = {
-			primary_spouse = { save_scope_as = spouse }
+			primary_spouse = { save_scope_as = spouse add_random_hexaco_personality_trait = yes }
 		}
 
 		if = {
@@ -83,6 +87,9 @@ game_rule_create_spouse_and_children = {
 				dynasty = inherit
 				save_scope_as = child_1
 			}
+			scope:child_1 = {
+				add_random_hexaco_personality_trait = yes
+			}
 		}
 
 		#Create child 2 (mother age 25+)
@@ -105,6 +112,9 @@ game_rule_create_spouse_and_children = {
 				dynasty = inherit
 				save_scope_as = child_2
 			}
+			scope:child_2 = {
+				add_random_hexaco_personality_trait = yes
+			}
 		}
 
 		#Create child 3 (mother age 33+)
@@ -126,6 +136,10 @@ game_rule_create_spouse_and_children = {
 				mother = scope:mother
 				dynasty = inherit
 				save_scope_as = child_3
+			}
+
+			scope:child_3 = {
+				add_random_hexaco_personality_trait = yes
 			}
 		}
 	}

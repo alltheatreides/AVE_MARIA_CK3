@@ -270,6 +270,49 @@ on_game_start_after_lobby = {
 			## Effects on the roman emperor vassals for proper government assignement and other effects
 			trigger_event = ave_maria_roman_administration_events.0001
 			trigger_event = ave_maria_roman_administration_events.00021
+
+			every_vassal = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				if = {
+					limit = {
+						NOT = { 
+							has_variable = roman_administration_term_count
+						}
+					}
+					random_list = {
+						25 = {
+							set_variable = { name = roman_administration_term_count value = 0 }
+							add_character_modifier = {
+								modifier = roman_administration_terms_of_office_0
+								years = 10
+							}
+						}
+						25 = {
+							set_variable = { name = roman_administration_term_count value = 1 }
+							add_character_modifier = {
+								modifier = roman_administration_terms_of_office_1
+								years = 10
+							}
+						}
+						25 = {
+							set_variable = { name = roman_administration_term_count value = 2 }
+							add_character_modifier = {
+								modifier = roman_administration_terms_of_office_2
+								years = 10
+							}
+						}
+						25 = {
+							set_variable = { name = roman_administration_term_count value = 3 }
+							add_character_modifier = {
+								modifier = roman_administration_terms_of_office_3
+								years = 10
+							}
+						}
+					}					
+				}
+			}
 			
 			## Officials Pay Event chain set up
 			trigger_event = {

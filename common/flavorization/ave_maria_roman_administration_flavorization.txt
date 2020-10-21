@@ -163,12 +163,28 @@ duchy_roman_administration = {
 	# de_jure_liege = { e_byzantium e_roman_empire }
 	top_liege = no
 }
-duchy_roman_administration_high_office = {
+duchy_roman_administration_sakellion = {
 	type = title
 	tier = duchy
 	priority = 300
 	governments = { roman_administration_government roman_administration_civilian_government }
-	titles = { d_sakellion d_logothetetes_tou_dromou d_quaestor }
+	titles = { d_sakellion }
+	top_liege = no
+}
+duchy_roman_administration_logothetetes_tou_dromou = {
+	type = title
+	tier = duchy
+	priority = 300
+	governments = { roman_administration_government roman_administration_civilian_government }
+	titles = { d_logothetetes_tou_dromou }
+	top_liege = no
+}
+duchy_roman_administration_quaestor = {
+	type = title
+	tier = duchy
+	priority = 300
+	governments = { roman_administration_government roman_administration_civilian_government }
+	titles = { d_quaestor }
 	top_liege = no
 }
 duchy_roman_administration_military_government = {
@@ -176,7 +192,7 @@ duchy_roman_administration_military_government = {
 	tier = duchy
 	priority = 500
 	governments = { roman_administration_military_government }
-	de_jure_liege = { e_byzantium e_roman_empire }
+	#de_jure_liege = { e_byzantium e_roman_empire }
 	top_liege = no
 }
 kingdom_roman_administration = {

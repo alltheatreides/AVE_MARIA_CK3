@@ -99,6 +99,17 @@ roman_administration_holds_military_title_trigger = {
 	}
 }
 
+## Checks in character scope if you have a civilian high office title
+roman_administration_holds_high_administration_title_trigger = {
+	any_held_title = {
+		OR = {
+			this = title:d_sakellion
+			this = title:d_quaestor
+			this = title:d_logothetetes_tou_dromou
+		}
+	}
+}
+
 ## TITLE SCOPE TRIGGERS
 ## Checks in title scope if you have a tagma titles
 roman_administration_is_a_tagma_title_trigger = {
