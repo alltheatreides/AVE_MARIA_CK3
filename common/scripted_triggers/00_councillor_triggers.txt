@@ -46,6 +46,14 @@ can_be_steward_trigger = {
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
+		}
+		any_held_title = {
+			this = title:d_sakellion
+		}
+	}
 }
 
 can_be_marshal_trigger = {
@@ -60,6 +68,14 @@ can_be_marshal_trigger = {
 		AND = {
 			is_male = yes
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
+		}
+	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
+		}
+		any_held_title = {
+			this = title:d_megas_domestikos
 		}
 	}
 }
@@ -90,6 +106,24 @@ can_be_court_chaplain_trigger = {
 			exists = var:escaped_imprisonment_from
 		}
 		NOT = { var:escaped_imprisonment_from = $COURT_OWNER$ }
+	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
+		}
+		any_held_title = {
+			this = title:k_orthodox
+		}
+	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$.faith = { religion_tag = christianity_religion }
+			NOT = { $COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } } }
+		}
+		OR = {
+			has_trait = devoted
+			has_government = theocracy_government
+		}
 	}
 }
 

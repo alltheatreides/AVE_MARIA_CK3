@@ -84,31 +84,36 @@ ave_maria_roman_administration_events.0001 = {
 					limit = {
 						tier = tier_duchy
 					}
-					every_in_de_jure_hierarchy = {
-						limit = {
-							#tier = tier_county
-							NOT = { has_title_law = ave_maria_roman_administration_family_succession_law }
-						}
-						if = {
-							limit = {
-								exists = holder
-							}
-							create_title_and_vassal_change = {
-								type = conquest
-								save_scope_as = change
-								add_claim_on_loss = yes
-							}
-							save_temporary_scope_as = title_to_inherit
-							scope:de_jure_guy = {
-								save_scope_as = title_heir
-							}
-							change_title_holder = {
-								holder = scope:title_heir
-								change = scope:change
-							}
-							resolve_title_and_vassal_change = scope:change
-						}
-					}
+					# every_in_de_jure_hierarchy = {
+					# 	limit = {
+					# 		#tier = tier_county
+					# 		NOT = { has_title_law = ave_maria_roman_administration_family_succession_law }
+					# 		NOT = {
+					# 			holder = {
+					# 				roman_administration_holds_military_title_trigger = yes
+					# 			}
+					# 		}
+					# 	}
+					# 	if = {
+					# 		limit = {
+					# 			exists = holder
+					# 		}
+					# 		create_title_and_vassal_change = {
+					# 			type = conquest
+					# 			save_scope_as = change
+					# 			add_claim_on_loss = yes
+					# 		}
+					# 		save_temporary_scope_as = title_to_inherit
+					# 		scope:de_jure_guy = {
+					# 			save_scope_as = title_heir
+					# 		}
+					# 		change_title_holder = {
+					# 			holder = scope:title_heir
+					# 			change = scope:change
+					# 		}
+					# 		resolve_title_and_vassal_change = scope:change
+					# 	}
+					# }
 				}
 			}
 			# every_held_title = {

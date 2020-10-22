@@ -344,6 +344,14 @@ on_game_start_after_lobby = {
 			}
 			add_trait = bishop
 		}
+
+		## Give Christian Ruler some cleric/monks for court chaplain
+		every_ruler = {
+			limit = {
+				faith = { religion_tag = christianity_religion }
+			}
+			trigger_event = ave_maria_christian_flavour.0001
+		}
 	}
 
 	events = {
