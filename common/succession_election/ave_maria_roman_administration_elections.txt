@@ -157,6 +157,7 @@ roman_administration_elective = {
 			type = holder_direct_vassals
 			limit = {
 				age >= 16
+				is_female = no
 				NOT = { has_government = theocracy_government }
 			}
 		}
@@ -164,6 +165,7 @@ roman_administration_elective = {
 			type = title_dejure_vassals
 			limit = {
 				age >= 16
+				is_female = no
 				NOT = { has_government = theocracy_government }
 				top_liege = {
 					primary_title = {
@@ -176,6 +178,7 @@ roman_administration_elective = {
 			type = title_claimants
 			limit = {
 				age >= 16
+				is_female = no
 				NOT = { has_government = theocracy_government }
 			}
 		}
@@ -183,6 +186,7 @@ roman_administration_elective = {
 			type = holder_close_or_extended_family
 			limit = {
 				age >= 16
+				is_female = no
 				NOT = { has_government = theocracy_government }
 			}
 		}
@@ -271,50 +275,64 @@ roman_administration_tagma_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
+					any_held_title = { this = title:e_byzantium }
 				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# roman_administration_is_a_military_title_trigger = yes
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		} 
 		add = {
 			type = title_dejure_vassals
 			limit = {
-				scope:title = { save_scope_as = title_to_check }
+				NOT = { has_variable = roman_administration_term_count }
+				#scope:title = { save_scope_as = title_to_check }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# roman_administration_is_a_military_title_trigger = yes
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
+				top_liege = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# roman_administration_is_a_military_title_trigger = yes
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		}
 		# add = {
@@ -404,62 +422,85 @@ roman_administration_civilian_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
+					any_held_title = { this = title:e_byzantium }
 				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		} 
 		add = {
 			type = title_dejure_vassals
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
+					any_held_title = { this = title:e_byzantium }
 				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
+				top_liege = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}
 				age >= 20
 				is_female = no
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				NOT = { has_government = theocracy_government }
-				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
+				NOT = { has_variable = roman_administration_term_count }
+				top_liege = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
 				age >= 20
 				is_female = no
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 				NOT = { has_government = theocracy_government }
-				NOT = {
-					any_heir_to_title = {
-						NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
-						roman_administration_is_a_tagma_title_trigger = yes
-					}
-				}
+				# NOT = {
+					# any_heir_to_title = {
+						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
+						# tier = tier_duchy
+					# }
+				# }
 			}
 		}
 	}
@@ -556,6 +597,7 @@ roman_administration_family_elective = {
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
+				age >= 16
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 			}

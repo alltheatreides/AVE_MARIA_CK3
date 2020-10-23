@@ -58,7 +58,7 @@
 	}
 
 	modifier = { #Raw Opinion bonus (positive)
-		desc = tooltip_roman_administration_coemperor_vote_opinion_positive
+		desc = tooltip_roman_administration_emperor_favourite_vote_opinion_positive
 		NOT = {
 			has_relation_rival = scope:candidate #Completely removed for rivals.
 		}
@@ -111,6 +111,34 @@
 				multiply = 1.5
 			}
 		}
+	}
+	
+	modifier = {
+		desc = tooltip_roman_administration_already_heir_to_administrative_title_vote_opinion_negative
+		add = -500
+		scope:candidate = {
+			any_heir_to_title = {
+				NOT = { this = scope:title } ## Not sure if this is working, tests were inconclusive
+				NOT = {
+					this.holder = scope:holder
+				}
+				tier = tier_duchy
+			}
+		}
+
+		# title:e_byzantium = {
+		# 	any_in_de_jure_hierarchy = {
+		# 		tier = tier_duchy
+		# 		NOT = {
+		# 			this.holder = scope:holder
+		# 		}
+		# 		any_title_heir = {
+		# 			this = scope:candidate
+		# 		}
+		# 	}
+		# }
+
+		
 	}
 }
 

@@ -254,7 +254,7 @@ on_game_start_after_lobby = {
 			trigger_event = ave_maria_roman_administration_events.0002
 
 			## Setting up the terms of office event chain
-			trigger_event = ave_maria_roman_administration_events.00012
+			#trigger_event = ave_maria_roman_administration_events.00012
 
 			# add_character_modifier = {
 			# 	modifier = tagma_domestikos_salary_normal
@@ -288,12 +288,20 @@ on_game_start_after_lobby = {
 								modifier = roman_administration_terms_of_office_0
 								years = 10
 							}
+							trigger_event = { 
+								id = ave_maria_roman_administration_events.00013
+								days = 365 
+							}
 						}
 						25 = {
 							set_variable = { name = roman_administration_term_count value = 1 }
 							add_character_modifier = {
 								modifier = roman_administration_terms_of_office_1
 								years = 10
+							}
+							trigger_event = { 
+								id = ave_maria_roman_administration_events.00014
+								days = 365 
 							}
 						}
 						25 = {
@@ -302,6 +310,10 @@ on_game_start_after_lobby = {
 								modifier = roman_administration_terms_of_office_2
 								years = 10
 							}
+							trigger_event = { 
+								id = ave_maria_roman_administration_events.00015
+								days = 365 
+							}
 						}
 						25 = {
 							set_variable = { name = roman_administration_term_count value = 3 }
@@ -309,9 +321,20 @@ on_game_start_after_lobby = {
 								modifier = roman_administration_terms_of_office_3
 								years = 10
 							}
+							trigger_event = { 
+								id = ave_maria_roman_administration_events.00016
+								days = 365 
+							}
 						}
-					}					
+					}		
+					## Setting up the terms of office event chain
+					#trigger_event = ave_maria_roman_administration_events.00012
 				}
+				
+				## Setting up the terms of office event chain
+				#trigger_event = ave_maria_roman_administration_events.00012
+				
+				
 			}
 			
 			## Officials Pay Event chain set up
@@ -321,6 +344,10 @@ on_game_start_after_lobby = {
 			}
 			trigger_event = {
 				id = ave_maria_roman_administration_events.00051
+				days = 30
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_events.00052
 				days = 30
 			}
 

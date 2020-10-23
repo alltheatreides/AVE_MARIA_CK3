@@ -61,23 +61,28 @@ ave_maria_roman_administration_events.0001 = {
 					}
 				}
 				change_government = roman_administration_civilian_government
+				primary_title = {
+					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
+				}
 			}
 			save_scope_as = de_jure_guy
 			create_character = {
-				employer = prev
+				employer = this
 				template = bureaucrat_character
 				save_scope_as = new_guy
 			}
 			scope:new_guy = {
 				add_unpressed_claim = prev.primary_title
+				add_random_hexaco_personality_trait = yes
 			}
 			create_character = {
-				employer = prev
+				employer = this
 				template = bureaucrat_character
 				save_scope_as = new_guy
 			}
 			scope:new_guy = {
 				add_unpressed_claim = prev.primary_title
+				add_random_hexaco_personality_trait = yes
 			}
 			primary_title = {
 				if = {
@@ -160,12 +165,6 @@ ave_maria_roman_administration_events.0001 = {
 			# 	resolve_title_and_vassal_change = scope:change
 			# }
 
-			every_vassal = {
-				change_government = roman_administration_civilian_government
-				primary_title = {
-					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
-				}
-			}
 		}
 		every_vassal = {
 			if = {
@@ -250,6 +249,7 @@ ave_maria_roman_administration_events.0002 = {
 		}
 		scope:new_guy = {
 			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = yes
 		}
 
 		create_character = {
@@ -259,6 +259,7 @@ ave_maria_roman_administration_events.0002 = {
 		}
 		scope:new_guy = {
 			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = yes
 		}
 
 		create_character = {
@@ -268,6 +269,7 @@ ave_maria_roman_administration_events.0002 = {
 		}
 		scope:new_guy = {
 			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = yes
 		}
 	}
 }
@@ -294,10 +296,16 @@ ave_maria_roman_administration_events.00021 = {
 			template = varangian_guard_commander_character
 			save_scope_as = varangian_guard_leader
 		}
-
+		scope:varangian_guard_leader = {
+			add_random_hexaco_personality_trait = yes
+		}
 		create_character = {
 			employer = root
 			template = eunuch_character
+			save_scope_as = eunuch
+		}
+		scope:eunuch = {
+			add_random_hexaco_personality_trait = yes
 		}
 	}
 }
@@ -1076,6 +1084,12 @@ ave_maria_roman_administration_events.00012 = {
 	hidden = yes
 
 	trigger = {
+		primary_title = {
+			NOR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
 		top_liege = {
 			any_held_title = {
 				OR = {
@@ -1114,15 +1128,57 @@ ave_maria_roman_administration_events.00012 = {
 				days = 365 
 			}
 		}
-		if = {
-			limit = {
-				has_variable = roman_administration_term_count
-			}
-			trigger_event = { 
-				id = ave_maria_roman_administration_events.00013
-				days = 365 
-			}
-		}
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 0
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00015
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 1
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00015
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 2
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00016
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 3
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00017
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 4
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00018
+		# 		days = 365 
+		# 	}
+		# }
+				
 
 		# ## Give the appropriate counties associated to the job
 		# if = {
@@ -1155,7 +1211,15 @@ ave_maria_roman_administration_events.00013 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1189,7 +1253,15 @@ ave_maria_roman_administration_events.00014 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1223,7 +1295,15 @@ ave_maria_roman_administration_events.00015 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1257,7 +1337,15 @@ ave_maria_roman_administration_events.00016 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1291,7 +1379,15 @@ ave_maria_roman_administration_events.00017 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1325,7 +1421,15 @@ ave_maria_roman_administration_events.00018 = {
 	hidden = yes
 
 	trigger = {
-		roman_administration_holds_tagma_title_trigger = yes
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			roman_administration_holds_high_administration_title_trigger = yes
+			highest_held_title_tier = tier_duchy 				
+		}		
+		OR = {
+			has_government = roman_administration_military_government
+			has_government = roman_administration_civilian_government
+		}
 	}
 
 	immediate = {
@@ -1340,19 +1444,80 @@ ave_maria_roman_administration_events.00018 = {
 
 			## Give title to successor
 			primary_title = {
+				current_heir = {
+					save_scope_as = title_heir
+				}
+			}
+			## Start giving a county to stick the transfer
+			scope:recipient.capital_county = {
 				create_title_and_vassal_change = {
-					type = conquest
+					type = granted
 					save_scope_as = change
 					add_claim_on_loss = yes
 				}
 				save_temporary_scope_as = title_to_inherit
-				current_heir = {
-					save_scope_as = title_heir
-				}
 				change_title_holder = {
 					holder = scope:title_heir
 					change = scope:change
 				}
+				resolve_title_and_vassal_change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+
+			## hand out the rest
+			primary_title = {
+				## Handing out de jure counties
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier <= tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+							holder = {
+								roman_administration_holds_military_title_trigger = yes
+							}
+						}
+						NOT = { 
+							holder = {
+								primary_title = { this = title:e_byzantium }
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = holder
+						}
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						save_temporary_scope_as = title_to_inherit
+						change_title_holder = {
+							holder = scope:title_heir
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+				resolve_title_and_vassal_change = scope:change
+
+				## Handing out ducal title
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				save_temporary_scope_as = title_to_inherit
+				# current_heir = {
+				# 	save_scope_as = title_heir
+				# }
+				change_title_holder = {
+					holder = scope:title_heir
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+				
 			}
 			resolve_title_and_vassal_change = scope:change
 
@@ -1620,11 +1785,11 @@ ave_maria_roman_administration_events.00050 = {
 			}
 			change_global_variable = {
 				name = global_var_tagma_officials_pay
-				multiply = 50
+				multiply = 15
 			}
 			root = {
 				pay_short_term_gold = {
-					gold = 50
+					gold = 15
 					target = prev
 				}
 			}
@@ -1664,7 +1829,7 @@ ave_maria_roman_administration_events.00051 = {
 			list = list_roman_administration_paid_strategos
 			root = {
 				pay_short_term_gold = {
-					gold = 25
+					gold = 3
 					target = prev
 				}
 			}
@@ -1672,10 +1837,53 @@ ave_maria_roman_administration_events.00051 = {
 
 		trigger_event = { 
 			id = ave_maria_roman_administration_events.00051
-			days = 365
+			days = 31
 		}
 	}
 }
+
+## KRITES PAY
+ave_maria_roman_administration_events.00052 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}	
+	}
+
+	immediate = {
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_holds_strategos_title_trigger = no
+					roman_administration_holds_tagma_title_trigger = no
+					has_government = roman_administration_civilian_government
+				}
+				add_to_list = list_roman_administration_paid_strategos
+			}
+		}
+		every_in_list = {
+			list = list_roman_administration_paid_strategos
+			root = {
+				pay_short_term_gold = {
+					gold = 2
+					target = prev
+				}
+			}
+		}
+
+		trigger_event = { 
+			id = ave_maria_roman_administration_events.00051
+			days = 31
+		}
+	}
+}
+
 
 ## TEST
 ave_maria_roman_administration_events.6969 = {
