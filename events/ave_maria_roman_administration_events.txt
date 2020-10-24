@@ -58,6 +58,7 @@ ave_maria_roman_administration_events.0001 = {
 					#roman_administration_holds_tagma_title_trigger = no
 					primary_title = {
 						roman_administration_is_a_military_title_trigger = no
+						NOT = { this = title:k_orthodox }
 					}
 				}
 				change_government = roman_administration_civilian_government
@@ -185,6 +186,7 @@ ave_maria_roman_administration_events.0001 = {
 				limit = {
 					primary_title = {
 						roman_administration_is_a_military_title_trigger = no
+						NOT = { this = title:k_orthodox }
 					}
 				}
 				change_government = roman_administration_civilian_government
@@ -365,7 +367,7 @@ ave_maria_roman_administration_events.0003 = {
 		# Scope to patriarch and give him a positive flag
 		add_character_flag = imperial_coronation_lavish_coronation
 		remove_short_term_gold = 300
-		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
 		capital_county = {
 			add_county_modifier = {
 				modifier = roman_administration_happy_constantinople_populace
@@ -381,7 +383,7 @@ ave_maria_roman_administration_events.0003 = {
 		# Scope to patriarch and give him a 60/40 flag
 		add_character_flag = imperial_coronation_normal_coronation
 		remove_short_term_gold = 150
-		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
 		capital_county = {
 			add_county_modifier = {
 				modifier = roman_administration_happy_constantinople_populace
@@ -397,7 +399,7 @@ ave_maria_roman_administration_events.0003 = {
 		# Scope to patriarch and give him a negative flag
 		add_character_flag = imperial_coronation_stingy_coronation
 		remove_short_term_gold = 75
-		trigger_event = { id = ave_maria_roman_administration_events.0004 }
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
 		capital_county = {
 			add_county_modifier = {
 				modifier = roman_administration_frustrated_constantinople_populace
@@ -442,7 +444,7 @@ ave_maria_roman_administration_events.0004 = {
 		add_prestige = 75
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0005 }
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 4 }
 	}
 
 	## negative option because you spent below normal gold
@@ -455,7 +457,7 @@ ave_maria_roman_administration_events.0004 = {
 		add_prestige = -25
 
 		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0005 }
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 4 }
 
 	}
 
@@ -507,8 +509,8 @@ ave_maria_roman_administration_events.0005 = {
 		## Remove a bit of prestige here
 		add_prestige = -25
 
-		## Next event in the 
-		trigger_event = { id = ave_maria_roman_administration_events.0006 }
+		## Next event in the chain 
+		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 4 }
 	}
 }
 
@@ -1829,7 +1831,7 @@ ave_maria_roman_administration_events.00051 = {
 			list = list_roman_administration_paid_strategos
 			root = {
 				pay_short_term_gold = {
-					gold = 3
+					gold = 2
 					target = prev
 				}
 			}
@@ -1871,7 +1873,7 @@ ave_maria_roman_administration_events.00052 = {
 			list = list_roman_administration_paid_strategos
 			root = {
 				pay_short_term_gold = {
-					gold = 2
+					gold = 1
 					target = prev
 				}
 			}

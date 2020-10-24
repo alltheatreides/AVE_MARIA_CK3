@@ -45,3 +45,49 @@ ave_maria_christian_flavour.0001 = {
 	}
 }
 
+ave_maria_christian_flavour.0002 = {
+	type = character_event
+	title = ave_maria_christian_flavour.0002.title
+	desc = ave_maria_christian_flavour.0002.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+
+	trigger = { exists = capital_province }
+
+	immediate = {
+		# Create random monk
+		create_character = {
+			employer = root
+			template = christian_monk_character
+			save_scope_as = target
+		}
+		scope:target = {
+			add_random_hexaco_personality_trait = yes
+		}
+	}
+
+	option = {
+		name = ave_maria_christian_flavour.0002.a
+	}
+
+	option = {
+		name = ave_maria_christian_flavour.0002.b
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}
+		}
+	}
+}
+

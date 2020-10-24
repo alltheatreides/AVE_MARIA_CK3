@@ -159,6 +159,11 @@ roman_administration_elective = {
 				age >= 16
 				is_female = no
 				NOT = { has_government = theocracy_government }
+				NOT = { 
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}
 			}
 		}
 		add = {
@@ -172,6 +177,11 @@ roman_administration_elective = {
 						this = title:e_byzantium
 					}
 				}
+				NOT = { 
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}
 			}
 		}
 		add = {
@@ -180,6 +190,11 @@ roman_administration_elective = {
 				age >= 16
 				is_female = no
 				NOT = { has_government = theocracy_government }
+				NOT = { 
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}
 			}
 		}
 		add = {
@@ -188,6 +203,11 @@ roman_administration_elective = {
 				age >= 16
 				is_female = no
 				NOT = { has_government = theocracy_government }
+				NOT = { 
+					any_held_title = {
+						this = title:k_orthodox
+					}
+				}
 			}
 		}
 	}
@@ -234,13 +254,30 @@ roman_administration_tagma_elective = {
 	
 	electors = {
 		add = holder
-		add = holder_direct_vassals
-		add = title_dejure_vassals
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
+			}
+		}
+		add = {
+			type = title_dejure_vassals
+			limit = {
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
+			}
+		}
 		add = {
 			type = title_claimants
 			limit = {
 				is_female = no
 				age >= 20
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
 			}
 		}
 	}
@@ -264,6 +301,9 @@ roman_administration_tagma_elective = {
 
 		## Roman Administration voting patterns (co emperor or favoured by the emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+		
+		## Roman Administration voting patterns (co emperor, favoured by emperor and not already heir to another title)
+		elector_voting_pattern_opinion_roman_administration_tagma_elective_modifier = yes
 
 		## Vanilla Byzantine voting pattern
 		#elector_voting_strength_byzantine_elective_modifier = yes
@@ -335,21 +375,24 @@ roman_administration_tagma_elective = {
 				# }
 			}
 		}
-		# add = {
-		# 	type = holder_close_or_extended_family
-		# 	limit = {
-		# 		age >= 20
-		# 		is_female = no
-		# 		dynasty = scope:holder.dynasty
-		# 		feudal_elective_potential_landless_dynastic_candidate_trigger = yes
-		# 		NOT = { has_government = theocracy_government }
-		# 		NOT = {
-		# 			any_heir_to_title = {
-		# 				roman_administration_is_a_tagma_title_trigger = yes
-		# 			}
-		# 		}
-		# 	}
-		# }
+		add = {
+			type = holder_close_or_extended_family
+			limit = {
+				age >= 20
+				is_female = no
+				dynasty = scope:holder.dynasty
+				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
+				NOT = { has_government = theocracy_government }
+				any_claim = {
+					this = title:scope:title
+				}
+				# NOT = {
+					# any_heir_to_title = {
+						# roman_administration_is_a_tagma_title_trigger = yes
+					# }
+				# }
+			}
+		}
 	}
 }
 
@@ -381,13 +424,30 @@ roman_administration_civilian_administration_elective = {
 	
 	electors = {
 		add = holder
-		add = holder_direct_vassals
-		add = title_dejure_vassals
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
+			}
+		}
+		add = {
+			type = title_dejure_vassals
+			limit = {
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
+			}
+		}
 		add = {
 			type = title_claimants
 			limit = {
 				is_female = no
 				age >= 20
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
 			}
 		}
 	}
@@ -411,6 +471,9 @@ roman_administration_civilian_administration_elective = {
 
 		## Roman Administration voting patterns (co emperor or favoured by the emperor)
 		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
+		
+		## Roman Administration voting patterns (co emperor, favoured by emperor and not already heir to another title)
+		elector_voting_pattern_opinion_roman_administration_civilian_administration_elective_modifier = yes
 
 		## Vanilla Byzantine voting pattern
 		#elector_voting_strength_byzantine_elective_modifier = yes
@@ -495,6 +558,9 @@ roman_administration_civilian_administration_elective = {
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 				NOT = { has_government = theocracy_government }
+				any_claim = {
+					this = title:scope:title
+				}
 				# NOT = {
 					# any_heir_to_title = {
 						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
