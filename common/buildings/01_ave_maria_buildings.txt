@@ -48,14 +48,11 @@ metropolis_constantinople_01 = {
 	
 	
 	can_construct_potential = {
-		building_requirement_tribal = no
-		barony_cannot_construct_holding = no
+		always = no
 	}
 	
 	can_construct = {	
-		culture = {
-			has_innovation = innovation_city_planning
-		}
+		always = no
 	}
 	
 	can_construct_showing_failures_only = {
@@ -64,13 +61,17 @@ metropolis_constantinople_01 = {
 	
 	cost_gold = 696969
 	
-	levy = 0
+	levy = excellent_building_levy_tier_2
 	
-	garrison = good_building_garrison_tier_1
+	garrison = good_building_garrison_tier_2
 	
 	province_modifier = {
-		monthly_income = good_building_tax_tier_2
+		monthly_income = excellent_building_tax_tier_2
 		fort_level = great_building_fort_level_tier_1
+	}
+
+	county_modifier = {
+		development_growth = 0.1
 	}
 		
 	flag = castle
@@ -86,3 +87,15 @@ metropolis_constantinople_01 = {
 	}
 }
 
+sparsly_populated_holding_building_1 = {
+	construction_time = slow_construction_time
+	
+	can_construct_potential = {
+		always = no
+	}
+	
+	can_construct = {	
+		always = no
+	}
+	flag = castle
+}

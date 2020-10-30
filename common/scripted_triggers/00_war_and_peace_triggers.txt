@@ -239,7 +239,20 @@ can_be_knight_trigger = {
 		}
 		has_trait = blind
 	}
-	is_ai = yes
+	trigger_if = {
+		limit = {
+			top_liege = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+		OR = {
+			roman_administration_holds_military_title_trigger = yes
+			is_courtier = yes
+		}
+	}
+	#is_ai = yes
 }
 
 can_be_commander_basic_trigger = {

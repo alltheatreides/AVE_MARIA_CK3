@@ -1158,3 +1158,441 @@ roman_administration_favour_family_member = {
 		}
 	}
 }
+
+roman_administration_military_revolt = {
+	category = interaction_category_hostile
+
+	ai_potential = {
+		
+	}
+
+	auto_accept = yes
+
+	use_diplomatic_range = yes
+
+	scheme = roman_administration_military_revolt_scheme
+
+	desc = roman_administration_military_revolt_desc
+
+	is_shown = {
+		exists = scope:actor.liege_or_court_owner
+		scope:recipient = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+		}
+		scope:actor = {
+			roman_administration_holds_military_title_trigger = yes
+			is_imprisoned = no
+		}
+	}
+
+	is_valid = {
+		exists = scope:actor.liege_or_court_owner
+		scope:recipient = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+		}
+		scope:actor = {
+			roman_administration_holds_military_title_trigger = yes
+			is_imprisoned = no
+		}
+
+		scope:recipient = {
+			any_targeting_faction = {
+				limit = {
+					faction_is_type = roman_administration_army_faction
+				}
+				#faction_discontent >= 100
+			}
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			scope:actor = {
+				stress_impact = {
+					am_tolerant = major_stress_impact_gain
+					am_honest = major_stress_impact_gain
+					#am_honest = medium_stress_impact_gain
+				}
+			}
+			hidden_effect = {
+				start_scheme = {
+					target = scope:recipient
+					type = roman_administration_military_revolt_scheme
+				}
+			}
+		}
+	}
+}
+
+roman_administration_send_family_member_for_training = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+	# target_type = title
+	# target_filter = secondary_recipient_domain_titles	
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
+			highest_held_title_tier = tier_duchy 
+			OR = {
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}
+		}
+		scope:recipient = { 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
+			highest_held_title_tier = tier_duchy 
+			OR = {
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}		
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_close_family_member = {
+				if = {
+					limit = {
+						is_landed = no
+						age >= 20
+						is_female = no
+						NOR = { 
+							has_trait = devoted 
+							has_trait = blind
+							has_trait = eunuch
+						}
+						NOT = {
+							has_government = theocracy_government
+						}
+					}
+					add_to_list = characters
+				}				
+			}
+		}
+	}
+	
+	on_accept = {
+		scope:recipient = {
+			add_courtier = secondary_recipient
+		}
+		## Cost for bribes
+		if = {
+			limit = {
+				scope:recipient.primary_title = {
+					roman_administration_is_a_tagma_title_trigger = yes
+				}
+			}
+			remove_short_term_gold = 25
+		}
+		else = {
+			remove_short_term_gold = 12
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = peer_vassals
+	}
+	ai_frequency = 6
+	
+	ai_will_do = {
+		base = 100
+
+		modifier = {
+			factor = 50
+			scope:recipient = {
+				roman_administration_holds_tagma_title_trigger = yes
+			}
+		}
+		
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			scope:actor = {
+				gold < 50
+			}
+		}
+
+		modifier = {
+			factor = 0
+			scope:secondary_recipient = {
+				any_heir_to_title = {
+					tier = tier_duchy
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1000
+			scope:secondary_recipient = {
+				is_close_family_of = scope:actor
+			}
+		}
+	}
+}
+
+roman_administration_name_junior_emperor = {
+	category = interaction_category_roman_administration
+	interface_priority = 60
+
+	desc = roman_administration_name_junior_emperor_desc
+
+	is_shown = {
+		scope:actor = {
+			primary_title = {
+				this = title:e_byzantium
+			}		
+		}
+		scope:recipient = { 
+			top_liege = scope:actor
+			is_adult = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_diplomatically_available = yes
+		}
+		custom_description = {
+			title:e_byzantium = {
+				any_election_candidate = {
+					this = scope:recipient
+				}
+			}
+			text = "roman_administration_name_junior_emperor_candidate_requirement"
+		}
+		custom_description = {
+			scope:recipient.top_liege = scope:actor.top_liege
+			text = "same_realm_as"
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = junior_emperor
+				remove_relation_junior_emperor = scope:actor
+				hidden_effect = { scope:actor = { remove_relation_junior_emperor = prev } }
+				add_opinion = {
+					target = scope:actor
+					modifier = roman_administration_fire_junior_emperor
+				}
+			}
+		}
+
+		scope:recipient = {
+			set_relation_junior_emperor = scope:actor
+		}
+	}
+
+	cost = {
+		prestige = {
+			value = {
+				add = 100
+				if = {
+					limit = {
+						scope:actor = { 
+							any_relation = {
+								type = junior_emperor
+							}
+						}
+					}
+					add = 1000
+				}
+			}
+		}
+	}
+
+	auto_accept = yes
+
+	ai_potential = {
+
+	}
+
+	ai_targets = {
+		ai_recipients = family
+	}
+
+	ai_frequency = 96
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = 100 
+			title:e_byzantium = {
+				any_election_candidate = {
+					this = scope:recipient
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:actor = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}
+		}
+
+		modifier = {
+			add = 50
+			scope:recipient = {
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 50
+			scope:recipient = {
+				NOT = { is_primary_heir_of = root }
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+
+dummy_test_interaction = {
+	category = interaction_category_roman_administration
+	common_interaction = yes
+	
+	use_diplomatic_range = yes
+
+	is_shown = {
+		scope:actor = {
+			NOT = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}			
+			top_liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			NOT = { has_government = theocracy_government }
+		}
+		scope:recipient = { 
+			is_landed = yes 
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
+			highest_held_title_tier = tier_duchy 
+			OR = {
+				has_government = roman_administration_military_government
+				has_government = roman_administration_civilian_government
+			}
+			NOT = { this = scope:actor }
+		}
+	}
+	
+	auto_accept = yes
+	
+	on_accept = {
+		scope:recipient = {
+			add_to_list = agents_to_join_war
+
+		}
+	}
+
+	# AI
+	ai_targets = {
+		ai_recipients = peer_vassals
+	}
+	ai_frequency = 6
+
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+		
+		
+	}
+}

@@ -33,6 +33,14 @@ building_requirement_castle_city_church = {
 		limit = { has_holding_type = church_holding }
 		has_building_or_higher = temple_$LEVEL$
 	}
+	trigger_else_if = {
+		limit = { has_holding_type = metropolis_constantinople_holding }
+		always = yes
+	}
+	trigger_else_if = {
+		limit = { has_holding_type = sparsly_populated_holding }
+		always = yes
+	}
 	trigger_else = {
 		custom_description = {
 			text = "building_requirement_castle_city_church_failed"

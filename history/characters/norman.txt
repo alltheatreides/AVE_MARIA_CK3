@@ -975,7 +975,11 @@
 			#Troops remain after William dies, to make it slightly easier to keep England should William win
 			spawn_army = {
 				name = event_troop_default_name
-				levies = 1000
+				# levies = 1000
+				men_at_arms = {
+					type = armored_horsemen
+					stacks = 20
+				}
 				location = 2174
 				origin = 2325
 			}

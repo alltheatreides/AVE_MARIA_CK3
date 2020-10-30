@@ -18,9 +18,24 @@ roman_administration_army_faction = {
 	sort_order = 1
 	
 	can_character_create = {	
-		primary_title = {
-			this = title:d_megas_domestikos
+		trigger_if = {
+			limit = {
+				title:d_megas_domestikos.holder = {
+					is_imprisoned = yes
+				}
+			}
+			roman_administration_holds_military_title_trigger = yes
 		}
+		trigger_if = {
+			limit = {
+				title:d_megas_domestikos.holder = {
+					is_imprisoned = no
+				}
+			}
+			primary_title = {
+				this = title:d_megas_domestikos
+			}
+		}		
 		scope:target = { roman_administration_holds_tagma_title_trigger = no }
 		custom_description = {
 			text = roman_administration_army_faction_TOOLTIP
@@ -69,13 +84,25 @@ roman_administration_army_faction = {
 	}
 
 	can_character_become_leader = {
-		primary_title = {
-			this = title:d_megas_domestikos
+		trigger_if = {
+			limit = {
+				title:d_megas_domestikos.holder = {
+					is_imprisoned = yes
+				}
+			}
+			roman_administration_holds_military_title_trigger = yes
+		}
+		trigger_if = {
+			limit = {
+				title:d_megas_domestikos.holder = {
+					is_imprisoned = no
+				}
+			}
+			primary_title = {
+				this = title:d_megas_domestikos
+			}
 		}
 	}
-
-	# can_character_become_leader = {
-	# }
 
 	is_character_valid = {
 		roman_administration_holds_military_title_trigger = yes
@@ -226,32 +253,24 @@ roman_administration_army_faction = {
 	discontent_progress = {
 		base = 0
 
-		# Discontent always slowly decays in military faction
 		modifier = {
 			add = -1
-			desc = "FACTION_DISCONTENT_MILITARY"
-			faction_target = { NOT = { has_character_flag = military_faction_coup_attempt } }
-		}
+			desc = "FACTION_DISCONTENT_ARMY"
+		}		
+		
 		modifier = {
-			add = -10
-			desc = "FACTION_DISCONTENT_MILITARY_RECENT_COUP_ATTEMPT"
-			faction_target = { has_character_flag = military_faction_coup_attempt }
-		}
-		
-		
-		modifier = { #Losing war
-			add = 4
-			desc = "FACTION_DISCONTENT_MILITARY_LOSING_WAR"
+			add = 1
+			desc = "FACTION_DISCONTENT_LOSING_WAR"
 			faction_target = {		
-				save_temporary_scope_as = the_faction_target
+				save_temporary_scope_as = basileus_war
 				any_character_war = {
 					OR = {
 						AND = {
-							scope:the_faction_target = { is_attacker_in_war = prev }
+							scope:basileus_war = { is_attacker_in_war = prev }
 							attacker_war_score <= -25
 						}	
 						AND = {
-							scope:the_faction_target = { is_defender_in_war = prev }
+							scope:basileus_war = { is_defender_in_war = prev }
 							defender_war_score <= -25
 						}
 					}	
@@ -259,33 +278,53 @@ roman_administration_army_faction = {
 			}				
 		}
 		
-		modifier = { #Long offensive war
-			add = 3
-			desc = "FACTION_DISCONTENT_MILITARY_OFFENSIVE_WAR"
-			faction_target = {	
-				is_at_war = yes
+		modifier = {
+			add = 2
+			desc = "FACTION_DISCONTENT_OFFENSIVE_LONG_WAR"
+			faction_target = {
 				is_at_war_as_attacker = yes
-				days_of_continuous_war = 548
+				days_of_continuous_war = 1095
+				any_character_war = {
+					attacker_war_score <= -25
+				}
 			}				
 		}
 		
-		modifier = { #Liege is a child
-			add = 1
-			desc = "FACTION_DISCONTENT_LIEGE_CHILD"
-			faction_target = { is_adult = no }				
-		}
-
-		modifier = { #Liege is unfit to rule
-			add = 1
-			desc = "FACTION_DISCONTENT_LIEGE_UNFIT"
+		modifier = {
+			add = 2
+			desc = "FACTION_DISCONTENT_MAIMED"
 			faction_target = { 
 				OR = {
+					has_trait = blind
+					has_trait = eunuch
 					has_trait = incapable
 					has_trait = infirm
 				}
 			}				
 		}
-		modifier = { #Liege is a tyrant
+
+		modifier = {
+			add = 1
+			desc = "FACTION_DISCONTENT_NON_ARMY_MAN"
+			faction_target = { 
+				martial < 10
+				NOR = { 
+					has_trait = am_veteran_0
+					has_trait = am_veteran_1
+					has_trait = am_veteran_2
+					has_trait = am_veteran_3
+					has_trait = am_veteran_4
+				}
+			}				
+		}
+
+		modifier = {
+			add = 1
+			desc = "FACTION_DISCONTENT_UNTRIED_EMPEROR"
+			faction_target = { age < 20 }				
+		}
+
+		modifier = {
 			add = {
 				value = 1
 				if = {
@@ -297,13 +336,13 @@ roman_administration_army_faction = {
 					add = 2
 				}
 			}
-			desc = "FACTION_DISCONTENT_LIEGE_TYRANT"
+			desc = "FACTION_DISCONTENT_TYRANT"
 			faction_target = { 
 				tyranny >= low_tyranny
 			}	
 		}
 
-		modifier = { #Faction leader opinion
+		modifier = {
 			add = {
 				value = 1
 				if = {
@@ -316,21 +355,11 @@ roman_administration_army_faction = {
 				}
 			}
 			desc = "FACTION_DISCONTENT_LEADER_OPINION"
-			faction_target = { 
-				save_temporary_scope_as = the_faction_target
-			}	
 			faction_leader = {
-				save_temporary_scope_as = the_faction_leader
-				opinion = { target = scope:the_faction_target value < -20 }
+				opinion = { target = scope:faction_target value < -20 }
 			}		
 		}
-		modifier = { #Liege is bankrupt
-			add = 1
-			desc = "FACTION_DISCONTENT_LIEGE_BANKRUPT"
-			faction_target = { 
-				gold < 0
-			}	
-		}
+	
 	}
 
 	power_threshold = {
@@ -361,31 +390,6 @@ roman_administration_army_faction = {
 
 	ai_demand_chance = {
 		base = 0
-
-		# 30% base chance at minimum power (80%), increasing linearly
-		compare_modifier = {
-			value = faction_power
-			multiplier = 0.375
-		}
-
-		# Once the faction has a good chance to win (10% stronger than liege) demand chance increases much more rapidly.
-		compare_modifier = {
-			trigger = {	faction_power > 110 }
-			value = faction_power
-			multiplier = 0.75
-		}
-
-		# Less likely if already in a war with an external ruler - the Liberty Faction is pretty sporting
-		modifier = {
-			add = -75
-			faction_target = {
-				any_war_enemy = {
-					NOT = {
-						target_is_liege_or_above = root.faction_target
-					}
-				}
-			}
-		}
 	}
 }
 

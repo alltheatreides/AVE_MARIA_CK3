@@ -6,7 +6,13 @@
 	mutually_exclusive_titles = { always = yes }
 
 	allowed_for_character = {
-		can_use_conquest_cbs_trigger = yes
+		OR = {
+			can_use_conquest_cbs_trigger = yes
+			OR = {
+				has_trait = ambitious
+				has_trait = am_greedy
+			}
+		}
 	}
 
 	allowed_against_character = {
@@ -474,7 +480,13 @@ duchy_conquest_cb = {
 	mutually_exclusive_titles = { always = yes }
 
 	allowed_for_character = {
-		can_use_conquest_cbs_trigger = yes
+		OR = {
+			can_use_conquest_cbs_trigger = yes
+			OR = {
+				has_trait = ambitious
+				has_trait = am_greedy
+			}
+		}
 	}
 
 	allowed_for_character_display_regardless = {

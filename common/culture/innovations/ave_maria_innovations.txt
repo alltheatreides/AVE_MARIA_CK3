@@ -55,7 +55,6 @@ innovation_late_roman_empire = {
 		# }
 	}
 	
-	#unlock_maa = cataphract
 	unlock_maa = tagma_heavy_cavalry
 
 	custom = roman_administration_innovation_late_roman_empire_unlock
@@ -91,6 +90,42 @@ innovation_tagma = {
 		type = tagma_varangian
 		toughness = 3
 	}
+
+	flag = global_regional
+	flag = early_medieval_era_regional
+	flag = global_maa
+}
+
+## FRANKISH CAVALRY
+innovation_frankish_cavalry = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = @knight
+
+	potential = {
+		culture_group = culture_group:frankish_group
+	}
+
+	unlock_maa = frankish_shock_cavalry
+
+	flag = global_regional
+	flag = tribal_era_regional
+	flag = global_maa
+}
+
+## MAMLUK EGYPTIAN
+innovation_egyptian_mamluk = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = "gfx/interface/icons/culture_innovations/innovation_ghulam.dds"
+
+	potential = {
+		this = culture:egyptian
+		exists = global_var:ave_maria_islamic_empire_shia_caliphate
+	}
+
+	unlock_maa = ghilman_nubians
+	unlock_maa = mamluk_cavalry
 
 	flag = global_regional
 	flag = early_medieval_era_regional

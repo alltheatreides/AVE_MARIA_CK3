@@ -1,0 +1,281 @@
+﻿roman_administration_military_revolt_scheme = {
+	
+	skill = intrigue
+	hostile = yes
+	
+	allow = {
+		is_adult = yes
+		roman_administration_holds_military_title_trigger = yes
+		is_imprisoned = no
+		roman_administration_can_scheme_military_revolt = yes		
+	}
+	
+	valid = {
+		scope:owner = {
+			exists = liege
+			liege = scope:target
+		}
+		scope:target = {
+			is_landed = yes
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_targeting_faction = {
+				faction_is_type = roman_administration_army_faction
+				faction_discontent >= 50
+			}
+			# exists = location
+		}
+		custom_description = {
+			text = roman_administration_military_revolt_scheme
+			object = scope:target
+			scope:target = {
+				any_targeting_faction = {
+					faction_is_type = roman_administration_army_faction
+					faction_discontent >= 50
+				}
+			}
+		}
+		# Special AI exceptions
+		NOT = {
+			scope:owner = {
+				is_ai = yes
+				has_opinion_modifier = {
+					target = scope:target
+					modifier = repentant_opinion
+				}
+			}
+		}
+	}
+
+	valid_agent = {
+		roman_administration_holds_military_title_trigger = yes
+	}
+	
+	agent_join_chance = {
+		base = 0
+		
+		modifier = {
+			add = -20
+			desc = BASE_RELUCTANCE
+		}
+
+		#Is Owner sending a gift in the invite interaction?
+		modifier = {
+			add = 10
+			exists = scope:gift
+			always = scope:gift
+			NOT = {
+				OR = {
+					scope:target = { is_parent_of = root }
+					root = { is_parent_of = scope:target }
+				}
+			}
+			desc = "SCHEME_WITH_GIFT"
+		}
+
+		#Default Hostile Scheme modifiers
+		hostile_murder_agent_base_join_chance_modifier = yes # TODO, make a more claim throne-flavored version of this
+
+		#Special Modifier from events for couples that murder together
+		modifier = {
+			add = 50
+			has_opinion_modifier = {
+				target = scope:owner
+				modifier = murder_partner_opinion
+			}
+			desc = "SCHEME_MURDER_COUPLE"
+		}
+		modifier = {
+			add = -1000
+			has_variable = murder_scheme_disinterest
+			var:murder_scheme_disinterest = scope:target
+			desc = "SCHEME_MURDER_DISINTERESTED"
+		}
+
+		## AVE MARIA is the army unhappy
+		modifier = {
+			add = 20
+			scope:target = {
+				any_targeting_faction = {
+					limit = {
+						faction_is_type = roman_administration_army_faction
+					}
+					faction_discontent >= 50
+				}
+			}
+			desc = "SCHEME_UNSATISFIED_MILITARY"
+		}
+
+		## AVE MARIA is the army very unhappy
+		modifier = {
+			add = 20
+			scope:target = {
+				any_targeting_faction = {
+					limit = {
+						faction_is_type = roman_administration_army_faction
+					}
+					faction_discontent >= 80
+				}
+			}
+			desc = "SCHEME_UNSATISFIED_MILITARY"
+		}
+
+		## AVE MARIA is the army very very unhappy
+		modifier = {
+			add = 20
+			scope:target = {
+				any_targeting_faction = {
+					limit = {
+						faction_is_type = roman_administration_army_faction
+					}
+					faction_discontent >= 100
+				}
+			}
+			desc = "SCHEME_UNSATISFIED_MILITARY"
+		}
+
+		## Follow the leader
+		modifier = {
+			add = 20
+			scope:owner = {
+				primary_title = {
+					this = title:d_megas_domestikos
+				}
+			}
+		}
+
+		## Not rivals
+		modifier = {
+			add = -1000
+			desc = "SCHEME_RIVAL"
+			has_relation_rival = scope:owner
+		}
+		
+		## Convinced through events
+		modifier = {
+			add = 100
+			desc = "SCHEME_CONVINCED_DIPLOMACY_TEST"
+			has_character_modifier = military_revolt_scheme_convinced
+		}
+	}
+	
+	base_success_chance = {
+		base = 5
+		
+		compare_modifier = {
+			desc = "SCHEME_MY_DIPLOMACY"
+			value = scope:owner.diplomacy
+			multiplier = 2
+		}
+
+		compare_modifier = {
+			desc = "SCHEME_MY_INTRIGUE"
+			value = scope:owner.intrigue
+		}
+		
+		modifier = {
+			desc = "SCHEME_I_AM_COUNCILLOR_OF_TARGET"
+			add = 25
+			scope:owner = {
+				is_councillor_of = scope:target
+			}
+		}
+
+		modifier = {
+			add = -30
+			always = scope:exposed
+			desc = "SCHEME_IS_EXPOSED"
+		}
+	}
+	
+	agent_success_chance = {
+		base = 0
+
+		compare_modifier = {
+			desc = "SCHEME_AGENT_DIPLOMACY"
+			value = diplomacy
+			multiplier = 2
+		}
+		
+		modifier = {
+			add = 25
+			desc = CLAIM_THRONE_SCHEME_AGENT_COUNCILLOR
+			is_councillor_of = scope:target
+			trigger_if = {
+				limit = { exists = scope:target.cp:councillor_court_chaplain }
+				NOT = { this = scope:target.cp:councillor_court_chaplain }
+			}
+		}
+
+		modifier = {
+			add = 50
+			desc = CLAIM_THRONE_SCHEME_AGENT_COURT_CHAPLAIN
+			exists = scope:target.cp:councillor_court_chaplain
+			this = scope:target.cp:councillor_court_chaplain
+		}
+
+		modifier = {
+			add = 10
+			DESC = CLAIM_THRONE_SCHEME_AGENT_VASSAL
+			is_vassal_of = scope:target
+			NOT = { is_councillor_of = scope:target }
+		}
+
+		## Add a negative modifier until you have a special flag/variable value indicating you have enrolled your own military troops/officers in the revolt 
+	}
+	
+	agent_leave_threshold = -10
+		
+	cooldown = { years = 2 }
+	is_secret = yes
+	base_secrecy = 10
+
+	on_ready = {
+		scheme_target.primary_title = { save_scope_as = target_title }
+		scheme_owner = {
+			## Launch the war
+			trigger_event = {
+				name = ave_maria_roman_administration_military_revolt.0050
+			}
+		}
+	}
+
+	on_monthly = {
+		hostile_scheme_discovery_chance_effect = yes
+		if = {
+			limit = {
+				NOT = { exists = scope:discovery_event_happening }
+			}			
+			scheme_owner = {
+				trigger_event = {
+					on_action = roman_administration_military_revolt_ongoing
+					days = { 1 30 }
+				}
+			}
+		}
+	}
+
+	
+	on_invalidated = {
+		scheme_owner = {
+			trigger_event = claim_throne_outcome.9999
+		}
+	}
+	
+	
+	power_per_skill_point = 3
+	power_per_agent_skill_point = 1
+	spymaster_power_per_skill_point = 0 # Needed to stop the Spymaster from affecting the scheme
+	resistance_per_skill_point = 2
+	spymaster_resistance_per_skill_point = 0 # Needed to stop the Spymaster from affecting the scheme
+	
+	minimum_progress_chance = 20
+	maximum_progress_chance = 80
+	minimum_success = 5
+	maximum_secrecy = 95
+	maximum_success = 90
+	
+	success_desc = "MILITARY_REVOLT_SUCCESS_DESC"
+	discovery_desc = "MILITARY_REVOLT_DISCOVERY_DESC"
+}

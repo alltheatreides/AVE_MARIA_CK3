@@ -2,13 +2,13 @@
 	
 	##########################	Raw Opinion bonus towards Candidate	##########################
 	modifier = { #Raw Opinion bonus (positive)
-		desc = tooltip_roman_administration_coemperor_vote_opinion_positive
+		desc = tooltip_roman_administration_junior_emperor_vote_opinion_positive
 		NOT = {
 			has_relation_rival = scope:candidate #Completely removed for rivals.
 		}
 		NOT = { this = scope:candidate } #Not on yourself.
 		scope:candidate = {
-			has_trait = coemperor
+			has_trait = junior_emperor
 		}
 		add = {
 			value = 50

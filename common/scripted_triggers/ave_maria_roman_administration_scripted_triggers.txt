@@ -158,3 +158,20 @@ roman_administration_is_a_military_title_trigger = {
 		# }		
 	# }
 # }
+
+
+#############################################
+# SCHEME TRIGGERS							#
+#############################################
+
+roman_administration_can_scheme_military_revolt = {
+	liege = {
+		primary_title = {
+			this = title:e_byzantium
+		}
+		any_targeting_faction = {
+			faction_is_type = roman_administration_army_faction
+			faction_discontent >= 0
+		}		
+	}
+}

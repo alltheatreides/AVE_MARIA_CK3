@@ -69,7 +69,7 @@
  d_turnovo_strategos_adj:0 "Turnovian"
  d_dobrudja_strategos:0 "Dobrudja"
  d_dobrudja_strategos_adj:0 "Dobrudjan"
- d_bulgaria_strategos:0 "Bulgaria"
+ d_bulgaria_strategos:0 "Serdica"
  d_bulgaria_strategos_adj:0 "Bulgarian"
  d_philippopolis_strategos:0 "Philippopolis"
  d_philippopolis_strategos_adj:0 "Philippopolian"
@@ -85,6 +85,8 @@
  d_mesopotamia_strategos_adj:0 "Mesopotamian"
  d_antioch_strategos:0 "Antioch"
  d_antioch_strategos_adj:0 "Antiochean"
+ d_greater_armenia_strategos:0 "Hayk"
+ d_greater_armenia_strategos_adj:0 "Hayk"
 
  d_cherson_roman:0 "Chersōnos"
 
@@ -122,6 +124,8 @@
  ### BUILDINGS AND HOLDINGS
  metropolis_constantinople_holding:0 "Metropolis"
  building_type_metropolis_constantinople_01:0 "Constantinople"
+ building_metropolis_constantinople_01:0 "Constantinople"
+ building_metropolis_constantinople_01_desc:0 "Constantinople was the capital city of the Roman Empire since around 330 and was famed for its, architectural masterpieces such as the Hagia Sophia or the Great Palace as well as its massive and complex defences with the Theodosian Wall. It survived as a large urban center despite the vagaries of time."
 
  ### ACTIVITIES
  activity_roman_administration_imperial_coronation_name:0 "Imperial Coronation"
@@ -207,6 +211,29 @@
  ave_maria_roman_administration_tagma_tax_exemption_very_low_short:0 "Meagre"
 
 
+ ### SPECIAL COUNCIL NAMES
+ roman_administration_councillor_coemperor:0 "Junior Emperor"
+ game_concept_roman_administration_councillor_coemperor_desc:0 "The Junior Emperor assists the emperor and is easy for succession. Blah placeholder"
+
+
+ ### SCHEME
+ roman_administration_military_revolt:0 "Plot Military Revolt"
+ roman_administration_military_revolt_scheme:0 " Military Revolt #weak (Scheme)#"
+ roman_administration_military_revolt_desc:0 "Plot Military Revolt"
+ roman_administration_military_revolt_scheme_action:0 "Plot Military Revolt against"
+ SCHEME_MY_DIPLOMACY:0 "My [diplomacy|E]: $VALUE|+=0$"
+ SCHEME_AGENT_DIPLOMACY:0 "Agent [diplomacy|E]: $VALUE|+=0$"
+
+ SCHEME_UNSATISFIED_MILITARY:0 "Displeased Army Faction: $VALUE|+=0$"
+ SCHEME_MEGAS_DOMESTIKOS:0 "Megas Domestikos: $VALUE|+=0$"
+ SCHEME_RIVAL:0 "Rival: $VALUE|+=0$"
+ SCHEME_CONVINCED_DIPLOMACY_TEST:0 "Convincing Arguments: $VALUE|+=0$"
+ 
+ MILITARY_REVOLT_SUCCESS_DESC:0 "You get a [pressed_claim|E] on [TARGET_CHARACTER.GetPrimaryTitle.GetName] and start an armed revolt against [TARGET_CHARACTER.GetFullNameNoTooltip]"
+ MILITARY_REVOLT_DISCOVERY_DESC:0 "You avoid being imprisoned, executed, blinded, and losing your genitals for your treason against the Basileus."
+ 
+ ### WAR
+ MILITARY_REVOLT_WAR_NAME:0 "Military Revolt War"
 
 
  ### FACTIONS
@@ -220,6 +247,20 @@
  roman_administration_palace_faction:0 "The Palace"
  roman_administration_palace_faction_short_effect_desc:0 "Institutionalized Faction"
  roman_administration_palace_faction_desc:0 "The Palace represents the various dignitaries closest to the Emperor, Parakoimomenos, Protovestiarios and even Papias, they hold power over who gets to see and interact with the Emperor."
+
+ FACTION_DISCONTENT_ARMY:0 "Natural Decay: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_LOSING_WAR:0 "Losing War: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_OFFENSIVE_LONG_WAR:0 "Ruinous War: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_MAIMED:0 "Blemished: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_TYRANT:0 "Abuses of Power: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_LEADER_OPINION:0 "Faction Leader Dislikes the Emperor: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_UNTRIED_EMPEROR:0 "Untried Emperor: #V $VALUE|0=-$#!"
+ FACTION_DISCONTENT_NON_ARMY_MAN:0 "The Basileus is not from the military: #V $VALUE|0=-$#!"
+
+
+
+
+ 
  
 
  ### SUCCESSION LAWS NAMES
@@ -252,7 +293,7 @@
  tooltip_faction_vote_strength_emperor_favourite:0 "Favoured by the Basileus: $VALUE|=+0$"
 
  tooltip_roman_administration_emperor_favourite_vote_opinion_positive:0 "Favoured by the Basileus: $VALUE|=+0$"
- tooltip_roman_administration_coemperor_vote_opinion_positive:0 "Is a Co-Emperor: $VALUE|=+0$"
+ tooltip_roman_administration_junior_emperor_vote_opinion_positive:0 "Is a Co-Emperor: $VALUE|=+0$"
  tooltip_roman_administration_already_heir_to_administrative_title_vote_opinion_negative:0 "Is already Heir to another Administrative Title: $VALUE|=+0$"
 
  ## MAN AT ARMS REGIMENT
@@ -265,15 +306,15 @@
  ### TRAITS
  trait_basileus:0 "Basileus"
  trait_basileus_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
- trait_bb_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
- trait_coemperor:0 "Co-Emperor"
- trait_coemperor_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Co-Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ trait_bb2_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_junior_emperor:0 "Junior Emperor"
+ trait_junior_emperor_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
 
  ### MODIFIERS
  crowned_basileus:0 "Basileus"
  crowned_basileus_desc:0 "This character has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
- crowned_coemperor:0 "Co-Emperor"
- crowned_coemperor_desc:0 "This character has been crowned Co-Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ crowned_junior_emperor:0 "Co-Emperor"
+ crowned_junior_emperor_desc:0 "This character has been crowned Co-Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
  roman_administration_terms_of_office_0:0 "Office Term"
  roman_administration_terms_of_office_0_desc:0 "This character is in the first year of his office."
  roman_administration_terms_of_office_1:0 "Office Term"
@@ -309,10 +350,10 @@
  ave_maria_roman_administration_muster_all_the_tagma_decision_desc:0 "War is upon us and it is time to muster the Tagmas to fight the enemies of Rome."
  ave_maria_roman_administration_muster_all_the_tagma_decision_tooltip:0 "The Tagma leaders will join our wars."
  ave_maria_roman_administration_muster_all_the_tagma_decision_confirm:0 "We go to war."
- ave_maria_roman_administration_coemperor_coronation_decision:0 "Co-Emperor Coronation"
- ave_maria_roman_administration_coemperor_coronation_decision_desc:0 "Publicly performing the coronation of my chosen co-emperor is essential if he is to be seen as my legitimate successor."
- ave_maria_roman_administration_coemperor_coronation_decision_tooltip:0 "Will start the preparations towards the coronation of your co-emperor."
- ave_maria_roman_administration_coemperor_coronation_decision_confirm:0 "Start the preparations."
+ ave_maria_roman_administration_junior_emperor_coronation_decision:0 "Co-Emperor Coronation"
+ ave_maria_roman_administration_junior_emperor_coronation_decision_desc:0 "Publicly performing the coronation of my chosen co-emperor is essential if he is to be seen as my legitimate successor."
+ ave_maria_roman_administration_junior_emperor_coronation_decision_tooltip:0 "Will start the preparations towards the coronation of your co-emperor."
+ ave_maria_roman_administration_junior_emperor_coronation_decision_confirm:0 "Start the preparations."
  ave_maria_roman_administration_muster_tagmatic_troops_decision:0 "Muster the Troops"
  ave_maria_roman_administration_muster_tagmatic_troops_decision_desc:0 "The Empire is now at war and we must confront the ennemies of Rome with steel and courage as God is with us."
  ave_maria_roman_administration_muster_tagmatic_troops_decision_confirm:0 "Call the men."
@@ -332,6 +373,10 @@
  roman_administration_replace_bureaucrat_desc:0 "Fire [recipient.GetName] from [recipient.GetPrimaryTitle.GetName].\n You will choose his successor."
  roman_administration_favour_family_member:0 "Favour Family Member"
  roman_administration_favour_family_member_desc:0 "Promote a family member towards becoming the next official of [recipient.GetPrimaryTitle.GetName]."
+ roman_administration_send_family_member_for_training:0 "Send Family Member"
+ roman_administration_send_family_member_for_training_desc:0 "Send a family member towards working under [recipient.GetPrimaryTitle.GetName] to start his career."
+ roman_administration_name_junior_emperor:0 "Name Junior Emperor"
+ roman_administration_name_junior_emperor_desc:0 "Name [recipient.GetName] as Junior Emperor."
  
  sender_secondary_roman_administration_favour_successor:0 "Benefactor"
  recipient_secondary_roman_administration_favour_successor:0 "Successor"
@@ -339,7 +384,20 @@
  recipient_secondary_roman_administration_replace_bureaucrat:0 "Successor"
  sender_secondary_roman_administration_favour_family_member:0 "Family Member"
  recipient_secondary_roman_administration_favour_family_member:0 "Family Member"
- 
+
+ roman_administration_name_junior_emperor_candidate_requirement:0 "Must be able to inherit the Empire"
+
+
+ ### RELATIONS
+ set_relation_junior_emperor:0 "Appoints [recipient.GetShortUIName|U] as Junior Emperor."
+ remove_relation_junior_emperor:0 "[recipient.GetShortUIName|U] will no longer be Junior Emperor."
+
+ THEY_GET_JUNIOR_EMPEROR:0 "[CHARACTER.GetShortUIName|U] appoints [TARGET_CHARACTER.GetShortUIName] as a Junior Emperor"
+ THEY_GOT_JUNIOR_EMPEROR:0 "[CHARACTER.GetShortUIName|U] became [TARGET_CHARACTER.GetShortUINamePossessive] Junior Emperor"
+ GLOBAL_BECOME_JUNIOR_EMPEROR:0 "Becomes [TARGET_CHARACTER.GetShortUINamePossessive] Junior Emperor"
+ THEY_LOSE_JUNIOR_EMPEROR:0 "[CHARACTER.GetShortUIName|U] will no longer be the Junior Emperor of [TARGET_CHARACTER.GetShortUIName]"
+ GLOBAL_LOSE_JUNIOR_EMPEROR:0 "Will no longer be [TARGET_CHARACTER.GetShortUINamePossessive] Junior Emperor"
+ GLOBAL_LOST_JUNIOR_EMPEROR:0 "No longer is [TARGET_CHARACTER.GetShortUINamePossessive] Junior Emperor"
 
  
  ### EVENTS

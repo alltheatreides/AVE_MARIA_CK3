@@ -1,0 +1,5 @@
+name="AVE MARIA"
+supported_version="1.1.3"
+path="C:/Users/ADMIN/Documents/Paradox Interactive/Crusader Kings III/mod/AVE_MARIA"
+remote_file_id="2268393523"
+picture="thumbnail.png"
