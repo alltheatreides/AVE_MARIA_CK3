@@ -277,6 +277,16 @@ on_game_start_after_lobby = {
 				}
 				if = {
 					limit = {
+						this = character:1734
+					}
+					set_variable = { name = roman_administration_term_count value = 0 }
+							add_character_modifier = {
+								modifier = roman_administration_terms_of_office_0
+								years = 10
+							}
+				}
+				if = {
+					limit = {
 						NOT = { 
 							has_variable = roman_administration_term_count
 						}

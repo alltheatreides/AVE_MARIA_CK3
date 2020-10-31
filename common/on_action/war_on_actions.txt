@@ -110,7 +110,33 @@ on_war_won_attacker = {
 						has_character_flag = mustered
 					}
 					remove_character_flag = mustered
-				}				
+				}			
+				
+				if = {
+					limit = {
+						OR = {
+							has_government = roman_administration_civilian_government
+							has_government = roman_administration_military_government
+						}
+						is_independent_ruler = yes
+					}
+					change_government = roman_administration_government
+					add_realm_law = ave_maria_roman_administration_realm_law
+				}
+			}
+		}
+
+		scope:attacker = {
+			if = {
+				limit = {
+					OR = {
+						has_government = roman_administration_civilian_government
+						has_government = roman_administration_military_government
+					}
+					is_independent_ruler = yes
+				}
+				change_government = roman_administration_government
+				add_realm_law = ave_maria_roman_administration_realm_law
 			}
 		}
 	}

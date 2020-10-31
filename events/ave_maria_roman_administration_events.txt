@@ -327,18 +327,28 @@ ave_maria_roman_administration_events.0003 = {
 		event_background = ave_maria_constantinople_great_palace_interior
 	}
 	left_portrait = root
+	right_portrait = scope:junior_emperor
 	
 	desc = {
 		first_valid = {
 			triggered_desc = {
-				trigger = { is_at_war = no }
+				trigger = { is_at_war = no NOT = { has_trait = basileus } }
 				desc = ave_maria_roman_administration_events.0003.desc_no_war
 				## I inherited the mantle of the empire, but it is now time to perform the public ceremony of the coronation in Constantinople so the whole people can see us a legitimate emperor. 
 			}
 			triggered_desc = {
-				trigger = { is_at_war = yes }
+				trigger = { is_at_war = yes NOT = { has_trait = basileus } }
 				desc = ave_maria_roman_administration_events.0003.desc_yes_war
 				## I inherited the mantle of the empire, but despite the ongoing war it is now more than ever time to perform the public ceremony of the coronation in Constantinople so the whole people is reassured and our legitimacy firmly set. 
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0003.desc_crowning_junior_emperor
 			}
 		}
 	}
@@ -358,6 +368,32 @@ ave_maria_roman_administration_events.0003 = {
 			play_music_cue = mx_cue_sacredrite
 		}		
 		add_character_flag = imperial_coronation_started_preparations
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
 	}
 
 	## Spend a lot for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
@@ -420,6 +456,7 @@ ave_maria_roman_administration_events.0004 = {
 		event_background = ave_maria_constantinople_hagia_sophia
 	}
 	left_portrait = root
+	right_portrait = scope:junior_emperor
 	
 	trigger = {
 		OR = {
@@ -428,7 +465,52 @@ ave_maria_roman_administration_events.0004 = {
 		}	
 	}
 
-	desc = ave_maria_roman_administration_events.0004_desc
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { NOT = { has_trait = basileus } }
+				desc = ave_maria_roman_administration_events.0004_desc				
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0004.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
+	}
 
 	## First positive option because you spent normal or above normal gold
 	option = {
@@ -472,14 +554,55 @@ ave_maria_roman_administration_events.0005 = {
 		event_background = ave_maria_constantinople_hagia_sophia
 	}
 	left_portrait = root
+	right_portrait = scope:junior_emperor
 
 	desc = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_character_flag = imperial_coronation_started_preparations				
+					has_character_flag = imperial_coronation_started_preparations	
+					NOT = { has_trait = basileus }			
 				}
 				desc = ave_maria_roman_administration_events.0005_desc
+			}
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = imperial_coronation_started_preparations	
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0005.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
 			}
 		}
 	}
@@ -523,15 +646,56 @@ ave_maria_roman_administration_events.0006 = {
 		event_background = ave_maria_constantinople_hagia_sophia
 	}
 	left_portrait = root
+	right_portrait = scope:junior_emperor
 
 	desc = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_character_flag = imperial_coronation_started_preparations				
+					has_character_flag = imperial_coronation_started_preparations		
+					NOT = { has_trait = basileus }		
 				}
 				desc = ave_maria_roman_administration_events.0006_desc
 				
+			}
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = imperial_coronation_started_preparations	
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0006.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
 			}
 		}
 	}
@@ -540,6 +704,7 @@ ave_maria_roman_administration_events.0006 = {
 	option = {
 		name = ave_maria_roman_administration_events.0006.OPT_A
 		trigger = {
+			NOT = { has_trait = basileus }
 			OR = {
 				has_character_flag = imperial_coronation_normal_coronation
 				has_character_flag = imperial_coronation_lavish_coronation
@@ -551,6 +716,10 @@ ave_maria_roman_administration_events.0006 = {
 
 		## Add Crowned Basileus trait
 		add_trait = basileus
+
+		scope:junior_emperor = {
+			add_trait = junior_emperor
+		}
 
 		## Ends the coronation activity
 		hidden_effect = {
@@ -564,6 +733,7 @@ ave_maria_roman_administration_events.0006 = {
 	option = {
 		name = ave_maria_roman_administration_events.0006.OPT_B
 		trigger = {
+			NOT = { has_trait = basileus }
 			has_character_flag = imperial_coronation_stingy_coronation
 		}
 		## Remove a bit of prestige here
@@ -574,12 +744,37 @@ ave_maria_roman_administration_events.0006 = {
 		## Add Crowned Basileus trait
 		add_trait = basileus
 
+		scope:junior_emperor = {
+			add_trait = junior_emperor
+		}
+
 		## Ends the coronation activity
 		hidden_effect = {
 			scope:activity = {
 				complete_activity = yes
 			}
 		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_C
+		trigger = {
+			has_trait = basileus
+			any_relation = {
+				type = junior_emperor
+			}
+		}
+		scope:junior_emperor = {
+			add_trait = junior_emperor
+		}
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
+
 	}
 }
 

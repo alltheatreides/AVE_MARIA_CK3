@@ -1200,12 +1200,12 @@ roman_administration_military_revolt = {
 		}
 
 		scope:recipient = {
-			any_targeting_faction = {
-				limit = {
-					faction_is_type = roman_administration_army_faction
-				}
-				#faction_discontent >= 100
-			}
+			# any_targeting_faction = {
+			# 	limit = {
+			# 		faction_is_type = roman_administration_army_faction
+			# 	}
+			# 	#faction_discontent >= 100
+			# }
 		}
 	}
 
@@ -1215,7 +1215,9 @@ roman_administration_military_revolt = {
 				stress_impact = {
 					am_tolerant = major_stress_impact_gain
 					am_honest = major_stress_impact_gain
-					#am_honest = medium_stress_impact_gain
+					am_sincere = medium_stress_impact_gain
+					am_faithful = major_stress_impact_gain
+					am_humble = medium_stress_impact_gain
 				}
 			}
 			hidden_effect = {
@@ -1246,7 +1248,7 @@ roman_administration_send_family_member_for_training = {
 					}
 				}
 			}
-			highest_held_title_tier = tier_duchy 
+			#highest_held_title_tier = tier_duchy 
 			OR = {
 				has_government = roman_administration_military_government
 				has_government = roman_administration_civilian_government
@@ -1294,7 +1296,7 @@ roman_administration_send_family_member_for_training = {
 	
 	on_accept = {
 		scope:recipient = {
-			add_courtier = secondary_recipient
+			add_courtier = scope:secondary_recipient
 		}
 		## Cost for bribes
 		if = {
@@ -1532,67 +1534,67 @@ roman_administration_name_junior_emperor = {
 }
 
 
-dummy_test_interaction = {
-	category = interaction_category_roman_administration
-	common_interaction = yes
+# dummy_test_interaction = {
+# 	category = interaction_category_roman_administration
+# 	common_interaction = yes
 	
-	use_diplomatic_range = yes
+# 	use_diplomatic_range = yes
 
-	is_shown = {
-		scope:actor = {
-			NOT = {
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}			
-			top_liege = {
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}
-			NOT = { has_government = theocracy_government }
-		}
-		scope:recipient = { 
-			is_landed = yes 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
-			NOT = { this = scope:actor }
-		}
-	}
+# 	is_shown = {
+# 		scope:actor = {
+# 			NOT = {
+# 				any_held_title = {
+# 					this = title:e_byzantium
+# 				}
+# 			}			
+# 			top_liege = {
+# 				any_held_title = {
+# 					this = title:e_byzantium
+# 				}
+# 			}
+# 			NOT = { has_government = theocracy_government }
+# 		}
+# 		scope:recipient = { 
+# 			is_landed = yes 
+# 			top_liege = {
+# 				any_held_title = {
+# 					OR = {
+# 						this = title:e_byzantium
+# 						this = title:e_roman_empire
+# 					}
+# 				}
+# 			}
+# 			highest_held_title_tier = tier_duchy 
+# 			OR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_civilian_government
+# 			}
+# 			NOT = { this = scope:actor }
+# 		}
+# 	}
 	
-	auto_accept = yes
+# 	auto_accept = yes
 	
-	on_accept = {
-		scope:recipient = {
-			add_to_list = agents_to_join_war
+# 	on_accept = {
+# 		scope:recipient = {
+# 			add_to_list = agents_to_join_war
 
-		}
-	}
+# 		}
+# 	}
 
-	# AI
-	ai_targets = {
-		ai_recipients = peer_vassals
-	}
-	ai_frequency = 6
+# 	# AI
+# 	ai_targets = {
+# 		ai_recipients = peer_vassals
+# 	}
+# 	ai_frequency = 6
 
-	ai_potential = {
-		always = no
-	}
+# 	ai_potential = {
+# 		always = no
+# 	}
 
-	ai_will_do = {
-		base = 0
+# 	ai_will_do = {
+# 		base = 0
 		
 		
-	}
-}
+# 	}
+# }

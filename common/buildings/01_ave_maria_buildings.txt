@@ -90,12 +90,40 @@ metropolis_constantinople_01 = {
 sparsly_populated_holding_building_1 = {
 	construction_time = slow_construction_time
 	
+	# asset = {
+		## type = pdxmesh
+		# illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
+	# }
+	
+	asset = {
+		# type = pdxmesh
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
+		graphical_regions = { graphical_mediterranean }
+	}
+	
+	asset = {
+		# type = pdxmesh
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
+		graphical_regions = { graphical_mena }
+	}
+	
+	asset = {
+		# type = pdxmesh
+		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
+		graphical_regions = { graphical_india }
+	}
+	
 	can_construct_potential = {
 		always = no
 	}
 	
+	province_modifier = {
+		monthly_income = -0.5
+	}
+
 	can_construct = {	
 		always = no
 	}
 	flag = castle
 }
+

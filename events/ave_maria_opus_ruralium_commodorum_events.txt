@@ -1,0 +1,75 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# OPUS RURALIUM COMMODORUM EVENTS													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_opus_ruralium_commodorum
+
+# 
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_opus_ruralium_commodorum.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		any_realm_province = {
+			OR = {
+				has_building = sparsly_populated_holding_building_city_construction
+				has_building = sparsly_populated_holding_building_castle_construction
+				has_building = sparsly_populated_holding_building_temple_construction
+			}			
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_realm_province = {
+					has_building = sparsly_populated_holding_building_city_construction		
+				}
+			}
+			any_realm_province = {
+				limit = {
+					has_building = sparsly_populated_holding_building_city_construction		
+				}
+				set_holding_type = city_holding
+			}			
+		}
+		if = {
+			limit = {
+				any_realm_province = {
+					has_building = sparsly_populated_holding_building_castle_construction		
+				}
+			}
+			any_realm_province = {
+				limit = {
+					has_building = sparsly_populated_holding_building_castle_construction		
+				}
+				set_holding_type = castle_holding
+			}			
+		}
+		if = {
+			limit = {
+				any_realm_province = {
+					has_building = sparsly_populated_holding_building_temple_construction		
+				}
+			}
+			any_realm_province = {
+				limit = {
+					has_building = sparsly_populated_holding_building_temple_construction		
+				}
+				set_holding_type = temple_holding
+			}			
+		}
+	}
+}

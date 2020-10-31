@@ -27,13 +27,36 @@ on_commander_combat_pulse = {
 # scope:victory is whether the commander's side won
 
 on_commander_combat_finished = {
-	trigger = {
-		scope:victory = no
-	}
+	# trigger = {
+	# 	scope:victory = no
+	# }
 
 	events = {
 		# DISABLED as how this is handled is undergoing a rework.
 		#commanders.0011 # Commander captured after combat.
+	}
+
+	effect = {
+		if = {
+			limit = {
+				root = { has_variable = de_re_militari_combat_experience }
+				# has_variable = de_re_militari_combat_experience
+			}
+			root = { change_variable = { name = de_re_militari_combat_experience add = 1 } }
+			#change_variable = { name = de_re_militari_combat_experience add = 1 }
+		}
+		if = {
+			limit = {
+				root = { NOT = { has_variable = de_re_militari_combat_experience } }
+				#NOT = { has_variable = de_re_militari_combat_experience }
+			}
+			root = {
+				set_variable = { name = de_re_militari_combat_experience value = 0 }
+				change_variable = { name = de_re_militari_combat_experience add = 1 }
+			}
+			set_variable = { name = de_re_militari_combat_experience value = 0 }
+			change_variable = { name = de_re_militari_combat_experience add = 1 }
+		}
 	}
 }
 
@@ -44,7 +67,76 @@ on_commander_combat_finished = {
 # commanders is a list of all commanders in the combat
 # knights is a list of all knights in the combat
 on_army_combat_finished = {
-	
+	effect = {
+		every_in_list = {
+			list = knights
+			if = {
+				limit = {
+					has_variable = de_re_militari_combat_experience
+				}
+				change_variable = { name = de_re_militari_combat_experience add = 1 }
+			}
+			if = {
+				limit = {
+					NOT = { has_variable = de_re_militari_combat_experience }
+				}
+				set_variable = { name = de_re_militari_combat_experience value = 0 }
+				change_variable = { name = de_re_militari_combat_experience add = 1 }
+			}
+		}
+		every_in_list = {
+			list = commanders
+			if = {
+				limit = {
+					has_variable = de_re_militari_combat_experience
+				}
+				change_variable = { name = de_re_militari_combat_experience add = 1 }
+			}
+			if = {
+				limit = {
+					NOT = { has_variable = de_re_militari_combat_experience }
+				}
+				set_variable = { name = de_re_militari_combat_experience value = 0 }
+				change_variable = { name = de_re_militari_combat_experience add = 1 }
+			}
+		}
+		# scope:commanders = {
+		# 	if = {
+		# 		limit = {
+		# 			has_variable = de_re_militari_combat_experience
+		# 		}
+		# 		change_variable = { name = de_re_militari_combat_experience add = 1 }
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			NOT = { has_variable = de_re_militari_combat_experience }
+		# 		}
+		# 		set_variable = { name = de_re_militari_combat_experience value = 0 }
+		# 		change_variable = { name = de_re_militari_combat_experience add = 1 }
+		# 	}
+		# }
+		# scope:knights = {
+		# 	every_in_list = {
+		# 		list = 
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			has_variable = de_re_militari_combat_experience
+		# 		}
+		# 		change_variable = { name = de_re_militari_combat_experience add = 1 }
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			NOT = { has_variable = de_re_militari_combat_experience }
+		# 		}
+		# 		set_variable = { name = de_re_militari_combat_experience value = 0 }
+		# 		change_variable = { name = de_re_militari_combat_experience add = 1 }
+		# 	}
+		# }
+	}
+	events = {
+		ave_maria_de_re_militari_events.0001
+	}
 }
 
 # Used for handling the Varangian guard

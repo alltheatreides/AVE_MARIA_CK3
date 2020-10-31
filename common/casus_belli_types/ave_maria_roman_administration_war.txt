@@ -86,7 +86,20 @@ roman_administration_military_revolt_war = {
 	}
 
 	on_victory = {
-		
+		title:e_byzantium = {
+			create_title_and_vassal_change = {
+				type = conquest
+				save_scope_as = change
+				add_claim_on_loss = yes
+			}
+			save_temporary_scope_as = title_to_inherit
+			change_title_holder = {
+				holder = scope:attacker
+				change = scope:change
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change
 	
 	}
 
@@ -110,7 +123,18 @@ roman_administration_military_revolt_war = {
 	}
 
 	on_white_peace = {
-		
+		hidden_effect = {
+			scope:attacker = {
+				add_truce_both_ways = {
+					character = scope:defender
+					days = 1825
+					war = root.war
+					result = white_peace
+				}
+			}
+		}
+
+		add_truce_white_peace_effect = yes
 	}
 
 	on_defeat_desc = {
@@ -133,7 +157,23 @@ roman_administration_military_revolt_war = {
 	}
 
 	on_defeat = {
-		
+		scope:defender = {
+			add_dread = medium_dread_gain
+			# Prestige for Defender
+			add_prestige = medium_prestige_value
+		}
+		scope:attacker = {
+			hard_imprison_character_effect = {
+				TARGET = this
+				IMPRISONER = scope:defender
+			}
+			scope:defender = {
+				add_opinion = {
+					target = prev
+					modifier = vassal_lost_or_wp_faction_revolt_war
+				}
+			}
+		}
 	}
 
 	on_invalidated_desc = msg_invalidate_war_title

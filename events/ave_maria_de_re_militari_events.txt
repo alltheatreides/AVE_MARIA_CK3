@@ -1,0 +1,109 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# DE RE MILITARI events	   						                    				   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_de_re_militari_events
+
+# TABLE OF CONTENT:
+
+##### 1) MAINTENANCE EVENTS
+##### Maintenance events 
+
+
+
+#############################################
+# MAINTENANCE								#
+#############################################
+
+## triggered event from knights_action
+ave_maria_de_re_militari_events.0001 = {			
+	hidden = yes
+	scope = combat_side					
+		
+	trigger = {
+		exists = side_commander
+		side_commander = { is_alive = yes }
+	}
+	
+	immediate = {
+		# Save necessary scopes for later usage.
+		save_scope_as = winning_side
+
+		combat.location = {
+			save_scope_as = combat_location
+		}
+		
+		scope:winning_side = {
+			side_commander = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_combat_experience
+					}
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}
+			every_side_knight = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_combat_experience
+					}
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+				if = {
+					limit = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_combat_experience }
+					}
+					set_variable = { name = de_re_militari_combat_experience value = 0 }
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}
+		}
+
+		enemy_side = {
+			side_commander = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_combat_experience
+					}
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}
+			every_side_knight = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_combat_experience
+					}
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+				if = {
+					limit = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_combat_experience }
+					}
+					set_variable = { name = de_re_militari_combat_experience value = 0 }
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}
+		}
+	
+	}
+
+}

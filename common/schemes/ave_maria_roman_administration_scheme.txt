@@ -7,7 +7,7 @@
 		is_adult = yes
 		roman_administration_holds_military_title_trigger = yes
 		is_imprisoned = no
-		roman_administration_can_scheme_military_revolt = yes		
+		#roman_administration_can_scheme_military_revolt = yes		
 	}
 	
 	valid = {
@@ -22,7 +22,7 @@
 			}
 			any_targeting_faction = {
 				faction_is_type = roman_administration_army_faction
-				faction_discontent >= 50
+				#faction_discontent >= 50
 			}
 			# exists = location
 		}
@@ -32,7 +32,7 @@
 			scope:target = {
 				any_targeting_faction = {
 					faction_is_type = roman_administration_army_faction
-					faction_discontent >= 50
+					#faction_discontent >= 50
 				}
 			}
 		}
@@ -49,7 +49,8 @@
 	}
 
 	valid_agent = {
-		roman_administration_holds_military_title_trigger = yes
+		#roman_administration_holds_military_title_trigger = yes
+		highest_held_title_tier >= tier_duchy
 	}
 	
 	agent_join_chance = {

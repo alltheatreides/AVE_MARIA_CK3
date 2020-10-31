@@ -64,11 +64,11 @@ ave_maria_roman_administration_imperial_coronation_decision = {
 	}
 }
 
-## Name a Co emperor
-## Only if already has the trait basileus can you use this co emperor ceremony
+## Name a Junior emperor
+## Only if already has the trait basileus can you use this Junior emperor ceremony
 ave_maria_roman_administration_junior_emperor_coronation_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_imperial_coronation.dds"
-	desc = ave_maria_roman_administration_coemperor_coronation_decision_desc
+	desc = ave_maria_roman_administration_junior_emperor_coronation_decision_desc
 	major = yes
 	ai_check_interval = 12
 
@@ -82,6 +82,31 @@ ave_maria_roman_administration_junior_emperor_coronation_decision = {
 		has_trait = basileus
 		any_relation = {
 			type = junior_emperor
+		}
+		OR = {
+			any_vassal_or_below = {
+				any_relation = {
+					type = junior_emperor
+				}
+				NOT = { has_trait = junior_emperor }
+			}
+			any_courtier = {
+				any_relation = {
+					type = junior_emperor
+				}
+				NOT = { has_trait = junior_emperor }
+			}
+			any_vassal_or_below = {
+				any_courtier = {
+					any_relation = {
+						type = junior_emperor
+					}
+					NOT = { has_trait = junior_emperor }
+				}
+			}
+		}
+		NOT = {
+			has_character_flag = imperial_coronation_started_preparations
 		}
 	}
 
@@ -339,18 +364,18 @@ ave_maria_roman_administration_muster_provincial_troops_decision = {
 			# levies = 0
 			men_at_arms = {
 				type = cataphract
-				stacks = 25
+				stacks = 10
 			}
-			# men_at_arms = {
-			# 	type = house_guard
-			# 	stacks = 25
-			# }
-			# men_at_arms = {
-			# 	type = bowmen
-			# 	stacks = 10
-			# }
-			location = capital_province
-			origin = capital_province
+			men_at_arms = {
+				type = armored_footmen
+				stacks = 10
+			}
+			men_at_arms = {
+				type = bowmen
+				stacks = 5
+			}
+			location = scope:root.capital_province
+			origin = scope:root.capital_province
 			save_scope_as = tagma_army
 			inheritable = no
 			war = scope:war_to_join

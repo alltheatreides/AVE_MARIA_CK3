@@ -1,0 +1,89 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+#############################################
+# MARTIAL TRAIT PROGRESSION	 				#
+#############################################
+
+## Assign the proper martial trait depending on the variable detected on the character
+
+## Updates the corresponding level of Martial arts trait depending on the character martial variable xp
+update_de_re_militari_veteran_trait = {
+	if = {	#	veteran_ 0
+		limit = {			
+			var:de_re_militari_combat_experience >= 3		
+			var:de_re_militari_combat_experience < 7		
+			NOT = { has_trait = am_veteran_0 }		
+		}
+		remove_trait = am_veteran_0
+		remove_trait = am_veteran_1
+		remove_trait = am_veteran_2
+		remove_trait = am_veteran_3
+		remove_trait = am_veteran_4
+
+		add_trait = am_veteran_0			
+	}				
+	if = {	#	veteran_ 1
+		limit = {			
+			var:de_re_militari_combat_experience >= 7	
+			var:de_re_militari_combat_experience < 11		
+			NOT = { has_trait = am_veteran_1 }		
+		}			
+		remove_trait = am_veteran_0
+		remove_trait = am_veteran_1
+		remove_trait = am_veteran_2
+		remove_trait = am_veteran_3
+		remove_trait = am_veteran_4
+
+		add_trait = am_veteran_1			
+	}				
+	if = {	#	veteran 2	
+		limit = {			
+			var:de_re_militari_combat_experience >= 12		
+			var:de_re_militari_combat_experience < 16		
+			NOT = { has_trait = am_veteran_2 }		
+		}
+		remove_trait = am_veteran_0
+		remove_trait = am_veteran_1
+		remove_trait = am_veteran_2
+		remove_trait = am_veteran_3
+		remove_trait = am_veteran_4
+
+		add_trait = am_veteran_2			
+	}				
+	if = {	#	veteran 3	
+		limit = {			
+			var:de_re_militari_combat_experience  >= 18		
+			var:de_re_militari_combat_experience < 22		
+			NOT = { has_trait = am_veteran_3 }		
+		}
+		remove_trait = am_veteran_0
+		remove_trait = am_veteran_1
+		remove_trait = am_veteran_2
+		remove_trait = am_veteran_3
+		remove_trait = am_veteran_4
+
+		add_trait = am_veteran_3			
+	}				
+	if = {	#	veteran 4	
+		limit = {			
+			var:de_re_militari_combat_experience >= 25				
+			NOT = { has_trait = am_veteran_4 }		
+		}
+		remove_trait = am_veteran_0
+		remove_trait = am_veteran_1
+		remove_trait = am_veteran_2
+		remove_trait = am_veteran_3
+		remove_trait = am_veteran_4
+
+		add_trait = am_veteran_4			
+	}			
+}
