@@ -103,7 +103,12 @@ innovation_frankish_cavalry = {
 	icon = @knight
 
 	potential = {
-		culture_group = culture_group:frankish_group
+		OR = {
+			culture_group = culture_group:frankish_group
+			culture_group = culture_group:central_germanic_group
+			this = culture:breton
+		}
+		
 	}
 
 	unlock_maa = frankish_shock_cavalry

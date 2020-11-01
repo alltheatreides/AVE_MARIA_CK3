@@ -20,22 +20,22 @@
 			primary_title = {
 				this = title:e_byzantium
 			}
-			any_targeting_faction = {
-				faction_is_type = roman_administration_army_faction
-				#faction_discontent >= 50
-			}
+			# any_targeting_faction = {
+			# 	faction_is_type = roman_administration_army_faction
+			# 	#faction_discontent >= 50
+			# }
 			# exists = location
 		}
-		custom_description = {
-			text = roman_administration_military_revolt_scheme
-			object = scope:target
-			scope:target = {
-				any_targeting_faction = {
-					faction_is_type = roman_administration_army_faction
-					#faction_discontent >= 50
-				}
-			}
-		}
+		# custom_description = {
+		# 	text = roman_administration_military_revolt_scheme
+		# 	object = scope:target
+		# 	# scope:target = {
+		# 	# 	any_targeting_faction = {
+		# 	# 		faction_is_type = roman_administration_army_faction
+		# 	# 		#faction_discontent >= 50
+		# 	# 	}
+		# 	# }
+		# }
 		# Special AI exceptions
 		NOT = {
 			scope:owner = {
@@ -57,7 +57,7 @@
 		base = 0
 		
 		modifier = {
-			add = -20
+			add = -10
 			desc = BASE_RELUCTANCE
 		}
 
@@ -159,6 +159,16 @@
 			desc = "SCHEME_CONVINCED_DIPLOMACY_TEST"
 			has_character_modifier = military_revolt_scheme_convinced
 		}
+
+		## Family
+		modifier = {
+			add = 50
+			OR = {
+				is_close_family_of = scope:owner
+				is_sibling_of = scope:owner
+				is_uncle_or_aunt_of = scope:owner
+			}
+		}
 	}
 	
 	base_success_chance = {
@@ -237,7 +247,7 @@
 		scheme_owner = {
 			## Launch the war
 			trigger_event = {
-				name = ave_maria_roman_administration_military_revolt.0050
+				id = ave_maria_roman_administration_military_revolt.0050
 			}
 		}
 	}

@@ -280,10 +280,14 @@ on_game_start_after_lobby = {
 						this = character:1734
 					}
 					set_variable = { name = roman_administration_term_count value = 0 }
-							add_character_modifier = {
-								modifier = roman_administration_terms_of_office_0
-								years = 10
-							}
+					add_character_modifier = {
+						modifier = roman_administration_terms_of_office_0
+						years = 10
+					}
+					trigger_event = { 
+						id = ave_maria_roman_administration_events.00013
+						days = 365 
+					}
 				}
 				if = {
 					limit = {

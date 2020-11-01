@@ -1013,6 +1013,7 @@ ave_maria_roman_administration_military_revolt.0040 = {
 	type = character_event
 	title = ave_maria_roman_administration_military_revolt.0040.title
 	theme = martial	
+	desc = ave_maria_roman_administration_military_revolt.0040.desc
 	override_background = {
 		event_background = ave_maria_constantinople_great_palace_interior
 	}
@@ -1027,6 +1028,9 @@ ave_maria_roman_administration_military_revolt.0040 = {
 
 	immediate = {
 		save_scope_as = roman_administration_military_plotter
+		liege = {
+			save_scope_as = liege
+		}
 		if = {
 			limit = {
 				any_scheme = {
@@ -1075,6 +1079,154 @@ ave_maria_roman_administration_military_revolt.0040 = {
 				days = { 1 3 }
 			}
 		}
+
+		ai_chance = {
+			base = 20
+			modifier = {	
+				root.diplomacy = 10
+				add = 15
+			}	
+			modifier = {	
+				root.diplomacy = 11
+				factor = 16
+			}	
+			modifier = {	
+				root.diplomacy = 12
+				factor = 17
+			}	
+			modifier = {	
+				root.diplomacy = 13
+				factor = 19
+			}	
+			modifier = {	
+				root.diplomacy = 14
+				factor = 20
+			}	
+			modifier = {	
+				root.diplomacy = 15
+				factor = 21
+			}	
+			modifier = {	
+				root.diplomacy = 16
+				factor = 22
+			}	
+			modifier = {	
+				root.diplomacy = 17
+				factor = 23
+			}	
+			modifier = {	
+				root.diplomacy = 18
+				factor = 24
+			}	
+			modifier = {	
+				root.diplomacy = 19
+				factor = 26
+			}	
+			modifier = {	
+				root.diplomacy = 20
+				factor = 27
+			}	
+			modifier = {	
+				root.diplomacy = 21
+				factor = 28
+			}	
+			modifier = {	
+				root.diplomacy = 22
+				factor = 29
+			}	
+			modifier = {	
+				root.diplomacy = 23
+				factor = 30
+			}	
+			modifier = {	
+				root.diplomacy = 24
+				factor = 31
+			}	
+			modifier = {	
+				root.diplomacy = 25
+				factor = 33
+			}	
+			modifier = {	
+				root.diplomacy = 26
+				factor = 34
+			}	
+			modifier = {	
+				root.diplomacy = 27
+				factor = 35
+			}	
+			modifier = {	
+				root.diplomacy = 28
+				factor = 36
+			}	
+			modifier = {	
+				root.diplomacy = 29
+				factor = 37
+			}	
+			modifier = {	
+				root.diplomacy = 30
+				factor = 38
+			}	
+			modifier = {	
+				root.diplomacy = 31
+				factor = 39
+			}	
+			modifier = {	
+				root.diplomacy = 32
+				factor = 40
+			}	
+			modifier = {	
+				root.diplomacy = 33
+				factor = 42
+			}	
+			modifier = {	
+				root.diplomacy = 34
+				factor = 43
+			}	
+			modifier = {	
+				root.diplomacy = 35
+				factor = 44
+			}	
+			modifier = {	
+				root.diplomacy = 36
+				factor = 45
+			}	
+			modifier = {	
+				root.diplomacy = 37
+				factor = 46
+			}	
+			modifier = {	
+				root.diplomacy = 38
+				factor = 47
+			}	
+			modifier = {	
+				root.diplomacy = 39
+				factor = 48
+			}	
+			modifier = {	
+				root.diplomacy = 40
+				factor = 49
+			}	
+			modifier = {	
+				root.diplomacy = 41
+				factor = 51
+			}	
+			modifier = {	
+				root.diplomacy = 42
+				factor = 52
+			}	
+			modifier = {	
+				root.diplomacy = 43
+				factor = 53
+			}	
+			modifier = {	
+				root.diplomacy = 44
+				factor = 54
+			}	
+			modifier = {	
+				root.diplomacy = 45
+				factor = 55
+			}			
+		}
 	}
 
 	## On second thought no
@@ -1093,17 +1245,33 @@ ave_maria_roman_administration_military_revolt.0041 = {
 	sender = scope:roman_administration_military_plotter
 
 	immediate = {
-		
+		liege = {
+			save_scope_as = liege
+		}
 	}
 
 	## Accept to join the scheme
 	option = {
 		name = ave_maria_roman_administration_military_revolt.0041.OPT_A
 		scope:roman_administration_military_plotter = {
-			add_character_flag = military_revolt_convince_success
+			add_character_flag = { flag = military_revolt_convince_success days = 10 }
 			set_variable = { name = test_test value = yes }
 			trigger_event = {
 				id = ave_maria_roman_administration_military_revolt.0042
+				days = { 1 3 }
+			}
+			if = {
+				limit = {
+					any_scheme = {
+						scheme_type = roman_administration_military_revolt_scheme
+					}
+				}
+				random_scheme = {
+					limit = {
+						scheme_type = roman_administration_military_revolt_scheme
+					}
+					save_scope_as = scheme
+				}
 			}
 		}
 		add_to_scheme = scope:scheme
@@ -1112,7 +1280,7 @@ ave_maria_roman_administration_military_revolt.0041 = {
 			days = 365
 		}
 		add_to_list = list_agents_to_join_war		
-
+		save_scope_as = positive_response_official
 		ai_chance = {
 			base = 20
 			modifier = {	
@@ -1266,13 +1434,14 @@ ave_maria_roman_administration_military_revolt.0041 = {
 	option = {
 		name = ave_maria_roman_administration_military_revolt.0040.OPT_B
 
-		scope:sender = {
-			add_character_flag = military_revolt_convince_failure
-			any_scheme = {
+		scope:roman_administration_military_plotter = {
+			add_character_flag = { flag = military_revolt_convince_failure days = 10 }
+			add_character_modifier = { modifier = military_revolt_scheme_refused days = 365 }
+			random_scheme = {
 				limit = {
 					scheme_type = roman_administration_military_revolt_scheme
 				}
-				#scheme_secrecy = -5
+				scheme_secrecy = -5
 			}
 			trigger_event = {
 				id = ave_maria_roman_administration_military_revolt.0042
@@ -1312,7 +1481,7 @@ ave_maria_roman_administration_military_revolt.0042 = {
 		character = scope:target
 		animation = idle
 	}
-
+	sender = scope:positive_response_official
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -1363,7 +1532,9 @@ ave_maria_roman_administration_military_revolt.0050 = {
 	desc = ave_maria_roman_administration_military_revolt.0050.desc
 
 	immediate = {
-		
+		liege = {
+			save_scope_as = liege
+		}
 	}
 
 	option = {
@@ -1395,6 +1566,10 @@ ave_maria_roman_administration_military_revolt.0050 = {
 			save_scope_as = agent_to_add
 
 			add_character_flag = military_revolt
+			add_character_modifier = {
+				modifier = military_revolt_levies_bonus
+				years = 1
+			}
 
 			spawn_army = {
 				name = "Tagma Rebels"

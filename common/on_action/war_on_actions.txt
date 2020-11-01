@@ -123,6 +123,13 @@ on_war_won_attacker = {
 					change_government = roman_administration_government
 					add_realm_law = ave_maria_roman_administration_realm_law
 				}
+
+				if = {
+					limit = {
+						has_character_modifier = military_revolt_levies_bonus
+					}
+					remove_character_modifier = military_revolt_levies_bonus
+				}
 			}
 		}
 

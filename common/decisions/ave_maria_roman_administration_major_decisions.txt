@@ -201,6 +201,31 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 				# }				
 			}
 		}
+		# any_vassal_or_below = {
+		# 	any_held_title = {
+		# 		roman_administration_is_a_tagma_title_trigger = yes
+		# 	}
+		# 	root = {
+		# 		any_character_war = {
+		# 			any_war_participant = {
+		# 				NOT = { this = PREVPREV }
+		# 			}
+		# 		}
+		# 	}		
+		# }
+		# NOT = {
+		# 	root = {
+		# 		every_character_war = {
+		# 			any_war_participant = {
+		# 				this = {
+		# 					any_held_title = {
+		# 						roman_administration_is_a_tagma_title_trigger = yes
+		# 					}
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }			
 	}
 
 	cost = {
@@ -221,32 +246,52 @@ ave_maria_roman_administration_muster_all_the_tagma_decision = {
 				roman_administration_holds_tagma_title_trigger = yes
 			}
 			save_scope_as = tagma_commander
-			if = {
-				limit = {
-					#is_at_war_as_attacker = scope:actor
-					scope:actor = {
-						is_at_war_as_attacker = yes
+			scope:actor = {
+				every_character_war = {
+					limit = {
+						primary_attacker = scope:actor
 					}
+					add_attacker = scope:tagma_commander
 				}
-				scope:actor = {
-					every_character_war = {
-						add_attacker = scope:tagma_commander
+				every_character_war = {
+					limit = {
+						primary_defender = scope:actor
 					}
-				}
-				# scope:basileus_war = {
-				# 	add_attacker = prev
-				# }
-			}
-			else = {
-				# scope:basileus_war = {
-				# 	add_defender = prev
-				# }
-				scope:actor = {
-					every_character_war = {
-						add_defender = scope:tagma_commander
-					}
+					add_defender = scope:tagma_commander
 				}
 			}
+			# if = {
+			# 	limit = {
+			# 		#is_at_war_as_attacker = scope:actor
+			# 		scope:actor = {
+			# 			is_at_war_as_attacker = yes
+			# 		}
+			# 	}
+			# 	scope:actor = {
+			# 		every_character_war = {
+			# 			limit = {
+			# 				primary_attacker = scope:actor
+			# 			}
+			# 			add_attacker = scope:tagma_commander
+			# 		}
+			# 	}
+			# 	# scope:basileus_war = {
+			# 	# 	add_attacker = prev
+			# 	# }
+			# }
+			# else = {
+			# 	# scope:basileus_war = {
+			# 	# 	add_defender = prev
+			# 	# }
+			# 	scope:actor = {
+			# 		every_character_war = {
+			# 			limit = {
+			# 				primary_defender = scope:actor
+			# 			}
+			# 			add_defender = scope:tagma_commander
+			# 		}
+			# 	}
+			# }
 		}
 	}
 
