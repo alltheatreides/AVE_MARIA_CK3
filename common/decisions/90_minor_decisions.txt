@@ -8,6 +8,51 @@
 
 	is_shown = {
 		is_ruler = yes
+		NOT = { faith = { religion_tag = islam_religion } }
+	}
+
+	cooldown = { days = 365 }
+
+	is_valid_showing_failures_only = {
+		is_available_adult_or_is_commanding = yes #Don't be fooled - there's no adult check in this trigger
+	}
+
+	effect = {
+		hidden_effect = {
+			add_character_flag = {
+				flag = health_3001_hire_physician_decision_text
+				days = 20
+			}
+		}
+
+		trigger_event = {
+			id = health.3001
+			days = 14
+		}
+		custom_tooltip = hire_physician_decision_effect_tooltip
+
+	}
+	
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+hire_physician_decision_muslim = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_recruit_physician_muslim.dds"
+
+	desc = hire_physician_decision_desc
+	selection_tooltip = hire_physician_decision_tooltip
+
+	ai_check_interval = 0
+
+	is_shown = {
+		is_ruler = yes
+		faith = { religion_tag = islam_religion }
 	}
 
 	cooldown = { days = 365 }

@@ -40,16 +40,22 @@ roman_administration_realm_law_special_crown_authority = {
 #############################################
 roman_administration_can_vote_in_emperor_election_trigger = {
 	OR = {
-		AND = {
-			joined_faction = {
-				OR = {
-					faction_is_type = roman_administration_army_faction
-					faction_is_type = roman_administration_bureaucracy_faction
-					faction_is_type = roman_administration_palace_faction
-				}
-			}
-			is_a_faction_leader = yes
+		# AND = {
+		# 	joined_faction = {
+		# 		OR = {
+		# 			faction_is_type = roman_administration_army_faction
+		# 			faction_is_type = roman_administration_bureaucracy_faction
+		# 			faction_is_type = roman_administration_palace_faction
+		# 		}
+		# 	}
+		# 	is_a_faction_leader = yes
+		# }
+		primary_title = {
+			this = title:d_megas_domestikos
 		}		
+		primary_title = {
+			this = title:d_logothetetes_tou_dromou
+		}
 		any_held_title = {
 			this = title:k_orthodox
 		}

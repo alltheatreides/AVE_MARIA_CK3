@@ -18,24 +18,25 @@ roman_administration_army_faction = {
 	sort_order = 1
 	
 	can_character_create = {	
-		trigger_if = {
-			limit = {
-				title:d_megas_domestikos.holder = {
-					is_imprisoned = yes
-				}
-			}
-			roman_administration_holds_military_title_trigger = yes
-		}
-		trigger_if = {
-			limit = {
-				title:d_megas_domestikos.holder = {
-					is_imprisoned = no
-				}
-			}
-			primary_title = {
-				this = title:d_megas_domestikos
-			}
-		}		
+		# trigger_if = {
+		# 	limit = {
+		# 		title:d_megas_domestikos.holder = {
+		# 			is_imprisoned = yes
+		# 		}
+		# 	}
+		# 	roman_administration_holds_military_title_trigger = yes
+		# }
+		# trigger_if = {
+		# 	limit = {
+		# 		title:d_megas_domestikos.holder = {
+		# 			is_imprisoned = no
+		# 		}
+		# 	}
+		# 	primary_title = {
+		# 		this = title:d_megas_domestikos
+		# 	}
+		# }		
+		roman_administration_holds_military_title_trigger = yes
 		scope:target = { roman_administration_holds_tagma_title_trigger = no }
 		custom_description = {
 			text = roman_administration_army_faction_TOOLTIP
@@ -84,24 +85,25 @@ roman_administration_army_faction = {
 	}
 
 	can_character_become_leader = {
-		trigger_if = {
-			limit = {
-				title:d_megas_domestikos.holder = {
-					is_imprisoned = yes
-				}
-			}
-			roman_administration_holds_military_title_trigger = yes
-		}
-		trigger_if = {
-			limit = {
-				title:d_megas_domestikos.holder = {
-					is_imprisoned = no
-				}
-			}
-			primary_title = {
-				this = title:d_megas_domestikos
-			}
-		}
+		# trigger_if = {
+		# 	limit = {
+		# 		title:d_megas_domestikos.holder = {
+		# 			is_imprisoned = yes
+		# 		}
+		# 	}
+		# 	roman_administration_holds_military_title_trigger = yes
+		# }
+		# trigger_if = {
+		# 	limit = {
+		# 		title:d_megas_domestikos.holder = {
+		# 			is_imprisoned = no
+		# 		}
+		# 	}
+		# 	primary_title = {
+		# 		this = title:d_megas_domestikos
+		# 	}
+		# }
+		roman_administration_holds_military_title_trigger = yes
 	}
 
 	is_character_valid = {
@@ -121,7 +123,7 @@ roman_administration_army_faction = {
 	}
 
 	county_join_score =  {
-		base = -5
+		base = 100
 		
 		modifier = {
 			add = 20

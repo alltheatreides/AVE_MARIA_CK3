@@ -1,0 +1,816 @@
+######################################################
+################### INSTITUTIONS #####################
+######################################################
+
+## Side bar window
+window = {
+	name = "my_institutions_window"
+	parentanchor = top|right
+	layer = windows_layer
+	movable = no
+
+	using = Window_Size_MainTab
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		using = Sound_WindowShow_Standard
+		using = Window_Position_MainTab
+
+		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
+
+		## AVE MARIA INSTUTIONALIZED FACTION TAB
+		#on_start = "[GetVariableSystem.Set( 'roman_administrations_factions', 'true' )]"
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+		using = Sound_WindowHide_Standard
+		using = Window_Position_MainTab_Hide
+
+		on_start = "[GetVariableSystem.Clear( 'right_window_open')]"
+	}
+
+	## New WIP widget
+	margin_widget = {
+		size = { 100% 100% }
+		margin = { 0 26 }
+		margin_right = 20
+
+		using = Window_Background
+
+		widget = {
+			size = { 100% 100% }
+
+			vbox = {
+				using = Window_Margins
+
+				header_pattern = {
+					layoutpolicy_horizontal = expanding
+
+					blockoverride "header_text"
+					{
+						text = "INSTITUTIONS_WINDOW"
+					}
+
+					blockoverride "button_close"
+					{
+						onclick = "[ExecuteConsoleCommand('GUI.ClearWidgets my_institutions_window')]"  
+					}
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					# background of the box
+					background = {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+						margin = { -5 0 }
+						fittype = end
+						alpha = 0.8
+						framesize = { 1200 848 }
+
+						modify_texture = {
+							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
+							blend_mode = alphamultiply
+						}
+					}
+
+					scrollbox = {
+						name = "Institutions in your Realm"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+
+						using = Animation_Tab_Switch
+
+						blockoverride "scrollbox_content"
+						{
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								margin = { 10 5 }
+								margin_bottom = 15
+								spacing = 10
+
+								text_label_center = {
+									visible = "[GetPlayer.IsIndependentRuler]"
+									text = "FACTIONS_WINDOW_TARGETING_FACTIONS"
+								}
+
+								## Factions against Me
+								vbox = {
+									name = "targeting_factions"
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+
+									vbox = {
+										name = "institutions_grid"
+										#datamodel = "[FactionsWindow.GetTargetingFactions]"
+										#visible = "[FactionsWindow.HasTargetingFactions]"
+										layoutpolicy_horizontal = expanding
+										spacing = 5
+
+										item = {
+											vbox_faction_item = {
+												layoutpolicy_horizontal = expanding
+											}
+										}
+									}
+
+									text_multi = {
+										name = "no_factions_against_me"
+										visible = "[Not(FactionsWindow.HasTargetingFactions)]"
+										layoutpolicy_horizontal = expanding
+										minimumsize = { 0 110  }
+
+										text = "FACTIONS_WINDOW_NOT_FACTION_AGAINST"
+										default_format = "#low;italic"
+										align = center
+
+										background = {
+											using = Background_Area
+										}
+									}
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										margin = { 10 5 }
+										spacing = 10
+
+										background = {
+											using = Background_Area_With_Header
+										}
+
+										text_single = {
+											text = "FACTIONS_WINDOW_CASSALC_CANT_CREATE_JOIN"
+										}
+
+										dynamicgridbox = {
+											name = "cant_join_creater_members_grid"
+											datamodel = "[FactionsWindow.GetCantCreateOrJoinFactionVassals]"
+											datamodel_wrap = 4
+											flipdirection = yes
+
+											item = {
+												container = {
+													datacontext = "[CantCreateOrJoinFactionVassal.GetVassal]"
+
+													portrait_head_cached = {
+														blockoverride "portrait_button_template_tooltip" {
+															tooltip = "[CantCreateOrJoinFactionVassal.GetTooltip]"
+														}
+													}
+
+													icon = {
+														size = { 80 80 }
+														parentanchor = bottom|right
+														texture = "gfx/interface/icons/faction_type/claimant_faction.dds"
+														visible = "[CantCreateOrJoinFactionVassal.IsSoftBlock]"
+													}
+												}
+											}
+										}
+
+										text_multi = {
+											text = "FACTIONS_WINDOW_CREATE_JOIN_EXPLANATION"
+											autoresize = yes
+											max_width = 500
+											default_format = "#weak"
+											margin = { 15 10 }
+											margin_top = 0
+										}
+									}
+								}
+
+							}
+						}
+					}
+
+
+
+
+
+
+				}
+			}
+
+		}
+	}
+
+	## Initial work margin widget
+	# margin_widget = {
+	# 	size = { 100% 100% }
+	# 	margin = { 0 26 }
+	# 	margin_right = 20
+
+	# 	using = Window_Background
+
+	# 	widget = {
+	# 		size = { 100% 100% }
+
+	# 		# using = Window_Decoration_Thin
+
+	# 		### WINDOW CONTENT
+	# 		vbox = {
+	# 			using = Window_Margins
+
+	# 			## Header
+	# 			header_pattern = {
+	# 				layoutpolicy_horizontal = expanding
+
+	# 				blockoverride "header_text"
+	# 				{
+	# 					text = "LOC_KEY_FOR_TITLE"
+	# 				}
+
+	# 				blockoverride "button_close"
+	# 				{
+	# 					onclick = "[ExecuteConsoleCommand('GUI.ClearWidgets my_institutions_window')]"        
+	# 				}
+	# 				blockoverride "button_back"
+	# 				{
+	# 					visible = no
+	# 				}
+	# 			}
+
+	# 			## Box with content
+	# 			hbox = {
+	# 				layoutpolicy_horizontal = expanding
+	# 				layoutpolicy_vertical = expanding
+					
+	# 				widget = {
+	# 					layoutpolicy_horizontal = expanding
+	# 					layoutpolicy_vertical = expanding
+	
+	# 					## Box with the background where things are (fucking nested boxes, oh hi keondre)
+	# 					vbox = {
+	# 						name = "test"
+	# 						#spacing = -50
+	
+	# 						## background of the box
+	# 						background = {
+	# 							texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+	# 							margin = { -5 0 }
+	# 							fittype = end
+	# 							alpha = 0.8
+	# 							framesize = { 1200 848 }
+		
+	# 							modify_texture = {
+	# 								texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
+	# 								blend_mode = alphamultiply
+	# 							}
+	# 						}
+
+	# 						## Institutions entries
+	# 						# widget = {
+	# 						# 	name = "institution_roman_administration_army"
+	# 						# 	size = { 120 120 }
+	# 						# 	layoutpolicy_horizontal = expanding
+	# 						# 	layoutpolicy_vertical = expanding
+	# 						# 	spacing = 5
+	# 						# 	visible = "[GetScriptedGui('roman_administration_institution_army_can_see').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+	# 						# 	text_label_center = {
+	# 						# 		parentanchor = bottom|hcenter
+	# 						# 		text = "The Army"
+	# 						# 	}
+
+	# 						# }
+
+	# 						## 04/11/20 WIP
+	# 						# ## Institutions entries
+	# 						# ### THE ARMY
+	# 						# vbox = {
+	# 						# 	layoutpolicy_horizontal = expanding
+	# 						# 	#spacing = 5
+								
+	# 						# 	visible = "[GetScriptedGui('roman_administration_institution_army_can_see').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+	# 						# 	text_label_center = {
+	# 						# 		text = "The Army"
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_army_window' )]"
+	# 						# 	}
+
+	# 						# 	hbox = {
+	# 						# 		layoutpolicy_horizontal = expanding
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_army_window' )]"
+
+	# 						# 		background = {
+	# 						# 			texture = "gfx/interface/illustrations/event_scenes/genericcamp.dds"
+	# 						# 			fittype = centercrop
+	# 						# 			alpha = 0.5
+
+	# 						# 			using = Mask_Rough_Edges
+
+	# 						# 			onclick = "[GetVariableSystem.Toggle( 'open_army_window' )]"
+	# 						# 		}
+
+	# 						# 		portrait_shoulders = {
+	# 						# 			datacontext = "[GetScriptedGui('roman_administration_institution_army_leader')]"
+	# 						# 			background = {
+	# 						# 				using = Background_Area
+	# 						# 			}
+	# 						# 			# blockoverride "onclick" {
+	# 						# 			# 	datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 	button_icon = {
+	# 						# 			# 		parentanchor = center
+	# 						# 			# 		alwaystransparent = yes
+	# 						# 			# 		size = { 40 40 }
+	# 						# 			# 		position = {-5 -5}
+	# 						# 			# 		texture = "gfx/interface/icons/flat_icons/plus.dds" 
+	# 						# 			# 	}
+	# 						# 			# }
+	# 						# 		}
+
+	# 						# 		vbox = {
+	# 						# 			layoutpolicy_horizontal = expanding
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				text = "Domestikos of the East"
+	# 						# 			}
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				visible = "[Character.IsValid]"
+	# 						# 				text = "[Character.GetFullName]"
+	# 						# 				autoresize = no
+	# 						# 			}
+
+	# 						# 			button_decision_entry  = {
+	# 						# 				name = "army_button"
+	# 						# 				parentanchor = vcenter
+	# 						# 				size = { 80 80 }
+								
+	# 						# 				#position = { -20 0 }
+								
+	# 						# 				texture = "gfx/interface/icons/traits/basileus.dds"
+									
+	# 						# 				onclick = "[GetVariableSystem.Toggle( 'army_window_open' )]"
+	# 						# 				down = "[GetVariableSystem.HasValue( 'army_window_open', 'true' )]"
+	# 						# 				tooltip = "army_button"
+	# 						# 				using = tooltip_ws
+									
+	# 						# 			}
+
+	# 						# 			# hbox = {
+	# 						# 			# 	layoutpolicy_horizontal = expanding
+	# 						# 			# 	margin = { 0 10 }
+
+	# 						# 			# 	button_decision_entry = {
+	# 						# 			# 		name = "hire_physician_decision"
+	# 						# 			# 		datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 		visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+	# 						# 			# 		onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 		size = { 250 40 }
+												
+	# 						# 			# 		blockoverride "size_illustration" {
+	# 						# 			# 			size = { 250 38 }
+	# 						# 			# 		}
+												
+	# 						# 			# 		blockoverride "deb_illustration" {
+	# 						# 			# 			visible = no
+	# 						# 			# 		}
+	# 						# 			# 	}
+
+	# 						# 			# 	expand = {}
+	# 						# 			# }
+	# 						# 		}
+	# 						# 	}
+	# 						# }
+
+	# 						# ### THE BUREAUCRACY
+	# 						# vbox = {
+	# 						# 	layoutpolicy_horizontal = expanding
+	# 						# 	#spacing = 5
+								
+	# 						# 	visible = "[GetScriptedGui('roman_administration_institution_army_can_see').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+	# 						# 	text_label_center = {
+	# 						# 		text = "The Bureaucracy"
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_bureaucracy_window' )]"
+	# 						# 	}
+
+	# 						# 	hbox = {
+	# 						# 		layoutpolicy_horizontal = expanding
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_bureaucracy_window' )]"
+
+	# 						# 		background = {
+	# 						# 			texture = "gfx/interface/illustrations/event_scenes/genericcamp.dds"
+	# 						# 			fittype = centercrop
+	# 						# 			alpha = 0.5
+
+	# 						# 			using = Mask_Rough_Edges
+
+	# 						# 			onclick = "[GetVariableSystem.Toggle( 'open_bureaucracy_window' )]"
+	# 						# 		}
+
+	# 						# 		portrait_shoulders = {
+	# 						# 			datacontext = "[GetScriptedGui('roman_administration_institution_bureaucracy_leader')]"
+	# 						# 			background = {
+	# 						# 				using = Background_Area
+	# 						# 			}
+	# 						# 			# blockoverride "onclick" {
+	# 						# 			# 	datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 	button_icon = {
+	# 						# 			# 		parentanchor = center
+	# 						# 			# 		alwaystransparent = yes
+	# 						# 			# 		size = { 40 40 }
+	# 						# 			# 		position = {-5 -5}
+	# 						# 			# 		texture = "gfx/interface/icons/flat_icons/plus.dds" 
+	# 						# 			# 	}
+	# 						# 			# }
+	# 						# 		}
+
+	# 						# 		vbox = {
+	# 						# 			layoutpolicy_horizontal = expanding
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				text = "Logothete of the Post"
+	# 						# 			}
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				visible = "[Character.IsValid]"
+	# 						# 				text = "[Character.GetFullName]"
+	# 						# 				autoresize = no
+	# 						# 			}
+
+	# 						# 			button_decision_entry  = {
+	# 						# 				name = "bureaucracy_button"
+	# 						# 				parentanchor = vcenter
+	# 						# 				size = { 80 80 }
+								
+	# 						# 				#position = { -20 0 }
+								
+	# 						# 				texture = "gfx/interface/icons/traits/basileus.dds"
+									
+	# 						# 				onclick = "[GetVariableSystem.Toggle( 'bureaucracy_window_open' )]"
+	# 						# 				down = "[GetVariableSystem.HasValue( 'bureaucracy_window_open', 'true' )]"
+	# 						# 				tooltip = "bureaucracy_button"
+	# 						# 				using = tooltip_ws
+									
+	# 						# 			}
+
+	# 						# 			# hbox = {
+	# 						# 			# 	layoutpolicy_horizontal = expanding
+	# 						# 			# 	margin = { 0 10 }
+
+	# 						# 			# 	button_decision_entry = {
+	# 						# 			# 		name = "hire_physician_decision"
+	# 						# 			# 		datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 		visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+	# 						# 			# 		onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 		size = { 250 40 }
+												
+	# 						# 			# 		blockoverride "size_illustration" {
+	# 						# 			# 			size = { 250 38 }
+	# 						# 			# 		}
+												
+	# 						# 			# 		blockoverride "deb_illustration" {
+	# 						# 			# 			visible = no
+	# 						# 			# 		}
+	# 						# 			# 	}
+
+	# 						# 			# 	expand = {}
+	# 						# 			# }
+	# 						# 		}
+	# 						# 	}
+	# 						# }
+							
+	# 						# ### THE SENATE
+	# 						# vbox = {
+	# 						# 	layoutpolicy_horizontal = expanding
+	# 						# 	#spacing = 5
+								
+	# 						# 	visible = "[GetScriptedGui('roman_administration_institution_army_can_see').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+	# 						# 	text_label_center = {
+	# 						# 		text = "The Senate"
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_senate_window' )]"
+	# 						# 	}
+
+	# 						# 	hbox = {
+	# 						# 		layoutpolicy_horizontal = expanding
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_senate_window' )]"
+
+	# 						# 		background = {
+	# 						# 			texture = "gfx/interface/illustrations/event_scenes/genericcamp.dds"
+	# 						# 			fittype = centercrop
+	# 						# 			alpha = 0.5
+
+	# 						# 			using = Mask_Rough_Edges
+
+	# 						# 			onclick = "[GetVariableSystem.Toggle( 'open_senate_window' )]"
+	# 						# 		}
+
+	# 						# 		portrait_shoulders = {
+	# 						# 			datacontext = "[GetScriptedGui('roman_administration_institution_senate_leader')]"
+	# 						# 			background = {
+	# 						# 				using = Background_Area
+	# 						# 			}
+	# 						# 			# blockoverride "onclick" {
+	# 						# 			# 	datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 	button_icon = {
+	# 						# 			# 		parentanchor = center
+	# 						# 			# 		alwaystransparent = yes
+	# 						# 			# 		size = { 40 40 }
+	# 						# 			# 		position = {-5 -5}
+	# 						# 			# 		texture = "gfx/interface/icons/flat_icons/plus.dds" 
+	# 						# 			# 	}
+	# 						# 			# }
+	# 						# 		}
+
+	# 						# 		vbox = {
+	# 						# 			layoutpolicy_horizontal = expanding
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				text = "Domestikos of the East"
+	# 						# 			}
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				visible = "[Character.IsValid]"
+	# 						# 				text = "[Character.GetFullName]"
+	# 						# 				autoresize = no
+	# 						# 			}
+
+	# 						# 			button_decision_entry  = {
+	# 						# 				name = "senate_tab"
+	# 						# 				visible = "[GetScriptedGui('roman_administration_get_senator_list').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+	# 						# 				parentanchor = vcenter
+	# 						# 				size = { 80 80 }
+								
+	# 						# 				#position = { -20 0 }
+								
+	# 						# 				texture = "gfx/interface/icons/traits/basileus.dds"
+									
+	# 						# 				onclick = "[GetVariableSystem.Toggle( 'senate_open' )]"
+	# 						# 				onclick = "[GetScriptedGui('roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+	# 						# 				down = "[GetVariableSystem.HasValue( 'senate_open', 'true' )]"
+									
+	# 						# 				tooltip = "senate_button"
+	# 						# 				using = tooltip_ws
+									
+	# 						# 			}
+
+	# 						# 			# hbox = {
+	# 						# 			# 	layoutpolicy_horizontal = expanding
+	# 						# 			# 	margin = { 0 10 }
+
+	# 						# 			# 	button_decision_entry = {
+	# 						# 			# 		name = "hire_physician_decision"
+	# 						# 			# 		datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 		visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+	# 						# 			# 		onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 		size = { 250 40 }
+												
+	# 						# 			# 		blockoverride "size_illustration" {
+	# 						# 			# 			size = { 250 38 }
+	# 						# 			# 		}
+												
+	# 						# 			# 		blockoverride "deb_illustration" {
+	# 						# 			# 			visible = no
+	# 						# 			# 		}
+	# 						# 			# 	}
+
+	# 						# 			# 	expand = {}
+	# 						# 			# }
+	# 						# 		}
+	# 						# 	}
+	# 						# }
+
+	# 						# ### THE PALACE
+	# 						# vbox = {
+	# 						# 	layoutpolicy_horizontal = expanding
+	# 						# 	#spacing = 5
+								
+	# 						# 	visible = "[GetScriptedGui('roman_administration_institution_army_can_see').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+
+	# 						# 	text_label_center = {
+	# 						# 		text = "The Palace"
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_palace_window' )]"
+	# 						# 	}
+
+	# 						# 	hbox = {
+	# 						# 		layoutpolicy_horizontal = expanding
+	# 						# 		onclick = "[GetVariableSystem.Toggle( 'open_palace_window' )]"
+
+	# 						# 		background = {
+	# 						# 			texture = "gfx/interface/illustrations/event_scenes/genericcamp.dds"
+	# 						# 			fittype = centercrop
+	# 						# 			alpha = 0.5
+
+	# 						# 			using = Mask_Rough_Edges
+
+	# 						# 			onclick = "[GetVariableSystem.Toggle( 'open_palace_window' )]"
+	# 						# 		}
+
+	# 						# 		portrait_shoulders = {
+	# 						# 			datacontext = "[GetScriptedGui('roman_administration_institution_palace_leader')]"
+	# 						# 			background = {
+	# 						# 				using = Background_Area
+	# 						# 			}
+	# 						# 			# blockoverride "onclick" {
+	# 						# 			# 	datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 	button_icon = {
+	# 						# 			# 		parentanchor = center
+	# 						# 			# 		alwaystransparent = yes
+	# 						# 			# 		size = { 40 40 }
+	# 						# 			# 		position = {-5 -5}
+	# 						# 			# 		texture = "gfx/interface/icons/flat_icons/plus.dds" 
+	# 						# 			# 	}
+	# 						# 			# }
+	# 						# 		}
+
+	# 						# 		vbox = {
+	# 						# 			layoutpolicy_horizontal = expanding
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				text = "Praipositos of the Chamber"
+	# 						# 			}
+
+	# 						# 			text_single = {
+	# 						# 				layoutpolicy_horizontal = expanding
+	# 						# 				visible = "[Character.IsValid]"
+	# 						# 				text = "[Character.GetFullName]"
+	# 						# 				autoresize = no
+	# 						# 			}
+
+	# 						# 			button_decision_entry  = {
+	# 						# 				name = "palace_button"
+	# 						# 				parentanchor = vcenter
+	# 						# 				size = { 80 80 }
+								
+	# 						# 				#position = { -20 0 }
+								
+	# 						# 				texture = "gfx/interface/icons/traits/basileus.dds"
+									
+	# 						# 				onclick = "[GetVariableSystem.Toggle( 'palace_window_open' )]"
+	# 						# 				down = "[GetVariableSystem.HasValue( 'palace_window_open', 'true' )]"
+	# 						# 				tooltip = "palace_button"
+	# 						# 				using = tooltip_ws
+									
+	# 						# 			}
+
+	# 						# 			# hbox = {
+	# 						# 			# 	layoutpolicy_horizontal = expanding
+	# 						# 			# 	margin = { 0 10 }
+
+	# 						# 			# 	button_decision_entry = {
+	# 						# 			# 		name = "hire_physician_decision"
+	# 						# 			# 		datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+	# 						# 			# 		visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+	# 						# 			# 		onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+	# 						# 			# 		size = { 250 40 }
+												
+	# 						# 			# 		blockoverride "size_illustration" {
+	# 						# 			# 			size = { 250 38 }
+	# 						# 			# 		}
+												
+	# 						# 			# 		blockoverride "deb_illustration" {
+	# 						# 			# 			visible = no
+	# 						# 			# 		}
+	# 						# 			# 	}
+
+	# 						# 			# 	expand = {}
+	# 						# 			# }
+	# 						# 		}
+	# 						# 	}
+	# 						# }
+	# 					}
+	# 				}
+	# 			}
+
+	# 		}
+	# 	}
+	# }
+}
+
+## Free Floating ARMY WINDOW
+window = {
+	name = "army_window"
+	parentanchor = center
+	size = { 1300 950 }
+	position = { -650 0 }
+	layer = windows_layer
+	visible = "[And(GetVariableSystem.HasValue( 'army_window_open', 'true' ), GetScriptedGui('roman_administration_get_military_officials_list').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+	
+	using = Window_Background
+	using = Window_Decoration
+
+	vbox = {
+		using = Window_Margins
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+			blockoverride "header_text"
+			{
+				text = "[Localize('roman_administration_senate_tab_header')]"
+			}
+			# blockoverride "button_close"
+			# {
+			# 	onclick = "[GetVariableSystem.Toggle( 'senate_open')]"
+			# }
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			
+			widget = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				vbox = {
+					spacing = 10
+					name = "test"
+					spacing = 15
+
+					background = {
+						texture = "gfx/interface/illustrations/event_scenes/temple.dds"
+						margin = { 0 0 }
+						fittype = centercrop
+						alpha = 0.8
+						using = Mask_Rough_Edges
+					}
+				}
+			}
+		}
+	}
+
+}
+
+## Free Floating SENATE WINDOW
+window = {
+	name = "senate_window"
+	parentanchor = center
+	size = { 1300 950 }
+	position = { -650 0 }
+	layer = windows_layer
+	visible = "[And(GetVariableSystem.HasValue( 'senate_open', 'true' ), GetScriptedGui('roman_administration_get_senator_list').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
+	
+	using = Window_Background
+	using = Window_Decoration
+
+	vbox = {
+		using = Window_Margins
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+			blockoverride "header_text"
+			{
+				text = "[Localize('roman_administration_senate_tab_header')]"
+			}
+			# blockoverride "button_close"
+			# {
+			# 	onclick = "[GetVariableSystem.Toggle( 'senate_open')]"
+			# }
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			
+			widget = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				vbox = {
+					spacing = 10
+					name = "test"
+					spacing = 15
+
+					background = {
+						texture = "gfx/interface/illustrations/event_scenes/temple.dds"
+						margin = { 0 0 }
+						fittype = centercrop
+						alpha = 0.8
+						using = Mask_Rough_Edges
+					}
+				}
+			}
+		}
+	}
+
+}
+
+
+
+######################################################
+################ TYPES AND TEMPLATES #################
+######################################################

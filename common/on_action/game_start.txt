@@ -253,14 +253,6 @@ on_game_start_after_lobby = {
 			## Give tagma commanders claimants
 			trigger_event = ave_maria_roman_administration_events.0002
 
-			## Setting up the terms of office event chain
-			#trigger_event = ave_maria_roman_administration_events.00012
-
-			# add_character_modifier = {
-			# 	modifier = tagma_domestikos_salary_normal
-			# 	years = 365
-			# }
-
 		}
 		
 		title:e_byzantium.holder = {
@@ -271,6 +263,7 @@ on_game_start_after_lobby = {
 			trigger_event = ave_maria_roman_administration_events.0001
 			trigger_event = ave_maria_roman_administration_events.00021
 
+			## Setting up office term event chain
 			every_vassal = {
 				limit = {
 					highest_held_title_tier = tier_duchy
@@ -344,35 +337,53 @@ on_game_start_after_lobby = {
 					## Setting up the terms of office event chain
 					#trigger_event = ave_maria_roman_administration_events.00012
 				}
-				
-				## Setting up the terms of office event chain
-				#trigger_event = ave_maria_roman_administration_events.00012
-				
-				
-			}
+								
+			}	
 			
-			## Officials Pay Event chain set up
-			trigger_event = {
-				id = ave_maria_roman_administration_events.00050
-				days = 30
+			## Assigning salary modifiers to officials purely for visuals and player info
+			every_vassal = {
+				if = {
+					limit = {
+						OR = {
+							roman_administration_holds_high_administration_title_trigger = yes
+							roman_administration_holds_tagma_title_trigger = yes
+						}
+					}
+					add_character_modifier = roman_administration_high_official_salary
+				}
 			}
-			trigger_event = {
-				id = ave_maria_roman_administration_events.00051
-				days = 30
+			every_vassal = {
+				if = {
+					limit = {
+						roman_administration_holds_strategos_title_trigger = yes
+					}
+					add_character_modifier = roman_administration_strategos_salary
+				}
 			}
-			trigger_event = {
-				id = ave_maria_roman_administration_events.00052
-				days = 30
+			every_vassal = {
+				if = {
+					limit = {
+						roman_administration_holds_military_title_trigger = no
+						roman_administration_holds_high_administration_title_trigger = no
+						highest_held_title_tier = tier_duchy
+					}
+					add_character_modifier = roman_administration_krites_salary
+				}
 			}
 
-			# add_character_modifier = {
-			# 	modifier = emperor_salary_cost
-			# 	years = 365
+			## Officials Pay Event chain set up
+			# trigger_event = {
+			# 	id = ave_maria_roman_administration_events.00050
+			# 	days = 30
 			# }
+
+			roman_administration_update_total_salary_cost = yes
+			
 			change_government = roman_administration_government
+
 		}
 
-		## Prevent the pope from marrying
+		## Prevent the pope and bishops from marrying
 		title:k_papal_state.holder = {
 			add_trait = pope
 		}
