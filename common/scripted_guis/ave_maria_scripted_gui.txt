@@ -1,0 +1,1097 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA Scripted GUIS															   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Scripted GUIS                   								   #
+#                               													   #
+########################################################################################
+
+## Written by Atreides
+
+# TABLE OF CONTENT:
+
+##### 1) FUNCTIONAL SCRIPTED GUI
+##### Triggers and effects to open and close new created menus
+
+##### 1) SCRIPTED GUI FOR VARIABLE LIST & OTHERS
+##### Triggers and effects to create the various lists related to the institutions
+
+
+#############################################
+# FUNCTIONAL TYPE SCRIPTED GUI				#
+#############################################
+
+## Toggle Institution Tab
+am_institutions_gui_toggle = {
+	scope = character
+	
+	is_shown = {
+		has_variable = am_institutions_gui_toggle
+	}
+
+	effect = {
+		if = {
+			limit = {
+				has_variable = am_institutions_gui_toggle
+			}
+			remove_variable = am_institutions_gui_toggle
+		}
+		else = {
+			set_variable = am_institutions_gui_toggle
+		}
+	}
+}
+
+## Close Institution Tab
+am_institutions_gui_close = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+
+	effect = {
+		remove_variable = am_institutions_gui_toggle
+		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+	}
+}
+
+## Toggle Senate Window
+am_institutions_senate_gui_toggle = {
+	scope = character
+	
+	is_shown = {
+		has_variable = am_institutions_senate_gui_toggle
+	}
+
+	effect = {
+		if = {
+			limit = {
+				has_variable = am_institutions_senate_gui_toggle
+			}
+			remove_variable = am_institutions_senate_gui_toggle
+		}
+		else = {
+			set_variable = am_institutions_senate_gui_toggle
+		}
+	}
+}
+
+## Close Senate Window
+am_institutions_senate_gui_close = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+
+	effect = {
+		remove_variable = am_institutions_senate_gui_toggle
+		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+	}
+}
+
+
+#############################################
+# SCRIPTED GUI FOR VARIABLE LIST & OTHERS	#
+#############################################
+## CONDITIONAL SCRIPTED GUI TO DETERMINE WHAT INSTITUTIONS YOU CAN SEE
+
+## Checks for the gui file to see if you can have no institutions
+am_institutions_has_no_institutions = {
+	scope = character
+
+	is_shown = {
+		NOR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			top_liege = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+	}
+}
+
+### SENATE RELATED SCRIPTED GUI
+## Trigger Check for the gui file to see if you can see the senate
+am_institutions_roman_administration_can_see_senate = {
+	scope = character
+
+	is_shown = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			top_liege = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+	}
+}
+
+## Create the senator variable list when you click on a gui button to display the senators visually
+## Also creates the approval rating list of people depending on their opinion for the visual display
+am_institutions_roman_administration_get_senator_list = {
+	scope = character
+	
+	effect = {
+		if = {
+			limit = {
+				root = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}				
+			}
+			## Add all the duchy tier vassals to the senate
+			every_vassal = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_senators
+						target = prev
+					}
+				}				
+			}
+			## Put the senators who like you into a specific list
+			every_vassal = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+					opinion = {
+						target = root
+						value >= 0
+					}
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_supportive_senators
+						target = prev
+					}
+				}
+			}
+
+		}
+		if = {
+			limit = {
+				root = {
+					NOT = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}	
+					top_liege = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}				
+				}				
+			}
+			title:e_byzantium.holder = {
+				every_vassal = {
+					limit = {
+						highest_held_title_tier = tier_duchy
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_senators
+							target = prev
+						}
+					}					
+				}
+			}
+		}
+	}
+
+}
+
+## Create the military officials variable list when you click on a gui button to display the military visually
+am_institutions_roman_administration_get_military_officials_list = {
+	scope = character
+	
+	effect = {
+		if = {
+			limit = {
+				root = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}				
+			}
+			every_vassal = {
+				limit = {
+					roman_administration_holds_military_title_trigger = yes
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_military_officials
+						target = prev
+					}
+				}				
+			}
+			every_vassal = {
+				limit = {
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_imperial_tagma_officials
+						target = prev
+					}
+				}				
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					NOT = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}	
+					top_liege = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}				
+				}				
+			}
+			title:e_byzantium.holder = {
+				every_vassal = {
+					limit = {
+						roman_administration_holds_military_title_trigger = yes
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_military_officials
+							target = prev
+						}
+					}					
+				}
+				every_vassal = {
+					limit = {
+						roman_administration_holds_tagma_title_trigger = yes
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_imperial_tagma_officials
+							target = prev
+						}
+					}				
+				}
+			}
+		}
+	}
+
+}
+
+## Trigger for the text of relevance of the senate
+am_institutions_roman_administration_senate_political_relevance_irrelevant = {
+	scope = character
+
+	is_shown = {
+		root = {
+			title:e_byzantium = {
+				has_variable = roman_administration_senate_political_relevance_irrelevant
+			}
+		}		
+	}
+}
+am_institutions_roman_administration_senate_political_relevance_medium = {
+	scope = character
+
+	is_shown = {
+		root = {
+			title:e_byzantium = {
+				has_variable = roman_administration_senate_political_relevance_medium
+			}
+		}
+		
+	}
+}
+am_institutions_roman_administration_senate_political_relevance_high = {
+	scope = character
+
+	is_shown = {
+		root = {
+			title:e_byzantium = {
+				has_variable = roman_administration_senate_political_relevance_high
+			}
+		}		
+	}
+}
+
+
+
+
+
+
+societies_has_no_societies = {
+	scope = character
+	
+	is_shown = {
+		NOT = {
+			OR = {
+				has_variable = is_society_ghostbloods
+				has_variable = is_society_blademasters
+				has_variable = is_society_veristitalian
+				has_variable = is_society_ardentia
+			}
+		}
+	}
+}
+
+societies_scripted_society_ghostbloods = {
+	scope = character
+	
+	effect = {
+		clear_all_societies = yes
+		set_variable = selected_society_ghostbloods
+	}
+}
+
+societies_equipped_society_ghostbloods = {
+	scope = character
+	
+	is_shown = {
+		has_variable = in_society_ghostbloods
+	}
+}
+
+societies_scripted_society_blademasters = {
+	scope = character
+	
+	effect = {
+		clear_all_societies = yes
+		set_variable = selected_society_blademasters
+	}
+}
+
+societies_equipped_society_blademasters = {
+	scope = character
+	
+	is_shown = {
+		has_variable = in_society_blademasters
+	}
+}
+
+societies_scripted_society_veristitalian = {
+	scope = character
+	
+	effect = {
+		clear_all_societies = yes
+		set_variable = selected_society_veristitalian
+	}
+}
+
+societies_equipped_society_veristitalian = {
+	scope = character
+	
+	is_shown = {
+		has_variable = in_society_veristitalian
+	}
+}
+
+societies_scripted_society_ardentia = {
+	scope = character
+	
+	effect = {
+		clear_all_societies = yes
+		set_variable = selected_society_ardentia
+	}
+}
+
+societies_equipped_society_ardentia = {
+	scope = character
+	
+	is_shown = {
+		has_variable = in_society_ardentia
+	}
+}
+
+societies_join_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = selected_society_ghostbloods
+				NOT = { has_variable = in_society_ghostbloods }
+			}
+			AND = {
+				has_variable = selected_society_blademasters
+				NOT = { has_variable = in_society_blademasters }
+			}
+			AND = {
+				has_variable = selected_society_veristitalian
+				NOT = { has_variable = in_society_veristitalian }
+			}
+			AND = {
+				has_variable = selected_society_ardentia
+				NOT = { has_variable = in_society_ardentia }
+			}
+		}
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = selected_society_ghostbloods
+				NOT = { has_variable = applying_to_ghostbloods }
+			}
+			leave_societies = yes
+			trigger_event = {
+				id = hidden_societies.1000
+				days = 10
+			}
+			set_variable = {
+				name = society_currency
+				value = 100
+			}
+			set_variable = {
+				name = applying_to_ghostbloods
+				days = 10
+			}
+			trigger_event = {
+				id = societies.1000
+				days = 60
+			}
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_blademasters
+				NOT = { has_variable = applying_to_blademasters }
+			}
+			leave_societies = yes
+			trigger_event = {
+				id = martial_societies.1000
+				days = 10
+			}
+			set_variable = {
+				name = society_currency
+				value = 100
+			}
+			set_variable = {
+				name = applying_to_blademasters
+				days = 10
+			}
+			trigger_event = {
+				id = societies.1000
+				days = 60
+			}
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_veristitalian
+				NOT = { has_variable = applying_to_veristitalian }
+			}
+			leave_societies = yes
+			set_variable = {
+				name = society_currency
+				value = 100
+			}
+			set_variable = {
+				name = in_society_veristitalian
+				value = 1
+			}
+			set_variable = rank_one_veristitalian
+			add_to_global_variable_list = { name = society_veristitalian_members target = ROOT }
+			trigger_event = {
+				id = societies.1000
+				days = 20
+			}
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_ardentia
+				NOT = { has_variable = applying_to_ardentia }
+			}
+			leave_societies = yes
+			set_variable = {
+				name = society_currency
+				value = 100
+			}
+			set_variable = {
+				name = in_society_ardentia
+				value = 1
+			}
+			set_variable = rank_one_ardentia
+			add_to_global_variable_list = { name = society_ardentia_members target = ROOT }
+			trigger_event = {
+				id = societies.1000
+				days = 20
+			}
+		}
+	}
+}
+
+societies_leave_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = selected_society_ghostbloods
+				has_variable = in_society_ghostbloods 
+			}
+			AND = {
+				has_variable = selected_society_blademasters
+				has_variable = in_society_blademasters
+			}
+			AND = {
+				has_variable = selected_society_veristitalian
+				has_variable = in_society_veristitalian
+			}
+			AND = {
+				has_variable = selected_society_ardentia
+				has_variable = in_society_ardentia
+			}
+		}
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = selected_society_ghostbloods
+			}
+			remove_variable = in_society_ghostbloods
+			if = {
+				limit = { has_variable = rank_four_ghostbloods }
+				add_intrigue_skill = -9
+			}
+			if = {
+				limit = { has_variable = rank_three_ghostbloods }
+				add_intrigue_skill = -6
+			}
+			if = {
+				limit = { has_variable = rank_two_ghostbloods }
+				add_intrigue_skill = -3
+			}
+			remove_variable = rank_one_ghostbloods
+			remove_variable = rank_two_ghostbloods
+			remove_variable = rank_three_ghostbloods
+			remove_variable = rank_four_ghostbloods
+			remove_list_global_variable = { name = society_ghostbloods_members target = ROOT }
+			remove_variable = society_leader_ghostbloods
+			remove_list_global_variable = { name = society_ghostbloods_leader target = ROOT }
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_blademasters
+			}
+			remove_variable = in_society_blademasters
+			if = {
+				limit = { has_variable = rank_four_blademasters }
+				add_prowess_skill = -9
+			}
+			if = {
+				limit = { has_variable = rank_three_blademasters }
+				add_prowess_skill = -6
+			}
+			if = {
+				limit = { has_variable = rank_two_blademasters }
+				add_prowess_skill = -3
+			}
+			remove_variable = rank_one_blademasters
+			remove_variable = rank_two_blademasters
+			remove_variable = rank_three_blademasters
+			remove_variable = rank_four_blademasters
+			remove_list_global_variable = { name = society_blademasters_members target = ROOT }
+			remove_variable = society_leader_blademasters
+			remove_list_global_variable = { name = society_blademasters_leader target = ROOT }
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_veristitalian
+			}
+			remove_variable = in_society_veristitalian
+			if = {
+				limit = { has_variable = rank_four_veristitalian }
+				add_learning_skill = -9
+			}
+			if = {
+				limit = { has_variable = rank_three_veristitalian }
+				add_learning_skill = -6
+			}
+			if = {
+				limit = { has_variable = rank_two_veristitalian }
+				add_learning_skill = -3
+			}
+			remove_variable = rank_one_veristitalian
+			remove_variable = rank_two_veristitalian
+			remove_variable = rank_three_veristitalian
+			remove_variable = rank_four_veristitalian
+			remove_list_global_variable = { name = society_veristitalian_members target = ROOT }
+			remove_variable = society_leader_veristitalian
+			remove_list_global_variable = { name = society_veristitalian_leader target = ROOT }
+		}
+		if = {
+			limit = {
+				has_variable = selected_society_ardentia
+			}
+			remove_variable = in_society_ardentia
+			if = {
+				limit = { has_variable = rank_four_ardentia }
+				add_learning_skill = -9
+			}
+			if = {
+				limit = { has_variable = rank_three_ardentia }
+				add_learning_skill = -6
+			}
+			if = {
+				limit = { has_variable = rank_two_ardentia }
+				add_learning_skill = -3
+			}
+			remove_variable = rank_one_ardentia
+			remove_variable = rank_two_ardentia
+			remove_variable = rank_three_ardentia
+			remove_variable = rank_four_ardentia
+			remove_list_global_variable = { name = society_ardentia_members target = ROOT }
+			remove_variable = society_leader_ardentia
+			remove_list_global_variable = { name = society_ardentia_leader target = ROOT }
+		}
+	}
+}
+
+societies_rank_up_society = {
+	scope = character
+	
+	is_shown = {
+		var:society_currency >= 500
+		OR = {
+			AND = {
+				has_variable = in_society_ghostbloods
+				OR = {
+					has_variable = rank_one_ghostbloods
+					has_variable = rank_two_ghostbloods
+					has_variable = rank_three_ghostbloods
+				}
+			}
+			AND = {
+				has_variable = in_society_blademasters
+				OR = {
+					has_variable = rank_one_blademasters
+					has_variable = rank_two_blademasters
+					has_variable = rank_three_blademasters
+				}
+			}
+			AND = {
+				has_variable = in_society_veristitalian
+				OR = {
+					has_variable = rank_one_veristitalian
+					has_variable = rank_two_veristitalian
+					has_variable = rank_three_veristitalian
+				}
+			}
+			AND = {
+				has_variable = in_society_ardentia
+				OR = {
+					has_variable = rank_one_ardentia
+					has_variable = rank_two_ardentia
+					has_variable = rank_three_ardentia
+				}
+			}
+		}
+	}
+	
+	effect = {
+		change_variable = {
+			name = society_currency
+			subtract = 500
+		}
+		if = {
+			limit = {
+				has_variable = in_society_ghostbloods
+				OR = {
+					has_variable = rank_one_ghostbloods
+					has_variable = rank_two_ghostbloods
+					has_variable = rank_three_ghostbloods
+				}
+			}
+			if = {
+				limit = { has_variable = rank_three_ghostbloods }
+				set_variable = rank_four_ghostbloods
+				remove_variable = rank_three_ghostbloods
+				add_intrigue_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_two_ghostbloods }
+				set_variable = rank_three_ghostbloods
+				remove_variable = rank_two_ghostbloods
+				add_intrigue_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_one_ghostbloods }
+				set_variable = rank_two_ghostbloods
+				remove_variable = rank_one_ghostbloods
+				add_intrigue_skill = 3
+			}
+		}
+		if = {
+			limit = {
+				has_variable = in_society_blademasters
+				OR = {
+					has_variable = rank_one_blademasters
+					has_variable = rank_two_blademasters
+					has_variable = rank_three_blademasters
+				}
+			}
+			if = {
+				limit = { has_variable = rank_three_blademasters }
+				set_variable = rank_four_blademasters
+				remove_variable = rank_three_blademasters
+				add_prowess_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_two_blademasters }
+				set_variable = rank_three_blademasters
+				remove_variable = rank_two_blademasters
+				add_prowess_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_one_blademasters }
+				set_variable = rank_two_blademasters
+				remove_variable = rank_one_blademasters
+				add_prowess_skill = 3
+			}
+		}
+		if = {
+			limit = {
+				has_variable = in_society_veristitalian
+				OR = {
+					has_variable = rank_one_veristitalian
+					has_variable = rank_two_veristitalian
+					has_variable = rank_three_veristitalian
+				}
+			}
+			if = {
+				limit = { has_variable = rank_three_veristitalian }
+				set_variable = rank_four_veristitalian
+				remove_variable = rank_three_veristitalian
+				add_learning_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_two_veristitalian }
+				set_variable = rank_three_veristitalian
+				remove_variable = rank_two_veristitalian
+				add_learning_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_one_veristitalian }
+				set_variable = rank_two_veristitalian
+				remove_variable = rank_one_veristitalian
+				add_learning_skill = 3
+			}
+		}
+		if = {
+			limit = {
+				has_variable = in_society_ardentia
+				OR = {
+					has_variable = rank_one_ardentia
+					has_variable = rank_two_ardentia
+					has_variable = rank_three_ardentia
+				}
+			}
+			if = {
+				limit = { has_variable = rank_three_ardentia }
+				set_variable = rank_four_ardentia
+				remove_variable = rank_three_ardentia
+				add_learning_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_two_ardentia }
+				set_variable = rank_three_ardentia
+				remove_variable = rank_two_ardentia
+				add_learning_skill = 3
+			}
+			if = {
+				limit = { has_variable = rank_one_ardentia }
+				set_variable = rank_two_ardentia
+				remove_variable = rank_one_ardentia
+				add_learning_skill = 3
+			}
+		}
+	}
+}
+
+societies_levels_1_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = in_society_ghostbloods
+				has_variable = rank_one_ghostbloods
+			}
+			AND = {
+				has_variable = in_society_blademasters
+				has_variable = rank_one_blademasters
+			}
+			AND = {
+				has_variable = in_society_veristitalian
+				has_variable = rank_one_veristitalian
+			}
+			AND = {
+				has_variable = in_society_ardentia
+				has_variable = rank_one_ardentia
+			}
+		}
+	}
+	
+	effect = {
+	}
+}
+
+societies_levels_2_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = in_society_ghostbloods
+				has_variable = rank_two_ghostbloods
+			}
+			AND = {
+				has_variable = in_society_blademasters
+				has_variable = rank_two_blademasters
+			}
+			AND = {
+				has_variable = in_society_veristitalian
+				has_variable = rank_two_veristitalian
+			}
+			AND = {
+				has_variable = in_society_ardentia
+				has_variable = rank_two_ardentia
+			}
+		}
+	}
+	
+	effect = {
+	}
+}
+
+societies_levels_3_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = in_society_ghostbloods
+				has_variable = rank_three_ghostbloods
+			}
+			AND = {
+				has_variable = in_society_blademasters
+				has_variable = rank_three_blademasters
+			}
+			AND = {
+				has_variable = in_society_veristitalian
+				has_variable = rank_three_veristitalian
+			}
+			AND = {
+				has_variable = in_society_ardentia
+				has_variable = rank_three_ardentia
+			}
+		}
+	}
+	
+	effect = {
+	}
+}
+
+societies_levels_4_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			AND = {
+				has_variable = in_society_ghostbloods
+				has_variable = rank_four_ghostbloods
+			}
+			AND = {
+				has_variable = in_society_blademasters
+				has_variable = rank_four_blademasters
+			}
+			AND = {
+				has_variable = in_society_veristitalian
+				has_variable = rank_four_veristitalian
+			}
+			AND = {
+				has_variable = in_society_ardentia
+				has_variable = rank_four_ardentia
+			}
+		}
+	}
+	
+	effect = {
+	}
+}
+
+societies_currency_text_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			has_variable = in_society_ghostbloods
+			has_variable = in_society_blademasters
+			has_variable = in_society_veristitalian
+			has_variable = in_society_ardentia
+		}
+	}
+	
+	effect = {
+	}
+}
+
+
+societies_society_members = {
+    scope = character
+    
+    effect = {
+        if = {
+            limit = { has_variable = in_society_ghostbloods }
+            every_in_global_list = {
+                variable = society_ghostbloods_members
+
+                PREV = {
+                    add_to_variable_list = {
+                        name = local_society_list
+                        target = PREV
+                    }
+                }
+            }
+        }
+        if = {
+            limit = { has_variable = in_society_blademasters }
+            every_in_global_list = {
+                variable = society_blademasters_members
+
+                PREV = {
+                    add_to_variable_list = {
+                        name = local_society_list
+                        target = PREV
+                    }
+                }
+            }
+        }
+		if = {
+            limit = { has_variable = in_society_veristitalian }
+            every_in_global_list = {
+                variable = society_veristitalian_members
+
+                PREV = {
+                    add_to_variable_list = {
+                        name = local_society_list
+                        target = PREV
+                    }
+                }
+            }
+        }
+		if = {
+            limit = { has_variable = in_society_ardentia }
+            every_in_global_list = {
+                variable = society_ardentia_members
+
+                PREV = {
+                    add_to_variable_list = {
+                        name = local_society_list
+                        target = PREV
+                    }
+                }
+            }
+        }
+    }
+}
+
+societies_society_leaders = {
+    scope = character
+
+    effect = {
+        if = {
+            limit = { has_variable = in_society_ghostbloods }
+            random_living_character = {
+                limit = { has_variable = society_leader_ghostbloods is_alive = yes }
+                save_temporary_scope_as = leader
+            }
+        }
+        else_if = {
+            limit = { has_variable = in_society_blademasters }
+            random_living_character = {
+                limit = { has_variable = society_leader_blademasters is_alive = yes }
+                save_temporary_scope_as = leader
+            }
+        }
+        else_if = {
+            limit = { has_variable = in_society_veristitalian }
+            random_living_character = {
+                limit = { has_variable = society_leader_veristitalian is_alive = yes }
+                save_temporary_scope_as = leader
+            }
+        }
+        else_if = {
+            limit = { has_variable = in_society_ardentia }
+            random_living_character = {
+                limit = { has_variable = society_leader_ardentia is_alive = yes }
+                save_temporary_scope_as = leader
+            }
+        }
+
+        if = {
+            limit = { exists = scope:leader }
+            set_variable = {
+                name = leader_of_your_society
+                value = scope:leader
+            }
+        }
+    }
+}
+
+societies_your_society = {
+	scope = character
+	
+	is_shown = {
+		OR = {
+			has_variable = in_society_ghostbloods
+			has_variable = in_society_blademasters
+			has_variable = in_society_veristitalian
+			has_variable = in_society_ardentia
+		}
+	}
+}
+
+societies_leave_mission_society = {
+	scope = character
+	
+	is_shown = {
+		has_variable = has_mission
+	}
+	
+	effect = {
+		remove_variable = has_mission
+		remove_variable = mission_recruitment
+		remove_variable = mission_practice
+		remove_variable = mission_duel
+		remove_variable = mission_studyhistory
+		remove_variable = mission_breakintostudy
+		remove_variable = mission_findsecret
+		remove_variable = mission_writepaper
+		remove_variable = mission_pray
+		remove_variable = mission_convertsomeone
+	}
+}
+
+societies_mission_society = {
+	scope = character
+	
+	is_shown = {
+		has_variable = has_mission
+	}
+}

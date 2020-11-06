@@ -240,10 +240,13 @@ on_game_start_after_lobby = {
 		#############################################
 		# AVE MARIA									#
 		#############################################
+		
+		## Giving every living character the HEXACO traits
 		every_living_character = {
 			trigger_event = ave_maria_hexaco_traits_events.0001
 		}
 
+		## Trigger an event to Tagmas for their armies creation (TERMINATED) and creating them claimants, might move the event here cause it is rather useless
 		every_ruler = {
 			limit = {
 				roman_administration_holds_tagma_title_trigger = yes
@@ -255,8 +258,12 @@ on_game_start_after_lobby = {
 
 		}
 		
+		## Roman administration sheaningans and effects to make sure everything is working as intended
 		title:e_byzantium.holder = {
+			## Saving as scope cause why not
 			save_scope_as = roman_administration_basileus
+
+			## Change the government to be sure, fucking tendendcy to switch to wrong government type
 			change_government = roman_administration_government
 
 			## Effects on the roman emperor vassals for proper government assignement and other effects
@@ -341,6 +348,7 @@ on_game_start_after_lobby = {
 			}	
 			
 			## Assigning salary modifiers to officials purely for visuals and player info
+			# For high officials
 			every_vassal = {
 				if = {
 					limit = {
@@ -352,6 +360,7 @@ on_game_start_after_lobby = {
 					add_character_modifier = roman_administration_high_official_salary
 				}
 			}
+			## For Strategos
 			every_vassal = {
 				if = {
 					limit = {
@@ -360,6 +369,7 @@ on_game_start_after_lobby = {
 					add_character_modifier = roman_administration_strategos_salary
 				}
 			}
+			## For krites
 			every_vassal = {
 				if = {
 					limit = {
@@ -371,16 +381,19 @@ on_game_start_after_lobby = {
 				}
 			}
 
-			## Officials Pay Event chain set up
-			# trigger_event = {
-			# 	id = ave_maria_roman_administration_events.00050
-			# 	days = 30
-			# }
-
+			## Update the Salary cost Tax Income modifier
 			roman_administration_update_total_salary_cost = yes
-			
+
+			## Change the government to be sure, fucking tendendcy to switch to wrong government type
 			change_government = roman_administration_government
 
+		}
+		## Giving Roman Empire title a flag for the gui display
+		title:e_byzantium = {
+			set_variable = {
+				name = roman_administration_senate_political_relevance_medium
+				value = yes
+			}
 		}
 
 		## Prevent the pope and bishops from marrying

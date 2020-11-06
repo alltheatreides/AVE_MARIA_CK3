@@ -8,6 +8,10 @@ window = {
 	layer = windows_layer
 	movable = no
 
+	## AVE MARIA ADDITION TO CLOSE DOWN THE INSTITUTION WINDOW
+	datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
+	visible = "[And(IsGameViewOpen('factions_window'), Not(ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)))]"
+
 	using = Window_Size_MainTab
 
 	state = {
@@ -19,8 +23,6 @@ window = {
 		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'factions_view_tabs', 'against_you' )]"
 
-		## AVE MARIA INSTUTIONALIZED FACTION TAB
-		#on_start = "[GetVariableSystem.Set( 'roman_administrations_factions', 'true' )]"
 	}
 
 	state = {
@@ -355,84 +357,6 @@ window = {
 			}
 		}
 	}
-
-	############################################
-	################## SENATE ##################
-	############################################
-
-	hbox = {
-		button_decision_entry  = {
-			name = "senate_tab"
-			visible = "[GetScriptedGui('roman_administration_get_senator_list').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-			parentanchor = vcenter
-			size = { 80 80 }
-
-			#position = { -20 0 }
-
-			texture = "gfx/interface/icons/traits/basileus.dds"
-	
-			onclick = "[GetVariableSystem.Toggle( 'senate_open' )]"
-			onclick = "[GetScriptedGui('roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-			down = "[GetVariableSystem.HasValue( 'senate_open', 'true' )]"
-	
-			tooltip = "senate_button"
-			using = tooltip_ws
-	
-		}
-	}
-
-	window = {
-		name = "senate_window"
-		parentanchor = center
-		size = { 1300 950 }
-		position = { -650 0 }
-		layer = windows_layer
-		visible = "[And(GetVariableSystem.HasValue( 'senate_open', 'true' ), GetScriptedGui('roman_administration_get_senator_list').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ))]"
-		
-		using = Window_Background
-		using = Window_Decoration
-
-		vbox = {
-			using = Window_Margins
-			header_pattern = {
-				layoutpolicy_horizontal = expanding
-				blockoverride "header_text"
-				{
-					text = "[Localize('roman_administration_senate_tab_header')]"
-				}
-				# blockoverride "button_close"
-				# {
-				# 	onclick = "[GetVariableSystem.Toggle( 'senate_open')]"
-				# }
-			}
-
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				layoutpolicy_vertical = expanding
-				
-				widget = {
-					layoutpolicy_horizontal = expanding
-					layoutpolicy_vertical = expanding
-
-					vbox = {
-						spacing = 10
-						name = "test"
-						spacing = 15
-
-						background = {
-							texture = "gfx/interface/illustrations/event_scenes/temple.dds"
-							margin = { 0 0 }
-							fittype = centercrop
-							alpha = 0.8
-							using = Mask_Rough_Edges
-						}
-					}
-				}
-			}
-		}
-	
-	}
-	
 }
 
 ######################################################

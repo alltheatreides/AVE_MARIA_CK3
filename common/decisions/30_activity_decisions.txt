@@ -195,6 +195,137 @@ start_hunt_decision = {
 	cooldown = { days = standard_hunting_cooldown_time }
 
 	is_shown = {
+		NOR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			liege = { 
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+		is_landed = yes
+		highest_held_title_tier > tier_barony
+	}
+
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = line_break
+		custom_tooltip = start_hunt_decision_go_on_hunt
+
+		#Stress loss
+		if = {
+			limit = {
+				has_trait = am_negligent
+				has_trait = am_lazy
+			}
+			custom_tooltip = start_hunt_decision_stress_lazy
+		}
+		else = {
+			stress_impact = {
+				base = hunt_stress_loss_value
+				#am_tolerant = activity_stress_gain_impact
+				am_craven = activity_stress_gain_impact
+				# am_vulnerable = activity_stress_gain_impact
+				# am_anxious = activity_stress_gain_impact
+				# am_fearful = activity_stress_gain_impact
+				# am_sentimental = activity_stress_gain_impact
+
+				#am_diligent = activity_stress_loss_impact
+				athletic = activity_stress_loss_impact
+				sadistic = activity_stress_loss_impact
+				am_brave = activity_stress_loss_impact
+				am_tough = activity_stress_loss_impact
+				am_independent = activity_stress_loss_impact
+				am_selfassured = activity_stress_loss_impact
+				am_stable = activity_stress_loss_impact
+				hunter_1 = activity_stress_loss_impact
+				hunter_2 = activity_stress_loss_impact
+				hunter_3 = activity_stress_loss_impact
+			}
+		}
+
+		#custom_tooltip = line_break
+		#custom_tooltip = start_hunt_decision_tt_header
+		custom_tooltip = start_hunt_decision_prestige
+		#custom_tooltip = start_hunt_decision_stress
+		#custom_tooltip = line_break
+		
+		hidden_effect = {
+			random_sub_realm_barony = {
+				title_province = {
+					spawn_activity = {
+						type = activity_hunt
+						owner = root
+					}
+				}
+			}
+		}
+	}
+	
+	ai_potential = {
+		short_term_gold > standard_activity_cost
+	}
+
+	ai_will_do = {
+		base = 35
+
+		ai_value_modifier = {
+			ai_energy = 1
+			ai_greed = -0.5
+			ai_compassion = -0.5
+		}
+
+		modifier = {
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 0
+			}
+		}
+		modifier = {
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 2
+			}
+		}
+
+		modifier = {
+			add = 35
+			stress > low_stress
+		}
+	}
+}
+
+start_hunt_decision_roman = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_hunting_roman.dds"
+	ai_check_interval = 60
+
+	cost = {
+		gold = {
+			add = standard_activity_cost
+			divide = 1.5
+		}
+	}
+
+	cooldown = { days = standard_hunting_cooldown_time }
+
+	is_shown = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			liege = { 
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
 		is_landed = yes
 		highest_held_title_tier > tier_barony
 	}
