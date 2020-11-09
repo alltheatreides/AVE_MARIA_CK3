@@ -1998,7 +1998,27 @@ ave_maria_roman_administration_events.6969 = {
 	}
 
 	immediate = {
-		roman_administration_update_total_salary_cost = yes
+		set_variable = {
+			name = test_10
+			value = 0
+		}
+		every_vassal = {
+			if = {
+				limit = {
+					highest_held_title_tier = tier_duchy
+				}
+				add_to_list = test_list
+			}
+		}
+		every_in_list = {
+			list = test_list
+			root = {
+				change_variable = {
+					name = test_10
+					add = 1
+				}
+			}
+		}
 	}
 
 	## TEST
