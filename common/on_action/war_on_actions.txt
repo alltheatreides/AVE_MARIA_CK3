@@ -63,18 +63,53 @@ on_war_started = {
 
 
 		### AVE MARIA ROMAN ADMINISTRATION
-		# scope:defender = {
-		# 	if = {
-		# 		limit = {
-		# 			primary_title = {
-		# 				this = title:e_byzantium
-		# 			}	
-		# 		}
-		# 		scope:attacker.primary_title = {
+		## Local Military Commanders automatically join the war of the emperor
+		scope:defender = {
+			if = {
+				limit = {
+					primary_title = {
+						this = title:e_byzantium
+					}					
+				}
+				save_scope_as = basileus
 
-		# 		}
-		# 	}
-		# }
+				scope:war = {
+					casus_belli = {
+						random_target_title = {
+							save_scope_as = war_title
+						}								
+					}
+				}
+				scope:defender = {
+					every_vassal = {
+						if = {
+							limit = {
+								roman_administration_holds_strategos_title_trigger = yes
+							}
+							save_scope_as = tagma_commander
+						}
+					}
+					every_vassal = {
+						if = {
+							limit = {
+								roman_administration_holds_strategos_title_trigger = yes
+								primary_title = {
+									scope:attacker = {
+										realm_to_title_distance_squared = {
+											title = prev
+											value <= squared_distance_medium #250 map-pixels. Roughly one Ireland away (top to bottom).
+										}
+									}
+								}
+							}										
+							scope:war = {
+								add_defender = prev
+							}							
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

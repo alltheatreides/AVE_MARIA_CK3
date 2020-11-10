@@ -1998,15 +1998,59 @@ ave_maria_roman_administration_events.6969 = {
 	}
 
 	immediate = {
-		spawn_army = {
-			men_at_arms = {
-				type = tagma_varangian
-				stacks = 50
+		# every_held_title = {
+		# 	if = {
+		# 		limit = {
+		# 			tier = tier_county
+		# 		}
+		# 		title_province = {
+		# 			add_to_global_variable_list = {
+		# 				name = domain_province_list
+		# 				target = this
+		# 			}					
+		# 		}
+		# 	}
+		# }
+		# travel_distance_dijkstra_white = {
+		# 	white_type = variable
+		# 	white_name = domain_province_list
+		# 	start = root.capital_province
+		# 	max = 10000
+		# 	return_dist = am_comm_malus_to_capital
+		# 	return_prev = bar
+		# }
+		# every_held_title = {
+		# 	if = {
+		# 		limit = {
+		# 			tier = tier_county
+		# 		}
+		# 		title_province = {
+		# 			if = {
+		# 				limit = {
+		# 					has_variable = am_comm_malus_to_capital
+		# 					var:am_comm_malus_to_capital >
+		# 				}
+		# 				prev = {
+		# 					change_county_control = -20
+		# 				}
+		# 			}					
+		# 		}
+		# 	}
+		# }
+		# travel_distance_dijkstra = {
+		# 	start = root.capital_province
+		# }
+
+		orc_apply_demesne_provinces_distance_malus = yes
+		every_held_title = {
+			limit = {
+				tier = tier_county
 			}
-			location = 496
-			origin = 496
-			inheritable = no
+			add_county_modifier = {
+				modifier = orc_comm_malus_modifier
+			}
 		}
+		
 	}
 
 	## TEST

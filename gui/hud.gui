@@ -226,8 +226,11 @@ widget = {
 						
 						blockoverride "button_close"
 						{
-							datacontext = "[GetScriptedGui('societies_gui_close')]"
-							onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							# datacontext = "[GetScriptedGui('societies_gui_close')]"
+							# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							onclick = "[GetScriptedGui('am_institutions_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+							onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+							onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 						}
 
 						## Image of the Title (not working 05/11/20)
@@ -340,6 +343,7 @@ widget = {
 																					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 											onclick = "[GetScriptedGui('am_institutions_senate_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 
 											text_single = {
 												margin_top = 10
@@ -393,6 +397,7 @@ widget = {
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 											onclick = "[GetScriptedGui('am_institutions_army_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 
 											background = {
 												fittype = centercrop
@@ -952,6 +957,7 @@ widget = {
 						vbox = {
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
+							spacing = 10
 
 							background = {
 								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
@@ -968,6 +974,11 @@ widget = {
 									using = Font_Size_Medium
 									default_format = "#high"								
 								}
+							}
+
+							## Line to visually divide stuff
+							divider = {
+								layoutpolicy_horizontal = expanding
 							}
 
 
@@ -998,7 +1009,7 @@ widget = {
 												spacing = 0
 		
 												dynamicgridbox = {
-													datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_military_officials')]"
+													datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_military_officials_minus_high_officials')]"
 													datamodel_wrap = 7
 													flipdirection = yes
 													
@@ -1006,7 +1017,7 @@ widget = {
 														name = get_list
 														trigger_on_create = yes
 														duration = 2
-														on_start = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+														on_start = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 														next = get_list
 													}
 		

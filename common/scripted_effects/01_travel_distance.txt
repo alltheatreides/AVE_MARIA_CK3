@@ -20,6 +20,7 @@
 		remove_variable = travel_distance_prev
 	}
 }
+
 travel_distance_dijkstra_black = {
 	every_province = {
 		add_to_global_variable_list = { name = travel_distance_dijkstra_black_white target = this }
@@ -47,6 +48,7 @@ travel_distance_dijkstra_black = {
 	
 	clear_global_variable_list = travel_distance_dijkstra_black_white
 }
+
 travel_distance_dijkstra_every = {
 	every_province = {
 		add_to_global_variable_list = { name = travel_distance_dijkstra_every_white target = this }
@@ -72,7 +74,9 @@ travel_distance_dijkstra_every = {
 # start should always be a land province
 travel_distance_dijkstra = {	
 	$start$ = {
+		## Setting the variable of travel distance of 0 cause this is starting province
 		set_variable = { name = travel_distance_distance value = 0 }
+		## Setting the previous travel distance as this
 		set_variable = { name = travel_distance_prev value = this }
 		
 		add_to_global_variable_list = { name = travel_distance_fray target = this }
