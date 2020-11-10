@@ -94,6 +94,42 @@ am_institutions_senate_gui_close = {
 	}
 }
 
+## Toggle Army Window
+am_institutions_army_gui_toggle = {
+	scope = character
+	
+	is_shown = {
+		has_variable = am_institutions_army_gui_toggle
+	}
+
+	effect = {
+		if = {
+			limit = {
+				has_variable = am_institutions_army_gui_toggle
+			}
+			remove_variable = am_institutions_army_gui_toggle
+		}
+		else = {
+			set_variable = am_institutions_army_gui_toggle
+		}
+	}
+}
+
+## Close Army Window
+am_institutions_army_gui_close = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+
+	effect = {
+		remove_variable = am_institutions_army_gui_toggle
+		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+	}
+}
+
 
 #############################################
 # SCRIPTED GUI FOR VARIABLE LIST & OTHERS	#
@@ -214,6 +250,27 @@ am_institutions_roman_administration_get_senator_list = {
 
 }
 
+### ARMY RELATED SCRIPTED GUI
+
+### SENATE RELATED SCRIPTED GUI
+## Trigger Check for the gui file to see if you can see the roman army institution
+am_institutions_roman_administration_can_see_roman_army = {
+	scope = character
+
+	is_shown = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			top_liege = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+	}
+}
+
 ## Create the military officials variable list when you click on a gui button to display the military visually
 am_institutions_roman_administration_get_military_officials_list = {
 	scope = character
@@ -227,6 +284,7 @@ am_institutions_roman_administration_get_military_officials_list = {
 					}
 				}				
 			}
+			## All the military officials
 			every_vassal = {
 				limit = {
 					roman_administration_holds_military_title_trigger = yes
@@ -238,6 +296,20 @@ am_institutions_roman_administration_get_military_officials_list = {
 					}
 				}				
 			}
+			## provincial military officials
+			every_vassal = {
+				limit = {
+					roman_administration_holds_military_title_trigger = yes
+					roman_administration_holds_tagma_title_trigger = no
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_military_officials_minus_high_officials
+						target = prev
+					}
+				}				
+			}
+			## Only Imperial Tagma officials
 			every_vassal = {
 				limit = {
 					roman_administration_holds_tagma_title_trigger = yes
@@ -273,6 +345,99 @@ am_institutions_roman_administration_get_military_officials_list = {
 					root = {
 						add_to_variable_list = {
 							name = list_roman_administration_military_officials
+							target = prev
+						}
+					}					
+				}
+				## provincial military officials
+				every_vassal = {
+					limit = {
+						roman_administration_holds_military_title_trigger = yes
+						roman_administration_holds_tagma_title_trigger = no
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_military_officials_minus_high_officials
+							target = prev
+						}
+					}				
+				}
+				every_vassal = {
+					limit = {
+						roman_administration_holds_tagma_title_trigger = yes
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_imperial_tagma_officials
+							target = prev
+						}
+					}				
+				}
+			}
+		}
+	}
+
+}
+
+## Create the High Military officials variable list when you click on a gui button to display the military visually
+am_institutions_roman_administration_get_military_high_officials_list = {
+	scope = character
+	
+	effect = {
+		if = {
+			limit = {
+				root = {
+					primary_title = {
+						this = title:e_byzantium
+					}
+				}				
+			}
+			every_vassal = {
+				limit = {
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_imperial_tagma_officials
+						target = prev
+					}
+				}				
+			}
+			every_vassal = {
+				limit = {
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+				root = {
+					add_to_variable_list = {
+						name = list_roman_administration_imperial_tagma_officials
+						target = prev
+					}
+				}				
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					NOT = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}	
+					top_liege = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+					}				
+				}				
+			}
+			title:e_byzantium.holder = {
+				every_vassal = {
+					limit = {
+						roman_administration_holds_tagma_title_trigger = yes
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_imperial_tagma_officials
 							target = prev
 						}
 					}					

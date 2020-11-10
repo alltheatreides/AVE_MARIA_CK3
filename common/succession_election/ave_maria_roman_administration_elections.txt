@@ -24,25 +24,35 @@ roman_administration_elective = {
 		}
 
 		## AVE MARIA - Co emperor
-
+		modifier = {
+			desc = tooltip_faction_vote_strength_patriarch
+			add = 2
+			has_trait = junior_emperor
+		}
 
 		## AVE MARIA - Factions Power Army
 		modifier = {
 			desc = tooltip_faction_vote_strength_army
 			add = 3
-			joined_faction = {
-				faction_is_type = roman_administration_army_faction
+			# joined_faction = {
+			# 	faction_is_type = roman_administration_army_faction
+			# }
+			# is_a_faction_leader = yes
+			primary_title = {
+				this = title:d_megas_domestikos
 			}
-			is_a_faction_leader = yes
 		}
 		## AVE MARIA - Factions Power Bureaucracy
 		modifier = {
 			desc = tooltip_faction_vote_strength_bureaucracy
 			add = 2
-			joined_faction = {
-				faction_is_type = roman_administration_bureaucracy_faction
+			# joined_faction = {
+			# 	faction_is_type = roman_administration_bureaucracy_faction
+			# }
+			# is_a_faction_leader = yes
+			primary_title = {
+				this = title:d_logothetetes_tou_dromou
 			}
-			is_a_faction_leader = yes
 		}
 		## AVE MARIA - Factions Power Palace
 		modifier = {
@@ -56,7 +66,7 @@ roman_administration_elective = {
 		## AVE MARIA - Factions Power Patriarch
 		modifier = {
 			desc = tooltip_faction_vote_strength_patriarch
-			add = 1
+			add = 2
 			primary_title = {
 				this = title:k_orthodox
 			}

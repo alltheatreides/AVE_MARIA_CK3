@@ -508,7 +508,15 @@ roman_administration_fire_bureaucrat = {
 		}
 
 		scope:actor = {
-			add_tyranny = 5
+			if = {
+				limit = {
+					scope:recipient = {
+						roman_administration_holds_high_office_title_trigger = yes
+					}
+				}
+				add_tyranny = 5
+			}
+			
 
 			## Add the stress impact
 			am_introverted = minor_stress_impact_gain
@@ -852,7 +860,14 @@ roman_administration_replace_bureaucrat = {
 		}
 
 		scope:actor = {
-			add_tyranny = 5
+			if = {
+				limit = {
+					scope:recipient = {
+						roman_administration_holds_high_office_title_trigger = yes
+					}
+				}
+				add_tyranny = 5
+			}
 
 			## Add the stress impact
 			am_introverted = minor_stress_impact_gain

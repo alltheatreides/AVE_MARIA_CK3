@@ -1998,26 +1998,14 @@ ave_maria_roman_administration_events.6969 = {
 	}
 
 	immediate = {
-		set_variable = {
-			name = test_10
-			value = 0
-		}
-		every_vassal = {
-			if = {
-				limit = {
-					highest_held_title_tier = tier_duchy
-				}
-				add_to_list = test_list
+		spawn_army = {
+			men_at_arms = {
+				type = tagma_varangian
+				stacks = 50
 			}
-		}
-		every_in_list = {
-			list = test_list
-			root = {
-				change_variable = {
-					name = test_10
-					add = 1
-				}
-			}
+			location = 496
+			origin = 496
+			inheritable = no
 		}
 	}
 

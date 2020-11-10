@@ -164,7 +164,9 @@ widget = {
 		
 		datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
 		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-		
+		datacontext = "[GetVariableSystem]"
+		datacontext = "[GetPlayer]"		
+
 		state = {
 			name = _show
 			using = Animation_FadeIn_Quick
@@ -239,6 +241,32 @@ widget = {
 								position = { 5 5 }
 							}
 						}
+
+						vbox = {
+							#margin_top = 22
+							margin_bottom = 52
+							
+
+							hbox = {
+								spacing = 20
+								layoutpolicy_vertical = expanding
+								background = {
+									using = Background_Area
+								}
+								text_single = {
+									name = "realm_name"
+									text = "[GetPlayer.GetPrimaryTitle.GetNameNoTooltip|U]"
+								}
+	
+								text_single = {
+									name = "realm_type"
+									text = "MY_REALM_WINDOW_TYPE"
+								}
+
+							}
+						}
+
+						
 					}
 
 					## Another box (this is a matrioshka challenge !) this one is for the background of the tab
@@ -249,7 +277,7 @@ widget = {
 
 						# background of the box
 						background = {
-							texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+							#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
 							margin = { -5 0 }
 							fittype = end
 							alpha = 0.8
@@ -268,23 +296,88 @@ widget = {
 
 							blockoverride "scrollbox_content"
 							{
-								#margin = { 17 10 }
+								margin = { 10 10 }
 								spacing = 10
+
+								hbox = {
+									divider = {
+										layoutpolicy_horizontal = expanding
+									}
+								}	
 
 								vbox = {
 									layoutpolicy_horizontal = expanding
 									#layoutpolicy_vertical = expanding
 									spacing = 10
+
+									## Divider for visuals
+									divider = {
+										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										
+										layoutpolicy_horizontal = expanding
+									}
 									
+									## Senate box
 									vbox = {
 										name = "institution_senate"
 										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
 										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 										layoutpolicy_horizontal = expanding
-										# margin_top = 5
-										# margin_left = 5
-										# margin_right = 5
-										# margin_bottom = 5
+										margin = { 5 5 }
+										spacing = 2
+	
+										background = {
+											using = Background_Area_Light
+											spriteType = Corneredtiled
+										}
+										
+
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											parentanchor = center
+											size = { 0 80 }
+																					
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_senate_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+
+											text_single = {
+												margin_top = 10
+												margin_left = 20
+												layoutpolicy_horizontal = expanding
+												text = "The Senate"
+												using = Font_Size_Medium
+												#default_format = "#low"
+											}
+										
+											background = {
+												fittype = centercrop
+												texture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_senate.dds"
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}					
+											
+										}									
+										
+									}
+
+						
+									## Divider for visuals
+									divider = {
+										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										
+										layoutpolicy_horizontal = expanding
+									}
+								
+									## Army Box
+									vbox = {
+										name = "institution_army"
+										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_roman_army')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										layoutpolicy_horizontal = expanding
 										margin = { 5 5 }
 										spacing = 2
 	
@@ -296,21 +389,25 @@ widget = {
 										button_standard = {
 											layoutpolicy_horizontal = expanding
 											parentanchor = center
-											size = { 0 80 }
-	
-											datacontext = "[GetScriptedGui('am_institutions_senate_gui_toggle')]"
-											onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-										
-										
+											size = { 0 80 }	
+					
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_army_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+
 											background = {
 												fittype = centercrop
-												texture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_senate.dds"
+												texture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_muster_all_the_tagma.dds"
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
 											}
 	
 											text_single = {
-												margin_left = 10
+												margin_top = 10
+												margin_left = 20
 												layoutpolicy_horizontal = expanding
-												text = "Constantinople Senate"
+												text = "The Army"
 												using = Font_Size_Medium
 												#default_format = "#low"
 											}
@@ -318,46 +415,6 @@ widget = {
 	
 										
 									}
-	
-								
-									# vbox = {
-									# 	name = "institution_senate"
-									# 	datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
-									# 	visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-									# 	layoutpolicy_horizontal = expanding
-									# 	margin = { 5 5 }
-									# 	spacing = 2
-	
-									# 	background = {
-									# 		using = Background_Area_Light
-									# 		spriteType = Corneredtiled
-									# 	}
-	
-									# 	button_standard = {
-									# 		layoutpolicy_horizontal = expanding
-									# 		parentanchor = center
-									# 		size = { 0 80 }
-	
-									# 		datacontext = "[GetScriptedGui('am_institutions_senate_gui_toggle')]"
-									# 		onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-										
-										
-									# 		background = {
-									# 			fittype = centercrop
-									# 			texture = "gfx/interface/illustrations/holding_types/z_orc_constantinople_sea_view.dds"
-									# 		}
-	
-									# 		text_single = {
-									# 			margin_left = 10
-									# 			layoutpolicy_horizontal = expanding
-									# 			text = "Constantinople Senate"
-									# 			using = Font_Size_Medium
-									# 			#default_format = "#low"
-									# 		}
-									# 	}
-	
-										
-									# }
 	
 									
 	
@@ -579,7 +636,7 @@ widget = {
 	window = {
 		name = "senate_window"
 		parentanchor = center
-		size = { 1300 950 }
+		size = { 1000 950 }
 		position = { -150 0 }
 		layer = windows_layer
 		datacontext = "[GetScriptedGui('am_institutions_senate_gui_toggle')]"
@@ -691,6 +748,10 @@ widget = {
 														blockoverride "description_relation_text" {
 															text = "[Character.GetPlayerGuestDescription]"
 														}
+
+														background = {
+															using = Background_Area
+														}
 													}
 												}
 											}
@@ -717,25 +778,36 @@ widget = {
 				
 				## Text at the bottom left with display depending on Senate current political relevance
 				textbox = {
+					datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_irrelevant')]"
+					visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					
 					text_single = {
-						text = "[Localize('roman_administration_senate_political_relevance_irrelevant')]"
+						text = "The Senate's political relevance is currently #non-existent#!:\nNo related events will ever happen."
 						position = { 5 -5 }
-						datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_irrelevant')]"
-						visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-					}
+						
+					}					
+				}
+				textbox = {
+					datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_medium')]"
+					visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					
 					text_single = {
-						text = "[Localize('roman_administration_senate_political_relevance_medium')]"
+						text = "The Senate's political relevance is currently #medium#!:\nOnly minor related events will happen."
 						position = { 5 -5 }
-						datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_medium')]"
-						visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-					}
-					text_single = {
-						text = "[Localize('roman_administration_senate_political_relevance_high')]"
-						position = { 5 -5 }
-						datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_high')]"
-						visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						
 					}
 				}
+				textbox = {
+					datacontext = "[GetScriptedGui('am_institutions_roman_administration_senate_political_relevance_high')]"
+					visible = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					
+					text_single = {
+						text = "The Senate's political relevance is currently #high#!:\nMajor related events will occur."
+						position = { 5 -5 }
+						
+					}
+				}
+				
 
 				vbox = {
 					parentanchor = hcenter
@@ -763,6 +835,233 @@ widget = {
 						name = "give_more_political_power_to_the_senate"
 					}
 				}
+			}
+		}
+	}
+
+	### AVE MARIA - ARMY WINDOW
+	window = {
+		name = "army_window"
+		parentanchor = center
+		size = { 1000 950 }
+		position = { -150 0 }
+		layer = windows_layer
+		datacontext = "[GetScriptedGui('am_institutions_army_gui_toggle')]"
+		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		
+		using = Window_Background
+		using = Window_Decoration
+
+		## Main box
+		vbox = {
+			using = Window_Margins
+			
+			## Header
+			header_pattern = {
+				layoutpolicy_horizontal = expanding
+				blockoverride "header_text"
+				{
+					text = "[Localize('roman_administration_army_tab_header')]"
+				}
+				blockoverride "button_close"
+				{
+					datacontext = "[GetScriptedGui('am_institutions_army_gui_close')]"
+					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				}
+			}
+
+			## Main Box where senate things are
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				
+				widget = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					## Main box
+					vbox = {
+						spacing = 10
+
+						## High Office Box
+						vbox = {
+							spacing = 10
+						
+							vbox = {
+								name = "high_military_offices"
+								layoutpolicy_horizontal = expanding
+								spacing = 15
+
+								text_label_center = {
+									text = "Military High Offices"
+									using = Font_Size_Medium
+									default_format = "#high"								
+								}
+
+								background = {
+									#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+									fittype = centercrop
+									alpha = 0.8
+
+									using = Mask_Rough_Edges
+								}
+
+								hbox = {
+									name = "high_military_offices_grid"
+									spacing = 70
+
+									dynamicgridbox = {
+										datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_imperial_tagma_officials')]"
+										datamodel_wrap = 7
+										flipdirection = yes
+										
+										state = {
+											name = get_list
+											trigger_on_create = yes
+											duration = 2
+											on_start = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											next = get_list
+										}
+
+										item = {
+											portrait_shoulders = {
+												datacontext = "[Scope.GetCharacter]"
+
+												blockoverride "description_relation_text" {
+													text = "[Character.GetPlayerGuestDescription]"
+												}
+
+												background = {
+													using = Background_Area
+												}
+											}
+										}
+									}
+								}
+
+							}
+
+							## Line to visually divide stuff
+							divider = {
+								layoutpolicy_horizontal = expanding
+							}
+
+						}
+
+						## Provincial military official list box
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+
+							background = {
+								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+								fittype = centercrop
+								alpha = 0.8
+
+								using = Mask_Rough_Edges
+							}
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								text_label_center = {
+									text = "Provincial Military Offices"
+									using = Font_Size_Medium
+									default_format = "#high"								
+								}
+							}
+
+
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									layoutpolicy_vertical = expanding
+
+									scrollbox  = {
+										name = "character_military_officials_grid"
+										parentanchor = top
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+		
+										blockoverride "scrollbox_margins" { }
+		
+										blockoverride "scrollbox_content"
+										{
+											spacing = 20
+											margin = { 0 20 }
+		
+											vbox = {
+												layoutpolicy_horizontal = expanding
+												layoutpolicy_vertical = expanding
+												spacing = 0
+		
+												dynamicgridbox = {
+													datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_military_officials')]"
+													datamodel_wrap = 7
+													flipdirection = yes
+													
+													state = {
+														name = get_list
+														trigger_on_create = yes
+														duration = 2
+														on_start = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+														next = get_list
+													}
+		
+													item = {
+														portrait_shoulders = {
+															datacontext = "[Scope.GetCharacter]"
+		
+															blockoverride "description_relation_text" {
+																text = "[Character.GetPlayerGuestDescription]"
+															}
+
+															background = {
+																using = Background_Area
+															}
+														}
+													}
+												}
+											}
+										}								
+									}
+								}
+							}
+							#Make a difference east / west ?
+							hbox = {
+								vbox = {
+									
+								}
+							}
+
+							divider = {
+
+							}
+
+							hbox = {
+								vbox = {
+									
+								}
+							}
+						}
+					}					
+				}
+			
+			}
+
+			## Divider for visuals
+			divider = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			## Footer area
+			hbox = {
+				name = "footer_army"
+				layoutpolicy_horizontal = expanding
+				
+				
 			}
 		}
 	}
@@ -1762,8 +2061,11 @@ widget = {
 					{
 						texture = "gfx/interface/icons/hud_maintab/maintab_institutions.dds"
 
-						datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						# datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
+						# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onclick = "[GetScriptedGui('am_institutions_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+						onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+						onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 						down = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					}
 
