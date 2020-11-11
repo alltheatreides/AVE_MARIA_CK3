@@ -1,4 +1,22 @@
-﻿set_relation_junior_emperor = {
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+### ROMAN ADMINISTRATION SCRIPTED EFFECTS
+
+
+#############################################
+# RELATIONSHIP EFFECT						#
+#############################################
+
+set_relation_junior_emperor = {
 	third = THEY_GET_JUNIOR_EMPEROR
 	third_past = THEY_GOT_JUNIOR_EMPEROR
 	global = GLOBAL_BECOME_JUNIOR_EMPEROR
@@ -10,7 +28,10 @@ remove_relation_junior_emperor = {
 	global_past = GLOBAL_LOST_JUNIOR_EMPEROR
 }
 
-### TERMS OF OFFICE EFFECTS
+
+#############################################
+# TERMS OF OFFICE EFFECTS					#
+#############################################
 
 ## Clean the terms of office modifier and variables
 roman_administration_remove_terms_of_office_modifier_and_variable = {
@@ -120,7 +141,9 @@ roman_administration_civilian_titles_transfer = {
 }
 
 
-### SALARY INDICATION MODIFIER
+#############################################
+# SALARY INDICATION MODIFIER EFFECTS		#
+#############################################
 
 ## Clean the salary modifier indicator
 roman_administration_remove_salary_indicator = {
@@ -3813,4 +3836,435 @@ roman_administration_remove_salary_cost_modifier = {
 	remove_character_modifier = emperor_salary_cost_modifier_499
 	remove_character_modifier = emperor_salary_cost_modifier_500
 
+}
+
+
+
+#############################################
+# POPULARITY EFFECTS						#
+#############################################
+
+## Update calculations of Popularity variable
+roman_administration_update_popularity_variable = {
+
+	## Creating a calculation variable for operations
+	## First adding static Martial, Stewardship, Prowess, Prestige and Piety
+	set_variable = {
+		name = calculate_character_popularity
+		value = 0
+	}
+	## Dividing Prestige Value by 10 as prestige values are pretty big
+	set_variable = {
+		name = calculate_character_popularity_prestige
+		value = 0
+	}
+	change_variable = {
+		name = calculate_character_popularity_prestige
+		add = prestige 
+	}
+	change_variable = {
+		name = calculate_character_popularity_prestige
+		multiply = 0.1 
+	}
+	# Adding the result to popularity variable
+	change_variable = {
+		name = calculate_character_popularity
+		add = var:calculate_character_popularity_prestige
+	}
+	remove_variable = calculate_character_popularity_prestige
+
+	## Dividing Piety Value by 10 as piety values are pretty big
+	set_variable = {
+		name = calculate_character_popularity_piety
+		value = 0
+	}
+	change_variable = {
+		name = calculate_character_popularity_piety
+		add = piety 
+	}
+	change_variable = {
+		name = calculate_character_popularity_piety
+		multiply = 0.1 
+	}
+	# Adding the result to popularity variable
+	change_variable = {
+		name = calculate_character_popularity
+		add = var:calculate_character_popularity_piety
+	}
+	remove_variable = calculate_character_popularity_piety
+	
+	## Straight up adding Martial, Stewardship, Prowess
+	change_variable = {
+		name = calculate_character_popularity
+		add = martial
+	}
+	change_variable = {
+		name = calculate_character_popularity
+		add = stewardship
+	}
+	change_variable = {
+		name = calculate_character_popularity
+		add = prowess
+	}
+
+	## Then static removal of points from traits (for now 5, might need to balance higher ?)
+	if = {
+		limit = {
+			has_trait = am_inconstant
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = -5
+		}
+	}
+	if = {
+		limit = {
+			has_trait = am_hypocritical
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = -5
+		}
+	}
+	if = {
+		limit = {
+			has_trait = am_greedy
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = -5
+		}
+	}
+	if = {
+		limit = {
+			has_trait = am_intolerant
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = -5
+		}
+	}
+
+	## Add the result of calculation to the popularity variable if you don't
+	if = {
+		limit = {
+			NOT = {
+				has_variable = roman_administration_popularity
+			}
+		}
+		## If no Popularity variable already, create it
+		roman_administration_set_popularity_variable = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = var:calculate_character_popularity
+		}
+	}
+
+
+	## If Popularity variable already exists , compare result of calculation with current value and update
+	if = {
+		limit = {
+			has_variable = roman_administration_popularity
+		}
+
+		## Replace new value with the other
+		set_variable = {
+			name = roman_administration_popularity
+			value = var:calculate_character_popularity
+		}
+	}
+
+	## Clean up the variables
+	remove_variable = calculate_character_popularity
+
+	roman_administration_update_popularity_modifier = yes
+}
+
+## Character Scope effects to set popularity variable
+roman_administration_set_popularity_variable = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = roman_administration_popularity
+			}
+		}
+		set_variable = {
+			name = roman_administration_popularity
+			value = 0
+		}
+	}
+}
+
+## Character Scope effects to increase small amount of popularity variable
+roman_administration_add_popularity_small_amount = {	
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = 5
+	}	
+}
+
+## Character Scope effects to increase medium amount of popularity variable
+roman_administration_add_popularity_medium_amount = {
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = 10
+	}
+}
+
+## Character Scope effects to increase massive amount of popularity variable
+roman_administration_add_popularity_massive_amount = {
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = 15
+	}
+}
+
+## Visual Update of the popularity modifier, red is negative, green positive, loc indicates amount
+roman_administration_update_popularity_modifier = {
+	if = {
+		limit = {
+			has_variable = roman_administration_popularity
+			var:roman_administration_popularity <= 0
+		}
+		remove_character_modifier = roman_administration_popularity_modifier_positive
+		add_character_modifier = {
+			modifier = roman_administration_popularity_modifier_negative
+		}
+	}
+	if = {
+		limit = {
+			has_variable = roman_administration_popularity
+			var:roman_administration_popularity > 0
+		}
+		remove_character_modifier = roman_administration_popularity_modifier_negative
+		add_character_modifier = {
+			modifier = roman_administration_popularity_modifier_positive
+		}
+	}
+}
+
+
+#############################################
+# LEGITIMACY EFFECTS						#
+#############################################
+
+## Character Scope effects to set legitimacy variable
+roman_administration_update_legitimacy_variable = {
+
+	
+	## Creating a calculation variable for operations
+	set_variable = {
+		name = calculate_character_legitimacy
+		value = 0
+	}
+	
+	
+	## ADDITION
+	## born in the purple 
+	if = {
+		limit = {
+			has_trait = born_in_the_purple
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 50
+		}
+	}
+	## Being the emperor
+	if = {
+		limit = {
+			primary_title = {
+				this = title:e_byzantium
+			}			
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 50
+		}
+	}
+	## High offices
+	if = {
+		limit = {
+			roman_administration_holds_high_office_title_trigger = yes		
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 25
+		}
+	}
+	## War won
+	if = {
+		limit = {
+			var:de_re_militari_war_won_counter >= 2		
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 50
+		}
+	}
+
+	## Need to add familial connections to the reigning family, but gotta save up previous emperors in a global_variable list I think
+	## Stop gap measure ? Assign a variable on the dynasty when you gain the Imperial title and count from here
+	if = {
+		limit = {
+			dynasty = {
+				var:roman_administration_dynastic_number_of_emperors >= 1
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 50
+		}
+	}
+
+	if = {
+		limit = {
+			dynasty = {
+				var:roman_administration_dynastic_number_of_emperors >= 5
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 100
+		}
+	}
+	
+	## REMOVAL
+	## Known murderer, the removal of legitimacy effect from murdering someone from imperial family should go in murder scheme effects with a trigger if they are of the imperial family
+	if = {
+		limit = {
+			has_trait = murderer
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = -25
+		}
+	}
+	## Married to a non orthodox character
+	if = {
+		limit = {
+			any_spouse = {
+				NOT = { faith = faith:orthodox }
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = -25
+		}
+	}
+	## Married to a non orthodox character
+	if = {
+		limit = {
+			any_spouse = {
+				NOT = { culture = culture:greek }
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = -15
+		}
+	}
+
+	## Add the result of calculation to the legitimacy variable if you don't
+	if = {
+		limit = {
+			NOT = {
+				has_variable = roman_administration_legitimacy
+			}
+		}
+		## If no legitimacy variable already, create it
+		roman_administration_set_legitimacy_variable = yes
+		change_variable = {
+			name = roman_administration_legitimacy
+			add = var:calculate_character_legitimacy
+		}
+	}
+
+
+	## If legitimacy variable already exists , compare result of calculation with current value and update
+	if = {
+		limit = {
+			has_variable = roman_administration_legitimacy
+		}
+
+		## Replace new value with the other
+		set_variable = {
+			name = roman_administration_legitimacy
+			value = var:calculate_character_legitimacy
+		}
+	}
+
+	## Clean up the variables
+	remove_variable = calculate_character_legitimacy
+
+	roman_administration_update_legitimacy_modifier = yes
+}
+
+## Character Scope effects to set legitimacy variable
+roman_administration_set_legitimacy_variable = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = roman_administration_legitimacy
+			}
+		}
+		set_variable = {
+			name = roman_administration_legitimacy
+			value = 0
+		}
+	}
+}
+
+## Character Scope effects to increase small amount of legitimacy variable
+roman_administration_add_legitimacy_small_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = 5
+	}
+}
+
+## Character Scope effects to increase medium amount of legitimacy variable
+roman_administration_add_legitimacy_medium_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = 10
+	}
+}
+
+## Character Scope effects to increase massive amount of legitimacy variable
+roman_administration_add_legitimacy_massive_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = 15
+	}
+}
+
+## Visual Update of the legitimacy modifier, red is negative, green positive, loc indicates amount
+roman_administration_update_legitimacy_modifier = {
+	if = {
+		limit = {
+			has_variable = roman_administration_legitimacy
+			var:roman_administration_legitimacy <= 0
+		}
+		remove_character_modifier = roman_administration_legitimacy_modifier_positive
+		add_character_modifier = {
+			modifier = roman_administration_legitimacy_modifier_negative
+		}
+	}
+	if = {
+		limit = {
+			has_variable = roman_administration_legitimacy
+			var:roman_administration_legitimacy > 0
+		}
+		remove_character_modifier = roman_administration_legitimacy_modifier_negative
+		add_character_modifier = {
+			modifier = roman_administration_legitimacy_modifier_positive
+		}
+	}
 }

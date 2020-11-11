@@ -22,54 +22,11 @@ ave_maria_opus_ruralium_commodorum.0001 = {
 	hidden = yes
 
 	trigger = {
-		any_realm_province = {
-			OR = {
-				has_building = sparsly_populated_holding_building_city_construction
-				has_building = sparsly_populated_holding_building_castle_construction
-				has_building = sparsly_populated_holding_building_temple_construction
-			}			
-		}
+		
 	}
 
 	immediate = {
-		if = {
-			limit = {
-				any_realm_province = {
-					has_building = sparsly_populated_holding_building_city_construction		
-				}
-			}
-			any_realm_province = {
-				limit = {
-					has_building = sparsly_populated_holding_building_city_construction		
-				}
-				set_holding_type = city_holding
-			}			
-		}
-		if = {
-			limit = {
-				any_realm_province = {
-					has_building = sparsly_populated_holding_building_castle_construction		
-				}
-			}
-			any_realm_province = {
-				limit = {
-					has_building = sparsly_populated_holding_building_castle_construction		
-				}
-				set_holding_type = castle_holding
-			}			
-		}
-		if = {
-			limit = {
-				any_realm_province = {
-					has_building = sparsly_populated_holding_building_temple_construction		
-				}
-			}
-			any_realm_province = {
-				limit = {
-					has_building = sparsly_populated_holding_building_temple_construction		
-				}
-				set_holding_type = temple_holding
-			}			
-		}
+		orc_apply_demesne_provinces_distance_malus = yes
+		orc_apply_demesne_provinces_distance_malus_modifier = yes
 	}
 }

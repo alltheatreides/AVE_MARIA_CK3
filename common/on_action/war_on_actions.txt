@@ -168,6 +168,10 @@ on_war_won_attacker = {
 			}
 		}
 
+		
+
+		### AVE MARIA
+		## making you roman administrative gov if you go independent
 		scope:attacker = {
 			if = {
 				limit = {
@@ -181,6 +185,29 @@ on_war_won_attacker = {
 				add_realm_law = ave_maria_roman_administration_realm_law
 			}
 		}
+
+		## Counting up victories
+		if = {
+			limit = {
+				scope:attacker = {
+					NOT = {
+						has_variable = de_re_militari_war_won_counter
+					}
+				}
+				
+			}
+			scope:attacker = {
+				set_variable = {
+					name = de_re_militari_war_won_counter
+					value = 0
+				}
+				change_variable = {
+					name = de_re_militari_war_won_counter
+					add = 1
+				}
+			}			
+		}
+
 	}
 
 	events = {
@@ -216,6 +243,30 @@ on_war_won_defender = {
 					remove_character_flag = mustered
 				}
 			}
+		}
+
+
+		## AVE MARIA
+		## Counting up victories
+		if = {
+			limit = {
+				scope:defender = {
+					NOT = {
+						has_variable = de_re_militari_war_won_counter
+					}
+				}
+				
+			}
+			scope:defender = {
+				set_variable = {
+					name = de_re_militari_war_won_counter
+					value = 0
+				}
+				change_variable = {
+					name = de_re_militari_war_won_counter
+					add = 1
+				}
+			}			
 		}
 	}
 

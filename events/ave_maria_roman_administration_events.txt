@@ -305,6 +305,7 @@ ave_maria_roman_administration_events.0003 = {
 		## "Spend lavishly, everyone must see our generosity and magnificence"
 		# Scope to patriarch and give him a positive flag
 		add_character_flag = imperial_coronation_lavish_coronation
+		roman_administration_add_popularity_medium_amount = yes
 		remove_short_term_gold = 300
 		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
 		capital_county = {
@@ -2041,16 +2042,18 @@ ave_maria_roman_administration_events.6969 = {
 		# 	start = root.capital_province
 		# }
 
-		orc_apply_demesne_provinces_distance_malus = yes
-		every_held_title = {
-			limit = {
-				tier = tier_county
-			}
-			add_county_modifier = {
-				modifier = orc_comm_malus_modifier
-			}
-		}
-		
+		# orc_apply_demesne_provinces_distance_malus = yes
+		# every_held_title = {
+		# 	limit = {
+		# 		tier = tier_county
+		# 	}
+		# 	add_county_modifier = {
+		# 		modifier = orc_comm_malus_modifier
+		# 	}
+		# }
+
+		roman_administration_add_popularity_medium_amount = yes
+		roman_administration_add_legitimacy_massive_amount = yes
 	}
 
 	## TEST

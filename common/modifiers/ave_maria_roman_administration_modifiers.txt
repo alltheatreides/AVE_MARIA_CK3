@@ -9,36 +9,31 @@
 
 # Written by Atreides
 
-crowned_basileus = {
-	icon = crowned_basileus
-	vassal_opinion = 5
-	religious_vassal_opinion = 5
-	monthly_prestige = 1
-	monthly_piety = 0.5
-}
+# TABLE OF CONTENT:
+##### 1) TERMS OF OFFICE RELATED MODIFIERS
+##### Duration of office and salary
 
-crowned_coemperor = {
-	icon = crowned_basileus
-	vassal_opinion = 5
-	religious_vassal_opinion = 5
-	monthly_prestige = 1
-	monthly_piety = 0.5
-}
+##### 2) PLOT RELATED MODIFIERS
+##### Modifiers for plot success chance 
 
-roman_administration_frustrated_constantinople_populace = {
-	icon = health_negative
-	county_opinion_add = -20
-}
+##### 3) RELATIONSHIP MODIFIERS
+##### Modifiers for character and province popularity
 
-roman_administration_happy_constantinople_populace = {
-	icon = health_positive
-	county_opinion_add = 20
-}
+##### 4) POPULARITY MODIFIERS
+##### Modifiers for character and province popularity
 
-roman_administration_emperor_favourite = {
-	icon = roman_administration_emperor_favourite
-}
+##### 5) LEGITIMACY MODIFIERS
+##### Modifiers for character and province legitimacy
 
+##### 6) SALARY NEGATIVE INCOME MODIFIERS FOR THE EMPEROR
+##### Negative income modifier for the emperor from the number of salaried officials goes up to 500
+
+
+#############################################
+# TERMS OF OFFICE RELATED MODIFIERS			#
+#############################################
+
+## Duration of office
 roman_administration_terms_of_office_0 = {
 	icon = roman_administration_terms_of_office_0
 }
@@ -58,34 +53,84 @@ roman_administration_terms_of_office_5 = {
 	icon = roman_administration_terms_of_office_5
 }
 
-
+## Salary Modifiers
 roman_administration_high_official_salary = {
 	icon = stewardship_positive
 }
-
 roman_administration_strategos_salary = {
 	icon = stewardship_positive
 }
-
 roman_administration_krites_salary = {
 	icon = stewardship_positive
 }
+
+
+#############################################
+# PLOT RELATED RELATED MODIFIERS			#
+#############################################
 
 military_revolt_scheme_convinced = {
 	hide_effects = yes
 	
 }
-
 military_revolt_scheme_refused = {
 	hide_effects = yes
 	scheme_secrecy = -5
 }
-
 military_revolt_levies_bonus = {
 	hide_effects = yes
 	levy_size = 10
 }
 
+
+#############################################
+# RELATIONSHIP MODIFIERS					#
+#############################################
+
+roman_administration_emperor_favourite = {
+	icon = roman_administration_emperor_favourite
+}
+
+
+#############################################
+# POPULARITY MODIFIERS						#
+#############################################
+
+## Character Popularity modifier, indicates a negative value, desc displays variable value
+roman_administration_popularity_modifier_negative = {
+	icon = roman_administration_popularity_negative
+}
+roman_administration_popularity_modifier_positive = {
+	icon = roman_administration_popularity_positive
+}
+
+## Constantinople/province Opinion modifier
+roman_administration_frustrated_constantinople_populace = {
+	icon = health_negative
+	county_opinion_add = -20
+}
+roman_administration_happy_constantinople_populace = {
+	icon = health_positive
+	county_opinion_add = 20
+}
+
+
+#############################################
+# LEGITIMACY MODIFIERS						#
+#############################################
+
+## Character legitimacy modifier, indicates a negative value, desc displays variable value
+roman_administration_legitimacy_modifier_negative = {
+	icon = roman_administration_legitimacy_negative
+}
+roman_administration_legitimacy_modifier_positive = {
+	icon = roman_administration_legitimacy_positive
+}
+
+
+#############################################
+# SALARY NEGATIVE INCOME MODIFIERS 			#
+#############################################
 
 ### TOTAL SALARY COST MODIFIERS FOR THE EMPEROR
 emperor_salary_cost_modifier_1 = {			

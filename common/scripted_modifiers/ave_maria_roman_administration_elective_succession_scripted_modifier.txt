@@ -112,6 +112,123 @@
 			}
 		}
 	}
+
+	modifier = {
+		desc = tooltip_roman_administration_legitimacy_vote_opinion_positive
+		scope:candidate = {
+			has_variable = roman_administration_legitimacy
+		}
+		add = {
+			value = 50
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 0
+						var:roman_administration_legitimacy <= 50
+					}					
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 50
+						var:roman_administration_legitimacy <= 60
+					}					
+				}
+				add = 20
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 60
+						var:roman_administration_legitimacy <= 70
+					}					
+				}
+				add = 30
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 70
+						var:roman_administration_legitimacy <= 80
+					}					
+				}
+				add = 40
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 80
+						var:roman_administration_legitimacy <= 90
+					}					
+				}
+				add = 50
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 90
+						var:roman_administration_legitimacy <= 100
+					}					
+				}
+				add = 60
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 100
+						var:roman_administration_legitimacy <= 110
+					}					
+				}
+				add = 70
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 110
+						var:roman_administration_legitimacy <= 120
+					}					
+				}
+				add = 80
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 120
+						var:roman_administration_legitimacy <= 130
+					}					
+				}
+				add = 90
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 130
+						var:roman_administration_legitimacy <= 140
+					}					
+				}
+				add = 100
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy > 140
+						var:roman_administration_legitimacy <= 150
+					}					
+				}
+				add = 110
+			}
+			if = {
+				limit = {
+					scope:candidate = {
+						var:roman_administration_legitimacy >= 150
+					}					
+				}
+				add = 120
+			}
+		}
+	}
 }
 
 elector_voting_pattern_opinion_roman_administration_tagma_elective_modifier = {
