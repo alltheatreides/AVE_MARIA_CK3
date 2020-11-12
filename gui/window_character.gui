@@ -1627,6 +1627,59 @@ window = {
 								}
 							}
 
+
+							# Legitimacy addition
+							vbox = {
+								## Add here a scripted gui visible
+								#visible = "[Character.HasLandedTitles]"
+								#visible = "[GetScriptedGui('am_roman_administration_has_legitimacy').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+								datacontext = "[GetScriptedGui('am_roman_administration_has_legitimacy')]"
+								visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
+								spacing = -2
+								min_width = 40
+
+								tooltip = "legitimacy_tooltip"
+
+								icon = {
+									name = "legitimacy_icon"
+									size = { 30 30 }
+									texture = "gfx/interface/icons/icon_legitimacy.dds"
+								}
+
+								text_single = {
+									name = "total_gold"
+									text = "[Character.MakeScope.Var('roman_administration_legitimacy').GetValue|0]"
+									default_format = "#high"
+									align = center|nobaseline
+								}
+							}
+
+							# Popularity addition
+							vbox = {
+								## Add here a scripted gui visible
+								#visible = "[Character.HasLandedTitles]"
+								#visible = "[GetScriptedGui('am_roman_administration_has_legitimacy').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+								datacontext = "[GetScriptedGui('am_roman_administration_has_popularity')]"
+								visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
+								spacing = -2
+								min_width = 40
+								tooltip = "popularity_tooltip"
+
+								icon = {
+									name = "popularity_icon"
+									size = { 30 30 }
+									texture = "gfx/interface/icons/icon_popularity.dds"
+								}
+
+								text_single = {
+									name = "total_gold"
+									text = "[Character.MakeScope.Var('roman_administration_popularity').GetValue|0]"
+									#text = "[Character.GetDread|0]"
+									default_format = "#high"
+									align = center|nobaseline
+								}
+							}
+
 							spacer = {
 								size = { 0 3 }
 							}

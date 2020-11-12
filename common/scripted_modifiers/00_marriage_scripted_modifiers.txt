@@ -1032,10 +1032,9 @@ marriage_ai_accept_modifier = {
 			is_adult = yes
 			OR = {
 				fertility < 0.1
-				marriage_fertile_age_value >= 42 #45 is the cut-off age, but you need at least some time before that...
 				AND = {
 					is_female = yes
-					age >= marriage_cutoff_age_value
+					age >= marriage_female_fertility_cutoff_age_value
 				}
 			}
 		}
@@ -1078,9 +1077,75 @@ marriage_ai_accept_modifier = {
 			is_adult = yes
 			OR = {
 				fertility < 0.1
-				marriage_fertile_age_value >= 42 #45 is the cut-off age, but you need at least some time before that...
+				AND = {
+					is_female = yes
+					age >= marriage_female_fertility_cutoff_age_value
+				}
 			}
 		}
+		desc = MARRY_LOW_FERTILITY_REASON
+	}
+
+	modifier = { # A Recipient is VERY unlikely to agree to a marriage where the Secondary_recipient is a fertile woman and the Secondary_actor is an underage boy who won't become an adult before the woman is infertile
+		add = -200
+		
+		scope:secondary_recipient = {
+			is_female = yes
+			is_adult = yes
+			age < 45
+			OR = {
+				AND = {
+					exists = scope:secondary_recipient.dynasty
+					scope:secondary_recipient.dynasty = {
+						OR = {
+							any_dynasty_member = {
+								count >= 2
+							}
+							dynasty_prestige_level > 1
+			}
+		}
+				}
+				is_ruler = yes
+				is_close_or_extended_family_of = scope:recipient
+				this = scope:recipient.player_heir
+			}
+		}
+		scope:secondary_actor = {
+			is_adult = no
+		}
+		marriage_fertile_age_reverse_value >= 43
+		
+		desc = MARRY_LOW_FERTILITY_REASON
+	}
+
+	modifier = { # A Recipient is VERY unlikely to agree to a marriage where the Secondary_actor is a woman and the Secondary_recipient is an underage boy who won't become an adult before the woman is infertile
+		add = -200
+		
+		scope:secondary_actor = {
+			is_female = yes
+			is_adult = yes
+		}
+		scope:secondary_recipient = {
+			is_adult = no
+			OR = {
+				AND = {
+					exists = scope:secondary_recipient.dynasty
+					scope:secondary_recipient.dynasty = {
+						OR = {
+							any_dynasty_member = {
+								count >= 2
+							}
+							dynasty_prestige_level > 1
+						}
+					}
+				}
+				is_ruler = yes
+				is_close_or_extended_family_of = scope:recipient
+				this = scope:recipient.player_heir
+			}
+		}
+		marriage_fertile_age_value >= 43
+		
 		desc = MARRY_LOW_FERTILITY_REASON
 	}
 	

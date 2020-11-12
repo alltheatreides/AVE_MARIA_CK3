@@ -526,6 +526,14 @@ monthly_pulse.12 = {
 	immediate = {
 		## AVE MARIA MAINTENANCE - OFFICIALS SALARY
 		title:e_byzantium.holder = {
+			## Updating Legitimacy and Popularity
+			roman_administration_update_popularity_variable = yes
+			roman_administration_update_legitimacy_variable = yes
+
+			every_close_or_extended_family_member = {
+				roman_administration_update_legitimacy_variable = yes
+			}
+
 			## High office salary
 			every_vassal = {
 				if = {
@@ -563,12 +571,18 @@ monthly_pulse.12 = {
 					add_gold = 1
 				}
 			}
+
+			every_vassal = {
+				## Updating Legitimacy
+				roman_administration_update_legitimacy_variable = yes
+			}
 		}
 	}
 	
 	option = {
 	}
 }
+
 monthly_pulse.13 = {
 	type = empty
 	hidden = yes

@@ -62,6 +62,10 @@ roman_administration_emperor_inheritance_effect = {
 	## Give you the Salary malus
 	roman_administration_update_total_salary_cost = yes
 
+	## Updating Legitimacy and Popularity
+	roman_administration_update_popularity_variable = yes
+	roman_administration_update_legitimacy_variable = yes
+
 	## Giving Constantinople to the new emperor
 	title:c_byzantion = {
 		create_title_and_vassal_change = {
@@ -3977,7 +3981,7 @@ roman_administration_update_popularity_variable = {
 	## Clean up the variables
 	remove_variable = calculate_character_popularity
 
-	roman_administration_update_popularity_modifier = yes
+	#roman_administration_update_popularity_modifier = yes
 }
 
 ## Character Scope effects to set popularity variable
@@ -4051,7 +4055,7 @@ roman_administration_update_popularity_modifier = {
 # LEGITIMACY EFFECTS						#
 #############################################
 
-## Character Scope effects to set legitimacy variable
+## Character Scope effects to Update calculations of legitimacy variable
 roman_administration_update_legitimacy_variable = {
 
 	
@@ -4200,7 +4204,7 @@ roman_administration_update_legitimacy_variable = {
 	## Clean up the variables
 	remove_variable = calculate_character_legitimacy
 
-	roman_administration_update_legitimacy_modifier = yes
+	#roman_administration_update_legitimacy_modifier = yes
 }
 
 ## Character Scope effects to set legitimacy variable

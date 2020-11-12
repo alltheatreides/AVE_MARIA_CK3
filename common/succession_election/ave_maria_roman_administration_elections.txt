@@ -79,16 +79,12 @@ roman_administration_elective = {
 			type = holder_direct_vassals
 			limit = {
 				OR = {
-					AND = {
-						joined_faction = {
-							OR = {
-								faction_is_type = roman_administration_army_faction
-								faction_is_type = roman_administration_bureaucracy_faction
-								faction_is_type = roman_administration_palace_faction
-							}
-						}
-						is_a_faction_leader = yes
+					any_held_title = {
+						this = title:d_megas_domestikos
 					}		
+					any_held_title = {
+						this = title:d_logothetetes_tou_dromou
+					}
 					any_held_title = {
 						this = title:k_orthodox
 					}
@@ -99,16 +95,12 @@ roman_administration_elective = {
 			type = title_dejure_vassals
 			limit = {
 				OR = {
-					AND = {
-						joined_faction = {
-							OR = {
-								faction_is_type = roman_administration_army_faction
-								faction_is_type = roman_administration_bureaucracy_faction
-								faction_is_type = roman_administration_palace_faction
-							}
-						}
-						is_a_faction_leader = yes
+					any_held_title = {
+						this = title:d_megas_domestikos
 					}		
+					any_held_title = {
+						this = title:d_logothetetes_tou_dromou
+					}
 					any_held_title = {
 						this = title:k_orthodox
 					}
@@ -119,16 +111,12 @@ roman_administration_elective = {
 			type = title_claimants
 			limit = {
 				OR = {
-					AND = {
-						joined_faction = {
-							OR = {
-								faction_is_type = roman_administration_army_faction
-								faction_is_type = roman_administration_bureaucracy_faction
-								faction_is_type = roman_administration_palace_faction
-							}
-						}
-						is_a_faction_leader = yes
+					any_held_title = {
+						this = title:d_megas_domestikos
 					}		
+					any_held_title = {
+						this = title:d_logothetetes_tou_dromou
+					}
 					any_held_title = {
 						this = title:k_orthodox
 					}

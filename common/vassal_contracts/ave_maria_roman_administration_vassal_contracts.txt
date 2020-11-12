@@ -233,16 +233,48 @@ ave_maria_roman_administration_theme_corruption = {
 ave_maria_roman_administration_special_contract = {
 	display_mode = radiobutton
 	is_shown = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-		}
+		# OR = {
+		# 	top_liege = {
+		# 		primary_title = {
+		# 			this = title:e_byzantium
+		# 		}
+		# 	}
+		# 	primary_title = {
+		# 		this = title:e_byzantium
+		# 	}
+		# }
 		scope:vassal.primary_title.tier >= tier_duchy
 	}
 	obligation_levels = {
-		special_contract_none = {
+
+		ave_maria_roman_administration_fiscalized_theme = {
+			is_valid = {
+				OR = {
+					top_liege = { has_title = title:e_byzantium }
+					top_liege = { has_title = title:e_roman_empire }
+					has_title = title:e_byzantium
+					has_title = title:e_roman_empire
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+			}
 			position = { 0 1 }
 			default = yes
+
+			liege_modifier = {
+				men_at_arms_limit = 1
+				men_at_arms_cap = 1
+			}
+			
+			vassal_modifier = {
+				## Remove levies basically and add +25% more taxes
+				levy_size = -10
+				tax_factor = 0.25
+			}
+			
+			flag = ave_maria_roman_administration_fiscalized_theme_contract
 		}
+
+		## Supposed to be for central tagmatic forces
 		ave_maria_roman_administration_tagma = {
 			is_valid = {
 				OR = {
@@ -253,8 +285,8 @@ ave_maria_roman_administration_special_contract = {
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
-			parent = special_contract_none
-			position = { 1 0 }
+			parent = ave_maria_roman_administration_fiscalized_theme
+			position = { 0 2 }
 			
 			liege_modifier = {
 				
@@ -266,5 +298,95 @@ ave_maria_roman_administration_special_contract = {
 			
 			flag = ave_maria_roman_administration_tagma_contract
 		}
+		
+		ave_maria_roman_administration_stratified_theme = {
+			is_valid = {
+				OR = {
+					top_liege = { has_title = title:e_byzantium }
+					top_liege = { has_title = title:e_roman_empire }
+					has_title = title:e_byzantium
+					has_title = title:e_roman_empire
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+			}
+			parent = ave_maria_roman_administration_tagma
+			position = { 0 3 }
+			
+			liege_modifier = {
+				
+			}
+			
+			vassal_modifier = {
+				## Leave levies untouched but removes most of taxes
+				tax_factor = -0.80
+			}
+			
+			flag = ave_maria_roman_administration_stratified_theme_contract
+		}
+
+		ave_maria_roman_administration_doukaton = {
+			is_valid = {
+				OR = {
+					top_liege = { has_title = title:e_byzantium }
+					top_liege = { has_title = title:e_roman_empire }
+					has_title = title:e_byzantium
+					has_title = title:e_roman_empire
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+				scope:vassal.primary_title = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+						any_neighboring_county = {
+							holder = {
+								NOT = {
+									top_liege = {
+										this = title:e_byzantium.holder
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			parent = ave_maria_roman_administration_stratified_theme
+			position = { 0 4 }
+			
+			liege_modifier = {
+				
+			}
+			
+			vassal_modifier = {
+				## None as it should be balanced ?
+			}
+			
+			flag = ave_maria_roman_administration_doukaton_theme_contract
+		}
+
+		ave_maria_roman_administration_kouratoreia = {
+			is_valid = {
+				OR = {
+					top_liege = { has_title = title:e_byzantium }
+					top_liege = { has_title = title:e_roman_empire }
+					has_title = title:e_byzantium
+					has_title = title:e_roman_empire
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+			}
+			parent = ave_maria_roman_administration_doukaton
+			position = { 0 5 }
+			
+			liege_modifier = {
+				
+			}
+			
+			vassal_modifier = {
+				## Remove levies basically and add +50% more taxes
+				levy_size = -10
+				tax_factor = 0.5
+			}
+			
+			flag = ave_maria_roman_administration_doukaton_theme_contract
+		}
+
 	}
 }

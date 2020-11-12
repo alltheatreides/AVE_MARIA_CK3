@@ -1,4 +1,4 @@
-l_english:
+﻿l_english:
  PASS_LAW_TOOLTIP_TITLE:2 "[Select_CString(GuiLaw.IsEnacted, '', 'Pass')] [Law.GetNameNoTooltip]\n#weak [Law.GetSubName]#!"
  e_byzantium:0 "Roman Empire"
 
@@ -134,11 +134,11 @@ l_english:
 
 
  ### GOVERNMENT NAMES
- roman_administration_government:0 "Administrative"
+ roman_administration_government:0 "Roman"
  roman_administration_government_desc:0 "The Roman Empire had a complex system of aristocracy and bureaucracy with the Emperor at its head and beneath him a multitude of officials and court functionaries operating the complex administrative machinery that was necessary to run the empire."
- roman_administration_civilian_government:0 "Civilian Administration"
+ roman_administration_civilian_government:0 "Roman"
  roman_administration_civilian_government_desc:0 "Roman Civilian Government is a form of organization limited to the Empire of the Romans with a focus on the administrative management of the Empire from tax collection to justice."
- roman_administration_military_government:0 "Professional Military"
+ roman_administration_military_government:0 "Roman"
  roman_administration_military_government_desc:0 "Roman Military Government is a form of organization limited to the Empire of the Romans with a focus on military life and troops management."
 
  empire_roman_administration:0 "Empire"
@@ -170,8 +170,7 @@ l_english:
  ave_maria_roman_administration_tagma_salary_low_short:0 "Low"
  ave_maria_roman_administration_tagma_salary_very_low:0 "Meagre Salary"
  ave_maria_roman_administration_tagma_salary_very_low_short:0 "Meagre"
- ave_maria_roman_administration_special_contract:0 "Tagma Contract"
- ave_maria_roman_administration_tagma:0 "Tagma Organization"
+ 
 
  ave_maria_roman_administration_theme_taxe:0 "Taxation"
  ave_maria_roman_administration_theme_taxe_very_low:0 "Very Low Taxation"
@@ -209,6 +208,19 @@ l_english:
  ave_maria_roman_administration_tagma_tax_exemption_low_short:0 "Low"
  ave_maria_roman_administration_tagma_tax_exemption_very_low:0 "Meagre Tax Exemption"
  ave_maria_roman_administration_tagma_tax_exemption_very_low_short:0 "Meagre"
+ 
+ ave_maria_roman_administration_special_contract:0 "District Organization"
+
+ ave_maria_roman_administration_tagma:0 "Tagma Organization"
+ ave_maria_roman_administration_tagma_short:0 "Tagma"
+ ave_maria_roman_administration_stratified_theme:0 "Stratified Theme"
+ ave_maria_roman_administration_stratified_theme_short:0 "Stratified Theme"
+ ave_maria_roman_administration_fiscalized_theme:0 "Fiscalized Theme"
+ ave_maria_roman_administration_fiscalized_theme_short:0 "Fiscalized Theme"
+ ave_maria_roman_administration_doukaton:0 "Doukaton"
+ ave_maria_roman_administration_doukaton_short:0 "Doukaton"
+ ave_maria_roman_administration_kouratoreia:0 "Kouratoreia"
+ ave_maria_roman_administration_kouratoreia_short:0 "Kouratoreia"
 
 
  ### SPECIAL COUNCIL NAMES
@@ -307,7 +319,7 @@ l_english:
  ### TRAITS
  trait_basileus:0 "Basileus"
  trait_basileus_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
- trait_bb2_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_bb_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_junior_emperor:0 "Junior Emperor"
  trait_junior_emperor_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
 
@@ -492,6 +504,21 @@ l_english:
 
  roman_administration_frustrated_constantinople_populace:0 "Frustrated Populace"
  roman_administration_happy_constantinople_populace:0 "Content Populace"
+
+ ## LEGITIMACY
+ roman_administration_legitimacy_modifier_negative:0 "Legitimacy"
+ roman_administration_legitimacy_modifier_negative_desc:0 "#V [Char.Var('roman_administration_legitimacy').GetValue]#!"
+ roman_administration_legitimacy_modifier_positive:0 "Legitimacy"
+ roman_administration_legitimacy_modifier_positive_desc:0 "#V [Char.Var('roman_administration_legitimacy').GetValue]#!"
+
+ legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue]"
+ popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue]"
+ 
+ ## POPULARITY
+ roman_administration_popularity_modifier_positive:0 "Popularity"
+ roman_administration_popularity_modifier_positive_desc:0 "#V [ROOT.Char.Var('roman_administration_popularity').GetValue]#!"
+ roman_administration_popularity_modifier_negative:0 "Popularity"
+ roman_administration_popularity_modifier_negative:0 "#V [ROOT.Char.Var('roman_administration_popularity').GetValue]#!"
 
  emperor_salary_cost_modifier_1:0 "Total Salary Cost"
  emperor_salary_cost_modifier_2:0 "Total Salary Cost"

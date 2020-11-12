@@ -241,9 +241,11 @@ can_be_knight_trigger = {
 	}
 	trigger_if = {
 		limit = {
-			primary_title = {
-				this = title:e_byzantium
-			}
+			$ARMY_OWNER$ = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}			
 		}
 		OR = {
 			roman_administration_holds_military_title_trigger = yes
