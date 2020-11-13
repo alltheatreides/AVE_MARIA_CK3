@@ -139,6 +139,11 @@ roman_administration_is_a_tagma_title_trigger = {
 	}
 }
 
+## Checks in a title scope if it is a strategos title
+roman_administration_is_a_strategos_title_trigger = {
+	de_jure_liege = title:k_strategos_titles
+}
+
 ## Checks in a title scope if it is a military title
 roman_administration_is_a_military_title_trigger = {
 	OR = {
@@ -211,11 +216,70 @@ roman_administration_can_scheme_military_revolt = {
 # LEGITIMACY AND POPULARITY TYPE TRIGGER	#
 #############################################
 
-roman_administration_can_have_legitimacy = {
-	liege = {
+## Trigger that checks if you can have legitimacy from a character scope
+roman_administration_can_have_legitimacy_variable = {
+	## Must be inside the empire (or be the emperor)
+	OR = {
+		top_liege = {
+			primary_title = {
+				this = title:e_byzantium
+			}					
+		}
 		primary_title = {
 			this = title:e_byzantium
-		}
-				
+		}	
 	}
+	## If you are not the emperor you must either be related to the emperor, or having a high office title, or be on the council
+	trigger_if = {
+		limit = {
+			NOT = {
+				primary_title = {
+					this = title:e_byzantium
+				}	
+			}
+		}
+		OR = {
+			## High office holder
+			roman_administration_holds_high_office_title_trigger = yes
+			has_government = roman_administration_doukaton_government
+			has_government = roman_administration_stratified_theme_government
+
+			## Council/high titles
+			is_councillor = yes
+
+			## Close family ties to the emperor
+			## Redudant thing here, not sure if the first one works
+			is_close_family_of = title:e_byzantium.holder 
+			title:e_byzantium.holder = {
+				is_close_family_of = prev
+			}
+			
+			## If you are female, either must be unamarried or roman husband
+			trigger_if = {
+				limit = {
+					is_female = yes
+				}
+				OR = {
+					is_married = no
+					any_spouse = {
+						culture = culture:greek
+					}
+				}
+			}
+
+			## If you are best buddies with the basileus
+			## Redudant thing here, not sure if the first one works
+			has_relation_best_friend = title:e_byzantium.holder 
+			title:e_byzantium.holder = {
+				has_relation_best_friend = prev
+			}
+		}
+	}
+
+	## Hard disqualifications
+	NOR = {
+		has_trait = maimed
+		has_trait = eunuch
+	}
+	
 }

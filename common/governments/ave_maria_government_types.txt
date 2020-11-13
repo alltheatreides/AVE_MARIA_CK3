@@ -9,8 +9,59 @@
 
 # Written by Atreides
 
+## Government of top liege, roman emperor
+roman_administration_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = no
+	primary_cultures = { greek }
+	fallback = 1
+	
+	can_get_government = {
+		primary_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
+		AND = {
+			culture = culture:greek
+			culture:greek = {
+				has_innovation = innovation_late_roman_empire
+			}
+		}				
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		feudal_government_taxes
+		feudal_government_levies
 
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
 
+		## District Types
+		ave_maria_roman_administration_special_contract
+
+	}
+
+	character_modifier = {
+		levy_size = -10
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+## Use this government for tagma
 roman_administration_military_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
@@ -75,6 +126,7 @@ roman_administration_military_government = {
 	color = hsv{ 0.67 1.00 0.78 }
 }
 
+## basic government, used for fiscalized theme
 roman_administration_civilian_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
@@ -142,26 +194,29 @@ roman_administration_civilian_government = {
 	color = hsv{ 0.67 1.00 0.78 }
 }
 
-roman_administration_government = {
+roman_administration_stratified_theme_government = {
 	create_cadet_branches = yes
 	rulers_should_have_dynasty = yes
 	dynasty_named_realms = no
-	primary_cultures = { greek }
-	fallback = 1
+
+	fallback = 5
 	
 	can_get_government = {
-		primary_title = {
-			OR = {
+		roman_administration_holds_military_title_trigger = yes
+		top_liege = {
+			any_held_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
+			}
+		}
+		any_held_title = {
+			NOR = {
 				this = title:e_byzantium
 				this = title:e_roman_empire
 			}
 		}
-		AND = {
-			culture = culture:greek
-			culture:greek = {
-				has_innovation = innovation_late_roman_empire
-			}
-		}				
 	}
 	
 	primary_holding = castle_holding
@@ -169,26 +224,146 @@ roman_administration_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
-		feudal_government_taxes
-		feudal_government_levies
-
-		special_contract
-		religious_rights
-		fortification_rights
-		coinage_rights
-		succession_rights
-		war_declaration_rights
+		ave_maria_roman_administration_theme_taxe
+		ave_maria_roman_administration_tagma_tax_exemption
+		ave_maria_roman_administration_tagma_salary				
 		council_rights
-		title_revocation_rights
+		# title_revocation_rights
 
 		## District Types
 		ave_maria_roman_administration_special_contract
 
 	}
 
-	character_modifier = {
-		levy_size = -10
+	# character_modifier = {
+	# 	levy_size = -10
+	# }
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+roman_administration_doukaton_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = no
+
+	fallback = 5
+	
+	can_get_government = {
+		top_liege = {
+			any_held_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
+			}
+		}
+		any_held_title = {
+			NOR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
 	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+
+	# opinion_of_liege = {
+	# 	scope:vassal = {
+	# 		value = 20
+	# 	}
+	# }
+	# opinion_of_liege_desc = {
+	# 	first_valid = {
+	# 		triggered_desc = {
+	# 			trigger = {
+					
+	# 			}
+	# 			desc = "ROMAN_ADMINISTRATION_APPOINTMENT_OPINION"
+	# 		}
+	# 	}
+	# }
+	
+	vassal_contract = {
+		ave_maria_roman_administration_theme_taxe
+		ave_maria_roman_administration_tagma_tax_exemption
+		ave_maria_roman_administration_tagma_salary				
+		# council_rights
+		# title_revocation_rights
+
+		## District Types
+		ave_maria_roman_administration_special_contract
+
+	}
+
+	# character_modifier = {
+	# 	levy_size = -10
+	# }
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+roman_administration_kouratoreia_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = no
+
+	fallback = 5
+	
+	can_get_government = {
+		top_liege = {
+			any_held_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
+			}
+		}
+		any_held_title = {
+			NOR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+
+	# opinion_of_liege = {
+	# 	scope:vassal = {
+	# 		value = 20
+	# 	}
+	# }
+	# opinion_of_liege_desc = {
+	# 	first_valid = {
+	# 		triggered_desc = {
+	# 			trigger = {
+					
+	# 			}
+	# 			desc = "ROMAN_ADMINISTRATION_APPOINTMENT_OPINION"
+	# 		}
+	# 	}
+	# }
+	
+	vassal_contract = {
+		ave_maria_roman_administration_theme_taxe
+		ave_maria_roman_administration_tagma_tax_exemption
+		ave_maria_roman_administration_tagma_salary				
+		# council_rights
+		# title_revocation_rights
+
+		## District Types
+		ave_maria_roman_administration_special_contract
+
+	}
+
+	# character_modifier = {
+	# 	levy_size = -10
+	# }
 	
 	color = hsv{ 0.67 1.00 0.78 }
 }

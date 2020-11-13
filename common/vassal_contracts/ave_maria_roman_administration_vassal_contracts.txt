@@ -249,11 +249,8 @@ ave_maria_roman_administration_special_contract = {
 
 		ave_maria_roman_administration_fiscalized_theme = {
 			is_valid = {
-				OR = {
+				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					top_liege = { has_title = title:e_roman_empire }
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
@@ -268,7 +265,7 @@ ave_maria_roman_administration_special_contract = {
 			vassal_modifier = {
 				## Remove levies basically and add +25% more taxes
 				levy_size = -10
-				tax_factor = 0.25
+				tax_mult = 0.25
 			}
 			
 			flag = ave_maria_roman_administration_fiscalized_theme_contract
@@ -277,11 +274,9 @@ ave_maria_roman_administration_special_contract = {
 		## Supposed to be for central tagmatic forces
 		ave_maria_roman_administration_tagma = {
 			is_valid = {
-				OR = {
+				scope:vassal = {
+					roman_administration_holds_tagma_title_trigger = yes
 					top_liege = { has_title = title:e_byzantium }
-					top_liege = { has_title = title:e_roman_empire }
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
@@ -301,11 +296,8 @@ ave_maria_roman_administration_special_contract = {
 		
 		ave_maria_roman_administration_stratified_theme = {
 			is_valid = {
-				OR = {
+				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					top_liege = { has_title = title:e_roman_empire }
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
@@ -318,7 +310,7 @@ ave_maria_roman_administration_special_contract = {
 			
 			vassal_modifier = {
 				## Leave levies untouched but removes most of taxes
-				tax_factor = -0.80
+				tax_mult = -0.80
 			}
 			
 			flag = ave_maria_roman_administration_stratified_theme_contract
@@ -326,11 +318,8 @@ ave_maria_roman_administration_special_contract = {
 
 		ave_maria_roman_administration_doukaton = {
 			is_valid = {
-				OR = {
+				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					top_liege = { has_title = title:e_roman_empire }
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 				scope:vassal.primary_title = {
@@ -364,11 +353,8 @@ ave_maria_roman_administration_special_contract = {
 
 		ave_maria_roman_administration_kouratoreia = {
 			is_valid = {
-				OR = {
+				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					top_liege = { has_title = title:e_roman_empire }
-					has_title = title:e_byzantium
-					has_title = title:e_roman_empire
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
@@ -382,7 +368,7 @@ ave_maria_roman_administration_special_contract = {
 			vassal_modifier = {
 				## Remove levies basically and add +50% more taxes
 				levy_size = -10
-				tax_factor = 0.5
+				tax_mult = 0.5
 			}
 			
 			flag = ave_maria_roman_administration_doukaton_theme_contract

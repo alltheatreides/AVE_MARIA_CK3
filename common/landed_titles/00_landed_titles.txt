@@ -19,26 +19,26 @@
 ###########################################
 
 ### One Duchy entry to host all the county tier family titles which are fakely linked to byzantium as a capital for now but should be historically linked to historical families and their original estates
-# d_utility_family_county = {
+d_utility_family_county = {
 
-# 	color = { 255 249 198 }
-# 	color2 = { 220 220 0 }
+	color = { 255 249 198 }
+	color2 = { 220 220 0 }
 	
-# 	capital = c_byzantion
-# 	no_automatic_claims = yes
-# 	de_jure_drift_disabled = yes
+	capital = c_byzantion
+	no_automatic_claims = yes
+	de_jure_drift_disabled = yes
 	
-# 	c_roman_family_1 = {				
-# 		color = { 255 249 198 }			
-# 		color2 = { 220 220 0 }			
+	c_roman_family_1 = {				
+		color = { 255 249 198 }			
+		color2 = { 220 220 0 }			
 					
-# 		no_automatic_claims = yes			
-# 		de_jure_drift_disabled = yes			
+		no_automatic_claims = yes			
+		de_jure_drift_disabled = yes			
 					
-# 		b_roman_family_1 = {			
-# 			province = 496		
-# 		}			
-# 	}				
+		b_roman_family_1 = {			
+			province = 496		
+		}			
+	}}				
 # 	c_roman_family_2 = {				
 # 		color = { 255 249 198 }			
 # 		color2 = { 220 220 0 }			
@@ -11267,6 +11267,21 @@ e_byzantium = {
 		}
 	}
 
+	d_langobardia_roman = {
+		color = { 167 172 63 }
+		color2 = { 255 255 255 }
+
+		capital = c_bari
+	}
+
+	d_macedonia_roman = {
+		color = { 240 240 190 }
+		color2 = { 255 255 255 }
+		capital = c_adrianopolis
+	}
+
+	
+
 
 	## VANILLA
 	
@@ -13827,6 +13842,15 @@ e_byzantium = {
 			color = { 168 135 57 }
 			color2 = { 255 255 255 }
 			
+			can_create = {
+				trigger_if = {
+					limit = {
+						always = yes
+					}
+					NOT = { has_culture_group = culture_group:byzantine_group }
+				}
+			}
+
 			#capital = 3604 # Macva
 			
 				c_macva  = {
@@ -14018,6 +14042,63 @@ e_byzantium = {
 					}
 				}
 		}
+
+		## AVE MARIA, put syrmia here from hungary de jure
+		d_syrmia = {
+			color = { 179 43 111 }
+			color2 = { 255 255 255 }
+			
+			capital = c_szerem # Szerem / Srem
+
+			cultural_names = {
+				greek = cn_d_syrmia
+			}
+			
+			can_create = {
+				trigger_if = {
+					limit = {
+						is_ai = yes
+					}
+					NOT = { has_culture_group = culture_group:byzantine_group }
+				}
+			}
+			
+				c_szerem  = {
+					color =  { 179 43 111 }
+					color2 =  { 255 255 255 }
+
+					cultural_names = {
+						greek = cn_c_szerem
+					}
+						b_szerem  = {
+						province =  3739
+						color =  { 179 43 111 }
+						color2 =  { 255 255 255 }
+
+						cultural_names = {
+							greek = cn_b_szerem
+						}
+					}
+				}
+				c_ilok  = {
+					color =  { 179 43 111 }
+					color2 =  { 255 255 255 }
+						b_ilok  = {
+						province =  3611
+						color =  { 179 43 111 }
+						color2 =  { 255 255 255 }
+					}
+				}
+				c_zemun  = {
+					color =  { 179 43 111 }
+					color2 =  { 255 255 255 }
+						b_zemun  = {
+						province =  3613
+						color =  { 179 43 111 }
+						color2 =  { 255 255 255 }
+					}
+				}
+		}
 	}
 
 	k_bosnia = {
@@ -14085,6 +14166,15 @@ e_byzantium = {
 		d_vidin = {
 			color = { 120 105 85 }
 			color2 = { 255 255 255 }
+
+			can_create = {
+				trigger_if = {
+					limit = {
+						always = yes
+					}
+					NOT = { has_culture_group = culture_group:byzantine_group }
+				}
+			}
 			
 			capital = c_vidin # Vidin
 			
@@ -14757,6 +14847,10 @@ e_byzantium = {
 		d_philippopolis = {
 			color = { 75 100 110 }
 			color2 = { 255 255 255 }
+
+			cultural_names = {
+				greek = cn_d_philippopolis
+			}
 			
 			capital = c_philippopolis # Philippopolis / Plovdiv
 			
@@ -50800,49 +50894,49 @@ k_hungary = {
 			}
 	}
 	
-	d_syrmia = {
-		color = { 179 43 111 }
-		color2 = { 255 255 255 }
+	# d_syrmia = {
+	# 	color = { 179 43 111 }
+	# 	color2 = { 255 255 255 }
 		
-		capital = c_szerem # Szerem / Srem
+	# 	capital = c_szerem # Szerem / Srem
 		
-		can_create = {
-			trigger_if = {
-				limit = {
-					is_ai = yes
-				}
-				NOT = { has_culture_group = culture_group:byzantine_group }
-			}
-		}
+	# 	can_create = {
+	# 		trigger_if = {
+	# 			limit = {
+	# 				is_ai = yes
+	# 			}
+	# 			NOT = { has_culture_group = culture_group:byzantine_group }
+	# 		}
+	# 	}
 		
-			c_szerem  = {
-				color =  { 179 43 111 }
-				color2 =  { 255 255 255 }
-					b_szerem  = {
-					province =  3739
-					color =  { 179 43 111 }
-					color2 =  { 255 255 255 }
-				}
-			}
-			c_ilok  = {
-				color =  { 179 43 111 }
-				color2 =  { 255 255 255 }
-					b_ilok  = {
-					province =  3611
-					color =  { 179 43 111 }
-					color2 =  { 255 255 255 }
-				}
-			}
-			c_zemun  = {
-				color =  { 179 43 111 }
-				color2 =  { 255 255 255 }
-					b_zemun  = {
-					province =  3613
-					color =  { 179 43 111 }
-					color2 =  { 255 255 255 }
-				}
-			}
-	}
+	# 		c_szerem  = {
+	# 			color =  { 179 43 111 }
+	# 			color2 =  { 255 255 255 }
+	# 				b_szerem  = {
+	# 				province =  3739
+	# 				color =  { 179 43 111 }
+	# 				color2 =  { 255 255 255 }
+	# 			}
+	# 		}
+	# 		c_ilok  = {
+	# 			color =  { 179 43 111 }
+	# 			color2 =  { 255 255 255 }
+	# 				b_ilok  = {
+	# 				province =  3611
+	# 				color =  { 179 43 111 }
+	# 				color2 =  { 255 255 255 }
+	# 			}
+	# 		}
+	# 		c_zemun  = {
+	# 			color =  { 179 43 111 }
+	# 			color2 =  { 255 255 255 }
+	# 				b_zemun  = {
+	# 				province =  3613
+	# 				color =  { 179 43 111 }
+	# 				color2 =  { 255 255 255 }
+	# 			}
+	# 		}
+	# }
 }
 	
 e_france = {

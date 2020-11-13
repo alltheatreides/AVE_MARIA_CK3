@@ -3978,10 +3978,12 @@ roman_administration_update_popularity_variable = {
 		}
 	}
 
+	## Update the display variable
+	roman_administration_update_legitimacy_level_display = yes
+
 	## Clean up the variables
 	remove_variable = calculate_character_popularity
 
-	#roman_administration_update_popularity_modifier = yes
 }
 
 ## Character Scope effects to set popularity variable
@@ -4026,28 +4028,90 @@ roman_administration_add_popularity_massive_amount = {
 	}
 }
 
-## Visual Update of the popularity modifier, red is negative, green positive, loc indicates amount
-roman_administration_update_popularity_modifier = {
-	if = {
-		limit = {
-			has_variable = roman_administration_popularity
-			var:roman_administration_popularity <= 0
-		}
-		remove_character_modifier = roman_administration_popularity_modifier_positive
-		add_character_modifier = {
-			modifier = roman_administration_popularity_modifier_negative
-		}
+## Character Scope effects to decrease small amount of popularity variable
+roman_administration_remove_popularity_small_amount = {	
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = -5
+	}	
+}
+
+## Character Scope effects to decrease medium amount of popularity variable
+roman_administration_remove_popularity_medium_amount = {
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = -10
 	}
-	if = {
-		limit = {
-			has_variable = roman_administration_popularity
-			var:roman_administration_popularity > 0
-		}
-		remove_character_modifier = roman_administration_popularity_modifier_negative
-		add_character_modifier = {
-			modifier = roman_administration_popularity_modifier_positive
-		}
+}
+
+## Character Scope effects to decrease massive amount of popularity variable
+roman_administration_remove_popularity_massive_amount = {
+	roman_administration_update_popularity_variable = yes	
+	change_variable = {
+		name = roman_administration_popularity
+		add = -15
 	}
+}
+
+## Character Scope effect to display correct Popularity Level
+roman_administration_update_legitimacy_level_display = {
+	if = { 					
+		limit = {				
+			has_variable = roman_administration_popularity			
+			var:roman_administration_popularity > 0			
+			var:roman_administration_popularity <= 50			
+		}				
+		set_variable = {				
+			name = roman_administration_popularity_level_display			
+			value = flag:despised			
+		}				
+	}	
+	if = { 					
+		limit = {				
+			has_variable = roman_administration_popularity			
+			var:roman_administration_popularity > 50
+			var:roman_administration_popularity <= 100			
+		}				
+		set_variable = {				
+			name = roman_administration_popularity_level_display			
+			value = flag:unworthy			
+		}				
+	}	
+	if = { 					
+		limit = {				
+			has_variable = roman_administration_popularity			
+			var:roman_administration_popularity > 100
+			var:roman_administration_popularity <= 150			
+		}				
+		set_variable = {				
+			name = roman_administration_popularity_level_display			
+			value = flag:tolerated			
+		}				
+	}	
+	if = { 					
+		limit = {				
+			has_variable = roman_administration_popularity			
+			var:roman_administration_popularity > 200
+			var:roman_administration_popularity <= 250			
+		}				
+		set_variable = {				
+			name = roman_administration_popularity_level_display			
+			value = flag:worthy			
+		}				
+	}	
+	if = { 					
+		limit = {				
+			has_variable = roman_administration_popularity			
+			var:roman_administration_popularity >= 300		
+		}				
+		set_variable = {				
+			name = roman_administration_popularity_level_display			
+			value = flag:beloved			
+		}				
+	}			
+	
 }
 
 
@@ -4076,6 +4140,10 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = 50
 		}
+		set_variable = {
+			name = character_legitimacy_display_born_in_the_purple
+			value = 50
+		}
 	}
 	## Being the emperor
 	if = {
@@ -4088,6 +4156,10 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = 50
 		}
+		set_variable = {
+			name = character_legitimacy_display_basileus
+			value = 50
+		}
 	}
 	## High offices
 	if = {
@@ -4098,15 +4170,24 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = 25
 		}
+		set_variable = {
+			name = character_legitimacy_display_high_official
+			value = 25
+		}
 	}
 	## War won
 	if = {
 		limit = {
+			has_variable = de_re_militari_war_won_counter
 			var:de_re_militari_war_won_counter >= 2		
 		}
 		change_variable = {
 			name = calculate_character_legitimacy
 			add = 50
+		}
+		set_variable = {
+			name = character_legitimacy_display_victorious
+			value = 50
 		}
 	}
 
@@ -4115,6 +4196,7 @@ roman_administration_update_legitimacy_variable = {
 	if = {
 		limit = {
 			dynasty = {
+				has_variable = roman_administration_dynastic_number_of_emperors
 				var:roman_administration_dynastic_number_of_emperors >= 1
 			}
 		}
@@ -4122,17 +4204,26 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = 50
 		}
+		set_variable = {
+			name = character_legitimacy_display_dynastic_emperor_1
+			value = 50
+		}
 	}
 
 	if = {
 		limit = {
 			dynasty = {
+				has_variable = roman_administration_dynastic_number_of_emperors
 				var:roman_administration_dynastic_number_of_emperors >= 5
 			}
 		}
 		change_variable = {
 			name = calculate_character_legitimacy
 			add = 100
+		}
+		set_variable = {
+			name = character_legitimacy_display_dynastic_emperor_5
+			value = 100
 		}
 	}
 	
@@ -4146,6 +4237,10 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = -25
 		}
+		set_variable = {
+			name = character_legitimacy_display_murderer
+			value = -25
+		}
 	}
 	## Married to a non orthodox character
 	if = {
@@ -4158,8 +4253,12 @@ roman_administration_update_legitimacy_variable = {
 			name = calculate_character_legitimacy
 			add = -25
 		}
+		set_variable = {
+			name = character_legitimacy_display_wrong_religion
+			value = -25
+		}
 	}
-	## Married to a non orthodox character
+	## Married to a non roman character
 	if = {
 		limit = {
 			any_spouse = {
@@ -4169,6 +4268,10 @@ roman_administration_update_legitimacy_variable = {
 		change_variable = {
 			name = calculate_character_legitimacy
 			add = -15
+		}
+		set_variable = {
+			name = character_legitimacy_display_wrong_culture
+			value = -15
 		}
 	}
 
@@ -4201,10 +4304,11 @@ roman_administration_update_legitimacy_variable = {
 		}
 	}
 
+	
+
 	## Clean up the variables
 	remove_variable = calculate_character_legitimacy
 
-	#roman_administration_update_legitimacy_modifier = yes
 }
 
 ## Character Scope effects to set legitimacy variable
@@ -4249,26 +4353,30 @@ roman_administration_add_legitimacy_massive_amount = {
 	}
 }
 
-## Visual Update of the legitimacy modifier, red is negative, green positive, loc indicates amount
-roman_administration_update_legitimacy_modifier = {
-	if = {
-		limit = {
-			has_variable = roman_administration_legitimacy
-			var:roman_administration_legitimacy <= 0
-		}
-		remove_character_modifier = roman_administration_legitimacy_modifier_positive
-		add_character_modifier = {
-			modifier = roman_administration_legitimacy_modifier_negative
-		}
-	}
-	if = {
-		limit = {
-			has_variable = roman_administration_legitimacy
-			var:roman_administration_legitimacy > 0
-		}
-		remove_character_modifier = roman_administration_legitimacy_modifier_negative
-		add_character_modifier = {
-			modifier = roman_administration_legitimacy_modifier_positive
-		}
+## Character Scope effects to decrease small amount of legitimacy variable
+roman_administration_remove_legitimacy_small_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = -5
 	}
 }
+
+## Character Scope effects to decrease medium amount of legitimacy variable
+roman_administration_remove_legitimacy_medium_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = -10
+	}
+}
+
+## Character Scope effects to decrease massive amount of legitimacy variable
+roman_administration_remove_legitimacy_massive_amount = {
+	roman_administration_update_legitimacy_variable = yes
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = -15
+	}
+}
+

@@ -89,6 +89,15 @@
  d_greater_armenia_strategos_adj:0 "Hayk"
 
  d_cherson_roman:0 "Chersōnos"
+ d_langobardia_roman:0 "Langobardia"
+ d_macedonia_roman:0 "Makedonia"
+
+ ## Cultural Names
+ cn_d_syrmia:0 "Sirmiou"
+ cn_c_szerem:0 "Sirmium"
+ cn_b_szerem:0 "Sirmium"
+ cn_d_philippopolis:0 "Paradounavon"
+ 
 
 
  ### BOOKMARKS
@@ -119,6 +128,7 @@
  duchy_roman_administration_sakellion:0 "High Office"
  duchy_roman_administration_logothetetes_tou_dromou:0 "High Office"
  duchy_roman_administration_quaestor:0 "High Office"
+ duchy_roman_administration_stratified_theme:0 "Theme"
 
 
  ### BUILDINGS AND HOLDINGS
@@ -136,10 +146,17 @@
  ### GOVERNMENT NAMES
  roman_administration_government:0 "Roman"
  roman_administration_government_desc:0 "The Roman Empire had a complex system of aristocracy and bureaucracy with the Emperor at its head and beneath him a multitude of officials and court functionaries operating the complex administrative machinery that was necessary to run the empire."
- roman_administration_civilian_government:0 "Roman"
- roman_administration_civilian_government_desc:0 "Roman Civilian Government is a form of organization limited to the Empire of the Romans with a focus on the administrative management of the Empire from tax collection to justice."
- roman_administration_military_government:0 "Roman"
- roman_administration_military_government_desc:0 "Roman Military Government is a form of organization limited to the Empire of the Romans with a focus on military life and troops management."
+ roman_administration_civilian_government:0 "Theme"
+ roman_administration_civilian_government_desc:0 "A form of Roman Administration, Themes are the basic administrative territoriesa of the Empire of the Romans, ruler by a Krites with a focus on the administrative management of the Empire from tax collection to justice."
+ roman_administration_military_government:0 "Tagma"
+ roman_administration_military_government_desc:0 "A form of Roman Administration, Tagmas were the professional standing troops, garrisoned in and around the capital of Constantinople that were formed around the Imperial Guard units."
+ roman_administration_stratified_theme_government:0 "Theme"
+ roman_administration_stratified_theme_government_desc:0 "A form of Roman Administration, Stratified Themes are administrative territories managed by military dignitaries overseeing both military and civilian affairs of the territories they are responsible with.\nIn the 11th century most had disappeared and have been replaced by Fiscalized Themes."
+ roman_administration_doukaton_government:0 "Doukaton"
+ roman_administration_doukaton_government_desc:0 "A form of Roman Administration, Doukaton Districts are administrative territories ruled by a Doux with significant more power and authority due to the strategic importance of the territories he is responsible with."
+ roman_administration_kouratoreia_government:0 "Kouratoreia"
+ roman_administration_kouratoreia_government_desc:0 "A form of Roman Administration, Kouratoreia were imperial estate which were often established in conquered lands in order to prevent the great landowning families from acquiring even more power by purchasing the newly available land and leasing it out. They are run by a kourator directely appointed by the emperor."
+
 
  empire_roman_administration:0 "Empire"
 
@@ -308,6 +325,7 @@
  tooltip_roman_administration_emperor_favourite_vote_opinion_positive:0 "Favoured by the Basileus: $VALUE|=+0$"
  tooltip_roman_administration_junior_emperor_vote_opinion_positive:0 "Is a Junior-Emperor: $VALUE|=+0$"
  tooltip_roman_administration_already_heir_to_administrative_title_vote_opinion_negative:0 "Is already Heir to another Administrative Title: $VALUE|=+0$"
+ tooltip_roman_administration_legitimacy_vote_opinion_positive:0 "Legitimacy: $VALUE|=+0$"
 
  ## MAN AT ARMS REGIMENT
  tagma_heavy_cavalry:0 "Kataphraktoi"
@@ -505,21 +523,18 @@
  roman_administration_frustrated_constantinople_populace:0 "Frustrated Populace"
  roman_administration_happy_constantinople_populace:0 "Content Populace"
 
- ## LEGITIMACY
- roman_administration_legitimacy_modifier_negative:0 "Legitimacy"
- roman_administration_legitimacy_modifier_negative_desc:0 "#V [Char.Var('roman_administration_legitimacy').GetValue]#!"
- roman_administration_legitimacy_modifier_positive:0 "Legitimacy"
- roman_administration_legitimacy_modifier_positive_desc:0 "#V [Char.Var('roman_administration_legitimacy').GetValue]#!"
+ ## LEGITIMACY & POPULARITY
+ legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!\n- Basileus: [CharacterWindow.GetCharacter.MakeScope.Var('character_legitimacy_display_basileus').GetValue|0]\n- High Offical: [CharacterWindow.GetCharacter.MakeScope.Var('character_legitimacy_display_high_official').GetValue|0]\n- War Hero: [CharacterWindow.GetCharacter.MakeScope.Var('character_legitimacy_display_victorious').GetValue|0]\n- Dynastic Emperor: [CharacterWindow.GetCharacter.MakeScope.Var('character_legitimacy_display_dynastic_emperor_1').GetValue|0] \n\n#T [legitimacy_level|E]:$EFFECT_LIST_BULLET$[legitimacy_level_0|E]\n$EFFECT_LIST_BULLET$[legitimacy_level_1|E]\n$EFFECT_LIST_BULLET$[legitimacy_level_2|E]\n$EFFECT_LIST_BULLET$[legitimacy_level_3|E]\n$EFFECT_LIST_BULLET$[legitimacy_level_4|E]"
 
- legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue]"
- popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue]"
+ popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue|0]#!\n- \n\n#T [popularity_level|E]: #T[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity_level_display').GetValue|0]"
+
+ despised_desc:0 "Despised"
+ unworthy_desc:0 "Unworthy"
+ tolerated_desc:0 "Tolerated"
+ worthy_desc:0 "Worthy"
+ beloved_desc:0 "Beloved"
  
- ## POPULARITY
- roman_administration_popularity_modifier_positive:0 "Popularity"
- roman_administration_popularity_modifier_positive_desc:0 "#V [ROOT.Char.Var('roman_administration_popularity').GetValue]#!"
- roman_administration_popularity_modifier_negative:0 "Popularity"
- roman_administration_popularity_modifier_negative:0 "#V [ROOT.Char.Var('roman_administration_popularity').GetValue]#!"
-
+ 
  emperor_salary_cost_modifier_1:0 "Total Salary Cost"
  emperor_salary_cost_modifier_2:0 "Total Salary Cost"
  emperor_salary_cost_modifier_3:0 "Total Salary Cost"

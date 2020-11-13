@@ -247,7 +247,7 @@ on_game_start_after_lobby = {
 		every_ruler = {
 			#orc_apply_demesne_provinces_distance_malus = yes
 			#orc_apply_demesne_provinces_distance_malus_modifier = yes
-			#trigger_event = ave_maria_opus_ruralium_commodorum.0001
+			#strigger_event = ave_maria_opus_ruralium_commodorum.0001
 		}
 		
 		## Giving every living character the HEXACO traits
@@ -367,6 +367,7 @@ on_game_start_after_lobby = {
 						}
 					}
 					add_character_modifier = roman_administration_high_official_salary
+					
 				}
 			}
 			## For Strategos
@@ -396,7 +397,111 @@ on_game_start_after_lobby = {
 			## Change the government to be sure, fucking tendendcy to switch to wrong government type
 			change_government = roman_administration_government
 
+			### Assigning historical District type			
+			every_vassal = {
+				## Tagma
+				if = {
+					limit = {
+						roman_administration_holds_tagma_title_trigger = yes
+					}
+					change_government = roman_administration_military_government
+					## Level 2 is Tagma
+					vassal_contract_set_obligation_level = {
+						type = ave_maria_roman_administration_special_contract
+						level = ave_maria_roman_administration_tagma
+					}
+				}
+				## Stratified Themes
+				if = {
+					limit = {
+						primary_title = {
+							OR = {
+								this = title:d_cappadocia
+								this = title:d_sebasteia
+								this = title:d_chaldia
+								this = title:d_anatolia
+							}
+						}
+					}
+					change_government = roman_administration_stratified_theme_government
+					## Level 3 is stratified theme
+					vassal_contract_set_obligation_level = {
+						type = ave_maria_roman_administration_special_contract
+						level = ave_maria_roman_administration_stratified_theme
+					}
+				}
+				## Doukaton
+				if = {
+					limit = {
+						primary_title = {
+							OR = {
+								this = title:d_mesopotamia
+								this = title:d_vaspurakan
+								this = title:d_antioch
+								this = title:d_greater_armenia
+								this = title:d_turnovo
+								this = title:d_langobardia_roman
+								this = title:d_bulgaria
+							}
+						}
+					}
+					change_government = roman_administration_doukaton_government
+					## Level 4 is Doukaton
+					vassal_contract_set_obligation_level = {
+						type = ave_maria_roman_administration_special_contract
+						level = ave_maria_roman_administration_doukaton
+					}
+				}
+				## Kouratoreia
+				if = {
+					limit = {
+						primary_title = {
+							OR = {
+								this = title:d_thrace
+				
+							}
+						}
+					}
+					change_government = roman_administration_kouratoreia_government
+					## Level 5 is Kouratoreia
+					vassal_contract_set_obligation_level = {
+						type = ave_maria_roman_administration_special_contract
+						level = ave_maria_roman_administration_kouratoreia
+					}
+				}
+			}	
+			
+			## Handing out the Legitimacy Variable
+			## Handing out the Legitimacy Variable Tracking Courtier
+			every_courtier = {
+				if = {
+					limit = {
+						roman_administration_can_have_legitimacy_variable = yes
+					}
+					roman_administration_update_legitimacy_variable = yes
+				}
+			}
+			## Handing out the Legitimacy Variable Tracking Vassals
+			every_vassal = {
+				if = {
+					limit = {
+						roman_administration_can_have_legitimacy_variable = yes
+					}
+					roman_administration_update_legitimacy_variable = yes
+				}
+				# Handing out the Legitimacy Variable Tracking Vassals's courtiers
+				every_courtier = {
+					if = {
+						limit = {
+							roman_administration_can_have_legitimacy_variable = yes
+						}
+						roman_administration_update_legitimacy_variable = yes
+					}
+				}
+			}
+
 		}
+
 		## Giving Roman Empire title a flag for the gui display
 		title:e_byzantium = {
 			set_variable = {
