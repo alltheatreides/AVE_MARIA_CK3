@@ -1,24 +1,67 @@
-﻿travel_distance_dijkstra_white = {
-	every_in_global_list = {
-		$white_type$ = $white_name$
+﻿# travel_distance_dijkstra_white = {
+
+# 	# every_in_global_list = {
+# 	# 	variable = every_water
 		
-		set_variable = { name = travel_distance_distance value = 210000 }
-		set_variable = { name = travel_distance_prev value = this }
-	}
-	
-	travel_distance_dijkstra = {
-		start = $start$
-		max = $max$
-		return_dist = $return_dist$
-		return_prev = $return_prev$
-	}
-	
-	every_in_global_list = {
-		$white_type$ = $white_name$
+# 	# 	add_to_global_variable_list = { name = $white_name$ target = this }
+# 	# }
+
+# 	every_in_global_list = {
+# 		$white_type$ = $white_name$
 		
-		remove_variable = travel_distance_distance
-		remove_variable = travel_distance_prev
-	}
+# 		set_variable = { name = travel_distance_distance value = 210000 }
+# 		set_variable = { name = travel_distance_prev value = this }
+# 	}
+	
+# 	travel_distance_dijkstra = {
+# 		start = $start$
+# 		max = $max$
+# 		return_dist = $return_dist$
+# 		return_prev = $return_prev$
+# 	}
+	
+# 	every_in_global_list = {
+# 		$white_type$ = $white_name$
+		
+# 		remove_variable = travel_distance_distance
+# 		remove_variable = travel_distance_prev
+# 	}
+# }
+
+travel_distance_dijkstra_white = {
+
+    every_in_global_list = {
+        $white_type$ = $white_name$
+        
+        set_variable = { name = travel_distance_distance value = 210000 }
+        set_variable = { name = travel_distance_prev value = this }
+    }
+    every_in_global_list = {
+        variable = every_water
+        
+        set_variable = { name = travel_distance_distance value = 210000 }
+        set_variable = { name = travel_distance_prev value = this }
+    }
+    
+    travel_distance_dijkstra = {
+        start = $start$
+        max = $max$
+        return_dist = $return_dist$
+        return_prev = $return_prev$
+    }
+    
+    every_in_global_list = {
+        $white_type$ = $white_name$
+        
+        remove_variable = travel_distance_distance
+        remove_variable = travel_distance_prev
+    }
+    every_in_global_list = {
+        variable = every_water
+        
+        remove_variable = travel_distance_distance
+        remove_variable = travel_distance_prev
+    }
 }
 
 travel_distance_dijkstra_black = {
@@ -48,7 +91,6 @@ travel_distance_dijkstra_black = {
 	
 	clear_global_variable_list = travel_distance_dijkstra_black_white
 }
-
 travel_distance_dijkstra_every = {
 	every_province = {
 		add_to_global_variable_list = { name = travel_distance_dijkstra_every_white target = this }
@@ -72,11 +114,9 @@ travel_distance_dijkstra_every = {
 }
 
 # start should always be a land province
-travel_distance_dijkstra = {	
+travel_distance_dijkstra = {
 	$start$ = {
-		## Setting the variable of travel distance of 0 cause this is starting province
-		set_variable = { name = travel_distance_distance value = 0 }
-		## Setting the previous travel distance as this
+		set_variable = { name = travel_distance_distance value = 0.001 }
 		set_variable = { name = travel_distance_prev value = this }
 		
 		add_to_global_variable_list = { name = travel_distance_fray target = this }
@@ -85,8 +125,12 @@ travel_distance_dijkstra = {
 	
 	while = {
 		limit = {
+			has_global_variable_list = travel_distance_fray
+			
 			global_variable_list_size = { name = travel_distance_fray value >= 1 }
 		}
+		count = 100000
+		
 		ordered_in_global_list = {
 			variable = travel_distance_fray
 			order_by = travel_distance_order_value
@@ -106,6 +150,10 @@ travel_distance_dijkstra = {
 					variable = prov_neighb
 					limit = {
 						has_variable = travel_distance_distance
+						
+						var:travel_distance_distance = {
+							compare_value > global_var:travel_distance_select.var:travel_distance_distance
+						}
 					}
 					get_distance_neighb = { 
 						one = global_var:travel_distance_select
@@ -116,9 +164,8 @@ travel_distance_dijkstra = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
-							
 							var:travel_distance_distance_new = {
+								compare_value <= $max$
 								compare_value < prev.var:travel_distance_distance
 							}
 						}
@@ -138,6 +185,10 @@ travel_distance_dijkstra = {
 					variable = prov_port
 					limit = {
 						has_variable = travel_distance_distance
+						
+						var:travel_distance_distance = {
+							compare_value > global_var:travel_distance_select.var:travel_distance_distance
+						}
 					}
 					get_distance_port = { 
 						one = global_var:travel_distance_select
@@ -148,9 +199,8 @@ travel_distance_dijkstra = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
-							
 							var:travel_distance_distance_new = {
+								compare_value <= $max$
 								compare_value < prev.var:travel_distance_distance
 							}
 						}
@@ -168,11 +218,11 @@ travel_distance_dijkstra = {
 	every_in_global_list = {
 		variable = travel_distance_visited
 		limit = {
-			var:prov_sea == yes
+			var:prov_sea = 2
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea == yes
+				var:travel_distance_prev.var:prov_sea = 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
@@ -180,11 +230,11 @@ travel_distance_dijkstra = {
 	every_in_global_list = {
 		variable = travel_distance_visited
 		limit = {
-			var:prov_sea == no
+			var:prov_sea = 1
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea == yes
+				var:travel_distance_prev.var:prov_sea = 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
@@ -204,6 +254,109 @@ travel_distance_dijkstra = {
 	clear_global_variable_list = travel_distance_fray
 	clear_global_variable_list = travel_distance_visited
 	remove_global_variable = travel_distance_select
+}
+
+get_land_cost = {
+    if = {
+        limit = {
+            var:prov_sea = 2
+        }
+        if = {
+            limit = {
+                has_variable_list = prov_port
+            }
+            set_variable = { name = $return$ value = 0.5 }
+        }
+        else = {
+            set_variable = { name = $return$ value = 2 }
+        }
+    }
+    else_if = {
+        limit = {
+            var:prov_sea = 3
+        }
+        set_variable = { name = $return$ value = 0.5 }
+    }
+    else = {
+        set_variable = { name = $return$ value = 5 }
+    
+        switch = {
+            trigger = terrain
+            
+            forest = { set_variable = { name = $return$ value = 2 } }
+            mountains = { set_variable = { name = $return$ value = 4 } }
+            hills = { set_variable = { name = $return$ value = 2 } }
+            wetlands = { set_variable = { name = $return$ value = 3 } }
+            plains = { set_variable = { name = $return$ value = 1 } }
+            farmlands = { set_variable = { name = $return$ value = 1 } }
+            taiga = { set_variable = { name = $return$ value = 3 } }
+            steppe = { set_variable = { name = $return$ value = 1 } }
+            desert = { set_variable = { name = $return$ value = 3 } }
+            jungle = { set_variable = { name = $return$ value = 4 } }
+            drylands = { set_variable = { name = $return$ value = 1 } }
+            oasis = { set_variable = { name = $return$ value = 1 } }
+            desert_mountains = { set_variable = { name = $return$ value = 5 } }
+            floodplains = { set_variable = { name = $return$ value = 2 } }
+        }
+    }
+}
+
+init_main = {
+    init_prov_data = yes
+    
+    every_province = {
+        get_land_cost = { return = prov_cost }
+    }
+    every_in_global_list = {
+        variable = every_water
+        
+        get_land_cost = { return = prov_cost }
+    }
+}
+
+# Parameter: diff_x, diff_y, return
+dist_effect = {
+    set_variable = { name = math_dist_x value = $diff_x$ }
+    set_variable = { name = math_dist_y value = $diff_y$ }
+    
+    if = {
+        limit = {
+            var:math_dist_x < 0
+        }
+        set_variable = { name = math_dist_t value = var:math_dist_x }
+        set_variable = { name = math_dist_x value = 0 }
+        change_variable = { name = math_dist_x subtract = var:math_dist_t }
+    }
+    if = {
+        limit = {
+            var:math_dist_y < 0
+        }
+        set_variable = { name = math_dist_t value = var:math_dist_y }
+        set_variable = { name = math_dist_y value = 0 }
+        change_variable = { name = math_dist_y subtract = var:math_dist_t }
+    }
+    
+    if = {
+        limit = {
+            var:math_dist_x = {
+                compare_value < prev.var:math_dist_y
+            }
+        }
+        set_variable = { name = math_dist_t value = var:math_dist_x }
+        set_variable = { name = math_dist_x value = var:math_dist_y }
+        set_variable = { name = math_dist_y value = var:math_dist_t }
+    }
+    
+    change_variable = { name = math_dist_x multiply = 100.7 }
+    change_variable = { name = math_dist_y multiply = 44.1 }
+    
+    set_variable = { name = $return$ value = var:math_dist_x }
+    change_variable = { name = $return$ add = var:math_dist_y }
+    change_variable = { name = $return$ divide = 102.4 }
+    
+    remove_variable = math_dist_x
+    remove_variable = math_dist_y
+    remove_variable = math_dist_t
 }
 
 get_distance_neighb = {

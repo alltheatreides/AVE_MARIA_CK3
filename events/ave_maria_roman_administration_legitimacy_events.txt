@@ -1,0 +1,66 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_legitimacy_events
+
+# ave_maria_roman_administration_legitimacy_events
+
+
+# TABLE OF CONTENT:
+
+
+
+#############################################
+# LEGITIMACY VARIABLE HAND OUT				#
+#############################################
+
+## Handing out the Legitimacy Variable
+ave_maria_roman_administration_legitimacy_events.0001 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		## Handing out the Legitimacy Variable Tracking Courtier
+		every_courtier = {
+			if = {
+				limit = {
+					roman_administration_can_have_legitimacy_variable_trigger = yes					
+				}
+				roman_administration_update_legitimacy_variable = yes
+			}
+		}		
+			
+		## Handing out the Legitimacy Variable Tracking Vassals
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_can_have_legitimacy_variable_trigger = yes
+				}
+				roman_administration_update_legitimacy_variable = yes
+			}
+			# Handing out the Legitimacy Variable Tracking Vassals's courtiers
+			every_courtier = {
+				if = {
+					limit = {
+						roman_administration_can_have_legitimacy_variable_trigger = yes
+					}
+					roman_administration_update_legitimacy_variable = yes
+				}
+			}
+		}
+
+	}
+}

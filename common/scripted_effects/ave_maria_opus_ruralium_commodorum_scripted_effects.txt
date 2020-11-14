@@ -17,7 +17,7 @@
 
 ## Distance on province domain
 orc_apply_demesne_provinces_distance_malus = {
-	every_held_title = {
+    every_held_title = {
 		if = {
 			limit = {
 				tier = tier_county
@@ -26,69 +26,47 @@ orc_apply_demesne_provinces_distance_malus = {
 				add_to_global_variable_list = {
 					name = domain_province_list
 					target = this
-				}					
+				}
 			}
-		}
+		}			       
 	}
+	every_in_global_list = {
+        variable = every_water
+        
+        add_to_global_variable_list = { name = domain_province_list target = this }
+    }
 	travel_distance_dijkstra_white = {
 		white_type = variable
 		white_name = domain_province_list
-		start = root.capital_province
+		start = this.capital_province
 		max = 10000
 		return_dist = am_comm_malus_to_capital
 		return_prev = bar
 	}
-	# every_held_title = {
-	# 	if = {
-	# 		limit = {
-	# 			tier = tier_county
-	# 		}
-
-	# 		orc_apply_demesne_provinces_distance_malus_modifier = yes
-
-	# 		# title_province = {
-	# 		# 	if = {
-	# 		# 		limit = {
-	# 		# 			has_variable = am_comm_malus_to_capital
-	# 		# 		}
-	# 		# 		prev = {
-	# 		# 			# set_global_variable = {
-	# 		# 			# 	name = am_comm_malus_to_capital_temp
-	# 		# 			# 	value = var:am_comm_malus_to_capital
-	# 		# 			# }
-	# 		# 			# orc_control_malus_based_on_distance = {
-	# 		# 			# 	orc_distance_to_capital = var:am_comm_malus_to_capital
-	# 		# 			# }
-
-	# 		# 			orc_apply_demesne_provinces_distance_malus_modifier = yes
-	# 		# 		}
-	# 		# 	}					
-	# 		# }
-	# 	}
-	# }
+	orc_apply_demesne_provinces_distance_malus_modifier = yes
+	clear_global_variable_list = domain_province_list
 }
 
 orc_apply_demesne_provinces_distance_malus_modifier = {
 
-	every_held_title = {
+	every_held_title = {		
 		if = {
 			limit = {
 				tier = tier_county
 			}
+			## If the province is an enclave, apply a -80% malus
 			if = { 			
 				limit = {		
 					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 0
-						var:am_comm_malus_to_capital <= 1
+						NOT = { has_variable = am_comm_malus_to_capital }
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}		
-				
-				change_county_control = -1		
-			}			
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -80		
+			}	
+			## If the province is connected, apply a 2*distance malus	
 			if = { 			
 				limit = {		
 					title_province = { 	
@@ -97,11 +75,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 2
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -2		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -4		
 			}			
 			if = { 			
 				limit = {		
@@ -111,11 +88,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 3
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -3		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -6		
 			}			
 			if = { 			
 				limit = {		
@@ -125,11 +101,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 4
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -4		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -8		
 			}			
 			if = { 			
 				limit = {		
@@ -139,11 +114,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 5
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -5		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				# change_county_control = -10		
 			}			
 			if = { 			
 				limit = {		
@@ -153,11 +127,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 6
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -6		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -12		
 			}			
 			if = { 			
 				limit = {		
@@ -167,11 +140,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 7
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -7		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -14		
 			}			
 			if = { 			
 				limit = {		
@@ -181,11 +153,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 8
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -8		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -16		
 			}			
 			if = { 			
 				limit = {		
@@ -195,11 +166,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 9
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -9		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -18		
 			}			
 			if = { 			
 				limit = {		
@@ -209,11 +179,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 10
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -10		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -20		
 			}			
 			if = { 			
 				limit = {		
@@ -223,11 +192,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 11
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -11		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -22		
 			}			
 			if = { 			
 				limit = {		
@@ -237,11 +205,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 12
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -12		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -24		
 			}			
 			if = { 			
 				limit = {		
@@ -251,11 +218,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 13
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -13		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -26		
 			}			
 			if = { 			
 				limit = {		
@@ -265,11 +231,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 14
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -14		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -28		
 			}			
 			if = { 			
 				limit = {		
@@ -279,11 +244,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 15
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -15		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -30		
 			}			
 			if = { 			
 				limit = {		
@@ -293,11 +257,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 16
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -16		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -32		
 			}			
 			if = { 			
 				limit = {		
@@ -307,11 +270,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 17
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -17		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -34		
 			}			
 			if = { 			
 				limit = {		
@@ -321,11 +283,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 18
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -18		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -36		
 			}			
 			if = { 			
 				limit = {		
@@ -335,11 +296,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 19
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -19		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -38		
 			}			
 			if = { 			
 				limit = {		
@@ -349,11 +309,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 20
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -20		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -40		
 			}			
 			if = { 			
 				limit = {		
@@ -363,11 +322,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 21
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -21		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -42		
 			}			
 			if = { 			
 				limit = {		
@@ -377,11 +335,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 22
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -22		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -44		
 			}			
 			if = { 			
 				limit = {		
@@ -391,11 +348,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 23
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -23		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -46		
 			}			
 			if = { 			
 				limit = {		
@@ -405,11 +361,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 24
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -24		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -48		
 			}			
 			if = { 			
 				limit = {		
@@ -419,11 +374,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 25
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -25		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -50		
 			}			
 			if = { 			
 				limit = {		
@@ -433,11 +387,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 26
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -26		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -52		
 			}			
 			if = { 			
 				limit = {		
@@ -447,11 +400,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 27
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -27		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -54		
 			}			
 			if = { 			
 				limit = {		
@@ -461,11 +413,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 28
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -28		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -56		
 			}			
 			if = { 			
 				limit = {		
@@ -475,11 +426,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 29
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -29		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -58		
 			}			
 			if = { 			
 				limit = {		
@@ -489,11 +439,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 30
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -30		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -60		
 			}			
 			if = { 			
 				limit = {		
@@ -503,11 +452,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 31
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -31		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -62		
 			}			
 			if = { 			
 				limit = {		
@@ -517,11 +465,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 32
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -32		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -64		
 			}			
 			if = { 			
 				limit = {		
@@ -531,11 +478,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 33
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -33		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -66		
 			}			
 			if = { 			
 				limit = {		
@@ -545,11 +491,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 34
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -34		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -68		
 			}			
 			if = { 			
 				limit = {		
@@ -559,11 +504,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 35
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -35		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -70		
 			}			
 			if = { 			
 				limit = {		
@@ -573,11 +517,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 36
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -36		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -72		
 			}			
 			if = { 			
 				limit = {		
@@ -587,11 +530,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 37
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -37		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -74		
 			}			
 			if = { 			
 				limit = {		
@@ -601,11 +543,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 38
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -38		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -76		
 			}			
 			if = { 			
 				limit = {		
@@ -615,11 +556,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 39
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -39		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -78		
 			}			
 			if = { 			
 				limit = {		
@@ -629,11 +569,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 40
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -40		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -80		
 			}			
 			if = { 			
 				limit = {		
@@ -643,11 +582,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 41
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -41		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -82		
 			}			
 			if = { 			
 				limit = {		
@@ -657,11 +595,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 42
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -42		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -84		
 			}			
 			if = { 			
 				limit = {		
@@ -671,11 +608,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 43
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -43		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -86		
 			}			
 			if = { 			
 				limit = {		
@@ -685,11 +621,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 44
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -44		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -88		
 			}			
 			if = { 			
 				limit = {		
@@ -699,11 +634,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 45
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -45		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -90		
 			}			
 			if = { 			
 				limit = {		
@@ -713,11 +647,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 46
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -46		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -92		
 			}			
 			if = { 			
 				limit = {		
@@ -727,11 +660,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 47
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -47		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -94		
 			}			
 			if = { 			
 				limit = {		
@@ -741,11 +673,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 48
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -48		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -96		
 			}			
 			if = { 			
 				limit = {		
@@ -755,11 +686,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 49
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -49		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -98		
 			}			
 			if = { 			
 				limit = {		
@@ -769,11 +699,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 50
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -50		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -100		
 			}			
 			if = { 			
 				limit = {		
@@ -783,11 +712,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 51
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -51		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -102		
 			}			
 			if = { 			
 				limit = {		
@@ -797,11 +725,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 52
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -52		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -104		
 			}			
 			if = { 			
 				limit = {		
@@ -811,11 +738,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 53
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -53		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -106		
 			}			
 			if = { 			
 				limit = {		
@@ -825,11 +751,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 54
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -54		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -108		
 			}			
 			if = { 			
 				limit = {		
@@ -839,11 +764,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 55
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -55		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -110		
 			}			
 			if = { 			
 				limit = {		
@@ -853,11 +777,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 56
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -56		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -112		
 			}			
 			if = { 			
 				limit = {		
@@ -867,11 +790,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 57
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -57		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -114		
 			}			
 			if = { 			
 				limit = {		
@@ -881,11 +803,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 58
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -58		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -116		
 			}			
 			if = { 			
 				limit = {		
@@ -895,11 +816,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 59
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -59		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -118		
 			}			
 			if = { 			
 				limit = {		
@@ -909,11 +829,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 60
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -60		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -120		
 			}			
 			if = { 			
 				limit = {		
@@ -923,11 +842,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 61
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -61		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -122		
 			}			
 			if = { 			
 				limit = {		
@@ -937,11 +855,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 62
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -62		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -124		
 			}			
 			if = { 			
 				limit = {		
@@ -951,11 +868,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 63
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -63		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -126		
 			}			
 			if = { 			
 				limit = {		
@@ -965,11 +881,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 64
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -64		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -128		
 			}			
 			if = { 			
 				limit = {		
@@ -979,11 +894,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 65
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -65		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -130		
 			}			
 			if = { 			
 				limit = {		
@@ -993,11 +907,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 66
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -66		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -132		
 			}			
 			if = { 			
 				limit = {		
@@ -1007,11 +920,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 67
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -67		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -134		
 			}			
 			if = { 			
 				limit = {		
@@ -1021,11 +933,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 68
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -68		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -136		
 			}			
 			if = { 			
 				limit = {		
@@ -1035,11 +946,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 69
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -69		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -138		
 			}			
 			if = { 			
 				limit = {		
@@ -1049,11 +959,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 70
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -70		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -140		
 			}			
 			if = { 			
 				limit = {		
@@ -1063,11 +972,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 71
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -71		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -142		
 			}			
 			if = { 			
 				limit = {		
@@ -1077,11 +985,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 72
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -72		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -144		
 			}			
 			if = { 			
 				limit = {		
@@ -1091,11 +998,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 73
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -73		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -146		
 			}			
 			if = { 			
 				limit = {		
@@ -1105,11 +1011,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 74
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -74		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -148		
 			}			
 			if = { 			
 				limit = {		
@@ -1119,11 +1024,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 75
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -75		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -150		
 			}			
 			if = { 			
 				limit = {		
@@ -1133,11 +1037,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 76
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -76		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -152		
 			}			
 			if = { 			
 				limit = {		
@@ -1147,11 +1050,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 77
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -77		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -154		
 			}			
 			if = { 			
 				limit = {		
@@ -1161,11 +1063,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 78
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -78		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -156		
 			}			
 			if = { 			
 				limit = {		
@@ -1175,11 +1076,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 79
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -79		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -158		
 			}			
 			if = { 			
 				limit = {		
@@ -1189,11 +1089,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 80
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -80		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -160		
 			}			
 			if = { 			
 				limit = {		
@@ -1203,11 +1102,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 81
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -81		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -162		
 			}			
 			if = { 			
 				limit = {		
@@ -1217,11 +1115,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 82
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -82		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -164		
 			}			
 			if = { 			
 				limit = {		
@@ -1231,11 +1128,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 83
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -83		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -166		
 			}			
 			if = { 			
 				limit = {		
@@ -1245,11 +1141,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 84
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -84		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -168		
 			}			
 			if = { 			
 				limit = {		
@@ -1259,11 +1154,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 85
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -85		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -170		
 			}			
 			if = { 			
 				limit = {		
@@ -1273,11 +1167,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 86
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -86		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -172		
 			}			
 			if = { 			
 				limit = {		
@@ -1287,11 +1180,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 87
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -87		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -174		
 			}			
 			if = { 			
 				limit = {		
@@ -1301,11 +1193,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 88
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -88		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -176		
 			}			
 			if = { 			
 				limit = {		
@@ -1315,11 +1206,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 89
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -89		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -178		
 			}			
 			if = { 			
 				limit = {		
@@ -1329,11 +1219,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 90
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -90		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -180		
 			}			
 			if = { 			
 				limit = {		
@@ -1343,11 +1232,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 91
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -91		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -182		
 			}			
 			if = { 			
 				limit = {		
@@ -1357,11 +1245,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 92
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -92		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -184		
 			}			
 			if = { 			
 				limit = {		
@@ -1371,11 +1258,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 93
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -93		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -186		
 			}			
 			if = { 			
 				limit = {		
@@ -1385,11 +1271,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 94
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -94		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -188		
 			}			
 			if = { 			
 				limit = {		
@@ -1399,11 +1284,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 95
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -95		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -190		
 			}			
 			if = { 			
 				limit = {		
@@ -1413,11 +1297,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 96
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -96		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -192		
 			}			
 			if = { 			
 				limit = {		
@@ -1427,11 +1310,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 97
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -97		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -194		
 			}			
 			if = { 			
 				limit = {		
@@ -1441,11 +1323,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 98
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -98		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -196		
 			}			
 			if = { 			
 				limit = {		
@@ -1455,11 +1336,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 99
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -99		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -198		
 			}			
 			if = { 			
 				limit = {		
@@ -1469,11 +1349,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 100
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -100		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -200		
 			}			
 			if = { 			
 				limit = {		
@@ -1483,11 +1362,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 101
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -101		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -202		
 			}			
 			if = { 			
 				limit = {		
@@ -1497,11 +1375,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 102
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -102		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -204		
 			}			
 			if = { 			
 				limit = {		
@@ -1511,11 +1388,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 103
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -103		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -206		
 			}			
 			if = { 			
 				limit = {		
@@ -1525,11 +1401,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 104
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -104		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -208		
 			}			
 			if = { 			
 				limit = {		
@@ -1539,11 +1414,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 105
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -105		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -210		
 			}			
 			if = { 			
 				limit = {		
@@ -1553,11 +1427,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 106
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -106		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -212		
 			}			
 			if = { 			
 				limit = {		
@@ -1567,11 +1440,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 107
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -107		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -214		
 			}			
 			if = { 			
 				limit = {		
@@ -1581,11 +1453,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 108
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -108		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -216		
 			}			
 			if = { 			
 				limit = {		
@@ -1595,11 +1466,10 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 109
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -109		
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
+				change_county_control = -218		
 			}			
 			if = { 			
 				limit = {		
@@ -1609,5474 +1479,26 @@ orc_apply_demesne_provinces_distance_malus_modifier = {
 						var:am_comm_malus_to_capital <= 110
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -110		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 110
-						var:am_comm_malus_to_capital <= 111
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -111		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 111
-						var:am_comm_malus_to_capital <= 112
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -112		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 112
-						var:am_comm_malus_to_capital <= 113
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -113		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 113
-						var:am_comm_malus_to_capital <= 114
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -114		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 114
-						var:am_comm_malus_to_capital <= 115
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -115		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 115
-						var:am_comm_malus_to_capital <= 116
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -116		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 116
-						var:am_comm_malus_to_capital <= 117
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -117		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 117
-						var:am_comm_malus_to_capital <= 118
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -118		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 118
-						var:am_comm_malus_to_capital <= 119
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -119		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 119
-						var:am_comm_malus_to_capital <= 120
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -120		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 120
-						var:am_comm_malus_to_capital <= 121
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -121		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 121
-						var:am_comm_malus_to_capital <= 122
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -122		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 122
-						var:am_comm_malus_to_capital <= 123
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -123		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 123
-						var:am_comm_malus_to_capital <= 124
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -124		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 124
-						var:am_comm_malus_to_capital <= 125
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -125		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 125
-						var:am_comm_malus_to_capital <= 126
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -126		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 126
-						var:am_comm_malus_to_capital <= 127
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -127		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 127
-						var:am_comm_malus_to_capital <= 128
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -128		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 128
-						var:am_comm_malus_to_capital <= 129
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -129		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 129
-						var:am_comm_malus_to_capital <= 130
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -130		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 130
-						var:am_comm_malus_to_capital <= 131
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -131		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 131
-						var:am_comm_malus_to_capital <= 132
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -132		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 132
-						var:am_comm_malus_to_capital <= 133
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -133		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 133
-						var:am_comm_malus_to_capital <= 134
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -134		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 134
-						var:am_comm_malus_to_capital <= 135
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -135		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 135
-						var:am_comm_malus_to_capital <= 136
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -136		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 136
-						var:am_comm_malus_to_capital <= 137
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -137		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 137
-						var:am_comm_malus_to_capital <= 138
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -138		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 138
-						var:am_comm_malus_to_capital <= 139
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -139		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 139
-						var:am_comm_malus_to_capital <= 140
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -140		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 140
-						var:am_comm_malus_to_capital <= 141
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -141		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 141
-						var:am_comm_malus_to_capital <= 142
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -142		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 142
-						var:am_comm_malus_to_capital <= 143
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -143		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 143
-						var:am_comm_malus_to_capital <= 144
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -144		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 144
-						var:am_comm_malus_to_capital <= 145
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -145		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 145
-						var:am_comm_malus_to_capital <= 146
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -146		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 146
-						var:am_comm_malus_to_capital <= 147
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -147		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 147
-						var:am_comm_malus_to_capital <= 148
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -148		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 148
-						var:am_comm_malus_to_capital <= 149
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -149		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 149
-						var:am_comm_malus_to_capital <= 150
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -150		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 150
-						var:am_comm_malus_to_capital <= 151
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -151		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 151
-						var:am_comm_malus_to_capital <= 152
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -152		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 152
-						var:am_comm_malus_to_capital <= 153
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -153		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 153
-						var:am_comm_malus_to_capital <= 154
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -154		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 154
-						var:am_comm_malus_to_capital <= 155
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -155		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 155
-						var:am_comm_malus_to_capital <= 156
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -156		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 156
-						var:am_comm_malus_to_capital <= 157
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -157		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 157
-						var:am_comm_malus_to_capital <= 158
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -158		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 158
-						var:am_comm_malus_to_capital <= 159
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -159		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 159
-						var:am_comm_malus_to_capital <= 160
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -160		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 160
-						var:am_comm_malus_to_capital <= 161
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -161		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 161
-						var:am_comm_malus_to_capital <= 162
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -162		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 162
-						var:am_comm_malus_to_capital <= 163
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -163		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 163
-						var:am_comm_malus_to_capital <= 164
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -164		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 164
-						var:am_comm_malus_to_capital <= 165
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -165		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 165
-						var:am_comm_malus_to_capital <= 166
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -166		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 166
-						var:am_comm_malus_to_capital <= 167
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -167		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 167
-						var:am_comm_malus_to_capital <= 168
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -168		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 168
-						var:am_comm_malus_to_capital <= 169
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -169		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 169
-						var:am_comm_malus_to_capital <= 170
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -170		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 170
-						var:am_comm_malus_to_capital <= 171
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -171		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 171
-						var:am_comm_malus_to_capital <= 172
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -172		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 172
-						var:am_comm_malus_to_capital <= 173
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -173		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 173
-						var:am_comm_malus_to_capital <= 174
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -174		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 174
-						var:am_comm_malus_to_capital <= 175
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -175		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 175
-						var:am_comm_malus_to_capital <= 176
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -176		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 176
-						var:am_comm_malus_to_capital <= 177
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -177		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 177
-						var:am_comm_malus_to_capital <= 178
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -178		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 178
-						var:am_comm_malus_to_capital <= 179
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -179		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 179
-						var:am_comm_malus_to_capital <= 180
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -180		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 180
-						var:am_comm_malus_to_capital <= 181
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -181		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 181
-						var:am_comm_malus_to_capital <= 182
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -182		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 182
-						var:am_comm_malus_to_capital <= 183
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -183		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 183
-						var:am_comm_malus_to_capital <= 184
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -184		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 184
-						var:am_comm_malus_to_capital <= 185
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -185		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 185
-						var:am_comm_malus_to_capital <= 186
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -186		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 186
-						var:am_comm_malus_to_capital <= 187
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -187		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 187
-						var:am_comm_malus_to_capital <= 188
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -188		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 188
-						var:am_comm_malus_to_capital <= 189
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -189		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 189
-						var:am_comm_malus_to_capital <= 190
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -190		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 190
-						var:am_comm_malus_to_capital <= 191
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -191		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 191
-						var:am_comm_malus_to_capital <= 192
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -192		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 192
-						var:am_comm_malus_to_capital <= 193
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -193		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 193
-						var:am_comm_malus_to_capital <= 194
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -194		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 194
-						var:am_comm_malus_to_capital <= 195
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -195		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 195
-						var:am_comm_malus_to_capital <= 196
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -196		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 196
-						var:am_comm_malus_to_capital <= 197
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -197		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 197
-						var:am_comm_malus_to_capital <= 198
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -198		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 198
-						var:am_comm_malus_to_capital <= 199
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -199		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 199
-						var:am_comm_malus_to_capital <= 200
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -200		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 200
-						var:am_comm_malus_to_capital <= 201
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -201		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 201
-						var:am_comm_malus_to_capital <= 202
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -202		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 202
-						var:am_comm_malus_to_capital <= 203
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -203		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 203
-						var:am_comm_malus_to_capital <= 204
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -204		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 204
-						var:am_comm_malus_to_capital <= 205
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -205		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 205
-						var:am_comm_malus_to_capital <= 206
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -206		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 206
-						var:am_comm_malus_to_capital <= 207
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -207		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 207
-						var:am_comm_malus_to_capital <= 208
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -208		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 208
-						var:am_comm_malus_to_capital <= 209
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -209		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 209
-						var:am_comm_malus_to_capital <= 210
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -210		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 210
-						var:am_comm_malus_to_capital <= 211
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -211		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 211
-						var:am_comm_malus_to_capital <= 212
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -212		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 212
-						var:am_comm_malus_to_capital <= 213
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -213		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 213
-						var:am_comm_malus_to_capital <= 214
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -214		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 214
-						var:am_comm_malus_to_capital <= 215
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -215		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 215
-						var:am_comm_malus_to_capital <= 216
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -216		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 216
-						var:am_comm_malus_to_capital <= 217
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -217		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 217
-						var:am_comm_malus_to_capital <= 218
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -218		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 218
-						var:am_comm_malus_to_capital <= 219
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -219		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 219
-						var:am_comm_malus_to_capital <= 220
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
 				change_county_control = -220		
 			}			
 			if = { 			
 				limit = {		
 					title_province = { 	
 						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 220
-						var:am_comm_malus_to_capital <= 221
+						var:am_comm_malus_to_capital > 110
 					}	
 				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -221		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 221
-						var:am_comm_malus_to_capital <= 222
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
+				add_county_modifier = orc_comm_malus_modifier		
+				change_county_control = 100	
+				# change_county_control = -10		
 				change_county_control = -222		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 222
-						var:am_comm_malus_to_capital <= 223
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -223		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 223
-						var:am_comm_malus_to_capital <= 224
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -224		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 224
-						var:am_comm_malus_to_capital <= 225
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -225		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 225
-						var:am_comm_malus_to_capital <= 226
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -226		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 226
-						var:am_comm_malus_to_capital <= 227
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -227		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 227
-						var:am_comm_malus_to_capital <= 228
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -228		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 228
-						var:am_comm_malus_to_capital <= 229
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -229		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 229
-						var:am_comm_malus_to_capital <= 230
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -230		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 230
-						var:am_comm_malus_to_capital <= 231
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -231		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 231
-						var:am_comm_malus_to_capital <= 232
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -232		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 232
-						var:am_comm_malus_to_capital <= 233
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -233		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 233
-						var:am_comm_malus_to_capital <= 234
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -234		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 234
-						var:am_comm_malus_to_capital <= 235
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -235		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 235
-						var:am_comm_malus_to_capital <= 236
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -236		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 236
-						var:am_comm_malus_to_capital <= 237
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -237		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 237
-						var:am_comm_malus_to_capital <= 238
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -238		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 238
-						var:am_comm_malus_to_capital <= 239
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -239		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 239
-						var:am_comm_malus_to_capital <= 240
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -240		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 240
-						var:am_comm_malus_to_capital <= 241
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -241		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 241
-						var:am_comm_malus_to_capital <= 242
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -242		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 242
-						var:am_comm_malus_to_capital <= 243
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -243		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 243
-						var:am_comm_malus_to_capital <= 244
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -244		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 244
-						var:am_comm_malus_to_capital <= 245
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -245		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 245
-						var:am_comm_malus_to_capital <= 246
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -246		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 246
-						var:am_comm_malus_to_capital <= 247
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -247		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 247
-						var:am_comm_malus_to_capital <= 248
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -248		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 248
-						var:am_comm_malus_to_capital <= 249
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -249		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 249
-						var:am_comm_malus_to_capital <= 250
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -250		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 250
-						var:am_comm_malus_to_capital <= 251
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -251		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 251
-						var:am_comm_malus_to_capital <= 252
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -252		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 252
-						var:am_comm_malus_to_capital <= 253
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -253		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 253
-						var:am_comm_malus_to_capital <= 254
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -254		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 254
-						var:am_comm_malus_to_capital <= 255
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -255		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 255
-						var:am_comm_malus_to_capital <= 256
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -256		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 256
-						var:am_comm_malus_to_capital <= 257
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -257		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 257
-						var:am_comm_malus_to_capital <= 258
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -258		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 258
-						var:am_comm_malus_to_capital <= 259
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -259		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 259
-						var:am_comm_malus_to_capital <= 260
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -260		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 260
-						var:am_comm_malus_to_capital <= 261
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -261		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 261
-						var:am_comm_malus_to_capital <= 262
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -262		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 262
-						var:am_comm_malus_to_capital <= 263
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -263		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 263
-						var:am_comm_malus_to_capital <= 264
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -264		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 264
-						var:am_comm_malus_to_capital <= 265
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -265		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 265
-						var:am_comm_malus_to_capital <= 266
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -266		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 266
-						var:am_comm_malus_to_capital <= 267
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -267		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 267
-						var:am_comm_malus_to_capital <= 268
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -268		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 268
-						var:am_comm_malus_to_capital <= 269
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -269		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 269
-						var:am_comm_malus_to_capital <= 270
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -270		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 270
-						var:am_comm_malus_to_capital <= 271
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -271		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 271
-						var:am_comm_malus_to_capital <= 272
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -272		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 272
-						var:am_comm_malus_to_capital <= 273
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -273		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 273
-						var:am_comm_malus_to_capital <= 274
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -274		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 274
-						var:am_comm_malus_to_capital <= 275
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -275		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 275
-						var:am_comm_malus_to_capital <= 276
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -276		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 276
-						var:am_comm_malus_to_capital <= 277
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -277		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 277
-						var:am_comm_malus_to_capital <= 278
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -278		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 278
-						var:am_comm_malus_to_capital <= 279
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -279		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 279
-						var:am_comm_malus_to_capital <= 280
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -280		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 280
-						var:am_comm_malus_to_capital <= 281
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -281		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 281
-						var:am_comm_malus_to_capital <= 282
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -282		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 282
-						var:am_comm_malus_to_capital <= 283
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -283		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 283
-						var:am_comm_malus_to_capital <= 284
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -284		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 284
-						var:am_comm_malus_to_capital <= 285
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -285		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 285
-						var:am_comm_malus_to_capital <= 286
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -286		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 286
-						var:am_comm_malus_to_capital <= 287
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -287		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 287
-						var:am_comm_malus_to_capital <= 288
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -288		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 288
-						var:am_comm_malus_to_capital <= 289
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -289		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 289
-						var:am_comm_malus_to_capital <= 290
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -290		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 290
-						var:am_comm_malus_to_capital <= 291
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -291		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 291
-						var:am_comm_malus_to_capital <= 292
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -292		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 292
-						var:am_comm_malus_to_capital <= 293
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -293		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 293
-						var:am_comm_malus_to_capital <= 294
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -294		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 294
-						var:am_comm_malus_to_capital <= 295
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -295		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 295
-						var:am_comm_malus_to_capital <= 296
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -296		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 296
-						var:am_comm_malus_to_capital <= 297
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -297		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 297
-						var:am_comm_malus_to_capital <= 298
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -298		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 298
-						var:am_comm_malus_to_capital <= 299
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -299		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 299
-						var:am_comm_malus_to_capital <= 300
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -300		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 300
-						var:am_comm_malus_to_capital <= 301
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -301		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 301
-						var:am_comm_malus_to_capital <= 302
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -302		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 302
-						var:am_comm_malus_to_capital <= 303
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -303		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 303
-						var:am_comm_malus_to_capital <= 304
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -304		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 304
-						var:am_comm_malus_to_capital <= 305
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -305		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 305
-						var:am_comm_malus_to_capital <= 306
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -306		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 306
-						var:am_comm_malus_to_capital <= 307
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -307		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 307
-						var:am_comm_malus_to_capital <= 308
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -308		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 308
-						var:am_comm_malus_to_capital <= 309
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -309		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 309
-						var:am_comm_malus_to_capital <= 310
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -310		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 310
-						var:am_comm_malus_to_capital <= 311
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -311		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 311
-						var:am_comm_malus_to_capital <= 312
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -312		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 312
-						var:am_comm_malus_to_capital <= 313
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -313		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 313
-						var:am_comm_malus_to_capital <= 314
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -314		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 314
-						var:am_comm_malus_to_capital <= 315
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -315		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 315
-						var:am_comm_malus_to_capital <= 316
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -316		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 316
-						var:am_comm_malus_to_capital <= 317
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -317		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 317
-						var:am_comm_malus_to_capital <= 318
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -318		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 318
-						var:am_comm_malus_to_capital <= 319
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -319		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 319
-						var:am_comm_malus_to_capital <= 320
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -320		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 320
-						var:am_comm_malus_to_capital <= 321
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -321		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 321
-						var:am_comm_malus_to_capital <= 322
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -322		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 322
-						var:am_comm_malus_to_capital <= 323
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -323		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 323
-						var:am_comm_malus_to_capital <= 324
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -324		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 324
-						var:am_comm_malus_to_capital <= 325
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -325		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 325
-						var:am_comm_malus_to_capital <= 326
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -326		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 326
-						var:am_comm_malus_to_capital <= 327
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -327		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 327
-						var:am_comm_malus_to_capital <= 328
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -328		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 328
-						var:am_comm_malus_to_capital <= 329
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -329		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 329
-						var:am_comm_malus_to_capital <= 330
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -330		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 330
-						var:am_comm_malus_to_capital <= 331
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -331		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 331
-						var:am_comm_malus_to_capital <= 332
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -332		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 332
-						var:am_comm_malus_to_capital <= 333
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -333		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 333
-						var:am_comm_malus_to_capital <= 334
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -334		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 334
-						var:am_comm_malus_to_capital <= 335
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -335		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 335
-						var:am_comm_malus_to_capital <= 336
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -336		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 336
-						var:am_comm_malus_to_capital <= 337
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -337		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 337
-						var:am_comm_malus_to_capital <= 338
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -338		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 338
-						var:am_comm_malus_to_capital <= 339
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -339		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 339
-						var:am_comm_malus_to_capital <= 340
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -340		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 340
-						var:am_comm_malus_to_capital <= 341
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -341		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 341
-						var:am_comm_malus_to_capital <= 342
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -342		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 342
-						var:am_comm_malus_to_capital <= 343
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -343		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 343
-						var:am_comm_malus_to_capital <= 344
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -344		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 344
-						var:am_comm_malus_to_capital <= 345
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -345		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 345
-						var:am_comm_malus_to_capital <= 346
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -346		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 346
-						var:am_comm_malus_to_capital <= 347
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -347		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 347
-						var:am_comm_malus_to_capital <= 348
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -348		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 348
-						var:am_comm_malus_to_capital <= 349
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -349		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 349
-						var:am_comm_malus_to_capital <= 350
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -350		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 350
-						var:am_comm_malus_to_capital <= 351
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -351		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 351
-						var:am_comm_malus_to_capital <= 352
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -352		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 352
-						var:am_comm_malus_to_capital <= 353
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -353		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 353
-						var:am_comm_malus_to_capital <= 354
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -354		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 354
-						var:am_comm_malus_to_capital <= 355
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -355		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 355
-						var:am_comm_malus_to_capital <= 356
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -356		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 356
-						var:am_comm_malus_to_capital <= 357
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -357		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 357
-						var:am_comm_malus_to_capital <= 358
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -358		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 358
-						var:am_comm_malus_to_capital <= 359
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -359		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 359
-						var:am_comm_malus_to_capital <= 360
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -360		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 360
-						var:am_comm_malus_to_capital <= 361
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -361		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 361
-						var:am_comm_malus_to_capital <= 362
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -362		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 362
-						var:am_comm_malus_to_capital <= 363
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -363		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 363
-						var:am_comm_malus_to_capital <= 364
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -364		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 364
-						var:am_comm_malus_to_capital <= 365
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -365		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 365
-						var:am_comm_malus_to_capital <= 366
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -366		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 366
-						var:am_comm_malus_to_capital <= 367
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -367		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 367
-						var:am_comm_malus_to_capital <= 368
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -368		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 368
-						var:am_comm_malus_to_capital <= 369
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -369		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 369
-						var:am_comm_malus_to_capital <= 370
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -370		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 370
-						var:am_comm_malus_to_capital <= 371
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -371		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 371
-						var:am_comm_malus_to_capital <= 372
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -372		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 372
-						var:am_comm_malus_to_capital <= 373
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -373		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 373
-						var:am_comm_malus_to_capital <= 374
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -374		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 374
-						var:am_comm_malus_to_capital <= 375
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -375		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 375
-						var:am_comm_malus_to_capital <= 376
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -376		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 376
-						var:am_comm_malus_to_capital <= 377
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -377		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 377
-						var:am_comm_malus_to_capital <= 378
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -378		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 378
-						var:am_comm_malus_to_capital <= 379
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -379		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 379
-						var:am_comm_malus_to_capital <= 380
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -380		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 380
-						var:am_comm_malus_to_capital <= 381
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -381		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 381
-						var:am_comm_malus_to_capital <= 382
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -382		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 382
-						var:am_comm_malus_to_capital <= 383
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -383		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 383
-						var:am_comm_malus_to_capital <= 384
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -384		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 384
-						var:am_comm_malus_to_capital <= 385
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -385		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 385
-						var:am_comm_malus_to_capital <= 386
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -386		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 386
-						var:am_comm_malus_to_capital <= 387
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -387		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 387
-						var:am_comm_malus_to_capital <= 388
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -388		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 388
-						var:am_comm_malus_to_capital <= 389
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -389		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 389
-						var:am_comm_malus_to_capital <= 390
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -390		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 390
-						var:am_comm_malus_to_capital <= 391
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -391		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 391
-						var:am_comm_malus_to_capital <= 392
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -392		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 392
-						var:am_comm_malus_to_capital <= 393
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -393		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 393
-						var:am_comm_malus_to_capital <= 394
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -394		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 394
-						var:am_comm_malus_to_capital <= 395
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -395		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 395
-						var:am_comm_malus_to_capital <= 396
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -396		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 396
-						var:am_comm_malus_to_capital <= 397
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -397		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 397
-						var:am_comm_malus_to_capital <= 398
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -398		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 398
-						var:am_comm_malus_to_capital <= 399
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -399		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 399
-						var:am_comm_malus_to_capital <= 400
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -400		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 400
-						var:am_comm_malus_to_capital <= 401
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -401		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 401
-						var:am_comm_malus_to_capital <= 402
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -402		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 402
-						var:am_comm_malus_to_capital <= 403
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -403		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 403
-						var:am_comm_malus_to_capital <= 404
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -404		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 404
-						var:am_comm_malus_to_capital <= 405
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -405		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 405
-						var:am_comm_malus_to_capital <= 406
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -406		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 406
-						var:am_comm_malus_to_capital <= 407
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -407		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 407
-						var:am_comm_malus_to_capital <= 408
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -408		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 408
-						var:am_comm_malus_to_capital <= 409
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -409		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 409
-						var:am_comm_malus_to_capital <= 410
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -410		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 410
-						var:am_comm_malus_to_capital <= 411
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -411		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 411
-						var:am_comm_malus_to_capital <= 412
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -412		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 412
-						var:am_comm_malus_to_capital <= 413
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -413		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 413
-						var:am_comm_malus_to_capital <= 414
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -414		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 414
-						var:am_comm_malus_to_capital <= 415
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -415		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 415
-						var:am_comm_malus_to_capital <= 416
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -416		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 416
-						var:am_comm_malus_to_capital <= 417
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -417		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 417
-						var:am_comm_malus_to_capital <= 418
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -418		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 418
-						var:am_comm_malus_to_capital <= 419
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -419		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 419
-						var:am_comm_malus_to_capital <= 420
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -420		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 420
-						var:am_comm_malus_to_capital <= 421
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -421		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 421
-						var:am_comm_malus_to_capital <= 422
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -422		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 422
-						var:am_comm_malus_to_capital <= 423
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -423		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 423
-						var:am_comm_malus_to_capital <= 424
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -424		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 424
-						var:am_comm_malus_to_capital <= 425
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -425		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 425
-						var:am_comm_malus_to_capital <= 426
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -426		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 426
-						var:am_comm_malus_to_capital <= 427
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -427		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 427
-						var:am_comm_malus_to_capital <= 428
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -428		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 428
-						var:am_comm_malus_to_capital <= 429
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -429		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 429
-						var:am_comm_malus_to_capital <= 430
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -430		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 430
-						var:am_comm_malus_to_capital <= 431
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -431		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 431
-						var:am_comm_malus_to_capital <= 432
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -432		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 432
-						var:am_comm_malus_to_capital <= 433
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -433		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 433
-						var:am_comm_malus_to_capital <= 434
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -434		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 434
-						var:am_comm_malus_to_capital <= 435
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -435		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 435
-						var:am_comm_malus_to_capital <= 436
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -436		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 436
-						var:am_comm_malus_to_capital <= 437
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -437		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 437
-						var:am_comm_malus_to_capital <= 438
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -438		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 438
-						var:am_comm_malus_to_capital <= 439
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -439		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 439
-						var:am_comm_malus_to_capital <= 440
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -440		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 440
-						var:am_comm_malus_to_capital <= 441
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -441		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 441
-						var:am_comm_malus_to_capital <= 442
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -442		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 442
-						var:am_comm_malus_to_capital <= 443
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -443		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 443
-						var:am_comm_malus_to_capital <= 444
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -444		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 444
-						var:am_comm_malus_to_capital <= 445
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -445		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 445
-						var:am_comm_malus_to_capital <= 446
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -446		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 446
-						var:am_comm_malus_to_capital <= 447
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -447		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 447
-						var:am_comm_malus_to_capital <= 448
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -448		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 448
-						var:am_comm_malus_to_capital <= 449
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -449		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 449
-						var:am_comm_malus_to_capital <= 450
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -450		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 450
-						var:am_comm_malus_to_capital <= 451
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -451		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 451
-						var:am_comm_malus_to_capital <= 452
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -452		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 452
-						var:am_comm_malus_to_capital <= 453
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -453		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 453
-						var:am_comm_malus_to_capital <= 454
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -454		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 454
-						var:am_comm_malus_to_capital <= 455
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -455		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 455
-						var:am_comm_malus_to_capital <= 456
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -456		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 456
-						var:am_comm_malus_to_capital <= 457
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -457		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 457
-						var:am_comm_malus_to_capital <= 458
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -458		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 458
-						var:am_comm_malus_to_capital <= 459
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -459		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 459
-						var:am_comm_malus_to_capital <= 460
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -460		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 460
-						var:am_comm_malus_to_capital <= 461
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -461		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 461
-						var:am_comm_malus_to_capital <= 462
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -462		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 462
-						var:am_comm_malus_to_capital <= 463
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -463		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 463
-						var:am_comm_malus_to_capital <= 464
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -464		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 464
-						var:am_comm_malus_to_capital <= 465
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -465		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 465
-						var:am_comm_malus_to_capital <= 466
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -466		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 466
-						var:am_comm_malus_to_capital <= 467
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -467		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 467
-						var:am_comm_malus_to_capital <= 468
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -468		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 468
-						var:am_comm_malus_to_capital <= 469
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -469		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 469
-						var:am_comm_malus_to_capital <= 470
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -470		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 470
-						var:am_comm_malus_to_capital <= 471
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -471		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 471
-						var:am_comm_malus_to_capital <= 472
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -472		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 472
-						var:am_comm_malus_to_capital <= 473
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -473		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 473
-						var:am_comm_malus_to_capital <= 474
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -474		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 474
-						var:am_comm_malus_to_capital <= 475
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -475		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 475
-						var:am_comm_malus_to_capital <= 476
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -476		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 476
-						var:am_comm_malus_to_capital <= 477
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -477		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 477
-						var:am_comm_malus_to_capital <= 478
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -478		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 478
-						var:am_comm_malus_to_capital <= 479
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -479		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 479
-						var:am_comm_malus_to_capital <= 480
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -480		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 480
-						var:am_comm_malus_to_capital <= 481
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -481		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 481
-						var:am_comm_malus_to_capital <= 482
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -482		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 482
-						var:am_comm_malus_to_capital <= 483
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -483		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 483
-						var:am_comm_malus_to_capital <= 484
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -484		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 484
-						var:am_comm_malus_to_capital <= 485
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -485		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 485
-						var:am_comm_malus_to_capital <= 486
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -486		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 486
-						var:am_comm_malus_to_capital <= 487
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -487		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 487
-						var:am_comm_malus_to_capital <= 488
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -488		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 488
-						var:am_comm_malus_to_capital <= 489
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -489		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 489
-						var:am_comm_malus_to_capital <= 490
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -490		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 490
-						var:am_comm_malus_to_capital <= 491
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -491		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 491
-						var:am_comm_malus_to_capital <= 492
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -492		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 492
-						var:am_comm_malus_to_capital <= 493
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -493		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 493
-						var:am_comm_malus_to_capital <= 494
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -494		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 494
-						var:am_comm_malus_to_capital <= 495
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -495		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 495
-						var:am_comm_malus_to_capital <= 496
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -496		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 496
-						var:am_comm_malus_to_capital <= 497
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -497		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 497
-						var:am_comm_malus_to_capital <= 498
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -498		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 498
-						var:am_comm_malus_to_capital <= 499
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -499		
-			}			
-			if = { 			
-				limit = {		
-					title_province = { 	
-						has_variable = am_comm_malus_to_capital
-						var:am_comm_malus_to_capital > 499
-						var:am_comm_malus_to_capital <= 500
-					}	
-				}		
-				add_county_modifier = {
-					modifier = orc_comm_malus_modifier
-				}	
-					
-				change_county_control = -500		
 			}			
 			
 		}
+
 	}
 	
 

@@ -217,7 +217,7 @@ roman_administration_can_scheme_military_revolt = {
 #############################################
 
 ## Trigger that checks if you can have legitimacy from a character scope
-roman_administration_can_have_legitimacy_variable = {
+roman_administration_can_have_legitimacy_variable_trigger = {
 	## Must be inside the empire (or be the emperor)
 	OR = {
 		top_liege = {
@@ -230,7 +230,7 @@ roman_administration_can_have_legitimacy_variable = {
 		}	
 	}
 	## If you are not the emperor you must either be related to the emperor, or having a high office title, or be on the council
-	trigger_if = {
+	if = {
 		limit = {
 			NOT = {
 				primary_title = {
@@ -249,10 +249,11 @@ roman_administration_can_have_legitimacy_variable = {
 
 			## Close family ties to the emperor
 			## Redudant thing here, not sure if the first one works
-			is_close_family_of = title:e_byzantium.holder 
-			title:e_byzantium.holder = {
-				is_close_family_of = prev
-			}
+			#is_close_family_of = title:e_byzantium.holder 
+			# title:e_byzantium.holder = {
+			# 	is_close_family_of = prev
+			# }
+			# is_close_family_of = root
 			
 			## If you are female, either must be unamarried or roman husband
 			trigger_if = {
@@ -269,10 +270,11 @@ roman_administration_can_have_legitimacy_variable = {
 
 			## If you are best buddies with the basileus
 			## Redudant thing here, not sure if the first one works
-			has_relation_best_friend = title:e_byzantium.holder 
-			title:e_byzantium.holder = {
-				has_relation_best_friend = prev
-			}
+			#has_relation_best_friend = title:e_byzantium.holder 
+			# title:e_byzantium.holder = {
+			# 	has_relation_best_friend = prev
+			# }
+			# has_relation_best_friend = root
 		}
 	}
 
