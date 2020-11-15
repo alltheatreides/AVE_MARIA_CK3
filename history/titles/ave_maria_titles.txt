@@ -181,6 +181,7 @@ d_regular_tagma_2 = {
 ##### b) COUNTY DISTRIBUTION
 ##### Give the tagma some counties so they can deploy their troops
 
+## Deprecated, got the counties back to 20508 Monomachos
 ## Fictional guy, gave a county to allow troop spawning
 c_bizye = {
 	1066.1.1 = {
@@ -305,6 +306,15 @@ d_cherson_roman = {
 }
 
 d_langobardia_roman = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		de_jure_liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+	}
 	1060.1.1 = {
 		liege = "e_byzantium"
 		de_jure_liege = "e_byzantium"
@@ -314,6 +324,15 @@ d_langobardia_roman = {
 }
 
 d_macedonia_roman = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		de_jure_liege = "e_byzantium"
+		government = roman_administration_civilian_government
+		succession_laws = { 
+			ave_maria_roman_administration_civilian_administration_succession_law 
+			male_only_law 
+		}
+	}
 	1060.1.1 = {
 		liege = "e_byzantium"
 		de_jure_liege = "e_byzantium"
@@ -326,7 +345,7 @@ d_macedonia_roman = {
 ##### 3) ROMAN FAMILY COUNTY TITLES
 ##### Distribution of county family titles to historical characters
 
-# ## First family county title goes to the emperor
+### Constantinople Palaces
 c_roman_family_1 = {
 	
 	600.1.1 = {
@@ -339,7 +358,22 @@ c_roman_family_1 = {
 	}
 	1066.1.1 = {
 		#holder = 1734
-		holder = 0
+		holder = 1746
+	}
+}
+
+b_roman_family_1 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		#holder = 1734
+		holder = 1746
 	}
 }
 
@@ -358,6 +392,93 @@ c_roman_family_1 = {
 # 		holder = 1746
 # 	}
 # }
+
+## Romanos Diogenes Estates
+c_roman_estate_anatolia_1 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1734
+	}
+}
+## Romanos Diogenes Estates
+b_roman_estate_anatolia_1 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1734
+	}
+}
+## Konstantinos DOoukas Estates
+c_roman_estate_anatolia_2 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1732
+	}
+}
+## Konstantinos DOoukas Estates
+b_roman_estate_anatolia_2 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1732
+	}
+}
+
+## Ioannes Komnenos Estates
+c_roman_estate_anatolia_3 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1752
+	}
+}
+## Ioannes Komnenos Estates
+b_roman_estate_anatolia_3 = {
+	600.1.1 = {
+		liege = "e_byzantium"
+		government = roman_administration_government
+		succession_laws = { 
+			ave_maria_roman_administration_family_succession_law 
+			# male_only_law 
+		}
+	}
+	1066.1.1 = {
+		holder = 1752
+	}
+}
+
 
 
 #############################################

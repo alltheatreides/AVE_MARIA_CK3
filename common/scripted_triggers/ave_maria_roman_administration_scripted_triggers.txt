@@ -65,7 +65,7 @@ roman_administration_can_vote_in_emperor_election_trigger = {
 }
 
 #############################################
-# SPECIFIC TITLES TRIGGERS					#
+# CHARACTER SCOPE TITLES TRIGGERS			#
 #############################################
 
 ## CHARACTER SCOPE TRIGGERS
@@ -86,25 +86,55 @@ roman_administration_holds_tagma_title_trigger = {
 
 ## Checks in character scope if you have a strategos title
 roman_administration_holds_strategos_title_trigger = {
-	any_held_title = {
-		de_jure_liege = title:k_strategos_titles
-	}
+	OR  = {
+		any_held_title = {
+			de_jure_liege = title:k_strategos_titles
+		}
+		#vassal_contract_has_flag = ave_maria_roman_administration_stratified_theme_contract
+		has_government = roman_administration_stratified_theme_government
+	}	
+}
+
+## Checks in character scope if you have a doukaton title
+roman_administration_holds_doukaton_title_trigger = {
+	OR  = {
+		any_held_title = {
+			de_jure_liege = title:k_strategos_titles
+		}
+		#vassal_contract_has_flag = ave_maria_roman_administration_doukaton_theme_contract
+		has_government = roman_administration_doukaton_government
+	}	
 }
 
 ## Checks in character scope if you have a military title, either strategos or tagma
 roman_administration_holds_military_title_trigger = {
-	any_held_title = {
-		OR = {
-			de_jure_liege = title:k_strategos_titles
-			this = title:d_megas_domestikos
-			this = title:d_excubitor
-			this = title:d_vigla
-			this = title:d_hikanatoi
-			this = title:d_varangian_guard
-			this = title:d_regular_tagma_1
-			this = title:d_regular_tagma_2
+	OR = {
+		has_government = roman_administration_doukaton_government
+		has_government = roman_administration_stratified_theme_government
+		any_held_title = {
+			OR = {
+				this = title:d_megas_domestikos
+				this = title:d_excubitor
+				this = title:d_vigla
+				this = title:d_hikanatoi
+				this = title:d_varangian_guard
+				this = title:d_regular_tagma_1
+				this = title:d_regular_tagma_2
+			}
 		}
 	}
+	# any_held_title = {
+	# 	OR = {
+			
+	# 		this = title:d_megas_domestikos
+	# 		this = title:d_excubitor
+	# 		this = title:d_vigla
+	# 		this = title:d_hikanatoi
+	# 		this = title:d_varangian_guard
+	# 		this = title:d_regular_tagma_1
+	# 		this = title:d_regular_tagma_2
+	# 	}
+	# }
 }
 
 ## Checks in character scope if you have a civilian high office title
@@ -124,6 +154,9 @@ roman_administration_holds_high_office_title_trigger = {
 	roman_administration_holds_tagma_title_trigger = yes
 }
 
+#############################################
+# TITLE SCOPE TITLES TRIGGERS				#
+#############################################
 
 ## TITLE SCOPE TRIGGERS
 ## Checks in title scope if you have a tagma titles
@@ -141,14 +174,29 @@ roman_administration_is_a_tagma_title_trigger = {
 
 ## Checks in a title scope if it is a strategos title
 roman_administration_is_a_strategos_title_trigger = {
-	de_jure_liege = title:k_strategos_titles
+	OR = {
+		de_jure_liege = title:k_strategos_titles
+		holder = {
+			vassal_contract_has_flag = ave_maria_roman_administration_stratified_theme_contract
+		}
+	}
+	
+}
+
+## Checks in a title scope if it is a doukaton title
+roman_administration_is_a_doukaton_title_trigger = {
+	holder = {
+		vassal_contract_has_flag = ave_maria_roman_administration_doukaton_theme_contract
+	}
+	
 }
 
 ## Checks in a title scope if it is a military title
 roman_administration_is_a_military_title_trigger = {
 	OR = {
 		roman_administration_is_a_tagma_title_trigger = yes
-		de_jure_liege = title:k_strategos_titles
+		roman_administration_is_a_strategos_title_trigger = yes
+		roman_administration_is_a_doukaton_title_trigger = yes
 	}
 }
 
@@ -221,19 +269,23 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 	## Must be inside the empire (or be the emperor)
 	OR = {
 		top_liege = {
-			primary_title = {
+			any_held_title = {
 				this = title:e_byzantium
 			}					
 		}
-		primary_title = {
-			this = title:e_byzantium
-		}	
+		AND = {
+			is_landed = yes
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}			
 	}
+	NOT = { has_government = theocracy_government }
 	## If you are not the emperor you must either be related to the emperor, or having a high office title, or be on the council
-	if = {
+	trigger_if = {
 		limit = {
 			NOT = {
-				primary_title = {
+				any_held_title = {
 					this = title:e_byzantium
 				}	
 			}
@@ -250,10 +302,10 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 			## Close family ties to the emperor
 			## Redudant thing here, not sure if the first one works
 			#is_close_family_of = title:e_byzantium.holder 
-			# title:e_byzantium.holder = {
-			# 	is_close_family_of = prev
-			# }
-			# is_close_family_of = root
+			title:e_byzantium.holder = {
+				is_close_family_of = prev
+			}
+			is_close_family_of = root
 			
 			## If you are female, either must be unamarried or roman husband
 			trigger_if = {
@@ -271,10 +323,10 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 			## If you are best buddies with the basileus
 			## Redudant thing here, not sure if the first one works
 			#has_relation_best_friend = title:e_byzantium.holder 
-			# title:e_byzantium.holder = {
-			# 	has_relation_best_friend = prev
-			# }
-			# has_relation_best_friend = root
+			title:e_byzantium.holder = {
+				has_relation_best_friend = prev
+			}
+			has_relation_best_friend = root
 		}
 	}
 
@@ -282,6 +334,7 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 	NOR = {
 		has_trait = maimed
 		has_trait = eunuch
+		has_trait = infirm
 	}
 	
 }

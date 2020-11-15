@@ -151,7 +151,7 @@ roman_administration_civilian_titles_transfer = {
 
 ## Clean the salary modifier indicator
 roman_administration_remove_salary_indicator = {
-	remove_character_modifier = stewardship_positive
+	remove_character_modifier = roman_administration_high_official_salary
 	remove_character_modifier = roman_administration_strategos_salary
 	remove_character_modifier = roman_administration_krites_salary
 }
@@ -241,7 +241,11 @@ roman_administration_update_total_salary_cost = {
 	every_vassal = {
 		if = {
 			limit = {
-				roman_administration_holds_strategos_title_trigger = yes
+				OR = {
+					has_government = roman_administration_stratified_theme_government
+					has_government = roman_administration_doukaton_government
+				}
+				
 			}
 			add_to_list = list_roman_administration_officials
 			add_to_list = list_roman_administration_strategos
@@ -262,23 +266,29 @@ roman_administration_update_total_salary_cost = {
 		}
 									
 	}
-	## We have now the number of strategos as a variable, apply it to the cost variable, multiply by the monthly salary: 2
+	## We have now the number of strategos as a variable, apply it to the cost variable, multiply by the monthly salary: 5
 	change_variable = {
 		name = total_number_of_strategos_cost
 		add = var:total_number_of_strategos
 	}
 	change_variable = {
 		name = total_number_of_strategos_cost
-		multiply = 3
+		multiply = 5
 	}	
 
 	## Counting Krites Salary
 	every_vassal = {
 		if = {
 			limit = {
-				roman_administration_holds_military_title_trigger = no
-				highest_held_title_tier >= tier_duchy
-				roman_administration_holds_high_administration_title_trigger = no
+				# roman_administration_holds_military_title_trigger = no
+				# highest_held_title_tier >= tier_duchy
+				# roman_administration_holds_high_administration_title_trigger = no
+				#vassal_contract_has_flag = ave_maria_roman_administration_fiscalized_theme_contract
+				OR = {
+					has_government = roman_administration_civilian_government
+					has_government = roman_administration_kouratoreia_government
+				}
+				
 			}
 			add_to_list = list_roman_administration_officials
 			add_to_list = list_roman_administration_civilian_provincial_officials
@@ -298,14 +308,14 @@ roman_administration_update_total_salary_cost = {
 		}						
 	}
 
-	## We have now the number of krites as a variable, apply it to the cost variable, multiply by the monthly salary: 1
+	## We have now the number of krites as a variable, apply it to the cost variable, multiply by the monthly salary: 2.5
 	change_variable = {
 		name = total_number_of_civilian_provincial_officials_cost
 		add = var:total_number_of_civilian_provincial_officials
 	}
 	change_variable = {
 		name = total_number_of_civilian_provincial_officials_cost
-		multiply = 1
+		multiply = 2.5
 	}
 
 	## Adding everything up
@@ -4148,6 +4158,7 @@ roman_administration_update_legitimacy_variable = {
 	## Being the emperor
 	if = {
 		limit = {
+			highest_held_title_tier = tier_empire
 			primary_title = {
 				this = title:e_byzantium
 			}			
@@ -4193,8 +4204,10 @@ roman_administration_update_legitimacy_variable = {
 
 	## Need to add familial connections to the reigning family, but gotta save up previous emperors in a global_variable list I think
 	## Stop gap measure ? Assign a variable on the dynasty when you gain the Imperial title and count from here
+	## At least one emperor in the family
 	if = {
 		limit = {
+			has_dynasty = yes
 			dynasty = {
 				has_variable = roman_administration_dynastic_number_of_emperors
 				var:roman_administration_dynastic_number_of_emperors >= 1
@@ -4209,9 +4222,10 @@ roman_administration_update_legitimacy_variable = {
 			value = 50
 		}
 	}
-
+	## more than 5 emperos in the dynasty
 	if = {
 		limit = {
+			has_dynasty = yes
 			dynasty = {
 				has_variable = roman_administration_dynastic_number_of_emperors
 				var:roman_administration_dynastic_number_of_emperors >= 5
@@ -4224,6 +4238,18 @@ roman_administration_update_legitimacy_variable = {
 		set_variable = {
 			name = character_legitimacy_display_dynastic_emperor_5
 			value = 100
+		}
+	}
+	## Direct child of the emperor
+	if = {
+		limit = {
+			title:e_byzantium.holder = {
+				is_parent_of = prev
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = 25
 		}
 	}
 	
@@ -4272,6 +4298,20 @@ roman_administration_update_legitimacy_variable = {
 		set_variable = {
 			name = character_legitimacy_display_wrong_culture
 			value = -15
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				has_trait = eunuch
+				has_trait = infirm
+				has_trait = maimed
+			}
+		}
+		change_variable = {
+			name = calculate_character_legitimacy
+			add = -100
 		}
 	}
 

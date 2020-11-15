@@ -554,11 +554,11 @@ roman_administration_civilian_administration_elective = {
 			type = title_claimants
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
-				top_liege = {
-					primary_title = {
+				liege = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
-				}
+				}				
 				age >= 20
 				is_female = no
 				NOT = {
@@ -577,8 +577,8 @@ roman_administration_civilian_administration_elective = {
 			type = holder_close_or_extended_family
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
-				top_liege = {
-					primary_title = {
+				liege = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -590,9 +590,9 @@ roman_administration_civilian_administration_elective = {
 				dynasty = scope:holder.dynasty
 				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 				NOT = { has_government = theocracy_government }
-				any_claim = {
-					this = title:scope:title
-				}
+				# any_claim = {
+				# 	this = title:scope:title
+				# }
 				# NOT = {
 					# any_heir_to_title = {
 						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive

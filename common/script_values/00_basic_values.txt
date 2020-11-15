@@ -872,6 +872,45 @@ count_obligation_improvements_for_vassal = {
 			subtract = local_var:feudal_government_levies
 		}
 	}
+
+	### AVE MARIA
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_tagma_salary != vassal_contract_obligation_level:ave_maria_roman_administration_tagma_salary
+		}
+		add = {
+			value = vassal_contract_obligation_level:ave_maria_roman_administration_tagma_salary
+			subtract = local_var:ave_maria_roman_administration_tagma_salary
+		}
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_tagma_tax_exemption != vassal_contract_obligation_level:ave_maria_roman_administration_tagma_tax_exemption
+		}
+		add = {
+			value = vassal_contract_obligation_level:ave_maria_roman_administration_tagma_tax_exemption
+			subtract = local_var:ave_maria_roman_administration_tagma_tax_exemption
+		}
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_theme_taxe != vassal_contract_obligation_level:ave_maria_roman_administration_theme_taxe
+		}
+		add = {
+			value = vassal_contract_obligation_level:ave_maria_roman_administration_theme_taxe
+			subtract = local_var:ave_maria_roman_administration_theme_taxe
+		}
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_theme_corruption != vassal_contract_obligation_level:ave_maria_roman_administration_theme_corruption
+		}
+		add = {
+			value = vassal_contract_obligation_level:ave_maria_roman_administration_theme_corruption
+			subtract = local_var:ave_maria_roman_administration_theme_corruption
+		}
+	}
+
 	# Any non-default fine print contract takes subtracts one
 	# special_contract intentionally has no effect
 	if = {
@@ -958,6 +997,20 @@ count_obligation_improvements_for_vassal = {
 			subtract = 1
 		}
 	}
+
+	## AVE MARIA ROMAN ADMINISTRATION
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_special_contract != vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
+		}
+		if = {
+			limit = { local_var:ave_maria_roman_administration_special_contract != 0 }
+			add = 1
+		}
+		else = {
+			subtract = 1
+		}
+	}
 }
 
 count_total_obligation_changes = {
@@ -1019,6 +1072,32 @@ count_total_obligation_changes = {
 	if = {
 		limit = {
 			local_var:special_contract != vassal_contract_obligation_level:special_contract
+		}
+		add = 1
+	}
+
+	## AVE MARIA ROMAN ADMINISTRATION
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_tagma_tax_exemption != vassal_contract_obligation_level:ave_maria_roman_administration_tagma_tax_exemption
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_theme_taxe != vassal_contract_obligation_level:ave_maria_roman_administration_theme_taxe
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_theme_corruption != vassal_contract_obligation_level:ave_maria_roman_administration_theme_corruption
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			local_var:ave_maria_roman_administration_special_contract != vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
 		}
 		add = 1
 	}

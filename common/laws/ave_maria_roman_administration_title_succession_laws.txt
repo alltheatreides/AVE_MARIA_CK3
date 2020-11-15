@@ -45,8 +45,13 @@ title_succession_laws = {
 		can_have = {
 			OR = {
 				roman_administration_holds_tagma_title_trigger = yes
-				any_held_title = {
-					de_jure_liege = title:k_strategos_titles
+				top_liege = {
+					any_held_title = {
+						OR = {
+							this = title:e_byzantium
+							this = title:e_roman_empire			
+						}
+					}
 				}
 			}
 			

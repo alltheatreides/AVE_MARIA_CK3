@@ -113,10 +113,12 @@
 		}
 	}
 
+	## legitimacy
 	modifier = {
 		desc = tooltip_roman_administration_legitimacy_vote_opinion_positive
 		scope:candidate = {
 			has_variable = roman_administration_legitimacy
+			var:roman_administration_legitimacy > 0
 		}
 		add = {
 			value = 200

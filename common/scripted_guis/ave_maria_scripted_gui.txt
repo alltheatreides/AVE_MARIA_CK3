@@ -228,7 +228,7 @@ am_institutions_roman_administration_get_senator_list = {
 			## Add all the duchy tier vassals to the senate
 			every_vassal = {
 				limit = {
-					highest_held_title_tier = tier_duchy
+					highest_held_title_tier >= tier_county
 				}
 				root = {
 					add_to_variable_list = {
@@ -273,7 +273,7 @@ am_institutions_roman_administration_get_senator_list = {
 			title:e_byzantium.holder = {
 				every_vassal = {
 					limit = {
-						highest_held_title_tier = tier_duchy
+						highest_held_title_tier >= tier_county
 					}
 					root = {
 						add_to_variable_list = {
@@ -392,7 +392,12 @@ am_institutions_roman_administration_get_military_officials_list = {
 			## provincial military officials
 			every_vassal = {
 				limit = {
-					roman_administration_holds_military_title_trigger = yes
+					#roman_administration_holds_military_title_trigger = yes
+					OR = {
+						roman_administration_holds_doukaton_title_trigger = yes
+						roman_administration_holds_strategos_title_trigger = yes
+					}
+					
 					roman_administration_holds_tagma_title_trigger = no
 				}
 				root = {
@@ -431,6 +436,7 @@ am_institutions_roman_administration_get_military_officials_list = {
 				}				
 			}
 			title:e_byzantium.holder = {
+				## All the military officials
 				every_vassal = {
 					limit = {
 						roman_administration_holds_military_title_trigger = yes
@@ -440,12 +446,16 @@ am_institutions_roman_administration_get_military_officials_list = {
 							name = list_roman_administration_military_officials
 							target = prev
 						}
-					}					
+					}				
 				}
 				## provincial military officials
 				every_vassal = {
 					limit = {
-						roman_administration_holds_military_title_trigger = yes
+						#roman_administration_holds_military_title_trigger = yes
+						OR = {
+							roman_administration_holds_doukaton_title_trigger = yes
+							roman_administration_holds_strategos_title_trigger = yes
+						}
 						roman_administration_holds_tagma_title_trigger = no
 					}
 					root = {
@@ -455,6 +465,7 @@ am_institutions_roman_administration_get_military_officials_list = {
 						}
 					}				
 				}
+				## Only Imperial Tagma officials
 				every_vassal = {
 					limit = {
 						roman_administration_holds_tagma_title_trigger = yes
@@ -591,6 +602,7 @@ am_institutions_roman_administration_get_administrative_officials_list = {
 			every_vassal = {
 				limit = {
 					roman_administration_holds_military_title_trigger = no
+					highest_held_title_tier >= tier_duchy
 				}
 				root = {
 					add_to_variable_list = {
@@ -604,6 +616,7 @@ am_institutions_roman_administration_get_administrative_officials_list = {
 				limit = {
 					roman_administration_holds_military_title_trigger = no
 					roman_administration_holds_high_administration_title_trigger = no
+					highest_held_title_tier >= tier_duchy
 				}
 				root = {
 					add_to_variable_list = {
@@ -642,42 +655,44 @@ am_institutions_roman_administration_get_administrative_officials_list = {
 			}
 			title:e_byzantium.holder = {
 				## All the administrative officials
-			every_vassal = {
-				limit = {
-					roman_administration_holds_military_title_trigger = no
-				}
-				root = {
-					add_to_variable_list = {
-						name = list_roman_administration_administrative_officials
-						target = prev
+				every_vassal = {
+					limit = {
+						roman_administration_holds_military_title_trigger = no
+						highest_held_title_tier >= tier_duchy
 					}
-				}				
-			}
-			## provincial administrative officials
-			every_vassal = {
-				limit = {
-					roman_administration_holds_military_title_trigger = no
-					roman_administration_holds_high_administration_title_trigger = no
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_administrative_officials
+							target = prev
+						}
+					}				
 				}
-				root = {
-					add_to_variable_list = {
-						name = list_roman_administration_administrative_officials_minus_high_officials
-						target = prev
+				## provincial administrative officials
+				every_vassal = {
+					limit = {
+						roman_administration_holds_military_title_trigger = no
+						roman_administration_holds_high_administration_title_trigger = no
+						highest_held_title_tier >= tier_duchy
 					}
-				}				
-			}
-			## Only High Administration officials
-			every_vassal = {
-				limit = {
-					roman_administration_holds_high_administration_title_trigger = yes
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_administrative_officials_minus_high_officials
+							target = prev
+						}
+					}				
 				}
-				root = {
-					add_to_variable_list = {
-						name = list_roman_administration_high_administration_officials
-						target = prev
+				## Only High Administration officials
+				every_vassal = {
+					limit = {
+						roman_administration_holds_high_administration_title_trigger = yes
 					}
-				}				
-			}
+					root = {
+						add_to_variable_list = {
+							name = list_roman_administration_high_administration_officials
+							target = prev
+						}
+					}				
+				}
 			}
 		}
 	}
@@ -714,3 +729,24 @@ am_roman_administration_has_legitimacy = {
 # 	}
 # }
 
+
+#############################################
+# ORC SCRIPTED GUI							#
+#############################################
+
+am_orc_comm_malus_capital_update = {
+	scope = character
+
+	effect = {
+		root = {
+			if = {
+				limit = {
+					is_landed = yes
+				}
+				orc_apply_demesne_provinces_distance_malus = yes
+			}
+		}
+		
+	}
+	
+}

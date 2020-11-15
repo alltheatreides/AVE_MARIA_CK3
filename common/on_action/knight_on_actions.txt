@@ -37,6 +37,9 @@ on_commander_combat_finished = {
 	}
 
 	effect = {
+
+		## AVE MARIA
+		## DE RE MILITARI
 		if = {
 			limit = {
 				root = { has_variable = de_re_militari_combat_experience }
@@ -56,6 +59,26 @@ on_commander_combat_finished = {
 			}
 			set_variable = { name = de_re_militari_combat_experience value = 0 }
 			change_variable = { name = de_re_militari_combat_experience add = 1 }
+		}
+
+		## ROMAN ADMIN
+		## Military officials gain also legitimacy
+		root = {
+			if = {
+				limit = {
+					OR = {
+						primary_title = {
+							this = title:e_byzantium
+						}
+						top_liege = {
+							primary_title = {
+								this = title:e_byzantium
+							}
+						}
+					}					
+				}
+				roman_administration_add_legitimacy_small_amount = yes
+			}
 		}
 	}
 }

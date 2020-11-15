@@ -247,15 +247,26 @@ ave_maria_roman_administration_special_contract = {
 	}
 	obligation_levels = {
 
+		special_contract_none = {
+			position = { 0 1 }
+			default = yes
+			is_valid = {
+				scope:vassal = {
+					roman_administration_holds_tagma_title_trigger = no
+				}
+			}
+		}
+
 		ave_maria_roman_administration_fiscalized_theme = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
+					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
-			position = { 0 1 }
-			default = yes
+			position = { 0 2 }
+			# default = yes
 
 			liege_modifier = {
 				men_at_arms_limit = 1
@@ -281,7 +292,7 @@ ave_maria_roman_administration_special_contract = {
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = ave_maria_roman_administration_fiscalized_theme
-			position = { 0 2 }
+			position = { 0 3 }
 			
 			liege_modifier = {
 				
@@ -298,11 +309,12 @@ ave_maria_roman_administration_special_contract = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
+					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = ave_maria_roman_administration_tagma
-			position = { 0 3 }
+			position = { 0 4 }
 			
 			liege_modifier = {
 				
@@ -320,6 +332,7 @@ ave_maria_roman_administration_special_contract = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
+					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 				scope:vassal.primary_title = {
@@ -338,7 +351,7 @@ ave_maria_roman_administration_special_contract = {
 				}
 			}
 			parent = ave_maria_roman_administration_stratified_theme
-			position = { 0 4 }
+			position = { 0 5 }
 			
 			liege_modifier = {
 				
@@ -355,12 +368,13 @@ ave_maria_roman_administration_special_contract = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
+					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = ave_maria_roman_administration_doukaton
-			position = { 0 5 }
-			
+			position = { 0 6 }
+			#default = yes
 			liege_modifier = {
 				
 			}
@@ -371,7 +385,7 @@ ave_maria_roman_administration_special_contract = {
 				tax_mult = 0.5
 			}
 			
-			flag = ave_maria_roman_administration_doukaton_theme_contract
+			flag = ave_maria_roman_administration_kouratoreia_theme_contract
 		}
 
 	}
