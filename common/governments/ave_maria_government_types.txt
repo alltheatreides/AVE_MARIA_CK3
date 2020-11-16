@@ -48,15 +48,22 @@ roman_administration_government = {
 		war_declaration_rights
 		council_rights
 		title_revocation_rights
-
-		## District Types
+		
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
 		ave_maria_roman_administration_special_contract
+		imperial_obligation_fiscalised_theme
+		imperial_obligation_stratified_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
 
 	}
 
-	character_modifier = {
-		levy_size = -10
-	}
+	#character_modifier = {
+	#	levy_size = -10
+	#}
 	
 	color = hsv{ 0.67 1.00 0.78 }
 }
@@ -181,8 +188,15 @@ roman_administration_civilian_government = {
 		#council_rights
 		#title_revocation_rights
 
-		## District Types
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
 		ave_maria_roman_administration_special_contract
+		imperial_obligation_fiscalised_theme
+		imperial_obligation_stratified_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
 
 	
 	}
@@ -230,8 +244,15 @@ roman_administration_stratified_theme_government = {
 		council_rights
 		# title_revocation_rights
 
-		## District Types
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
 		ave_maria_roman_administration_special_contract
+		imperial_obligation_fiscalised_theme
+		imperial_obligation_stratified_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
 
 	}
 
@@ -250,6 +271,7 @@ roman_administration_doukaton_government = {
 	fallback = 5
 	
 	can_get_government = {
+		vassal_contract_obligation
 		top_liege = {
 			any_held_title = {
 				OR = {
@@ -287,14 +309,15 @@ roman_administration_doukaton_government = {
 	# }
 	
 	vassal_contract = {
-		ave_maria_roman_administration_theme_taxe
-		ave_maria_roman_administration_tagma_tax_exemption
-		ave_maria_roman_administration_tagma_salary				
-		# council_rights
-		# title_revocation_rights
-
-		## District Types
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
 		ave_maria_roman_administration_special_contract
+		imperial_obligation_fiscalised_theme
+		imperial_obligation_stratified_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
 
 	}
 
@@ -350,14 +373,15 @@ roman_administration_kouratoreia_government = {
 	# }
 	
 	vassal_contract = {
-		ave_maria_roman_administration_theme_taxe
-		ave_maria_roman_administration_tagma_tax_exemption
-		ave_maria_roman_administration_tagma_salary				
-		# council_rights
-		# title_revocation_rights
-
-		## District Types
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
 		ave_maria_roman_administration_special_contract
+		imperial_obligation_fiscalised_theme
+		imperial_obligation_stratified_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
 
 	}
 

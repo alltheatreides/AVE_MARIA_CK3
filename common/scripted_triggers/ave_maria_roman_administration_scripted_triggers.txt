@@ -14,10 +14,13 @@
 ##### 1) GOVERNMENT TYPE TRIGGER
 ##### Checks if you are of one of the new roman administration government type
 
-##### 2) ELECTION TRIGGERS
+##### 2) VASSAL CONTRACT TRIGGERS
+#####
+
+##### 3) ELECTION TRIGGERS
 ##### Checks for various conditions in the special government type elections
 
-##### 3) SPECIFIC TITLES TRIGGERS
+##### 4) SPECIFIC TITLES TRIGGERS
 ##### Checks if you are one of specific new roman administration titles
 
 
@@ -26,7 +29,7 @@
 #############################################
 
 ## Checks if you are on of the new roman administration government type
-roman_administration_realm_law_special_crown_authority = {
+uses_roman_govt = {
 	OR = {
 		has_government = roman_administration_government
 		has_government = roman_administration_military_government
@@ -35,6 +38,23 @@ roman_administration_realm_law_special_crown_authority = {
 	
 }
 
+###############################
+## VASSAL CONTRACT TRIGGERS ###
+###############################
+
+ave_maria_roman_changed_obligations_trigger = {
+	$WHO$ = { save_temporary_scope_as = obligation_check }
+	custom_description = {
+		text = "modify_imperial_contract_select_different_obligation_level"
+		OR = {
+			local_var:ave_maria_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_administration_special_contract
+			local_var:imperial_obligation_fiscalised_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_fiscalised_theme
+			local_var:imperial_obligation_stratified_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_stratified_theme
+			local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
+			local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+		}
+	}
+}
 
 
 #############################################

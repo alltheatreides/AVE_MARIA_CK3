@@ -432,6 +432,10 @@ on_game_start_after_lobby = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_stratified_theme
 					}
+					vassal_contract_set_obligation_level = {
+						type = imperial_obligation_stratified_theme
+						level = peacetime_army_stratified_theme
+					}
 				}
 				## Doukaton
 				if = {
@@ -454,6 +458,59 @@ on_game_start_after_lobby = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_doukaton
 					}
+					if = {
+						limit = {
+							primary_title = {
+								this = title:d_antioch
+							}
+						}
+						vassal_contract_set_obligation_level = {
+							type = imperial_obligation_doukaton
+							level = tagmatic_command_doukaton
+						}
+						else_if = {
+							limit = {
+								primary_title = {
+									OR = {
+										this = title:d_vaspurakan
+										this = title:d_greater_armenia
+									}
+								}
+							}
+							vassal_contract_set_obligation_level = {
+								type = imperial_obligation_doukaton
+								level = organised_principality_doukaton
+							}
+						}
+						else_if = {
+							limit = {
+								primary_title = {
+									OR = {
+										this = title:d_mesopotamia
+										this = title:d_bulgaria
+									}
+								}
+							}
+							vassal_contract_set_obligation_level = {
+								type = imperial_obligation_doukaton
+								level = regional_command_doukaton
+							}
+						}
+						else_if = {
+							limit = {
+								primary_title = {
+									OR = {
+										this = title:d_turnovo
+										this = title:d_langobardia_roman
+									}
+								}
+							}
+							vassal_contract_set_obligation_level = {
+								type = imperial_obligation_doukaton
+								level = frontier_command_doukaton
+							}
+						}
+					}		
 				}
 				## Kouratoreia
 				if = {
@@ -499,11 +556,12 @@ on_game_start_after_lobby = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_fiscalized_theme
 					}
+					vassal_contract_set_obligation_level = {
+						type = imperial_obligation_fiscalised_theme
+						level = fiscal_obligation_fiscalised_theme
+					}
 				}
 			}	
-			
-			
-
 		}
 
 		## Giving Roman Empire title a flag for the gui display

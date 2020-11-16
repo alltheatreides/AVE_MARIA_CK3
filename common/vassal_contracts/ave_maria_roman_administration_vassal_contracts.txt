@@ -1,235 +1,44 @@
-﻿@ai_standard_liege_desire = 2
+﻿#################################################
+### Ave Maria: Roman Administration Contracts ###
+#################################################
+#
+# This file contains the obligation options available for the various Roman administration contracts.
+# Full file references will be added once this module is complete.
+#
+# Written by Scarecrow
+#
+#########################
+### Types of Contract ###
+#########################
+#
+## Fiscalised Theme ##
+# Uses the Fiscalised Theme slider and the basic tax slider
+#
+## Stratified Theme ##
+# Uses the Stratified Theme slider and the basic tax slider
+#
+## Doukaton ##
+# Uses the Doukaton slider and the basic tax slider
+#
+## Kouratoreia ##
+# Uses the Kouratoreia slider and the basic tax slider
+#
+## Tagma ##
+#
+#
+#####################
+### Script Values ###
+#####################
+#
+@ai_standard_liege_desire = 2
 @ai_standard_vassal_desire = 1
-
-ave_maria_roman_administration_tagma_salary = {
-	display_mode = tree
-	icon = gold_icon
-	obligation_levels = {
-		ave_maria_roman_administration_tagma_salary_exuberant = {
-			position = { 4 0 }
-
-			#tax = -0.6
-			vassal_opinion = 10
-
-			ai_liege_desire = 1
-			ai_vassal_desire = 5
-		}
-		ave_maria_roman_administration_tagma_salary_high = {
-			parent = ave_maria_roman_administration_tagma_salary_exuberant
-			position = { 3 0 }
-
-			#tax = -0.4
-			vassal_opinion = 5
-
-			ai_liege_desire = 2
-			ai_vassal_desire = 4
-		}
-		ave_maria_roman_administration_tagma_salary_normal = {
-			default = yes
-			parent = ave_maria_roman_administration_tagma_salary_high
-			position = { 2 0 }
-
-			#tax = -0.3
-
-			ai_liege_desire = 3
-			ai_vassal_desire = 3
-		}
-		ave_maria_roman_administration_tagma_salary_low = {
-			parent = ave_maria_roman_administration_tagma_salary_normal
-			position = { 1 0 }
-			
-			#tax = -0.2
-			vassal_opinion = -15
-
-			ai_liege_desire = 4
-			ai_vassal_desire = 2
-		}
-		ave_maria_roman_administration_tagma_salary_very_low = {
-			parent = ave_maria_roman_administration_tagma_salary_low
-			position = { 0 0 }
-			
-			#tax = -0.1
-			vassal_opinion = -25
-
-			ai_liege_desire = 5
-			ai_vassal_desire = 1
-		}
-	}
-}
-
-ave_maria_roman_administration_tagma_tax_exemption = {
-	display_mode = tree
-	icon = gold_icon
-	obligation_levels = {
-		ave_maria_roman_administration_tagma_tax_exemption_exuberant = {
-			position = { 4 0 }
-
-			tax = -0.9
-			vassal_opinion = 10
-
-			ai_liege_desire = 1
-			ai_vassal_desire = 5
-		}
-		ave_maria_roman_administration_tagma_tax_exemption_high = {
-			parent = ave_maria_roman_administration_tagma_tax_exemption_exuberant
-			position = { 3 0 }
-
-			tax = -0.7
-			vassal_opinion = 5
-
-			ai_liege_desire = 2
-			ai_vassal_desire = 4
-		}
-		ave_maria_roman_administration_tagma_tax_exemption_normal = {
-			default = yes
-			parent = ave_maria_roman_administration_tagma_tax_exemption_high
-			position = { 2 0 }
-
-			tax = -0.5
-
-			ai_liege_desire = 3
-			ai_vassal_desire = 3
-		}
-		ave_maria_roman_administration_tagma_tax_exemption_low = {
-			parent = ave_maria_roman_administration_tagma_tax_exemption_normal
-			position = { 1 0 }
-			
-			tax = -0.3
-			vassal_opinion = -15
-
-			ai_liege_desire = 4
-			ai_vassal_desire = 2
-		}
-		ave_maria_roman_administration_tagma_tax_exemption_very_low = {
-			parent = ave_maria_roman_administration_tagma_tax_exemption_low
-			position = { 0 0 }
-			
-			tax = -0.1
-			vassal_opinion = -25
-
-			ai_liege_desire = 5
-			ai_vassal_desire = 1
-		}
-	}
-}
-
-ave_maria_roman_administration_theme_taxe = {
-	display_mode = tree
-	icon = gold_icon
-	obligation_levels = {
-		ave_maria_roman_administration_theme_taxe_exuberant = {
-			position = { 4 0 }
-
-			tax = 1.5
-			vassal_opinion = -20
-
-			ai_liege_desire = 20
-			ai_vassal_desire = -20
-		}
-		ave_maria_roman_administration_theme_taxe_high = {
-			parent = ave_maria_roman_administration_theme_taxe_exuberant
-			position = { 3 0 }
-
-			tax = 1.25
-			vassal_opinion = -15
-
-			ai_liege_desire = 15
-			ai_vassal_desire = -15
-		}
-		ave_maria_roman_administration_theme_taxe_normal = {
-			default = yes
-			parent = ave_maria_roman_administration_theme_taxe_high
-			position = { 2 0 }
-
-			tax = 1
-
-			ai_liege_desire = 10
-			ai_vassal_desire = -10
-		}
-		ave_maria_roman_administration_theme_taxe_low = {
-			parent = ave_maria_roman_administration_theme_taxe_normal
-			position = { 1 0 }
-			
-			tax = 0.8
-			vassal_opinion = 15
-
-			ai_liege_desire = -15
-			ai_vassal_desire = 15
-		}
-		ave_maria_roman_administration_theme_taxe_very_low = {
-			parent = ave_maria_roman_administration_theme_taxe_low
-			position = { 0 0 }
-			
-			tax = 0.6
-			vassal_opinion = 20
-
-			ai_liege_desire = -20
-			ai_vassal_desire = 20
-		}
-	}
-}
-
-ave_maria_roman_administration_theme_corruption = {
-	display_mode = tree
-	icon = icon_corruption
-	obligation_levels = {
-		ave_maria_roman_administration_theme_corruption_exuberant = {
-			position = { 4 0 }
-
-			tax = -0.5
-			#liege_opinion = -20
-			vassal_opinion = 20
-
-			ai_liege_desire = 1
-			ai_vassal_desire = 1
-		}
-		ave_maria_roman_administration_theme_corruption_high = {
-			parent = ave_maria_roman_administration_theme_corruption_exuberant
-			position = { 3 0 }
-
-			tax = -0.4
-			#liege_opinion = -15
-			vassal_opinion = 15
-
-			ai_liege_desire = 2
-			ai_vassal_desire = 2
-		}
-		ave_maria_roman_administration_theme_corruption_normal = {
-			
-			parent = ave_maria_roman_administration_theme_corruption_high
-			position = { 2 0 }
-
-			tax = -0.3
-			#liege_opinion = -10
-			vassal_opinion = 10
-
-			ai_liege_desire = 3
-			ai_vassal_desire = 3
-		}
-		ave_maria_roman_administration_theme_corruption_low = {
-			parent = ave_maria_roman_administration_theme_corruption_normal
-			position = { 1 0 }
-			
-			tax = -0.2
-			#liege_opinion = -5
-			vassal_opinion = 5
-
-			ai_liege_desire = 4
-			ai_vassal_desire = 4
-		}
-		ave_maria_roman_administration_theme_corruption_very_low = {
-			parent = ave_maria_roman_administration_theme_corruption_low
-			position = { 0 0 }
-			default = yes
-
-			tax = -0.15
-
-			ai_liege_desire = 5
-			ai_vassal_desire = 5
-		}
-	}
-}
-
+#
+#
+################################
+### Duchy Level Distinctions ###
+################################
+#
+#
 ave_maria_roman_administration_special_contract = {
 	display_mode = radiobutton
 	is_shown = {
@@ -247,92 +56,36 @@ ave_maria_roman_administration_special_contract = {
 	}
 	obligation_levels = {
 
-		special_contract_none = {
-			position = { 0 1 }
-			default = yes
-			is_valid = {
-				scope:vassal = {
-					roman_administration_holds_tagma_title_trigger = no
-				}
-			}
-		}
-
 		ave_maria_roman_administration_fiscalized_theme = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
-			position = { 0 2 }
-			# default = yes
-
-			liege_modifier = {
-				men_at_arms_limit = 1
-				men_at_arms_cap = 1
-			}
+			position = { 0 1 }
+			default = yes
 			
-			vassal_modifier = {
-				## Remove levies basically and add +25% more taxes
-				levy_size = -10
-				tax_mult = 0.25
-			}
-			
-			flag = ave_maria_roman_administration_fiscalized_theme_contract
-		}
-
-		## Supposed to be for central tagmatic forces
-		ave_maria_roman_administration_tagma = {
-			is_valid = {
-				scope:vassal = {
-					roman_administration_holds_tagma_title_trigger = yes
-					top_liege = { has_title = title:e_byzantium }
-				}
-				scope:vassal.primary_title.tier >= tier_duchy
-			}
-			parent = ave_maria_roman_administration_fiscalized_theme
-			position = { 0 3 }
-			
-			liege_modifier = {
-				
-			}
-			
-			vassal_modifier = {
-				army_maintenance_mult = -0.2
-			}
-			
-			flag = ave_maria_roman_administration_tagma_contract
+			flag = is_fiscalised_theme
 		}
 		
 		ave_maria_roman_administration_stratified_theme = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
-			parent = ave_maria_roman_administration_tagma
-			position = { 0 4 }
+			parent = ave_maria_roman_administration_fiscalized_theme
+			position = { 0 2 }
 			
-			liege_modifier = {
-				
-			}
-			
-			vassal_modifier = {
-				## Leave levies untouched but removes most of taxes
-				tax_mult = -0.80
-			}
-			
-			flag = ave_maria_roman_administration_stratified_theme_contract
+			flag = is_stratified_theme
 		}
 
 		ave_maria_roman_administration_doukaton = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 				scope:vassal.primary_title = {
@@ -351,42 +104,706 @@ ave_maria_roman_administration_special_contract = {
 				}
 			}
 			parent = ave_maria_roman_administration_stratified_theme
-			position = { 0 5 }
+			position = { 0 3 }
 			
-			liege_modifier = {
-				
-			}
-			
-			vassal_modifier = {
-				## None as it should be balanced ?
-			}
-			
-			flag = ave_maria_roman_administration_doukaton_theme_contract
+			flag = is_doukaton
 		}
 
 		ave_maria_roman_administration_kouratoreia = {
 			is_valid = {
 				scope:vassal = {
 					top_liege = { has_title = title:e_byzantium }
-					roman_administration_holds_tagma_title_trigger = no
 				}
 				scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = ave_maria_roman_administration_doukaton
-			position = { 0 6 }
-			#default = yes
+			position = { 0 4 }
+			
+			flag = is_kouratoreia
+		}
+		## Supposed to be for central tagmatic forces
+		ave_maria_roman_administration_tagma = {
+			is_valid = {
+				scope:vassal = {
+					roman_administration_holds_tagma_title_trigger = yes
+					top_liege = { has_title = title:e_byzantium }
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+			}
+			parent = ave_maria_roman_administration_doukaton
+			position = { 0 5 }
+			
+			vassal_modifier = {
+				army_maintenance_mult = -0.2
+			}
+			
+			flag = is_tagma_contract
+		}
+
+	}
+}
+#
+##################################
+### Theme-Specific Obligations ###
+##################################
+#
+#
+### Fiscalised Theme Slider
+## Level 1 - Permit Fiscalisation
+## Level 2 - Extend Exemptions
+## Level 3 - Fiscal Obligation
+## Level 4 - Fund Symmachoi
+## Level 5 - Fund Tagmata
+imperial_obligation_fiscalised_theme = {
+	display_mode = tree
+	icon = gold_icon
+	obligation_levels = {
+		permit_fiscalisation_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+			position = { 0 0 }
+			default = yes
+			
+			tax_factor = 0.05
+			levies = 0.35
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = -0.10
+				levy_reinforcement_rate = -0.10
+				vassal_tax_contribution_mult = 0.10
+				retreat_losses = 0.05 # Make Soldiers worse
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+			}
+			
 			liege_modifier = {
-				
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+				advantage = -1
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = permit_fiscalisation_fiscalised_theme_flag # Flag for calculating additional political effects
+		}
+		extend_exemptions_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+			position = { 1 0 }
+			parent = permit_fiscalisation_fiscalised_theme
+			
+			tax_factor = 0.15
+			levies = 0.15
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = -0.25
+				vassal_tax_contribution_mult = 0.25
+				retreat_losses = 0.05 # Make Soldiers worse
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+			}
+			
+			liege_modifier = {
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+				advantage = -1
+				hard_casualty_modifier = 0.05
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = extend_exemptions_fiscalised_theme_flag # Flag for calculating additional political effects
+		}
+		fiscal_obligation_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+			position = { 2 0 }
+			parent = extend_exemptions_fiscalised_theme
+			
+			tax_factor = 0.25
+			levies = 0.05
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = -0.50
+				vassal_tax_contribution_mult = 0.50
+				retreat_losses = 0.05 # Make Soldiers worse
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+			}
+			
+			liege_modifier = {
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+				advantage = -1
+				hard_casualty_modifier = 0.025
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = fiscal_obligation_fiscalised_theme_flag # Flag for calculating additional political effects
+		}
+		fund_symmachoi_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+			position = { 3 0 }
+			parent = fiscal_obligation_fiscalised_theme
+			
+			tax_factor = 0.35
+			levies = 0.10
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = -0.50
+				vassal_tax_contribution_mult = 0.50
+			}
+			
+			liege_modifier = {
+				mercenary_hire_cost_mult = -0.025
+				men_at_arms_maintenance = -0.25
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = fund_symmachoi_fiscalised_theme_flag # Flag for calculating additional political effects
+		}
+		tagmatic_salaries_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+			position = { 4 0 }
+			parent = fund_symmachoi_fiscalised_theme
+			
+			tax_factor = 0.50
+			levies = 0.05
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = -0.50
+				vassal_tax_contribution_mult = 0.50
+			}
+			
+			liege_modifier = {
+				men_at_arms_limit = 1
+				men_at_arms_cap = 1
+				# kataphraktoi size limit +50
+				mercenary_hire_cost_mult = -0.025
+				men_at_arms_maintenance = -0.25
+			
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = tagmatic_salaries_fiscalised_theme_flag # Flag for calculating additional political effects
+		}
+	}
+}
+
+### Stratified Theme Slider
+## Level 1 - Levies 0.5, tax_factor = -0.1, 
+## Level 2 - Levies 0.6, tax_factor = -0.25, vassal_levy_contribution_add = 0.1
+## Level 3 - Levies 0.7, tax_factor = -0.6, vassal_levy_contribution_add = 0.2
+## Level 4 - Levies 0.75, tax_factor = -0.8, vassal_levy_contribution_add = 0.35
+## Level 5 - Levies 0.8, tax_factor = -1., vassal_levy_contribution_add = 0.5
+imperial_obligation_stratified_theme = {
+	display_mode = tree
+	icon = soldier_icon
+	obligation_levels = {
+		peacetime_army_stratified_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
+				}
+			}
+			position = { 0 0 }
+			default = yes
+			
+			levies = 0.5
+			tax_factor = -0.1
+			
+			liege_modifier = { # Make soldiers worse
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+				advantage = -1
 			}
 			
 			vassal_modifier = {
-				## Remove levies basically and add +50% more taxes
-				levy_size = -10
-				tax_mult = 0.5
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
 			}
 			
-			flag = ave_maria_roman_administration_kouratoreia_theme_contract
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = peacetime_stratified_theme_flag # Flag for calculating additional political effects
+			
+		}
+		voluntary_service_stratified_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
+				}
+			}
+			position = { 1 0 }
+			parent = peacetime_army_stratified_theme
+			
+			levies = 0.6
+			tax_factor = -0.25
+			
+			vassal_modifier = {
+				vassal_levy_contribution_add = 0.1
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = voluntary_stratified_theme_flag # Flag for calculating additional political effects
+			
+		}
+		tax_exemptions_stratified_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
+				}
+			}
+			position = { 2 0 }
+			parent = voluntary_service_stratified_theme
+			
+			levies = 0.7
+			tax_factor = -0.6
+			
+			vassal_modifier = {
+				vassal_levy_contribution_add = 0.2
+			}
+			
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = tax_exemptions_stratified_theme_flag # Flag for calculating additional political effects
+			
+		}
+		protimesis_stratified_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
+				}
+			}
+			position = { 1 0 }
+			parent = tax_exemptions_stratified_theme
+			
+			levies = 0.75
+			tax_factor = -0.8
+			
+			vassal_modifier = {
+				vassal_levy_contribution_add = 0.35
+			}
+			
+			liege_modifier = {
+				knight_limit = 1
+				army_maintenance_mult = -0.01
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = protimesis_stratified_theme_flag # Flag for calculating additional political effects
+			
+		}
+		full_service_stratified_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
+				}
+			}
+			position = { 1 0 }
+			parent = protimesis_stratified_theme
+			
+			levies = 0.8
+			tax_factor = -0.8
+			
+			vassal_modifier = {
+				vassal_levy_contribution_add = 0.5
+			}
+			
+			liege_modifier = {
+				knight_limit = 2
+				army_maintenance_mult = -0.05
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = full_service_stratified_theme_flag # Flag for calculating additional political effects
+			
+		}
+	}
+}
+#
+### Doukaton Theme Slider
+#
+#
+imperial_obligation_doukaton = { # Can't switch down from frontier command level
+	display_mode = tree
+	icon = soldier_icon
+	obligation_levels = {
+		vassalised_principality_doukaton = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
+					NOR = {
+						vassal_contract_obligation_level:imperial_obligation_doukaton = organised_principality_doukaton
+						vassal_contract_obligation_level:imperial_obligation_doukaton = frontier_command_doukaton
+						vassal_contract_obligation_level:imperial_obligation_doukaton = regional_command_doukaton
+						vassal_contract_obligation_level:imperial_obligation_doukaton = tagmatic_command_doukaton
+					}
+				}
+			}
+			position = { 0 0 }
+			default = yes
+			
+			levies = 0.35
+			tax_factor = -0.2
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = vassalised_principality_doukaton_flag
+		}
+		organised_principality_doukaton = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
+					NOR = {
+						vassal_contract_obligation_level:imperial_obligation_doukaton = frontier_command_doukaton
+						vassal_contract_obligation_level:imperial_obligation_doukaton = regional_command_doukaton
+						vassal_contract_obligation_level:imperial_obligation_doukaton = tagmatic_command_doukaton
+					}
+				}
+			}
+			position = { 1 0 }
+			parent = vassalised_principality_doukaton
+			
+			levies = 0.45
+			tax_factor = -0.1
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = organised_principality_doukaton_flag
+		}
+		frontier_command_doukaton = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
+				}
+			}
+			position = { 2 0 }
+			parent = organised_principality_doukaton
+			
+			levies = 0.55
+			
+			vassal_modifier = {
+				levy_reinforcement_rate = 0.10
+				garrison_size = 0.10
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = frontier_command_doukaton_flag
+		}
+		regional_command_doukaton = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
+				}
+			}
+			position = { 3 0 }
+			parent = frontier_command_doukaton
+			
+			levies = 0.65
+			tax_factor = -0.1
+			
+			vassal_modifier = {
+				levy_reinforcement_rate = 0.15
+				garrison_size = 0.20
+				controlled_province_advantage = 5
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = regional_command_doukaton_flag
+		}
+		tagmatic_command_doukaton = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
+				}
+			}
+			position = { 4 0 }
+			parent = regional_command_doukaton
+			
+			levies = 0.75
+			tax_factor = -0.2
+			
+			vassal_modifier = {
+				men_at_arms_cap = 1
+				men_at_arms_limit = 1
+				levy_reinforcement_rate = 0.25
+				garrison_size = 0.30
+				controlled_province_advantage = 10
+			}
+			
+			liege_modifier = {
+				knight_limit = 1
+				men_at_arms_cap = 1
+				men_at_arms_limit = 1
+				men_at_arms_maintenance = -0.10
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = tagmatic_command_doukaton_flag
 		}
 
+### Kouratoreia Slider
+## Level 1 - tax_factor = 0.2
+## Level 2 - tax_factor = 0.4
+## Level 3 - tax_factor = 0.6
+## Level 4 - tax_factor = 0.8
+## Level 5 - tax_factor = 1.0
+imperial_obligation_kouratoreia = { 
+	display_mode = tree
+	icon = gold_icon
+	obligation_levels = {
+		kouratoreia_designated = { # Switching from militarised province to tax farm - can't switch down, only up.
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
+					NOR = {
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_established
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_standard_exactions
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_heavy_exactions
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_maximum_exactions
+					}
+				}
+				
+			}
+			position = { 0 0 }
+			default = yes
+			
+			tax_factor = 0.2
+			levies_factor = -0.5
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+		}
+		kouratoreia_established = { # Kouratoreia beginning to work as intended - can't switch down, only up
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
+					NOR = {
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_standard_exactions
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_heavy_exactions
+						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_maximum_exactions
+					}
+				}
+			}
+			parent = kouratoreia_designated
+			position = { 1 0 }
+			default = yes
+			
+			tax_factor = 0.4
+			levies_factor = -0.75
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+		}
+		kouratoreia_standard_exactions = { # Kouratoreia fully integrated
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
+				}
+			}
+			parent = kouratoreia_established
+			position = { 2 0 }
+			
+			tax_factor = 0.6
+			levies_factor = -1.0
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+		}
+		kouratoreia_heavy_exactions = { # Cannot raise to this level if the peasants are protected
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
+				}
+			}
+			parent = kouratoreia_standard_exactions
+			position = { 3 0 }
+			
+			tax_factor = 0.8
+			levies_factor = -1.0
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+		}
+		kouratoreia_maximum_exactions = { # Cannot raise to this level if the peasants are protected
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
+				}
+			}
+			parent = kouratoreia_heavy_exactions
+			position = { 4 0 }
+			
+			tax_factor = 1.0
+			levies_factor = -1.0
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+		}
+	}
+}
+
+
+#### Basic Tax Slider
+## Level 0 - Sympatheia (0.00, boosts control gain and recovery rate, and boosts Popularity)
+## Level 1 - Kapnikon: tax = 0.5
+## Level 2 - Demosia: tax = 0.10 [default]
+## Level 3 - Aerikon: tax = 0.15
+## Level 4 - Dikeraton: tax = 0.20
+## Level 5 - Hexafollon: tax = 0.25 [Minor Popularity Penalty]
+## Level 6 - Impose Kommerkion: tax = 0.30, vassal_modifier = { republic_government_tax_contribution_add = 0.10 } [Popularity Penalty]
+## Level 7 - Revoke Logisima: tax = 0.35, vassal_modifier = { theocracy_government_tax_contribution_add = 0.10 } [Popularity + Legitimacy Penalty]
+## Level 8 - Allelengyon: tax = 0.50, vassal_modifier = { vassal_tax_contribution_add = 0.10 } [Severe Popularity Penalty]
+
+imperial_obligation_tax = {
+	display_mode = tree
+	icon = gold_icon
+	obligation_levels = {
+		sympatheia_tax = {
+			position = { 0 0 }
+			
+			tax = 0.00 
+			flag = sympatheia_flag # Flag for calculating the Popularity effect
+		}
+			
+		kapnikon_tax = {
+			parent = sympatheia_tax
+			position = { 0 1 }
+			
+			tax = 0.05
+			flag = low_imperial_tax_flag # Flag for calculating the Popularity effect
+		
+		}
+		demosia_tax = {
+			parent = kapnikon_tax
+			position = { 0 2 }
+			default = yes
+			
+			tax = 0.10
+			flag = standard_imperial_tax_flag # Flag for calculating the Popularity effect
+		
+		}
+		aerikon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = demosia_tax
+			position = { 0 3 }
+			
+			tax = 0.15
+			flag = medium_imperial_tax_flag # Flag for calculating the Popularity effect
+			
+		}
+		dikeraton_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = aerikon_tax
+			position = { 0 4 }
+			
+			tax = 0.20
+			flag = high_imperial_tax_flag # Flag for calculating the Popularity effect
+			
+		}
+		hexafollon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = dikeraton_tax
+			position = { 0 5 }
+			
+			tax = 0.25
+			flag = severe_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		kommerkion_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = hexafollon_tax
+			position = { 0 6 }
+			
+			tax = 0.30
+			flag = merchant_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		logisima_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = kommerkion_tax
+			position = { 0 7 }
+			
+			tax = 0.35
+			flag = church_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		allelengyon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = logisima_tax
+			position = { 0 8 }
+			
+			tax = 0.50
+			flag = maximum_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
 	}
 }
