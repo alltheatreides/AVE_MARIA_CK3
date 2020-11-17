@@ -468,48 +468,49 @@ on_game_start_after_lobby = {
 							type = imperial_obligation_doukaton
 							level = tagmatic_command_doukaton
 						}
-						else_if = {
-							limit = {
-								primary_title = {
-									OR = {
-										this = title:d_vaspurakan
-										this = title:d_greater_armenia
-									}
+					}
+					else_if = {
+						limit = {
+							primary_title = {
+								OR = {
+									this = title:d_vaspurakan
+									this = title:d_greater_armenia
 								}
 							}
-							vassal_contract_set_obligation_level = {
-								type = imperial_obligation_doukaton
-								level = organised_principality_doukaton
-							}
 						}
-						else_if = {
-							limit = {
-								primary_title = {
-									OR = {
-										this = title:d_mesopotamia
-										this = title:d_bulgaria
-									}
+						vassal_contract_set_obligation_level = {
+							type = imperial_obligation_doukaton
+							level = organised_principality_doukaton
+						}
+					}
+					else_if = {
+						limit = {
+							primary_title = {
+								OR = {
+									this = title:d_mesopotamia
+									this = title:d_bulgaria
 								}
 							}
-							vassal_contract_set_obligation_level = {
-								type = imperial_obligation_doukaton
-								level = regional_command_doukaton
-							}
 						}
-						else_if = {
-							limit = {
-								primary_title = {
-									OR = {
-										this = title:d_turnovo
-										this = title:d_langobardia_roman
-									}
+						vassal_contract_set_obligation_level = {
+							type = imperial_obligation_doukaton
+							level = regional_command_doukaton
+						}
+					}
+					else_if = {
+						limit = {
+							primary_title = {
+								OR = {
+									this = title:d_turnovo
+									this = title:d_langobardia_roman
 								}
 							}
-							vassal_contract_set_obligation_level = {
-								type = imperial_obligation_doukaton
-								level = frontier_command_doukaton
-							}
 						}
+						vassal_contract_set_obligation_level = {
+							type = imperial_obligation_doukaton
+							level = frontier_command_doukaton
+						}
+					}
 					}		
 				}
 				## Kouratoreia

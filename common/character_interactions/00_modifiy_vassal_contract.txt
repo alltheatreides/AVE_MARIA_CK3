@@ -117,6 +117,10 @@ liege_modify_vassal_contract_interaction = {
 				}
 
 				scope:recipient = {
+					create_local_variable = {
+						name = OBLIGATION_TYPE
+						value = 0
+					}
 					if = {
 						limit = {
 							scope:actor = {
@@ -124,25 +128,35 @@ liege_modify_vassal_contract_interaction = {
 							}
 						}
 						hidden_effect = { set_vassal_contract_modification_blocked = yes }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = special_contract }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = religious_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = fortification_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = coinage_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = succession_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = war_declaration_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = council_rights }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
 					}
-					
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = special_contract }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = religious_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = fortification_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = coinage_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = succession_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = war_declaration_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = council_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
+					if = {
+						limit = {
+							scope:actor = {
+								uses_roman_govt = yes
+							}
+						}
+						## AVE MARIA CONTRACTS TYPE
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_tax }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_fiscalised_theme }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_stratified_theme }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_doukaton }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+						
+						# Changes govt type accordingly if the type is modified
+						am_change_govt_if_contract_changed_effect = { AM_GOVT_TYPE = ave_maria_roman_administration_special_contract }
 
-					## AVE MARIA CONTRACTS TYPE
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_fiscalised_theme }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_stratified_theme }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_doukaton }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+					}
 				}
 			}
 		}

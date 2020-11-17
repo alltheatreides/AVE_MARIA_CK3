@@ -7,10 +7,45 @@
 #                               													   #
 ########################################################################################
 
-# Written by Atreides
+# Written by Atreides and Scarecrow
 
 ### ROMAN ADMINISTRATION SCRIPTED EFFECTS
 
+#################################
+### CONTRACT SCRIPTED EFFECTS ###
+#################################
+
+am_change_govt_if_contract_changed_effect = {
+	if = {
+		limit = {
+			local_var:$AM_GOVT_TYPE$ != vassal_contract_obligation_level:$AM_GOVT_TYPE$
+		}
+		if = {
+			limit = {
+				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
+			}
+			change_government = roman_administration_civilian_government
+		}
+		else_if = {
+			limit = {
+				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_stratified_theme
+			}
+			change_government = roman_administration_stratified_theme_government
+		}
+		else_if = {
+			limit = {
+				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
+			}
+			change_government = roman_administration_doukaton_government
+		}
+		else_if = {
+			limit = {
+				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_kouratoreia
+			}
+			change_government = roman_administration_kouratoreia_government
+		}
+	}
+}
 
 #############################################
 # RELATIONSHIP EFFECT						#

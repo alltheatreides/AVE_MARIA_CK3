@@ -34,6 +34,121 @@
 @ai_standard_vassal_desire = 1
 #
 #
+#### Basic Tax Slider
+## Level 0 - Sympatheia (0.00, boosts control gain and recovery rate, and boosts Popularity)
+## Level 1 - Kapnikon: tax = 0.5
+## Level 2 - Demosia: tax = 0.10 [default]
+## Level 3 - Aerikon: tax = 0.15
+## Level 4 - Dikeraton: tax = 0.20
+## Level 5 - Hexafollon: tax = 0.25 [Minor Popularity Penalty]
+## Level 6 - Impose Kommerkion: tax = 0.30, vassal_modifier = { republic_government_tax_contribution_add = 0.10 } [Popularity Penalty]
+## Level 7 - Revoke Logisima: tax = 0.35, vassal_modifier = { theocracy_government_tax_contribution_add = 0.10 } [Popularity + Legitimacy Penalty]
+## Level 8 - Allelengyon: tax = 0.50, vassal_modifier = { vassal_tax_contribution_add = 0.10 } [Severe Popularity Penalty]
+
+imperial_obligation_tax = {
+	display_mode = tree
+	icon = gold_icon
+	obligation_levels = {
+		sympatheia_tax = {
+			position = { 0 0 }
+			
+			tax = 0.00 
+			flag = sympatheia_flag # Flag for calculating the Popularity effect
+		}
+			
+		kapnikon_tax = {
+			parent = sympatheia_tax
+			position = { 1 0 }
+			
+			tax = 0.05
+			flag = low_imperial_tax_flag # Flag for calculating the Popularity effect
+		
+		}
+		demosia_tax = {
+			parent = kapnikon_tax
+			position = { 2 0 }
+			default = yes
+			
+			tax = 0.10
+			flag = standard_imperial_tax_flag # Flag for calculating the Popularity effect
+		
+		}
+		aerikon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = demosia_tax
+			position = { 3 0 }
+			
+			tax = 0.15
+			flag = medium_imperial_tax_flag # Flag for calculating the Popularity effect
+			
+		}
+		dikeraton_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = aerikon_tax
+			position = { 4 0 }
+			
+			tax = 0.20
+			flag = high_imperial_tax_flag # Flag for calculating the Popularity effect
+			
+		}
+		hexafollon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = dikeraton_tax
+			position = { 5 0 }
+			
+			tax = 0.25
+			flag = severe_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		kommerkion_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = hexafollon_tax
+			position = { 6 0 }
+			
+			tax = 0.30
+			flag = merchant_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		logisima_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = kommerkion_tax
+			position = { 7 0 }
+			
+			tax = 0.35
+			flag = church_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+		allelengyon_tax = {
+			#is_valid = {
+			#	scope:vassal = {
+			#		NOT = { vassal_contract_has_flag = peasants_protected }
+			#	}
+			#}
+			parent = logisima_tax
+			position = { 8 0 }
+			
+			tax = 0.50
+			flag = maximum_imperial_tax_flag # Flag for calculating the Popularity effect
+		}
+	}
+}
 ################################
 ### Duchy Level Distinctions ###
 ################################
@@ -158,6 +273,17 @@ imperial_obligation_fiscalised_theme = {
 	display_mode = tree
 	icon = gold_icon
 	obligation_levels = {
+		not_fiscalised_theme = {
+			is_valid = {
+				scope:vassal = {
+					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract != ave_maria_roman_administration_fiscalized_theme
+				}
+			}
+
+			position = { 0 0 }
+
+			flag = fiscalisation_disabled
+		}
 		permit_fiscalisation_fiscalised_theme = {
 			is_valid = {
 				scope:vassal = {
@@ -410,7 +536,7 @@ imperial_obligation_stratified_theme = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
 				}
 			}
-			position = { 1 0 }
+			position = { 3 0 }
 			parent = tax_exemptions_stratified_theme
 			
 			levies = 0.75
@@ -437,7 +563,7 @@ imperial_obligation_stratified_theme = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_stratified_theme
 				}
 			}
-			position = { 1 0 }
+			position = { 4 0 }
 			parent = protimesis_stratified_theme
 			
 			levies = 0.8
@@ -472,12 +598,6 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			is_valid = {
 				scope:vassal = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
-					NOR = {
-						vassal_contract_obligation_level:imperial_obligation_doukaton = organised_principality_doukaton
-						vassal_contract_obligation_level:imperial_obligation_doukaton = frontier_command_doukaton
-						vassal_contract_obligation_level:imperial_obligation_doukaton = regional_command_doukaton
-						vassal_contract_obligation_level:imperial_obligation_doukaton = tagmatic_command_doukaton
-					}
 				}
 			}
 			position = { 0 0 }
@@ -495,11 +615,6 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			is_valid = {
 				scope:vassal = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_doukaton
-					NOR = {
-						vassal_contract_obligation_level:imperial_obligation_doukaton = frontier_command_doukaton
-						vassal_contract_obligation_level:imperial_obligation_doukaton = regional_command_doukaton
-						vassal_contract_obligation_level:imperial_obligation_doukaton = tagmatic_command_doukaton
-					}
 				}
 			}
 			position = { 1 0 }
@@ -589,6 +704,8 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			
 			flag = tagmatic_command_doukaton_flag
 		}
+	}
+}
 
 ### Kouratoreia Slider
 ## Level 1 - tax_factor = 0.2
@@ -604,12 +721,6 @@ imperial_obligation_kouratoreia = {
 			is_valid = {
 				scope:vassal = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
-					NOR = {
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_established
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_standard_exactions
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_heavy_exactions
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_maximum_exactions
-					}
 				}
 				
 			}
@@ -626,11 +737,6 @@ imperial_obligation_kouratoreia = {
 			is_valid = {
 				scope:vassal = {
 					vassal_contract_obligation_level:ave_maria_roman_administration_special_contract = ave_maria_roman_administration_kouratoreia
-					NOR = {
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_standard_exactions
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_heavy_exactions
-						vassal_contract_obligation_level:imperial_obligation_kouratoreia = kouratoreia_maximum_exactions
-					}
 				}
 			}
 			parent = kouratoreia_designated
@@ -687,123 +793,6 @@ imperial_obligation_kouratoreia = {
 			
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
-		}
-	}
-}
-
-
-#### Basic Tax Slider
-## Level 0 - Sympatheia (0.00, boosts control gain and recovery rate, and boosts Popularity)
-## Level 1 - Kapnikon: tax = 0.5
-## Level 2 - Demosia: tax = 0.10 [default]
-## Level 3 - Aerikon: tax = 0.15
-## Level 4 - Dikeraton: tax = 0.20
-## Level 5 - Hexafollon: tax = 0.25 [Minor Popularity Penalty]
-## Level 6 - Impose Kommerkion: tax = 0.30, vassal_modifier = { republic_government_tax_contribution_add = 0.10 } [Popularity Penalty]
-## Level 7 - Revoke Logisima: tax = 0.35, vassal_modifier = { theocracy_government_tax_contribution_add = 0.10 } [Popularity + Legitimacy Penalty]
-## Level 8 - Allelengyon: tax = 0.50, vassal_modifier = { vassal_tax_contribution_add = 0.10 } [Severe Popularity Penalty]
-
-imperial_obligation_tax = {
-	display_mode = tree
-	icon = gold_icon
-	obligation_levels = {
-		sympatheia_tax = {
-			position = { 0 0 }
-			
-			tax = 0.00 
-			flag = sympatheia_flag # Flag for calculating the Popularity effect
-		}
-			
-		kapnikon_tax = {
-			parent = sympatheia_tax
-			position = { 0 1 }
-			
-			tax = 0.05
-			flag = low_imperial_tax_flag # Flag for calculating the Popularity effect
-		
-		}
-		demosia_tax = {
-			parent = kapnikon_tax
-			position = { 0 2 }
-			default = yes
-			
-			tax = 0.10
-			flag = standard_imperial_tax_flag # Flag for calculating the Popularity effect
-		
-		}
-		aerikon_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = demosia_tax
-			position = { 0 3 }
-			
-			tax = 0.15
-			flag = medium_imperial_tax_flag # Flag for calculating the Popularity effect
-			
-		}
-		dikeraton_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = aerikon_tax
-			position = { 0 4 }
-			
-			tax = 0.20
-			flag = high_imperial_tax_flag # Flag for calculating the Popularity effect
-			
-		}
-		hexafollon_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = dikeraton_tax
-			position = { 0 5 }
-			
-			tax = 0.25
-			flag = severe_imperial_tax_flag # Flag for calculating the Popularity effect
-		}
-		kommerkion_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = hexafollon_tax
-			position = { 0 6 }
-			
-			tax = 0.30
-			flag = merchant_imperial_tax_flag # Flag for calculating the Popularity effect
-		}
-		logisima_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = kommerkion_tax
-			position = { 0 7 }
-			
-			tax = 0.35
-			flag = church_imperial_tax_flag # Flag for calculating the Popularity effect
-		}
-		allelengyon_tax = {
-			#is_valid = {
-			#	scope:vassal = {
-			#		NOT = { vassal_contract_has_flag = peasants_protected }
-			#	}
-			#}
-			parent = logisima_tax
-			position = { 0 8 }
-			
-			tax = 0.50
-			flag = maximum_imperial_tax_flag # Flag for calculating the Popularity effect
 		}
 	}
 }
