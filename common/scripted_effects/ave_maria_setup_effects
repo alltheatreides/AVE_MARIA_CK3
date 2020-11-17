@@ -1,0 +1,220 @@
+########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# Written by Scarecrow
+
+# Dummy File for now, I used it to split off this script so it was easier to read.
+# Fired from title:e_byzantium.holder scope
+setup_historical_roman_districts = {
+    every_vassal = {
+        ## Tagma
+        if = {
+            limit = {
+                roman_administration_holds_tagma_title_trigger = yes
+            }
+            change_government = roman_administration_military_government
+            ## Level 2 is Tagma
+            vassal_contract_set_obligation_level = {
+                type = ave_maria_roman_administration_special_contract
+                level = ave_maria_roman_administration_tagma
+            }
+        }
+        ## Stratified Themes
+        if = {
+            limit = {
+                primary_title = {
+                    OR = {
+                        this = title:d_cappadocia
+                        this = title:d_sebasteia
+                        this = title:d_chaldia
+                        this = title:d_anatolia
+                    }
+                }
+            }
+            change_government = roman_administration_stratified_theme_government
+            vassal_contract_set_obligation_level = {
+                type = ave_maria_roman_administration_special_contract
+                level = ave_maria_roman_administration_stratified_theme
+            }
+            vassal_contract_set_obligation_level = { # Get historical level
+                type = imperial_obligation_stratified_theme
+                level = peacetime_army_stratified_theme
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_fiscalised_theme
+                level = fiscalised_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_doukaton
+                level = doukaton_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_kouratoreia
+                level = kouratoreia_disabled
+            }
+        }
+        ## Doukaton
+        if = {
+            limit = {
+                primary_title = {
+                    OR = {
+                        this = title:d_mesopotamia
+                        this = title:d_vaspurakan
+                        this = title:d_antioch
+                        this = title:d_greater_armenia
+                        this = title:d_turnovo
+                        this = title:d_langobardia_roman
+                        this = title:d_bulgaria
+                    }
+                }
+            }
+            change_government = roman_administration_doukaton_government
+            ## Level 4 is Doukaton
+            vassal_contract_set_obligation_level = {
+                type = ave_maria_roman_administration_special_contract
+                level = ave_maria_roman_administration_doukaton
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_fiscalised_theme
+                level = fiscalised_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_stratified_theme
+                level = stratified_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_kouratoreia
+                level = kouratoreia_disabled
+            }
+            if = { # Set historical level of Antioch
+                limit = {
+                    primary_title = {
+                        this = title:d_antioch
+                    }
+                }
+                vassal_contract_set_obligation_level = {
+                    type = imperial_obligation_doukaton
+                    level = tagmatic_command_doukaton
+                }
+            }
+            else_if = { # Set historical level of Vaspurakan and Ani/Iberia
+                limit = {
+                    primary_title = {
+                        OR = {
+                            this = title:d_vaspurakan
+                            this = title:d_greater_armenia
+                        }
+                    }
+                }
+                vassal_contract_set_obligation_level = {
+                    type = imperial_obligation_doukaton
+                    level = organised_principality_doukaton
+                }
+            }
+            else_if = { # Set historical level of Mesopotamia and Bulgaria
+                limit = {
+                    primary_title = {
+                        OR = {
+                            this = title:d_mesopotamia
+                            this = title:d_bulgaria
+                        }
+                    }
+                }
+                vassal_contract_set_obligation_level = {
+                    type = imperial_obligation_doukaton
+                    level = regional_command_doukaton
+                }
+            }
+            else_if = { # Set historical level of Turnova and Langobardia
+                limit = {
+                    primary_title = {
+                        OR = {
+                            this = title:d_turnovo
+                            this = title:d_langobardia_roman
+                        }
+                    }
+                }
+                vassal_contract_set_obligation_level = {
+                    type = imperial_obligation_doukaton
+                    level = frontier_command_doukaton
+                }
+            }		
+        }
+        ## Kouratoreia
+        if = {
+            limit = {
+                primary_title = {
+                    this = title:d_thrace
+                }
+            }
+            change_government = roman_administration_kouratoreia_government
+            ## Level 5 is Kouratoreia
+            vassal_contract_set_obligation_level = {
+                type = ave_maria_roman_administration_special_contract
+                level = ave_maria_roman_administration_kouratoreia
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_fiscalised_theme
+                level = fiscalised_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_stratified_theme
+                level = stratified_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_doukaton
+                level = doukaton_disabled
+            }
+        }
+        ## Fiscalized Theme
+        if = {
+            limit = {
+                roman_administration_holds_tagma_title_trigger = no
+                NOT = { has_government = theocracy_government }
+                primary_title = {
+                    NOR = {
+                        this = title:d_cappadocia
+                        this = title:d_sebasteia
+                        this = title:d_chaldia
+                        this = title:d_anatolia
+                        this = title:d_mesopotamia
+                        this = title:d_vaspurakan
+                        this = title:d_antioch
+                        this = title:d_greater_armenia
+                        this = title:d_turnovo
+                        this = title:d_langobardia_roman
+                        this = title:d_bulgaria
+                        this = title:d_thrace
+                    }
+                }
+            }
+            change_government = roman_administration_civilian_government
+            vassal_contract_set_obligation_level = {
+                type = ave_maria_roman_administration_special_contract
+                level = ave_maria_roman_administration_fiscalized_theme
+            }
+            vassal_contract_set_obligation_level = {
+                type = imperial_obligation_fiscalised_theme
+                level = fiscal_obligation_fiscalised_theme
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_stratified_theme
+                level = stratified_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_stratified_theme
+                level = stratified_theme_disabled
+            }
+            vassal_contract_set_obligation_level = { # Disable other sliders
+                type = imperial_obligation_kouratoreia
+                level = kouratoreia_disabled
+            }
+        }
+    }	
+}

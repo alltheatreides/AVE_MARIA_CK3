@@ -36,7 +36,7 @@ liege_modify_vassal_contract_interaction = {
 		scope:recipient = {			
 			vassal_contract_is_blocked_from_modification = no
 		}
-		if = {
+		trigger_if = {
 			limit = {
 				scope:actor = {
 					uses_roman_govt = no
@@ -75,7 +75,7 @@ liege_modify_vassal_contract_interaction = {
 			}
 		}
 		
-		if = {
+		trigger_if = {
 			limit = {
 				scope:actor = {
 					uses_roman_govt = no
@@ -155,7 +155,6 @@ liege_modify_vassal_contract_interaction = {
 						
 						# Changes govt type accordingly if the type is modified
 						am_change_govt_if_contract_changed_effect = { AM_GOVT_TYPE = ave_maria_roman_administration_special_contract }
-
 					}
 				}
 			}

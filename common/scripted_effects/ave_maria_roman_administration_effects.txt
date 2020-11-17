@@ -22,25 +22,29 @@ am_change_govt_if_contract_changed_effect = {
 		}
 		if = {
 			limit = {
-				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
+				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
+				vassal_contract_has_flag = is_fiscalised_theme
 			}
 			change_government = roman_administration_civilian_government
 		}
 		else_if = {
 			limit = {
-				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_stratified_theme
+				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_stratified_theme
+				vassal_contract_has_flag = is_stratified_theme
 			}
 			change_government = roman_administration_stratified_theme_government
 		}
 		else_if = {
 			limit = {
-				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
+				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
+				vassal_contract_has_flag = is_doukaton
 			}
 			change_government = roman_administration_doukaton_government
 		}
 		else_if = {
 			limit = {
 				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_kouratoreia
+				vassal_contract_has_flag = is_kouratoreia
 			}
 			change_government = roman_administration_kouratoreia_government
 		}

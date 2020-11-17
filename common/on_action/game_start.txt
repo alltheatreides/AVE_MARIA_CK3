@@ -400,7 +400,10 @@ on_game_start_after_lobby = {
 			## Change the government to be sure, fucking tendendcy to switch to wrong government type
 			change_government = roman_administration_government
 
-			### Assigning historical District type			
+			###########################################
+			### Assigning historical District type	###
+			###########################################
+			#setup_historical_roman_districts = yes
 			every_vassal = {
 				## Tagma
 				if = {
@@ -427,14 +430,25 @@ on_game_start_after_lobby = {
 						}
 					}
 					change_government = roman_administration_stratified_theme_government
-					## Level 3 is stratified theme
 					vassal_contract_set_obligation_level = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_stratified_theme
 					}
-					vassal_contract_set_obligation_level = {
+					vassal_contract_set_obligation_level = { # Get historical level
 						type = imperial_obligation_stratified_theme
 						level = peacetime_army_stratified_theme
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_fiscalised_theme
+						level = fiscalised_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_doukaton
+						level = doukaton_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_kouratoreia
+						level = kouratoreia_disabled
 					}
 				}
 				## Doukaton
@@ -458,7 +472,19 @@ on_game_start_after_lobby = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_doukaton
 					}
-					if = {
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_fiscalised_theme
+						level = fiscalised_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_stratified_theme
+						level = stratified_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_kouratoreia
+						level = kouratoreia_disabled
+					}
+					if = { # Set historical level of Antioch
 						limit = {
 							primary_title = {
 								this = title:d_antioch
@@ -469,7 +495,7 @@ on_game_start_after_lobby = {
 							level = tagmatic_command_doukaton
 						}
 					}
-					else_if = {
+					else_if = { # Set historical level of Vaspurakan and Ani/Iberia
 						limit = {
 							primary_title = {
 								OR = {
@@ -483,7 +509,7 @@ on_game_start_after_lobby = {
 							level = organised_principality_doukaton
 						}
 					}
-					else_if = {
+					else_if = { # Set historical level of Mesopotamia and Bulgaria
 						limit = {
 							primary_title = {
 								OR = {
@@ -497,7 +523,7 @@ on_game_start_after_lobby = {
 							level = regional_command_doukaton
 						}
 					}
-					else_if = {
+					else_if = { # Set historical level of Turnova and Langobardia
 						limit = {
 							primary_title = {
 								OR = {
@@ -510,17 +536,13 @@ on_game_start_after_lobby = {
 							type = imperial_obligation_doukaton
 							level = frontier_command_doukaton
 						}
-					}
 					}		
 				}
 				## Kouratoreia
 				if = {
 					limit = {
 						primary_title = {
-							OR = {
-								this = title:d_thrace
-				
-							}
+							this = title:d_thrace
 						}
 					}
 					change_government = roman_administration_kouratoreia_government
@@ -528,6 +550,18 @@ on_game_start_after_lobby = {
 					vassal_contract_set_obligation_level = {
 						type = ave_maria_roman_administration_special_contract
 						level = ave_maria_roman_administration_kouratoreia
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_fiscalised_theme
+						level = fiscalised_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_stratified_theme
+						level = stratified_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_doukaton
+						level = doukaton_disabled
 					}
 				}
 				## Fiscalized Theme
@@ -561,9 +595,21 @@ on_game_start_after_lobby = {
 						type = imperial_obligation_fiscalised_theme
 						level = fiscal_obligation_fiscalised_theme
 					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_stratified_theme
+						level = stratified_theme_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_doukaton
+						level = doukaton_disabled
+					}
+					vassal_contract_set_obligation_level = { # Disable other sliders
+						type = imperial_obligation_kouratoreia
+						level = kouratoreia_disabled
+					}
 				}
-			}	
-		}
+			}
+		}	
 
 		## Giving Roman Empire title a flag for the gui display
 		title:e_byzantium = {
