@@ -15,7 +15,7 @@ This mod is founded on the belief that latest scholarly research on the Middle A
 - Increased county granularity: counties only have one barony for outside of realm succession.
 
 ## ROADMAP
-*Visual Roamap to come*
+[Visual Roadmap](https://i.imgur.com/cqCeWKf.png)
 
 ## LINKS
 * [Discord](https://discord.gg/C3X3yjS) 
