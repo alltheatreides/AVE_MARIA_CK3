@@ -376,12 +376,32 @@ yamama = {
 
 # Yazidi
 
-mosul = {
-	county = c_mosul
+sinjar = { # Location of great communal importance, with multiple shrines.
+	county = c_sinjar
 
 	character_modifier = {
-		name = holy_site_mosul_effect_name
+		name = holy_site_sinjar_effect_name
 		# diplomacy_per_piety_level = 1
+	}
+}
+
+baalbek = { # Birthplace of Sheikh Adi, who was renowned his great asceticism as well as performing multiple miracles.
+	county = c_baalbek
+
+	character_modifier = {
+		name = holy_site_sinjar_effect_name
+		clergy_opinion = 10
+		monthly_prestige_gain_mult = 0.2
+	}
+}
+
+lalish = { # Tomb of Sheikh Adi. Considered by some to be the holiest site is Yazidism.
+	county = c_ninive
+
+	character_modifier = {
+		name = holy_site_lalish_effect_name
+		# learning_per_piety_level = 1
+		monthly_piety_gain_mult = 0.2
 	}
 }
 

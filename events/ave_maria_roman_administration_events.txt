@@ -57,15 +57,16 @@ ave_maria_roman_administration_events.0001 = {
 		every_vassal = {
 			if = {
 				limit = {
-					#roman_administration_holds_tagma_title_trigger = no
-					primary_title = {
-						roman_administration_is_a_military_title_trigger = no
+					highest_held_title_tier = tier_duchy
+					roman_administration_holds_tagma_title_trigger = no
+					any_held_title = {
 						NOT = { this = title:k_orthodox }
 					}
 				}
-				change_government = roman_administration_civilian_government
+				#change_government = roman_administration_civilian_government
 				primary_title = {
 					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
+					add_title_law = male_only_law
 				}
 			}
 			save_scope_as = de_jure_guy
@@ -91,9 +92,7 @@ ave_maria_roman_administration_events.0001 = {
 		every_vassal = {
 			if = {
 				limit = {
-					primary_title = {
-						roman_administration_is_a_military_title_trigger = yes
-					}
+					roman_administration_holds_tagma_title_trigger = yes
 				}
 				change_government = roman_administration_military_government
 				primary_title = {
@@ -102,21 +101,8 @@ ave_maria_roman_administration_events.0001 = {
 				}
 			}			
 		}
-		every_vassal = {
-			if = {
-				limit = {
-					primary_title = {
-						roman_administration_is_a_military_title_trigger = no
-						NOT = { this = title:k_orthodox }
-					}
-				}
-				change_government = roman_administration_civilian_government
-				primary_title = {
-					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
-					add_title_law = male_only_law
-				}
-			}			
-		}
+
+		
 
 		## Making sure you have the proper government
 		change_government = roman_administration_government
@@ -693,7 +679,9 @@ ave_maria_roman_administration_events.0006 = {
 ave_maria_roman_administration_events.0007 = {
 	type = letter_event
 	opening = {
-		desc = ave_maria_roman_administration_events.0007.opening
+		first_valid = {
+			desc = ave_maria_roman_administration_events.0007.opening
+		}		
 	}
 	desc = {
 		#desc = ave_maria_roman_administration_events.0007_desc
@@ -903,7 +891,10 @@ ave_maria_roman_administration_events.0007 = {
 ave_maria_roman_administration_events.0008 = {
 	type = letter_event
 	opening = {
-		desc = ave_maria_roman_administration_events.0008.opening
+		first_valid = {
+			desc = ave_maria_roman_administration_events.0008.opening
+		}
+		
 	}
 	desc = ave_maria_roman_administration_events.0008.desc
 	sender = scope:sender
@@ -1993,12 +1984,13 @@ ave_maria_roman_administration_events.00052 = {
 ## TEST
 ave_maria_roman_administration_events.6969 = {
 	type = character_event
-	title = ave_maria_roman_administration_events.0003.title
-	theme = crown	
-	override_background = {
-		event_background = ave_maria_test
-	}
-	left_portrait = root
+	hidden = yes
+	# title = ave_maria_roman_administration_events.0003.title
+	# theme = crown	
+	# override_background = {
+	# 	event_background = ave_maria_test
+	# }
+	# left_portrait = root
 
 	trigger = {
 
@@ -2062,8 +2054,8 @@ ave_maria_roman_administration_events.6969 = {
 	}
 
 	## TEST
-	option = {
-		name = ave_maria_roman_administration_events.0003.OPT_C
-	}
+	# option = {
+	# 	name = ave_maria_roman_administration_events.0003.OPT_C
+	# }
 
 }

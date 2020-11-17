@@ -72,10 +72,10 @@ roman_administration_can_vote_in_emperor_election_trigger = {
 		# 	}
 		# 	is_a_faction_leader = yes
 		# }
-		primary_title = {
+		any_held_title = {
 			this = title:d_megas_domestikos
 		}		
-		primary_title = {
+		any_held_title = {
 			this = title:d_logothetetes_tou_dromou
 		}
 		any_held_title = {
@@ -301,6 +301,7 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 		}			
 	}
 	NOT = { has_government = theocracy_government }
+	
 	## If you are not the emperor you must either be related to the emperor, or having a high office title, or be on the council
 	trigger_if = {
 		limit = {

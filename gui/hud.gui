@@ -155,7 +155,7 @@ widget = {
 	widget = {
 		name = "institutions_window"
 		parentanchor = top|right
-		movable = no
+		#movable = no
 		layer = windows_layer
 		#ignoreinvisible = yes
 		
@@ -193,7 +193,7 @@ widget = {
 			margin_right = 20
 
 			using = Window_Background
-			ignoreinvisible = yes
+			# ignoreinvisible = yes
 			
 			widget = {
 				size = { 100% 100% }
@@ -337,7 +337,7 @@ widget = {
 	
 										button_standard = {
 											layoutpolicy_horizontal = expanding
-											parentanchor = center
+											#parentanchor = center
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
@@ -390,7 +390,7 @@ widget = {
 	
 										button_standard = {
 											layoutpolicy_horizontal = expanding
-											parentanchor = center
+											#parentanchor = center
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
@@ -444,7 +444,7 @@ widget = {
 
 										button_standard = {
 											layoutpolicy_horizontal = expanding
-											parentanchor = center
+											#parentanchor = center
 											size = { 0 80 }
 																					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"

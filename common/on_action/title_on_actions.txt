@@ -231,7 +231,7 @@ on_title_gain = {
 			}			
 			resolve_title_and_vassal_change = scope:change
 		}
-		## When inheriting a military office duchy title you always get the capital and the de_jure titles
+		## When inheriting an office duchy title you always get the capital and the de_jure titles
 		if = {
 			limit = {
 				root = {
@@ -244,136 +244,131 @@ on_title_gain = {
 						}
 					}
 				}
-				# scope:previous_holder = {
-				# 	NOT = {
-				# 		primary_title = {
-				# 			this = title:e_byzantium
-				# 		}
-				# 	}
-				# }
 				scope:title = { 
 					tier = tier_duchy
 				}
 			}
-			# scope:title = {
-			# 	if = {
-			# 		limit = {
-			# 			scope:title = {
-			# 				#roman_administration_is_a_military_title_trigger = no
-			# 			}
-			# 		}
-			# 		every_in_de_jure_hierarchy = {
-			# 			limit = {
-			# 				#tier = tier_county
-			# 				tier > tier_barony
-			# 				NOT = { 
-			# 					this = { has_title_law = ave_maria_roman_administration_family_succession_law }
-			# 					has_title_law = ave_maria_roman_administration_family_succession_law							
-			# 					holder = {
-			# 						roman_administration_holds_military_title_trigger = yes
-			# 					}
-			# 				}
-			# 				NOT = { 
-			# 					holder = {
-			# 						primary_title = { this = title:e_byzantium }
-			# 					}
-			# 				}
-			# 				holder = {
-			# 					top_liege = {
-			# 						primary_title = { this = title:e_byzantium }
-			# 					}
-			# 				}
-			# 			}
-			# 			if = {
-			# 				limit = {
-			# 					exists = holder
-			# 				}
-			# 				create_title_and_vassal_change = {
-			# 					type = granted
-			# 					save_scope_as = change
-			# 					add_claim_on_loss = yes
-			# 				}
-			# 				save_temporary_scope_as = title_to_inherit
-			# 				root = {
-			# 					save_scope_as = title_heir
-			# 				}
-			# 				change_title_holder = {
-			# 					holder = scope:title_heir
-			# 					change = scope:change
-			# 				}
-			# 				resolve_title_and_vassal_change = scope:change
-			# 			}
-			# 		}
-			# 		resolve_title_and_vassal_change = scope:change
-			# 	}
+			scope:title = {
+				if = {
+					limit = {
+						scope:title = {
+							#roman_administration_is_a_military_title_trigger = no
+							tier >= tier_duchy
+						}
+					}
+					every_in_de_jure_hierarchy = {
+						limit = {
+							#tier = tier_county
+							tier > tier_barony
+							NOT = { 
+								this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+								has_title_law = ave_maria_roman_administration_family_succession_law							
+								holder = {
+									roman_administration_holds_military_title_trigger = yes
+								}
+							}
+							NOT = { 
+								holder = {
+									primary_title = { this = title:e_byzantium }
+								}
+							}
+							holder = {
+								top_liege = {
+									primary_title = { this = title:e_byzantium }
+								}
+							}
+						}
+						if = {
+							limit = {
+								exists = holder
+							}
+							create_title_and_vassal_change = {
+								type = granted
+								save_scope_as = change
+								add_claim_on_loss = yes
+							}
+							save_temporary_scope_as = title_to_inherit
+							root = {
+								save_scope_as = title_heir
+							}
+							change_title_holder = {
+								holder = scope:title_heir
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
 
-			# 	if = {
-			# 		limit = {
-			# 			scope:title = {
-			# 				roman_administration_is_a_military_title_trigger = yes
-			# 				title_capital_county = {
-			# 					holder = {
-			# 						top_liege = {
-			# 							primary_title = { this = title:e_byzantium }
-			# 						}
-			# 					}
-			# 				}
-			# 			}
-			# 		}
-			# 		## Military Duchy Capital transfer
-			# 		scope:title.title_capital_county = {
-			# 			create_title_and_vassal_change = {
-			# 				type = granted
-			# 				save_scope_as = change
-			# 				add_claim_on_loss = yes
-			# 			}
-			# 			root = {
-			# 				save_scope_as = title_heir
-			# 			}
-			# 			change_title_holder = {
-			# 				holder = scope:title_heir
-			# 				change = scope:change
-			# 			}
-			# 		}
-			# 		resolve_title_and_vassal_change = scope:change
+				### Military transfer deprecated since removal of provincial duality krites/strategos
+				if = {
+					limit = {
+						scope:title = {
+							roman_administration_is_a_military_title_trigger = yes
+							title_capital_county = {
+								holder = {
+									top_liege = {
+										primary_title = { this = title:e_byzantium }
+									}
+								}
+							}
+						}
+					}
+					## Military Duchy Capital transfer
+					scope:title.title_capital_county = {
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						root = {
+							save_scope_as = title_heir
+						}
+						change_title_holder = {
+							holder = scope:title_heir
+							change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
 					
-			# 		## Military Duchy de jure titles transfer
-			# 		every_in_de_jure_hierarchy = {
-			# 			limit = {
-			# 				#tier = tier_county
-			# 				tier > tier_barony
-			# 				NOT = { 
-			# 					this = { has_title_law = ave_maria_roman_administration_family_succession_law }		
-			# 				}
-			# 				NOT = { 
-			# 					holder = {
-			# 						primary_title = { this = title:e_byzantium }
-			# 					}
-			# 				}
-			# 			}
-			# 			if = {
-			# 				limit = {
-			# 					exists = holder
-			# 				}
-			# 				create_title_and_vassal_change = {
-			# 					type = granted
-			# 					save_scope_as = change
-			# 					add_claim_on_loss = yes
-			# 				}
-			# 				save_temporary_scope_as = title_to_inherit
-			# 				root = {
-			# 					save_scope_as = title_heir
-			# 				}
-			# 				change_title_holder = {
-			# 					holder = scope:title_heir
-			# 					change = scope:change
-			# 				}
-			# 				resolve_title_and_vassal_change = scope:change
-			# 			}
-			# 		}
-			# 		resolve_title_and_vassal_change = scope:change
-			# 	}
-			# }
+					## Military Duchy de jure titles transfer
+					every_in_de_jure_hierarchy = {
+						limit = {
+							#tier = tier_county
+							tier > tier_barony
+							NOT = { 
+								this = { has_title_law = ave_maria_roman_administration_family_succession_law }		
+							}
+							NOT = { 
+								holder = {
+									primary_title = { this = title:e_byzantium }
+								}
+							}
+						}
+						if = {
+							limit = {
+								exists = holder
+							}
+							create_title_and_vassal_change = {
+								type = granted
+								save_scope_as = change
+								add_claim_on_loss = yes
+							}
+							save_temporary_scope_as = title_to_inherit
+							root = {
+								save_scope_as = title_heir
+							}
+							change_title_holder = {
+								holder = scope:title_heir
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
 
 			resolve_title_and_vassal_change = scope:change
 		}
@@ -763,9 +758,9 @@ on_title_lost = {
 					scope:title = {
 						roman_administration_is_a_military_title_trigger = yes
 					}
-					primary_title = { 
+					any_held_title = { 
 						roman_administration_is_a_military_title_trigger = no 
-						highest_held_title_tier < tier_duchy
+						tier < tier_duchy
 						NOT = {
 							this = title:e_byzantium
 						}

@@ -18,12 +18,23 @@ roman_administration_government = {
 	fallback = 1
 	
 	can_get_government = {
-		primary_title = {
-			OR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire
+		OR = {
+			top_liege = {
+				any_held_title = {
+					OR = {
+						this = title:e_byzantium
+						this = title:e_roman_empire
+					}
+				}
+			}
+			primary_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
 			}
 		}
+		
 		AND = {
 			culture = culture:greek
 			culture:greek = {
@@ -39,16 +50,16 @@ roman_administration_government = {
 	vassal_contract = {
 
 		## Vanilla Contracts
-		feudal_government_taxes
-		feudal_government_levies
-		special_contract
+		# feudal_government_taxes
+		# feudal_government_levies
+		# special_contract
 		religious_rights
-		fortification_rights
-		coinage_rights
-		succession_rights
-		war_declaration_rights
-		council_rights
-		title_revocation_rights
+		# fortification_rights
+		# coinage_rights
+		# succession_rights
+		# war_declaration_rights
+		# council_rights
+		# title_revocation_rights
 		
 		## Roman-specific Laws
 		imperial_obligation_tax
@@ -61,10 +72,6 @@ roman_administration_government = {
 		imperial_obligation_kouratoreia
 	}
 
-	#character_modifier = {
-	#	levy_size = -10
-	#}
-	
 	color = hsv{ 0.67 1.00 0.78 }
 }
 
@@ -99,11 +106,14 @@ roman_administration_military_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
-		ave_maria_roman_administration_theme_taxe
-		ave_maria_roman_administration_tagma_tax_exemption
-		ave_maria_roman_administration_tagma_salary				
+		#ave_maria_roman_administration_theme_taxe
+		#ave_maria_roman_administration_tagma_tax_exemption
+		# ave_maria_roman_administration_tagma_salary				
 		# council_rights
 		# title_revocation_rights
+
+		## Roman-specific Laws
+		imperial_obligation_tax
 
 		## District Types
 		ave_maria_roman_administration_special_contract
