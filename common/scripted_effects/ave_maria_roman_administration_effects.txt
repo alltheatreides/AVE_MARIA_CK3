@@ -52,166 +52,452 @@ am_change_govt_if_contract_changed_effect = {
 	}
 }
 
+roman_administration_update_government_after_contract_change = {
+	if = {
+		limit = {
+			vassal_contract_has_flag = is_theme
+		}
+		NOT = { has_government = roman_administration_theme_government }
+		change_government = roman_administration_theme_government
+	}
+	if = {
+		limit = {
+			vassal_contract_has_flag = is_doukaton
+		}
+		NOT = { has_government = roman_administration_doukaton_government }
+		change_government = roman_administration_doukaton_government
+	}
+	if = {
+		limit = {
+			vassal_contract_has_flag = is_kouratoreia
+		}
+		NOT = { has_government = roman_administration_kouratoreia_government }
+		change_government = roman_administration_kouratoreia_government
+	}
+	if = {
+		limit = {
+			vassal_contract_has_flag = is_tagma
+		}
+		NOT = { has_government = roman_administration_military_government }
+		change_government = roman_administration_military_government
+	}
+}
+
 #############################################
 # START UP EFFECTS							#
 #############################################
 
 setup_historical_roman_districts = {
-	## Blanket government change to theme for every ducal level vassal just to make sure
-	every_vassal = {
-		if = {
-			limit = {
-				highest_held_title_tier >= tier_duchy
-				NOT = { has_government = theocracy_government }
-			}
-			change_government = roman_administration_theme_government
-			## Theme Special Contract
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = ave_maria_roman_administration_special_contract
-				level = 0
-			}
-			## Fiscalized theme
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = imperial_obligation_theme
-				level = 7
-			}
-		}
-	}
-	## Blanket government change to roman admin for every county or vbelow level vassal
-	every_vassal = {
-		if = {
-			limit = {
-				highest_held_title_tier < tier_duchy
-				NOT = { has_government = theocracy_government }
-			}
-			change_government = roman_administration_government
-		}
-	}
-	## Tagma
-	every_vassal = {
-		if = {
-			limit = {
-				roman_administration_holds_tagma_title_trigger = yes
-			}
-			change_government = roman_administration_military_government
-			## Tagma Special Contract
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = ave_maria_roman_administration_special_contract
-				level = 3
-			}
-		}
-	}
-	## Specific vassal contract level change on Stratified Theme
-	every_vassal = {
-		if = {
-			limit = {
-				OR = {
-					has_title = title:d_cappadocia
-					has_title = title:d_sebasteia
-					has_title = title:d_chaldia
-					has_title = title:d_anatolia
-				}
-			}
-			## Stratified theme - Peacetime Theme
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = imperial_obligation_theme
-				level = 5
-			}
-		}
-	}
-	## Doukaton
-	every_vassal = {
-		if = {
-			limit = {
-				OR = {
-					has_title = title:d_mesopotamia
-					has_title = title:d_vaspurakan
-					has_title = title:d_antioch
-					has_title = title:d_greater_armenia
-					has_title = title:d_turnovo
-					has_title = title:d_langobardia_roman
-					has_title = title:d_bulgaria
-				}
-			}
-			## Doukaton Special Contract
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = ave_maria_roman_administration_special_contract
-				level = 1
-			}
-			change_government = roman_administration_doukaton_government
 
-			# Set historical level of Antioch
-			if = {
-				limit = {
-					has_title = title:d_antioch
-				}
-				vassal_contract_set_obligation_level = {
-					type = imperial_obligation_doukaton
-					level = 5
-				}
-			}
-			# Set historical level of Vaspurakan and Ani/Iberia
-			if = {
-				limit = {
-					OR = {
-						has_title = title:d_vaspurakan
-						has_title = title:d_greater_armenia
-					}					
-				}
-				vassal_contract_set_obligation_level = {
-					type = imperial_obligation_doukaton
-					level = 2
-				}
-			}
-			# Set historical level of Mesopotamia and Bulgaria
-			if = {
-				limit = {
-					OR = {
-						has_title = title:d_mesopotamia
-						has_title = title:d_bulgaria
-					}					
-				}
-				vassal_contract_set_obligation_level = {
-					type = imperial_obligation_doukaton
-					level = 4
-				}
-			}
-			# Set historical level of Turnova and Langobardia
-			if = {
-				limit = {
-					OR = {
-						has_title = title:d_turnovo
-						has_title = title:d_langobardia_roman
-					}					
-				}
-				vassal_contract_set_obligation_level = {
-					type = imperial_obligation_doukaton
-					level = 3
-				}
-			}
+	## Blanket effects
+	## Make sure everyone has the proper title law and blanket theme government to duke tier ideally again, should be change din history files to ease startup process
+	every_vassal = {
+		limit = {
+			highest_held_title_tier >= tier_duchy
+			NOT = { has_government = theocracy_government }
+		}
+		change_government = roman_administration_theme_government	
+		primary_title = {
+			add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
+			add_title_law = male_only_law
 		}
 	}
-	## Kouratoreia
+	## Make sure every below county tier vassal is not feudal
 	every_vassal = {
 		if = {
 			limit = {
-				OR = {
-					has_title = title:d_thrace
+				highest_held_title_tier <= tier_county
+				NOT = { has_government = theocracy_government }
+			}
+			change_government = roman_administration_government	
+		}
+		every_vassal = {
+			if = {
+				limit = {
+					highest_held_title_tier <= tier_county
+					NOT = { has_government = theocracy_government }
 				}
-			}
-			change_government = roman_administration_kouratoreia_government
-			## Kouratoreia Special Contract
-			vassal_contract_set_obligation_level = { # Get historical level
-				type = ave_maria_roman_administration_special_contract
-				level = 2
-			}
-			## # Get historical level
-			vassal_contract_set_obligation_level = { 
-				type = imperial_obligation_kouratoreia
-				level = 2
+				change_government = roman_administration_government	
 			}
 		}
 	}
+
+	## To ease the loading process (in time it would be best to move those to history files) direct scoping to titles as every_vassal is ressource intensive.
+	title:d_megas_domestikos.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_varangian_guard.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_megas_droungarios.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_megas_droungarios.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_excubitor.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_vigla.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_hikanatoi.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_regular_tagma_1.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_regular_tagma_2.holder = {		
+		change_government = roman_administration_military_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_tagma
+		}	
+			
+	}		
+	title:d_sakellion.holder = {		
+		change_government = roman_administration_government	
+		
+			
+	}		
+	title:d_quaestor.holder = {		
+		change_government = roman_administration_government	
+			
+	}		
+	title:d_logothetetes_tou_dromou.holder = {		
+		change_government = roman_administration_government	
+		
+			
+	}		
+	title:d_cappadocia.holder = {		
+		change_government = roman_administration_theme_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_theme
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_theme
+			level = peacetime_army_theme
+		}	
+	}		
+	title:d_sebasteia.holder = {		
+		change_government = roman_administration_theme_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_theme
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_theme
+			level = peacetime_army_theme
+		}	
+	}		
+	title:d_chaldia.holder = {		
+		change_government = roman_administration_theme_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_theme
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_theme
+			level = peacetime_army_theme
+		}	
+	}		
+	title:d_anatolia.holder = {		
+		change_government = roman_administration_theme_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_theme
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_theme
+			level = peacetime_army_theme
+		}	
+	}		
+	title:d_mesopotamia.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = regional_command_doukaton
+		}	
+	}		
+	title:d_vaspurakan.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = organised_principality_doukaton
+		}	
+	}		
+	title:d_antioch.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = tagmatic_command_doukaton
+		}	
+	}		
+	title:d_greater_armenia.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = organised_principality_doukaton
+		}	
+	}		
+	title:d_turnovo.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = frontier_command_doukaton
+		}	
+	}		
+	title:d_langobardia_roman.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = frontier_command_doukaton
+		}	
+	}		
+	title:d_bulgaria.holder = {		
+		change_government = roman_administration_doukaton_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_doukaton
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_doukaton
+			level = regional_command_doukaton
+		}	
+	}		
+	title:d_thrace.holder = {		
+		change_government = roman_administration_kouratoreia_government	
+		vassal_contract_set_obligation_level = {	
+			type = ave_maria_roman_administration_special_contract
+			level = ave_maria_roman_administration_kouratoreia
+		}	
+		vassal_contract_set_obligation_level = {	
+			type = imperial_obligation_kouratoreia
+			level = kouratoreia_established
+		}	
+	}		
+	
+
+	# ## Blanket government change to theme for every ducal level vassal just to make sure
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			highest_held_title_tier >= tier_duchy
+	# 			NOT = { has_government = theocracy_government }
+	# 		}
+	# 		change_government = roman_administration_theme_government
+	# 		## Theme Special Contract
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = ave_maria_roman_administration_special_contract
+	# 			level = 0
+	# 		}
+	# 		## Fiscalized theme
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = imperial_obligation_theme
+	# 			level = 7
+	# 		}
+	# 	}
+	# }
+	# ## Blanket government change to roman admin for every county or vbelow level vassal
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			highest_held_title_tier < tier_duchy
+	# 			NOT = { has_government = theocracy_government }
+	# 		}
+	# 		change_government = roman_administration_government
+	# 	}
+	# }
+	# ## Tagma
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			roman_administration_holds_tagma_title_trigger = yes
+	# 		}
+	# 		change_government = roman_administration_military_government
+	# 		## Tagma Special Contract
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = ave_maria_roman_administration_special_contract
+	# 			level = 3
+	# 		}
+	# 	}
+	# }
+	# ## Specific vassal contract level change on Stratified Theme
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			OR = {
+	# 				has_title = title:d_cappadocia
+	# 				has_title = title:d_sebasteia
+	# 				has_title = title:d_chaldia
+	# 				has_title = title:d_anatolia
+	# 			}
+	# 		}
+	# 		## Stratified theme - Peacetime Theme
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = imperial_obligation_theme
+	# 			level = 5
+	# 		}
+	# 	}
+	# }
+	# ## Doukaton
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			OR = {
+	# 				has_title = title:d_mesopotamia
+	# 				has_title = title:d_vaspurakan
+	# 				has_title = title:d_antioch
+	# 				has_title = title:d_greater_armenia
+	# 				has_title = title:d_turnovo
+	# 				has_title = title:d_langobardia_roman
+	# 				has_title = title:d_bulgaria
+	# 			}
+	# 		}
+	# 		## Doukaton Special Contract
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = ave_maria_roman_administration_special_contract
+	# 			level = 1
+	# 		}
+	# 		change_government = roman_administration_doukaton_government
+
+	# 		# Set historical level of Antioch
+	# 		if = {
+	# 			limit = {
+	# 				has_title = title:d_antioch
+	# 			}
+	# 			vassal_contract_set_obligation_level = {
+	# 				type = imperial_obligation_doukaton
+	# 				level = 5
+	# 			}
+	# 		}
+	# 		# Set historical level of Vaspurakan and Ani/Iberia
+	# 		if = {
+	# 			limit = {
+	# 				OR = {
+	# 					has_title = title:d_vaspurakan
+	# 					has_title = title:d_greater_armenia
+	# 				}					
+	# 			}
+	# 			vassal_contract_set_obligation_level = {
+	# 				type = imperial_obligation_doukaton
+	# 				level = 2
+	# 			}
+	# 		}
+	# 		# Set historical level of Mesopotamia and Bulgaria
+	# 		if = {
+	# 			limit = {
+	# 				OR = {
+	# 					has_title = title:d_mesopotamia
+	# 					has_title = title:d_bulgaria
+	# 				}					
+	# 			}
+	# 			vassal_contract_set_obligation_level = {
+	# 				type = imperial_obligation_doukaton
+	# 				level = 4
+	# 			}
+	# 		}
+	# 		# Set historical level of Turnova and Langobardia
+	# 		if = {
+	# 			limit = {
+	# 				OR = {
+	# 					has_title = title:d_turnovo
+	# 					has_title = title:d_langobardia_roman
+	# 				}					
+	# 			}
+	# 			vassal_contract_set_obligation_level = {
+	# 				type = imperial_obligation_doukaton
+	# 				level = 3
+	# 			}
+	# 		}
+	# 	}
+	# }
+	# ## Kouratoreia
+	# every_vassal = {
+	# 	if = {
+	# 		limit = {
+	# 			OR = {
+	# 				has_title = title:d_thrace
+	# 			}
+	# 		}
+	# 		change_government = roman_administration_kouratoreia_government
+	# 		## Kouratoreia Special Contract
+	# 		vassal_contract_set_obligation_level = { # Get historical level
+	# 			type = ave_maria_roman_administration_special_contract
+	# 			level = 2
+	# 		}
+	# 		## # Get historical level
+	# 		vassal_contract_set_obligation_level = { 
+	# 			type = imperial_obligation_kouratoreia
+	# 			level = 2
+	# 		}
+	# 	}
+	# }
 
 }
 

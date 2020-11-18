@@ -55,19 +55,6 @@ ave_maria_roman_administration_events.0001 = {
 
 		## Creating title claimants and making sure you have the proper laws and governement
 		every_vassal = {
-			if = {
-				limit = {
-					highest_held_title_tier = tier_duchy
-					roman_administration_holds_tagma_title_trigger = no
-					any_held_title = {
-						NOT = { this = title:k_orthodox }
-					}
-				}
-				primary_title = {
-					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
-					add_title_law = male_only_law
-				}
-			}
 			save_scope_as = de_jure_guy
 			create_character = {
 				employer = this
