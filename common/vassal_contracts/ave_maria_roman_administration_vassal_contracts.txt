@@ -12,9 +12,10 @@
 # This file contains the obligation options available for the various Roman administration contracts.
 # Full file references will be added once this module is complete.
 
-#########################
-### Types of Contract ###
-#########################
+
+#############################################
+# CONTRACTS TYPE							#
+#############################################
 
 ## Fiscalised Theme ##
 # Uses the Fiscalised Theme slider and the basic tax slider
@@ -30,9 +31,9 @@
 
 ## Tagma ##
 
-#####################
-### Script Values ###
-#####################
+#############################################
+# SCRIPT VALUES								#
+#############################################
 
 @ai_standard_liege_desire = 2
 @ai_standard_vassal_desire = 1
@@ -167,70 +168,83 @@ imperial_obligation_tax = {
 	}
 }
 
-################################
-### Duchy Level Distinctions ###
-################################
+#############################################
+# DUCHY LEVEL DISTINCTION					#
+#############################################
 
 ave_maria_roman_administration_special_contract = {
 	display_mode = radiobutton
 	is_shown = {
-		scope:liege = {
-			any_held_title = {
-				this = title:e_byzantium
+		OR = {
+			scope:liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
 			}
+			scope:vassal = {
+				liege = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}			
 		}
 		scope:vassal.primary_title.tier >= tier_duchy
 	}
 	obligation_levels = {
 
-		### So did not know where to put it but if you miss the other message, left the stratified as the basic theme changed the flag to is_theme flag need to adapt contract levels
+		## 0
 		ave_maria_roman_administration_theme = {
 			position = { 0 1 }
 			default = yes
 			
-			parent = ave_maria_roman_administration_special_contract_none
-
 			flag = is_theme
 		}
-		
+		## 1
 		ave_maria_roman_administration_doukaton = {
 			is_valid = {
 				scope:vassal.primary_title.tier >= tier_duchy
-				scope:vassal.primary_title = {
-					any_in_de_jure_hierarchy = {
-						tier = tier_county
-						any_neighboring_county = {
-							holder = {
-								NOT = {
-									top_liege = {
-										this = title:e_byzantium.holder
-									}
-								}
-							}
-						}
-					}
-				}
+				# scope:vassal.primary_title = {
+				# 	trigger_if = {
+				# 		limit = {
+				# 			tier >= tier_duchy
+				# 		}
+				# 		any_in_de_jure_hierarchy = {
+				# 			tier = tier_county
+				# 			any_neighboring_county = {
+				# 				tier = tier_county
+				# 				holder = {
+				# 					NOT = {
+				# 						top_liege = {
+				# 							this = title:e_byzantium.holder
+				# 						}
+				# 					}
+				# 				}
+				# 			}
+				# 		}
+				# 	}					
+				# }
 			}
 			parent = ave_maria_roman_administration_theme
 			position = { 0 2 }
 			
 			flag = is_doukaton
 		}
-
+		## 2
 		ave_maria_roman_administration_kouratoreia = {
 			parent = ave_maria_roman_administration_doukaton
 			position = { 0 3 }
 			
 			flag = is_kouratoreia
 		}
-
+		## 3
 		## Supposed to be for central tagmatic forces
 		ave_maria_roman_administration_tagma = {
 			is_valid = {
-				# scope:vassal = {
-				# 	roman_administration_holds_tagma_title_trigger = yes
-				# }
-				# scope:vassal.primary_title.tier >= tier_duchy
+				scope:vassal = {
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = ave_maria_roman_administration_doukaton
 			position = { 0 5 }
@@ -246,19 +260,28 @@ ave_maria_roman_administration_special_contract = {
 }
 
 
-##################################
-### Theme-Specific Obligations ###
-##################################
+#############################################
+# THEME SPECIFIC OBLIGATIONS				#
+#############################################
 
 ### Theme Slider
 imperial_obligation_theme = {
 	display_mode = tree
 	icon = soldier_icon
 	is_shown = {
-		scope:liege = {
-			any_held_title = {
-				this = title:e_byzantium
+		OR = {
+			scope:liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
 			}
+			scope:vassal = {
+				liege = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}			
 		}
 		scope:vassal.primary_title.tier >= tier_duchy
 		scope:vassal = {
@@ -266,6 +289,7 @@ imperial_obligation_theme = {
 		}
 	}
 	obligation_levels = {
+		## 0
 		full_service_theme = {
 			position = { 0 0 }
 			
@@ -287,6 +311,7 @@ imperial_obligation_theme = {
 			flag = full_service_theme_flag # Flag for calculating additional political effects
 			
 		}
+		## 1
 		protimesis_theme = {
 			position = { 1 0 }
 			parent = full_service_theme
@@ -308,6 +333,7 @@ imperial_obligation_theme = {
 			
 			flag = protimesis_theme_flag # Flag for calculating additional political effects
 		}
+		## 2
 		tax_exemptions_theme = {
 			position = { 2 0 }
 			parent = protimesis_theme
@@ -325,6 +351,7 @@ imperial_obligation_theme = {
 			flag = tax_exemptions_theme_flag # Flag for calculating additional political effects
 			
 		}
+		## 3
 		voluntary_service_theme = {
 			position = { 3 0 }
 			parent = tax_exemptions_theme
@@ -341,6 +368,7 @@ imperial_obligation_theme = {
 			
 			flag = voluntary_theme_flag # Flag for calculating additional political effects
 		}
+		## 4
 		peacetime_army_theme = {
 			position = { 4 0 }
 			parent = voluntary_service_theme
@@ -367,6 +395,7 @@ imperial_obligation_theme = {
 			flag = peacetime_theme_flag # Flag for calculating additional political effects
 			
 		}
+		## 5
 		permit_fiscalisation_theme = {
 			position = { 5 0 }
 			parent = peacetime_army_theme
@@ -395,6 +424,7 @@ imperial_obligation_theme = {
 			
 			flag = permit_fiscalisation_theme_flag # Flag for calculating additional political effects
 		}
+		## 6
 		extend_exemptions_theme = {
 			position = { 6 0 }
 			parent = permit_fiscalisation_theme
@@ -423,6 +453,7 @@ imperial_obligation_theme = {
 			
 			flag = extend_exemptions_theme_flag # Flag for calculating additional political effects
 		}
+		## 7
 		fiscal_obligation_theme = {
 			position = { 7 0 }
 			parent = extend_exemptions_theme
@@ -452,6 +483,7 @@ imperial_obligation_theme = {
 			
 			flag = fiscal_obligation_theme_flag # Flag for calculating additional political effects
 		}
+		## 8
 		fund_symmachoi_theme = {
 			position = { 8 0 }
 			parent = fiscal_obligation_theme
@@ -474,6 +506,7 @@ imperial_obligation_theme = {
 			
 			flag = fund_symmachoi_theme_flag # Flag for calculating additional political effects
 		}
+		## 9
 		tagmatic_salaries_theme = {
 			position = { 9 0 }
 			parent = fund_symmachoi_theme
@@ -504,16 +537,23 @@ imperial_obligation_theme = {
 }
 
 ### Doukaton Theme Slider
-#
-#
 imperial_obligation_doukaton = { # Can't switch down from frontier command level
 	display_mode = tree
 	icon = soldier_icon
 	is_shown = {
-		scope:liege = {
-			any_held_title = {
-				this = title:e_byzantium
+		OR = {
+			scope:liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
 			}
+			scope:vassal = {
+				liege = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}			
 		}
 		scope:vassal.primary_title.tier >= tier_duchy
 		scope:vassal = {
@@ -521,12 +561,14 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 		}
 	}
 	obligation_levels = {
+		## 0
 		doukaton_disabled = {
 			default = yes
 			position = { 0 0 }
 
 			flag = doukaton_disabled_flag
 		}
+		## 1
 		vassalised_principality_doukaton = {
 			position = { 1 0 }
 			parent = doukaton_disabled
@@ -539,6 +581,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			
 			flag = vassalised_principality_doukaton_flag
 		}
+		## 2
 		organised_principality_doukaton = {
 			position = { 2 0 }
 			parent = vassalised_principality_doukaton
@@ -551,6 +594,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			
 			flag = organised_principality_doukaton_flag
 		}
+		## 3
 		frontier_command_doukaton = {
 			position = { 3 0 }
 			parent = organised_principality_doukaton
@@ -567,6 +611,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			
 			flag = frontier_command_doukaton_flag
 		}
+		## 4
 		regional_command_doukaton = {
 			position = { 4 0 }
 			parent = frontier_command_doukaton
@@ -585,6 +630,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			
 			flag = regional_command_doukaton_flag
 		}
+		## 5
 		tagmatic_command_doukaton = {
 			position = { 5 0 }
 			parent = regional_command_doukaton
@@ -625,10 +671,19 @@ imperial_obligation_kouratoreia = {
 	display_mode = tree
 	icon = gold_icon
 	is_shown = {
-		scope:liege = {
-			any_held_title = {
-				this = title:e_byzantium
+		OR = {
+			scope:liege = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
 			}
+			scope:vassal = {
+				liege = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}			
 		}
 		scope:vassal.primary_title.tier >= tier_duchy
 		scope:vassal = {
@@ -636,6 +691,7 @@ imperial_obligation_kouratoreia = {
 		}
 	}
 	obligation_levels = {
+		## 0
 		kouratoreia_disabled = {
 			default = yes
 			position = { 0 0 }
@@ -644,6 +700,7 @@ imperial_obligation_kouratoreia = {
 
 			flag = kouratoreia_disabled_flag
 		}
+		## 1
 		kouratoreia_designated = { # Switching from militarised province to tax farm - can't switch down, only up.
 			position = { 1 0 }
 			parent = kouratoreia_disabled
@@ -655,6 +712,7 @@ imperial_obligation_kouratoreia = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 		}
+		## 2
 		kouratoreia_established = { # Kouratoreia beginning to work as intended - can't switch down, only up
 			parent = kouratoreia_designated
 			position = { 2 0 }
@@ -665,6 +723,7 @@ imperial_obligation_kouratoreia = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 		}
+		## 3
 		kouratoreia_standard_exactions = { # Kouratoreia fully integrated
 			parent = kouratoreia_established
 			position = { 3 0 }
@@ -675,6 +734,7 @@ imperial_obligation_kouratoreia = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 		}
+		## 4
 		kouratoreia_heavy_exactions = { # Cannot raise to this level if the peasants are protected
 			parent = kouratoreia_standard_exactions
 			position = { 4 0 }
@@ -685,6 +745,7 @@ imperial_obligation_kouratoreia = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 		}
+		## 5
 		kouratoreia_maximum_exactions = { # Cannot raise to this level if the peasants are protected
 			parent = kouratoreia_heavy_exactions
 			position = { 5 0 }

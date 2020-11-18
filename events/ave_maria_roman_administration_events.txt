@@ -63,7 +63,6 @@ ave_maria_roman_administration_events.0001 = {
 						NOT = { this = title:k_orthodox }
 					}
 				}
-				#change_government = roman_administration_civilian_government
 				primary_title = {
 					add_title_law = ave_maria_roman_administration_civilian_administration_succession_law
 					add_title_law = male_only_law
@@ -88,21 +87,7 @@ ave_maria_roman_administration_events.0001 = {
 				add_unpressed_claim = prev.primary_title
 				add_random_hexaco_personality_trait = yes
 			}
-		}
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_tagma_title_trigger = yes
-				}
-				change_government = roman_administration_military_government
-				primary_title = {
-					add_title_law = ave_maria_roman_administration_tagma_succession_law
-					add_title_law = male_only_law
-				}
-			}			
-		}
-
-		
+		}		
 
 		## Making sure you have the proper government
 		change_government = roman_administration_government

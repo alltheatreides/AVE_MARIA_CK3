@@ -33,7 +33,7 @@ d_utility_family_county = {
 	color = { 255 249 198 }
 	color2 = { 220 220 0 }
 	
-	capital = c_byzantion
+	capital = c_selymbria
 	no_automatic_claims = yes
 	de_jure_drift_disabled = yes
 	
@@ -45,7 +45,7 @@ d_utility_family_county = {
 		de_jure_drift_disabled = yes			
 					
 		b_roman_family_1 = {			
-			province = 496		
+			province = 3761		
 		}			
 	}
 
@@ -9697,115 +9697,144 @@ e_byzantium = {
 	}
 
 	### AVE MARIA ADDITION FOR ROMAN SYSTEM
+
+	###########################################
+	# DUMMY KINGDOM						      #
+	###########################################
+
+	k_central_offices = {
+		color =  hsv{ 0.9 1 0.3 } #hsv{ 0.73 0.8 0.4 }  #hsv{ 0.77 0.8 0.6 } #{ 143 12 125 }
+		color2 = { 255 255 255 }
 		
-	###########################################
-	# Tagma Military Offices			      #
-	###########################################
-
-	d_megas_domestikos = {
-		capital = c_selymbria
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		# no_automatic_claims = yes
-		de_jure_drift_disabled = yes	
-
-	}
-	d_varangian_guard = {
 		capital = c_byzantion
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		# no_automatic_claims = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_megas_droungarios = {
-		capital = c_byzantion
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_excubitor = {
-		capital = c_bizye
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_vigla = {
-		capital = c_herakleiaperinthos
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_hikanatoi = {
-		capital = c_salmydessus
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_regular_tagma_1 = {
-		capital = c_raidestos
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
-	d_regular_tagma_2 = {
-		capital = c_brysis
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		de_jure_drift_disabled = yes	
-	}
 
-	###########################################
-	# Civilian Offices					      #
-	###########################################
-
-	## Sakellarios / Vestarion, basically the guy responsible for the money
-	d_sakellion = {
-		capital = c_byzantion
-		ai_primary_priority = {
-			add = @always_primary_score
+		can_create = {
+			always = no
 		}
-		landless = yes
-		# no_automatic_claims = yes
-		de_jure_drift_disabled = yes	
-	}
 
-	## Justice guy
-	d_quaestor = {
-		capital = c_byzantion
-		ai_primary_priority = {
-			add = @always_primary_score
-		}
-		landless = yes
-		# no_automatic_claims = yes
-		de_jure_drift_disabled = yes	
-	}
+		###########################################
+		# Tagma Military Offices			      #
+		###########################################
 
-	## Postal Service kinda spy guy
-	d_logothetetes_tou_dromou = {
-		capital = c_byzantion
-		ai_primary_priority = {
-			add = @always_primary_score
+		d_megas_domestikos = {
+			capital = c_selymbria
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			# no_automatic_claims = yes
+			de_jure_drift_disabled = yes	
+
 		}
-		landless = yes
-		# no_automatic_claims = yes
-		de_jure_drift_disabled = yes	
+		d_varangian_guard = {
+			capital = c_byzantion
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			# no_automatic_claims = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_megas_droungarios = {
+			capital = c_byzantion
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_excubitor = {
+			capital = c_bizye
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_vigla = {
+			capital = c_herakleiaperinthos
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_hikanatoi = {
+			capital = c_salmydessus
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_regular_tagma_1 = {
+			capital = c_raidestos
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+		d_regular_tagma_2 = {
+			capital = c_brysis
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			de_jure_drift_disabled = yes	
+		}
+
+		###########################################
+		# Civilian Offices					      #
+		###########################################
+
+		## Sakellarios / Vestarion, basically the guy responsible for the money
+		d_sakellion = {
+			capital = c_byzantion
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			# no_automatic_claims = yes
+			de_jure_drift_disabled = yes	
+		}
+
+		## Justice guy
+		d_quaestor = {
+			capital = c_byzantion
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			# no_automatic_claims = yes
+			de_jure_drift_disabled = yes	
+		}
+
+		## Postal Service kinda spy guy
+		d_logothetetes_tou_dromou = {
+			capital = c_byzantion
+			ai_primary_priority = {
+				add = @always_primary_score
+			}
+			landless = yes
+			# no_automatic_claims = yes
+			de_jure_drift_disabled = yes	
+		}
+
+		###########################################
+		# New Duchies						      #
+		###########################################
+		
+
+		d_langobardia_roman = {
+			color = { 167 172 63 }
+			color2 = { 255 255 255 }
+
+			capital = c_bari
+		}
 	}
+		
+	
 
 	###########################################
 	# Strategos of Themes				      #
@@ -10217,24 +10246,6 @@ e_byzantium = {
 		}
 		
 	}
-
-	###########################################
-	# New Duchies						      #
-	###########################################
-
-	
-
-	d_langobardia_roman = {
-		color = { 167 172 63 }
-		color2 = { 255 255 255 }
-
-		capital = c_bari
-	}
-
-	
-
-	
-
 
 	## VANILLA
 	

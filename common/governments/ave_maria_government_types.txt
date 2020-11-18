@@ -50,16 +50,16 @@ roman_administration_government = {
 	vassal_contract = {
 
 		## Vanilla Contracts
-		# feudal_government_taxes
-		# feudal_government_levies
-		# special_contract
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
 		religious_rights
-		# fortification_rights
-		# coinage_rights
-		# succession_rights
-		# war_declaration_rights
-		# council_rights
-		# title_revocation_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
 		
 		## Roman-specific Laws
 		imperial_obligation_tax
@@ -105,58 +105,18 @@ roman_administration_military_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
-		#ave_maria_roman_administration_theme_taxe
-		#ave_maria_roman_administration_tagma_tax_exemption
-		# ave_maria_roman_administration_tagma_salary				
-		# council_rights
-		# title_revocation_rights
-
-		## Roman-specific Laws
-		imperial_obligation_tax
-
-		## District Types
-		ave_maria_roman_administration_special_contract
-	}
-
-	# character_modifier = {
-	# 	levy_size = -10
-	# }
-	
-	color = hsv{ 0.67 1.00 0.78 }
-}
-
-## basic government, used for fiscalized theme
-roman_administration_civilian_government = {
-	create_cadet_branches = yes
-	rulers_should_have_dynasty = yes
-	dynasty_named_realms = no
-
-	fallback = 5
-	
-	can_get_government = {
-		highest_held_title_tier = tier_kingdom 
-		roman_administration_holds_military_title_trigger = no
-		top_liege = {
-			any_held_title = {
-				OR = {
-					this = title:e_byzantium
-					this = title:e_roman_empire
-				}
-			}
-		}
-		primary_title = {
-			NOR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire
-			}
-		}		
-	}
-	
-	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
-	required_county_holdings = { }
-	
-	vassal_contract = {
+		## Vanilla Contracts
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+		
 		## Roman-specific Laws
 		imperial_obligation_tax
 		
@@ -204,12 +164,18 @@ roman_administration_theme_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
-		#ave_maria_roman_administration_theme_taxe
-		#ave_maria_roman_administration_tagma_tax_exemption
-		#ave_maria_roman_administration_tagma_salary				
+		## Vanilla Contracts
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
 		council_rights
-		# title_revocation_rights
-
+		title_revocation_rights
+		
 		## Roman-specific Laws
 		imperial_obligation_tax
 		
@@ -218,7 +184,6 @@ roman_administration_theme_government = {
 		imperial_obligation_theme
 		imperial_obligation_doukaton
 		imperial_obligation_kouratoreia
-
 	}
 
 	# character_modifier = {
@@ -257,6 +222,18 @@ roman_administration_doukaton_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
+		## Vanilla Contracts
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+		
 		## Roman-specific Laws
 		imperial_obligation_tax
 		
@@ -304,6 +281,18 @@ roman_administration_kouratoreia_government = {
 	required_county_holdings = { }
 	
 	vassal_contract = {
+		## Vanilla Contracts
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+		
 		## Roman-specific Laws
 		imperial_obligation_tax
 		
