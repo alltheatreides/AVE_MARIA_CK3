@@ -24,16 +24,16 @@ am_change_govt_if_contract_changed_effect = {
 		if = {
 			limit = {
 				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
-				vassal_contract_has_flag = is_fiscalised_theme
+				vassal_contract_has_flag = is_theme
 			}
 			change_government = roman_administration_civilian_government
 		}
 		else_if = {
 			limit = {
-				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_stratified_theme
-				vassal_contract_has_flag = is_stratified_theme
+				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_theme
+				vassal_contract_has_flag = is_theme
 			}
-			change_government = roman_administration_stratified_theme_government
+			change_government = roman_administration_theme_government
 		}
 		else_if = {
 			limit = {
@@ -82,14 +82,14 @@ setup_historical_roman_districts = {
 					}
 				}
 			}
-			change_government = roman_administration_stratified_theme_government
+			change_government = roman_administration_theme_government
 			vassal_contract_set_obligation_level = {
 				type = ave_maria_roman_administration_special_contract
-				level = ave_maria_roman_administration_stratified_theme
+				level = ave_maria_roman_administration_theme
 			}
 			vassal_contract_set_obligation_level = { # Get historical level
-				type = imperial_obligation_stratified_theme
-				level = peacetime_army_stratified_theme
+				type = imperial_obligation_theme
+				level = peacetime_army_theme
 			}
 		}
 		## Doukaton
@@ -205,14 +205,14 @@ setup_historical_roman_districts = {
 					}
 				}
 			}
-			change_government = roman_administration_stratified_theme_government
+			change_government = roman_administration_theme_government
 			vassal_contract_set_obligation_level = {
 				type = ave_maria_roman_administration_special_contract
-				level = ave_maria_roman_administration_stratified_theme
+				level = ave_maria_roman_administration_theme
 			}
 			vassal_contract_set_obligation_level = { # Get historical level
-				type = imperial_obligation_stratified_theme
-				level = peacetime_army_stratified_theme
+				type = imperial_obligation_theme
+				level = peacetime_army_theme
 			}
 		}
 
@@ -466,7 +466,7 @@ roman_administration_update_total_salary_cost = {
 		if = {
 			limit = {
 				OR = {
-					has_government = roman_administration_stratified_theme_government
+					has_government = roman_administration_theme_government
 					has_government = roman_administration_doukaton_government
 				}
 				

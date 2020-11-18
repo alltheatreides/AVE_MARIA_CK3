@@ -183,14 +183,9 @@ ave_maria_roman_administration_special_contract = {
 	}
 	obligation_levels = {
 
-		ave_maria_roman_administration_special_contract_none = {
-			position = { 0 1 }
-			default = yes
-		}
-
 		### So did not know where to put it but if you miss the other message, left the stratified as the basic theme changed the flag to is_theme flag need to adapt contract levels
-		ave_maria_roman_administration_stratified_theme = {
-			position = { 0 2 }
+		ave_maria_roman_administration_theme = {
+			position = { 0 1 }
 			default = yes
 			
 			parent = ave_maria_roman_administration_special_contract_none
@@ -216,15 +211,15 @@ ave_maria_roman_administration_special_contract = {
 					}
 				}
 			}
-			parent = ave_maria_roman_administration_stratified_theme
-			position = { 0 3 }
+			parent = ave_maria_roman_administration_theme
+			position = { 0 2 }
 			
 			flag = is_doukaton
 		}
 
 		ave_maria_roman_administration_kouratoreia = {
 			parent = ave_maria_roman_administration_doukaton
-			position = { 0 4 }
+			position = { 0 3 }
 			
 			flag = is_kouratoreia
 		}
@@ -255,15 +250,10 @@ ave_maria_roman_administration_special_contract = {
 ### Theme-Specific Obligations ###
 ##################################
 
-### Fiscalised Theme Slider
-## Level 1 - Permit Fiscalisation
-## Level 2 - Extend Exemptions
-## Level 3 - Fiscal Obligation
-## Level 4 - Fund Symmachoi
-## Level 5 - Fund Tagmata
-imperial_obligation_fiscalised_theme = {
+### Theme Slider
+imperial_obligation_theme = {
 	display_mode = tree
-	icon = gold_icon
+	icon = soldier_icon
 	is_shown = {
 		scope:liege = {
 			any_held_title = {
@@ -276,20 +266,113 @@ imperial_obligation_fiscalised_theme = {
 		}
 	}
 	obligation_levels = {
-		fiscalised_theme_disabled = {
-			default = yes
-
+		full_service_theme = {
 			position = { 0 0 }
-
-			flag = fiscalised_theme_disabled_flag
-		}
-		permit_fiscalisation_fiscalised_theme = {
-			position = { 1 0 }
-			parent = fiscalised_theme_disabled
-			default = yes
 			
-			tax_factor = 0.05
+			levies = 0.95
+			tax_factor = -0.90
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = 1
+			}
+			
+			liege_modifier = {
+				knight_limit = 2
+				army_maintenance_mult = -0.05
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = full_service_theme_flag # Flag for calculating additional political effects
+			
+		}
+		protimesis_theme = {
+			position = { 1 0 }
+			parent = full_service_theme
+			
+			levies = 0.80
+			tax_factor = -0.70
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = 0.75
+			}
+			
+			liege_modifier = {
+				knight_limit = 1
+				army_maintenance_mult = -0.01
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = protimesis_theme_flag # Flag for calculating additional political effects
+		}
+		tax_exemptions_theme = {
+			position = { 2 0 }
+			parent = protimesis_theme
+			
+			levies = 0.65
+			tax_factor = -0.5
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = 0.5
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = tax_exemptions_theme_flag # Flag for calculating additional political effects
+			
+		}
+		voluntary_service_theme = {
+			position = { 3 0 }
+			parent = tax_exemptions_theme
+			
+			levies = 0.5
+			tax_factor = -0.25
+			
+			vassal_modifier = {
+				vassal_levy_contribution_mult = 0.25
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = voluntary_theme_flag # Flag for calculating additional political effects
+		}
+		peacetime_army_theme = {
+			position = { 4 0 }
+			parent = voluntary_service_theme
+			
 			levies = 0.35
+			tax_factor = -0.1
+			
+			liege_modifier = { # Make soldiers worse
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+				advantage = -1
+			}
+			
+			vassal_modifier = {
+				retreat_losses = 0.05
+				movement_speed = -0.05
+				supply_limit_mult = -0.025
+			}
+			
+			ai_liege_desire = 0
+			ai_vassal_desire = 0
+			
+			flag = peacetime_theme_flag # Flag for calculating additional political effects
+			
+		}
+		permit_fiscalisation_theme = {
+			position = { 5 0 }
+			parent = peacetime_army_theme
+			
+			levies = 0.30
+			tax_factor = 0.05
 			
 			vassal_modifier = {
 				vassal_levy_contribution_mult = -0.10
@@ -310,17 +393,17 @@ imperial_obligation_fiscalised_theme = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 			
-			flag = permit_fiscalisation_fiscalised_theme_flag # Flag for calculating additional political effects
+			flag = permit_fiscalisation_theme_flag # Flag for calculating additional political effects
 		}
-		extend_exemptions_fiscalised_theme = {
-			position = { 2 0 }
-			parent = permit_fiscalisation_fiscalised_theme
+		extend_exemptions_theme = {
+			position = { 6 0 }
+			parent = permit_fiscalisation_theme
 			
 			tax_factor = 0.15
-			levies = 0.15
+			levies = 0.20
 			
 			vassal_modifier = {
-				vassal_levy_contribution_mult = -0.25
+				vassal_levy_contribution_mult = -0.20
 				vassal_tax_contribution_mult = 0.25
 				retreat_losses = 0.05 # Make Soldiers worse
 				movement_speed = -0.05
@@ -338,18 +421,19 @@ imperial_obligation_fiscalised_theme = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 			
-			flag = extend_exemptions_fiscalised_theme_flag # Flag for calculating additional political effects
+			flag = extend_exemptions_theme_flag # Flag for calculating additional political effects
 		}
-		fiscal_obligation_fiscalised_theme = {
-			position = { 3 0 }
-			parent = extend_exemptions_fiscalised_theme
+		fiscal_obligation_theme = {
+			position = { 7 0 }
+			parent = extend_exemptions_theme
+			default = yes
 			
 			tax_factor = 0.25
-			levies = 0.05
+			levies = 0.10
 			
 			vassal_modifier = {
-				vassal_levy_contribution_mult = -0.50
-				vassal_tax_contribution_mult = 0.50
+				vassal_levy_contribution_mult = -0.30
+				vassal_tax_contribution_mult = 0.40
 				retreat_losses = 0.05 # Make Soldiers worse
 				movement_speed = -0.05
 				supply_limit_mult = -0.025
@@ -366,17 +450,17 @@ imperial_obligation_fiscalised_theme = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 			
-			flag = fiscal_obligation_fiscalised_theme_flag # Flag for calculating additional political effects
+			flag = fiscal_obligation_theme_flag # Flag for calculating additional political effects
 		}
-		fund_symmachoi_fiscalised_theme = {
-			position = { 4 0 }
-			parent = fiscal_obligation_fiscalised_theme
+		fund_symmachoi_theme = {
+			position = { 8 0 }
+			parent = fiscal_obligation_theme
 			
 			tax_factor = 0.35
-			levies = 0.10
+			levies = 0.05
 			
 			vassal_modifier = {
-				vassal_levy_contribution_mult = -0.50
+				vassal_levy_contribution_mult = -0.40
 				vassal_tax_contribution_mult = 0.50
 			}
 			
@@ -388,18 +472,18 @@ imperial_obligation_fiscalised_theme = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 			
-			flag = fund_symmachoi_fiscalised_theme_flag # Flag for calculating additional political effects
+			flag = fund_symmachoi_theme_flag # Flag for calculating additional political effects
 		}
-		tagmatic_salaries_fiscalised_theme = {
-			position = { 5 0 }
-			parent = fund_symmachoi_fiscalised_theme
+		tagmatic_salaries_theme = {
+			position = { 9 0 }
+			parent = fund_symmachoi_theme
 			
 			tax_factor = 0.50
 			levies = 0.05
 			
 			vassal_modifier = {
-				vassal_levy_contribution_mult = -0.50
-				vassal_tax_contribution_mult = 0.50
+				vassal_levy_contribution_mult = -0.5
+				vassal_tax_contribution_mult = 0.60
 			}
 			
 			liege_modifier = {
@@ -414,143 +498,7 @@ imperial_obligation_fiscalised_theme = {
 			ai_liege_desire = 0
 			ai_vassal_desire = 0
 			
-			flag = tagmatic_salaries_fiscalised_theme_flag # Flag for calculating additional political effects
-		}
-	}
-}
-
-### Stratified Theme Slider
-## Level 1 - Levies 0.5, tax_factor = -0.1, 
-## Level 2 - Levies 0.6, tax_factor = -0.25, vassal_levy_contribution_add = 0.1
-## Level 3 - Levies 0.7, tax_factor = -0.6, vassal_levy_contribution_add = 0.2
-## Level 4 - Levies 0.75, tax_factor = -0.8, vassal_levy_contribution_add = 0.35
-## Level 5 - Levies 0.8, tax_factor = -1., vassal_levy_contribution_add = 0.5
-imperial_obligation_stratified_theme = {
-	display_mode = tree
-	icon = soldier_icon
-	is_shown = {
-		scope:liege = {
-			any_held_title = {
-				this = title:e_byzantium
-			}
-		}
-		scope:vassal.primary_title.tier >= tier_duchy
-		scope:vassal = {
-			vassal_contract_has_flag = is_theme
-		}
-	}
-	obligation_levels = {
-		## Not needed if below level is default
-		# stratified_theme_disabled = {
-			
-		# 	position = { 0 0 }
-
-		# 	flag = stratified_theme_disabled_flag
-		# }
-		peacetime_army_stratified_theme = {
-			position = { 0 0 }
-			default = yes
-			
-			levies = 0.5
-			tax_factor = -0.1
-			
-			liege_modifier = { # Make soldiers worse
-				retreat_losses = 0.05
-				movement_speed = -0.05
-				supply_limit_mult = -0.025
-				advantage = -1
-			}
-			
-			vassal_modifier = {
-				retreat_losses = 0.05
-				movement_speed = -0.05
-				supply_limit_mult = -0.025
-			}
-			
-			ai_liege_desire = 0
-			ai_vassal_desire = 0
-			
-			flag = peacetime_stratified_theme_flag # Flag for calculating additional political effects
-			
-		}
-		voluntary_service_stratified_theme = {
-			position = { 1 0 }
-			parent = peacetime_army_stratified_theme
-			
-			levies = 0.6
-			tax_factor = -0.25
-			
-			vassal_modifier = {
-				vassal_levy_contribution_add = 0.1
-			}
-			
-			ai_liege_desire = 0
-			ai_vassal_desire = 0
-			
-			flag = voluntary_stratified_theme_flag # Flag for calculating additional political effects
-			
-		}
-		tax_exemptions_stratified_theme = {
-			position = { 2 0 }
-			parent = voluntary_service_stratified_theme
-			
-			levies = 0.7
-			tax_factor = -0.6
-			
-			vassal_modifier = {
-				vassal_levy_contribution_add = 0.2
-			}
-			
-			
-			ai_liege_desire = 0
-			ai_vassal_desire = 0
-			
-			flag = tax_exemptions_stratified_theme_flag # Flag for calculating additional political effects
-			
-		}
-		protimesis_stratified_theme = {
-			position = { 3 0 }
-			parent = tax_exemptions_stratified_theme
-			
-			levies = 0.75
-			tax_factor = -0.8
-			
-			vassal_modifier = {
-				vassal_levy_contribution_add = 0.35
-			}
-			
-			liege_modifier = {
-				knight_limit = 1
-				army_maintenance_mult = -0.01
-			}
-			
-			ai_liege_desire = 0
-			ai_vassal_desire = 0
-			
-			flag = protimesis_stratified_theme_flag # Flag for calculating additional political effects
-			
-		}
-		full_service_stratified_theme = {
-			position = { 4 0 }
-			parent = protimesis_stratified_theme
-			
-			levies = 0.8
-			tax_factor = -0.8
-			
-			vassal_modifier = {
-				vassal_levy_contribution_add = 0.5
-			}
-			
-			liege_modifier = {
-				knight_limit = 2
-				army_maintenance_mult = -0.05
-			}
-			
-			ai_liege_desire = 0
-			ai_vassal_desire = 0
-			
-			flag = full_service_stratified_theme_flag # Flag for calculating additional political effects
-			
+			flag = tagmatic_salaries_theme_flag # Flag for calculating additional political effects
 		}
 	}
 }

@@ -31,9 +31,10 @@
 ## Checks if you are on of the new roman administration government type
 uses_roman_govt = {
 	OR = {
-		has_government = roman_administration_government
-		has_government = roman_administration_military_government
-		has_government = roman_administration_civilian_government
+		has_government = roman_administration_government # Imperial Government
+		has_government = roman_administration_theme_government # Themes
+		has_government = roman_administration_military_government # Tagma
+		has_government = roman_administration_civilian_government # Themes also
 	}
 	
 }
@@ -42,17 +43,35 @@ uses_roman_govt = {
 ## VASSAL CONTRACT TRIGGERS ###
 ###############################
 
+# Used in place of the vanilla "has_changed_contract_obligations_trigger"
+# Checks if obligations have changed
 ave_maria_roman_changed_obligations_trigger = {
 	$WHO$ = { save_temporary_scope_as = obligation_check }
 	custom_description = {
 		text = "modify_imperial_contract_select_different_obligation_level"
 		OR = {
 			local_var:ave_maria_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_administration_special_contract
-			local_var:imperial_obligation_fiscalised_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_fiscalised_theme
-			local_var:imperial_obligation_stratified_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_stratified_theme
+			local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
 			local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
 			local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
 		}
+	}
+}
+
+# Checks the validity of the contract changes 
+ave_maria_cannot_modify_inactive_values = {
+	$WHO$ = { save_temporary_scope_as = obligation_check }
+	custom_description = {
+		text = "modify_ave_maria_contract_inactive_values"
+		if = {
+			limit = { local_var:ave_maria_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_administration_special_contract }
+			OR = {
+				local_var:imperial_obligation_theme = scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
+				local_var:imperial_obligation_doukaton = scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
+				local_var:imperial_obligation_kouratoreia = scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+			}
+		}
+		else_if = { } # We're ok!
 	}
 }
 
@@ -110,8 +129,8 @@ roman_administration_holds_strategos_title_trigger = {
 		any_held_title = {
 			de_jure_liege = title:k_strategos_titles
 		}
-		#vassal_contract_has_flag = ave_maria_roman_administration_stratified_theme_contract
-		has_government = roman_administration_stratified_theme_government
+		#vassal_contract_has_flag = ave_maria_roman_administration_theme_contract
+		has_government = roman_administration_theme_government
 	}	
 }
 
@@ -130,7 +149,7 @@ roman_administration_holds_doukaton_title_trigger = {
 roman_administration_holds_military_title_trigger = {
 	OR = {
 		has_government = roman_administration_doukaton_government
-		has_government = roman_administration_stratified_theme_government
+		has_government = roman_administration_theme_government
 		any_held_title = {
 			OR = {
 				this = title:d_megas_domestikos
@@ -197,7 +216,7 @@ roman_administration_is_a_strategos_title_trigger = {
 	OR = {
 		de_jure_liege = title:k_strategos_titles
 		holder = {
-			vassal_contract_has_flag = ave_maria_roman_administration_stratified_theme_contract
+			vassal_contract_has_flag = ave_maria_roman_administration_theme_contract
 		}
 	}
 	
@@ -315,7 +334,7 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 			## High office holder
 			roman_administration_holds_high_office_title_trigger = yes
 			has_government = roman_administration_doukaton_government
-			has_government = roman_administration_stratified_theme_government
+			has_government = roman_administration_theme_government
 
 			## Council/high titles
 			is_councillor = yes
