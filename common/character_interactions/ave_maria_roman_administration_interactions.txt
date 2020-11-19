@@ -67,10 +67,7 @@ roman_administration_get_claim = {
 				}
 			}
 			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			
 			NOT = { this = scope:actor }
 		}
 	}
@@ -549,10 +546,7 @@ roman_administration_favour_family_member = {
 				}
 			}
 			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			
 		}
 		scope:recipient = { 
 			top_liege = {
@@ -713,10 +707,7 @@ roman_administration_send_family_member_for_training = {
 				}
 			}
 			#highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			
 		}
 		scope:recipient = { 
 			top_liege = {
@@ -1035,10 +1026,7 @@ roman_administration_favour_successor = {
 				}
 			}
 			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}		
+					
 		}
 	}
 

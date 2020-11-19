@@ -65,6 +65,12 @@ imperial_obligation_tax = {
 				}
 			}			
 		}
+		scope:vassal = {
+			OR = {
+				roman_administration_holds_tagma_title_trigger = no
+				roman_administration_holds_high_administration_title_trigger = no
+			}
+		}
 	}
 	icon = gold_icon
 	obligation_levels = {
@@ -254,6 +260,22 @@ ave_maria_roman_administration_special_contract = {
 			}
 			
 			flag = is_tagma
+		}
+
+		## 4
+		## Supposed to be for central bureaucratic offices
+		ave_maria_roman_administration_sekreton = {
+			is_valid = {
+				scope:vassal = {
+					roman_administration_holds_high_administration_title_trigger = yes
+				}
+				scope:vassal.primary_title.tier >= tier_duchy
+			}
+			parent = ave_maria_roman_administration_tagma
+			position = { 0 6 }
+			
+						
+			flag = is_sekreton
 		}
 
 	}

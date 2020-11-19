@@ -1173,10 +1173,7 @@ ave_maria_roman_administration_events.00012 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1286,10 +1283,7 @@ ave_maria_roman_administration_events.00013 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1328,10 +1322,7 @@ ave_maria_roman_administration_events.00014 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1370,10 +1361,7 @@ ave_maria_roman_administration_events.00015 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1412,10 +1400,7 @@ ave_maria_roman_administration_events.00016 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1454,10 +1439,7 @@ ave_maria_roman_administration_events.00017 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1496,10 +1478,7 @@ ave_maria_roman_administration_events.00018 = {
 			roman_administration_holds_high_administration_title_trigger = yes
 			highest_held_title_tier = tier_duchy 				
 		}		
-		OR = {
-			has_government = roman_administration_military_government
-			has_government = roman_administration_civilian_government
-		}
+		uses_roman_govt = yes
 	}
 
 	immediate = {
@@ -1603,216 +1582,6 @@ ave_maria_roman_administration_events.00018 = {
 # MAINTENANCE								#
 #############################################
 
-## On losing an administrative title: remove the variable and visual modifier
-# ave_maria_roman_administration_events.00019 = {
-# 	type = character_event
-# 	hidden = yes
-
-# 	trigger = {
-# 		roman_administration_holds_tagma_title_trigger = yes
-# 	}
-
-# 	immediate = {
-	
-# 		if = {
-# 			limit = {
-# 				has_variable = roman_administration_term_count
-# 			}
-# 			remove_character_modifier = roman_administration_terms_of_office_0
-# 			remove_character_modifier = roman_administration_terms_of_office_1
-# 			remove_character_modifier = roman_administration_terms_of_office_2
-# 			remove_character_modifier = roman_administration_terms_of_office_3
-# 			remove_character_modifier = roman_administration_terms_of_office_4
-# 			remove_character_modifier = roman_administration_terms_of_office_5
-			 
-# 			## Clear variable
-# 			remove_variable = roman_administration_term_count
-# 		}
-# 	}
-
-# }
-
-## On GAINING a TAGMA/ title, if you are a vassal of the roman emperor, make sure you are of the proper government
-## Gaining
-# root = the new holder
-# scope:title = the title that changes hands
-# scope:previous_holder = previous holder. Might be dead
-## Losing
-# root = the old holder
-# scope:title = the title that changes hands
-# scope:new_holder = new holder.
-# ave_maria_roman_administration_events.00020 = {
-# 	type = character_event
-# 	hidden = yes
-
-# 	trigger = {
-# 		scope:title = { roman_administration_is_a_tagma_title_trigger = yes }
-# 		top_liege = {
-# 			any_held_title = {
-# 				OR = {
-# 					this = title:e_byzantium
-# 					this = title:e_roman_empire
-# 				}
-# 			}
-# 		}
-# 	}
-
-# 	immediate = {
-# 		if = {
-# 			limit = {
-# 				primary_title = { roman_administration_holds_tagma_title_trigger = yes }
-# 			}
-# 			change_government = roman_administration_military_government
-# 		}
-# 		else_if = {
-# 			limit = {
-# 				primary_title = { roman_administration_holds_tagma_title_trigger = no }				
-# 			}
-# 			change_government = roman_administration_civilian_government
-# 		}
-# 		scope:previous_holder = {
-# 			if = {
-# 				limit = {
-# 					primary_title = { roman_administration_holds_tagma_title_trigger = yes }
-# 				}
-# 				change_government = roman_administration_military_government
-# 			}
-# 			else_if = {
-# 				limit = {
-# 					primary_title = { roman_administration_holds_tagma_title_trigger = no }				
-# 				}
-# 				change_government = roman_administration_civilian_government
-# 			}
-# 		}
-# 		scope:new_holder = {
-# 			if = {
-# 				limit = {
-# 					primary_title = { roman_administration_holds_tagma_title_trigger = yes }
-# 				}
-# 				change_government = roman_administration_military_government
-# 			}
-# 			else_if = {
-# 				limit = {
-# 					primary_title = { roman_administration_holds_tagma_title_trigger = no }				
-# 				}
-# 				change_government = roman_administration_civilian_government
-# 			}
-# 		}
-# 		# change_government = roman_administration_military_government
-# 		# change_government = roman_administration_civilian_government
-# 	}
-
-# }
-
-## On losing a TAGMA/STRATEGOS Title, make sure you are of the proper government
-
-## When the Emperor ascends he loses all his other postings except his familial holdings
-# ave_maria_roman_administration_events.00022 = {
-# 	type = character_event
-# 	hidden = yes
-
-# 	trigger = {
-# 		any_held_title = {
-# 			this = title:e_byzantium
-# 		}
-# 	}
-
-# 	immediate = {
-# 		every_held_title = {
-# 			limit = {
-# 				tier < tier_empire
-# 				NOT = {
-# 					has_title_law = ave_maria_roman_administration_family_succession_law
-# 				}
-# 				NOT = { this = title:c_byzantion }
-# 			}
-# 			create_title_and_vassal_change = {
-# 				type = conquest
-# 				save_scope_as = change
-# 				add_claim_on_loss = yes
-# 			}
-# 			save_temporary_scope_as = title_to_inherit
-# 			current_heir = {
-# 				save_scope_as = title_heir
-# 			}
-# 			change_title_holder = {
-# 				holder = scope:title_heir
-# 				change = scope:change
-# 			}
-# 		}
-# 	}
-
-# }
-
-## When an official gains a post he loses all his other postings except his familial holdings
-# ave_maria_roman_administration_events.00023 = {
-# 	type = character_event
-# 	hidden = yes
-
-# 	trigger = {
-# 		# OR = {
-# 			# roman_administration_holds_tagma_title_trigger = yes
-# 		# }
-# 		scope:title = {
-# 			roman_administration_is_a_tagma_title_trigger = yes
-# 		}
-# 	}
-
-# 	immediate = {
-# 		every_held_title = {
-# 			limit = {
-# 				NOR = {
-# 					roman_administration_is_a_tagma_title_trigger = yes
-# 				}
-# 				NOT = {
-# 					has_title_law = ave_maria_roman_administration_family_succession_law
-# 				}
-# 				# Put here the exception for the official tagma capital title which should have a special flag
-# 			}
-# 			create_title_and_vassal_change = {
-# 				type = conquest
-# 				save_scope_as = change
-# 				add_claim_on_loss = yes
-# 			}
-# 			save_temporary_scope_as = title_to_inherit
-# 			current_heir = {
-# 				save_scope_as = title_heir
-# 			}
-# 			change_title_holder = {
-# 				holder = scope:title_heir
-# 				change = scope:change
-# 			}
-# 		}
-# 	}
-
-# }
-
-## When a war ends for a Tagma leader, remove his mustered flag
-# ave_maria_roman_administration_events.00025 = {
-# 	type = character_event
-# 	hidden = yes
-
-# 	trigger = {		
-# 		any_held_title = {
-# 			OR = {
-# 				this = title:e_byzantium
-# 				this = title:e_roman_empire			
-# 			}
-# 		}	
-# 	}
-
-# 	immediate = {
-# 		every_vassal = {
-# 			if = {
-# 				limit = {
-# 					roman_administration_holds_tagma_title_trigger = yes
-# 				}
-# 				remove_character_flag = mustered
-# 			}			
-# 		}		
-# 	}
-
-# }
 
 
 #############################################
@@ -1820,135 +1589,45 @@ ave_maria_roman_administration_events.00018 = {
 #############################################
 ## 04/11/20 Moved to the monthly pulse events
 
-## TAGMA PAY - pay of everyone
+## empty
 ave_maria_roman_administration_events.00050 = {
 	type = character_event
 	hidden = yes
 
 	trigger = {		
-		primary_title = {
-			OR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire
-			}
-		}
+		
 	}
 
 	immediate = {
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_tagma_title_trigger = yes
-					roman_administration_holds_high_administration_title_trigger = yes
-				}
-				add_gold = 15
-			}
-		}
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_strategos_title_trigger = yes
-				}
-				add_gold = 3
-			}
-		}
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_strategos_title_trigger = no
-					roman_administration_holds_tagma_title_trigger = no
-					has_government = roman_administration_civilian_government
-					highest_held_title_tier = tier_duchy
-				}
-				add_gold = 1
-			}
-		}
-		trigger_event = { 
-			id = ave_maria_roman_administration_events.00050
-			days = 31
-		}
+		
 	}
 }
 
-## STRATEGOS PAY
+## empty
 ave_maria_roman_administration_events.00051 = {
 	type = character_event
 	hidden = yes
 
 	trigger = {		
-		any_held_title = {
-			OR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire			
-			}
-		}	
+			
 	}
 
 	immediate = {
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_strategos_title_trigger = yes
-				}
-				add_to_list = list_roman_administration_paid_strategos
-			}
-		}
-		every_in_list = {
-			list = list_roman_administration_paid_strategos
-			root = {
-				pay_short_term_gold = {
-					gold = 2
-					target = prev
-				}
-			}
-		}
-
-		trigger_event = { 
-			id = ave_maria_roman_administration_events.00051
-			days = 31
-		}
+		
 	}
 }
 
-## KRITES PAY
+## empty
 ave_maria_roman_administration_events.00052 = {
 	type = character_event
 	hidden = yes
 
 	trigger = {		
-		any_held_title = {
-			OR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire			
-			}
-		}	
+		
 	}
 
 	immediate = {
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_holds_strategos_title_trigger = no
-					roman_administration_holds_tagma_title_trigger = no
-					has_government = roman_administration_civilian_government
-				}
-				add_to_list = list_roman_administration_paid_strategos
-			}
-		}
-		every_in_list = {
-			list = list_roman_administration_paid_strategos
-			root = {
-				pay_short_term_gold = {
-					gold = 1
-					target = prev
-				}
-			}
-		}
-
-		trigger_event = { 
-			id = ave_maria_roman_administration_events.00051
-			days = 31
-		}
+		
 	}
 }
 

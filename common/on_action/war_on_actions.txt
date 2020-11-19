@@ -209,23 +209,19 @@ on_war_won_attacker = {
 					remove_character_flag = mustered
 				}			
 				
+				## Make you roman administration government if you won an indepdendance war
 				if = {
 					limit = {
 						OR = {
-							has_government = roman_administration_civilian_government
+							has_government = roman_administration_theme_government
+							has_government = roman_administration_doukaton_government
 							has_government = roman_administration_military_government
+							has_government = roman_administration_kouratoreia_government
 						}
 						is_independent_ruler = yes
 					}
 					change_government = roman_administration_government
-					add_realm_law = ave_maria_roman_administration_realm_law
-				}
-
-				if = {
-					limit = {
-						has_character_modifier = military_revolt_levies_bonus
-					}
-					remove_character_modifier = military_revolt_levies_bonus
+					add_realm_law = ave_maria_roman_administration_imperial
 				}
 			}
 		}
@@ -238,13 +234,16 @@ on_war_won_attacker = {
 			if = {
 				limit = {
 					OR = {
-						has_government = roman_administration_civilian_government
+						has_government = roman_administration_government
 						has_government = roman_administration_military_government
+						has_government = roman_administration_doukaton_government
+						has_government = roman_administration_kouratoreia_government
+						has_government = roman_administration_sekreton_government
 					}
 					is_independent_ruler = yes
 				}
 				change_government = roman_administration_government
-				add_realm_law = ave_maria_roman_administration_realm_law
+				add_realm_law = ave_maria_roman_administration_imperial
 			}
 		}
 

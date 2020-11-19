@@ -28,7 +28,7 @@
 # GOVERNMENT TYPE TRIGGER					#
 #############################################
 
-## Checks if you are on of the new roman administration government type
+## Checks in a character scope if you are a proper vassal of the emperor and one of the new roman administration government type
 uses_roman_govt = {
 	## You are either a vassal of the roman emperor or the roman emperor
 	OR = {
@@ -41,12 +41,13 @@ uses_roman_govt = {
 	OR = {
 		has_government = roman_administration_government
 		has_government = roman_administration_military_government
-		has_government = roman_administration_stratified_theme_government
 		has_government = roman_administration_doukaton_government
 		has_government = roman_administration_kouratoreia_government
+		has_government = roman_administration_sekreton_government
 	}
 	
 }
+
 
 ###############################
 ## VASSAL CONTRACT TRIGGERS ###
@@ -117,6 +118,7 @@ roman_administration_can_vote_in_emperor_election_trigger = {
 #############################################
 
 ## CHARACTER SCOPE TRIGGERS
+
 ## Checks in character scope if you have a tagma titles
 roman_administration_holds_tagma_title_trigger = {
 	any_held_title = {

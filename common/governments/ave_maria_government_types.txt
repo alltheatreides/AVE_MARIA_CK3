@@ -309,3 +309,62 @@ roman_administration_kouratoreia_government = {
 	
 	color = hsv{ 0.67 1.00 0.78 }
 }
+
+## Supposed to be central admin offices
+roman_administration_sekreton_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+	dynasty_named_realms = no
+
+	fallback = 5
+	
+	can_get_government = {
+		top_liege = {
+			any_held_title = {
+				OR = {
+					this = title:e_byzantium
+					this = title:e_roman_empire
+				}
+			}
+		}
+		any_held_title = {
+			NOR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
+	}
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		## Vanilla Contracts
+		feudal_government_taxes
+		feudal_government_levies
+		special_contract
+		religious_rights
+		fortification_rights
+		coinage_rights
+		succession_rights
+		war_declaration_rights
+		council_rights
+		title_revocation_rights
+		
+		## Roman-specific Laws
+		imperial_obligation_tax
+		
+		# District Types
+		ave_maria_roman_administration_special_contract
+		imperial_obligation_theme
+		imperial_obligation_doukaton
+		imperial_obligation_kouratoreia
+	}
+
+	# character_modifier = {
+	# 	levy_size = -10
+	# }
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}

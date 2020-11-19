@@ -2623,7 +2623,7 @@ ambitious = {
 	index = 77
 	personality = yes
 	opposites = {
-		content
+		#content
 	}
 
 	# potential = {						
@@ -2672,15 +2672,41 @@ ambitious = {
 
 	compatibility = {
 		ambitious = @pos_compat_low
-		diligent = @pos_compat_low
-		greedy = @pos_compat_low
-		brave = @pos_compat_low
+
+		am_organized = @pos_compat_low
+		am_diligent = @pos_compat_low
+		am_careful = @pos_compat_low
+		am_thorough = @pos_compat_low
+		am_precise = @pos_compat_low
+
+		am_greedy = @pos_compat_low
+
+		am_brave = @pos_compat_low
+		am_tough = @pos_compat_low
+		am_independent = @pos_compat_low
+		am_selfassured = @pos_compat_low
+		am_stable = @pos_compat_low
+
 		rowdy = @pos_compat_low
-		content = @neg_compat_medium
-		lazy = @neg_compat_medium
-		craven = @neg_compat_medium
-		generous = @neg_compat_low
-		trusting = @neg_compat_low
+
+		am_shallow = @neg_compat_medium
+		am_unimaginative = @neg_compat_medium
+		am_conventional = @neg_compat_medium
+		am_uninspired = @neg_compat_medium
+		am_simple = @neg_compat_medium
+
+		am_sloppy = @neg_compat_medium
+		am_negligent = @neg_compat_medium
+		am_reckless = @neg_compat_medium
+		am_lazy = @neg_compat_medium
+		am_irresponsible = @neg_compat_medium
+
+		am_brave = @neg_compat_medium
+		am_tough = @neg_compat_medium
+		am_independent = @neg_compat_medium
+		am_selfassured = @neg_compat_medium
+		am_stable = @neg_compat_medium
+
 	}
 }
 
@@ -3135,8 +3161,8 @@ sadistic = {
 	index = 87
 	personality = yes
 	opposites = {
-		compassionate
-		callous
+		#compassionate
+		# callous
 	}
 	intrigue = 2
 	# prowess = 4
@@ -3394,7 +3420,6 @@ rowdy = {
 
 	compatibility = {
 		rowdy = @pos_compat_high
-		brave = @pos_compat_high
 
 		am_brave = @pos_compat_high
 		am_tough = @pos_compat_high
@@ -3702,67 +3727,6 @@ hashishiyah = { # Substance Abuse (Hashish)
 
 	ai_energy = -15
 	ai_vengefulness = -10
-
-	compatibility = {
-		temperate = @neg_compat_low
-	}
-
-}
-
-opium_addled = { # Substance Abuse (Opium)
-	index = 259
-	learning = -2
-	prowess = -2
-	health = -0.75
-	stress_loss_mult = 0.2
-
-	same_opinion = 10
-
-	desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = this }
-				}
-				desc = trait_opium_addled_desc
-			}
-			desc = trait_opium_addled_character_desc
-		}
-	}
-
-	ai_energy = -25
-	ai_vengefulness = -10
-
-	compatibility = {
-		am_organized = @neg_compat_low
-		am_diligent = @neg_compat_low
-		am_careful = @neg_compat_low
-		am_thorough = @neg_compat_low
-		am_precise = @neg_compat_low
-
-		temperate = @neg_compat_low
-	}	
-}
-
-henbane_addict = { # Substance Abuse (Henbane)
-	index = 260
-	stress_loss_mult = 0.2
-
-	same_opinion = 10
-
-	desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = this }
-				}
-				desc = trait_henbane_addict_desc
-			}
-			desc = trait_henbane_addict_character_desc
-		}
-	}
-
-	ai_rationality = -30
 
 	compatibility = {
 		temperate = @neg_compat_low
@@ -6741,7 +6705,7 @@ celibate = {
 		chaste = @pos_compat_low
 		celibate = @pos_compat_low
 		temperate = @pos_compat_low
-		calm = @pos_compat_low
+		# calm = @pos_compat_low
 		lustful = @neg_compat_low
 		deviant = @neg_compat_low
 		lovers_pox = @neg_compat_low

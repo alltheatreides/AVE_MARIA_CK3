@@ -1097,23 +1097,23 @@ claimant_faction = {
 	on_war_start = {}
 
 	can_character_create = { # If a character is allowed to create the faction. The 'is_character_valid' block is also checked in conjunction with this when creating a faction.
-		# NOR = { #No prince-bishop can ever join
-		# 	has_government = theocracy_government
-		# 	AND = {
-		# 		exists = cp:councillor_court_chaplain
-		# 		this = cp:councillor_court_chaplain
-		# 	}
-		# }
+		NOR = { #No prince-bishop can ever join
+			has_government = theocracy_government
+			AND = {
+				exists = cp:councillor_court_chaplain
+				this = cp:councillor_court_chaplain
+			}
+		}
 
-		# trigger_if = {
-		# 	limit = {
-		# 		exists = joined_faction
-		# 	}
-		# 	joined_faction = {
-		# 		exists = special_title
-		# 		special_title.holder = scope:target
-		# 	}
-		# }
+		trigger_if = {
+			limit = {
+				exists = joined_faction
+			}
+			joined_faction = {
+				exists = special_title
+				special_title.holder = scope:target
+			}
+		}
 		trigger_else_if = {
 			limit = {
 				has_variable = claiming_title
@@ -1177,13 +1177,13 @@ claimant_faction = {
 	}
 
 	is_character_valid = { # Is the character valid to stay in the faction? This is also checked when creating it...
-		# NOR = { #No prince-bishop can ever join
-		# 	has_government = theocracy_government
-		# 	AND = {
-		# 		exists = cp:councillor_court_chaplain
-		# 		this = cp:councillor_court_chaplain
-		# 	}
-		# }
+		NOR = { #No prince-bishop can ever join
+			has_government = theocracy_government
+			AND = {
+				exists = cp:councillor_court_chaplain
+				this = cp:councillor_court_chaplain
+			}
+		}
 
 		exists = liege
 		scope:faction.faction_target = liege
