@@ -1415,6 +1415,7 @@
 	}
 	1066.1.1 = {
 		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
 			vassal_contract_set_obligation_level = {
 				type = ave_maria_roman_administration_special_contract
 				level = 1
@@ -1643,8 +1644,19 @@
 	1045.1.1 = {
 		add_spouse = 1783
 	}
+	## Fictional
 	1066.1.1 = {
 		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
+	}
+	1066.1.1 = {
+		effect = {
+
+
 			set_relation_rival = character:1734	#A bit early, as the events that would cause this wouldn't start till 1067, but better to have the rivalry ready to go straight off the bat.
 		}
 	}
@@ -1757,6 +1769,18 @@
 	mother = 4511
 	1047.1.1 = {
 		birth = "1047.1.1"
+	}
+	1066.1.1 ={
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_doukaton
+				level = 5
+			}				
+		}
 	}
 	1072.1.1 = {
 		add_spouse = 9958

@@ -30,6 +30,15 @@ can_be_chancellor_trigger = {
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
+	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
+		}
+		any_held_title = {
+			this = title:d_logothetetes_tou_dromou
+		}
+	}
 }
 
 can_be_steward_trigger = {
@@ -46,6 +55,7 @@ can_be_steward_trigger = {
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
+	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
 	trigger_if = {
 		limit = {
 			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
@@ -70,6 +80,7 @@ can_be_marshal_trigger = {
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
+	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
 	trigger_if = {
 		limit = {
 			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
@@ -107,6 +118,7 @@ can_be_court_chaplain_trigger = {
 		}
 		NOT = { var:escaped_imprisonment_from = $COURT_OWNER$ }
 	}
+	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
 	trigger_if = {
 		limit = {
 			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }

@@ -8,6 +8,7 @@
 ave_maria_roman_administration_realm_law = {
 	default = ave_maria_roman_administration_imperial
 	flag = realm_law
+	cumulative = yes
 	
 	ave_maria_roman_administration_imperial = {
 		flag = vassal_all_wars_banned
@@ -21,10 +22,10 @@ ave_maria_roman_administration_realm_law = {
 		}
 
 		can_have = { 
-			has_government = roman_administration_government
+			uses_roman_govt = yes
 		}
 		can_pass = {
-			
+			#uses_roman_govt = yes
 		}
 	}
 }

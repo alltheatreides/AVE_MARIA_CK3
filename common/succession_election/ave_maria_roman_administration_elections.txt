@@ -15,7 +15,7 @@ roman_administration_elective = {
 		modifier = {
 			desc = tooltip_faction_vote_strength_basileus
 			add = 4
-			primary_title = {
+			any_held_title = {
 				OR = {
 					this = title:e_byzantium
 					this = title:e_roman_empire
@@ -38,7 +38,7 @@ roman_administration_elective = {
 			# 	faction_is_type = roman_administration_army_faction
 			# }
 			# is_a_faction_leader = yes
-			primary_title = {
+			any_held_title = {
 				this = title:d_megas_domestikos
 			}
 		}
@@ -50,7 +50,7 @@ roman_administration_elective = {
 			# 	faction_is_type = roman_administration_bureaucracy_faction
 			# }
 			# is_a_faction_leader = yes
-			primary_title = {
+			any_held_title = {
 				this = title:d_logothetetes_tou_dromou
 			}
 		}
@@ -67,7 +67,7 @@ roman_administration_elective = {
 		modifier = {
 			desc = tooltip_faction_vote_strength_patriarch
 			add = 2
-			primary_title = {
+			any_held_title = {
 				this = title:k_orthodox
 			}
 		}
@@ -172,7 +172,7 @@ roman_administration_elective = {
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -263,7 +263,7 @@ roman_administration_tagma_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -276,7 +276,7 @@ roman_administration_tagma_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -291,7 +291,7 @@ roman_administration_tagma_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -372,10 +372,14 @@ roman_administration_tagma_elective = {
 			type = title_claimants
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
+				## Government check to exclude feudals vassals of the roman emperor
+				OR = {
+					has_government = roman_administration_government
+					has_government = roman_administration_military_government
+					has_government = roman_administration_theme_government
+					has_government = roman_administration_doukaton_government
+					has_government = roman_administration_kouratoreia_government
+					has_government = roman_administration_sekreton_government
 				}
 				age >= 20
 				is_female = no
@@ -448,7 +452,7 @@ roman_administration_civilian_administration_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -461,7 +465,7 @@ roman_administration_civilian_administration_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}
@@ -476,7 +480,7 @@ roman_administration_civilian_administration_elective = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				top_liege = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}

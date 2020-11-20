@@ -52,9 +52,22 @@ ave_maria_roman_administration_events.0001 = {
 	immediate = {
 		save_scope_as = roman_administration_basileus
 		change_government = roman_administration_government
+		if = {
+			limit = {
+				NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+			}
+			add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+		}
+		
 
 		## Creating title claimants and making sure you have the proper laws and governement
 		every_vassal = {
+			if = {
+				limit = {
+					NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+				}
+				add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+			}
 			save_scope_as = de_jure_guy
 			create_character = {
 				employer = this
@@ -73,6 +86,14 @@ ave_maria_roman_administration_events.0001 = {
 			scope:new_guy = {
 				add_unpressed_claim = prev.primary_title
 				add_random_hexaco_personality_trait = yes
+			}
+			every_vassal = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+					}
+					add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+				}
 			}
 		}		
 
@@ -1154,26 +1175,11 @@ ave_maria_roman_administration_events.00012 = {
 	hidden = yes
 
 	trigger = {
-		primary_title = {
-			NOR = {
-				this = title:e_byzantium
-				this = title:e_roman_empire
-			}
-		}
-		top_liege = {
-			any_held_title = {
-				OR = {
-					this = title:e_byzantium
-					this = title:e_roman_empire
-				}
-			}
-		}
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1278,12 +1284,11 @@ ave_maria_roman_administration_events.00013 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1317,12 +1322,11 @@ ave_maria_roman_administration_events.00014 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1356,12 +1360,11 @@ ave_maria_roman_administration_events.00015 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1395,11 +1398,7 @@ ave_maria_roman_administration_events.00016 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		# highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
 	}
 
@@ -1434,12 +1433,11 @@ ave_maria_roman_administration_events.00017 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1473,12 +1471,11 @@ ave_maria_roman_administration_events.00018 = {
 	hidden = yes
 
 	trigger = {
-		OR = {
-			roman_administration_holds_military_title_trigger = yes
-			roman_administration_holds_high_administration_title_trigger = yes
-			highest_held_title_tier = tier_duchy 				
-		}		
+		highest_held_title_tier = tier_duchy 
 		uses_roman_govt = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
 	}
 
 	immediate = {
@@ -1511,10 +1508,10 @@ ave_maria_roman_administration_events.00018 = {
 				}
 				resolve_title_and_vassal_change = scope:change
 			}
-			resolve_title_and_vassal_change = scope:change
+			#resolve_title_and_vassal_change = scope:change
 
 			## hand out the rest
-			primary_title = {
+			root.primary_title = {
 				## Handing out de jure counties
 				every_in_de_jure_hierarchy = {
 					limit = {
@@ -1568,7 +1565,7 @@ ave_maria_roman_administration_events.00018 = {
 				resolve_title_and_vassal_change = scope:change
 				
 			}
-			resolve_title_and_vassal_change = scope:change
+			#resolve_title_and_vassal_change = scope:change
 
 			## Clear variable
 			remove_variable = roman_administration_term_count
@@ -1648,6 +1645,8 @@ ave_maria_roman_administration_events.6969 = {
 	}
 
 	immediate = {
+
+		add_realm_law_skip_effects = ave_maria_roman_administration_imperial
 		# every_held_title = {
 		# 	if = {
 		# 		limit = {

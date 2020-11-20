@@ -31,16 +31,30 @@
 ## Checks in a character scope if you are a proper vassal of the emperor and one of the new roman administration government type
 uses_roman_govt = {
 	## You are either a vassal of the roman emperor or the roman emperor
-	OR = {
+	trigger_if = {
+		limit = {
+			is_independent_ruler = yes
+		}
 		has_title = title:e_byzantium
-		top_liege = {
-			has_title = title:e_byzantium
-		}	
+	}
+	trigger_if = {
+		limit = {
+			is_independent_ruler = no
+		}
+		OR = {
+			liege = {
+				has_title = title:e_byzantium
+			}
+			top_liege = {
+				has_title = title:e_byzantium
+			}
+		}
 	}
 	## Government check to exclude feudals vassals of the roman emperor
 	OR = {
 		has_government = roman_administration_government
 		has_government = roman_administration_military_government
+		has_government = roman_administration_theme_government
 		has_government = roman_administration_doukaton_government
 		has_government = roman_administration_kouratoreia_government
 		has_government = roman_administration_sekreton_government
@@ -128,8 +142,8 @@ roman_administration_holds_tagma_title_trigger = {
 			this = title:d_vigla
 			this = title:d_hikanatoi
 			this = title:d_varangian_guard
-			this = title:d_regular_tagma_1
-			this = title:d_regular_tagma_2
+			this = title:d_optimatoi_tagma
+			this = title:d_noumeroi
 			this = title:d_megas_droungarios
 		}
 	}
@@ -169,8 +183,9 @@ roman_administration_holds_military_title_trigger = {
 				this = title:d_vigla
 				this = title:d_hikanatoi
 				this = title:d_varangian_guard
-				this = title:d_regular_tagma_1
-				this = title:d_regular_tagma_2
+				this = title:d_optimatoi_tagma
+				this = title:d_noumeroi
+				this = title:d_megas_droungarios
 			}
 		}
 	}
@@ -218,8 +233,9 @@ roman_administration_is_a_tagma_title_trigger = {
 		this = title:d_vigla
 		this = title:d_hikanatoi
 		this = title:d_varangian_guard
-		this = title:d_regular_tagma_1
-		this = title:d_regular_tagma_2
+		this = title:d_optimatoi_tagma
+		this = title:d_noumeroi
+		this = title:d_megas_droungarios
 	}
 }
 
@@ -258,8 +274,8 @@ roman_administration_is_a_high_office_title_trigger = {
 		this = title:d_vigla
 		this = title:d_hikanatoi
 		this = title:d_varangian_guard
-		this = title:d_regular_tagma_1
-		this = title:d_regular_tagma_2
+		this = title:d_optimatoi_tagma
+		this = title:d_noumeroi
 		this = title:d_sakellion
 		this = title:d_quaestor
 		this = title:d_logothetetes_tou_dromou
@@ -346,7 +362,14 @@ roman_administration_can_have_legitimacy_variable_trigger = {
 			## High office holder
 			roman_administration_holds_high_office_title_trigger = yes
 			has_government = roman_administration_doukaton_government
-			has_government = roman_administration_theme_government
+			## Not ficalized theme
+			AND = {
+				has_government = roman_administration_theme_government
+				OR = {
+					vassal_contract_has_flag = peacetime_theme_flag
+				}				
+			}
+			
 
 			## Council/high titles
 			is_councillor = yes
