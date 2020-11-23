@@ -1,12 +1,14 @@
 d_opsikion = {
 	330.1.1 = {
 		liege = "e_byzantium"
-		government = roman_administration_theme_government
+		government = roman_administration_civilian_government
 		succession_laws = { 
-			ave_maria_roman_administration_tagma_succession_law 
+			ave_maria_roman_administration_civilian_administration_succession_law 
 			male_only_law 
 		}
-		
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
 	}
 	758.1.1 = {
 		holder = 145826
@@ -400,12 +402,14 @@ d_ephese = {
 	
 	330.1.1 = {
 		liege = "e_byzantium"
-		government = roman_administration_theme_government
+		government = roman_administration_civilian_government
 		succession_laws = { 
-			ave_maria_roman_administration_tagma_succession_law 
+			ave_maria_roman_administration_civilian_administration_succession_law 
 			male_only_law 
 		}
-		
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
 	}
 	750.1.1 = {
 		holder = 145830
@@ -595,12 +599,14 @@ c_aeolis = {
 d_thracesia = {
 	330.1.1 = {
 		liege = "e_byzantium"
-		government = roman_administration_theme_government
+		government = roman_administration_civilian_government
 		succession_laws = { 
-			ave_maria_roman_administration_tagma_succession_law 
+			ave_maria_roman_administration_civilian_administration_succession_law 
 			male_only_law 
 		}
-		
+		realm_laws = {
+			ave_maria_roman_administration_realm_law
+		}
 	}
 	755.1.1 = {
 		holder = 145841
@@ -1016,10 +1022,10 @@ c_chonae = {
 
 d_optimatoi = {
 	330.1.1 = {
-		liege = "e_byzantium"
+		liege = "d_thracesia"
 		government = roman_administration_government
 		succession_laws = { 
-			ave_maria_roman_administration_tagma_succession_law 
+			ave_maria_roman_administration_succession_law 
 			male_only_law 
 		}
 	}
@@ -1103,8 +1109,8 @@ c_bithynia = {
 		holder = 145191
 	}
 	1060.1.1 = {
-		holder = 1746
-		# holder=0
+		# holder = 1746
+		holder=0
 	}
 	1066.1.1 = {
 		holder = 111137
@@ -1175,8 +1181,8 @@ c_tarsos = {
 		holder = 145191
 	}
 	1060.1.1 = {
-		holder = 1746
-		# holder = 0
+		# holder = 1746
+		holder = 0
 	}
 	1066.1.1 = {
 		holder = 111137
@@ -1370,7 +1376,6 @@ c_galatia = {
 	}
 	1066.1.1 = {
 		holder = 111160
-		liege = "d_bucellaria"
 	}
 	#Seljuks
 	1077.1.1 = {

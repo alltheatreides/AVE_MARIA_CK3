@@ -241,7 +241,19 @@ on_title_gain = {
 						roman_administration_update_legitimacy_variable = yes
 					}
 				}
-			}			
+			}
+			# scope:previous_holder = {
+			# 	if = {
+			# 		limit = {
+			# 			is_alive = yes
+			# 		}
+			# 		scope:previous_holder = {
+			# 			roman_administration_remove_terms_of_office_modifier_and_variable = yes
+			# 			roman_administration_remove_salary_indicator = yes
+			# 		}
+					
+			# 	}
+			# }			
 			resolve_title_and_vassal_change = scope:change
 		}
 		## When inheriting an office duchy title you always get the capital and the de_jure titles
@@ -633,6 +645,17 @@ on_title_gain_inheritance = {
 				}
 			}			
 			resolve_title_and_vassal_change = scope:change
+			# scope:previous_holder = {
+			# 	if = {
+			# 		limit = {
+			# 			is_alive = yes
+			# 		}
+			# 		scope:previous_holder = {
+			# 			roman_administration_remove_terms_of_office_modifier_and_variable = yes
+			# 			roman_administration_remove_salary_indicator = yes
+			# 		}					
+			# 	}
+			# }
 		}
 		## When inheriting an office duchy title you always get the capital and the de_jure titles
 		if = {
@@ -986,6 +1009,18 @@ on_title_gain_usurpation = {
 				}
 			}			
 			resolve_title_and_vassal_change = scope:change
+			# scope:previous_holder = {
+			# 	if = {
+			# 		limit = {
+			# 			is_alive = yes
+			# 		}
+			# 		scope:previous_holder = {
+			# 			roman_administration_remove_terms_of_office_modifier_and_variable = yes
+			# 			roman_administration_remove_salary_indicator = yes
+			# 		}
+					
+			# 	}
+			# }
 		}
 		## When inheriting an office duchy title you always get the capital and the de_jure titles
 		if = {
@@ -1196,87 +1231,87 @@ on_title_lost = {
 		
 	}
 
-	effect = {
-		### AVE MARIA ROMAN ADMINISTRATION EFFECTS
+	# effect = {
+	# 	### AVE MARIA ROMAN ADMINISTRATION EFFECTS
 
-		## Variable and modifier cleaning
-		if = {
-			limit = {
-				root = { 
-					is_alive = yes
-					has_variable = roman_administration_term_count 
-					highest_held_title_tier < tier_duchy
-				}
+	# 	## Variable and modifier cleaning
+	# 	if = {
+	# 		limit = {
+	# 			root = { 
+	# 				is_alive = yes
+	# 				has_variable = roman_administration_term_count 
+	# 				highest_held_title_tier < tier_duchy
+	# 			}
 				
-			}
-			root = {
-				roman_administration_remove_terms_of_office_modifier_and_variable = yes
-				roman_administration_remove_salary_indicator = yes
-			}			
-		}
-		## Making sure you are of civilian government type when losing a previously military title.
-		if = {
-			limit = {
-				scope:title = {
-					roman_administration_is_a_military_title_trigger = yes
-				}
-				root = {
-					is_alive = yes
-					top_liege = {
-						any_held_title = {
-							OR = {
-								this = title:e_byzantium
-								this = title:e_roman_empire
-							}
-						}
-					}					
-					any_held_title = { 
-						roman_administration_is_a_military_title_trigger = no 
-						tier < tier_duchy
-						NOT = {
-							this = title:e_byzantium
-						}
-					}
-				}
-			}
-			root = {
-				change_government = roman_administration_government
-				if = {
-					limit = {
-						root = {
-							uses_roman_govt = yes
-							NOT = { has_realm_law = ave_maria_roman_administration_imperial }
-						}				
-					}
-					root = {
-						add_realm_law_skip_effects = ave_maria_roman_administration_imperial
-					}
-				}
-			}
-		}
+	# 		}
+	# 		root = {
+	# 			roman_administration_remove_terms_of_office_modifier_and_variable = yes
+	# 			roman_administration_remove_salary_indicator = yes
+	# 		}			
+	# 	}
+	# 	## Making sure you are of civilian government type when losing a previously military title.
+	# 	if = {
+	# 		limit = {
+	# 			scope:title = {
+	# 				roman_administration_is_a_military_title_trigger = yes
+	# 			}
+	# 			root = {
+	# 				is_alive = yes
+	# 				top_liege = {
+	# 					any_held_title = {
+	# 						OR = {
+	# 							this = title:e_byzantium
+	# 							this = title:e_roman_empire
+	# 						}
+	# 					}
+	# 				}					
+	# 				any_held_title = { 
+	# 					roman_administration_is_a_military_title_trigger = no 
+	# 					tier < tier_duchy
+	# 					NOT = {
+	# 						this = title:e_byzantium
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		root = {
+	# 			change_government = roman_administration_government
+	# 			if = {
+	# 				limit = {
+	# 					root = {
+	# 						uses_roman_govt = yes
+	# 						NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+	# 					}				
+	# 				}
+	# 				root = {
+	# 					add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+	# 				}
+	# 			}
+	# 		}
+	# 	}
 
-		## Clearing up the total salary cost modifier if you lose the roman empire
-		if = {
-			limit = {
-				scope:title = {
-					this = title:e_byzantium
-				}
-				root = {
-					is_alive = yes
-					has_variable = total_number_of_officials_cost
-					any_held_title = {
-						NOT = {
-							this = title:e_byzantium
-						}
-					}
-				}
-			}
-			root = {
-				roman_administration_clear_salary_cost_variable = yes
-				roman_administration_remove_salary_cost_modifier = yes
-			}
-		}
-	}
+	# 	## Clearing up the total salary cost modifier if you lose the roman empire
+	# 	if = {
+	# 		limit = {
+	# 			scope:title = {
+	# 				this = title:e_byzantium
+	# 			}
+	# 			root = {
+	# 				is_alive = yes
+	# 				has_variable = total_number_of_officials_cost
+	# 				any_held_title = {
+	# 					NOT = {
+	# 						this = title:e_byzantium
+	# 					}
+	# 				}
+	# 			}
+	# 		}
+	# 		root = {
+	# 			roman_administration_clear_salary_cost_variable = yes
+	# 			roman_administration_remove_salary_cost_modifier = yes
+	# 		}
+	# 	}
+	# }
 
 }
 

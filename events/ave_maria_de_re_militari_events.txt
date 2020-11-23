@@ -41,16 +41,33 @@ ave_maria_de_re_militari_events.0001 = {
 		}
 		
 		scope:winning_side = {
-			side_commander = {
-				if = {
-					limit = {
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
 						is_alive = yes
 						has_variable = de_re_militari_combat_experience
 					}
+				}
+				side_commander = {
 					change_variable = { name = de_re_militari_combat_experience add = 1 }
 					update_de_re_militari_veteran_trait = yes
 				}
 			}
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_combat_experience }
+					}
+				}
+				side_commander = {
+					set_variable = { name = de_re_militari_combat_experience value = 0 }
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}			
 			every_side_knight = {
 				if = {
 					limit = {
@@ -73,12 +90,29 @@ ave_maria_de_re_militari_events.0001 = {
 		}
 
 		enemy_side = {
-			side_commander = {
-				if = {
-					limit = {
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
 						is_alive = yes
 						has_variable = de_re_militari_combat_experience
 					}
+				}
+				side_commander = {
+					change_variable = { name = de_re_militari_combat_experience add = 1 }
+					update_de_re_militari_veteran_trait = yes
+				}
+			}
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_combat_experience }
+					}
+				}
+				side_commander = {
+					set_variable = { name = de_re_militari_combat_experience value = 0 }
 					change_variable = { name = de_re_militari_combat_experience add = 1 }
 					update_de_re_militari_veteran_trait = yes
 				}
