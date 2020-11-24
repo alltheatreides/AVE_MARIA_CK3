@@ -126,6 +126,19 @@ is_rightful_liege_of_trigger = {
 	}
 }
 
+has_too_many_held_duchies_trigger = {
+	highest_held_title_tier >= tier_kingdom
+	any_held_title = {
+		count >= 3
+		title_counts_towards_too_many_duchies_trigger = yes
+	}
+}
+
+title_counts_towards_too_many_duchies_trigger = {
+	tier = tier_duchy
+	is_titular = no
+}
+
 # this = title
 # VASSAL = Vassal to check tier against
 # LIEGE = Liege of vassal

@@ -10,7 +10,19 @@ religious_interaction.1 = { # Faith head divorce event (divorce_character_rel_he
 		first_valid = {
 			triggered_desc = {
 				trigger = {
+					OR = {
 					scope:secondary_recipient = { exposed_cheating_on_spouse_trigger = { SPOUSE = scope:actor } }
+						scope:secondary_recipient = {
+							any_relation = {
+								type = lover
+								NOR = {
+									this = scope:actor
+									this = scope:recipient
+								}
+								relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = scope:secondary_recipient	}
+							}
+						}
+					}
 				}
 				desc = religious_interaction.1.adultery
 			}
@@ -167,7 +179,7 @@ religious_interaction.3 = { # Ask for Gold accepted letter event (hof_ask_for_go
 						is_at_war = yes
 						any_character_war = {
 							is_defender = scope:actor
-							using_cb = religious_war
+							using_holy_war_cb_trigger = yes
 						}
 					}
 				}
@@ -180,7 +192,7 @@ religious_interaction.3 = { # Ask for Gold accepted letter event (hof_ask_for_go
 						any_character_war = {
 							is_attacker = scope:actor
 							OR = {
-								using_cb = religious_war
+								using_holy_war_cb_trigger = yes
 								using_cb = excommunication_war
 							}
 						}
@@ -201,7 +213,7 @@ religious_interaction.3 = { # Ask for Gold accepted letter event (hof_ask_for_go
 						is_at_war = yes
 						any_character_war = {
 							is_defender = scope:actor
-							using_cb = religious_war
+							using_holy_war_cb_trigger = yes
 						}
 					}
 				}
@@ -222,7 +234,7 @@ religious_interaction.3 = { # Ask for Gold accepted letter event (hof_ask_for_go
 						any_character_war = {
 							is_attacker = scope:actor
 							OR = {
-								using_cb = religious_war
+								using_holy_war_cb_trigger = yes
 								using_cb = excommunication_war
 							}
 						}
@@ -232,7 +244,7 @@ religious_interaction.3 = { # Ask for Gold accepted letter event (hof_ask_for_go
 					limit = {
 						is_attacker = scope:actor
 						OR = {
-							using_cb = religious_war
+							using_holy_war_cb_trigger = yes
 							using_cb = excommunication_war
 						}
 					}
@@ -915,11 +927,29 @@ religious_interaction.2011 = {
 	#Refuse
 	option = {
 		name = religious_interaction.2011.b
+		if = {
+			# show player opinion change if it gives imprisonment reason
+			limit = {
+				refusing_conversion_is_crime_trigger = {
+					CHARACTER = scope:recipient
+				}
+			}
 		add_opinion = {
 			target = scope:recipient
 			modifier = illegal_resisted_conversion_opinion
 			years = 15
 		}
+		}
+		else = {
+			hidden_effect = {
+				add_opinion = {
+					target = scope:recipient
+					modifier = resisted_conversion_opinion
+					years = 15
+				}
+			}
+		}
+		
 		ai_chance = {
 			base = 10
 			modifier = {
@@ -1001,10 +1031,27 @@ religious_interaction.2012 = {
 	#Refuse
 	option = {
 		name = religious_interaction.2012.b
+		if = {
+			# show player opinion change if it gives imprisonment reason
+			limit = {
+				refusing_conversion_is_crime_trigger = {
+					CHARACTER = scope:recipient
+				}
+			}
 		add_opinion = {
 			target = scope:recipient
 			modifier = illegal_resisted_conversion_opinion
 			years = 15
+		}
+		}
+		else = {
+			hidden_effect = {
+				add_opinion = {
+					target = scope:recipient
+					modifier = resisted_conversion_opinion
+					years = 15
+				}
+			}
 		}
 
 		ai_chance = {

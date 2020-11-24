@@ -77,8 +77,9 @@ faction_demand.0001 = {
 			modifier = {
 				factor = 0.1
 				any_ally = {
-					NOT = {
-						is_vassal_or_below_of = root
+					NOR = {
+						target_is_liege_or_above = root
+						target_is_vassal_or_below = root
 					}
 					max_military_strength > root.max_military_strength
 				}
@@ -279,8 +280,9 @@ faction_demand.0101 = {
 			modifier = {
 				factor = 0.1
 				any_ally = {
-					NOT = {
-						is_vassal_or_below_of = root
+					NOR = {
+						target_is_liege_or_above = root
+						target_is_vassal_or_below = root
 					}
 					max_military_strength > root.max_military_strength
 				}
@@ -600,8 +602,9 @@ faction_demand.1001 = {
 			modifier = {
 				factor = 0.1
 				any_ally = {
-					NOT = {
-						is_vassal_or_below_of = root
+					NOR = {
+						target_is_liege_or_above = root
+						target_is_vassal_or_below = root
 					}
 					max_military_strength > root.max_military_strength
 				}
@@ -639,8 +642,9 @@ faction_demand.1001 = {
 			modifier = {
 				factor = 1.5
 				any_ally = {
-					NOT = {
-						is_vassal_or_below_of = root
+					NOR = {
+						target_is_liege_or_above = root
+						target_is_vassal_or_below = root
 					}
 					max_military_strength > root.max_military_strength
 				}
@@ -941,8 +945,9 @@ faction_demand.2001 = {
 			modifier = {
 				factor = 0
 				any_ally = {
-					NOT = {
-						is_vassal_or_below_of = root
+					NOR = {
+						target_is_liege_or_above = root
+						target_is_vassal_or_below = root
 					}
 					max_military_strength > root.max_military_strength
 				}

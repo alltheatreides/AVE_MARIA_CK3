@@ -37,6 +37,7 @@ scripted_trigger is_valid_heresiarch = {
 	exists = capital_county
 	NOT = { has_trait = heresiarch }
 	no_heretical_hof_faith_trigger = yes
+	recently_converted_faith_trigger = no # As amusing as it may be, rulers shouldn't 'flip-flop' between Faiths, so we need to enforce a cooldown on heresy conversions.
 }
 
 heresy.0001 = {
@@ -932,11 +933,6 @@ heresy.0010 = {
 				add_trait = heresiarch
 			}
 
-			add_character_flag = {
-				flag = recent_heresy_convert
-				years = 15
-			}
-
 			#Kick off the follow-up events in the heresy chain.
 			trigger_event = {
 				id = heresy.0011
@@ -954,6 +950,13 @@ heresy.0010 = {
 					is_available_ai = yes
 				}
 				set_character_faith = scope:heretic_faith
+
+				hidden_effect = {
+					add_character_flag = {
+						flag = converted_by_heresy_0010_event
+						years = 15
+					}
+				}
 			}
 		}
 
@@ -1103,7 +1106,7 @@ heresy.0011 = {
 				exists = capital_county
 				is_capable_adult_ai = yes
 				no_heretical_hof_faith_0011_trigger = yes
-				NOT = { has_character_flag = recent_heresy_convert } # As amusing as it may be, rulers shouldn't 'flip-flop' between Faiths, so we need to enforce a cooldown on heresy conversions.
+				recently_converted_faith_trigger = no # As amusing as it may be, rulers shouldn't 'flip-flop' between Faiths, so we need to enforce a cooldown on heresy conversions.
 			}
 
 			weight = {
@@ -1168,6 +1171,12 @@ heresy.0011 = {
 			limit = {
 				exists = scope:convert_ruler
 			}
+			hidden_effect = {
+				add_character_flag = {
+					flag = converted_by_heresy_0011_event
+					years = 15
+				}
+			}
 
 			#Consume heresy power to fuel this conversion.
 			scope:origin_faith = {
@@ -1194,10 +1203,6 @@ heresy.0011 = {
 
 			scope:convert_ruler = {
 				set_character_faith_with_conversion = scope:heretic_faith
-				add_character_flag = {
-					flag = recent_heresy_convert
-					years = 15
-				}
 
 				#Trigger the next heresy conversion event in the chain.
 				trigger_event = {
@@ -1321,7 +1326,6 @@ heresy.0011 = {
 					}
 				}
 			}
-
 
 			#Fervor adjustments to prevent multiple heresy flip-flopping.
 			scope:origin_faith = {

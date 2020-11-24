@@ -47,7 +47,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
+		# using = Window_Background
 
 		widget = {
 			size = { 100% 100% }
@@ -473,6 +473,7 @@ window = {
 																					texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
 																					spriteType = Corneredtiled
 																					spriteborder = { 40 8 }
+																					texture_density = 2
 
 																					modify_texture = {
 																						name = "mask"
@@ -680,7 +681,6 @@ window = {
 																			text_label_right = {
 																				visible = "[HoldingItem.GetHolding.CanConstructAnyBuilding(GetPlayer)]"
 																				layoutpolicy_vertical = fixed
-																				align = right
 																				text = "MY_REALM_WINDOW_CONSTRUCT_HOLDING"
 																				default_format = "#P"
 																			}
@@ -862,6 +862,7 @@ window = {
 							visible = "[EqualTo_int32( MyRealmWindow.GetVassalCount, '(int32)0' )]"
 							text_single = {
 								text = "NO_VASSALS_TO_DISPLAY"
+								default_format = "#weak"
 							}
 						}
 					}
@@ -1291,10 +1292,11 @@ window = {
 
 															icon = {
 																name = "has_laws"
+																visible = "[TitleItem.GetTitle.HasLaws]"
 																parentanchor = bottom|right
-																visible = [TitleItem.GetTitle.HasLaws]
-																size = { 10 10 }
-																texture = "gfx/interface/icons/flat_icons/menu.dds"
+																size = { 25 25 }
+																position = { 5 0 }
+																texture = "gfx/interface/icons/title_status/icon_title_law.dds"
 															}
 														}
 													}
@@ -1339,6 +1341,9 @@ window = {
 											vbox = {
 												portrait_head = {
 													name = "primary_spouse_portrait"
+													blockoverride "portrait_button" {
+														using = tooltip_ws
+													}													
 												}
 
 												expand = {}

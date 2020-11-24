@@ -35,7 +35,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
+		# using = Window_Background
 
 		widget = {
 			size = { 100% 100% }
@@ -558,8 +558,7 @@ window = {
 									button_prison_ransom = {
 										parentanchor = center
 										onclick = "[CourtWindow.MassPrisonerAction('ransom')]"
-										enabled = "[CourtWindow.CanDoMassPrisonerAction('ransom')]"
-										tooltip = MASS_PRISONER_ACTION_RANSOM
+										tooltip = "[CourtWindow.GetMassPrisonerActionTooltip('ransom')]"
 										using = tooltip_se
 									}
 								}
@@ -571,8 +570,7 @@ window = {
 									button_prison_release = {
 										parentanchor = center
 										onclick = "[CourtWindow.MassPrisonerAction('release')]"
-										enabled = "[CourtWindow.CanDoMassPrisonerAction('release')]"
-										tooltip = MASS_PRISONER_ACTION_RELEASE
+										tooltip = "[CourtWindow.GetMassPrisonerActionTooltip('release')]"
 										using = tooltip_se
 									}
 								}
@@ -584,8 +582,7 @@ window = {
 									button_prison_execute = {
 										parentanchor = center
 										onclick = "[CourtWindow.MassPrisonerAction('execute')]"
-										enabled = "[CourtWindow.CanDoMassPrisonerAction('execute')]"
-										tooltip = MASS_PRISONER_ACTION_EXECUTE
+										tooltip = "[CourtWindow.GetMassPrisonerActionTooltip('execute')]"
 										using = tooltip_se
 									}
 								}

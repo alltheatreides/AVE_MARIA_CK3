@@ -32,6 +32,8 @@
 
 	# Size of one sub-regiment
 	stack = 100
+	hired_stack_size = 25 # size of sub-regiment for the purpose of hired troops. If not set, this will be the same as the "stack" value
 
 	ai_quality = { ... }	# Script value in character scope. Used in addition to a quality calculation (based on TOUGHNESS_SCORE_MULT, etc.) to figure out what the AI should buy/disband
+	fallback_in_hired_troops_if_unlocked = yes # Mercs/holy orders won't have a preference towards this MaA if it is unlocked
 }

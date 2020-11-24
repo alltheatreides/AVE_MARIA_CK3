@@ -304,6 +304,7 @@
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest
 			save_scope_as = change
@@ -361,6 +362,7 @@
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			add_prestige = {
@@ -408,6 +410,7 @@
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige loss for the attacker
 		scope:attacker = {
@@ -819,90 +822,37 @@ duchy_conquest_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest
 			save_scope_as = change
 			add_claim_on_loss = yes
 		}
 
-		# go through the dejure hierarchy under target titles, transfer titles with same or worse tolerance holders (their religion equaly or less tolerated than the defender's),
-		# take the holder as vassal otherwise and don't go deeper
+		# go through the dejure hierarchy under target titles, transfer eligible vassals and sieze counties from ineligible ones
 		every_in_list = {
 			list = target_titles
 			custom_tooltip = CONQUEST_CB_TITLE
-			every_in_de_jure_hierarchy = {
-				continue = {
-					OR = {
-						NOT = {
-							exists = holder
-						}
-						NOT = {
-							holder = {
-								target_is_liege_or_above = scope:defender
-							}
-						}
-						AND = {
-							scope:attacker.faith = {
-								faith_hostility_level_comparison = {
-									prev.holder.faith <= scope:defender.faith
-								}
-							}
-							holder = {
-								OR = {
-									this = scope:defender
-									target_is_liege_or_above = scope:defender
-								}
-							}
-						}
-					}
-					tier > tier_county
-				}
-				limit = {
-					tier = tier_county
-					exists = holder
-					holder = {
-						OR = {
-							this = scope:defender
-							target_is_liege_or_above = scope:defender
-						}
-					}
-				}
 
-				if = {
-					limit = {
-						OR = {
-							scope:attacker.faith = {
-								faith_hostility_level_comparison = {
-									prev.holder.faith >= scope:defender.faith
-								}
-							}
-							holder.primary_title.tier >= scope:attacker.primary_title.tier
-						}
-					}
-					add_to_temporary_list = titles_taken
-				}
-				else = {
-					holder = {
-						add_to_temporary_list = vassals_taken
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = no
 					}
 				}
-			}
-		}
-
-		every_in_list = {
-			list = titles_taken
-			change_title_holder = {
-				holder = scope:attacker
-				change = scope:change
-				take_baronies = yes
-			}
-		}
 
 		every_in_list = {
 			list = vassals_taken
 			change_liege = {
 				liege = scope:attacker
 				change = scope:change
+								}
+							}
+		
+		every_in_list = {
+			list = titles_taken
+			change_title_holder = {
+				holder = scope:attacker
+				change = scope:change
+				take_baronies = yes
 			}
 		}
 
@@ -948,6 +898,7 @@ duchy_conquest_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			add_prestige = {
@@ -995,6 +946,7 @@ duchy_conquest_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige loss for the attacker
 		scope:attacker = {
@@ -1310,6 +1262,7 @@ ducal_conquest_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest
 			save_scope_as = change
@@ -1439,6 +1392,7 @@ ducal_conquest_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			add_prestige = {
@@ -1486,6 +1440,7 @@ ducal_conquest_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige loss for the attacker
 		scope:attacker = {
@@ -1888,6 +1843,7 @@ ireland_laudabiliter_conquest_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest
 			save_scope_as = change
@@ -2016,6 +1972,7 @@ ireland_laudabiliter_conquest_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			add_prestige = {
@@ -2063,6 +2020,7 @@ ireland_laudabiliter_conquest_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			pay_short_term_gold = {

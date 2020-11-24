@@ -8,19 +8,18 @@ check_for_equal_doctrine_effect = {
 	if = {
 		limit = {
 			is_landed = yes
-		}
-		if = {
-			limit = {
 				faith = {
 					has_doctrine = doctrine_gender_equal
 				}
+			scope:old_faith = {
+				NOT = { has_doctrine = doctrine_gender_equal }
+			}
 				NOT = {
 					has_realm_law = equal_law
 				}
 			}
 			add_realm_law_skip_effects = equal_law
 		}
-	}
 }
 
 # Used to set a Hindu's personal god.

@@ -590,7 +590,7 @@ encourage_confession_of_false_conversions_decision = {	#Ask that crypto-religion
 		is_adult = yes
 		NOR = {
 			has_trait = am_intolerant
-			dread >= low_dread
+			dread > low_dread
 			tyranny >= 1
 		}
 	}
@@ -660,135 +660,6 @@ go_on_pilgrimage_decision = {
 
 	is_shown = {
 		NOT = { faith = { religion_tag = islam_religion } }
-		is_landed = yes
-		NOR = {
-			# These Faiths historically shunned going on pilgrimages, saying they were a waste of time & money.
-			faith = faith:waldensian
-			faith = faith:paulician
-			faith = faith:lollard
-		}
-
-		# Also we must have an actual holy site we can visit.
-		faith = {	
-			any_holy_site = {
-				exists = this
-			}
-		}
-	}
-
-	is_valid_showing_failures_only = {
-		is_available_adult = yes
-		is_at_war = no
-	}
-
-	effect = {
-		custom_tooltip = pilgrimage_effect_1
-		custom_tooltip = pilgrimage_effect_2
-		if = { #What is the minimum you will have to pay?
-			limit = {
-				faith = {
-					any_holy_site = {
-						squared_distance = {
-							target = root.capital_province
-							value <= short_pilgrimage_max_length
-						}
-					}
-				}
-			}
-			custom_tooltip = pilgrimage_effect_3
-		}
-		else_if = {
-			limit = {
-				faith = {
-					any_holy_site = {
-						squared_distance = {
-							target = root.capital_province
-							value <= medium_pilgrimage_max_length
-						}
-					}
-				}
-			}
-			custom_tooltip = pilgrimage_effect_4
-		}
-		else_if = {
-			limit = {
-				faith = {
-					any_holy_site = {
-						squared_distance = {
-							target = root.capital_province
-							value <= long_pilgrimage_max_length
-						}
-					}
-				}
-			}
-			custom_tooltip = pilgrimage_effect_5
-		}
-		else = {
-			custom_tooltip = pilgrimage_effect_6
-		}
-		if = {
-			limit = { has_trait = ill }
-			custom_tooltip = line_break
-			custom_tooltip = pilgrimage_illness_warning
-		}
-		if = {
-			limit = { is_ai = yes }
-			trigger_event = pilgrimage.0999
-		}
-		else = {
-			trigger_event = pilgrimage.0001
-		}
-	}
-
-	ai_potential = {
-		is_landed = yes
-	}
-
-	ai_will_do = {
-		base = 20
-		modifier = {
-			add = -100
-			NOT = { short_term_gold >= pilgrimage_medium_extra_cost }
-		}
-		modifier = {
-			add = 30
-			short_term_gold >= pilgrimage_long_extra_cost
-		}
-		modifier = {
-			add = 20
-			piety_level <= 2
-		}
-		modifier = {
-			add = 20
-			has_trait = am_intolerant
-		}
-		modifier = {
-			add = 20
-			has_trait = am_intolerant
-			NOT = { has_trait = pilgrim }
-		}
-		modifier = {
-			add = -30
-			has_trait = am_hypocritical
-		}
-		modifier = {
-			add = -30
-			has_trait = pilgrim
-		}
-	}
-}
-
-go_on_pilgrimage_decision_muslim = {
-	picture = "gfx/interface/illustrations/decisions/decisions_ave_maria_pilgrimage_muslim.dds"
-	ai_check_interval = 60
-
-	desc = go_on_pilgrimage_decision_desc
-	selection_tooltip = go_on_pilgrimage_decision_tooltip
-
-	cooldown = { years = pilgrimage_cooldown_year_amount }
-
-	is_shown = {
-		faith = { religion_tag = islam_religion }
 		is_landed = yes
 		NOR = {
 			# These Faiths historically shunned going on pilgrimages, saying they were a waste of time & money.

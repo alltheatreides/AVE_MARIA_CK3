@@ -27,7 +27,7 @@ game_rule_create_spouse_and_children = {
 			}
 
 			scope:spouse = {
-				add_random_hexaco_personality_trait = yes
+				add_random_hexaco_personality_trait = { WHO = this }
 			}
 
 			if = {
@@ -39,7 +39,7 @@ game_rule_create_spouse_and_children = {
 			}
 		}
 		else = {
-			primary_spouse = { save_scope_as = spouse add_random_hexaco_personality_trait = yes }
+			primary_spouse = { save_scope_as = spouse add_random_hexaco_personality_trait = { WHO = this } }
 		}
 
 		if = {
@@ -88,7 +88,7 @@ game_rule_create_spouse_and_children = {
 				save_scope_as = child_1
 			}
 			scope:child_1 = {
-				add_random_hexaco_personality_trait = yes
+				add_random_hexaco_personality_trait = { WHO = this }
 			}
 		}
 
@@ -113,7 +113,7 @@ game_rule_create_spouse_and_children = {
 				save_scope_as = child_2
 			}
 			scope:child_2 = {
-				add_random_hexaco_personality_trait = yes
+				add_random_hexaco_personality_trait = { WHO = this }
 			}
 		}
 
@@ -139,7 +139,7 @@ game_rule_create_spouse_and_children = {
 			}
 
 			scope:child_3 = {
-				add_random_hexaco_personality_trait = yes
+				add_random_hexaco_personality_trait = { WHO = this }
 			}
 		}
 	}

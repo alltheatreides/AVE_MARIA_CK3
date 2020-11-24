@@ -1321,7 +1321,7 @@ k_england = {
 				color2 =  { 255 255 255 }
 					b_furness  = {
 					province =  1642
-					color =  { 250 55 5 }
+					color = { 240 25 25 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -2079,7 +2079,7 @@ k_england = {
 				}
 			}
 			c_oxfordshire  = {
-				color =  { 255 115 15 }
+				color = { 255 115 15 }
 				color2 =  { 255 255 255 }
 					b_oxford  = {
 					province =  1558
@@ -3696,29 +3696,29 @@ k_ireland = {
 
 
 			c_athlone  = {
-				color =  { 55 250 85 }
+				color =  { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_athlone  = {
 					province =  34
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
 			c_birr  = {
-				color =  { 55 250 85 }
+				color = { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_birr  = {
 					province =  33
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
 			c_uisneach  = {
-				color =  { 55 250 85 }
+				color = { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_uisneach  = {
 					province =  36
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -4133,10 +4133,14 @@ e_germany = {
 	capital = c_nassau
 
 	can_create = {
-		NOT = {
-			faith = {
-				religion_tag = christianity_religion
-				has_doctrine = doctrine_spiritual_head
+		custom_description = {
+			text = form_germania_christian_trigger
+			
+			NOT = {
+				faith = {
+					religion_tag = christianity_religion
+					has_doctrine = doctrine_spiritual_head
+				}
 			}
 		}
 	}
@@ -8358,7 +8362,7 @@ k_east_francia = {	#Germany
 	}
 	
 	d_east_franconia = {
-		color = { 255 255 255 }
+		color = { 245 245 255 }
 		color2 = { 255 255 255 }
 		
 		capital = c_wurzburg #Würzburg
@@ -13033,41 +13037,43 @@ e_byzantium = {
 				}
 			}
 			
-				c_szerem  = {
+			c_szerem  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+
+				cultural_names = {
+					greek = cn_c_szerem
+				}
+					b_szerem  = {
+					province =  3739
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
 
 					cultural_names = {
-						greek = cn_c_szerem
+						greek = cn_b_szerem
 					}
-						b_szerem  = {
-						province =  3739
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
+				}
+			}
 
-						cultural_names = {
-							greek = cn_b_szerem
-						}
-					}
-				}
-				c_ilok  = {
+			c_ilok  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+					b_ilok  = {
+					province =  3611
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
-						b_ilok  = {
-						province =  3611
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
-					}
 				}
-				c_zemun  = {
+			}
+			
+			c_zemun  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+					b_zemun  = {
+					province =  3613
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
-						b_zemun  = {
-						province =  3613
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
-					}
 				}
+			}
 		}
 	}
 
@@ -19647,11 +19653,11 @@ k_sweden = {
 				}
 			}
 			c_kungahalla  = {
-				color =  { 220 4 40 }
+				color = { 20 70 215 }
 				color2 =  { 255 255 255 }
 					b_kungahalla  = {
 					province =  318
-					color =  { 220 4 40 }
+					color = { 20 70 215 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -22997,13 +23003,6 @@ k_moravia = {
 #		allow = {
 #			k_bohemia = { has_holder = no }
 #		}
-}
-
-k_winideheim = {
-	color = { 158 102 36 }
-	color2 = { 200 0 0 }
-
-	capital = c_praha # Praha
 }
 
 k_poland = {
@@ -65909,11 +65908,11 @@ k_ajuraan = {
 				}
 			}
 			c_hudur  = {
-				color =  { 224 124 55 }
+				color = { 238 114 43 }
 				color2 =  { 255 255 255 }
 					b_hudur  = {
 					province =  8474
-					color =  { 224 124 55 }
+					color = { 238 114 43 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -87652,12 +87651,12 @@ k_xia = { # Minya/Minyak
 k_adiukru = {
 	color = { 180 220 189 }
 	color2 = { 255 255 255 }
-	
+	can_create = { always = no }
 	capital = c_attie
 }
 k_toro = {
 	color = { 110 40 57 }
 	color2 = { 255 255 255 }
-	
+	can_create = { always = no }
 	capital = c_toro
 }

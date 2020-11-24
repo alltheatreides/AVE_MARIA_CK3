@@ -7279,6 +7279,13 @@ feast_default.6251 = {
 					scope:guest = { is_attracted_to_gender_of = root }
 					root = { has_perk = unshackled_lust_perk }
 				}
+				scope:guest = { might_cheat_on_every_partner_trigger = yes }
+				root = {
+					OR = {
+						is_ai = no
+						might_cheat_on_every_partner_trigger = yes
+					}
+				}
 			}
 		}
 		reverse_add_opinion = {

@@ -111,7 +111,7 @@
 	cost = {
 		piety = {
 			add = {
-				value = 25
+				value = 50
 				desc = CB_BASE_COST
 			}
 			# Faith Doctrine Piety Discounts
@@ -230,6 +230,7 @@
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -242,7 +243,9 @@
 			list = target_titles
 			custom_tooltip = RELIGIOUS_CB_TITLE
 
-			religious_cb_title_transfer = yes
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
 		}
 
 		every_in_list = {
@@ -299,7 +302,7 @@
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -3
+			change_fervor = -1
 		}
 		scope:defender.faith = {
 			change_fervor = 3
@@ -315,6 +318,7 @@
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -345,6 +349,7 @@
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -396,10 +401,6 @@
 					target = scope:defender
 				}
 			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -3
 		}
 
 		# Truce
@@ -547,7 +548,7 @@ religious_war = {
 	cost = {
 		piety = {
 			add = {
-				value = 50
+				value = 100
 				desc = CB_BASE_COST
 			}
 			# Faith Doctrine Piety Discounts
@@ -666,6 +667,7 @@ religious_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -678,7 +680,9 @@ religious_war = {
 			list = target_titles
 			custom_tooltip = RELIGIOUS_CB_TITLE
 
-			religious_cb_title_transfer = yes
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
 		}
 
 		every_in_list = {
@@ -736,10 +740,10 @@ religious_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -5
+			change_fervor = -2
 		}
 		scope:defender.faith = {
-			change_fervor = 5
+			change_fervor = 4
 		}
 
 		# Truce
@@ -752,6 +756,7 @@ religious_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -834,10 +839,6 @@ religious_war = {
 					target = scope:attacker
 				}
 			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -5
 		}
 
 		# Truce
@@ -1113,6 +1114,7 @@ major_religious_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -1124,7 +1126,9 @@ major_religious_war = {
 			list = target_titles
 			custom_tooltip = RELIGIOUS_CB_TITLE
 
-			religious_cb_title_transfer = yes
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
 		}
 
 		every_in_list = {
@@ -1181,7 +1185,7 @@ major_religious_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -10
+			change_fervor = -5
 		}
 		scope:defender.faith = {
 			change_fervor = 10
@@ -1197,6 +1201,7 @@ major_religious_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -1227,6 +1232,7 @@ major_religious_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -1279,10 +1285,6 @@ major_religious_war = {
 					target = scope:attacker
 				}
 			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -10
 		}
 
 		# Truce
@@ -1374,6 +1376,7 @@ excommunication_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			reverse_add_opinion = {
 				modifier = pleased_opinion
@@ -1411,6 +1414,7 @@ excommunication_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			add_piety = excommunication_cb_piety_white_peace
 		}
@@ -1438,6 +1442,7 @@ excommunication_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		#Handle all piety gains/losses in scripted effects.
 		excommunication_cb_piety_change = {
 			LOSER = scope:attacker
@@ -1554,8 +1559,10 @@ flowery_war_cb = {
 			is_independent_ruler = yes
 			trigger_if = {
 				limit = { scope:attacker = { is_ai = no } } # Already pre-filtered by the AI due to ai_only_against_neighbors = yes. any_neighboring_top_liege_realm_owner is expensive
+				scope:attacker = {
 				any_neighboring_top_liege_realm_owner = {
-					this = scope:attacker
+						this = scope:defender
+					}
 				}
 			}
 		}
@@ -1707,6 +1714,7 @@ flowery_war_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			if = {	#If the attacker enjoys human sacrifice, then this was sacred.
 				limit = {
@@ -2146,6 +2154,7 @@ flowery_war_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {	#Piety loss for the attacker if appropriate, otherwise prestige loss.
 			if = {
 				limit = {
@@ -2192,6 +2201,7 @@ flowery_war_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			if = {	#If the attacker shares the faith of the defender, and both still enjoy human sacrifice, then this war was at least sacred for them.
 				limit = {
@@ -2673,8 +2683,8 @@ undirected_great_holy_war = {
 	target_de_jure_regions_above = yes
 	use_de_jure_wargoal_only = yes
 	check_all_defenders_for_ticking_war_score = yes # All defenders land in the Crusade Kingdom should count
-	defender_ticking_warscore = 0.03
-	attacker_ticking_warscore = 0.03
+	defender_ticking_warscore = 0.125
+	attacker_ticking_warscore = 0.125
 	max_defender_score_from_occupation = 50
 	max_attacker_score_from_occupation = 150
 	full_occupation_by_defender_gives_victory = no
@@ -2684,6 +2694,11 @@ undirected_great_holy_war = {
 	defender_capital_gives_war_score = no
 	is_great_holy_war = yes
 	landless_attacker_needs_armies = no
+	
+	defender_score_from_battles_scale = 125
+	attacker_score_from_battles_scale = 125
+	
+	max_defender_score_from_battles = 150
 
 	occupation_participation_mult = 0.5
 	siege_participation_mult = 1
@@ -2809,6 +2824,7 @@ undirected_great_holy_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -3162,13 +3178,13 @@ undirected_great_holy_war = {
 			}
 		}
 		
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker.faith = {
 				set_variable = {
 					name = variable_ghw_cooldown
 					value = yes
-					years = 5
+					years = 30
 				}
 			}
 			if = { #Clear pledged gold flag.
@@ -3187,10 +3203,10 @@ undirected_great_holy_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -30
+			change_fervor = -25
 		}
 		scope:defender.faith = {
-			change_fervor = 25
+			change_fervor = 30
 		}
 
 		#Truce between the chief beneficiary & all defenders
@@ -3207,6 +3223,7 @@ undirected_great_holy_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war = {
 			divide_war_chest = {
 				defenders = yes
@@ -3216,7 +3233,7 @@ undirected_great_holy_war = {
 
 		scope:attacker = {
 			faith = {
-			change_fervor = -30
+				change_fervor = -15
 			}
 		}
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
@@ -3263,13 +3280,13 @@ undirected_great_holy_war = {
 		# Truce
 		add_truce_attacker_defeat_effect = yes
 
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker.faith = {
 				set_variable = {
 					name = variable_ghw_cooldown
 					value = yes
-					years = 5
+					years = 30
 				}
 			}
 			if = { #Clear pledged gold flag.
@@ -3467,6 +3484,7 @@ directed_great_holy_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
 			save_scope_as = target_kingdom
 		}
@@ -3581,14 +3599,14 @@ directed_great_holy_war = {
 				}
 			}
 		}
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker = {
 				faith = {
 					set_variable = {
 						name = variable_ghw_cooldown
 						value = yes
-						years = 5
+						years = 30
 					}
 				}
 			}
@@ -3601,10 +3619,10 @@ directed_great_holy_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -30
+			change_fervor = -25
 		}
 		scope:defender.faith = {
-			change_fervor = 25
+			change_fervor = 30
 		}
 
 		#Truce between the chief beneficiary & all defenders
@@ -3633,6 +3651,7 @@ directed_great_holy_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
 			save_scope_as = target_kingdom
 		}
@@ -3679,17 +3698,17 @@ directed_great_holy_war = {
 
 		scope:attacker = {
 			faith = {
-				change_fervor = -25
+				change_fervor = -15
 			}
 		}
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker = {
 				faith = {
 					set_variable = {
 						name = variable_ghw_cooldown
 						value = yes
-						years = 5
+						years = 30
 					}
 				}
 			}

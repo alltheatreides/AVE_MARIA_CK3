@@ -454,7 +454,10 @@ promote_gothic_innovations_decision = { #12th century Renaissance
 	ai_goal = yes
 
 	is_shown = {
+		OR = {
 		has_culture_group = culture_group:latin_group
+			has_culture_group = culture_group:frankish_group
+		}
 		NOT = { has_culture = culture:italian }
 		is_ruler = yes
 		is_landed = yes

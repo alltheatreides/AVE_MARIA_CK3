@@ -8,7 +8,7 @@ coa_african_trigger = {
 }
 
 coa_african_culture_trigger = {
-	culture = {
+	scope:culture = {
 		OR = {
 			has_graphical_culture = central_african_group_coa_gfx
 			has_graphical_culture = east_african_coa_gfx
@@ -18,27 +18,30 @@ coa_african_culture_trigger = {
 }
 
 coa_african_religion_trigger = {
+	scope:faith.religion = { 
+		save_temporary_scope_as = religion 
+	}
 	OR = {
-		has_religion = religion:akom_religion
-		has_religion = religion:waaqism_religion
-		has_religion = religion:west_african_religion
-		has_religion = religion:west_african_bori_religion
-		has_religion = religion:west_african_orisha_religion
-		has_religion = religion:west_african_roog_religion
+		scope:religion = religion:akom_religion
+		scope:religion = religion:waaqism_religion
+		scope:religion = religion:west_african_religion
+		scope:religion = religion:west_african_bori_religion
+		scope:religion = religion:west_african_orisha_religion
+		scope:religion = religion:west_african_roog_religion
 	}
 }
 
 coa_bishopric_trigger = {
-	has_religion = religion:christianity_religion
+	scope:faith.religion = religion:christianity_religion
 	coa_theocratic_trigger = yes
 }
 
 coa_breton_trigger = {
 	OR = {
-		culture = { has_graphical_culture = breton_coa_gfx }
+		scope:culture = { has_graphical_culture = breton_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:k_brittany
 				}
@@ -49,10 +52,10 @@ coa_breton_trigger = {
 
 coa_byzantine_trigger = {
 	OR = {
-		culture = { has_graphical_culture = byzantine_group_coa_gfx }
+		scope:culture = { has_graphical_culture = byzantine_group_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:e_byzantium
 				}
@@ -63,10 +66,10 @@ coa_byzantine_trigger = {
 
 coa_castilian_trigger = {
 	OR = {
-		culture = { has_graphical_culture = castilian_coa_gfx }
+		scope:culture = { has_graphical_culture = castilian_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:k_castille
 				}
@@ -78,15 +81,15 @@ coa_castilian_trigger = {
 coa_coptic_trigger = {
 	OR = {
 		# TODO graphical faith trigger
-		has_faith = faith:coptic
-		#has_faith = faith:armenian_apostolic
-		#has_faith = faith:paulician
+		scope:faith = faith:coptic
+		#scope:faith = faith:armenian_apostolic
+		#scope:faith = faith:paulician
 	}
 }
 
 coa_cross_trigger = {
-	has_religion = religion:christianity_religion
-	faith = {
+	scope:faith = {
+		religion = religion:christianity_religion
 		NOT = { has_doctrine = tenet_aniconism }
 	}
 }
@@ -117,16 +120,19 @@ coa_switch_to_welsh_trigger = {
 }
 
 coa_feudal_trigger = {
+	scope:faith.religion = religion:christianity_religion
 	has_government = feudal_government
-	has_religion = religion:christianity_religion
 }
 
 coa_french_trigger = {
 	OR = {
-		culture = { has_graphical_culture = french_coa_gfx }
-		any_liege_or_above = {
-			primary_title = {
-				this = title:k_france
+		scope:culture = { has_graphical_culture = french_coa_gfx }
+		AND = {
+			exists = root
+			any_liege_or_above = {
+				any_held_title = {
+					this = title:k_france
+				}
 			}
 		}
 	}
@@ -134,10 +140,10 @@ coa_french_trigger = {
 
 coa_irish_trigger = {
 	OR = {
-		culture = { has_graphical_culture = irish_coa_gfx }
+		scope:culture = { has_graphical_culture = irish_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:k_ireland
 				}
@@ -149,15 +155,15 @@ coa_irish_trigger = {
 
 coa_indian_culture_trigger = {
 	OR = {
-		culture = { has_graphical_culture = burman_group_coa_gfx }
-		culture = { has_graphical_culture = dravidian_group_coa_gfx }
-		culture = { has_graphical_culture = indo_aryan_group_coa_gfx }
-		culture = { has_graphical_culture = tibetan_group_coa_gfx }
+		scope:culture = { has_graphical_culture = burman_group_coa_gfx }
+		scope:culture = { has_graphical_culture = dravidian_group_coa_gfx }
+		scope:culture = { has_graphical_culture = indo_aryan_group_coa_gfx }
+		scope:culture = { has_graphical_culture = tibetan_group_coa_gfx }
 	}
 }
 coa_indian_region_trigger = {
-	exists = primary_title
-	primary_title = {
+	exists = scope:title
+	scope:title = {
 		any_this_title_or_de_jure_above = {
 			OR = {
 				this = title:e_india
@@ -170,11 +176,14 @@ coa_indian_region_trigger = {
 	}
 }
 coa_indian_religion_trigger = {
+	scope:faith.religion = { 
+		save_temporary_scope_as = religion 
+	}
 	OR = {
-		has_religion = religion:bon_religion
-		has_religion = religion:buddhism_religion
-		has_religion = religion:hinduism_religion
-		has_religion = religion:jainism_religion
+		scope:religion = religion:bon_religion
+		scope:religion = religion:buddhism_religion
+		scope:religion = religion:hinduism_religion
+		scope:religion = religion:jainism_religion
 	}
 }
 coa_indian_trigger = {
@@ -187,17 +196,17 @@ coa_indian_trigger = {
 
 coa_jewish_trigger = {
 	OR = {
-		has_religion = religion:judaism_religion
-		culture = { has_graphical_culture = israelite_group_coa_gfx }
+		scope:faith.religion = religion:judaism_religion
+		scope:culture = { has_graphical_culture = israelite_group_coa_gfx }
 	}
 }
 
 coa_leonese_trigger = {
 	OR = {
-		culture = { has_graphical_culture = leonese_coa_gfx }
+		scope:culture = { has_graphical_culture = leonese_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:k_leon
 				}
@@ -209,18 +218,21 @@ coa_leonese_trigger = {
 coa_manx_trigger = {
 	OR = {
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:d_the_isles # Mann
 				}
 			}
 		}
-		any_liege_or_above = {
-			primary_title = {
-				OR = {
-					this = title:c_isle_of_man
-					this = title:d_the_isles # Mann
+		AND = {
+			exists = root
+			any_liege_or_above = {
+				any_held_title = {
+					OR = {
+						this = title:c_isle_of_man
+						this = title:d_the_isles # Mann
+					}
 				}
 			}
 		}
@@ -229,8 +241,8 @@ coa_manx_trigger = {
 
 coa_mena_trigger = {
 	OR = {
-		has_religion = religion:islam_religion
-		culture = {
+		scope:faith.religion = religion:islam_religion
+		scope:culture = {
 			OR = {
 				has_graphical_culture = arabic_group_coa_gfx
 				has_graphical_culture = berber_group_coa_gfx
@@ -241,8 +253,8 @@ coa_mena_trigger = {
 
 coa_suomenusko_trigger = {
 	OR = {
-		has_religion = religion:finno_ugric_religion
-		culture = {
+		scope:faith.religion = religion:finno_ugric_religion
+		scope:culture = {
 			OR = {
 				has_graphical_culture = balto_finnic_group_coa_gfx
 				has_graphical_culture = ugro_permian_group_coa_gfx
@@ -254,10 +266,13 @@ coa_suomenusko_trigger = {
 
 coa_polish_trigger = {
 	OR = {
-		culture = { has_graphical_culture = polish_coa_gfx }
-		any_liege_or_above = {
-			primary_title = {
-				this = title:k_poland
+		scope:culture = { has_graphical_culture = polish_coa_gfx }
+		AND = {
+			exists = root
+			any_liege_or_above = {
+				any_held_title = {
+					this = title:k_poland
+				}
 			}
 		}
 	}
@@ -265,10 +280,10 @@ coa_polish_trigger = {
 
 coa_scottish_trigger = {
 	OR = {
-		culture = { has_graphical_culture = scottish_coa_gfx }
+		scope:culture = { has_graphical_culture = scottish_coa_gfx }
 		AND = {
-			exists = primary_title
-			primary_title = {
+			exists = scope:title
+			scope:title = {
 				any_this_title_or_de_jure_above = {
 					this = title:k_scotland
 				}
@@ -278,6 +293,7 @@ coa_scottish_trigger = {
 }
 
 coa_theocratic_trigger = {
+	exists = root
 	OR = {
 		has_government = theocracy_government
 		AND = {
@@ -295,9 +311,9 @@ coa_theocratic_trigger = {
 }
 
 coa_welsh_trigger = {
-	culture = { has_graphical_culture = welsh_coa_gfx }
+	scope:culture = { has_graphical_culture = welsh_coa_gfx }
 }
 
 coa_tamga_trigger = {
-	culture = { has_graphical_culture = steppe_coa_gfx }
+	scope:culture = { has_graphical_culture = steppe_coa_gfx }
 }

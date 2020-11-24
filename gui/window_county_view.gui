@@ -280,7 +280,8 @@ window = {
 					texture = "gfx/interface/component_masks/patterns/mask_pattern_04.dds"
 					spriteType = Corneredtiled
 					margin = { -7 -7 }
-					using = Color_Green_Transparent
+					using = Color_Green
+					alpha = 0.25
 
 					modify_texture = {
 						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
@@ -302,7 +303,8 @@ window = {
 					texture = "gfx/interface/component_masks/patterns/mask_pattern_04.dds"
 					spriteType = Corneredtiled
 					margin = { -7 -7 }
-					using = Color_Blue_Transparent
+					using = Color_Blue
+					alpha = 0.25
 
 					modify_texture = {
 						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
@@ -324,7 +326,8 @@ window = {
 					texture = "gfx/interface/component_masks/patterns/mask_pattern_04.dds"
 					spriteType = Corneredtiled
 					margin = { -7 -7 }
-					using = Color_Bright_Yellow_Transparent
+					using = Color_Bright_Yellow
+					alpha = 0.25
 
 					modify_texture = {
 						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
@@ -807,10 +810,10 @@ window = {
 
 						widget = {
 							size = { 32 32 }
+							visible = "[And(HoldingView.GetProvince.GetTitle.IsCountyCapital, Not(HoldingView.GetProvince.IsRealmCapital))]"
 
 							icon = {
 								name = "county_capital_icon"
-								visible = "[And(HoldingView.GetProvince.GetTitle.IsCountyCapital, Not(HoldingView.GetProvince.IsRealmCapital))]"
 								parentanchor = center
 								size = { 40 40 }
 								texture = "gfx/interface/icons/icon_capital.dds"
@@ -818,10 +821,14 @@ window = {
 								frame = 1
 								tooltip = "COUNTY_CAPITAL_TOOLTIP"
 							}
+						}
+
+						widget = {
+							size = { 32 32 }
+							visible = "[HoldingView.GetProvince.IsRealmCapital]"
 
 							icon = {
 								name = "realm_capital_icon"
-								visible = "[HoldingView.GetProvince.IsRealmCapital]"
 								parentanchor = center
 								size = { 40 40 }
 								framesize = { 63 63 }
@@ -956,7 +963,7 @@ window = {
 							name = "grant_to_local_noble"
 							visible = "[And( And( And( ObjectsEqual( HoldingView.GetTitle.GetHolder, GetPlayer ), HoldingView.GetTitle.CanUseFindVassal( GetPlayer ) ), HoldingView.GetTitle.IsBarony ), Not(HoldingView.GetTitle.IsLeasedOut))]"
 							text = "GRANT_TO_LOCAL_NOBLE_HEADER"
-							onclick = "[HoldingView.CreateHolderForBarony]"
+							onclick = "[HoldingView.GetTitle.CreateHolderForBarony]"
 							tooltip = "GRANT_TO_LOCAL_NOBLE_BUTTON_HOLDING_VIEW_TOOLTIP"
 						}
 
@@ -1171,6 +1178,7 @@ window = {
 
 						text_single = {
 							text = "HOLDING_TAX_VALUE"
+							default_format = "#V"
 						}
 					}
 
@@ -2311,7 +2319,8 @@ window = {
 													button_round  = {
 														name = "abort_button"
 														parentanchor = center
-														visible = "[GUITrackItem.CanReplaceOrCancel]"
+														visible = "[GUITrackItem.CanShowReplaceOrCancel]"
+														enabled = "[GUITrackItem.CanReplaceOrCancel]"
 														onclick = "[GUITrackItem.ReplaceOrCancel]"
 														tooltip = "[GUITrackItem.GetReplaceOrCancelTooltip]"
 

@@ -71,6 +71,7 @@ norman_conquest_cb = {
 	}
 	
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Set land acquisition type to conquest.
 		create_title_and_vassal_change = {
 			type = conquest
@@ -85,10 +86,6 @@ norman_conquest_cb = {
 			defender = scope:defender
 			claimant = scope:claimant
 			change = scope:change
-		}
-		
-		character:140 = {
-			add_achievement_flag = { FLAG = achievement_norman_yoke_flag }
 		}
 
 		every_in_list = {
@@ -197,7 +194,16 @@ norman_conquest_cb = {
 
 		resolve_title_and_vassal_change = scope:change
 		
-		scope:attacker = { give_nickname = nick_the_conqueror }
+		scope:attacker = { 
+			give_nickname = nick_the_conqueror 
+			if = {
+				limit = { exists = global_var:started_norman_yoke_achievement }
+				add_achievement_global_variable = {
+					VARIABLE = achievement_norman_yoke_war_flag
+					VALUE = yes
+				}
+			}
+		}
 
 		modify_all_participants_fame_values = {
 			WINNER = scope:attacker
@@ -230,6 +236,7 @@ norman_conquest_cb = {
 	}
 	
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		
 		# press claims
 		every_in_list = {
@@ -304,6 +311,7 @@ norman_conquest_cb = {
 	}
 	
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 	
 		# lose claims
 		if = {
@@ -463,6 +471,7 @@ norwegian_invasion_cb = {
 	}
 	
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Loc setup.
 		character:124 = { save_scope_as = tostig }
 		title:d_northumberland = { save_scope_as = northumberland}
@@ -756,6 +765,7 @@ norwegian_invasion_cb = {
 	}
 	
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		
 		# press claims
 		every_in_list = {
@@ -830,6 +840,7 @@ norwegian_invasion_cb = {
 	}
 	
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 	
 		# lose claims
 		if = {
@@ -983,6 +994,7 @@ sons_of_lothbrok_invasion_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest
 			save_scope_as = change
@@ -1116,6 +1128,7 @@ sons_of_lothbrok_invasion_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige loss for the attacker
 		scope:attacker = {
 			add_prestige = {
@@ -1158,6 +1171,7 @@ sons_of_lothbrok_invasion_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige loss for the attacker
 		scope:attacker = {
@@ -1401,6 +1415,7 @@ hungarian_migration_cb = {
 	}
 	
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		#If the Mogyers aren't independent, make them so.
 		if = {
 			limit = {
@@ -1531,6 +1546,7 @@ hungarian_migration_cb = {
 	}
 	
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
 			prestige = major_prestige_value
@@ -1566,6 +1582,7 @@ hungarian_migration_cb = {
 	}
 	
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige loss for the attacker
 		scope:attacker = {

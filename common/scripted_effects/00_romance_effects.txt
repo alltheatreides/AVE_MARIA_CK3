@@ -416,11 +416,7 @@ had_sex_with_effect = {
 			limit = {
 				is_female = yes
 				$CHARACTER$ = { is_male = yes }
-			}
-			if = {
-				limit = {
-					is_pregnant = no
-					age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+				possible_pregnancy_after_sex_with_character_trigger = { CHARACTER = scope:had_sex_with_effect_partner }
 				}
 				add_to_variable_list = {
 					name = potential_father_variable_list
@@ -449,20 +445,17 @@ had_sex_with_effect = {
 					create_story = story_peasant_affair
 				}
 			}
-		}
 		else_if = {
 			limit = {
 				is_male = yes
 				$CHARACTER$ = { is_female = yes }
+				possible_pregnancy_after_sex_with_character_trigger = { CHARACTER = scope:had_sex_with_effect_partner }
 			}
 			if = {
-				limit = {
-					NOT = { $CHARACTER$ = { has_trait = pregnant } }
-				}
 				$CHARACTER$ = {
 					add_to_variable_list = {
 						name = potential_father_variable_list
-						target = scope:had_sex_root_character
+						target = scope:had_sex_with_effect_partner
 					}
 				}
 				if = {
@@ -483,7 +476,8 @@ had_sex_with_effect = {
 						if = {
 							limit = {
 								is_pregnant = no
-								age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+								fertility >= 0.1
+								is_visibly_fertile = yes
 							}
 							random = {
 								chance = $PREGNANCY_CHANCE$
@@ -496,13 +490,7 @@ had_sex_with_effect = {
 					}
 					create_story = story_peasant_affair
 				}
-				else_if = {
-					limit = {
-						$CHARACTER$ = {
-							is_pregnant = no
-							age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
-						}
-					}
+				else = {
 					$CHARACTER$ = {
 						random = {
 							chance = $PREGNANCY_CHANCE$

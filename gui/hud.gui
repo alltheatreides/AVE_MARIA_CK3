@@ -61,76 +61,10 @@ widget = {
 		max_width = 300
 	}
 
-	### Error Horse
-	container = {
-		name = "debug_info_horse"
+	error_horse = {
 		parentanchor = bottom|left
 		position = { 610 -10 }
 		visible = "[And( Not( IsPauseMenuShown ), Not(ReleaseMode) )]"
-
-		using = Animation_ShowHide_Quick
-
-		button = {
-			name = "error_button"
-			visible = "[HasErrors]"
-			position = { 0 2 }
-
-			using = Animation_ShowHide_Standard
-
-			tooltip = "[ErrorTooltip]"
-			onclick = "[OpenErrorLog]"
-			oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
-			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
-
-			texture = "gfx/interface/_debug/errorhoof.dds"
-			framesize = { 113 113 }
-			size = { 80 80 }
-			frame = "[GetErrorHoofFrame]"
-
-			state = {
-				name = _show
-				start_sound = {
-					soundeffect = "event:/Error/Errorhof"
-				}
-			}
-		}
-
-		flowcontainer = {
-			position = { 100 5 }
-			direction = vertical
-			spacing = 5
-
-			## Low FPS warning
-			text_single = {
-				tooltip = "FPS lower than 30"
-				visible = "[HasLowFps]"
-
-				text = "Low FPS"
-				max_width = 300
-
-				background = {
-					using = Text_Label_Background
-					margin = { 17 3 }
-				}
-			}
-
-			## Error count
-			text_single = {
-				name = "error_text"
-				visible = "[HasErrors]"
-
-				text = "Errors: [NumberOrErrors]"
-				max_width = 300
-
-				using = Animation_ShowHide_Standard
-
-				background = {
-					using = Text_Label_Background
-					shaderfile = "gfx/FX/pdxgui_default.shader"
-					margin = { 17 3 }
-				}
-			}
-		}
 	}
 }
 
@@ -146,7 +80,6 @@ widget = {
 		parentanchor = top|right
 		position = { -720 0 }
 		spacing = 10
-		scale = 0.7
 
 		using = Animation_ShowHide_Quick
 	}
@@ -1185,6 +1118,14 @@ widget = {
 			margin_bottom = 8
 		}
 
+		icon = {
+			parentanchor = bottom|right
+			position = { 7 23 }
+			texture = "gfx/interface/component_decoration/decoration_arch.dds"
+			size = { 30 30 }
+			mirror = vertical
+		}
+
 		## Resources
 		hbox = {
 			name = "resources"
@@ -1585,7 +1526,7 @@ widget = {
 
 	### Outliner Button
 	container = {
-		visible = "[And( Not( IsPauseMenuShown ), And(Not(GetVariableSystem.Exists( 'right_window_open')), IsDefaultGUIMode))]"
+		visible = "[And( Not( IsPauseMenuShown ), And(Not(IsRightWindowOpen), IsDefaultGUIMode))]"
 		parentanchor = top|right
 		position = { -3 55 }
 
@@ -1632,7 +1573,7 @@ widget = {
 		using = Animation_ShowHide_Quick
 
 		widget = {
-			visible = "[Not(GetVariableSystem.Exists( 'right_window_open'))]"
+			visible = "[Not(IsRightWindowOpen)]"
 			size = { 100% 100% }
 
 			state = {
@@ -2205,6 +2146,13 @@ icon = {
 	using = Animation_ShowHide_Quick
 
 	icon = {
+		parentanchor = top|right
+		position = { 7 -15}
+		texture = "gfx/interface/component_decoration/decoration_arch.dds"
+		size = { 30 30 }
+	}
+
+	icon = {
 		visible = "[IsManuallyPaused]"
 		size = { 100% 100% }
 		texture = "gfx/interface/hud/hud_pause_indicator.dds"
@@ -2538,7 +2486,7 @@ icon = {
 			hbox = {
 				layoutpolicy_vertical = expanding
 				margin_bottom = -6
-				margin_top = -6
+				margin_top = -4
 				allow_outside = yes
 
 				icon = {
@@ -2583,11 +2531,22 @@ icon = {
 					}
 
 					icon = {
+						parentanchor = right|vcenter
+						position = { 10 0 }
+						size = { 18 90%}
+						using = Background_Area
+
+						color = { 0.17 0.17 0.17 1 }
+					}
+
+					icon = {
 						size = { 100% 100% }
 						texture = "gfx/interface/hud/speed_indicator_frame.dds"
 
 						color = { 0.17 0.17 0.17 1 }
 					}
+
+
 
 					hbox = {
 						margin_left = 6
@@ -3276,7 +3235,9 @@ widget = {
 					progressbar_hud_stress_glow = {
 						texture = "gfx/interface/hud/hud_stress_glow_blue.dds"
 
-						blockoverride "animation_trigger_1" {}
+						blockoverride "animation_trigger_1" {
+							name = "stress_level_decrease"
+						}
 
 						blockoverride "animation_trigger_2"
 						{
@@ -3621,7 +3582,7 @@ widget = {
 	######################################################
 
 	map_modes_debug = {
-		visible = "[And( InDebugMode, And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open'))))]"
+		visible = "[And( InDebugMode, And(IsDefaultGUIMode, Not(IsRightWindowOpen)))]"
 		parentanchor = bottom|right
 		position = { 0 -220 }
 
@@ -3632,7 +3593,7 @@ widget = {
 
 	### WARS SCHEMES AND MAPMODES
 	flowcontainer = {
-		visible = "[And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open')))]"
+		visible = "[And(IsDefaultGUIMode, Not(IsRightWindowOpen))]"
 		parentanchor = bottom|right
 		widgetanchor = top|right
 		position = { 0 -155 }
@@ -4441,31 +4402,38 @@ types HUD
 		button_normal = {
 			onclick = "[SetMapMode('dejure_duchies')]"
 			shortcut = "map_mode_9"
+			shortcut = "mapmode_duchies_secondary" 
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('dejure_kingdoms')]"
 			shortcut = "map_mode_10"
+			shortcut = "mapmode_kingdoms_secondary" 
+
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('dejure_empires')]"
 			shortcut = "map_mode_11"
+			shortcut = "mapmode_empires_secondary"
 		}
-
+			
 		button_normal = {
 			onclick = "[SetMapMode('religions')]"
 			shortcut = "map_mode_3"
+			shortcut = "mapmode_faith_secondary"
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('cultures')]"
 			shortcut = "map_mode_2"
+			shortcut = "mapmode_culture_secondary"
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('houses')]"
 			shortcut = "map_mode_4"
+			shortcut = "mapmode_house_secondary"
 		}
 
 		button_normal = {
@@ -4623,4 +4591,6 @@ types HUD
 			}
 		}
 	}
+
+	
 }

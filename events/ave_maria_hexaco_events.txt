@@ -81,7 +81,7 @@ ave_maria_hexaco_traits_events.0001 = {
 		
 		## For characters not having the HEXACO traits give them the personality traits and corresponding variables AND Education traits if old enough
 		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
-		add_random_hexaco_personality_trait = yes 
+		add_random_hexaco_personality_trait = { WHO = this } 
 
 		## Scope to all characters, add HEXACO traits, personality and education
 		# every_ruler = {
@@ -93,7 +93,7 @@ ave_maria_hexaco_traits_events.0001 = {
 		# 	## For characters not having the HEXACO traits give them the personality traits and corresponding variables AND Education traits if old enough
 
 		# 	## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
-		# 	add_random_hexaco_personality_trait = yes 
+		# 	add_random_hexaco_personality_trait = { WHO = this } 
 
 		# 	## Adults and young children get education traits
 		# 	if = {
@@ -109,7 +109,7 @@ ave_maria_hexaco_traits_events.0001 = {
 		# 		add_hexaco_personality_trait_variable = yes
 	
 		# 		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
-		# 		add_random_hexaco_personality_trait = yes 
+		# 		add_random_hexaco_personality_trait = { WHO = this } 
 		# 	}
 		# }
 		# every_spouse = {
@@ -117,7 +117,7 @@ ave_maria_hexaco_traits_events.0001 = {
 		# 	add_hexaco_personality_trait_variable = yes
 
 		# 	## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
-		# 	add_random_hexaco_personality_trait = yes 
+		# 	add_random_hexaco_personality_trait = { WHO = this } 
 		# }
 	}
 

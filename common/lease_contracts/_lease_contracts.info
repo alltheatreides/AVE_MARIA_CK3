@@ -45,6 +45,9 @@ theocracy_lease = {
 	# Don't set if you don't use the same opinion value between levies and taxes or the conditions are different, so that the tooltip is not shown.
 	ruler_share_min_opinion_from_lessee = 42
 
+	# Used in the UI to show if a ruler should recieve the benefits by having a hook even if they do not meet the opinion value. Make sure it gets used to apply based on the values below.
+	hook_strength_max_opinion = none/any/strong
+
 	# How income from leased holdings is split. By default everything goes to the lessee.
 	tax = {
 		lease_liege = 0..100		# Share that goes to the lease liege (if exists). Requires hirarchy definition. Default: 0

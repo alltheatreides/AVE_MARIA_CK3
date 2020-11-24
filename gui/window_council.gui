@@ -40,12 +40,8 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
-
 		widget = {
 			size = { 100% 100% }
-
-			# using = Window_Decoration_Thin
 
 			vbox = {
 				using = Window_Margins
@@ -66,21 +62,6 @@ window = {
 
 				hbox = {
 					layoutpolicy_horizontal = expanding
-
-					text_single = {
-						visible = "[GetPlayer.IsIndependentRuler]"
-						text = "COUNCIL_WINDOW_PLAYER_COUNCIL"
-						align = nobaseline
-						default_format = "#low"
-
-						# onclick = "[PdxGuiTriggerAllAnimations('council_refresh')]"
-
-						# state = {
-						# 	name = _mouse_click
-						# 	delay = 0.2
-						# 	on_finish = "[CouncilWindow.SetPlayerCouncil]"
-						# }
-					}
 
 					button_tab = {
 						visible = "[Not(GetPlayer.IsIndependentRuler)]"
@@ -212,6 +193,7 @@ widget = {
 					spriteborder = { 40 8 }
 					margin = { 10 0 }
 					margin_right = 25
+					texture_density = 2
 
 					modify_texture = {
 						name = "mask"
@@ -270,23 +252,10 @@ widget = {
 
 
 	icon = {
-		# using = Text_Label_Background
-		# using = Background_Area_Dark
 		using = Background_Label_Center
 		parentanchor = bottom|hcenter
 		size = { 400 85 }
-		# size = { 400 100 }
 		position = { 0 10 }
-		# texture = "gfx/interface/window_event/event_bottom_char_bg.dds"
-
-		# modify_texture = {
-		# 	name = "mask"
-		# 	texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
-		# 	# spriteType = Corneredtiled
-		# 	# spriteborder_left = 140
-		# 	# spriteborder_right = 140
-		# 	blend_mode = alphamultiply
-		# }
 
 		button_primary_big = {
 			name = "close_assignment_window"

@@ -5755,7 +5755,10 @@ befriend_ongoing.6018 = {
 
 scripted_trigger valid_liege_befriend_ongoing_6019_trigger = {
 	is_ai = yes
-	NOT = { this = root }
+	NOR = { 
+		this = root 
+		this = scope:target 
+	}
 	OR = {
 		this = root.liege
 		is_vassal_of = root
@@ -6207,11 +6210,14 @@ befriend_ongoing.9103 = {
 		first_valid = { #Circumstances
 			triggered_desc = {
 				trigger = {
-					NOR = {
-						scope:target.top_liege = scope:owner
-						scope:target.liege = scope:owner
+					scope:target = {
+						NOT = { target_is_liege_or_above = scope:owner }
+						is_landed = yes
+						primary_title = {
+							is_mercenary_company = no
+							is_holy_order = no
+						}
 					}
-					is_ruler = yes
 				}
 					desc = befriend_ongoing.9103.ruler.desc
 			}

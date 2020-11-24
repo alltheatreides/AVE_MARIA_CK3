@@ -34,363 +34,363 @@
 #############################################
 
 ## Add random HEXACO personality traits and assign corresponding variable if you do not have some by checking each category of traits and adding randomly one as well as setting up the corresponding variable
-add_random_hexaco_personality_trait = {
-	#	Honesty-Humility			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_faithful
-				has_trait = am_honest
-				has_trait = am_sincere
-				has_trait = am_generous
-				has_trait = am_humble
-				has_trait = am_pretentious
-				has_trait = am_greedy
-				has_trait = am_inconstant
-				has_trait = am_deceitful
-				has_trait = am_hypocritical
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_faithful
-				set_variable = { name = hexaco_personality_value_honesty_humility value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_honest
-				set_variable = { name = hexaco_personality_value_honesty_humility value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_sincere
-				set_variable = { name = hexaco_personality_value_honesty_humility value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_generous
-				set_variable = { name = hexaco_personality_value_honesty_humility value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_humble
-				set_variable = { name = hexaco_personality_value_honesty_humility value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_pretentious
-				set_variable = { name = hexaco_personality_value_honesty_humility value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_greedy
-				set_variable = { name = hexaco_personality_value_honesty_humility value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_inconstant
-				set_variable = { name = hexaco_personality_value_honesty_humility value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_deceitful
-				set_variable = { name = hexaco_personality_value_honesty_humility value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_hypocritical
-				set_variable = { name = hexaco_personality_value_honesty_humility value = -25 }	
-			}		
-		}			
-	}				
-	#	Emotionality			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_brave
-				has_trait = am_tough
-				has_trait = am_independent
-				has_trait = am_selfassured
-				has_trait = am_stable
-				has_trait = am_vulnerable
-				has_trait = am_anxious
-				has_trait = am_fearful
-				has_trait = am_sentimental
-				has_trait = am_craven
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_brave
-				set_variable = { name = hexaco_personality_value_emotionality value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_tough
-				set_variable = { name = hexaco_personality_value_emotionality value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_independent
-				set_variable = { name = hexaco_personality_value_emotionality value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_selfassured
-				set_variable = { name = hexaco_personality_value_emotionality value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_stable
-				set_variable = { name = hexaco_personality_value_emotionality value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_vulnerable
-				set_variable = { name = hexaco_personality_value_emotionality value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_anxious
-				set_variable = { name = hexaco_personality_value_emotionality value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_fearful
-				set_variable = { name = hexaco_personality_value_emotionality value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_sentimental
-				set_variable = { name = hexaco_personality_value_emotionality value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_craven
-				set_variable = { name = hexaco_personality_value_emotionality value = -25 }	
-			}		
-		}			
-	}				
-	#	Extraversion			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_outgoing
-				has_trait = am_lively
-				has_trait = am_sociable
-				has_trait = am_talkative
-				has_trait = am_cheerful
-				has_trait = am_passive
-				has_trait = am_withdrawn
-				has_trait = am_introverted
-				has_trait = am_quiet
-				has_trait = am_reserved
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_outgoing
-				set_variable = { name = hexaco_personality_value_extraversion value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_lively
-				set_variable = { name = hexaco_personality_value_extraversion value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_sociable
-				set_variable = { name = hexaco_personality_value_extraversion value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_talkative
-				set_variable = { name = hexaco_personality_value_extraversion value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_cheerful
-				set_variable = { name = hexaco_personality_value_extraversion value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_passive
-				set_variable = { name = hexaco_personality_value_extraversion value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_withdrawn
-				set_variable = { name = hexaco_personality_value_extraversion value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_introverted
-				set_variable = { name = hexaco_personality_value_extraversion value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_quiet
-				set_variable = { name = hexaco_personality_value_extraversion value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_reserved
-				set_variable = { name = hexaco_personality_value_extraversion value = -25 }	
-			}		
-		}			
-	}				
-	#	Agreeableness			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_patient
-				has_trait = am_tolerant
-				has_trait = am_agreeable
-				has_trait = am_mild
-				has_trait = am_gentle
-				has_trait = am_illtempered
-				has_trait = am_quarrelsome
-				has_trait = am_stubborn
-				has_trait = am_intolerant
-				has_trait = am_wroth
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_patient
-				set_variable = { name = hexaco_personality_value_agreeableness value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_tolerant
-				set_variable = { name = hexaco_personality_value_agreeableness value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_agreeable
-				set_variable = { name = hexaco_personality_value_agreeableness value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_mild
-				set_variable = { name = hexaco_personality_value_agreeableness value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_gentle
-				set_variable = { name = hexaco_personality_value_agreeableness value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_illtempered
-				set_variable = { name = hexaco_personality_value_agreeableness value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_quarrelsome
-				set_variable = { name = hexaco_personality_value_agreeableness value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_stubborn
-				set_variable = { name = hexaco_personality_value_agreeableness value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_intolerant
-				set_variable = { name = hexaco_personality_value_agreeableness value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_wroth
-				set_variable = { name = hexaco_personality_value_agreeableness value = -25 }	
-			}		
-		}			
-	}				
-	#	Conscientiousness			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_organized
-				has_trait = am_diligent
-				has_trait = am_careful
-				has_trait = am_thorough
-				has_trait = am_precise
-				has_trait = am_sloppy
-				has_trait = am_negligent
-				has_trait = am_reckless
-				has_trait = am_lazy
-				has_trait = am_irresponsible
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_organized
-				set_variable = { name = hexaco_personality_value_conscientiousness value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_diligent
-				set_variable = { name = hexaco_personality_value_conscientiousness value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_careful
-				set_variable = { name = hexaco_personality_value_conscientiousness value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_thorough
-				set_variable = { name = hexaco_personality_value_conscientiousness value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_precise
-				set_variable = { name = hexaco_personality_value_conscientiousness value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_sloppy
-				set_variable = { name = hexaco_personality_value_conscientiousness value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_negligent
-				set_variable = { name = hexaco_personality_value_conscientiousness value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_reckless
-				set_variable = { name = hexaco_personality_value_conscientiousness value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_lazy
-				set_variable = { name = hexaco_personality_value_conscientiousness value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_irresponsible
-				set_variable = { name = hexaco_personality_value_conscientiousness value = -25 }	
-			}		
-		}			
-	}				
-	#	Openness to Experience			
-	if = {				
-		limit = {			
-			NOR = {		
-				has_trait = am_intellectual
-				has_trait = am_creative
-				has_trait = am_unconventional
-				has_trait = am_innovative
-				has_trait = am_thoughtful
-				has_trait = am_shallow
-				has_trait = am_unimaginative
-				has_trait = am_conventional
-				has_trait = am_uninspired
-				has_trait = am_simple
-			}		
-		}			
-		random_list = {			
-			10 = { 		
-				add_trait = am_intellectual
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = 25 }	
-			}		
-			10 = { 		
-				add_trait = am_creative
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = 18 }	
-			}		
-			10 = { 		
-				add_trait = am_unconventional
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = 12 }	
-			}		
-			10 = { 		
-				add_trait = am_innovative
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = 7 }	
-			}		
-			10 = { 		
-				add_trait = am_thoughtful
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = 3 }	
-			}		
-			10 = { 		
-				add_trait = am_shallow
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = -3 }	
-			}		
-			10 = { 		
-				add_trait = am_unimaginative
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = -7 }	
-			}		
-			10 = { 		
-				add_trait = am_conventional
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = -12 }	
-			}		
-			10 = { 		
-				add_trait = am_uninspired
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = -18 }	
-			}		
-			10 = { 		
-				add_trait = am_simple
-				set_variable = { name = hexaco_personality_value_openness_to_experience value = -25 }	
-			}		
-		}			
-	}				
-
-
+add_random_hexaco_personality_trait = {	
+	$WHO$ = {
+		#	Honesty-Humility			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_faithful
+					has_trait = am_honest
+					has_trait = am_sincere
+					has_trait = am_generous
+					has_trait = am_humble
+					has_trait = am_pretentious
+					has_trait = am_greedy
+					has_trait = am_inconstant
+					has_trait = am_deceitful
+					has_trait = am_hypocritical
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_faithful
+					set_variable = { name = hexaco_personality_value_honesty_humility value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_honest
+					set_variable = { name = hexaco_personality_value_honesty_humility value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_sincere
+					set_variable = { name = hexaco_personality_value_honesty_humility value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_generous
+					set_variable = { name = hexaco_personality_value_honesty_humility value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_humble
+					set_variable = { name = hexaco_personality_value_honesty_humility value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_pretentious
+					set_variable = { name = hexaco_personality_value_honesty_humility value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_greedy
+					set_variable = { name = hexaco_personality_value_honesty_humility value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_inconstant
+					set_variable = { name = hexaco_personality_value_honesty_humility value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_deceitful
+					set_variable = { name = hexaco_personality_value_honesty_humility value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_hypocritical
+					set_variable = { name = hexaco_personality_value_honesty_humility value = -25 }	
+				}		
+			}			
+		}				
+		#	Emotionality			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_brave
+					has_trait = am_tough
+					has_trait = am_independent
+					has_trait = am_selfassured
+					has_trait = am_stable
+					has_trait = am_vulnerable
+					has_trait = am_anxious
+					has_trait = am_fearful
+					has_trait = am_sentimental
+					has_trait = am_craven
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_brave
+					set_variable = { name = hexaco_personality_value_emotionality value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_tough
+					set_variable = { name = hexaco_personality_value_emotionality value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_independent
+					set_variable = { name = hexaco_personality_value_emotionality value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_selfassured
+					set_variable = { name = hexaco_personality_value_emotionality value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_stable
+					set_variable = { name = hexaco_personality_value_emotionality value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_vulnerable
+					set_variable = { name = hexaco_personality_value_emotionality value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_anxious
+					set_variable = { name = hexaco_personality_value_emotionality value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_fearful
+					set_variable = { name = hexaco_personality_value_emotionality value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_sentimental
+					set_variable = { name = hexaco_personality_value_emotionality value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_craven
+					set_variable = { name = hexaco_personality_value_emotionality value = -25 }	
+				}		
+			}			
+		}				
+		#	Extraversion			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_outgoing
+					has_trait = am_lively
+					has_trait = am_sociable
+					has_trait = am_talkative
+					has_trait = am_cheerful
+					has_trait = am_passive
+					has_trait = am_withdrawn
+					has_trait = am_introverted
+					has_trait = am_quiet
+					has_trait = am_reserved
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_outgoing
+					set_variable = { name = hexaco_personality_value_extraversion value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_lively
+					set_variable = { name = hexaco_personality_value_extraversion value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_sociable
+					set_variable = { name = hexaco_personality_value_extraversion value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_talkative
+					set_variable = { name = hexaco_personality_value_extraversion value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_cheerful
+					set_variable = { name = hexaco_personality_value_extraversion value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_passive
+					set_variable = { name = hexaco_personality_value_extraversion value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_withdrawn
+					set_variable = { name = hexaco_personality_value_extraversion value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_introverted
+					set_variable = { name = hexaco_personality_value_extraversion value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_quiet
+					set_variable = { name = hexaco_personality_value_extraversion value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_reserved
+					set_variable = { name = hexaco_personality_value_extraversion value = -25 }	
+				}		
+			}			
+		}				
+		#	Agreeableness			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_patient
+					has_trait = am_tolerant
+					has_trait = am_agreeable
+					has_trait = am_mild
+					has_trait = am_gentle
+					has_trait = am_illtempered
+					has_trait = am_quarrelsome
+					has_trait = am_stubborn
+					has_trait = am_intolerant
+					has_trait = am_wroth
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_patient
+					set_variable = { name = hexaco_personality_value_agreeableness value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_tolerant
+					set_variable = { name = hexaco_personality_value_agreeableness value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_agreeable
+					set_variable = { name = hexaco_personality_value_agreeableness value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_mild
+					set_variable = { name = hexaco_personality_value_agreeableness value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_gentle
+					set_variable = { name = hexaco_personality_value_agreeableness value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_illtempered
+					set_variable = { name = hexaco_personality_value_agreeableness value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_quarrelsome
+					set_variable = { name = hexaco_personality_value_agreeableness value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_stubborn
+					set_variable = { name = hexaco_personality_value_agreeableness value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_intolerant
+					set_variable = { name = hexaco_personality_value_agreeableness value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_wroth
+					set_variable = { name = hexaco_personality_value_agreeableness value = -25 }	
+				}		
+			}			
+		}				
+		#	Conscientiousness			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_organized
+					has_trait = am_diligent
+					has_trait = am_careful
+					has_trait = am_thorough
+					has_trait = am_precise
+					has_trait = am_sloppy
+					has_trait = am_negligent
+					has_trait = am_reckless
+					has_trait = am_lazy
+					has_trait = am_irresponsible
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_organized
+					set_variable = { name = hexaco_personality_value_conscientiousness value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_diligent
+					set_variable = { name = hexaco_personality_value_conscientiousness value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_careful
+					set_variable = { name = hexaco_personality_value_conscientiousness value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_thorough
+					set_variable = { name = hexaco_personality_value_conscientiousness value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_precise
+					set_variable = { name = hexaco_personality_value_conscientiousness value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_sloppy
+					set_variable = { name = hexaco_personality_value_conscientiousness value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_negligent
+					set_variable = { name = hexaco_personality_value_conscientiousness value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_reckless
+					set_variable = { name = hexaco_personality_value_conscientiousness value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_lazy
+					set_variable = { name = hexaco_personality_value_conscientiousness value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_irresponsible
+					set_variable = { name = hexaco_personality_value_conscientiousness value = -25 }	
+				}		
+			}			
+		}				
+		#	Openness to Experience			
+		if = {				
+			limit = {			
+				NOR = {		
+					has_trait = am_intellectual
+					has_trait = am_creative
+					has_trait = am_unconventional
+					has_trait = am_innovative
+					has_trait = am_thoughtful
+					has_trait = am_shallow
+					has_trait = am_unimaginative
+					has_trait = am_conventional
+					has_trait = am_uninspired
+					has_trait = am_simple
+				}		
+			}			
+			random_list = {			
+				10 = { 		
+					add_trait = am_intellectual
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = 25 }	
+				}		
+				10 = { 		
+					add_trait = am_creative
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = 18 }	
+				}		
+				10 = { 		
+					add_trait = am_unconventional
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = 12 }	
+				}		
+				10 = { 		
+					add_trait = am_innovative
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = 7 }	
+				}		
+				10 = { 		
+					add_trait = am_thoughtful
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = 3 }	
+				}		
+				10 = { 		
+					add_trait = am_shallow
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = -3 }	
+				}		
+				10 = { 		
+					add_trait = am_unimaginative
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = -7 }	
+				}		
+				10 = { 		
+					add_trait = am_conventional
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = -12 }	
+				}		
+				10 = { 		
+					add_trait = am_uninspired
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = -18 }	
+				}		
+				10 = { 		
+					add_trait = am_simple
+					set_variable = { name = hexaco_personality_value_openness_to_experience value = -25 }	
+				}		
+			}			
+		}
+	}
 }
 
 ## Add HEXACO education traits and assign corresponding variable if you do not have some by checking each category of traits and adding randomly one

@@ -15,39 +15,19 @@ window = {
 	state = {
 		name = _show
 		using = Animation_FadeIn_Quick
-		#position_x = 0
+		using = Sound_WindowShow_Standard
+		position_x = 0
 
-		on_start = "[GetVariableSystem.Set( 'left_sidebar_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
 	}
 
 	state = {
 		name = _hide
 		using = Animation_FadeOut_Quick
-		#position_x = -60
-
-		on_start = "[GetVariableSystem.Clear( 'left_sidebar_open' )]"
-		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
-	}
-
-	state = {
-		name = hide
-		next = _hide
-
-		trigger_when = "[GetVariableSystem.Exists( 'county_view_open' )]"
-		position_x = 0
-	}
-
-	state = {
-		name = translate_hide
+		using = Sound_WindowHide_Standard
 		position_x = -60
-		trigger_when = "[Not(GetVariableSystem.Exists( 'left_sidebar_open'))]"
-	}
 
-	state = {
-		name = translate_open
-		position_x = 0
-		trigger_when = "[GetVariableSystem.Exists( 'left_sidebar_open')]"
+		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
 	}
 
 	vbox = {
@@ -117,7 +97,7 @@ window = {
 
 				button = {
 					name = "marry_off_button"
-					visible = "[And( Not( ObjectsEqual( GetPlayer, Character.Self ) ), CharacterWindow.ShouldShowFindSpouse )]"
+					visible = "[And(And( Not( ObjectsEqual( GetPlayer, Character.Self ) ), CharacterWindow.ShouldShowFindSpouse ), Not(Character.IsConcubine))]"
 					parentanchor = center
 					position = { 0 35 }
 
@@ -335,7 +315,7 @@ window = {
 
 				text_label_center = {
 					parentanchor = top|hcenter
-					position = { -10 85 }
+					position = { 0 85 }
 					text = "[liege|E]"
 					allow_outside = yes
 
@@ -343,25 +323,21 @@ window = {
 						name = "non_dejure_liege"
 						datacontext = "[CharacterWindow.GetCharacter]"
 						visible = "[Not( Character.GetVassalContract.IsRightfulLiege )]"
-						position = { 0 -3 }
+						position = { 3 0 }
 						parentanchor = right
 						widgetanchor = left
-						size = { 35 35 }
+						size = { 30 30 }
 						texture = "gfx/interface/icons/levy_tax_reduction.dds"
 
 						using = tooltip_ws
 						tooltip = "MRW_TT_NOT_RIGHTFUL_LIEGE"
-
-						# animation_bad = {
-						# 	visible = "[CharacterWindow.GetCharacter.GetLiege.IsLocalPlayer]"
-						# }
 					}
 				}
 
 				portrait_opinion = {
 					name = "liege_opinion"
 					parentanchor = top|hcenter
-					position = { -10 110 }
+					position = { 0 110 }
 
 					datacontext = "[CharacterWindow.GetCharacter]"
 					visible = "[And( Character.GetLiege.IsValid, And( Character.IsAlive, Not(Character.IsLocalPlayer ) ) )]"
@@ -394,7 +370,6 @@ window = {
 						text = "[Character.GetOpinionBreakdownText( CharacterWindow.GetCharacter.GetLiege )]"
 					}
 				}
-
 			}
 
 			### Host
@@ -414,13 +389,21 @@ window = {
 						portrait_scale = { -1 1 }
 						portrait_offset = { 1 0 }
 					}
+				}
 
+				text_label_center = {
+					parentanchor = top|hcenter
+					position = { 0 85 }
+					text = "[host|E]"
+				}
+
+				
 					portrait_opinion = {
 						name = "liege_opinion"
 						datacontext = "[CharacterWindow.GetCharacter]"
 						visible = "[And(Character.IsAlive, Not(Character.IsLocalPlayer))]"
-						parentanchor = bottom|hcenter
-						position = { 4 -4 }
+					parentanchor = top|hcenter
+					position = { -10 110 }
 
 						blockoverride "dread_logic" {
 							visible = "[Character.ShouldShowDreadEffectIconFor( CharacterWindow.GetCourtOwner )]"
@@ -451,13 +434,6 @@ window = {
 						}
 					}
 				}
-
-				text_label_center = {
-					parentanchor = top|hcenter
-					position = { 0 85 }
-					text = "[host|E]"
-				}
-			}
 
 			container = { # Player Heir for the local player
 				name = "heir_player"
@@ -556,17 +532,19 @@ window = {
 			flowcontainer = {
 				parentanchor = bottom|left
 				position = { 5 -5 }
-				spacing = 10
+				spacing = 5
 				ignoreinvisible = yes
+				direction = vertical
 
 				button_normal = {
-					name = "open_focus_button"
-					visible = "[CharacterWindow.GetCharacter.GetFocus.IsValid]"
+					name = "open_kill_list"
+					visible = "[Character.HasKillsKnownTo( GetPlayer )]"
 
 					size = { 35 35 }
 
-					tooltip = "PLAYER_LIFESTYLE_TOOLTIP"
-					using = tooltip_ne
+					datacontext = "[Character]"
+					tooltip = "OPEN_KILL_LIST_TOOLTIP"
+					using = tooltip_es
 
 
 					icon = {
@@ -574,13 +552,11 @@ window = {
 						size = { 100% 100% }
 					}
 
-					highlight_icon_lifestyle_focus = {
-						size = { 100% 100% }
-						texture = "[CharacterWindow.GetCharacter.GetFocus.GetIcon]"
-						onclick = "[CharacterWindow.OnClickFocusButton]"
-						enabled = "[CharacterWindow.CanClickFocusButton]"
-						tooltip = "[CharacterWindow.GetFocusButtonTooltip]"
-
+					button_kill_list = {
+						onclick = "[ToggleGameViewData( 'kill_list', Character.GetID  )]"
+						size = { 25 25 }
+						parentanchor = center
+						
 						modify_texture = {
 							texture = "gfx/interface/icons/focuses/hud_icon_mask.dds"
 							blend_mode = alphamultiply
@@ -591,7 +567,7 @@ window = {
 				container = {
 					visible = "[Character.IsPlayer]"
 					tooltip = "PLAYER_STRESS_TOOLTIP"
-					using = tooltip_ne
+					using = tooltip_es
 
 					widget = {
 						visible = "[Not(GreaterThanOrEqualTo_int32(GetPlayer.GetStressLevel, '(int32)3'))]"
@@ -680,6 +656,34 @@ window = {
 						}
 					}
 				}
+
+				button_normal = {
+					name = "open_focus_button"
+
+					size = { 35 35 }
+
+					tooltip = "PLAYER_LIFESTYLE_TOOLTIP"
+					using = tooltip_ne
+
+
+					icon = {
+						texture = "gfx/interface/buttons/button_lifestyles_base.dds"
+						size = { 100% 100% }
+					}
+
+					highlight_icon_lifestyle_focus = {
+						size = { 100% 100% }
+						texture = "[CharacterWindow.GetCharacter.GetFocus.GetIcon]"
+						onclick = "[CharacterWindow.OnClickFocusButton]"
+						enabled = "[CharacterWindow.CanClickFocusButton]"
+						tooltip = "[CharacterWindow.GetFocusButtonTooltip]"
+
+						modify_texture = {
+							texture = "gfx/interface/icons/focuses/hud_icon_mask.dds"
+							blend_mode = alphamultiply
+						}
+					}
+				}
 			}
 		}
 
@@ -754,8 +758,40 @@ window = {
 							expand = {}
 						}
 
-						hbox_character_subheading = {}
+						hbox = {
+							name = "AI_personality"
+							layoutpolicy_horizontal = expanding
+							margin = { 3 0 }
+							spacing = 2
+
+							text_single = {
+								name = "character_relation_to_you"
+								max_width = 432
+								text = "[Character.GetCharacterRelationCombine( GetPlayer )]"
+								fontsize_min = 13
+								align = nobaseline
 					}
+
+							icon = {
+								visible = "[Not(Character.IsFemale)]"
+								size = { 20 20 }
+								framesize = { 40 40 }
+								frame = "[Character.GetSexualityFrame]"
+								texture = "gfx/interface/icons/character_status/sexuality_icons_male.dds"
+								tooltip = "SEXUALITY_TT"
+							}
+
+							icon = {
+								visible = "[Character.IsFemale]"
+								size = { 20 20 }
+								framesize = { 40 40 }
+								frame = "[Character.GetSexualityFrame]"
+								texture = "gfx/interface/icons/character_status/sexuality_icons_female.dds"
+								tooltip = "SEXUALITY_TT"
+							}
+
+							expand = {}
+						}					}
 
 					## Traits
 					hbox = {
@@ -780,39 +816,11 @@ window = {
 									maxhorizontalslots = 3
 
 									item = {
-										container = {
 											icon_trait = {
-												visible = "[Not(Character.GetFaith.IsTraitSin( Trait.Self ))]"
 												blockoverride "icon_size"
 												{
 													size = { 55 55 }
 												}
-
-												blockoverride "glow" {
-													glow = {
-														visible = "[Character.GetFaith.IsTraitVirtue( Trait.Self )]"
-														using = Color_Green
-														glow_radius = 5
-														using = Glow_Standard
-													}
-												}
-											}
-
-											icon_trait = {
-												visible = "[Character.GetFaith.IsTraitSin( Trait.Self )]"
-												blockoverride "icon_size"
-												{
-													size = { 55 55 }
-												}
-
-												blockoverride "glow" {
-													glow = {
-														using = Color_Red
-														glow_radius = 5
-														using = Glow_Standard
-													}
-												}
-											}
 										}
 									}
 								}
@@ -863,14 +871,10 @@ window = {
 											{
 												size = { 40 40 }
 											}
-
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												
+												blockoverride "glow_radius"
+												{
 													glow_radius = 4
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -893,13 +897,9 @@ window = {
 												size = { 29 29 }
 											}
 
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												blockoverride "glow_radius"
+												{
 													glow_radius = 3
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -923,13 +923,9 @@ window = {
 												size = { 25 25 }
 											}
 
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												blockoverride "glow_radius"
+												{
 													glow_radius = 2
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -951,39 +947,11 @@ window = {
 									maxhorizontalslots = 4
 
 									item = {
-										container = {
 											icon_trait = {
-												visible = "[Not(Character.GetFaith.IsTraitSin( Trait.Self ))]"
 												blockoverride "icon_size"
 												{
 													size = { 55 55 }
 												}
-
-												blockoverride "glow" {
-													glow = {
-														visible = "[Character.GetFaith.IsTraitVirtue( Trait.Self )]"
-														using = Color_Green
-														glow_radius = 5
-														using = Glow_Standard
-													}
-												}
-											}
-
-											icon_trait = {
-												visible = "[Character.GetFaith.IsTraitSin( Trait.Self )]"
-												blockoverride "icon_size"
-												{
-													size = { 55 55 }
-												}
-
-												blockoverride "glow" {
-													glow = {
-														using = Color_Red
-														glow_radius = 5
-														using = Glow_Standard
-													}
-												}
-											}
 										}
 									}
 								}
@@ -1035,13 +1003,9 @@ window = {
 												size = { 40 40 }
 											}
 
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												blockoverride "glow_radius"
+												{
 													glow_radius = 4
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -1064,13 +1028,9 @@ window = {
 												size = { 29 29 }
 											}
 
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												blockoverride "glow_radius"
+												{
 													glow_radius = 3
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -1094,13 +1054,9 @@ window = {
 												size = { 25 25 }
 											}
 
-											blockoverride "glow" {
-												glow = {
-													visible = "[Or(Trait.IsGenetic(), Trait.IsInheritable())]"
-													color = { 0.4 0.5 0.65 1 }
+												blockoverride "glow_radius"
+												{
 													glow_radius = 2
-													using = Glow_Standard
-												}
 											}
 										}
 									}
@@ -3187,14 +3143,14 @@ window = {
 			}
 		}
 	}
-}
+	}
 
-######################################################
-################ TYPES AND TEMPLATES #################
-######################################################
+	######################################################
+	################ TYPES AND TEMPLATES #################
+	######################################################
 
-types CharacterWindow
-{
+	types CharacterWindow
+	{
 	type skill_icon_label_vertical = widget {
 		size = { 40 60 }
 		datacontext = "[SkillItem]"
@@ -3238,6 +3194,7 @@ types CharacterWindow
 		texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
 		spritetype = corneredtiled
 		spriteborder = { 20 0 }
+			texture_density = 2
 		alpha = 0.5
 	}
 
@@ -3649,44 +3606,10 @@ types CharacterWindow
 
 		expand = {}
 	}
-
-	type hbox_character_subheading = hbox {
-		name = "AI_personality"
-		layoutpolicy_horizontal = expanding
-		margin = { 3 0 }
-		spacing = 2
-
-		text_single = {
-			name = "character_relation_to_you"
-			max_width = 432
-			text = "[Character.GetCharacterRelationCombine( GetPlayer )]"
-			fontsize_min = 13
-			align = nobaseline
-		}
-		icon = {
-			visible = "[Not(Character.IsFemale)]"
-			size = { 20 20 }
-			framesize = { 40 40 }
-			frame = "[Character.GetSexualityFrame]"
-			texture = "gfx/interface/icons/character_status/sexuality_icons_male.dds"
-			tooltip = "SEXUALITY_TT"
 		}
 
-		icon = {
-			visible = "[Character.IsFemale]"
-			size = { 20 20 }
-			framesize = { 40 40 }
-			frame = "[Character.GetSexualityFrame]"
-			texture = "gfx/interface/icons/character_status/sexuality_icons_female.dds"
-			tooltip = "SEXUALITY_TT"
-		}
-
-		expand = {}
-	}
-}
-
-template Animation_Character_Window_Refresh
-{
+	template Animation_Character_Window_Refresh
+	{
 	state = {
 		name = character_window_refresh
 		using = Animation_Refresh_FadeOut
@@ -3696,10 +3619,10 @@ template Animation_Character_Window_Refresh
 	state = {
 		using = Animation_Refresh_FadeIn
 	}
-}
+	}
 
-template Animation_Character_Window_Refresh_Short
-{
+	template Animation_Character_Window_Refresh_Short
+	{
 	state = {
 		name = character_window_refresh
 		using = Animation_Refresh_FadeOut
@@ -3710,4 +3633,4 @@ template Animation_Character_Window_Refresh_Short
 		using = Animation_Refresh_FadeIn
 		duration = 0.25
 	}
-}
+	}

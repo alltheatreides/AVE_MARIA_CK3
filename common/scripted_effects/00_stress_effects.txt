@@ -45,7 +45,11 @@ stress_threshold_event_post_immediate = {
 
 # Must be run in the 'after' EVERY stress threshold event, to ensure all tasks the system expect to execute are done properly.
 stress_threshold_event_aftereffects = {
-
+	if = {
+		limit = {
+			is_alive = yes
+		}
+		
 	# Clean up all event option flags.
 	remove_stress_threshold_option_flags_effect = yes
 
@@ -87,7 +91,8 @@ stress_threshold_event_aftereffects = {
 	}
 
 	# Warn the player that they will receive another event if they are still Stressed.
-	custom_tooltip = stress_threshold_cooldown_message
+		custom_tooltip = stress_threshold_cooldown_message	
+	}
 }
 
 # Clears all 'stress_threshold_option_xxx' flags from a character so that they will get the correct options offered to them the next time they get a stress threshold event.
@@ -149,6 +154,7 @@ contrite_reveal_secrets_effect = {
 	if = {
 		limit = {
 			exists = scope:confessed_secret
+			scope:confessed_secret = { can_be_exposed_by = root }
 		}
 		scope:confessed_secret = {
 			expose_secret = root
@@ -156,6 +162,7 @@ contrite_reveal_secrets_effect = {
 		if = {
 			limit = {
 				exists = scope:second_confessed_secret
+				scope:second_confessed_secret = { can_be_exposed_by = root }
 			}
 			scope:second_confessed_secret = {
 				expose_secret = root
@@ -169,6 +176,7 @@ contrite_reveal_secrets_effect = {
 	else_if = {
 		limit = {
 			exists = scope:second_confessed_secret
+			scope:second_confessed_secret = { can_be_exposed_by = root }
 		}
 		scope:second_confessed_secret = {
 			expose_secret = root
@@ -401,7 +409,6 @@ inappetetic_advance_starvation_effect = {
 			modifier = stress_inappetetic_hunger_1
 			years = 3
 		}
-
 	}
 }
 

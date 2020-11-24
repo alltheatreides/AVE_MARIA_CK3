@@ -91,16 +91,57 @@
 # FR_LocalAnimal_d - de\d' pour LocalAnimal (Sans espace après)
 # FR_LocalAnimal_he - Le 'he' du féminin pour LocalAnimal (blanc/blanche)
 # FR_LocalAnimal_le - devant LocalAnimal (Sans espace après)
+# FR_Scheme_FullAction - GetActionName - SCHEME_FULL_ACTION_NAME
+
+# FR_du_CharacterIntroductionSupportNoComma pour CharacterIntroductionSupportNoComma
+# FR_du_MyCharacterIntroductionNoComma pour MyCharacterIntroductionNoComma
+# FR_du_YourCharacterIntroductionNoComma pour YourCharacterIntroductionNoComma
+# FR_du_HerHisCharacterIntroductionNoComma pour HerHisCharacterIntroductionNoComma
+# FR_du_MyCharacterIntroduction pour MyCharacterIntroduction
+# FR_du_YourCharacterIntroduction pour YourCharacterIntroduction
+# FR_du_HerHisCharacterIntroduction pour HerHisCharacterIntroduction
+
+# FR_au_CharacterIntroductionSupportNoComma pour CharacterIntroductionSupportNoComma
+# FR_au_MyCharacterIntroductionNoComma pour MyCharacterIntroductionNoComma
+# FR_au_YourCharacterIntroductionNoComma pour YourCharacterIntroductionNoComma
+# FR_au_HerHisCharacterIntroductionNoComma pour HerHisCharacterIntroductionNoComma
+# FR_au_MyCharacterIntroduction pour MyCharacterIntroduction
+# FR_au_YourCharacterIntroduction pour YourCharacterIntroduction
+# FR_au_HerHisCharacterIntroduction pour HerHisCharacterIntroduction
 
 ##################################
 # III. ARTICLES DEVANT COMMANDES #
 ##################################
-# FR_only_le_GetTitledFirstName devant GetTitledFirstName, GetTitleAsName (Sans espace après)
-# FR_only_du_GetTitledFirstName devant GetTitledFirstName, GetTitleAsName (Sans espace après)
-# FR_only_au_GetTitledFirstName devant GetTitledFirstName, GetTitleAsName (Sans espace après)
-# FR_only_le_GetShortUIName devant GetShortUIName, GetUIName (Sans espace après)
-# FR_only_du_GetShortUIName devant GetShortUIName, GetUIName (Sans espace après)
-# FR_only_au_GetShortUIName devant GetShortUIName, GetUIName (Sans espace après)
+# Char:    commande de base
+# Char_L:  affiche "le/la" pour "sans terre"
+# Char_U:  affiche "vous" quand perso est le joueur
+# Char_P:  affiche Prince
+# Char_Pi: affiche "le/la" pour les titres comme prince, seulement si le perso est marié ou avec terre
+
+# FR_le_Char_Pi devant GetTitledFirstName, GetShortUINameNotMe (Sans espace après)
+# FR_du_Char_Pi
+# FR_au_Char_Pi
+
+# FR_le_Char_P devant GetFullName, GetFullNameNicknamed, GetUINameNotMe (Sans espace après)
+# FR_du_Char_P
+# FR_au_Char_P
+
+# FR_le_Char_U_P devant GetUIName (Sans espace après)
+# FR_du_Char_U_P
+# FR_au_Char_U_P
+
+# FR_le_Char_U_Pi devant GetShortUIName (Sans espace après)
+# FR_du_Char_U_Pi
+# FR_au_Char_U_Pi
+
+# FR_le_Char_L devant GetTitleTierName, GetTitleAsName (Sans espace après)
+# FR_du_Char_L
+# FR_au_Char_L
+
+# FR_le_Char devant GetName (Sans espace après)
+# FR_du_Char
+# FR_au_Char
+
 # FR_only_le_HouseOfWorship devant HouseOfWorship (Sans espace après)
 # FR_only_du_HouseOfWorship devant HouseOfWorship (Sans espace après)
 # FR_only_au_HouseOfWorship devant HouseOfWorship (Sans espace après)
@@ -5437,52 +5478,86 @@ FR_LocalAnimal_le = {
 	}
 }
 
-FR_only_le_GetTitledFirstName = { 
+FR_le_Char_L = { 
 	type = character
 	text = {
-		trigger = { # Prince
+		trigger = {
+			holds_landed_title = no
 			is_female = no
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_le
 	}
 	text = {
-		trigger = { # Princesse
+		trigger = {
+			holds_landed_title = no
 			is_female = yes
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_la
 	}
 	text = {
-		trigger = { # Reine mère
+		localization_key = "[ROOT.Char.Custom('FR_le_Char')]"
+		fallback = yes
+	}
+}
+
+FR_le_Char_U_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = ""
+	}
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_le_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_le_Char')]"
+		fallback = yes
+	}
+}
+
+FR_le_Char_U_P = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = ""
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_le_Char_P')]"
+		fallback = yes
+	}
+}
+
+FR_le_Char_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_le_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_le_Char')]"
+		fallback = yes
+	}
+}
+
+FR_le_Char_P = { 
+	type = character
+	text = {
+		trigger = { # queen_mother (Reine mère)
 			is_female = yes
 			has_government = feudal_government
 			any_child = { primary_title.tier = tier_kingdom }
@@ -5493,29 +5568,68 @@ FR_only_le_GetTitledFirstName = {
 	text = {
 		trigger = {
 			OR = {
+				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
+					primary_title.tier < tier_kingdom
+					culture_group = culture_group:iberian_group
+					has_government = feudal_government
+					any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+				}
+				AND = { # empress_mother (Impératrice mère)
+					is_female = yes
+					has_government = feudal_government
+					any_child = { primary_title.tier = tier_empire }
+					primary_title.tier < tier_empire
+				}
+			}
+		}
+		localization_key = CustomLoc_FR_l
+	}
+	text = {
+		trigger = { # Prince
+			is_female = no
+			primary_title.tier < tier_kingdom
+			OR = {
+				has_government = feudal_government
+				has_government = clan_government
+			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+		}
+		localization_key = CustomLoc_FR_le
+	}
+	text = {
+		trigger = { # Princesse
+			is_female = yes
+			primary_title.tier < tier_kingdom
+			OR = {
+				has_government = feudal_government
+				has_government = clan_government
+			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+		}
+		localization_key = CustomLoc_FR_la
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_le_Char')]"
+		fallback = yes
+	}
+}
+
+FR_le_Char = { 
+	type = character
+	text = { # chef de foi
+		trigger = {
+			any_held_title = { is_head_of_faith = yes }
+		}
+		localization_key = CustomLoc_FR_le
+	}
+	text = {
+		trigger = {
+			OR = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
 						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
 						AND = { # emperor_feudal_male_altaic_group (Khagan)
 							OR = {
 								has_government = feudal_government
@@ -5532,15 +5646,17 @@ FR_only_le_GetTitledFirstName = {
 				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
 					highest_held_title_tier = tier_duchy
 					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
+					OR = {
+						religion = religion:paganism_religion
+						religion = religion:taoism_religion
+						religion = religion:bon_religion
+						religion = religion:germanic_religion
+						religion = religion:tengrism_religion
+						religion = religion:west_african_religion
+						religion = religion:west_african_bori_religion
+						religion = religion:west_african_roog_religion
+						religion = religion:zunism_religion
+					}
 				}
 				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
 					highest_held_title_tier = tier_kingdom
@@ -5551,12 +5667,28 @@ FR_only_le_GetTitledFirstName = {
 						has_government = tribal_government
 					}
 				}
-				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
-					culture_group = culture_group:iberian_group
-					has_government = feudal_government
+				AND = { # duke_feudal_male_turkish (Atabeg), duke_feudal_female_turkish (Atabegum)
+					highest_held_title_tier = tier_duchy
+					OR = {
+						AND = { 
+							exists = top_liege
+							top_liege = {
+								OR = {
+									has_government = feudal_government
+									has_government = clan_government
+								}
+								has_culture = culture:turkish
+							}
+						}
+						AND = {
+							NOT = { exists = top_liege }
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+							has_culture = culture:turkish
+						}
+					}
 				}
 				AND = { # duke_feudal_male_sogdian (Ikhshide)
 					is_female = no
@@ -5568,6 +5700,22 @@ FR_only_le_GetTitledFirstName = {
 					}
 				}
 				AND = {
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
+								culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+								has_government = tribal_government
+							}
+						}
+					}
 					OR = {
 						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
 						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
@@ -5579,9 +5727,23 @@ FR_only_le_GetTitledFirstName = {
 						has_government = tribal_government
 					}
 				}
-				AND = {
+				AND = { # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:arabic_group
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+						}
+					}
 					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+						culture_group = culture_group:arabic_group
 					}
 					highest_held_title_tier = tier_duchy
 					OR = {
@@ -5615,6 +5777,14 @@ FR_only_le_GetTitledFirstName = {
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
 					faith = faith:ismaili
+				}
+				AND = { # baron_theocracy_male_christianity_religion (Évêque), baron_theocracy_female_christianity_religion (Évêque)
+					highest_held_title_tier = tier_barony
+					has_government = theocracy_government
+					OR = {
+						religion = religion:christianity_religion
+						religion = religion:dualism_religion
+					}
 				}
 				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
 					highest_held_title_tier = tier_barony
@@ -5665,52 +5835,86 @@ FR_only_le_GetTitledFirstName = {
 	}
 }
 
-FR_only_du_GetTitledFirstName = { 
+FR_du_Char_L = { 
 	type = character
 	text = {
-		trigger = { # Prince
+		trigger = {
+			holds_landed_title = no
 			is_female = no
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_du
 	}
 	text = {
-		trigger = { # Princesse
+		trigger = {
+			holds_landed_title = no
 			is_female = yes
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_dela
 	}
 	text = {
-		trigger = { # Reine mère
+		localization_key = "[ROOT.Char.Custom('FR_du_Char')]"
+		fallback = yes
+	}
+}
+
+FR_du_Char_U_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = CustomLoc_FR_de
+	}
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_du_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_du_Char')]"
+		fallback = yes
+	}
+}
+
+FR_du_Char_U_P = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = CustomLoc_FR_de
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_du_Char_P')]"
+		fallback = yes
+	}
+}
+
+FR_du_Char_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_du_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_du_Char')]"
+		fallback = yes
+	}
+}
+
+FR_du_Char_P = { 
+	type = character
+	text = {
+		trigger = { # queen_mother (Reine mère)
 			is_female = yes
 			has_government = feudal_government
 			any_child = { primary_title.tier = tier_kingdom }
@@ -5721,29 +5925,68 @@ FR_only_du_GetTitledFirstName = {
 	text = {
 		trigger = {
 			OR = {
+				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
+					primary_title.tier < tier_kingdom
+					culture_group = culture_group:iberian_group
+					has_government = feudal_government
+					any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+				}
+				AND = { # empress_mother (Impératrice mère)
+					is_female = yes
+					has_government = feudal_government
+					any_child = { primary_title.tier = tier_empire }
+					primary_title.tier < tier_empire
+				}
+			}
+		}
+		localization_key = CustomLoc_FR_del
+	}
+	text = {
+		trigger = { # Prince
+			is_female = no
+			primary_title.tier < tier_kingdom
+			OR = {
+				has_government = feudal_government
+				has_government = clan_government
+			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+		}
+		localization_key = CustomLoc_FR_du
+	}
+	text = {
+		trigger = { # Princesse
+			is_female = yes
+			primary_title.tier < tier_kingdom
+			OR = {
+				has_government = feudal_government
+				has_government = clan_government
+			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
+		}
+		localization_key = CustomLoc_FR_dela
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_du_Char')]"
+		fallback = yes
+	}
+}
+
+FR_du_Char = { 
+	type = character
+	text = { # chef de foi
+		trigger = {
+			any_held_title = { is_head_of_faith = yes }
+		}
+		localization_key = CustomLoc_FR_du
+	}
+	text = {
+		trigger = {
+			OR = {
 				AND = { # emperor (Empereur), emperor_female (Impératrice)
 					highest_held_title_tier = tier_empire
 					NOT = {
 						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
 						AND = { # emperor_feudal_male_altaic_group (Khagan)
 							OR = {
 								has_government = feudal_government
@@ -5760,15 +6003,17 @@ FR_only_du_GetTitledFirstName = {
 				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
 					highest_held_title_tier = tier_duchy
 					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
+					OR = {
+						religion = religion:paganism_religion
+						religion = religion:taoism_religion
+						religion = religion:bon_religion
+						religion = religion:germanic_religion
+						religion = religion:tengrism_religion
+						religion = religion:west_african_religion
+						religion = religion:west_african_bori_religion
+						religion = religion:west_african_roog_religion
+						religion = religion:zunism_religion
+					}
 				}
 				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
 					highest_held_title_tier = tier_kingdom
@@ -5779,12 +6024,28 @@ FR_only_du_GetTitledFirstName = {
 						has_government = tribal_government
 					}
 				}
-				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
-					culture_group = culture_group:iberian_group
-					has_government = feudal_government
+				AND = { # duke_feudal_male_turkish (Atabeg), duke_feudal_female_turkish (Atabegum)
+					highest_held_title_tier = tier_duchy
+					OR = {
+						AND = { 
+							exists = top_liege
+							top_liege = {
+								OR = {
+									has_government = feudal_government
+									has_government = clan_government
+								}
+								has_culture = culture:turkish
+							}
+						}
+						AND = {
+							NOT = { exists = top_liege }
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+							has_culture = culture:turkish
+						}
+					}
 				}
 				AND = { # duke_feudal_male_sogdian (Ikhshide)
 					is_female = no
@@ -5796,6 +6057,22 @@ FR_only_du_GetTitledFirstName = {
 					}
 				}
 				AND = {
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
+								culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+								has_government = tribal_government
+							}
+						}
+					}
 					OR = {
 						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
 						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
@@ -5807,9 +6084,23 @@ FR_only_du_GetTitledFirstName = {
 						has_government = tribal_government
 					}
 				}
-				AND = {
+				AND = { # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:arabic_group
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+						}
+					}
 					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+						culture_group = culture_group:arabic_group
 					}
 					highest_held_title_tier = tier_duchy
 					OR = {
@@ -5843,6 +6134,14 @@ FR_only_du_GetTitledFirstName = {
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
 					faith = faith:ismaili
+				}
+				AND = { # baron_theocracy_male_christianity_religion (Évêque), baron_theocracy_female_christianity_religion (Évêque)
+					highest_held_title_tier = tier_barony
+					has_government = theocracy_government
+					OR = {
+						religion = religion:christianity_religion
+						religion = religion:dualism_religion
+					}
 				}
 				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
 					highest_held_title_tier = tier_barony
@@ -5893,52 +6192,86 @@ FR_only_du_GetTitledFirstName = {
 	}
 }
 
-FR_only_au_GetTitledFirstName = { 
+FR_au_Char_L = { 
 	type = character
 	text = {
-		trigger = { # Prince
+		trigger = {
+			holds_landed_title = no
 			is_female = no
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_au
 	}
 	text = {
-		trigger = { # Princesse
+		trigger = {
+			holds_landed_title = no
 			is_female = yes
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
 		}
 		localization_key = CustomLoc_FR_ala
 	}
 	text = {
-		trigger = { # Reine mère
+		localization_key = "[ROOT.Char.Custom('FR_au_Char')]"
+		fallback = yes
+	}
+}
+
+FR_au_Char_U_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = CustomLoc_FR_a
+	}
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_au_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_au_Char')]"
+		fallback = yes
+	}
+}
+
+FR_au_Char_U_P = { 
+	type = character
+	text = {
+		trigger = {
+			is_local_player = yes
+		}
+		localization_key = CustomLoc_FR_a
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_au_Char_P')]"
+		fallback = yes
+	}
+}
+
+FR_au_Char_Pi = { 
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				any_spouse = { holds_landed_title = yes }
+				holds_landed_title = yes
+			}
+		}
+		localization_key = "[ROOT.Char.Custom('FR_au_Char_P')]"
+	}
+	text = {
+		localization_key = "[ROOT.Char.Custom('FR_au_Char')]"
+		fallback = yes
+	}
+}
+
+FR_au_Char_P = { 
+	type = character
+	text = {
+		trigger = { # queen_mother (Reine mère)
 			is_female = yes
 			has_government = feudal_government
 			any_child = { primary_title.tier = tier_kingdom }
@@ -5949,704 +6282,59 @@ FR_only_au_GetTitledFirstName = {
 	text = {
 		trigger = {
 			OR = {
-				AND = { # emperor (Empereur), emperor_female (Impératrice)
-					highest_held_title_tier = tier_empire
-					NOT = {
-						culture_group = culture_group:central_germanic_group # Kaiser
-						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
-						AND = { # emperor_feudal_male_altaic_group (Khagan)
-							OR = {
-								has_government = feudal_government
-								has_government = clan_government
-								has_government = tribal_government
-							}
-							OR = {
-								has_culture_group = culture_group:mongolic_group
-								has_culture_group = culture_group:turkic_group
-							}
-						}
-					}
-				}
-				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
-					highest_held_title_tier = tier_duchy
-					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
-				}
-				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
-					highest_held_title_tier = tier_kingdom
-					culture = culture:uyghur
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
 				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
+					primary_title.tier < tier_kingdom
 					culture_group = culture_group:iberian_group
 					has_government = feudal_government
+					any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
 				}
-				AND = { # duke_feudal_male_sogdian (Ikhshide)
-					is_female = no
-					culture = culture:sogdian
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
+				AND = { # empress_mother (Impératrice mère)
+					is_female = yes
+					has_government = feudal_government
+					any_child = { primary_title.tier = tier_empire }
+					primary_title.tier < tier_empire
 				}
-				AND = {
-					OR = {
-						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
-						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
-				AND = {
-					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-				}
-#				AND = {
-#					is_female = no
-#					highest_held_title_tier = tier_county
-#					OR = {
-#						AND = { # count_feudal_male_english (Earl)
-#							has_government = feudal_government
-#							primary_title = { 
-#								target_is_de_jure_liege_or_above = title:e_britannia
-#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-#							}
-#						}
-#						AND = { # count_feudal_male_e_britannia (Earl)
-#							OR = {
-#								has_government = feudal_government
-#								has_government = tribal_government
-#							}
-#							culture = culture:english
-#							culture = culture:anglo_saxon
-#							culture = culture:scottish
-#						}
-#					}
-#				}
-				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
-					highest_held_title_tier = tier_county
-					has_government = theocracy_government
-					faith = faith:ismaili
-				}
-				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:zoroastrianism_religion
-				}
-				AND = { # baron_theocracy_male_west_african_bori_religion (Adjingi)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:west_african_bori_religion
-				}
-				AND = { # baron_feudal_male_iranian_group (Argbadh)
-					highest_held_title_tier = tier_barony
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-					culture_group = culture_group:iranian_group
-				}
-				primary_title = title:k_austria # archduke (Archiduc), archduchess (Archiduchesse)
 			}
 		}
 		localization_key = CustomLoc_FR_al
 	}
 	text = {
-		trigger = {
-			is_female = no
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_au
-	}
-	text = {
-		trigger = {
-			is_female = yes
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_ala
-	}
-	text = {
-		localization_key = CustomLoc_FR_a
-		fallback = yes
-	}
-}
-
-FR_only_le_GetShortUIName = { 
-	type = character
-	text = {
-		trigger = {
-			is_local_player = yes
-		}
-		localization_key = ""
-	}
-	text = {
 		trigger = { # Prince
 			is_female = no
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
-		}
-		localization_key = CustomLoc_FR_le
-	}
-	text = {
-		trigger = { # Princesse
-			is_female = yes
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
-		}
-		localization_key = CustomLoc_FR_la
-	}
-	text = {
-		trigger = { # Reine mère
-			is_female = yes
-			has_government = feudal_government
-			any_child = { primary_title.tier = tier_kingdom }
 			primary_title.tier < tier_kingdom
-		}
-		localization_key = CustomLoc_FR_la
-	}
-	text = {
-		trigger = {
-			OR = {
-				AND = { # emperor (Empereur), emperor_female (Impératrice)
-					highest_held_title_tier = tier_empire
-					NOT = {
-						culture_group = culture_group:central_germanic_group # Kaiser
-						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
-						AND = { # emperor_feudal_male_altaic_group (Khagan)
-							OR = {
-								has_government = feudal_government
-								has_government = clan_government
-								has_government = tribal_government
-							}
-							OR = {
-								has_culture_group = culture_group:mongolic_group
-								has_culture_group = culture_group:turkic_group
-							}
-						}
-					}
-				}
-				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
-					highest_held_title_tier = tier_duchy
-					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
-				}
-				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
-					highest_held_title_tier = tier_kingdom
-					culture = culture:uyghur
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
-				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
-					culture_group = culture_group:iberian_group
-					has_government = feudal_government
-				}
-				AND = { # duke_feudal_male_sogdian (Ikhshide)
-					is_female = no
-					culture = culture:sogdian
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-				}
-				AND = {
-					OR = {
-						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
-						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
-				AND = {
-					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-				}
-#				AND = {
-#					is_female = no
-#					highest_held_title_tier = tier_county
-#					OR = {
-#						AND = { # count_feudal_male_english (Earl)
-#							has_government = feudal_government
-#							primary_title = { 
-#								target_is_de_jure_liege_or_above = title:e_britannia
-#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-#							}
-#						}
-#						AND = { # count_feudal_male_e_britannia (Earl)
-#							OR = {
-#								has_government = feudal_government
-#								has_government = tribal_government
-#							}
-#							culture = culture:english
-#							culture = culture:anglo_saxon
-#							culture = culture:scottish
-#						}
-#					}
-#				}
-				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
-					highest_held_title_tier = tier_county
-					has_government = theocracy_government
-					faith = faith:ismaili
-				}
-				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:zoroastrianism_religion
-				}
-				AND = { # baron_theocracy_male_west_african_bori_religion (Adjingi)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:west_african_bori_religion
-				}
-				AND = { # baron_feudal_male_iranian_group (Argbadh)
-					highest_held_title_tier = tier_barony
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-					culture_group = culture_group:iranian_group
-				}
-				primary_title = title:k_austria # archduke (Archiduc), archduchess (Archiduchesse)
-			}
-		}
-		localization_key = CustomLoc_FR_l
-	}
-	text = {
-		trigger = {
-			is_female = no
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_le
-	}
-	text = {
-		trigger = {
-			is_female = yes
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_la
-	}
-	text = {
-		localization_key = ""
-		fallback = yes
-	}
-}
-
-FR_only_du_GetShortUIName = { 
-	type = character
-	text = {
-		trigger = {
-			is_local_player = yes
-		}
-		localization_key = CustomLoc_FR_de
-	}
-	text = {
-		trigger = { # Prince
-			is_female = no
-			primary_title.tier <= tier_kingdom
 			OR = {
 				has_government = feudal_government
 				has_government = clan_government
 			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
-		}
-		localization_key = CustomLoc_FR_du
-	}
-	text = {
-		trigger = { # Princesse
-			is_female = yes
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
-		}
-		localization_key = CustomLoc_FR_dela
-	}
-	text = {
-		trigger = { # Reine mère
-			is_female = yes
-			has_government = feudal_government
-			any_child = { primary_title.tier = tier_kingdom }
-			primary_title.tier < tier_kingdom
-		}
-		localization_key = CustomLoc_FR_dela
-	}
-	text = {
-		trigger = {
-			OR = {
-				AND = { # emperor (Empereur), emperor_female (Impératrice)
-					highest_held_title_tier = tier_empire
-					NOT = {
-						culture_group = culture_group:central_germanic_group # Kaiser
-						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
-						AND = { # emperor_feudal_male_altaic_group (Khagan)
-							OR = {
-								has_government = feudal_government
-								has_government = clan_government
-								has_government = tribal_government
-							}
-							OR = {
-								has_culture_group = culture_group:mongolic_group
-								has_culture_group = culture_group:turkic_group
-							}
-						}
-					}
-				}
-				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
-					highest_held_title_tier = tier_duchy
-					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
-				}
-				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
-					highest_held_title_tier = tier_kingdom
-					culture = culture:uyghur
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
-				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
-					culture_group = culture_group:iberian_group
-					has_government = feudal_government
-				}
-				AND = { # duke_feudal_male_sogdian (Ikhshide)
-					is_female = no
-					culture = culture:sogdian
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-				}
-				AND = {
-					OR = {
-						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
-						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-						has_government = tribal_government
-					}
-				}
-				AND = {
-					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
-					}
-					highest_held_title_tier = tier_duchy
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-				}
-#				AND = {
-#					is_female = no
-#					highest_held_title_tier = tier_county
-#					OR = {
-#						AND = { # count_feudal_male_english (Earl)
-#							has_government = feudal_government
-#							primary_title = { 
-#								target_is_de_jure_liege_or_above = title:e_britannia
-#								NOT = { target_is_de_jure_liege_or_above = title:k_wales } # count_feudal_male_k_wales (Lord)
-#							}
-#						}
-#						AND = { # count_feudal_male_e_britannia (Earl)
-#							OR = {
-#								has_government = feudal_government
-#								has_government = tribal_government
-#							}
-#							culture = culture:english
-#							culture = culture:anglo_saxon
-#							culture = culture:scottish
-#						}
-#					}
-#				}
-				AND = { # count_theocracy_male_ismaili (Ayatollah), count_theocracy_female_ismaili (Ayatollah)
-					highest_held_title_tier = tier_county
-					has_government = theocracy_government
-					faith = faith:ismaili
-				}
-				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:zoroastrianism_religion
-				}
-				AND = { # baron_theocracy_male_west_african_bori_religion (Adjingi)
-					highest_held_title_tier = tier_barony
-					has_government = theocracy_government
-					religion = religion:west_african_bori_religion
-				}
-				AND = { # baron_feudal_male_iranian_group (Argbadh)
-					highest_held_title_tier = tier_barony
-					OR = {
-						has_government = feudal_government
-						has_government = clan_government
-					}
-					culture_group = culture_group:iranian_group
-				}
-				primary_title = title:k_austria # archduke (Archiduc), archduchess (Archiduchesse)
-			}
-		}
-		localization_key = CustomLoc_FR_del
-	}
-	text = {
-		trigger = {
-			is_female = no
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_du
-	}
-	text = {
-		trigger = {
-			is_female = yes
-			OR = {
-				primary_title.tier >= tier_barony
-				any_spouse = { primary_title.tier >= tier_barony }
-			}
-		}
-		localization_key = CustomLoc_FR_dela
-	}
-	text = {
-		localization_key = CustomLoc_FR_de
-		fallback = yes
-	}
-}
-
-FR_only_au_GetShortUIName = { 
-	type = character
-	text = {
-		trigger = {
-			is_local_player = yes
-		}
-		localization_key = CustomLoc_FR_a
-	}
-	text = {
-		trigger = { # Prince
-			is_female = no
-			primary_title.tier <= tier_kingdom
-			OR = {
-				has_government = feudal_government
-				has_government = clan_government
-			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
 		}
 		localization_key = CustomLoc_FR_au
 	}
 	text = {
 		trigger = { # Princesse
 			is_female = yes
-			primary_title.tier <= tier_kingdom
+			primary_title.tier < tier_kingdom
 			OR = {
 				has_government = feudal_government
 				has_government = clan_government
 			}
-			OR = {
-			    AND = {
-			        exists = mother.primary_title
-			        mother.primary_title.tier >= tier_kingdom
-			    }
-			    AND = {
-			        exists = father.primary_title
-			        father.primary_title.tier >= tier_kingdom
-			    }
-			}
+			any_parent = { even_if_dead = yes primary_title.tier >= tier_kingdom }
 		}
 		localization_key = CustomLoc_FR_ala
 	}
 	text = {
-		trigger = { # Reine mère
-			is_female = yes
-			has_government = feudal_government
-			any_child = { primary_title.tier = tier_kingdom }
-			primary_title.tier < tier_kingdom
+		localization_key = "[ROOT.Char.Custom('FR_au_Char')]"
+		fallback = yes
+	}
+}
+
+FR_au_Char = { 
+	type = character
+	text = { # chef de foi
+		trigger = {
+			any_held_title = { is_head_of_faith = yes }
 		}
-		localization_key = CustomLoc_FR_ala
+		localization_key = CustomLoc_FR_au
 	}
 	text = {
 		trigger = {
@@ -6656,24 +6344,6 @@ FR_only_au_GetShortUIName = {
 					NOT = {
 						culture_group = culture_group:central_germanic_group # Kaiser
 						culture = culture:greek # Basileus
-						has_title = title:d_shiite # Calife
-						has_title = title:d_sunni # Calife
-						has_title = title:k_papal_state
-						has_title = title:k_orthodox
-						has_title = title:d_iconoclast
-						has_title = title:d_rabbinism
-						has_title = title:d_karaism
-						has_title = title:d_haymanot
-						has_title = title:d_malabarism
-						has_title = title:d_samaritan
-						has_title = title:d_kabarism
-						has_title = title:d_mazdayasna
-						has_title = title:d_zurvanism
-						has_title = title:d_gayomarthianism
-						has_title = title:d_khurmazta
-						has_title = title:d_mazdakism
-						has_title = title:d_khurramism
-						has_title = title:d_urartuism
 						AND = { # emperor_feudal_male_altaic_group (Khagan)
 							OR = {
 								has_government = feudal_government
@@ -6690,15 +6360,17 @@ FR_only_au_GetShortUIName = {
 				AND = { # duke_theocracy_male_paganism_religion (Archiprêtre), duke_theocracy_female_paganism_religion (Archiprêtresse)
 					highest_held_title_tier = tier_duchy
 					has_government = theocracy_government
-					religion = religion:paganism_religion
-					religion = religion:taoism_religion
-					religion = religion:bon_religion
-					religion = religion:germanic_religion
-					religion = religion:tengrism_religion
-					religion = religion:west_african_religion
-					religion = religion:west_african_bori_religion
-					religion = religion:west_african_roog_religion
-					religion = religion:zunism_religion
+					OR = {
+						religion = religion:paganism_religion
+						religion = religion:taoism_religion
+						religion = religion:bon_religion
+						religion = religion:germanic_religion
+						religion = religion:tengrism_religion
+						religion = religion:west_african_religion
+						religion = religion:west_african_bori_religion
+						religion = religion:west_african_roog_religion
+						religion = religion:zunism_religion
+					}
 				}
 				AND = { # king_feudal_male_uyghur (Idiqut), king_feudal_female_uyghur (Idiqut)
 					highest_held_title_tier = tier_kingdom
@@ -6709,12 +6381,28 @@ FR_only_au_GetShortUIName = {
 						has_government = tribal_government
 					}
 				}
-				AND = { # prince_male_iberian_group (Infant), prince_female_iberian_group (Infante)
-					age < 16
-					holds_landed_title = yes
-					primary_title.tier >= tier_kingdom
-					culture_group = culture_group:iberian_group
-					has_government = feudal_government
+				AND = { # duke_feudal_male_turkish (Atabeg), duke_feudal_female_turkish (Atabegum)
+					highest_held_title_tier = tier_duchy
+					OR = {
+						AND = { 
+							exists = top_liege
+							top_liege = {
+								OR = {
+									has_government = feudal_government
+									has_government = clan_government
+								}
+								has_culture = culture:turkish
+							}
+						}
+						AND = {
+							NOT = { exists = top_liege }
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+							has_culture = culture:turkish
+						}
+					}
 				}
 				AND = { # duke_feudal_male_sogdian (Ikhshide)
 					is_female = no
@@ -6726,6 +6414,22 @@ FR_only_au_GetShortUIName = {
 					}
 				}
 				AND = {
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
+								culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+								has_government = tribal_government
+							}
+						}
+					}
 					OR = {
 						culture_group = culture_group:berber_group # duke_feudal_male_berber_group (Émir), duke_feudal_female_berber_group (Émira)
 						culture = culture:beja # duke_feudal_male_beja (Émir), duke_feudal_female_beja (Émira)
@@ -6737,9 +6441,23 @@ FR_only_au_GetShortUIName = {
 						has_government = tribal_government
 					}
 				}
-				AND = {
+				AND = { # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+					trigger_if = {
+						limit = { 
+							exists = top_liege
+						}
+						top_liege = {
+							OR = {
+								culture_group = culture_group:arabic_group
+							}
+							OR = {
+								has_government = feudal_government
+								has_government = clan_government
+							}
+						}
+					}
 					OR = {
-						culture_group = culture_group:arabic_group # duke_feudal_male_arabic_group (Émir), duke_feudal_female_arabic_group (Émira)
+						culture_group = culture_group:arabic_group
 					}
 					highest_held_title_tier = tier_duchy
 					OR = {
@@ -6773,6 +6491,14 @@ FR_only_au_GetShortUIName = {
 					highest_held_title_tier = tier_county
 					has_government = theocracy_government
 					faith = faith:ismaili
+				}
+				AND = { # baron_theocracy_male_christianity_religion (Évêque), baron_theocracy_female_christianity_religion (Évêque)
+					highest_held_title_tier = tier_barony
+					has_government = theocracy_government
+					OR = {
+						religion = religion:christianity_religion
+						religion = religion:dualism_religion
+					}
 				}
 				AND = { # baron_theocracy_male_zoroastrianism_religion (Ervad), baron_theocracy_female_zoroastrianism_religion (Ervad)
 					highest_held_title_tier = tier_barony
@@ -6827,18 +6553,25 @@ FR_only_le_HouseOfWorship = {
 	type = character
 	text = {
 		trigger = {
-			has_religion = religion:christianity_religion # église, abbaye
-			NOT = { faith = faith:bosnian_church } # hiža
-			has_religion = religion:magyar_religion # egyház
+			OR = {
+				AND = {
+					has_religion = religion:christianity_religion # église, abbaye
+					NOT = { faith = faith:bosnian_church } # hiža
+				}
+				has_religion = religion:magyar_religion # egyház
+			}
 		}
 		localization_key = CustomLoc_FR_l
 	}
 	text = {
 		trigger = {
-			has_religion = religion:judaism_religion # synagogue
-			has_religion = religion:islam_religion # mosquée
-			NOT = { faith = faith:alevi } # cemevi
-
+			OR = {
+				has_religion = religion:judaism_religion # synagogue
+				AND = {
+					has_religion = religion:islam_religion # mosquée
+					NOT = { faith = faith:alevi } # cemevi
+				}
+			}
 		}
 		localization_key = CustomLoc_FR_la
 	}
@@ -6852,18 +6585,25 @@ FR_only_du_HouseOfWorship = {
 	type = character
 	text = {
 		trigger = {
-			has_religion = religion:christianity_religion # église, abbaye
-			NOT = { faith = faith:bosnian_church } # hiža
-			has_religion = religion:magyar_religion # egyház
+			OR = {
+				AND = {
+					has_religion = religion:christianity_religion # église, abbaye
+					NOT = { faith = faith:bosnian_church } # hiža
+				}
+				has_religion = religion:magyar_religion # egyház
+			}
 		}
 		localization_key = CustomLoc_FR_del
 	}
 	text = {
 		trigger = {
-			has_religion = religion:judaism_religion # synagogue
-			has_religion = religion:islam_religion # mosquée
-			NOT = { faith = faith:alevi } # cemevi
-
+			OR = {
+				has_religion = religion:judaism_religion # synagogue
+				AND = {
+					has_religion = religion:islam_religion # mosquée
+					NOT = { faith = faith:alevi } # cemevi
+				}
+			}
 		}
 		localization_key = CustomLoc_FR_dela
 	}
@@ -6877,18 +6617,25 @@ FR_only_au_HouseOfWorship = {
 	type = character
 	text = {
 		trigger = {
-			has_religion = religion:christianity_religion # église, abbaye
-			NOT = { faith = faith:bosnian_church } # hiža
-			has_religion = religion:magyar_religion # egyház
+			OR = {
+				AND = {
+					has_religion = religion:christianity_religion # église, abbaye
+					NOT = { faith = faith:bosnian_church } # hiža
+				}
+				has_religion = religion:magyar_religion # egyház
+			}
 		}
 		localization_key = CustomLoc_FR_a
 	}
 	text = {
 		trigger = {
-			has_religion = religion:judaism_religion # synagogue
-			has_religion = religion:islam_religion # mosquée
-			NOT = { faith = faith:alevi } # cemevi
-
+			OR = {
+				has_religion = religion:judaism_religion # synagogue
+				AND = {
+					has_religion = religion:islam_religion # mosquée
+					NOT = { faith = faith:alevi } # cemevi
+				}
+			}
 		}
 		localization_key = CustomLoc_FR_ala
 	}
@@ -6902,14 +6649,918 @@ FR_only_de_HouseOfWorshipPlural = {
 	type = character
 	text = {
 		trigger = {
-			has_religion = religion:christianity_religion # église, abbaye
-			NOT = { faith = faith:bosnian_church } # hiža
-			has_religion = religion:magyar_religion # egyház
+			OR = {
+				AND = {
+					has_religion = religion:christianity_religion # église, abbaye
+					NOT = { faith = faith:bosnian_church } # hiža
+				}
+				has_religion = religion:magyar_religion # egyház
+			}
 		}
 		localization_key = CustomLoc_FR_d
 	}
 	text = {
 		localization_key = CustomLoc_FR_de
 		fallback = yes
+	}
+}
+
+FR_Scheme_FullAction = { 
+	type = scheme
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = abduct
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_abduct_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = befriend
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_befriend_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = claim_throne
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_claim_throne_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = convert_to_witchcraft
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_convert_to_witchcraft_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = courting
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_courting_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = elope
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_elope_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = fabricate_hook
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_fabricate_hook_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = murder
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_murder_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = seduce
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_seduce_you
+	}
+	text = {
+		trigger = {
+			scheme_target = { is_local_player = yes }
+			scheme_type = sway
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_sway_you
+	}
+	text = {
+		trigger = {
+			scheme_type = abduct
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_abduct
+	}
+	text = {
+		trigger = {
+			scheme_type = befriend
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_befriend
+	}
+	text = {
+		trigger = {
+			scheme_type = claim_throne
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_claim_throne
+	}
+	text = {
+		trigger = {
+			scheme_type = convert_to_witchcraft
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_convert_to_witchcraft
+	}
+	text = {
+		trigger = {
+			scheme_type = courting
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_courting
+	}
+	text = {
+		trigger = {
+			scheme_type = elope
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_elope
+	}
+	text = {
+		trigger = {
+			scheme_type = fabricate_hook
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_fabricate_hook
+	}
+	text = {
+		trigger = {
+			scheme_type = murder
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_murder
+	}
+	text = {
+		trigger = {
+			scheme_type = seduce
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_seduce
+	}
+	text = {
+		trigger = {
+			scheme_type = sway
+		}
+		localization_key = CustomLoc_FR_Scheme_FullAction_sway
+	}
+	text = {
+		localization_key = CustomLoc_FR_Scheme_FullAction_fallback
+		fallback = yes
+	}
+}
+
+###############################################################################################################################
+###############################################################################################################################
+###############################################################################################################################
+
+#Support key
+FR_du_CharacterIntroductionSupportNoComma = {
+	type = character
+
+	#My/Your/HerHis/NamePossessive relation comest first, handled by the My/Your/HerHis/NamePossessive NoComma loc
+
+	text = {
+		trigger = {
+			exists = primary_title
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_titledfirstnameoftitle
+	}
+
+	#Spouse/Child/knight of landed character comest after has primary title check, handled by the My/Your/HerHis/NamePossessive NoComma loc
+
+
+	#has a liege
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = no
+			is_female = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman_from_liege_title
+	}
+
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = no
+			is_male = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman_from_liege_title
+	}
+
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstname_a_commoner_from_liege_title
+	}
+
+	#had a location
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_female = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman_from_current_location
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_male = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman_from_current_location
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstname_a_commoner_from_current_location
+	}
+
+	#fallback
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_female = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_male = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = yes
+		}
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_firstname_a_commoner
+	}
+}
+
+#NoCommaKey
+FR_du_MyCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_my_counciltitle_firstname
+	}
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_my_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_knight
+	}
+
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+FR_du_YourCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_your_counciltitle_firstname
+	}
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_your_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_councillor
+	}
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_knight
+	}
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+
+FR_du_HerHisCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_herhis_counciltitle_firstname
+	}
+
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_herhis_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_knight
+	}
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_du_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+FR_du_MyCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_du_MyCharacterIntroductionNoCommaPlusComma
+	}
+}
+
+FR_du_YourCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_du_YourCharacterIntroductionNoCommaPlusComma
+	}
+}
+
+FR_du_HerHisCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_du_HerHisCharacterIntroductionNoCommaPlusComma
+	}
+}
+
+###############################################################################################################################
+###############################################################################################################################
+###############################################################################################################################
+
+#Support key
+FR_au_CharacterIntroductionSupportNoComma = {
+	type = character
+
+	#My/Your/HerHis/NamePossessive relation comest first, handled by the My/Your/HerHis/NamePossessive NoComma loc
+
+	text = {
+		trigger = {
+			exists = primary_title
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_titledfirstnameoftitle
+	}
+
+	#Spouse/Child/knight of landed character comest after has primary title check, handled by the My/Your/HerHis/NamePossessive NoComma loc
+
+
+	#has a liege
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = no
+			is_female = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman_from_liege_title
+	}
+
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = no
+			is_male = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman_from_liege_title
+	}
+
+	text = {
+		trigger = {
+			exists = liege
+			liege = { exists = primary_title }
+			is_lowborn = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstname_a_commoner_from_liege_title
+	}
+
+	#had a location
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_female = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman_from_current_location
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_male = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman_from_current_location
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = yes
+			exists = location.barony
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstname_a_commoner_from_current_location
+	}
+
+	#fallback
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_female = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_noblewoman
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = no
+			is_male = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstnamedynastyname_a_nobleman
+	}
+
+	text = {
+		trigger = {
+			is_lowborn = yes
+		}
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_firstname_a_commoner
+	}
+}
+
+#NoCommaKey
+FR_au_MyCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_my_counciltitle_firstname
+	}
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_my_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma_the_relation_of_MyCharacterIntroductionNoComma_knight
+	}
+
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+FR_au_YourCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_your_counciltitle_firstname
+	}
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_your_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_councillor
+	}
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma_the_relation_of_YourCharacterIntroductionNoComma_knight
+	}
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+
+FR_au_HerHisCharacterIntroductionNoComma = {
+	type = character
+
+	text = { #Exception for landed court chaplains who shouldn't have their title appear twice
+		trigger = {
+			is_councillor_of = scope:second
+			has_council_position = councillor_court_chaplain
+			is_landed = yes
+			NOR = {
+				is_spouse_of = scope:second
+				is_close_or_extended_family_of = scope:second
+			}
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_herhis_counciltitle_firstname
+	}
+
+
+	text = {
+		trigger = { has_RelationToMe_relation = { CHARACTER = scope:second } }
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_herhis_relation_titledfirstname
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = primary_spouse
+			primary_spouse = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_primaryspouse
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = father
+			dynasty = father.dynasty
+			father = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_father
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = mother
+			mother = { exists = primary_title }
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_mother
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_councillor_of = liege
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_councillor
+	}
+
+	text = {
+		trigger = {
+			NOT = { exists = primary_title }
+			exists = liege
+			is_knight_of = liege
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma_the_relation_of_HerHisCharacterIntroductionNoComma_knight
+	}
+
+	#Uses "CharacterIntroductionNoComma"
+	text = {
+		localization_key = CustomLoc_FR_au_CharacterIntroductionSupportNoComma_fallback
+	}
+}
+
+FR_au_MyCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_au_MyCharacterIntroductionNoCommaPlusComma
+	}
+}
+
+FR_au_YourCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_au_YourCharacterIntroductionNoCommaPlusComma
+	}
+}
+
+FR_au_HerHisCharacterIntroduction = {
+	type = character
+
+	text = {
+		trigger = {
+			OR = {
+				has_RelationToMe_relation = { CHARACTER = scope:second }
+				exists = primary_title
+			}
+		}
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoComma #Should have no comma
+	}
+
+	#MyCharacterIntroductionNoComma + comma
+	text = {
+		localization_key = CustomLoc_FR_au_HerHisCharacterIntroductionNoCommaPlusComma
 	}
 }

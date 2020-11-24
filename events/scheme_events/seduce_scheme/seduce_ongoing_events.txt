@@ -28,6 +28,10 @@ namespace = seduce_ongoing
 # 6041 - Spy on their preferences
 # 1801 - Give a compliment, by Mathilda Bjarnehed
 
+## (AI) target personality
+# 7001 - Target is shy, how should you approach?
+
+
 #############################
 ## Second milestone events ##
 #############################
@@ -2189,6 +2193,16 @@ seduce_ongoing.3001 = {
 				days = { 5 10 }
 			}
 		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
+			}
+		}
 	}
 
 	#Let them off hook
@@ -2217,6 +2231,16 @@ seduce_ongoing.3001 = {
 			trigger_event = {
 				id = seduce_ongoing.3003
 				days = { 5 10 }
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
 			}
 		}
 	}
@@ -2269,6 +2293,16 @@ seduce_ongoing.3001 = {
 				}
 			}
 		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
+			}
+		}
 	}
 	
 	option = {
@@ -2279,6 +2313,9 @@ seduce_ongoing.3001 = {
 				name = declined_seduce_milestone_1_event
 				value = yes
 			}
+		}
+		ai_chance = {
+			base = 50
 		}
 	}
 }

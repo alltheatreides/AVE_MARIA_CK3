@@ -24,22 +24,7 @@ unite_the_western_slavs_decision = {
 
 	is_valid = {
 		has_culture_group = culture_group:west_slavic_group
-		trigger_if = {
-			limit = { title:k_poland = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_poland
-		}
-		trigger_if = {
-			limit = { title:k_pomerania = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_pomerania
-		}
-		trigger_if = {
-			limit = { title:k_bohemia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_bohemia
-		}
-		trigger_if = {
-			limit = { title:k_moravia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_moravia
-		}
+		completely_controls_region = custom_west_slavia #Has de jure Lands
 		OR = {
 			OR = {
 				has_primary_title = title:k_poland
@@ -111,26 +96,7 @@ unite_the_southern_slavs_decision = {
 
 	is_valid = {
 		has_culture_group = culture_group:south_slavic_group
-		trigger_if = {
-			limit = { title:k_croatia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_croatia
-		}
-		trigger_if = {
-			limit = { title:k_serbia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_serbia
-		}
-		trigger_if = {
-			limit = { title:k_bulgaria = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_bulgaria
-		}
-		trigger_if = {
-			limit = { title:k_dacia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_dacia #Wallachia
-		}
-		trigger_if = {
-			limit = { title:k_moldavia = { any_in_de_jure_hierarchy = { tier = tier_county } } } #Has de jure land
-			completely_controls = title:k_moldavia
-		}
+		completely_controls_region = custom_south_slavia #Has de jure Lands
 		OR = {
 			has_primary_title = title:k_croatia
 			has_primary_title = title:k_serbia
@@ -871,7 +837,7 @@ launch_hungarian_migration_decision = {
 		#Either be independent, or else not beneath another Mogyer.
 		OR = {
 			is_independent_ruler = yes
-			liege = { culture = culture:mogyer }
+			NOT = { liege = { culture = culture:mogyer } }
 		}
 		#Must be a steppe Hungarian.
 		culture = culture:mogyer

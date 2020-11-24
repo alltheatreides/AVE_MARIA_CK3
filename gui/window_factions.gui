@@ -40,7 +40,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
+		# using = Window_Background
 
 		widget = {
 			size = { 100% 100% }
@@ -503,13 +503,6 @@ types  FactionWindow
 									texture = "gfx/interface/window_factions/faction_progress_threshold.dds"
 								}
 							}
-
-							icon = {
-								texture = "gfx/interface/icons/symbols/icon_warning.dds"
-								name = "warning_icon"
-								size = { 25 25 }
-								visible = "[Or( Not( FactionItem.IsPowerThresholdVisible), FactionItem.HasEnoughPower )]"
-							}
 						}
 					}
 
@@ -593,7 +586,8 @@ types  FactionWindow
 
 		hbox = {
 			layoutpolicy_horizontal = expanding
-			margin = { 15 0 }
+			margin = { 15 5 }
+			margin_top = 10
 
 			expand = {}
 
@@ -605,9 +599,9 @@ types  FactionWindow
 				tooltip = "[FactionItem.BuildPressDemandsTooltip]"
 				onclick = "[FactionItem.PressDemmands]"
 
-				animation_aggressive = {
-					visible = "[FactionItem.CanPressDemands]"
-				}
+				# animation_aggressive = {
+				# 	visible = "[FactionItem.CanPressDemands]"
+				# }
 			}
 		}
 
@@ -618,7 +612,8 @@ types  FactionWindow
 		hbox = {
 			name = "faction_buttons"
 			layoutpolicy_horizontal = expanding
-			margin = { 15 10 }
+			margin = { 15 0 }
+			margin_bottom = 15
 			spacing = 3
 
 			button_group  = {

@@ -36,7 +36,7 @@
 #
 # Level 3 Mental Breaks
 #	stress_threshold.3001 —	The Voices [Generic]: Begin hearing voices that aren't real.
-#	stress_threshold.3101 —	Wrongdoing [Generic]: Weak grasp on reallity leads to paranoia-like mania.
+#	stress_threshold.3101 —	Wrongdoing [Generic]: Weak grasp on reality leads to paranoia-like mania.
 #	stress_threshold.3201 —	Overload [Generic]: Shuts down from overload, vassal may offer to help.
 #	stress_threshold.3301 —	Heart Ache [Generic]: Dies from heart attack.
 #	stress_threshold.3401 —	Shooting the Messenger: you dramatically punish someone for giving you bad news.
@@ -2567,7 +2567,12 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 			}
 		}
 		if = {
-			limit = { has_trait = confider }
+			limit = {
+				has_trait = confider
+				any_relation = {
+					type = friend
+				}
+			}
 			add_to_variable_list = {
 				name = extra_stress_threshold_event_option
 				target = flag:confider
@@ -2695,10 +2700,35 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 							save_scope_as = friend
 						}
 					}
+					else_if = {
+						limit = {
+							any_relation = {
+								type = best_friend
+								has_relation_flag = {
+									target = root
+									relation = best_friend
+									flag = has_been_confided_in
+								}
+							}
+						}
+						random_relation = {
+							type = best_friend
+							limit = {
+								has_relation_flag = {
+									target = root
+									relation = best_friend
+									flag = has_been_confided_in
+								}
+							}
+							save_scope_as = friend
+						}
+					}
+					else = {
 					random_relation = {
 						type = friend
 						save_scope_as = friend
 					}
+				}
 				}
 				10 = {
 					trigger = { has_character_flag = stress_threshold_drunkard }
@@ -2943,10 +2973,35 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 								save_scope_as = friend
 							}
 						}
+						else_if = {
+							limit = {
+								any_relation = {
+									type = best_friend
+									has_relation_flag = {
+										target = root
+										relation = best_friend
+										flag = has_been_confided_in
+									}
+								}
+							}
+							random_relation = {
+								type = best_friend
+								limit = {
+									has_relation_flag = {
+										target = root
+										relation = best_friend
+										flag = has_been_confided_in
+									}
+								}
+								save_scope_as = friend
+							}
+						}
+						else = {
 						random_relation = {
 							type = friend
 							save_scope_as = friend
 						}
+					}
 					}
 					10 = {
 						trigger = {
@@ -3281,6 +3336,17 @@ stress_threshold.1601 = {
 						}
 					}
 				}
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
 				add_relation_flag = {
 					target = root
 					relation = friend
@@ -3288,15 +3354,14 @@ stress_threshold.1601 = {
 				}
 			}
 		}
+		}
 		else = {
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 
 		add_stress = medium_stress_loss
 
@@ -3560,9 +3625,6 @@ stress_threshold.1601 = {
 	}
 
 	after = {
-		if = {
-			limit = { is_alive = yes }
-		}
 		stress_threshold_event_aftereffects = yes # Perform stress threshold event clean-up and preparation for future stress threshold events.
 	}
 }
@@ -3832,12 +3894,24 @@ stress_threshold.1602 = {
 				}
 			}
 			scope:friend = {
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
 				add_relation_flag = {
 					target = root
 					relation = friend
 					flag = has_been_confided_in
 				}
 			}
+		}
 		}
 		else_if = {
 			limit = { 
@@ -3851,14 +3925,12 @@ stress_threshold.1602 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 
 		add_stress = medium_stress_loss
 
@@ -4122,9 +4194,6 @@ stress_threshold.1602 = {
 	}
 
 	after = {
-		if = {
-			limit = { is_alive = yes }
-		}
 		stress_threshold_event_aftereffects = yes # Perform stress threshold event clean-up and preparation for future stress threshold events.
 	}
 }
@@ -4767,14 +4836,12 @@ stress_threshold.1701 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 
 		ai_chance = {
 			base = 25
@@ -4886,10 +4953,15 @@ stress_threshold.1701 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_lazy
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_lazy
 				NOT = { has_character_flag = had_stress_threshold_1701_desc_lazy }
 			}
 			add_character_flag = {
@@ -4957,6 +5029,7 @@ stress_threshold.1701 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -5565,7 +5638,13 @@ stress_threshold.1711 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
+
+		if = {
+			limit = {
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
 		if = {
 			limit = {
 				has_trait = am_greedy
@@ -5636,6 +5715,7 @@ stress_threshold.1711 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -5714,7 +5794,8 @@ stress_threshold.1721 = {
 					has_trait = am_hypocritical
 					NOT = { has_character_flag = had_stress_threshold_1721_cynical }
 				}
-				desc = stress_threshold.1721.desc.cynical
+				# Would collide with duke_female_polish before
+				desc = stress_threshold.1721.desc.cynical_no_collide
 			}
 			triggered_desc = {
 				trigger = {
@@ -6488,14 +6569,12 @@ stress_threshold.1721 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 
 		ai_chance = {
 			base = 25
@@ -6632,8 +6711,12 @@ stress_threshold.1721 = {
 
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
-		
-		#Set-up appropriate desc.
+		if = {
+			limit = {
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
 		if = {
 			limit = {
 				has_trait = chaste
@@ -6784,6 +6867,7 @@ stress_threshold.1721 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -7332,12 +7416,24 @@ stress_threshold.1731 = {
 				limit = {
 					this = scope:friend
 				}
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
 				add_relation_flag = {
 					target = root
 					relation = friend
 					flag = has_been_confided_in
 				}
 			}
+		}
 		}
 		else_if = {
 			limit = {
@@ -7351,14 +7447,12 @@ stress_threshold.1731 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 
 		ai_chance = {
 			base = 25
@@ -7503,7 +7597,12 @@ stress_threshold.1731 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
+		if = {
+			limit = {
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
 		if = {
 			limit = {
 				has_trait = lustful
@@ -7564,6 +7663,7 @@ stress_threshold.1731 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -7896,10 +7996,12 @@ stress_threshold.2201 = {
 				exists = liege
 				NOT = { liege = root }
 				NOT = { has_relation_rival = liege }
+				is_ai = yes
 			}
 			any_vassal = {
 				is_powerful_vassal = yes
 				NOT = { has_relation_rival = root }
+				is_ai = yes
 			}
 		}
 	}
@@ -7919,6 +8021,7 @@ stress_threshold.2201 = {
 					exists = liege
 					NOT = { liege = root }
 					NOT = { has_relation_rival = liege }
+					is_ai = yes
 					liege = {
 						dread_modified_ai_boldness = {
 							dreaded_character = root
@@ -7929,6 +8032,7 @@ stress_threshold.2201 = {
 				any_vassal = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
+					is_ai = yes
 					dread_modified_ai_boldness = {
 						dreaded_character = root
 						value <= low_positive_ai_value
@@ -7947,6 +8051,7 @@ stress_threshold.2201 = {
 				exists = liege
 				NOT = { liege = root }
 				NOT = { has_relation_rival = liege }
+				is_ai = yes
 			}
 			liege = {
 				save_scope_as = character_to_yell_at
@@ -7958,10 +8063,12 @@ stress_threshold.2201 = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
 					has_relation_potential_rival = root
+					is_ai = yes
 				}
 				alternative_limit = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
+					is_ai = yes
 				}
 				save_scope_as = character_to_yell_at
 			}
@@ -8152,7 +8259,14 @@ stress_threshold.2202 = {
 				}
 				desc = stress_threshold.2202.desc.liege
 			}
+			triggered_desc = {
+				trigger = {
+					scope:stress_character = { is_landed = yes }
+					target_is_vassal_or_below = scope:stress_character
+				}
 			desc = stress_threshold.2202.desc.vassal
+		}
+			desc = stress_threshold.2202.desc.other_relationship
 		}
 		desc = stress_threshold.2202.desc
 		first_valid = {
@@ -8168,21 +8282,6 @@ stress_threshold.2202 = {
 	theme = unfriendly
 	left_portrait = {
 		character = scope:stress_character
-		triggered_animation = {
-			trigger = {
-				scope:stress_character = {
-					dread_modified_ai_boldness = {
-						dreaded_character = root
-						value <= low_positive_ai_value
-					}
-				}
-			}
-			animation = fear
-		}
-		animation = anger
-	}
-	right_portrait = {
-		character = root
 		animation = anger
 	}
 
@@ -8677,7 +8776,12 @@ stress_threshold.2301 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
+		if = {
+			limit = {
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
 		if = {
 			limit = {
 				has_trait = lustful
@@ -8718,6 +8822,7 @@ stress_threshold.2301 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -9468,14 +9573,12 @@ stress_threshold.2311 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		#Add regret coping modifier.
 		add_character_modifier = {
@@ -9644,10 +9747,15 @@ stress_threshold.2311 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_generous
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_generous
 				NOT = { has_character_flag = had_stress_threshold_2311_desc_generous }
 			}
 			add_character_flag = {
@@ -9725,6 +9833,7 @@ stress_threshold.2311 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -10493,14 +10602,12 @@ stress_threshold.2321 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		#Court reacts to your little upset.
 		every_in_list = {
@@ -10669,10 +10776,15 @@ stress_threshold.2321 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_illtempered
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_illtempered
 				NOT = { has_character_flag = had_stress_threshold_2321_desc_impatient }
 			}
 			add_character_flag = {
@@ -10720,6 +10832,7 @@ stress_threshold.2321 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -11325,14 +11438,12 @@ stress_threshold.2331 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		if = {
 			limit = { exists = scope:friend }
@@ -11498,10 +11609,15 @@ stress_threshold.2331 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_patient
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_patient
 				NOT = { has_character_flag = had_stress_threshold_2331_desc_calm }
 			}
 			add_character_flag = {
@@ -11559,6 +11675,7 @@ stress_threshold.2331 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -12035,6 +12152,8 @@ stress_threshold.2341 = {
 	option = {
 		trigger = {
 			has_character_flag = stress_threshold_option_confider
+			exists = scope:friend
+			scope:friend = { is_alive = yes }
 		}
 		name = {
 			trigger = { can_be_confider = yes }
@@ -12079,6 +12198,32 @@ stress_threshold.2341 = {
 		else_if = {
 			limit = {
 				any_relation = {
+					type = best_friend
+					this = scope:friend
+					NOT = {
+						has_relation_flag = {
+							target = root
+							relation = friend
+							flag = has_been_confided_in
+						}
+					}
+				}
+			}
+			random_relation = {
+				type = best_friend
+				limit = {
+					this = scope:friend
+				}
+				add_relation_flag = {
+					target = root
+					relation = best_friend
+					flag = has_been_confided_in
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_relation = {
 					type = friend
 					this = scope:friend
 					has_relation_flag = {
@@ -12088,14 +12233,30 @@ stress_threshold.2341 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
+			}
+		}
+		else_if = {
+			limit = {
+				any_relation = {
+					type = best_friend
+					this = scope:friend
+					has_relation_flag = {
 					target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+			}
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		if = {
 			limit = { exists = scope:friend }
@@ -12222,10 +12383,15 @@ stress_threshold.2341 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_lazy
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_lazy
 				NOT = { has_character_flag = had_stress_threshold_2341_desc_lazy }
 			}
 			add_character_flag = {
@@ -12273,6 +12439,7 @@ stress_threshold.2341 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -12903,10 +13070,15 @@ stress_threshold.2351 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_conventional
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_conventional
 				NOT = { has_character_flag = had_stress_threshold_2351_desc_content }
 			}
 			add_character_flag = {
@@ -12954,6 +13126,7 @@ stress_threshold.2351 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -14059,14 +14232,12 @@ stress_threshold.3401 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		#Your confidant is blamed for the death.
 		if = {
@@ -14203,10 +14374,15 @@ stress_threshold.3401 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_quarrelsome
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_quarrelsome
 				NOT = { has_character_flag = had_stress_threshold_3401_desc_vengeful }
 			}
 			add_character_flag = {
@@ -14274,6 +14450,7 @@ stress_threshold.3401 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -15065,14 +15242,12 @@ stress_threshold.3411 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
+			reverse_add_opinion = {
+				target = scope:friend
 					modifier = friendliness_opinion
 					opinion = 20
 				}
 			}
-		}
 		
 		#Accusations of sycophancy & general disapproval ensue.
 		add_prestige = major_prestige_loss
@@ -15282,10 +15457,15 @@ stress_threshold.3411 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_generous
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = am_generous
 				NOT = { has_character_flag = had_stress_threshold_3411_desc_generous }
 			}
 			add_character_flag = {
@@ -15373,6 +15553,7 @@ stress_threshold.3411 = {
 				years = 10
 			}
 		}
+	}
 	}
 }
 
@@ -16123,7 +16304,12 @@ stress_threshold.3421 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
+		if = {
+			limit = {
+				is_alive = yes
+			}
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
 		if = {
 			limit = {
 				has_trait = lustful
@@ -16224,5 +16410,6 @@ stress_threshold.3421 = {
 				years = 10
 			}
 		}
+	}
 	}
 }

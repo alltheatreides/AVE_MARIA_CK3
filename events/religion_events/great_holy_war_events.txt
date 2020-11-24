@@ -229,9 +229,10 @@ great_holy_war.0001 = {
 				is_ai = yes
 				is_landed = yes
 				highest_held_title_tier >= tier_county
-				NOT = { this = scope:ghw_sponsor }
-				NOT = {
+				NOR = {
+					this = scope:ghw_sponsor
 					root.great_holy_war = { has_pledged_attacker = prev }
+					target_is_liege_or_above = scope:target_character
 				}
 			}
 			trigger_event = {
@@ -465,6 +466,7 @@ great_holy_war.0005 = {
 	scope = ghw
 
 	immediate = {
+
 		start_ghw_war = undirected_great_holy_war
 		divide_war_chest = {
 			fraction = 0.2
@@ -1397,6 +1399,7 @@ great_holy_war.0020 = {
 		NOT = { has_trait = incapable }
 		ai_zeal >= 0
 		root.faith = scope:the_faith
+		NOT = { target_is_liege_or_above = scope:target_character }
 		scope:the_faith = { # Crusade still exists
 			exists = great_holy_war
 			great_holy_war = {
@@ -1651,6 +1654,7 @@ great_holy_war.0092 = {
 		NOT = { has_trait = incapable }
 		ai_zeal >= 0
 		root.faith = scope:the_faith
+		NOT = { target_is_liege_or_above = scope:target_character }
 		scope:the_faith = { #Crusade still exists
 			exists = great_holy_war
 			great_holy_war = {
@@ -3677,11 +3681,11 @@ great_holy_war.0055 = {
 		ghw_war_declarer.faith = { save_scope_as = the_faith }
 
 		faith = {
-			change_fervor = -25
+			change_fervor = -10
 			set_variable = {
 				name = variable_ghw_cooldown
 				value = yes
-				years = 5
+				years = 30
 			}
 		}
 		every_player = {
@@ -3814,6 +3818,14 @@ great_holy_war.0060 = {
 		faith.great_holy_war.ghw_target_title = { save_scope_as = target_kingdom }
 		scope:army = {
 			army_commander = { trigger_event = great_holy_war.0057 }
+			army_owner = {
+				every_knight = {
+					limit = {
+						location = scope:current_location
+					}
+					trigger_event = great_holy_war.0057
+				}
+			}
 		}
 	}
 }

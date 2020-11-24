@@ -4827,6 +4827,7 @@ stewardship_domain_special.1397 = {
 				scope:peasant_leader = {
 					is_alive = yes
 					is_ruler = no
+					NOT = { is_courtier_of = root }
 				}
 			}
 			add_courtier = scope:peasant_leader
@@ -8555,6 +8556,7 @@ scripted_trigger stewardship_domain_special_3010_county_trigger = {
 	county_holder_opinion < 0
 	NOR = {
 		this = root.capital_county
+		has_county_modifier = county_listened_to_locals_modifier
 		has_county_modifier = county_increased_opinion_modifier
 	}
 
@@ -8686,8 +8688,8 @@ stewardship_domain_special.3012 = {
 					add_prestige = medium_prestige_gain
 					scope:stewardship_domain_special_3010_county = {
 						add_county_modifier = {
-							modifier = county_increased_opinion_modifier
-							years = 10
+							modifier = county_listened_to_locals_modifier
+							years = 25
 						}
 					}
 				}

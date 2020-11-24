@@ -74,7 +74,7 @@ ave_maria_roman_changed_obligations_trigger = {
 	custom_description = {
 		text = "modify_imperial_contract_select_different_obligation_level"
 		OR = {
-			local_var:ave_maria_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_administration_special_contract
+			local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
 			local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
 			local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
 			local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
@@ -88,7 +88,7 @@ ave_maria_cannot_modify_inactive_values = {
 	custom_description = {
 		text = "modify_ave_maria_contract_inactive_values"
 		if = {
-			limit = { local_var:ave_maria_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_administration_special_contract }
+			limit = { local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract }
 			OR = {
 				local_var:imperial_obligation_theme = scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
 				local_var:imperial_obligation_doukaton = scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton

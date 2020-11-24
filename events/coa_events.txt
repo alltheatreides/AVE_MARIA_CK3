@@ -14,12 +14,21 @@ coa.1 = {
 	}
 }
 
+scripted_trigger can_event_change_coa_trigger = {
+	holder = root
+	has_user_set_coa = no
+}
+
 coa.10 = {
 	type = character_event
 	hidden = yes
+
 	trigger = {
-		any_held_title = { this = title:k_england }
+		title:k_england = {
+			can_event_change_coa_trigger = yes
+		}
 	}
+
 	immediate = {
 		if = {
 			limit = { coa_switch_to_saxon_trigger = yes }
@@ -39,62 +48,79 @@ coa.10 = {
 	}
 }
 
+scripted_effect coa_11_set_coa_effect = {
+	title:$TITLE$ = { 
+		if = {
+			limit = { can_event_change_coa_trigger = yes }
+			set_coa = $TITLE$
+		}
+	}
+}
+
+scripted_effect coa_11_set_coa_suffix_effect = {
+	title:$TITLE$ = { 
+		if = {
+			limit = { can_event_change_coa_trigger = yes }
+			set_coa = $TITLE$_$SUFFIX$
+		}
+	}
+}
+
 coa.11 = {
 	type = character_event
 	hidden = yes
-	trigger = {
-	}
+
 	immediate = {
 		if = {
 			limit = { coa_switch_to_welsh_trigger = yes }
-			title:c_pembrokeshire		= { if = { limit = { holder = ROOT } set_coa = c_pembrokeshire		} }
-			title:c_glamorgan			= { if = { limit = { holder = ROOT } set_coa = c_glamorgan			} }
-			title:c_monmouthshire		= { if = { limit = { holder = ROOT } set_coa = c_monmouthshire		} }
+			coa_11_set_coa_effect = { TITLE = c_pembrokeshire }
+			coa_11_set_coa_effect = { TITLE = c_glamorgan }
+			coa_11_set_coa_effect = { TITLE = c_monmouthshire }
 		}
 		else_if = {
 			limit = { coa_switch_to_saxon_trigger = yes }
-			title:c_hereford 			= { if = { limit = { holder = ROOT } set_coa = c_hereford 			} }
-			title:c_westmorland 		= { if = { limit = { holder = ROOT } set_coa = c_westmorland 		} }
-			title:c_somerset 			= { if = { limit = { holder = ROOT } set_coa = c_somerset	 		} }
-			title:c_hampton 			= { if = { limit = { holder = ROOT } set_coa = c_hampton	 		} }
-			title:c_leicestershire 		= { if = { limit = { holder = ROOT } set_coa = c_leicestershire		} }
-			title:c_northamptonshire	= { if = { limit = { holder = ROOT } set_coa = c_northamptonshire	} }
-			title:c_east_riding			= { if = { limit = { holder = ROOT } set_coa = c_east_riding		} }
-			title:c_warwickshire		= { if = { limit = { holder = ROOT } set_coa = c_warwickshire		} }
-			title:c_gloucestershire		= { if = { limit = { holder = ROOT } set_coa = c_gloucestershire	} }
-			title:c_wiltshire			= { if = { limit = { holder = ROOT } set_coa = c_wiltshire			} }
-			title:c_norfolk				= { if = { limit = { holder = ROOT } set_coa = c_norfolk			} }
-			title:c_lancashire			= { if = { limit = { holder = ROOT } set_coa = c_lancashire			} }
-			title:c_north_riding		= { if = { limit = { holder = ROOT } set_coa = c_north_riding		} }
-			title:d_norfolk				= { if = { limit = { holder = ROOT } set_coa = d_norfolk			} }
-			title:d_lancaster			= { if = { limit = { holder = ROOT } set_coa = d_lancaster			} }
-			title:d_canterbury			= { if = { limit = { holder = ROOT } set_coa = d_canterbury			} }
-			title:d_bedford				= { if = { limit = { holder = ROOT } set_coa = d_bedford			} }
-			title:d_york				= { if = { limit = { holder = ROOT } set_coa = d_york				} }
+			coa_11_set_coa_effect = { TITLE = c_hereford }
+			coa_11_set_coa_effect = { TITLE = c_westmorland }
+			coa_11_set_coa_effect = { TITLE = c_somerset }
+			coa_11_set_coa_effect = { TITLE = c_hampton }
+			coa_11_set_coa_effect = { TITLE = c_leicestershire }
+			coa_11_set_coa_effect = { TITLE = c_northamptonshire  }
+			coa_11_set_coa_effect = { TITLE = c_east_riding }
+			coa_11_set_coa_effect = { TITLE = c_warwickshire }
+			coa_11_set_coa_effect = { TITLE = c_gloucestershire }
+			coa_11_set_coa_effect = { TITLE = c_wiltshire }
+			coa_11_set_coa_effect = { TITLE = c_norfolk }
+			coa_11_set_coa_effect = { TITLE = c_lancashire }
+			coa_11_set_coa_effect = { TITLE = c_north_riding }
+			coa_11_set_coa_effect = { TITLE = d_norfolk }
+			coa_11_set_coa_effect = { TITLE = d_lancaster }
+			coa_11_set_coa_effect = { TITLE = d_canterbury }
+			coa_11_set_coa_effect = { TITLE = d_bedford }
+			coa_11_set_coa_effect = { TITLE = d_york }
 		}
 		else_if = {
 			limit = { coa_switch_to_norman_trigger = yes }
-			title:c_hereford 			= { if = { limit = { holder = ROOT } set_coa = c_hereford_norman 			} }
-			title:c_westmorland 		= { if = { limit = { holder = ROOT } set_coa = c_westmorland_norman 		} }
-			title:c_somerset 			= { if = { limit = { holder = ROOT } set_coa = c_somerset_norman	 		} }
-			title:c_hampton 			= { if = { limit = { holder = ROOT } set_coa = c_hampton_norman	 			} }
-			title:c_leicestershire 		= { if = { limit = { holder = ROOT } set_coa = c_leicestershire_norman		} }
-			title:c_northamptonshire	= { if = { limit = { holder = ROOT } set_coa = c_northamptonshire_norman	} }
-			title:c_east_riding			= { if = { limit = { holder = ROOT } set_coa = c_east_riding_norman			} }
-			title:c_warwickshire		= { if = { limit = { holder = ROOT } set_coa = c_warwickshire_norman		} }
-			title:c_gloucestershire		= { if = { limit = { holder = ROOT } set_coa = c_gloucestershire_norman		} }
-			title:c_wiltshire			= { if = { limit = { holder = ROOT } set_coa = c_wiltshire_norman			} }
-			title:c_norfolk				= { if = { limit = { holder = ROOT } set_coa = c_norfolk_norman				} }
-			title:c_lancashire			= { if = { limit = { holder = ROOT } set_coa = c_lancashire_norman			} }
-			title:c_north_riding		= { if = { limit = { holder = ROOT } set_coa = c_north_riding_norman		} }
-			title:d_norfolk				= { if = { limit = { holder = ROOT } set_coa = d_norfolk_norman				} }
-			title:d_lancaster			= { if = { limit = { holder = ROOT } set_coa = d_lancaster_norman			} }
-			title:d_canterbury			= { if = { limit = { holder = ROOT } set_coa = d_canterbury_norman			} }
-			title:d_bedford				= { if = { limit = { holder = ROOT } set_coa = d_bedford_norman				} }
-			title:d_york				= { if = { limit = { holder = ROOT } set_coa = d_york_norman				} }
-			title:c_pembrokeshire		= { if = { limit = { holder = ROOT } set_coa = c_pembrokeshire_norman		} }
-			title:c_glamorgan			= { if = { limit = { holder = ROOT } set_coa = c_glamorgan_norman			} }
-			title:c_monmouthshire		= { if = { limit = { holder = ROOT } set_coa = c_monmouthshire_norman		} }
+			coa_11_set_coa_suffix_effect = { TITLE = c_hereford SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_westmorland SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_somerset SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_hampton SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_leicestershire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_northamptonshire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_east_riding SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_warwickshire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_gloucestershire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_wiltshire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_norfolk SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_lancashire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_north_riding SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = d_norfolk SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = d_lancaster SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = d_canterbury SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = d_bedford SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = d_york SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_pembrokeshire SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_glamorgan SUFFIX = norman }
+			coa_11_set_coa_suffix_effect = { TITLE = c_monmouthshire SUFFIX = norman }
 		}
 	}
 }

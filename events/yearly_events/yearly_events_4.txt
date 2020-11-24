@@ -22,6 +22,7 @@ namespace = yearly
 
 scripted_trigger yearly_4001_neighboring_ruler_trigger = {
 	basic_is_available_ai = yes
+	NOT = { is_at_war_with = root } 
 	is_adult = yes
 	OR = {
 		any_relation = {
@@ -239,6 +240,8 @@ yearly.4001 = {
 			}
 			random_neighboring_top_liege_realm_owner = {
 				limit = {
+					NOT = { is_at_war_with = root } 
+					is_adult = yes
 					basic_is_available_ai = yes
 					number_of_opposing_personality_traits = {
 						target = scope:vassal
@@ -1790,6 +1793,17 @@ scripted_trigger yearly_4031_courtier_trigger = {
 	}
 }
 
+scripted_trigger yearly_4031_murderous_trigger = {
+	OR = {
+		has_trait = sadistic
+		has_trait = am_deceitful
+		has_trait = murderer
+		any_secret = {
+			secret_type = secret_murder
+		}
+	}
+}
+
 yearly.4031 = {
 	type = character_event
 	title = yearly.4031.t
@@ -1902,14 +1916,7 @@ yearly.4031 = {
 						modifier = {
 							add = 50
 							player_heir = {
-								OR = {
-									has_trait = sadistic
-									has_trait = am_deceitful
-									has_trait = murderer
-									any_secret = {
-										secret_type = secret_murder
-									}
-								}
+								yearly_4031_murderous_trigger = yes
 							}
 						}
 						player_heir = {
@@ -1949,12 +1956,7 @@ yearly.4031 = {
 							add = 60
 							any_courtier = {
 								yearly_4031_courtier_trigger = yes
-								has_trait = sadistic
-								has_trait = am_deceitful
-								has_trait = murderer
-								any_secret = {
-									secret_type = secret_murder
-								}
+								yearly_4031_murderous_trigger = yes
 							}
 						}
 						random_courtier = {
@@ -1968,12 +1970,7 @@ yearly.4031 = {
 								}
 								modifier = {
 									add = 100
-									has_trait = sadistic
-									has_trait = am_deceitful
-									has_trait = murderer
-									any_secret = {
-										secret_type = secret_murder
-									}
+									yearly_4031_murderous_trigger = yes
 								}
 							}
 							save_scope_as = murderer

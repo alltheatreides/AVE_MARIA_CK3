@@ -138,6 +138,7 @@ archduchess = {
 
 archduchy = {
 	type = title
+	tier = kingdom
 	titles = { k_austria }
 	priority = 47
 	top_liege = no
@@ -4541,6 +4542,34 @@ duchy_feudal_iranian_group = {
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 }
+duke_feudal_independent_male_iranian_group = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	only_independent = yes
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+}
+duke_feudal_independent_female_iranian_group = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	only_independent = yes
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+}
+duchy_feudal_independent_iranian_group = {
+	type = title
+	tier = duchy
+	only_independent = yes
+	priority = 28
+	governments = { feudal_government clan_government }
+	culture_groups = { iranian_group }
+}
 king_feudal_male_iranian_group = {
 	type = character
 	gender = male
@@ -4654,7 +4683,7 @@ duke_feudal_muslim_male_iranian_group = {
 	gender = male
 	special = holder
 	tier = duchy
-	priority = 28
+	priority = 29
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 	religions = { islam_religion }
@@ -4664,7 +4693,7 @@ duke_feudal_muslim_female_iranian_group = {
 	gender = female
 	special = holder
 	tier = duchy
-	priority = 28
+	priority = 29
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 	religions = { islam_religion }
@@ -4672,7 +4701,7 @@ duke_feudal_muslim_female_iranian_group = {
 duchy_feudal_muslim_iranian_group = {
 	type = title
 	tier = duchy
-	priority = 28
+	priority = 29
 	governments = { feudal_government clan_government }
 	culture_groups = { iranian_group }
 	religions = { islam_religion }
@@ -5300,6 +5329,7 @@ duchy_feudal = {
 	governments = { feudal_government }
 	priority = 27
 }
+# Independent dukes of certain culture groups are known as Petty Kings instead of Dukes
 duke_feudal_independent = {
 	type = character
 	gender = male
@@ -5327,6 +5357,32 @@ duchy_feudal_independent = {
 	culture_groups = { north_germanic_group west_germanic_group goidelic_group brythonic_group east_african_group tibetan_group }
 	only_independent = yes
 	priority = 28
+}
+# The Dukes of Brittany are an exception to this, they're only known as Dukes even if independent.
+duke_feudal_brittany = { 
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 28
+	governments = { feudal_government }
+	titles = { d_brittany }
+}
+duke_feudal_brittany_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 28
+	governments = { feudal_government }
+	titles = { d_brittany }
+}
+duchy_feudal_brittany = {
+	type = title
+	tier = duchy
+	governments = { feudal_government }
+	titles = { d_brittany }
+	priority = 29
 }
 king_feudal_male = {
 	type = character
