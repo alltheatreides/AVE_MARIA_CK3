@@ -335,9 +335,9 @@
 						list = target_titles
 						trigger_if = {
 							limit = { tier = tier_barony }
-						title_province.barony = {
-							has_wrong_holding_type = no
-						}
+							title_province.barony = {
+								has_wrong_holding_type = no
+							}
 						}
 						count >= 1
 					}
@@ -415,13 +415,13 @@
 					limit = {
 						# Pre-filter 
 						OR = {
-							has_trait = am_greedy
+							has_trait = greedy
 							has_trait = ambitious
 						}
 						domain_size <= domain_limit # Not over my domain limit
 						any_in_list = {
 							list = target_titles
-							tier <= tier_county # At least 1 selected title counts toward domain limit
+							tier = tier_county # At least 1 selected title counts toward domain limit
 						}
 
 						# Special exemption for lieges who are over their held duchy limit, which are giving away that duchy (and associated counties) specifically
@@ -450,25 +450,25 @@
 						}
 					}
 					# Actual stress gain effects
-				if = {
-					limit = {
-						domain_size = domain_limit
+					if = {
+						limit = {
+							domain_size = domain_limit
+						}
+						stress_impact = {
+							greedy = minor_stress_impact_gain
+							ambitious = minor_stress_impact_gain
+						}
 					}
-					stress_impact = {
-						am_greedy = minor_stress_impact_gain
-						ambitious = minor_stress_impact_gain
+					else_if = {
+						limit = {
+							domain_size < domain_limit
+						}
+						stress_impact = {
+							greedy = medium_stress_impact_gain
+							ambitious = medium_stress_impact_gain
+						}
 					}
 				}
-				else_if = {
-					limit = {
-						domain_size < domain_limit
-					}
-					stress_impact = {
-						am_greedy = medium_stress_impact_gain
-						ambitious = medium_stress_impact_gain
-					}
-				}
-			}
 			}
 
 			#Feedback for actor

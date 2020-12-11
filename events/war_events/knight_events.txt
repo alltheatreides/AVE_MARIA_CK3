@@ -76,7 +76,7 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 2
-					has_trait = am_wroth
+					has_trait = wrathful
 				}
 				modifier = {
 					factor = 10
@@ -161,9 +161,9 @@ knights.0001 = {
 						has_doctrine = tenet_warmonger
 					}
 					NOR = {
-						has_trait = am_craven
+						has_trait = craven
 						has_trait = berserker
-						has_trait = am_patient
+						has_trait = calm
 					}
 				}
 				modifier = {
@@ -178,7 +178,7 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 5
-					has_trait = am_wroth
+					has_trait = wrathful
 				}
 				modifier = {
 					factor = 5
@@ -186,7 +186,7 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 3
-					has_trait = am_illtempered
+					has_trait = impatient
 				}
 				modifier = {
 					factor = 2
@@ -194,7 +194,7 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 2
-					has_trait = am_brave
+					has_trait = brave
 				}
 				modifier = {
 					factor = 2
@@ -206,11 +206,11 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 0.5
-					has_trait = am_conventional
+					has_trait = content
 				}
 				modifier = {
 					factor = 0.25
-					has_trait = am_tolerant
+					has_trait = compassionate
 				}
 				modifier = {
 					factor = 0.25
@@ -218,11 +218,11 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 0.25
-					has_trait = am_lazy
+					has_trait = lazy
 				}
 				modifier = {
 					factor = 0.25
-					has_trait = am_patient
+					has_trait = patient
 				}
 				modifier = {
 					factor = 0.5
@@ -312,7 +312,7 @@ knights.0001 = {
 					}
 				}
 			}
-			100 = { # Wounded
+			50 = { # Wounded
 				trigger = {
 					NOT = {
 						has_trait_rank = {
@@ -340,11 +340,11 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 2
-					has_trait = am_brave
+					has_trait = brave
 				}
 				modifier = {
 					factor = 0.5
-					has_trait = am_craven
+					has_trait = craven
 				}
 				if = {
 					limit = {
@@ -385,7 +385,7 @@ knights.0001 = {
 					increase_wounds_effect = { REASON = fight }
 				}
 			}
-			40 = { # Maimed
+			10 = { # Maimed
 				trigger = {
 					NAND = {
 						has_trait = one_legged
@@ -417,11 +417,11 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 2
-					has_trait = am_brave
+					has_trait = brave
 				}
 				modifier = {
 					factor = 0.5
-					has_trait = am_craven
+					has_trait = craven
 				}
 				if = {
 					limit = {
@@ -462,7 +462,7 @@ knights.0001 = {
 					maimed_in_battle_effect = yes
 				}
 			}
-			30 = { # Killed
+			5 = { # Killed
 				modifier = {
 					factor = { # Prowess directly reduces chance of injury/death
 						value = 30 # Value at which 'immortality' happens
@@ -486,11 +486,11 @@ knights.0001 = {
 				}
 				modifier = {
 					factor = 2
-					has_trait = am_brave
+					has_trait = brave
 				}
 				modifier = {
 					factor = 0.5
-					has_trait = am_craven
+					has_trait = craven
 				}
 				modifier = {
 					factor = 4

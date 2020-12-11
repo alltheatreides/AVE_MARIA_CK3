@@ -301,13 +301,14 @@ vassal_contract_can_be_modified_trigger = {
 # Requires local_var:<obligation_type> to be set for feudal obligations
 # WHO = Who's contract levels are being checked
 has_changed_contract_obligation_trigger = {
+	$WHO$ = { save_temporary_scope_as = obligation_check }
+
 	trigger_if = {
 		limit = {
 			$WHO$ = {
 				uses_roman_govt = no
 			}
 		}
-		$WHO$ = { save_temporary_scope_as = obligation_check }
 		custom_description = {
 			text = "modify_vassal_contract_select_different_obligation_level"
 			OR = {
@@ -330,12 +331,15 @@ has_changed_contract_obligation_trigger = {
 				uses_roman_govt = yes
 			}
 		}
-		$WHO$ = { save_temporary_scope_as = obligation_check }
 		custom_description = {
 			text = "modify_vassal_contract_select_different_obligation_level"
 			OR = {
-				local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
-			}	
+				local_var:imperial_obligation_tax != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_tax
+				local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
+				local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
+				local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+				# local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
+			}
 		}
 	}
 }

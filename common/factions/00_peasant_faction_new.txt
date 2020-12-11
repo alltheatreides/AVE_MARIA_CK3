@@ -83,7 +83,7 @@ peasant_faction = {
 						limit = { # To make sure we're not in debt
 							gold > 0
 						}
-					remove_long_term_gold = gold 
+						remove_long_term_gold = gold 
 					}
 
 					# The peasant leader mysteriously vanishes on the next game tick.
@@ -183,10 +183,10 @@ peasant_faction = {
 		}
 
 		# Reduced weight for a character's own capital to join a revolt against them.
-		# modifier = {
-		# 	add = -20
-		# 	this.title_province = scope:target.primary_title.title_province
-		# }
+		modifier = {
+			add = -20
+			this.title_province = scope:target.capital_province
+		}
 
 		legalism_virtue_and_sin_modifier = {
 			TARGET = scope:target

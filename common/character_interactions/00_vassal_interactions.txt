@@ -60,7 +60,7 @@ grant_vassal_interaction = {
 		}
 
 		trigger_if = {
-			limit = { scope:recipient.highest_held_title_tier <= tier_county }
+			limit = { scope:recipient.highest_held_title_tier = tier_county }
 			scope:recipient = { highest_held_title_tier > tier_county }
 		}
 		trigger_else = {
@@ -111,12 +111,12 @@ grant_vassal_interaction = {
 			subject = root
 			object = scope:actor
 			NOT = {
-					any_vassal_or_below = {
-						is_at_war_with = root
-					}
+				any_vassal_or_below = {
+					is_at_war_with = root
 				}
 			}
 		}
+	}
 	
 	auto_accept = {
 		scope:recipient = {
@@ -171,7 +171,7 @@ grant_vassal_interaction = {
 				}
 
 				stress_impact = {
-					am_greedy = medium_stress_impact_gain
+					greedy = medium_stress_impact_gain
 				}
 			}
 		}
@@ -564,7 +564,7 @@ retract_vassal_interaction = {
 						OR = {
 							has_trait = lunatic
 							has_trait = possessed
-							has_trait = am_inconstant
+							has_trait = arbitrary
 						}
 					}
 				}
@@ -746,7 +746,7 @@ start_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						am_honest = medium_stress_impact_gain
+						just = medium_stress_impact_gain
 					}
 				}
 			}
@@ -819,7 +819,7 @@ join_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						am_honest = minor_stress_impact_gain
+						just = minor_stress_impact_gain
 					}
 				}
 			}
@@ -1156,7 +1156,7 @@ force_onto_council = {
 					custom_tooltip = force_onto_council.actor.tt.duration
 				}
 			}
-			stress_impact = { am_conventional = minor_stress_impact_gain }
+			stress_impact = { content = minor_stress_impact_gain }
 		}
 		scope:recipient = {
 			assign_council_task = {

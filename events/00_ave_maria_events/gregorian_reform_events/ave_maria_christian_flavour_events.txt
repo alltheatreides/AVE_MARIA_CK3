@@ -1,0 +1,95 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# CHRISTIAN EVENTS																	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_christian_flavour
+
+# ave_maria_christian_flavour
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_christian_flavour.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		create_character = {
+			employer = root
+			template = christian_monk_character
+			save_scope_as = new_guy
+			gender_female_chance = 0
+		}
+		scope:new_guy = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		# create_character = {
+		# 	employer = root
+		# 	template = christian_cleric_character
+		# 	save_scope_as = new_guy
+		# }
+		# scope:new_guy = {
+		# 	add_random_hexaco_personality_trait = { WHO = this }
+		# }
+	}
+}
+
+ave_maria_christian_flavour.0002 = {
+	type = character_event
+	title = ave_maria_christian_flavour.0002.title
+	desc = ave_maria_christian_flavour.0002.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+
+	trigger = { exists = capital_province }
+
+	immediate = {
+		# Create random monk
+		create_character = {
+			employer = root
+			template = christian_monk_character
+			save_scope_as = target
+			gender_female_chance = 0
+		}
+		scope:target = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+	}
+
+	option = {
+		name = ave_maria_christian_flavour.0002.a
+	}
+
+	option = {
+		name = ave_maria_christian_flavour.0002.b
+		hidden_effect = {
+			scope:target = {		
+				death = {
+					death_reason = death_disappearance
+				}
+			}
+		}
+	}
+}
+

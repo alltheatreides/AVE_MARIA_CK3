@@ -2,7 +2,6 @@
 # Empty scope
 on_game_start = {
 	effect = {
-		
 		### 867 - WRATH OF THE NORTHMEN ###
 		#Æthelred dying (probably)
 		character:33358 = {
@@ -164,15 +163,6 @@ on_game_start = {
 				}
 			}
 		}
-
-		#############################################
-		# AVE MARIA									#
-		#############################################
-		
-		# every_ruler = {
-		# 	orc_apply_demesne_provinces_distance_malus = yes
-		# 	orc_apply_demesne_provinces_distance_malus_modifier = yes
-		# }
 	}
 }
 
@@ -227,198 +217,341 @@ on_game_start_after_lobby = {
 				VALUE = yes
 			}
 		}
-
-		#############################################
-		# AVE MARIA									#
-		#############################################
-
-		### KJH Distance Calculator
-		init_main = yes
-
-		## ORC Malus Distance Application
-		# every_ruler = {
-		# 	if = {
-		# 		limit = {
-		# 			is_landed = yes
-		# 			highest_held_title_tier >= tier_county
-		# 		}
-		# 		orc_apply_demesne_provinces_distance_malus = yes
-		# 		#trigger_event = ave_maria_opus_ruralium_commodorum.0001
-		# 	}
-		# 	# orc_apply_demesne_provinces_distance_malus = yes
-		# 	# orc_apply_demesne_provinces_distance_malus_modifier = yes
-		# 	#trigger_event = ave_maria_opus_ruralium_commodorum.0001
-		# }
-		
-		## Giving every living character the HEXACO traits
-		every_living_character = {
-			trigger_event = ave_maria_hexaco_traits_events.0001
-		}
-
-		## Trigger an event to Tagmas for their armies creation (TERMINATED) and creating them claimants, might move the event here cause it is rather useless
-		every_ruler = {
-			limit = {
-				roman_administration_holds_tagma_title_trigger = yes
-			}
-
-			## Give them armies <- Terminated -
-			## Give tagma commanders claimants
-			trigger_event = ave_maria_roman_administration_events.0002
-
-		}
-		
-		## Roman administration sheaningans and effects to make sure everything is working as intended
-		title:e_byzantium.holder = {
-			## Saving as scope cause why not
-			save_scope_as = roman_administration_basileus
-
-			## Change the government to be sure, fucking tendendcy to switch to wrong government type
-			change_government = roman_administration_government
-
-			## Effects on the roman emperor vassals for proper government assignement and other effects
-			trigger_event = ave_maria_roman_administration_events.0001
-			trigger_event = ave_maria_roman_administration_events.00021
-
-			## Setting up legitimacy 
-			trigger_event = ave_maria_roman_administration_legitimacy_events.0001
-
-			## Setting up office term event chain
-			every_vassal = {
-				limit = {
-					highest_held_title_tier = tier_duchy
-				}
+		### ACHIEVEMENT TRACKING FOR STARTING CHARACTERS
+		if = { 
+			limit = { has_multiple_players = no }
+			every_player = { 
 				if = {
-					limit = {
-						this = character:1734
+					limit = { 
+						exists = character:7757
+						this = character:7757
 					}
-					set_variable = { name = roman_administration_term_count value = 0 }
-					add_character_modifier = {
-						modifier = roman_administration_terms_of_office_0
-						years = 10
+					add_achievement_global_variable = {
+						VARIABLE = started_give_a_dog_a_bone_achievement
+						VALUE = yes
 					}
-					trigger_event = { 
-						id = ave_maria_roman_administration_events.00013
-						days = 365 
-					}
-				}
+				}	
 				if = {
-					limit = {
-						NOT = { 
-							has_variable = roman_administration_term_count
-						}
+					limit = { 
+						exists = character:1128
+						this = character:1128
 					}
-					random_list = {
-						25 = {
-							set_variable = { name = roman_administration_term_count value = 0 }
-							add_character_modifier = {
-								modifier = roman_administration_terms_of_office_0
-								years = 10
-							}
-							trigger_event = { 
-								id = ave_maria_roman_administration_events.00013
-								days = 365 
-							}
-						}
-						25 = {
-							set_variable = { name = roman_administration_term_count value = 1 }
-							add_character_modifier = {
-								modifier = roman_administration_terms_of_office_1
-								years = 10
-							}
-							trigger_event = { 
-								id = ave_maria_roman_administration_events.00014
-								days = 365 
-							}
-						}
-						25 = {
-							set_variable = { name = roman_administration_term_count value = 2 }
-							add_character_modifier = {
-								modifier = roman_administration_terms_of_office_2
-								years = 10
-							}
-							trigger_event = { 
-								id = ave_maria_roman_administration_events.00015
-								days = 365 
-							}
-						}
-						25 = {
-							set_variable = { name = roman_administration_term_count value = 3 }
-							add_character_modifier = {
-								modifier = roman_administration_terms_of_office_3
-								years = 10
-							}
-							trigger_event = { 
-								id = ave_maria_roman_administration_events.00016
-								days = 365 
-							}
-						}
-					}		
-					## Setting up the terms of office event chain
-					#trigger_event = ave_maria_roman_administration_events.00012
+					add_achievement_global_variable = {
+						VARIABLE = started_wily_as_the_fox_achievement
+						VALUE = yes
+					}
 				}
-								
-			}	
-			
-			## Assigning salary modifiers to officials purely for visuals and player info
-			# For high officials
-			every_vassal = {
 				if = {
 					limit = {
 						OR = {
-							roman_administration_holds_high_administration_title_trigger = yes
-							roman_administration_holds_tagma_title_trigger = yes
+							AND = {
+								exists = character:108501
+								this = character:108501
+							}
+							AND = {
+								exists = character:107500
+								this = character:107500
+							}
+							AND = {
+								exists = character:107501
+								this = character:107501
+							}
+							AND = {
+								exists = character:108500
+								this = character:108500
+							}
+							AND = {
+								exists = character:109500
+								this = character:109500
+							}
 						}
 					}
-					add_character_modifier = roman_administration_high_official_salary
-					
+					add_achievement_global_variable = {
+						VARIABLE = started_sibling_rivalry_achievement
+						VALUE = yes
+					}
 				}
-			}
-			# ## For Strategos
-			# every_vassal = {
-			# 	if = {
-			# 		limit = {
-			# 			roman_administration_holds_strategos_title_trigger = yes
-			# 		}
-			# 		add_character_modifier = roman_administration_strategos_salary
-			# 	}
-			# }
-			# ## For krites
-			# every_vassal = {
-			# 	if = {
-			# 		limit = {
-			# 			roman_administration_holds_military_title_trigger = no
-			# 			roman_administration_holds_high_administration_title_trigger = no
-			# 			highest_held_title_tier = tier_duchy
-			# 		}
-			# 		add_character_modifier = roman_administration_krites_salary
-			# 	}
-			# }
-
-			## Update the Salary cost Tax Income modifier
-			roman_administration_update_total_salary_cost = yes
-
-			## Change the government to be sure, fucking tendendcy to switch to wrong government type
-			change_government = roman_administration_government
-
-
-			#############################################
-			# Assigning historical District type		#
-			#############################################
-			
-			#setup_historical_roman_districts = yes
-			
-		}	
-
-		## Giving Roman Empire title a flag for the gui display
-		title:e_byzantium = {
-			set_variable = {
-				name = roman_administration_senate_political_relevance_medium
-				value = yes
+				if = {
+					limit = {
+						OR = {
+							AND = {
+								exists = character:163108
+								this = character:163108
+							}
+							AND = {
+								exists = character:163110
+								this = character:163110
+							}
+							AND = {
+								exists = character:163111
+								this = character:163111
+							}
+							AND = {
+								exists = character:163112
+								this = character:163112
+							}
+							AND = {
+								exists = character:163119
+								this = character:163119
+							}
+						}
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_blood_eagle_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						exists = character:6448
+						this = character:6448
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_kings_to_the_seventh_generation_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						exists = character:140
+						this = character:140
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_norman_yoke_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						exists = character:522
+						this = character:522
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_royal_dignity_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						exists = character:40605
+						this = character:40605
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_land_of_the_rus_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						exists = character:251187
+						this = character:251187
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_mother_of_us_all_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							culture_group = culture_group:iberian_group
+							culture = culture:andalusian
+						}
+						has_religion = religion:christianity_religion
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_reconquista_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						culture = culture:irish
+						capital_province = { geographical_region = custom_ireland }
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_the_emerald_isle_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							culture = culture:castilian
+							culture = culture:basque
+							culture = culture:portuguese
+							culture = culture:catalan
+							culture = culture:andalusian
+							culture = culture:visigothic
+							culture = culture:suebi
+						}
+						has_religion = religion:islam_religion
+						capital_province = { geographical_region = world_europe_west_iberia }
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_al_andalus_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = { 
+						exists = character:159137
+						this = character:159137
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_almost_there_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = { 
+						exists = character:109607
+						this = character:109607
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_last_count_first_king_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = { 
+						exists = character:6878
+						this = character:6878
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_going_places_achievement
+						VALUE = yes
+					}
+				}
 			}
 		}
 
-		## Prevent the pope and bishops from marrying
+
+		#############################################
+		# AVE MARIA EFFECTS							#
+		#############################################
+
+		## HEXACO
+		hexaco_game_start_setup = yes
+
+		## Roman Administration
+		title:e_byzantium.holder = {
+			trigger_event = ave_maria_roman_administration_events.0001
+	
+			## Set up emperor legitimacy
+			roman_administration_update_legitimacy_variable = yes
+	
+			## Set up emperor popularity
+			roman_administration_update_popularity_variable = yes
+	
+			## Distribute legitimacy
+			roman_administration_game_start_legitimacy_distribution = yes
+	
+			## Terms of office event chain start up
+			roman_administration_game_start_vassal_terms_of_office_setup = yes
+	
+			## Office salary indicator for high officials
+			roman_administration_game_start_vassal_salary_modifier_setup = yes
+
+			
+			## Update the Salary cost Tax Income negative modifier for the emperor
+			roman_administration_update_total_salary_cost = yes
+
+			every_vassal = {
+				if = {
+					limit = { uses_roman_govt = no NOT = { has_government = theocracy_government } }
+					change_government = roman_administration_government
+				}
+				every_vassal = {
+					if = {
+						limit = { uses_roman_govt = no NOT = { has_government = theocracy_government } }
+						change_government = roman_administration_government
+					}					
+				}
+			}
+
+			every_vassal = {
+				if = {
+					limit = {
+						roman_administration_holds_tagma_title_trigger = yes
+					}
+					primary_title = {
+						add_to_global_variable_list = {
+							name = roman_administration_tagma_list
+							target = this
+						}
+					}
+				}
+				if = {
+					limit = {
+						roman_administration_holds_high_administration_title_trigger = yes
+					}
+					primary_title = {
+						add_to_global_variable_list = {
+							name = roman_administration_sekreton_list
+							target = this
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_held_title = {
+							OR = {
+								this = title:d_antioch
+								this = title:d_vaspurakan
+								this = title:d_greater_armenia
+								this = title:d_mesopotamia
+								this = title:d_bulgaria
+								this = title:d_turnovo
+								this = title:d_langobardia_roman
+							}
+						}
+					}
+					primary_title = {
+						add_to_global_variable_list = {
+							name = roman_administration_doukaton_list
+							target = this
+						}
+						set_variable = {
+							name = roman_administration_doukaton_title
+							value = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_held_title = {
+							OR = {
+								this = title:d_thrace
+							}
+						}
+					}
+					primary_title = {
+						add_to_global_variable_list = {
+							name = roman_administration_kouratoreia_list
+							target = this
+						}
+						set_variable = {
+							name = roman_administration_kouratoreia_title
+							value = yes
+						}
+					}
+				}
+			}
+		}
+
+		title:e_persia.holder = {
+			# trigger_event = { id = ave_maria_roman_administration_start_up_events.0001 days = 1 }
+			start_war = {
+				cb = invasion_war
+				target = character:1732
+				target_title = k_armenia
+			}
+		}
+
+		## CHRISTIAN
 		title:k_papal_state.holder = {
+			change_government = theocracy_government
 			add_trait = pope
 		}
 		every_ruler = {

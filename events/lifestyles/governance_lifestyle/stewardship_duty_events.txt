@@ -27,27 +27,27 @@
 
 scripted_trigger stewardship_duty_0001_argumentative_trigger = {
 	OR = {
-		has_trait = am_wroth
-		has_trait = am_illtempered
-		has_trait = am_pretentious
+		has_trait = wrathful
+		has_trait = impatient
+		has_trait = arrogant
 		has_trait = ambitious
-		has_trait = am_fearful
-		has_trait = am_deceitful
-		has_trait = am_stubborn
-		has_trait = am_quarrelsome
+		has_trait = paranoid
+		has_trait = callous
+		has_trait = stubborn
+		has_trait = vengeful
 	}
 }
 
 scripted_trigger stewardship_duty_0001_complaisant_trigger = {
 	OR = {
-		has_trait = am_wroth
-		has_trait = am_illtempered
-		has_trait = am_pretentious
+		has_trait = wrathful
+		has_trait = impatient
+		has_trait = arrogant
 		has_trait = ambitious
-		has_trait = am_fearful
-		has_trait = am_deceitful
-		has_trait = am_stubborn
-		has_trait = am_quarrelsome
+		has_trait = paranoid
+		has_trait = callous
+		has_trait = stubborn
+		has_trait = vengeful
 	}
 }
 
@@ -323,9 +323,9 @@ stewardship_duty.0001 = {
 		}
 
 		stress_impact = {
-			am_wroth = minor_stress_gain
-			am_craven = minor_stress_gain
-			am_withdrawn = minor_stress_gain
+			wrathful = minor_stress_gain
+			craven = minor_stress_gain
+			shy = minor_stress_gain
 		}
 	}
 
@@ -342,9 +342,9 @@ stewardship_duty.0001 = {
 		}
 
 		stress_impact = {
-			am_honest = minor_stress_gain
-			am_honest = minor_stress_gain
-			am_tolerant = minor_stress_gain
+			honest = minor_stress_gain
+			just = minor_stress_gain
+			compassionate = minor_stress_gain
 		}
 	}
 	
@@ -361,9 +361,9 @@ stewardship_duty.0001 = {
 		}
 
 		stress_impact = {
-			am_honest = minor_stress_gain
-			am_honest = minor_stress_gain
-			am_tolerant = minor_stress_gain
+			honest = minor_stress_gain
+			just = minor_stress_gain
+			compassionate = minor_stress_gain
 		}
 	}
 }
@@ -1115,7 +1115,7 @@ stewardship_duty.1055 = {
 
 			modifier = {
 				AND = {
-					has_trait = am_honest
+					has_trait = just
 					scope:new_mother.faith = {
 						NOT = { has_doctrine_parameter = bastards_none }
 					}
@@ -1286,8 +1286,8 @@ stewardship_duty.1062 = {
 
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
-			am_humble = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -1328,8 +1328,8 @@ stewardship_duty.1062 = {
 		}
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
-			am_hypocritical = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			cynical = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -1368,7 +1368,7 @@ stewardship_duty.1062 = {
 		}
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 			dull = minor_stress_impact_gain
 		}
 		ai_chance = {
@@ -1385,16 +1385,16 @@ stewardship_duty.1062 = {
 	option = {
 		name = stewardship_duty.1062.d
 		trigger = {
-			NOT = { has_trait = am_greedy }
+			NOT = { has_trait = greedy }
 		}
 		
 		add_prestige = minor_prestige_loss
 
 		stress_impact = {
-			am_outgoing = medium_stress_impact_gain
+			gregarious = medium_stress_impact_gain
 			ambitious = medium_stress_impact_gain
-			am_generous = medium_stress_impact_gain
-			am_intolerant = minor_stress_impact_gain
+			generous = medium_stress_impact_gain
+			zealous = minor_stress_impact_gain
 			shrewd = minor_stress_impact_gain
 			
 		}
@@ -1411,12 +1411,12 @@ stewardship_duty.1062 = {
 	option = {
 		name = stewardship_duty.1062.e
 		trigger = {
-			has_trait = am_greedy
+			has_trait = greedy
 		}
-		trait = am_greedy
+		trait = greedy
 		
 		stress_impact = {
-			am_greedy = medium_stress_impact_loss
+			greedy = medium_stress_impact_loss
 		}
 
 		ai_chance = {
@@ -1848,12 +1848,12 @@ scripted_trigger stewardship_duty_1071_abusive_ruler = {
 	OR = {
 		has_trait = torturer
 		has_trait = sadistic
-		has_trait = am_wroth
-		has_trait = am_inconstant
+		has_trait = wrathful
+		has_trait = arbitrary
 	}
 	NOR = {
-		has_trait = am_honest
-		has_trait = am_tolerant
+		has_trait = just
+		has_trait = compassionate
 	}
 }
 
@@ -1910,8 +1910,8 @@ stewardship_duty.1071 = {
 		NOR = {
 			has_trait = torturer
 			has_trait = sadistic
-			has_trait = am_wroth
-			has_trait = am_inconstant
+			has_trait = wrathful
+			has_trait = arbitrary
 		}
 
 		#Must hold a county which is adjacent to the county of an abusive feudal lord.
@@ -1928,11 +1928,11 @@ stewardship_duty.1071 = {
 
 		#More likely to occur for Just characters, and much more likely to occur for Compassionate ones.
 		modifier = {
-			has_trait = am_tolerant
+			has_trait = compassionate
 			add = 0.6
 		}
 		modifier = {
-			has_trait = am_honest
+			has_trait = just
 			add = 0.2
 		}
 
@@ -2009,9 +2009,9 @@ stewardship_duty.1071 = {
 
 		#The serfs are likely to suffer greatly for this, which will weigh on some character's consciences.
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_agreeable = minor_stress_impact_gain
-			am_greedy = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			forgiving = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -2058,7 +2058,7 @@ stewardship_duty.1071 = {
 		}
 
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -2074,13 +2074,13 @@ stewardship_duty.1071 = {
 		#Special option text if you are compassionate.
 		name = {
 			trigger = {
-				NOT = { has_trait = am_tolerant }
+				NOT = { has_trait = compassionate }
 			}
 			text = stewardship_duty.1071.c
 		}
 		name = {
 			trigger = {
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 			text = stewardship_duty.1071.c.compassionate
 		}
@@ -2096,10 +2096,10 @@ stewardship_duty.1071 = {
 		}
 
 		#Bonus county opinion if you are compassionate.
-		trait = am_tolerant
+		trait = compassionate
 		if = {
 			limit = {
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 			scope:target_county = {
 				add_county_modifier = {
@@ -2188,8 +2188,8 @@ stewardship_duty.1071 = {
 
 
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
-			am_honest = minor_stress_impact_gain
+			craven = medium_stress_impact_gain
+			just = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -2280,9 +2280,9 @@ stewardship_duty.1072 = {
 		}
 
 		stress_impact = {
-			am_brave = medium_stress_impact_gain
-			am_stubborn = medium_stress_impact_gain
-			am_greedy = medium_stress_impact_gain
+			brave = medium_stress_impact_gain
+			stubborn = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 			ambitious = medium_stress_impact_gain
 		}
 
@@ -2297,13 +2297,13 @@ stewardship_duty.1072 = {
 		#Special option text if you are compassionate.
 		name = {
 			trigger = {
-				NOT = { has_trait = am_tolerant }
+				NOT = { has_trait = compassionate }
 			}
 			text = stewardship_duty.1072.b
 		}
 		name = {
 			trigger = {
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 			text = stewardship_duty.1072.b.compassionate
 		}
@@ -2386,9 +2386,9 @@ stewardship_duty.1072 = {
 		}
 
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
-			am_generous = medium_stress_impact_gain
-			am_conventional = minor_stress_impact_gain
+			craven = medium_stress_impact_gain
+			generous = medium_stress_impact_gain
+			content = minor_stress_impact_gain
 		}
 	}
 }
@@ -2576,7 +2576,7 @@ stewardship_duty.4010 = {
 					base = 10
 
 					modifier = {
-						has_trait = am_greedy
+						has_trait = greedy
 						add = 5
 					}
 					modifier = {
@@ -2585,13 +2585,13 @@ stewardship_duty.4010 = {
 					}
 					modifier = {
 						AND = {
-							has_trait = am_intolerant
+							has_trait = zealous
 							faith = root.faith
 						}
 						add = 5
 					}
 					modifier = {
-						has_trait = am_pretentious
+						has_trait = arrogant
 						add = 5
 					}
 
@@ -2953,7 +2953,7 @@ stewardship_duty.4011 = {
 			}
 
 			modifier = {
-				has_trait = am_greedy
+				has_trait = greedy
 				add = 10000
 			}
 		}
@@ -2979,7 +2979,7 @@ stewardship_duty.4011 = {
 		}
 
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 	}
 }
@@ -3058,7 +3058,7 @@ stewardship_duty.4012 = {
 		}
 
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 			ambitious = minor_stress_impact_gain
 		}
 	}
@@ -3082,7 +3082,7 @@ stewardship_duty.4012 = {
 		}
 
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
+			compassionate = minor_stress_impact_gain
 		}
 	}
 }
@@ -3150,19 +3150,19 @@ stewardship_duty.4013 = {
 			}
 
 			modifier = { # Because of course Arrogant characters respond to flattery well.
-				has_trait = am_pretentious
+				has_trait = arrogant
 				add = 100000
 			}
 
 			modifier = { # Flattery is actively distasteful to Humble characters.
-				has_trait = am_humble
+				has_trait = humble
 				add = -100000
 			}
 		}
 
 		stress_impact = {
-			am_humble = minor_stress_impact_gain
-			am_conventional = minor_stress_impact_gain
+			humble = minor_stress_impact_gain
+			content = minor_stress_impact_gain
 		}
 	}
 
@@ -3182,13 +3182,13 @@ stewardship_duty.4013 = {
 			}
 
 			modifier = { # Paranoid characters are skeptical of flattery.
-				has_trait = am_fearful
+				has_trait = paranoid
 				add = 10000
 			}
 		}
 
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
 		}
 	}
 }
@@ -3252,7 +3252,7 @@ stewardship_duty.4014 = {
 
 			modifier = { # Extremely willing to accept if the liege is of the same faith.
 				AND = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					faith = scope:my_liege.faith
 				}
 				add = 100000
@@ -3271,7 +3271,7 @@ stewardship_duty.4014 = {
 		}
 
 		stress_impact = {
-			am_hypocritical = medium_stress_impact_gain
+			cynical = medium_stress_impact_gain
 		}		
 	}
 
@@ -3292,7 +3292,7 @@ stewardship_duty.4014 = {
 			}
 
 			modifier = { # Cynical characters reject this argument outright.
-				has_trait = am_hypocritical
+				has_trait = cynical
 				add = 10000
 			}
 			modifier = { # Characters who consider their liege to be an infidel/heathen/heretic will never accept this argument.
@@ -3311,7 +3311,7 @@ stewardship_duty.4014 = {
 				faith = scope:my_liege.faith
 			}
 			stress_impact = {
-				am_intolerant = medium_stress_impact_gain
+				zealous = medium_stress_impact_gain
 			}
 		}
 	}
@@ -3523,7 +3523,12 @@ stewardship_duty.4020 = {
 scripted_trigger stewardship_duty_4040_valid_target = {
 
 	is_available_ai_adult = yes
-	vassal_contract_obligation_level_can_be_increased = feudal_government_taxes
+	trigger_if = {
+		limit = {
+			uses_roman_govt = no
+		}
+		vassal_contract_obligation_level_can_be_increased = feudal_government_taxes	
+	}	
 
 	# We do not want to increase the obligations of our own heir, as when they inherit those changes would become meaningless or even counter-productive.
 	OR = {
@@ -3557,6 +3562,7 @@ stewardship_duty.4040 = {
 		# More likely to be selected if we have a vassal with an altered vassal contract.
 		modifier = {
 			any_vassal = {
+				uses_roman_govt = no
 				vassal_contract_has_modifiable_obligations = yes
 				NOT = { vassal_contract_obligation_level:feudal_government_taxes = feudal_tax_normal_level }
 			}
@@ -3635,7 +3641,7 @@ stewardship_duty.4040 = {
 
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -3719,9 +3725,9 @@ stewardship_duty.4040 = {
 
 
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
-			am_generous = minor_stress_impact_gain
-			am_conventional = minor_stress_impact_gain
+			shy = medium_stress_impact_gain
+			generous = minor_stress_impact_gain
+			content = minor_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -3825,11 +3831,11 @@ stewardship_duty.4040 = {
 		}
 
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-			am_humble = minor_stress_impact_gain
-			am_generous = minor_stress_impact_gain
-			am_conventional = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			just = minor_stress_impact_gain
+			humble = minor_stress_impact_gain
+			generous = minor_stress_impact_gain
+			content = minor_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -3858,9 +3864,9 @@ stewardship_duty.4040 = {
 		}
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 			ambitious = minor_stress_impact_gain
-			am_honest = minor_stress_impact_gain
+			just = minor_stress_impact_gain
 
 		}
 
@@ -4188,15 +4194,15 @@ stewardship_duty.4060 = {
 
 					stress_impact = {
 						base = minor_stress_impact_gain
-						am_pretentious = minor_stress_impact_gain						
+						arrogant = minor_stress_impact_gain						
 					}	
 				}
 			}
 		}
 
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = minor_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = minor_stress_impact_gain
 
 		}	
 
@@ -4261,7 +4267,7 @@ stewardship_duty.4060 = {
 		}
 
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}	
 	}
 
@@ -4297,10 +4303,10 @@ stewardship_duty.4060 = {
 		}
 
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-			am_humble = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			just = medium_stress_impact_gain
+			honest = minor_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}	
 
 		ai_chance = {
@@ -4330,7 +4336,7 @@ stewardship_duty.4060 = {
 		custom_tooltip = stewardship_duty.4060.decline.tt
 		stress_impact = {
 			base = minor_stress_impact_loss
-			am_diligent = medium_stress_impact_gain
+			diligent = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -4361,12 +4367,17 @@ scripted_trigger stewardship_duty_5021_cheating_vassal_trigger = {
 		ai_greed >= high_positive_ai_value
 		ai_honor <= high_negative_ai_value
 	}
-	NOT = { has_trait = am_honest }
+	NOT = { has_trait = honest }
 }
 
 scripted_trigger stewardship_duty_5012_can_increase_vassal_contract_trigger = {
 	vassal_contract_can_be_modified_trigger = yes
-	vassal_contract_obligation_level_can_be_increased = feudal_government_taxes 
+	trigger_if = {
+		limit = {
+			uses_roman_govt = no
+		}
+		vassal_contract_obligation_level_can_be_increased = feudal_government_taxes 
+	}	
 }
 
 
@@ -4511,7 +4522,7 @@ stewardship_duty.5021 = {
 			}
 		}
 		stress_impact = {
-			am_craven = minor_stress_impact_gain
+			craven = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -4541,11 +4552,11 @@ stewardship_duty.5021 = {
 
 
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
-			am_agreeable = minor_stress_impact_gain
-			am_conventional = minor_stress_impact_gain
-			am_generous = minor_stress_impact_gain
-			am_craven = medium_stress_impact_gain
+			compassionate = minor_stress_impact_gain
+			forgiving = minor_stress_impact_gain
+			content = minor_stress_impact_gain
+			generous = minor_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -4580,7 +4591,7 @@ stewardship_duty.5021 = {
 			base = 50
 			modifier = {
 				add = 50
-				has_trait = am_agreeable
+				has_trait = forgiving
 			}
 			ai_value_modifier = {
 				ai_compassion = 0.5
@@ -4719,14 +4730,14 @@ stewardship_duty.7001 = {
 				}
 
 				stress_impact = {
-					am_pretentious = minor_stress_impact_gain
+					arrogant = minor_stress_impact_gain
 				}
 			}
 		}
 
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -4770,7 +4781,7 @@ stewardship_duty.7001 = {
 		}
 		stress_impact = {
 			ambitious = minor_stress_impact_gain
-			am_illtempered = minor_stress_impact_gain
+			impatient = minor_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -4813,12 +4824,12 @@ stewardship_duty.7001 = {
 		}
 
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
-			am_tolerant = minor_stress_impact_gain
-			am_patient = minor_stress_impact_gain
-			am_patient = minor_stress_impact_gain
-			am_humble = minor_stress_impact_gain
+			craven = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			compassionate = minor_stress_impact_gain
+			calm = minor_stress_impact_gain
+			patient = minor_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -5010,7 +5021,7 @@ stewardship_duty.7023 = {
 		}
 
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 
 		if = { # If the hook holder is an AI, they auto-accept the offer.
@@ -5083,7 +5094,7 @@ stewardship_duty.7023 = {
 		name = stewardship_duty.7023.b
 
 		stress_impact = {
-			am_withdrawn = minor_stress_gain
+			shy = minor_stress_gain
 		}
 
 		add_stewardship_lifestyle_xp = medium_lifestyle_experience
@@ -5189,9 +5200,9 @@ stewardship_duty.7023 = {
 		name = stewardship_duty.7023.c
 
 		stress_impact = {
-			am_honest = minor_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
-			am_humble = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}
 
 		add_stewardship_lifestyle_xp = medium_lifestyle_experience
@@ -5280,8 +5291,8 @@ stewardship_duty.7023 = {
 		}
 
 		stress_impact = {
-			am_tolerant = major_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -5326,7 +5337,7 @@ stewardship_duty.7023 = {
 		custom_tooltip = stewardship_duty.7023.d.tt
 
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 			ambitious = minor_stress_impact_gain
 		}
 
@@ -5532,7 +5543,7 @@ stewardship_duty.7025 = {
 			}
 			stress_impact = {
 				base = scope:base_stress_impact_gain
-				am_greedy = medium_stress_impact_gain
+				greedy = medium_stress_impact_gain
 			}
 		}
 		else_if = {
@@ -5542,9 +5553,9 @@ stewardship_duty.7025 = {
 			}
 			stress_impact = {
 				base = scope:base_stress_impact_gain
-				am_generous = medium_stress_impact_gain
-				am_tolerant = medium_stress_impact_gain
-				am_agreeable = medium_stress_impact_gain
+				generous = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				forgiving = medium_stress_impact_gain
 			}
 		}
 		else_if = {
@@ -5554,8 +5565,8 @@ stewardship_duty.7025 = {
 			}
 			stress_impact = {
 				base = scope:base_stress_impact_gain
-				am_craven = medium_stress_impact_gain
-				am_conventional = minor_stress_impact_gain
+				craven = medium_stress_impact_gain
+				content = minor_stress_impact_gain
 			}
 		}
 
@@ -5942,8 +5953,8 @@ stewardship_duty_special.1201 = {
 		
 		stress_impact = {
 			base = medium_stress_impact_loss
-			am_lazy = minor_stress_impact_loss
-			am_diligent = minor_stress_impact_gain
+			lazy = minor_stress_impact_loss
+			diligent = minor_stress_impact_gain
 		}
 		
 		remove_character_flag = is_in_stewardship_duty_special_event
@@ -6021,7 +6032,7 @@ stewardship_duty_special.1203 = {
 			increase_wounds_effect = { REASON = fight }
 		}
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 	}
 	
@@ -6029,8 +6040,8 @@ stewardship_duty_special.1203 = {
 		name = stewardship_duty_special.1203.b
 		remove_short_term_gold = minor_gold_value
 		stress_impact = {
-			am_brave = medium_stress_impact_gain
-			am_greedy = minor_stress_impact_gain
+			brave = medium_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 	}
 
@@ -6152,7 +6163,7 @@ stewardship_duty_special.1205 = {
 			target = scope:painting_land_owner
 		}
 		stress_impact = {
-			am_humble = minor_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}
 	}
 
@@ -6163,7 +6174,7 @@ stewardship_duty_special.1205 = {
 			years = 5
 		}
 		stress_impact = {
-			am_pretentious = minor_stress_impact_gain
+			arrogant = minor_stress_impact_gain
 		}
 	}
 
@@ -6230,7 +6241,7 @@ stewardship_duty_special.1206 = {
 			years = 5
 		}
 		stress_impact = {
-			am_lazy = minor_stress_impact_gain
+			lazy = minor_stress_impact_gain
 		}
 	}
 
@@ -6241,7 +6252,7 @@ stewardship_duty_special.1206 = {
 			years = 5
 		}
 		stress_impact = {
-			am_withdrawn = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
 		}
 	}
 
@@ -6284,8 +6295,8 @@ stewardship_duty_special.1207 = {
 			years = 5
 		}
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
-			am_pretentious = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			arrogant = minor_stress_impact_gain
 		}
 	}
 
@@ -6293,7 +6304,7 @@ stewardship_duty_special.1207 = {
 		name = stewardship_duty_special.1207.b
 		add_prestige = medium_prestige_gain
 		stress_impact = {
-			am_humble = medium_stress_impact_gain
+			humble = medium_stress_impact_gain
 		}
 	}
 
@@ -6605,7 +6616,7 @@ scripted_trigger stewardship_duty_special_2000_vassal_trigger = {
 	OR = {
 		AND = {
 			root = { highest_held_title_tier <= tier_duchy }
-			highest_held_title_tier <= tier_county
+			highest_held_title_tier = tier_county
 		}
 		AND = {
 			root = { highest_held_title_tier >= tier_kingdom }
@@ -7476,7 +7487,7 @@ stewardship_duty_special.2015 = {
 		custom_tooltip = statecraft_mediation_favor_vassal_1
 		add_prestige = minor_prestige_gain
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 	}
 
@@ -7516,7 +7527,7 @@ stewardship_duty_special.2015 = {
 			}
 		}
 		stress_impact = {
-			am_inconstant = medium_stress_impact_gain
+			arbitrary = medium_stress_impact_gain
 		}
 	}
 }
@@ -7711,8 +7722,8 @@ stewardship_duty_special.2019 = {
 		name = stewardship_duty_special.2019.c
 		add_dread = medium_dread_gain
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_agreeable = major_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			forgiving = major_stress_impact_gain
 		}
 	}
 	
@@ -8103,8 +8114,8 @@ stewardship_duty_special.2025 = {
 			}
 		}
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 	}
 
@@ -8112,7 +8123,7 @@ stewardship_duty_special.2025 = {
 		name = stewardship_duty_special.2025.b
 		add_prestige = minor_prestige_gain
 		stress_impact = {
-			am_deceitful = medium_stress_impact_gain
+			deceitful = medium_stress_impact_gain
 		}
 	}
 }
@@ -8175,8 +8186,8 @@ stewardship_duty_special.2026 = {
 					add = 50
 					scope:vassal_1 = {
 						OR = {
-							has_trait = am_quarrelsome
-							has_trait = am_wroth
+							has_trait = vengeful
+							has_trait = wrathful
 						}
 					}
 				}
@@ -8201,8 +8212,8 @@ stewardship_duty_special.2026 = {
 					add = 50
 					scope:vassal_2 = {
 						OR = {
-							has_trait = am_quarrelsome
-							has_trait = am_wroth
+							has_trait = vengeful
+							has_trait = wrathful
 						}
 					}
 				}
@@ -8236,7 +8247,7 @@ stewardship_duty_special.2026 = {
 		}
 		add_prestige = minor_prestige_gain
 		stress_impact = {
-			am_honest = minor_stress_impact_gain
+			just = minor_stress_impact_gain
 		}
 	}
 
@@ -8272,7 +8283,7 @@ stewardship_duty_special.2026 = {
 			}
 		}
 		stress_impact = {
-			am_honest = major_stress_impact_gain
+			just = major_stress_impact_gain
 		}
 	}
 }

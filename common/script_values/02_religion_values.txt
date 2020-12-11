@@ -239,13 +239,13 @@ demand_conversion_likelihood_calculation = {
 	
 	if = {
 		limit = {
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		add = -50
 	}
 	if = {
 		limit = {
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		add = 30
 	}
@@ -437,7 +437,7 @@ great_holy_war_target_kingdom_weight = {
 	### 1 ###
 	#Is the target kingdom a viable GHW target?
 	every_in_de_jure_hierarchy = {
-		continue = { tier > tier_county }	#Check individual counties within the potential target de jure kingdom.
+		#continue = { tier > tier_county }	#Check individual counties within the potential target de jure kingdom.
 		limit = {	#For every county with a GHWable liege...
 			tier = tier_county
 			scope:the_faith = {

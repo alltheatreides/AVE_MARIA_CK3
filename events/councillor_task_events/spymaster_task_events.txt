@@ -475,8 +475,8 @@ spymaster_task.0341 = {
 		}
 		name = {
 			trigger = {
-				has_trait = am_deceitful
-				has_trait = am_stubborn
+				has_trait = callous
+				has_trait = stubborn
 				has_trait = sadistic
 			}
 			text = spymaster_task.0341.a.detached
@@ -681,7 +681,7 @@ spymaster_task.0344 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = callous
 				}
 				desc = spymaster_task.0311.secret_murder.callous
 			}
@@ -700,7 +700,7 @@ spymaster_task.0344 = {
 					first_valid = {
 						triggered_desc = {
 							trigger = {
-								has_trait = am_quarrelsome
+								has_trait = vengeful
 							}
 							desc = spymaster_task.0311.secret_murder.close_to_me.vengeful
 						}
@@ -709,9 +709,9 @@ spymaster_task.0344 = {
 					triggered_desc = {
 						trigger = {
 							OR = {
-								has_trait = am_inconstant
-								has_trait = am_illtempered
-								has_trait = am_tolerant
+								has_trait = fickle
+								has_trait = impatient
+								has_trait = compassionate
 							}
 						}
 						desc = spymaster_task.0311.secret_murder.close_to_me_regret
@@ -771,7 +771,7 @@ spymaster_task.0344 = {
 		name = {
 			text = spymaster_task.0344.a.callous
 			trigger = {
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
 		name = spymaster_task.0344.a
@@ -1140,7 +1140,7 @@ spymaster_task.0349 = {
 			triggered_desc = {
 				trigger = {
 					OR = {
-						has_trait = am_intolerant
+						has_trait = zealous
 						has_trait = lustful
 					}
 				}
@@ -1148,7 +1148,7 @@ spymaster_task.0349 = {
 					desc = spymaster_task.0311.secret_witch.zealous
 					triggered_desc = {
 						trigger = {
-							has_trait = am_intolerant
+							has_trait = zealous
 						}
 						desc = spymaster_task.0311.secret_witch.zealous_end
 					}
@@ -1177,7 +1177,7 @@ spymaster_task.0349 = {
 		name = {
 			trigger = {
 				OR = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					has_trait = lustful
 				}
 			}
@@ -1613,7 +1613,7 @@ spymaster_task.0381 = {
 		}
 		remove_short_term_gold = medium_gold_value
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -1770,7 +1770,7 @@ spymaster_task.0399 = {
 			base = 100
 			modifier = {
 				add = 100
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				factor = 0.3
@@ -1850,7 +1850,7 @@ spymaster_task.1001 = {
 		if = {
 			limit = {
 				OR = {
-					NOT = { has_trait = am_agreeable }
+					NOT = { has_trait = forgiving }
 					has_hook_of_type = {
 						target = scope:councillor
 						type = favor_hook
@@ -2064,9 +2064,9 @@ spymaster_task.1005 = {
 	option = { #We all make mistake s
 		name = spymaster_task.1001.b
 		trigger = {
-			has_trait = am_agreeable
+			has_trait = forgiving
 		}
-		trait = am_agreeable
+		trait = forgiving
 		custom_tooltip = spymaster_task.1001.a.tt
 		if = {
 			limit = {
@@ -2228,19 +2228,19 @@ spymaster_task.2001 = {
 		add_piety = major_piety_loss
 		add_dread = medium_dread_gain
 		stress_impact = {
-			am_intolerant = medium_stress_impact_gain
-			am_honest = major_stress_impact_gain
-			am_tolerant = major_stress_impact_gain
+			zealous = medium_stress_impact_gain
+			just = major_stress_impact_gain
+			compassionate = major_stress_impact_gain
 		}
 		ai_chance = {
 			base = 0
 			modifier = {
 				add = 20
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			modifier = {
 				add = 20
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 			modifier = {
 				add = 100
@@ -2248,7 +2248,7 @@ spymaster_task.2001 = {
 			}
 			modifier = {
 				add = 20
-				has_trait = am_hypocritical
+				has_trait = cynical
 			}
 		}
 	}

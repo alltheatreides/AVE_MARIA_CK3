@@ -88,13 +88,13 @@ hajj.3001 = {
 			months = 6
 		}
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
-			am_pretentious = minor_stress_impact_gain
+			cynical = minor_stress_impact_gain
+			arrogant = minor_stress_impact_gain
 			beauty_good_1 = minor_stress_impact_gain
 			beauty_good_2 = minor_stress_impact_gain
 			beauty_good_3 = minor_stress_impact_gain
 
-			am_humble = minor_stress_impact_loss #Yes, we actually do want loss here.
+			humble = minor_stress_impact_loss #Yes, we actually do want loss here.
 		}
 	}
 
@@ -118,8 +118,8 @@ hajj.3001 = {
 			add_piety = minor_piety_loss
 		}
 		stress_impact = {
-			am_intolerant = medium_stress_impact_gain
-			am_humble = minor_stress_impact_gain
+			zealous = medium_stress_impact_gain
+			humble = minor_stress_impact_gain
 		}
 	}
 	
@@ -144,7 +144,7 @@ hajj.3011 = {
 	option = {
 		trigger = {
 			NOT = {
-				has_trait = am_hypocritical
+				has_trait = cynical
 			}
 		}
 		name = hajj.3011.a
@@ -154,9 +154,9 @@ hajj.3011 = {
 
 	option = {
 		trigger = {
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
-		trait = am_hypocritical
+		trait = cynical
 		name = hajj.3011.b
 		give_pilgrimage_reward_effect = yes
 	}

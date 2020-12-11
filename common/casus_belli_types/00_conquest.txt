@@ -6,13 +6,7 @@
 	mutually_exclusive_titles = { always = yes }
 
 	allowed_for_character = {
-		OR = {
-			can_use_conquest_cbs_trigger = yes
-			OR = {
-				has_trait = ambitious
-				has_trait = am_greedy
-			}
-		}
+		can_use_conquest_cbs_trigger = yes
 	}
 
 	allowed_against_character = {
@@ -483,13 +477,7 @@ duchy_conquest_cb = {
 	mutually_exclusive_titles = { always = yes }
 
 	allowed_for_character = {
-		OR = {
-			can_use_conquest_cbs_trigger = yes
-			OR = {
-				has_trait = ambitious
-				has_trait = am_greedy
-			}
-		}
+		can_use_conquest_cbs_trigger = yes
 	}
 
 	allowed_for_character_display_regardless = {
@@ -1118,7 +1106,7 @@ ducal_conquest_cb = {
 			value = 0
 			if = {
 				limit = {
-					scope:attacker.primary_title.tier <= tier_county
+					scope:attacker.primary_title.tier = tier_county
 				}
 				add = {
 					value = medium_prestige_value

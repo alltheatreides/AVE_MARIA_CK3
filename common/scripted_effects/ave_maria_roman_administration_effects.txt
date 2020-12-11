@@ -114,7 +114,7 @@ setup_historical_roman_districts = {
 	every_vassal = {
 		if = {
 			limit = {
-				highest_held_title_tier <= tier_county
+				highest_held_title_tier = tier_county
 				NOT = { has_government = theocracy_government }
 			}
 			change_government = roman_administration_government	
@@ -122,7 +122,7 @@ setup_historical_roman_districts = {
 		every_vassal = {
 			if = {
 				limit = {
-					highest_held_title_tier <= tier_county
+					highest_held_title_tier = tier_county
 					NOT = { has_government = theocracy_government }
 				}
 				change_government = roman_administration_government	
@@ -186,23 +186,7 @@ setup_historical_roman_districts = {
 			level = 3
 		}	
 			
-	}		
-	title:d_regular_tagma_1.holder = {		
-		change_government = roman_administration_military_government	
-		vassal_contract_set_obligation_level = {	
-			type = ave_maria_roman_administration_special_contract
-			level = 3
-		}	
-			
-	}		
-	title:d_regular_tagma_2.holder = {		
-		change_government = roman_administration_military_government	
-		vassal_contract_set_obligation_level = {	
-			type = ave_maria_roman_administration_special_contract
-			level = 3
-		}	
-			
-	}		
+	}			
 	title:d_sakellion.holder = {		
 		change_government = roman_administration_government	
 		
@@ -349,7 +333,7 @@ setup_historical_roman_districts = {
 			level = 2
 		}	
 	}		
-	title:d_d_sakellion = {
+	title:d_sakellion = {
 		change_government = roman_administration_sekreton_government
 		vassal_contract_set_obligation_level = {	
 			type = ave_maria_roman_administration_special_contract
@@ -530,6 +514,359 @@ setup_historical_roman_districts = {
 
 }
 
+roman_administration_game_start_setup = {
+	title:e_byzantium.holder = {
+		trigger_event = ave_maria_roman_administration_events.0001
+
+		## Set up emperor legitimacy
+		roman_administration_update_legitimacy_variable = yes
+
+		## Set up emperor popularity
+		roman_administration_update_popularity_variable = yes
+
+		## Distribute legitimacy
+		roman_administration_game_start_legitimacy_distribution = yes
+
+		## Terms of office event chain start up
+		roman_administration_game_start_vassal_terms_of_office_setup = yes
+
+		## Office salary indicator for high officials
+		roman_administration_game_start_vassal_salary_modifier_setup = yes
+		
+		## Update the Salary cost Tax Income negative modifier for the emperor
+		roman_administration_update_total_salary_cost = yes
+
+
+		every_vassal = {
+			if = {
+				limit = {
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+				primary_title = {
+					add_to_global_variable_list = {
+						name = roman_administration_tagma_list
+						target = this
+					}
+				}
+			}
+			if = {
+				limit = {
+					roman_administration_holds_high_administration_title_trigger = yes
+				}
+				primary_title = {
+					add_to_global_variable_list = {
+						name = roman_administration_sekreton_list
+						target = this
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_held_title = {
+						OR = {
+							this = title:d_antioch
+							this = title:d_vaspurakan
+							this = title:d_greater_armenia
+							this = title:d_mesopotamia
+							this = title:d_bulgaria
+							this = title:d_turnovo
+							this = title:d_langobardia_roman
+						}
+					}
+				}
+				primary_title = {
+					add_to_global_variable_list = {
+						name = roman_administration_doukaton_list
+						target = this
+					}
+					set_variable = {
+						name = roman_administration_doukaton_title
+						value = 0
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_held_title = {
+						OR = {
+							this = title:d_thrace
+						}
+					}
+				}
+				primary_title = {
+					add_to_global_variable_list = {
+						name = roman_administration_kouratoreia_list
+						target = this
+					}
+					set_variable = {
+						name = roman_administration_kouratoreia_title
+						value = 0
+					}
+				}
+			}
+		}
+	}
+}
+
+## Fired from e_byzantium holder scope
+roman_administration_game_start_vassal_terms_of_office_setup = {
+	every_vassal = {
+		if = {
+			limit = {
+				highest_held_title_tier = tier_duchy
+			}
+			## Romanos Diogenes is special
+			if = {
+				limit = {
+					OR = {
+						this = character:1758
+						this = character:1734
+					}
+					
+					NOT = { 
+						has_variable = roman_administration_term_count
+					}
+				}
+				set_variable = { name = roman_administration_term_count value = 0 }
+				add_character_modifier = {
+					modifier = roman_administration_terms_of_office_0
+					years = 10
+				}
+				trigger_event = { 
+					id = ave_maria_roman_administration_events.00013
+					days = 365 
+				}
+			}
+			## Random effect for others
+			if = {
+				limit = {
+					NOT = { 
+						has_variable = roman_administration_term_count
+					}
+				}
+				random_list = {
+					25 = {
+						set_variable = { name = roman_administration_term_count value = 0 }
+						add_character_modifier = {
+							modifier = roman_administration_terms_of_office_0
+							years = 10
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_events.00013
+							days = 365 
+						}
+					}
+					25 = {
+						set_variable = { name = roman_administration_term_count value = 1 }
+						add_character_modifier = {
+							modifier = roman_administration_terms_of_office_1
+							years = 10
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_events.00014
+							days = 365 
+						}
+					}
+					25 = {
+						set_variable = { name = roman_administration_term_count value = 2 }
+						add_character_modifier = {
+							modifier = roman_administration_terms_of_office_2
+							years = 10
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_events.00015
+							days = 365 
+						}
+					}
+					25 = {
+						set_variable = { name = roman_administration_term_count value = 3 }
+						add_character_modifier = {
+							modifier = roman_administration_terms_of_office_3
+							years = 10
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_events.00016
+							days = 365 
+						}
+					}
+				}		
+			}
+		}
+	}
+}
+
+## Fired from e_byzantium holder scope
+roman_administration_game_start_vassal_salary_modifier_setup = {
+	# For high officials
+	every_vassal = {
+		if = {
+			limit = {
+				OR = {
+					roman_administration_holds_high_administration_title_trigger = yes
+					roman_administration_holds_tagma_title_trigger = yes
+				}
+			}
+			add_character_modifier = roman_administration_high_official_salary
+			
+		}
+	}
+}
+
+## Fired from e_byzantium holder scope
+roman_administration_game_start_legitimacy_distribution = {
+	every_vassal = {
+		if = {
+			limit = {
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+			}
+			roman_administration_update_legitimacy_variable = yes
+		}
+		
+	}
+	every_courtier = {
+		if = {
+			limit = {
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+			}
+			roman_administration_update_legitimacy_variable = yes
+		}
+		
+	}	
+}
+
+#############################################
+# TITLE ON ACTIONS EFFECTS					#
+#############################################
+
+roman_administration_accession_to_basileus_effect = {
+	## Removes terms of office if you were an Official before
+	roman_administration_remove_terms_of_office_modifier_and_variable = yes	
+
+	roman_administration_remove_salary_indicator = yes
+
+	roman_administration_update_total_salary_cost = yes
+
+	## Remove the junior emperor trait
+	remove_trait = junior_emperor
+
+	remove_character_modifier = roman_administration_emperor_favourite
+
+	## Changing government
+	change_government = roman_administration_government
+
+	## Transferring byzantium
+	title:c_byzantion = {
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = change
+			add_claim_on_loss = yes
+		}
+		save_temporary_scope_as = title_to_inherit
+		root = {
+			save_scope_as = title_heir
+		}
+		change_title_holder = {
+			holder = scope:title_heir
+			change = scope:change
+		}
+	}
+	resolve_title_and_vassal_change = scope:change
+
+	roman_administration_update_popularity_variable = yes
+	roman_administration_update_legitimacy_variable = yes
+	every_vassal = {
+		if = {
+			limit = {
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+			}
+			roman_administration_update_legitimacy_variable = yes
+		}
+		
+	}
+	every_courtier = {
+		if = {
+			limit = {
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+			}
+			roman_administration_update_legitimacy_variable = yes
+		}
+		
+	}	
+
+	every_held_title = {
+		limit = {
+			tier = tier_duchy
+		}
+		current_heir = {
+			save_scope_as = new_holder
+		}
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = change
+			add_claim_on_loss = yes
+		}
+		change_title_holder = {
+			holder = scope:new_holder
+			change = scope:change
+		}
+		resolve_title_and_vassal_change = scope:change	
+	}
+}
+
+roman_administration_office_title_succession_effect = {
+	## Assigning realm law
+	if = {
+		limit = {
+			root = {
+				uses_roman_govt = yes
+				NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+			}				
+		}
+		root = {
+			add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+		}
+	}
+
+	## Setting up the terms of office chain if you have a title higher than duke
+	if = {
+		limit = {
+			scope:title = { 
+				tier >= tier_duchy 
+				NOR = {
+					this = title:e_byzantium
+					this = title:k_orthodox
+				}
+			}
+		}
+		root = { trigger_event = { id = ave_maria_roman_administration_events.00012 } }
+	}
+
+	## Government change when accessing a title
+	## Assigning Tagma government type when gaining a Tagma title as well as the proper contract
+	if = {
+		limit = {
+			root = { roman_administration_holds_tagma_title_trigger = yes }
+		}
+		root = {
+			change_government = roman_administration_military_government
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}
+		}
+	}
+
+	## Assigning Sekreton government type when gaining a Sekreton title as well as the proper contract
+	if = {
+		limit = {
+			root = { roman_administration_holds_high_administration_title_trigger = yes }
+		}
+		root = {
+			change_government = roman_administration_sekreton_government
+		}
+	}
+	
+}
 
 #############################################
 # RELATIONSHIP EFFECT						#
@@ -563,104 +900,6 @@ roman_administration_remove_terms_of_office_modifier_and_variable = {
 
 	## Clear variable
 	remove_variable = roman_administration_term_count
-}
-
-roman_administration_emperor_inheritance_effect = {
-	## Removes terms of office if you were an Official before
-	roman_administration_remove_terms_of_office_modifier_and_variable = yes	
-	
-	## Remove the junior emperor trait
-	remove_trait = junior_emperor
-
-	#Proper government assignement
-	change_government = roman_administration_government
-	
-	## Proper low assignement
-	add_realm_law = ave_maria_roman_administration_imperial
-	
-	## Give you the Salary malus
-	roman_administration_update_total_salary_cost = yes
-
-	## Updating Legitimacy and Popularity
-	roman_administration_update_popularity_variable = yes
-	roman_administration_update_legitimacy_variable = yes
-
-	## Giving Constantinople to the new emperor
-	title:c_byzantion = {
-		create_title_and_vassal_change = {
-			type = granted
-			save_scope_as = change
-			add_claim_on_loss = yes
-		}
-		save_temporary_scope_as = title_to_inherit
-		root = {
-			save_scope_as = title_heir
-		}
-		change_title_holder = {
-			holder = scope:title_heir
-			change = scope:change
-		}
-	}
-	resolve_title_and_vassal_change = scope:change
-
-}
-
-roman_administration_civilian_titles_transfer = {
-	## Flagging the duchy administrative title heir
-	every_held_title = {
-		limit = {
-			tier = tier_duchy
-		}
-		current_heir = {
-			save_scope_as = title_heir
-		}
-	}
-	## Transferring counties to stick the transfer
-	every_held_title = {
-		limit = {
-			tier = tier_county
-			NOT = { this = title:e_byzantium }
-			NOT = {
-				this = { has_title_law = ave_maria_roman_administration_family_succession_law }	
-				has_title_law = ave_maria_roman_administration_family_succession_law
-			}
-			NOT = { this = title:c_byzantion }
-		}
-		create_title_and_vassal_change = {
-			type = granted
-			save_scope_as = change
-			add_claim_on_loss = yes
-		}
-		save_temporary_scope_as = title_to_inherit
-		change_title_holder = {
-			holder = scope:title_heir
-			change = scope:change
-		}
-		resolve_title_and_vassal_change = scope:change
-	}
-
-	# Transferring the duchy
-	every_held_title = {
-		limit = {
-			tier = tier_duchy
-		}
-		create_title_and_vassal_change = {
-			type = granted
-			save_scope_as = change
-			add_claim_on_loss = yes
-		}
-		save_temporary_scope_as = title_to_inherit
-		current_heir = {
-			save_scope_as = title_heir
-		}
-		change_title_holder = {
-			holder = scope:title_heir
-			change = scope:change
-		}
-		resolve_title_and_vassal_change = scope:change
-	}		
-	
-	resolve_title_and_vassal_change = scope:change
 }
 
 
@@ -745,14 +984,14 @@ roman_administration_update_total_salary_cost = {
 			}
 		}			
 	}
-	## We have now the number of high officials as a variable, apply it to the cost variable, multiply by the monthly salary: 15 (yes it's lucrative)
+	## We have now the number of high officials as a variable, apply it to the cost variable, multiply by the monthly salary: 5 (yes it's lucrative)
 	change_variable = {
 		name = total_number_of_high_officials_cost
 		add = var:total_number_of_high_officials
 	}	
 	change_variable = {
 		name = total_number_of_high_officials_cost
-		multiply = 15
+		multiply = 5
 	}	
 
 	## Counting Strategos Salary
@@ -4442,7 +4681,7 @@ roman_administration_update_popularity_variable = {
 	## Then static removal of points from traits (for now 5, might need to balance higher ?)
 	if = {
 		limit = {
-			has_trait = am_inconstant
+			has_trait = arbitrary
 		}
 		change_variable = {
 			name = calculate_character_popularity
@@ -4451,7 +4690,7 @@ roman_administration_update_popularity_variable = {
 	}
 	if = {
 		limit = {
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 		change_variable = {
 			name = calculate_character_popularity
@@ -4460,7 +4699,7 @@ roman_administration_update_popularity_variable = {
 	}
 	if = {
 		limit = {
-			has_trait = am_greedy
+			has_trait = greedy
 		}
 		change_variable = {
 			name = calculate_character_popularity
@@ -4469,7 +4708,7 @@ roman_administration_update_popularity_variable = {
 	}
 	if = {
 		limit = {
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		change_variable = {
 			name = calculate_character_popularity

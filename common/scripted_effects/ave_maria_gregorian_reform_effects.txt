@@ -1,0 +1,76 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+#############################################
+# STARTUP EFFECT			 				#
+#############################################
+
+## 
+
+gregorian_reform_game_start_setup = {
+	## Prevent the pope and bishops from marrying
+	title:k_papal_state.holder = {
+		add_trait = pope
+	}
+	every_ruler = {
+		limit = {
+			primary_title = { NOT = { this = title:k_papal_state } }
+			has_government = theocracy_government
+			religion = religion:christianity_religion
+			highest_held_title_tier = tier_duchy
+		}
+		add_trait = bishop
+	}
+
+	## Give Christian Ruler some cleric/monks for court chaplain
+	every_ruler = {
+		limit = {
+			faith = { religion_tag = christianity_religion }
+		}
+		trigger_event = ave_maria_christian_flavour.0001
+	}
+}
+
+## To be used in title_on_actions
+gregorian_reform_archbishop_confirmation_effect = {
+	if = {
+		limit = {
+			scope:title = {
+				NOT = { this = title:k_papal_state }
+			}
+			root = {
+				has_government = theocracy_government
+				religion = religion:christianity_religion
+				highest_held_title_tier = tier_duchy
+			}				
+		}
+		root = {
+			add_trait = bishop
+		}			
+	}
+}
+
+gregorian_reform_pope_confirmation_effect = {
+	if = {
+		limit = {
+			scope:title = {
+				this = title:k_papal_state
+			}
+		}
+		root = {
+			add_trait = pope
+		}
+		scope:previous_holder = {
+			remove_trait = pope
+		}
+	}
+}
+

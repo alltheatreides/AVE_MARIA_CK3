@@ -1,18 +1,4 @@
-﻿########################################################################################
-#                                         											   #
-# AVE MARIA																			   #
-# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
-#                                         											   #
-# VANILLA MODIFICATION																   #
-#                               													   #
-########################################################################################
-
-# Written by Atreides and Scarecrow
-
-### The change vassal contract entry has been modified/some entries for special contracts added
-
-
-liege_modify_vassal_contract_interaction = {
+﻿liege_modify_vassal_contract_interaction = {
 	special_interaction = modify_vassal_contract
 	interface = modify_vassal_contract
 	category = interaction_category_vassal
@@ -42,22 +28,20 @@ liege_modify_vassal_contract_interaction = {
 	}
 
 	can_send = {
-		scope:recipient = {			
-			vassal_contract_is_blocked_from_modification = no
+		trigger_if = { #If they're blocked we don't want to show anything else
+			limit = {
+				scope:recipient = {
+					vassal_contract_is_blocked_from_modification = yes
+				}
+			}
+			scope:recipient = {
+				vassal_contract_is_blocked_from_modification = no
+			}
 		}
-		scope:actor = {
-			## Vanilla initial can_send and should be for feudals
-			trigger_if = {
-				limit = {
-					uses_roman_govt = no
-				}
-
-				OR = {
-					has_changed_contract_obligation_trigger = { WHO = scope:recipient }
-					ave_maria_roman_changed_obligations_trigger = { WHO = scope:recipient }
-				}
-
-			
+		trigger_else = {
+			scope:actor = {
+				has_changed_contract_obligation_trigger = { WHO = scope:recipient }
+				
 				custom_description = {
 					text = "liege_modify_vassal_contract_cannot_exceed_tyranny_cap"
 					object = scope:actor
@@ -67,17 +51,21 @@ liege_modify_vassal_contract_interaction = {
 				}
 
 				# If the trade without the hook usage is already in the vassal's favour or fair then don't waste your hook
+				save_temporary_scope_value_as = {
+					name = obligations_favoring_vassal
+					value = scope:recipient.count_obligation_improvements_for_vassal
+				}
 				trigger_if = {
-					limit = { count_obligation_improvements_for_vassal > 0 }
+					limit = { scope:obligations_favoring_vassal > 0 }
 					custom_description = {
 						text = "vassal_modify_vassal_contract_unnecessary_hook_usage_vassal_favor"
 						object = scope:recipient
-						value = count_obligation_improvements_for_vassal
+						value = scope:obligations_favoring_vassal
 						NOT = { always = scope:hook }
 					}
 				}
 				trigger_else_if = {
-					limit = { count_obligation_improvements_for_vassal = 0 }
+					limit = { scope:obligations_favoring_vassal = 0 }
 					custom_description = {
 						text = "vassal_modify_vassal_contract_unnecessary_hook_usage_equal"
 						object = scope:recipient
@@ -86,22 +74,13 @@ liege_modify_vassal_contract_interaction = {
 				}
 				trigger_else = {} # Otherwise we're fine!
 			}
-			
-			## Roman Administration can_send for now has no conditions to change vassal laws (bear in mind that they are still limited to one adjacent level and there is a cooldown.
-			trigger_if = {
-				limit = {
-					uses_roman_govt = yes
-				}
-				always = yes
-			}
 				
-		}
-			
-		# Cannot change more than three things at once
-		custom_description = {
-			text = "vassal_modify_vassal_contract_obligation_change_limit"
-			value = scope:recipient.count_total_obligation_changes
-			scope:recipient.count_total_obligation_changes <= max_contract_changes
+			# Cannot change more than three things at once
+			custom_description = {
+				text = "vassal_modify_vassal_contract_obligation_change_limit"
+				value = scope:recipient.count_total_obligation_changes
+				scope:recipient.count_total_obligation_changes <= max_contract_changes
+			}
 		}
 	}
 
@@ -113,15 +92,29 @@ liege_modify_vassal_contract_interaction = {
 				type = msg_vassal_contract_change
 				title = modify_vassal_contract_interaction_notification
 				right_icon = scope:recipient
-				# Add tyranny for each level increased. Can spend one hook to avoid one level of tyranny hit.
-				add_tyranny = vassal_obligation_increase_tyranny_gain
+
 				if = {
-					limit = { vassal_obligation_increase_tyranny_gain != 0 }
-					stress_impact = {
-						am_honest = medium_stress_impact_gain
-						am_generous = medium_stress_impact_gain
+					limit = {
+						uses_roman_govt = no
+					}
+					# Add tyranny for each level increased. Can spend one hook to avoid one level of tyranny hit.
+					add_tyranny = vassal_obligation_increase_tyranny_gain
+					if = {
+						limit = { vassal_obligation_increase_tyranny_gain != 0 }
+						stress_impact = {
+							just = medium_stress_impact_gain
+							generous = medium_stress_impact_gain
+						}
 					}
 				}
+
+				if = {
+					limit = {
+						uses_roman_govt = yes
+					}
+					roman_administration_remove_popularity_small_amount = yes
+				}
+				
 				if = {
 					limit = {
 						always = scope:hook
@@ -135,7 +128,34 @@ liege_modify_vassal_contract_interaction = {
 
 					if = {
 						limit = {
-							scope:recipient = { uses_roman_govt = no }
+							uses_roman_govt = yes
+						}
+						scope:recipient = {
+							set_local_variable = {
+								name = imperial_obligation_tax
+								value = 0
+							}
+							set_local_variable = {
+								name = imperial_obligation_theme
+								value = 0
+							}
+							set_local_variable = {
+								name = imperial_obligation_doukaton
+								value = 0
+							}
+							set_local_variable = {
+								name = imperial_obligation_kouratoreia
+								value = 0
+							}
+						}
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_tax }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_theme }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_doukaton }
+						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+					}
+					if = {
+						limit = {
+							uses_roman_govt = no
 						}
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
@@ -149,14 +169,6 @@ liege_modify_vassal_contract_interaction = {
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
 					}
 					
-					if = {
-						limit = {
-							scope:recipient = { uses_roman_govt = yes }
-						}
-						## AVE MARIA CONTRACTS TYPE
-						set_obligation_if_changed_effect = { OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
-						roman_administration_update_government_after_contract_change = yes
-					}
 					
 				}
 			}
@@ -207,13 +219,18 @@ vassal_modify_vassal_contract_interaction = {
 	}
 
 	can_send = {
-		scope:actor = {
-			trigger_if = {
-				limit = {
-					uses_roman_govt = no
+		trigger_if = { #If you're blocked we don't want to show anything else
+			limit = {
+				scope:actor = {
+					vassal_contract_is_blocked_from_modification = yes
 				}
-
+			}
+			scope:actor = {
 				vassal_contract_is_blocked_from_modification = no
+			}
+		}
+		trigger_else = {
+			scope:actor = {
 				has_changed_contract_obligation_trigger = { WHO = scope:actor }
 				
 				# Must be an even trade overall
@@ -230,15 +247,7 @@ vassal_modify_vassal_contract_interaction = {
 					value = count_total_obligation_changes
 					count_total_obligation_changes <= max_contract_changes
 				}
-			}			
-
-			trigger_if = {
-				limit = {
-					uses_roman_govt = yes
-				}
-				always = yes
 			}
-			
 		}
 	}
 
@@ -258,29 +267,16 @@ vassal_modify_vassal_contract_interaction = {
 				
 				hidden_effect = { set_vassal_contract_modification_blocked = yes }
 
-				if = {
-					limit = {
-						scope:recipient = { uses_roman_govt = no }
-					}
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = special_contract }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = religious_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = fortification_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = coinage_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = succession_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = war_declaration_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = council_rights }
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
-				}
-				
-				if = {
-					limit = {
-						scope:recipient = { uses_roman_govt = yes }
-					}
-					## AVE MARIA CONTRACTS TYPE
-					set_obligation_if_changed_effect = { OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
-				}
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = special_contract }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = religious_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = fortification_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = coinage_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = succession_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = war_declaration_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = council_rights }
+				set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
 			}
 		}
 	}
@@ -331,7 +327,7 @@ ai_only_liege_modify_vassal_contract_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				am_generous = minor_stress_impact_gain
+				generous = minor_stress_impact_gain
 			}
 		}
 		

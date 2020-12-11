@@ -3338,9 +3338,9 @@ health.2001 = {
 		}
 
 		stress_impact = {
-			am_tolerant = medium_stress_gain
+			compassionate = medium_stress_gain
 			lustful = minor_stress_gain
-			am_agreeable = minor_stress_gain
+			forgiving = minor_stress_gain
 		}
 
 		ai_chance = {
@@ -3355,7 +3355,7 @@ health.2001 = {
 					multiplier = -5
 				}
 			modifier = {
-				has_trait = am_fearful
+				has_trait = paranoid
 				add = 100
 			}
 		}
@@ -3392,9 +3392,9 @@ health.2001 = {
 		}
 
 		stress_impact = {
-			am_tolerant = medium_stress_gain
+			compassionate = medium_stress_gain
 			lustful = minor_stress_gain
-			am_agreeable = minor_stress_gain
+			forgiving = minor_stress_gain
 		}
 
 		ai_chance = {
@@ -3409,7 +3409,7 @@ health.2001 = {
 					multiplier = -5
 				}
 			modifier = {
-				has_trait = am_fearful
+				has_trait = paranoid
 				add = 100
 			}
 		}
@@ -3436,8 +3436,8 @@ health.2001 = {
 		}
 
 		stress_impact = {
-			am_fearful = major_stress_gain
-			am_quarrelsome = medium_stress_gain
+			paranoid = major_stress_gain
+			vengeful = medium_stress_gain
 		}
 
 		ai_chance = {
@@ -3524,9 +3524,9 @@ health.2002 = {
 		}
 
 		stress_impact = {
-			am_tolerant = minor_stress_gain
+			compassionate = minor_stress_gain
 			lustful = minor_stress_gain
-			am_agreeable = minor_stress_gain
+			forgiving = minor_stress_gain
 		}
 
 		ai_chance = {
@@ -3541,7 +3541,7 @@ health.2002 = {
 					multiplier = -5
 				}
 			modifier = {
-				has_trait = am_fearful
+				has_trait = paranoid
 				add = 100
 			}
 		}
@@ -3578,9 +3578,9 @@ health.2002 = {
 		}
 
 		stress_impact = {
-			am_tolerant = minor_stress_gain
+			compassionate = minor_stress_gain
 			lustful = minor_stress_gain
-			am_agreeable = minor_stress_gain
+			forgiving = minor_stress_gain
 		}
 
 		ai_chance = {
@@ -3595,7 +3595,7 @@ health.2002 = {
 					multiplier = -5
 				}
 			modifier = {
-				has_trait = am_fearful
+				has_trait = paranoid
 				add = 100
 			}
 		}
@@ -3619,8 +3619,8 @@ health.2002 = {
 		custom_tooltip = health.2001.c.tt
 
 		stress_impact = {
-			am_fearful = major_stress_gain
-			am_quarrelsome = major_stress_gain
+			paranoid = major_stress_gain
+			vengeful = major_stress_gain
 		}
 
 		ai_chance = {
@@ -3808,9 +3808,9 @@ health.2101 = {
 					    }
 					    desc = health.2201.court_physician.desc_sick_physician
 					}
-			desc = health.2201.court_physician.desc
-		}
-	}
+					desc = health.2201.court_physician.desc
+				}
+			}
 		}
 	}
 	theme = healthcare
@@ -4342,9 +4342,9 @@ health.2201 = {
 					    }
 					    desc = health.2201.court_physician.desc_sick_physician
 					}
-			desc = health.2201.court_physician.desc
-		}
-	}
+					desc = health.2201.court_physician.desc
+				}
+			}
 		}
 	}
 	theme = healthcare
@@ -4366,9 +4366,9 @@ health.2201 = {
 		animation = personality_rational
 	}
 
-		trigger = {
-			scope:sick_character = { is_alive = yes }
-		}
+	trigger = {
+		scope:sick_character = { is_alive = yes }
+	}
 
 	immediate = {
 		show_as_tooltip = {
@@ -4637,9 +4637,9 @@ health.2202 = {
 	theme = recovery
 	left_portrait = scope:sick_character
 
-		trigger = {
-			scope:sick_character = { is_alive = yes }
-		}
+	trigger = {
+		scope:sick_character = { is_alive = yes }
+	}
 
 	immediate = {
 		show_as_tooltip = {
@@ -4793,7 +4793,7 @@ scripted_trigger health_3001_low_skill_physician_trigger = {
 	health_3001_physician_basic_requirements_trigger = yes
 	NOR = {
 		has_trait = lifestyle_mystic
-		has_trait = lifestyle_physician
+		#has_trait = lifestyle_physician
 	}
 	OR = {
 		#Empire/kingdom
@@ -4950,7 +4950,7 @@ health.3001 = {
 					weight = {
 						base = 1
 						modifier = {
-							has_trait = lifestyle_mystic
+							has_trait = physician_1
 							factor = 100
 						}
 						modifier = {
@@ -5082,6 +5082,10 @@ health.3001 = {
 					weight = {
 						base = 1
 						modifier = {
+							has_trait = physician_1
+							factor = 100
+						}
+						modifier = {
 							faith = root.faith
 							factor = 10
 						}
@@ -5095,6 +5099,10 @@ health.3001 = {
 					limit = { health_3001_low_skill_physician_light_trigger = yes }
 					weight = {
 						base = 1
+						modifier = {
+							has_trait = physician_1
+							factor = 100
+						}
 						modifier = {
 							faith = root.faith
 							factor = 10
@@ -5253,7 +5261,7 @@ health.3001 = {
 		}
 
 		stress_impact = {
-			am_intolerant = minor_stress_impact_gain
+			zealous = minor_stress_impact_gain
 		}
 
 		hidden_effect = {
@@ -5592,7 +5600,7 @@ health.3102 = {
 			    }
 			    desc = health.3102.start.desc_sick_physician
 			}
-		desc = health.3102.start.desc
+			desc = health.3102.start.desc
 		}
 		first_valid = { #Disease type
 			triggered_desc = {
@@ -5940,20 +5948,20 @@ health.3104 = {
 			can_punish_court_physician = { PHYSICIAN = scope:physician }
 			scope:physician = { is_imprisoned = no }
 			OR = {
-				has_trait = am_wroth
-				has_trait = am_quarrelsome
-				has_trait = am_inconstant
-				has_trait = am_fearful
+				has_trait = wrathful
+				has_trait = vengeful
+				has_trait = arbitrary
+				has_trait = paranoid
 				has_trait = sadistic
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
-		trait = am_wroth
-		trait = am_quarrelsome
-		trait = am_inconstant
-		trait = am_fearful
+		trait = wrathful
+		trait = vengeful
+		trait = arbitrary
+		trait = paranoid
 		trait = sadistic
-		trait = am_deceitful
+		trait = callous
 
 		name = health.3107.d
 
@@ -5972,20 +5980,20 @@ health.3104 = {
 		trigger = {
 			can_punish_court_physician = { PHYSICIAN = scope:physician }
 			OR = {
-				has_trait = am_wroth
-				has_trait = am_quarrelsome
-				has_trait = am_inconstant
-				has_trait = am_fearful
+				has_trait = wrathful
+				has_trait = vengeful
+				has_trait = arbitrary
+				has_trait = paranoid
 				has_trait = sadistic
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
-		trait = am_wroth
-		trait = am_quarrelsome
-		trait = am_inconstant
-		trait = am_fearful
+		trait = wrathful
+		trait = vengeful
+		trait = arbitrary
+		trait = paranoid
 		trait = sadistic
-		trait = am_deceitful
+		trait = callous
 
 		name = health.3107.e
 
@@ -6848,14 +6856,14 @@ health.3200 = {
 					    desc = health.3200.failure.desc_3
 					}
 					desc = health.3200.failure.desc_2
-			desc = health.3200.failure.desc
-		}
+					desc = health.3200.failure.desc
+				}
 			}
 		}
 		triggered_desc = {
 		    trigger = { NOT = { scope:sick_character = scope:physician } }
-		desc = health.3200.end.desc
-	}
+		    desc = health.3200.end.desc
+		}
 	}
 	theme = healthcare
 	override_icon = {
@@ -7017,8 +7025,8 @@ health.3201 = {
 						    }
 						    desc = health.3201.occult.desc_sick_physician
 						}
-				desc = health.3201.occult.desc
-			}
+						desc = health.3201.occult.desc
+					}
 				}
 			}
 			desc = health.3201.questionable.desc
@@ -7230,9 +7238,9 @@ health.4000 = {
 					    }
 					    desc = health.2201.court_physician.desc_sick_physician
 					}
-			desc = health.2201.court_physician.desc
-		}
-	}
+					desc = health.2201.court_physician.desc
+				}
+			}
 		}
 	}
 	theme = healthcare
@@ -7546,7 +7554,7 @@ health.4002 = {
 			    }
 			    desc = health.4002.start.desc_sick_physician
 			}
-		desc = health.4002.start.desc
+			desc = health.4002.start.desc
 		}
 		random_valid = {
 			triggered_desc = {
@@ -7798,20 +7806,20 @@ health.4102 = {
 			can_punish_court_physician = { PHYSICIAN = scope:physician }
 			scope:physician = { is_imprisoned = no }
 			OR = {
-				has_trait = am_wroth
-				has_trait = am_quarrelsome
-				has_trait = am_inconstant
-				has_trait = am_fearful
+				has_trait = wrathful
+				has_trait = vengeful
+				has_trait = arbitrary
+				has_trait = paranoid
 				has_trait = sadistic
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
-		trait = am_wroth
-		trait = am_quarrelsome
-		trait = am_inconstant
-		trait = am_fearful
+		trait = wrathful
+		trait = vengeful
+		trait = arbitrary
+		trait = paranoid
 		trait = sadistic
-		trait = am_deceitful
+		trait = callous
 
 		name = health.3107.d
 
@@ -7830,20 +7838,20 @@ health.4102 = {
 		trigger = {
 			can_punish_court_physician = { PHYSICIAN = scope:physician }
 			OR = {
-				has_trait = am_wroth
-				has_trait = am_quarrelsome
-				has_trait = am_inconstant
-				has_trait = am_fearful
+				has_trait = wrathful
+				has_trait = vengeful
+				has_trait = arbitrary
+				has_trait = paranoid
 				has_trait = sadistic
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
-		trait = am_wroth
-		trait = am_quarrelsome
-		trait = am_inconstant
-		trait = am_fearful
+		trait = wrathful
+		trait = vengeful
+		trait = arbitrary
+		trait = paranoid
 		trait = sadistic
-		trait = am_deceitful
+		trait = callous
 
 		name = health.3107.e
 
@@ -8188,13 +8196,14 @@ health.4105 = {
 # WEIGHT EVENTS #
 ###################
 ###################
+# by Linnéa Thimrén
 
 #Become malnourished
 health.5000 = {
 	hidden = yes
 	
 	trigger = {
-		current_weight < -50
+		current_weight <= -50
 		NOT = { has_character_modifier = malnourished_modifier }
 		NOT = { has_character_modifier = obese_modifier }
 	}
@@ -8213,7 +8222,7 @@ health.5001 = {
 	hidden = yes
 	
 	trigger = {
-		current_weight > 50
+		current_weight >= 50
 		NOT = { has_character_modifier = obese_modifier }
 		NOT = { has_character_modifier = malnourished_modifier }
 	}
@@ -8709,7 +8718,7 @@ health.6002 = {
 			create_character = {
 				template = merchant_template
 				location = root.capital_province
-				trait = am_tolerant
+				trait = compassionate
 				save_scope_as = friendly_person
 			}
 		}
@@ -9358,7 +9367,7 @@ health.6203 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -9402,11 +9411,11 @@ health.6203 = {
 			}
 			modifier = {
 				add = 50
-				has_trait = am_craven
+				has_trait = craven
 			}
 			modifier = {
 				add = 50
-				has_trait = am_intolerant
+				has_trait = zealous
 			}
 		}
 	}
@@ -9566,7 +9575,7 @@ health.6207 = {
 					}
 					modifier = {
 						add = 75
-						has_trait = am_deceitful
+						has_trait = callous
 					}
 					trigger_event = {
 						id = health.6208
@@ -9582,7 +9591,7 @@ health.6207 = {
 					}
 					modifier = {
 						add = 75
-						has_trait = am_tolerant
+						has_trait = compassionate
 					}
 					save_scope_value_as = {
 						name = refusal
@@ -9602,7 +9611,7 @@ health.6207 = {
 					}
 					modifier = {
 						add = 50
-						has_trait = am_tolerant
+						has_trait = compassionate
 					}
 					trigger_event = {
 						id = health.6209
@@ -9819,7 +9828,7 @@ health.7000 = {
 
 	option = {
 		name = {
-			trigger = { has_trait = am_lazy }
+			trigger = { has_trait = lazy }
 			text = health.7000.a.lazy
 		}
 		name = {
@@ -9829,8 +9838,8 @@ health.7000 = {
 		add_trait = infirm
 
 		stress_impact = {
-			am_lazy = minor_stress_loss
-			am_diligent = medium_stress_gain
+			lazy = minor_stress_loss
+			diligent = medium_stress_gain
 		}
 	}
 }

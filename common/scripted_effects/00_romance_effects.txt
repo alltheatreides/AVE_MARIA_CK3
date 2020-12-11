@@ -61,7 +61,7 @@ lover_activity_set_variable_effect = {
 				modifier = {
 					OR = {
 						has_trait = lifestyle_herbalist
-						has_trait = am_withdrawn
+						has_trait = shy
 					}
 					factor = 5
 				}
@@ -74,7 +74,7 @@ lover_activity_set_variable_effect = {
 			10 = { #No trigger, always available
 				modifier = {
 					OR = {
-						has_trait = am_outgoing
+						has_trait = gregarious
 						has_trait = gluttonous
 					}
 					factor = 5
@@ -87,7 +87,7 @@ lover_activity_set_variable_effect = {
 			}
 			10 = { #No trigger, always available
 				modifier = {
-					has_trait = am_greedy
+					has_trait = greedy
 					factor = 5
 				}
 				set_variable = {
@@ -99,16 +99,16 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = am_withdrawn
-						has_trait = am_deceitful
+						has_trait = shy
+						has_trait = callous
 						has_trait = sadistic
 					}
-					NOT = { PREV = { has_trait = am_withdrawn } }
+					NOT = { PREV = { has_trait = shy } }
 				}
 				modifier = {
 					OR = {
 						has_trait = diplomat
-						has_trait = am_outgoing
+						has_trait = gregarious
 					}
 					factor = 5
 				}
@@ -121,8 +121,8 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					PREV = { stewardship > 10 }
-					NOT = { has_trait = am_greedy }
-					NOT = { PREV = { has_trait = am_generous } }
+					NOT = { has_trait = greedy }
+					NOT = { PREV = { has_trait = generous } }
 				}
 				set_variable = {
 					name = lover_activity
@@ -133,7 +133,7 @@ lover_activity_set_variable_effect = {
 			5 = {
 				trigger = {
 					NOR = {
-						has_trait = am_withdrawn
+						has_trait = shy
 						has_trait = temperate
 					}
 					NOT = { PREV = { has_trait = temperate } }
@@ -154,14 +154,14 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = am_craven
+						has_trait = craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
 					}
 					PREV = {
 						NOR  ={
-							has_trait = am_craven
+							has_trait = craven
 							has_trait = physique_bad_1
 							has_trait = physique_bad_2
 							has_trait = physique_bad_3
@@ -181,13 +181,13 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = am_hypocritical
-						has_trait = am_illtempered
+						has_trait = cynical
+						has_trait = impatient
 					}
 					PREV = {
 						NOR = {
-							has_trait = am_hypocritical
-							has_trait = am_illtempered
+							has_trait = cynical
+							has_trait = impatient
 						}
 					}
 				}
@@ -199,10 +199,10 @@ lover_activity_set_variable_effect = {
 			}
 			10 = {
 				trigger = {
-					NOT = { has_trait = am_humble }
+					NOT = { has_trait = humble }
 				}
 				modifier = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					factor = 5
 				}
 				set_variable = {
@@ -214,13 +214,13 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOT = {
-						has_trait = am_hypocritical
+						has_trait = cynical
 					}
-					PREV = { NOT = { has_trait = am_hypocritical } }
+					PREV = { NOT = { has_trait = cynical } }
 					religion = PREV.religion
 				}
 				modifier = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					factor = 5
 				}
 				set_variable = {
@@ -232,14 +232,14 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOR = {
-						has_trait = am_craven
+						has_trait = craven
 						has_trait = physique_bad_1
 						has_trait = physique_bad_2
 						has_trait = physique_bad_3
 					}
 					PREV = {
 						NOR  ={
-							has_trait = am_craven
+							has_trait = craven
 							has_trait = physique_bad_1
 							has_trait = physique_bad_2
 							has_trait = physique_bad_3
@@ -247,7 +247,7 @@ lover_activity_set_variable_effect = {
 					}
 				}
 				modifier = {
-					has_trait = am_brave
+					has_trait = brave
 					factor = 5
 				}
 				set_variable = {
@@ -258,13 +258,13 @@ lover_activity_set_variable_effect = {
 			}
 			10 = {
 				trigger = {
-					NOT = { has_trait = am_hypocritical }
-					PREV = { NOT = { has_trait = am_hypocritical } }
+					NOT = { has_trait = cynical }
+					PREV = { NOT = { has_trait = cynical } }
 				}
 				modifier = {
 					OR = {
 						has_trait = family_first
-						has_trait = am_outgoing
+						has_trait = gregarious
 						has_trait = ambitious
 						has_trait = pregnant
 					}
@@ -279,20 +279,20 @@ lover_activity_set_variable_effect = {
 			10 = {
 				trigger = {
 					NOT = {
-						has_trait = am_patient
+						has_trait = calm
 					}
 					OR = {
 						opinion = { target = PREV value < 15 }
 						reverse_opinion = { target = PREV value < 15 }
-						has_trait = am_wroth
+						has_trait = wrathful
 					}
-					PREV = { NOT = { has_trait = am_patient } }
+					PREV = { NOT = { has_trait = calm } }
 				}
 				modifier = {
 					OR = {
 						opinion = { target = PREV value < 0 }
 						reverse_opinion = { target = PREV value < 0 }
-						has_trait = am_wroth
+						has_trait = wrathful
 					}
 					factor = 5
 				}
@@ -417,34 +417,34 @@ had_sex_with_effect = {
 				is_female = yes
 				$CHARACTER$ = { is_male = yes }
 				possible_pregnancy_after_sex_with_character_trigger = { CHARACTER = scope:had_sex_with_effect_partner }
-				}
-				add_to_variable_list = {
-					name = potential_father_variable_list
-					target = $CHARACTER$
-				}
-				random = {
-					chance = $PREGNANCY_CHANCE$
-					make_pregnant = {
-						father = $CHARACTER$
-					}
-				}
-				if = {
-					limit = {
-						NOT = { has_character_flag = had_story_cycle_peasant_affair }
-						is_ruler = yes
-						$CHARACTER$ = {
-							is_lowborn = yes
-							is_landed = no
-							is_courtier = no
-						}
-					}
-					set_variable = {
-						name = story_peasant_affair_target
-						value = $CHARACTER$
-					}
-					create_story = story_peasant_affair
+			}
+			add_to_variable_list = {
+				name = potential_father_variable_list
+				target = $CHARACTER$
+			}
+			random = {
+				chance = $PREGNANCY_CHANCE$
+				make_pregnant = {
+					father = $CHARACTER$
 				}
 			}
+			if = {
+				limit = {
+					NOT = { has_character_flag = had_story_cycle_peasant_affair }
+					is_ruler = yes
+					$CHARACTER$ = {
+						is_lowborn = yes
+						is_landed = no
+						is_courtier = no
+					}
+				}
+				set_variable = {
+					name = story_peasant_affair_target
+					value = $CHARACTER$
+				}
+				create_story = story_peasant_affair
+			}
+		}
 		else_if = {
 			limit = {
 				is_male = yes
@@ -642,10 +642,10 @@ had_sex_with_unknown_effect = {
 
 		#STD transmission
 		random_list = {
-			95 = {
+			98 = {
 				#Nothing
 			}
-			4 = {
+			1 = {
 				contract_disease_notify_effect = { DISEASE = lovers_pox }
 			}
 			1 = {

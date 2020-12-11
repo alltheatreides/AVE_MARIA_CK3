@@ -137,6 +137,17 @@
 		  	}
 		}
 
+		## AVE MARIA ROMAN ADMIN ADDITION
+		modifier = {
+			add = -100
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			culture = culture:greek
+		}
+
 		#######################
 		# Standard AI Weights #
 
@@ -1351,7 +1362,7 @@ claimant_faction = {
 			}
 			AND = {
 				scope:claimant = root
-				NOT = { has_trait = am_conventional } # Not opposed to acquiring more power/wealth
+				NOT = { has_trait = content } # Not opposed to acquiring more power/wealth
 			}
 		}
 
@@ -1499,6 +1510,16 @@ claimant_faction = {
 			has_game_rule = very_easy_difficulty
 			scope:target = {
 				is_ai = no
+			}
+		}
+
+
+		### AVE MARIA
+		modifier = {
+			add = 1000
+			scope:target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 10
 			}
 		}
 	}
@@ -1762,6 +1783,15 @@ claimant_faction = {
 		modifier = {
 			scope:faction.faction_power >= scope:faction.faction_power_threshold
 			factor = faction_weight_factor_power_exceeds_threshold
+		}
+
+		### AVE MARIA
+		modifier = {
+			add = 1000
+			scope:faction.faction_target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 10
+			}
 		}
 	}
 

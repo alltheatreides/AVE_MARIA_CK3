@@ -114,7 +114,7 @@ councillor_spouse_stewardship.1002 = {
 		modifier = {
 			add = 0.5
 			scope:councillor = {
-				has_trait = am_diligent
+				has_trait = diligent
 			}
 		}
 	}
@@ -190,7 +190,7 @@ councillor_spouse_stewardship.1003 = {
 		modifier = {
 			add = 0.5
 			scope:councillor = {
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 		}
 	}
@@ -987,8 +987,8 @@ councillor_spouse_stewardship.2001 = {
 			}
 		}
 		stress_impact = {
-			am_outgoing = minor_stress_impact_loss
-			am_withdrawn = minor_stress_impact_gain
+			gregarious = minor_stress_impact_loss
+			shy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 25
@@ -1007,8 +1007,8 @@ councillor_spouse_stewardship.2001 = {
 			}
 		}
 		stress_impact = {
-			am_generous = minor_stress_impact_loss
-			am_greedy = minor_stress_impact_gain
+			generous = minor_stress_impact_loss
+			greedy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 25
@@ -1024,14 +1024,14 @@ councillor_spouse_stewardship.2001 = {
 			days = 1825
 		}
 		stress_impact = {
-			am_deceitful = minor_stress_impact_loss
-			am_mild = minor_stress_impact_gain
+			deceitful = minor_stress_impact_loss
+			trusting = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 25
 			modifier = {
 				add = 50
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 		}
 	}
@@ -1051,8 +1051,8 @@ councillor_spouse_stewardship.2001 = {
 scripted_trigger councillor_spouse_stewardship_2002_courtier_trigger = {
 	NOR = {
 		this = scope:councillor
-		has_trait = am_greedy
-		has_trait = am_outgoing
+		has_trait = greedy
+		has_trait = gregarious
 	}
 	is_adult = yes
 	is_ai = yes
@@ -1127,11 +1127,11 @@ councillor_spouse_stewardship.2002 = {
 				}
 				modifier = {
 					add = 2
-					has_trait = am_generous
+					has_trait = generous
 				}
 				modifier = {
 					add = 2
-					has_trait = am_withdrawn
+					has_trait = shy
 				}
 				modifier = {
 					add = 1
@@ -1198,8 +1198,8 @@ councillor_spouse_stewardship.2002 = {
 			}
 		}
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
-			am_honest = minor_stress_impact_loss
+			greedy = minor_stress_impact_gain
+			just = minor_stress_impact_loss
 		}
 		ai_chance = {
 			base = 80
@@ -1224,8 +1224,8 @@ councillor_spouse_stewardship.2002 = {
 			}
 		}
 		stress_impact = {
-			am_hypocritical = medium_stress_impact_gain
-			am_intolerant = medium_stress_impact_loss
+			cynical = medium_stress_impact_gain
+			zealous = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 10
@@ -1239,8 +1239,8 @@ councillor_spouse_stewardship.2002 = {
 		name = councillor_spouse_stewardship.2002.c
 		add_prestige = medium_prestige_gain
 		stress_impact = {
-			am_deceitful = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_loss
+			callous = medium_stress_impact_gain
+			compassionate = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 10
@@ -1252,8 +1252,8 @@ councillor_spouse_stewardship.2002 = {
 
 	option = { #Take the money
 		name = councillor_spouse_stewardship.2002.d
-		trigger = { has_trait = am_greedy }
-		trait = am_greedy
+		trigger = { has_trait = greedy }
+		trait = greedy
 		hidden_effect = {
 			scope:courtier_lender = {
 				if = {
@@ -1276,8 +1276,8 @@ councillor_spouse_stewardship.2002 = {
 		}
 		add_dread = medium_dread_gain
 		stress_impact = {
-			am_honest = minor_stress_impact_gain
-			am_greedy = minor_stress_impact_loss
+			just = minor_stress_impact_gain
+			greedy = minor_stress_impact_loss
 		}
 		ai_chance = {
 				base = 2
@@ -1542,13 +1542,13 @@ councillor_spouse_stewardship.2003 = {
 	option = { # Nah
 		name = {
 			trigger = {
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 			text = councillor_spouse_stewardship.2003.d_greedy
 		}
 		name = {
 			trigger = {
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			text = councillor_spouse_stewardship.2003.d_arrogant
 		}
@@ -1647,7 +1647,7 @@ councillor_spouse_stewardship.2004 = {
 			type = favor_hook
 		}
 		stress_impact = {
-			am_agreeable = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -1665,8 +1665,8 @@ councillor_spouse_stewardship.2004 = {
 			}
 		}
 		stress_impact = {
-			am_quarrelsome = medium_stress_impact_gain
-			am_agreeable = minor_stress_impact_loss
+			vengeful = medium_stress_impact_gain
+			forgiving = minor_stress_impact_loss
 		}
 		ai_chance = {
 			base = 0
@@ -1790,7 +1790,7 @@ councillor_spouse_stewardship.2005 = {
 			base = 50
 			modifier = {
 				add = -50
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 		}
 	}

@@ -12,10 +12,12 @@
 		scope:attacker.faith = {
 			NOT = { has_doctrine = unreformed_faith_doctrine }
 		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = ambitious
-		}
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
+		}		
 	}
 
 	allowed_for_character_display_regardless = {
@@ -449,9 +451,11 @@ religious_war = {
 		scope:attacker.faith = {
 			NOT = { has_doctrine = unreformed_faith_doctrine }
 		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = ambitious
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
 		}
 	}
 
@@ -787,6 +791,7 @@ religious_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -887,9 +892,11 @@ major_religious_war = {
 		scope:attacker.faith = {
 			NOT = { has_doctrine = unreformed_faith_doctrine }
 		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = ambitious
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
 		}
 	}
 

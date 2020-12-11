@@ -361,8 +361,8 @@ relation_upgrade.0001 = {
 				relation_upgrade_0001_has_two_options_trigger = no
 				OR = {
 					intrigue >= high_skill_rating
-					has_trait = am_deceitful
-					has_trait = am_fearful
+					has_trait = deceitful
+					has_trait = paranoid
 					has_trait = ambitious
 					has_trait_rank = {
 						trait = education_intrigue
@@ -371,9 +371,9 @@ relation_upgrade.0001 = {
 				}
 				NOR = {
 					intrigue < mediocre_skill_rating
-					has_trait = am_mild
-					has_trait = am_honest
-					has_trait = am_honest
+					has_trait = trusting
+					has_trait = honest
+					has_trait = just
 				}
 				liege = {
 					any_vassal = {
@@ -418,8 +418,8 @@ relation_upgrade.0001 = {
 				relation_upgrade_0001_has_two_options_trigger = no
 				prowess >= decent_skill_rating
 				NOR = {
-					has_trait = am_withdrawn
-					has_trait = am_humble
+					has_trait = shy
+					has_trait = humble
 				}
 			}
 			save_scope_value_as = {
@@ -499,14 +499,14 @@ relation_upgrade.0001 = {
 
 			# Stress Loss
 			sadistic = medium_stress_loss
-			am_quarrelsome = medium_stress_loss
-			am_wroth = medium_stress_loss
-			am_inconstant = minor_stress_loss
-			am_illtempered = minor_stress_loss
+			vengeful = medium_stress_loss
+			wrathful = medium_stress_loss
+			arbitrary = minor_stress_loss
+			impatient = minor_stress_loss
 
 			# Stress Gain
-			am_tolerant = major_stress_gain
-			am_honest = medium_stress_gain
+			compassionate = major_stress_gain
+			just = medium_stress_gain
 		}
 	}
 
@@ -561,8 +561,8 @@ relation_upgrade.0001 = {
 		}
 
 		stress_impact = {
-			am_withdrawn = minor_stress_gain
-			am_outgoing = minor_stress_loss
+			shy = minor_stress_gain
+			gregarious = minor_stress_loss
 		}
 	}
 
@@ -638,8 +638,12 @@ relation_upgrade.0001 = {
 			drunkard = minor_stress_impact_loss
 		}
 		random = {
-			chance = 10
+			chance = 1
 			add_trait = drunkard
+		}
+
+		ai_chance = {
+			base = 0
 		}
 	}
 
@@ -652,7 +656,7 @@ relation_upgrade.0001 = {
 			base = minor_stress_impact_loss
 			gluttonous = minor_stress_impact_loss
 			comfort_eater = minor_stress_impact_loss
-			am_greedy = minor_stress_impact_loss
+			greedy = minor_stress_impact_loss
 		}
 	}
 
@@ -748,10 +752,10 @@ relation_upgrade.0001 = {
 
 		add_piety = medium_piety_gain
 		stress_impact = {
-			am_intolerant = minor_stress_loss
+			zealous = minor_stress_loss
 			reclusive = minor_stress_loss
-			am_outgoing = minor_stress_gain
-			am_hypocritical = minor_stress_gain
+			gregarious = minor_stress_gain
+			cynical = minor_stress_gain
 		}
 	}
 
@@ -1097,7 +1101,7 @@ scripted_trigger can_have_reveller_option_trigger = {
 			trait = lifestyle_reveler
 			rank >= 1
 		}
-		has_trait = am_outgoing
+		has_trait = gregarious
 		ai_sociability >= medium_positive_ai_value
 
 		#Taking pity on the host.
@@ -1107,10 +1111,10 @@ scripted_trigger can_have_reveller_option_trigger = {
 				value >= low_positive_opinion
 			}
 			OR = {
-				has_trait = am_generous
-				has_trait = am_patient
-				has_trait = am_tolerant
-				has_trait = am_agreeable
+				has_trait = generous
+				has_trait = patient
+				has_trait = compassionate
+				has_trait = forgiving
 				ai_compassion >= medium_positive_ai_value
 			}
 		}
@@ -1135,17 +1139,17 @@ scripted_trigger can_have_burn_the_building_trigger = {
 		#Appropriate trait requirements.
 		has_trait = lunatic_1
 		has_trait = sadistic
-		has_trait = am_quarrelsome
-		has_trait = am_deceitful
+		has_trait = vengeful
+		has_trait = callous
 
 		#Or just having a bad enough day.
 		calc_true_if = {
 			amount >= 2
 
-			has_trait = am_wroth
-			has_trait = am_illtempered
-			has_trait = am_inconstant
-			has_trait = am_inconstant
+			has_trait = wrathful
+			has_trait = impatient
+			has_trait = arbitrary
+			has_trait = fickle
 		}
 	}
 }
@@ -1420,7 +1424,7 @@ relation_upgrade.1001 = {
 				is_available_ai_adult = yes
 				NOR = {
 					#Filter out anyone who might skip.
-					has_trait = am_withdrawn
+					has_trait = shy
 					ai_sociability <= low_negative_ai_value
 					#And remove the host from this list to.
 					this = scope:terrible_party_host
@@ -1635,7 +1639,7 @@ relation_upgrade.1001 = {
 			}
 		}
 
-		stress_impact = { am_withdrawn = minor_stress_impact_gain }
+		stress_impact = { shy = minor_stress_impact_gain }
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
@@ -1644,7 +1648,7 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -1706,7 +1710,7 @@ relation_upgrade.1001 = {
 			}
 		}
 
-		stress_impact = { am_agreeable = medium_stress_impact_gain }
+		stress_impact = { forgiving = medium_stress_impact_gain }
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
@@ -1715,7 +1719,7 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_agreeable
+				has_trait = forgiving
 			}
 		}
 	}
@@ -1729,7 +1733,7 @@ relation_upgrade.1001 = {
 		trait = reveler_1
 		trait = reveler_2
 		trait = reveler_3
-		trait = am_outgoing
+		trait = gregarious
 
 		#See if you can start a decent dance!
 		duel = {
@@ -1798,7 +1802,7 @@ relation_upgrade.1001 = {
 			}
 		}
 
-		stress_impact = { am_withdrawn = medium_stress_impact_gain }
+		stress_impact = { shy = medium_stress_impact_gain }
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
@@ -1808,7 +1812,7 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -1838,8 +1842,8 @@ relation_upgrade.1001 = {
 		#Do you have this because of a trait?
 		trait = lunatic_1
 		trait = sadistic
-		trait = am_quarrelsome
-		trait = am_deceitful
+		trait = vengeful
+		trait = callous
 		
 		#Wound the host, who grows suspicious.
 		add_dread = medium_dread_gain
@@ -1936,16 +1940,16 @@ relation_upgrade.1001 = {
 		stress_impact = {
 			base = major_stress_impact_loss
 
-			am_tolerant = medium_stress_impact_gain
-			am_agreeable = medium_stress_impact_gain
-			am_patient = medium_stress_impact_gain
-			am_patient = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			patient = medium_stress_impact_gain
+			calm = medium_stress_impact_gain
 
-			am_illtempered = medium_stress_impact_loss
-			am_deceitful = medium_stress_impact_loss
+			impatient = medium_stress_impact_loss
+			callous = medium_stress_impact_loss
 			sadistic = medium_stress_impact_loss
-			am_quarrelsome = medium_stress_impact_loss
-			am_wroth = medium_stress_impact_loss
+			vengeful = medium_stress_impact_loss
+			wrathful = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 100
@@ -1958,19 +1962,19 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_agreeable
+				has_trait = forgiving
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_patient
+				has_trait = patient
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_patient
+				has_trait = calm
 			}
 		}
 	}
@@ -1989,10 +1993,10 @@ relation_upgrade.1001 = {
 		stress_impact = {
 			base = medium_stress_impact_gain
 
-			am_pretentious = minor_stress_impact_gain
-			am_deceitful = minor_stress_impact_gain
+			arrogant = minor_stress_impact_gain
+			callous = minor_stress_impact_gain
 
-			am_outgoing = minor_stress_impact_loss
+			gregarious = minor_stress_impact_loss
 			reveler_1 = minor_stress_impact_loss
 			reveler_2 = minor_stress_impact_loss
 			reveler_3 = minor_stress_impact_loss
@@ -2007,11 +2011,11 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -10
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			modifier = {	#Weight down for stress.
 				add = -10
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 		}
 	}
@@ -2052,12 +2056,12 @@ relation_upgrade.1001 = {
 			hidden_effect = {
 				add_character_flag = {
 					flag = was_the_target_in_any_relation_upgrade_event
-					years = 5
+					years = 15
 				}
 			}
 		}
 
-		stress_impact = { am_withdrawn = medium_stress_impact_gain }
+		stress_impact = { shy = medium_stress_impact_gain }
 		ai_chance = {
 			base = 100
 			ai_value_modifier = {
@@ -2066,7 +2070,7 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -2098,8 +2102,8 @@ relation_upgrade.1001 = {
 		}
 		
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
-			am_humble = medium_stress_impact_gain
+			compassionate = minor_stress_impact_gain
+			humble = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -2110,11 +2114,11 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -10
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 			modifier = {	#Weight down for stress.
 				add = -20
-				has_trait = am_humble
+				has_trait = humble
 			}
 		}
 	}
@@ -2124,8 +2128,8 @@ relation_upgrade.1001 = {
 		name = relation_upgrade.1001.i
 		add_prestige = miniscule_prestige_loss
 		stress_impact = {
-			am_outgoing = minor_stress_impact_gain
-			am_withdrawn = medium_stress_impact_loss
+			gregarious = minor_stress_impact_gain
+			shy = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 100
@@ -2135,7 +2139,7 @@ relation_upgrade.1001 = {
 			}
 			modifier = {	#Weight down for stress.
 				add = -10
-				has_trait = am_outgoing
+				has_trait = gregarious
 			}
 		}
 	}
@@ -2196,7 +2200,7 @@ relation_upgrade.1002 = {
 			}
 		}
 
-		stress_impact = { am_withdrawn = minor_stress_impact_gain }
+		stress_impact = { shy = minor_stress_impact_gain }
 		ai_chance = { base = 100 }	#The AI should always pick this.
 	}
 	
@@ -2232,7 +2236,7 @@ relation_upgrade.1002 = {
 			}
 		}
 
-		stress_impact = { am_outgoing = minor_stress_impact_gain }
+		stress_impact = { gregarious = minor_stress_impact_gain }
 		ai_chance = { base = 0 }	#AI should never pick this option.
 	}
 	
@@ -2269,7 +2273,7 @@ relation_upgrade.1002 = {
 			}
 		}
 
-		stress_impact = { am_agreeable = minor_stress_impact_gain }
+		stress_impact = { forgiving = minor_stress_impact_gain }
 		ai_chance = { base = 0 }	#AI should never pick this option.
 	}
 }
@@ -2342,7 +2346,7 @@ relation_upgrade.1003 = {
 			}
 		}
 		
-		stress_impact = { am_withdrawn = minor_stress_impact_gain }
+		stress_impact = { shy = minor_stress_impact_gain }
 		ai_chance = { base = 0 }	#AI should never pick this option.
 	}
 	
@@ -2433,12 +2437,12 @@ relation_upgrade.1004 = {
 		}
 		
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
-			am_agreeable = medium_stress_impact_gain
+			compassionate = minor_stress_impact_gain
+			forgiving = medium_stress_impact_gain
 			
-			am_deceitful = minor_stress_impact_loss
+			callous = minor_stress_impact_loss
 			sadistic = medium_stress_impact_loss
-			am_quarrelsome = major_stress_impact_loss
+			vengeful = major_stress_impact_loss
 		}
 		ai_chance = { base = 100 }	#The AI should always pick this.
 	}
@@ -2462,13 +2466,13 @@ relation_upgrade.1004 = {
 		}
 		
 		stress_impact = {
-			am_humble = miniscule_stress_impact_loss
-			am_tolerant = miniscule_stress_impact_loss
-			am_agreeable = minor_stress_impact_loss
+			humble = miniscule_stress_impact_loss
+			compassionate = miniscule_stress_impact_loss
+			forgiving = minor_stress_impact_loss
 
-			am_pretentious = miniscule_stress_impact_gain
-			am_fearful = minor_stress_impact_gain
-			am_quarrelsome = medium_stress_impact_gain
+			arrogant = miniscule_stress_impact_gain
+			paranoid = minor_stress_impact_gain
+			vengeful = medium_stress_impact_gain
 		}
 		ai_chance = { base = 0 }	#AI should never pick this option.
 	}
@@ -2493,15 +2497,15 @@ relation_upgrade.1004 = {
 		stress_impact = {
 			base = medium_stress_impact_gain
 
-			am_humble = minor_stress_impact_loss
-			am_mild = minor_stress_impact_loss
-			am_tolerant = minor_stress_impact_loss
-			am_agreeable = medium_stress_impact_loss
+			humble = minor_stress_impact_loss
+			trusting = minor_stress_impact_loss
+			compassionate = minor_stress_impact_loss
+			forgiving = medium_stress_impact_loss
 
-			am_pretentious = minor_stress_impact_gain
-			am_stubborn = medium_stress_impact_gain
-			am_fearful = medium_stress_impact_gain
-			am_quarrelsome = major_stress_impact_gain
+			arrogant = minor_stress_impact_gain
+			stubborn = medium_stress_impact_gain
+			paranoid = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
 		}
 		ai_chance = { base = 0 }	#AI should never pick this option.
 	}
@@ -2880,7 +2884,7 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 						1 = {
 							trigger = {
 								OR = {
-									has_trait = am_honest
+									has_trait = just
 									has_focus = stewardship_domain_focus
 								}
 							}
@@ -3084,7 +3088,7 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 		}
 
 		stress_impact = {
-			am_inconstant = medium_stress_impact_gain
+			fickle = medium_stress_impact_gain
 			chaste = medium_stress_impact_gain
 		}
 
@@ -3101,7 +3105,7 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 			}
 			modifier = {
 				OR = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					has_trait = chaste
 				}
 				add = -40
@@ -3134,13 +3138,13 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 			hidden_effect = {
 				add_character_flag = {
 					flag = was_the_target_in_any_relation_upgrade_event
-					years = 5
+					years = 15
 				}
 			}
 		}
 
 		stress_impact = {
-			am_inconstant = medium_stress_impact_gain
+			fickle = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -3155,7 +3159,7 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 				min = -30
 			}
 			modifier = {
-				has_trait = am_inconstant
+				has_trait = fickle
 				add = -40
 			}
 		}
@@ -3231,7 +3235,7 @@ relation_upgrade.2002 = { #by Mathilda Bjarnehed
 	  	scope:lover_2 = { trigger_event = relation_upgrade.2003 }
 
 	  	stress_impact = {
-			am_inconstant = medium_stress_impact_gain
+			fickle = medium_stress_impact_gain
 			chaste = medium_stress_impact_gain
 		}
 
@@ -3248,7 +3252,7 @@ relation_upgrade.2002 = { #by Mathilda Bjarnehed
 			}
 			modifier = {
 				OR = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					has_trait = chaste
 				}
 				add = -40
@@ -3266,7 +3270,7 @@ relation_upgrade.2002 = { #by Mathilda Bjarnehed
 	  	scope:lover_2 = { trigger_event = relation_upgrade.2003 }
 
 	  	stress_impact = {
-			am_inconstant = medium_stress_impact_gain
+			fickle = medium_stress_impact_gain
 		}
 
 	  	ai_chance = {
@@ -3281,7 +3285,7 @@ relation_upgrade.2002 = { #by Mathilda Bjarnehed
 				min = -30
 			}
 			modifier = {
-				has_trait = am_inconstant
+				has_trait = fickle
 				add = -40
 			}
 		}
@@ -3527,7 +3531,7 @@ relation_upgrade.2101 = {
 	}
 
 	weight_multiplier = {
-		base = 0.5
+		base = 0.05
 		modifier = {
 			add = -0.3
 			exists = var:had_relation_upgrade_2101
@@ -3774,11 +3778,11 @@ relation_upgrade.2101 = {
 			}
 		}
 		stress_impact = {
-			am_agreeable = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
-			am_patient = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			calm = medium_stress_impact_gain
 			sadistic = major_stress_impact_loss
-			am_quarrelsome = major_stress_impact_loss
+			vengeful = major_stress_impact_loss
 		}
 	}
 
@@ -3793,7 +3797,7 @@ relation_upgrade.2101 = {
 				exists = scope:your_courtier_to_infect
 			}
 			random = {
-				chance = 10
+				chance = 5
 				custom_tooltip = relation_upgrade.2101.b_tt
 				hidden_effect = {
 					if = {
@@ -3814,7 +3818,7 @@ relation_upgrade.2101 = {
 		}
 		else = {
 			random = {
-				chance = 10
+				chance = 1
 				send_interface_toast = {
 					title = relation_upgrade.2101.b_tt_2
 					left_icon = root
@@ -3828,10 +3832,10 @@ relation_upgrade.2101 = {
 			}
 		}
 		stress_impact = {
-			am_illtempered = minor_stress_impact_gain
-			am_quarrelsome = major_stress_impact_gain
-			am_pretentious = minor_stress_impact_gain
-			am_wroth = major_stress_impact_gain
+			impatient = minor_stress_impact_gain
+			vengeful = major_stress_impact_gain
+			arrogant = minor_stress_impact_gain
+			wrathful = major_stress_impact_gain
 			sadistic = major_stress_impact_gain
 		}
 	}
@@ -3841,9 +3845,9 @@ relation_upgrade.2101 = {
 		add_piety = minor_piety_gain
 
 		stress_impact = {
-			am_tolerant = medium_stress_impact_loss
-			am_quarrelsome = minor_stress_impact_gain
-			am_wroth = minor_stress_impact_gain
+			compassionate = medium_stress_impact_loss
+			vengeful = minor_stress_impact_gain
+			wrathful = minor_stress_impact_gain
 			sadistic = minor_stress_impact_gain
 		}
 	}
@@ -3992,10 +3996,10 @@ relation_upgrade.2102 = {
 		}
 		stress_impact = {
 			sadistic = medium_stress_impact_loss
-			am_quarrelsome = medium_stress_impact_loss
-			am_agreeable = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
-			am_patient = minor_stress_impact_gain
+			vengeful = medium_stress_impact_loss
+			forgiving = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			calm = minor_stress_impact_gain
 		}
 	}
 
@@ -4078,10 +4082,10 @@ relation_upgrade.2102 = {
 			base = 0
 		}
 		stress_impact = {
-			am_brave = minor_stress_impact_gain
-			am_quarrelsome = medium_stress_impact_gain
-			am_pretentious = medium_stress_impact_gain
-			am_wroth = major_stress_impact_gain
+			brave = minor_stress_impact_gain
+			vengeful = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
+			wrathful = major_stress_impact_gain
 			sadistic = medium_stress_impact_gain
 		}
 	}
@@ -4106,11 +4110,11 @@ relation_upgrade.2102 = {
 			base = 0
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_loss
-			am_brave = minor_stress_impact_gain
-			am_quarrelsome = medium_stress_impact_gain
-			am_pretentious = medium_stress_impact_gain
-			am_wroth = major_stress_impact_gain
+			compassionate = medium_stress_impact_loss
+			brave = minor_stress_impact_gain
+			vengeful = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
+			wrathful = major_stress_impact_gain
 			sadistic = medium_stress_impact_gain
 		}
 	}

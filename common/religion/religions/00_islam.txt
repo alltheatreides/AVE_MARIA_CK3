@@ -48,8 +48,8 @@
 	doctrine = special_doctrine_is_islamic_faith
 
 	traits = {
-		virtues = { temperate am_generous am_honest }
-		sins = { gluttonous am_greedy am_inconstant drunkard }
+		virtues = { temperate generous just }
+		sins = { gluttonous greedy arbitrary drunkard }
 	}
 
 	reserved_male_names = {
@@ -164,7 +164,6 @@
 		PantheonTermHasHave = pantheon_term_has
 		GoodGodNames = {
 			islam_high_god_name
-			HighGodNameAlternate
 			islam_good_god_rahim
 			islam_good_god_the_most_gracious
 			islam_good_god_the_giver_of_peace
@@ -433,14 +432,16 @@
 			holy_site = nadjaf
 			holy_site = damascus
 
-			doctrine = tenet_literalism
-			doctrine = tenet_religious_legal_pronouncements
-			doctrine = tenet_false_conversion_sanction
+			doctrine = tenet_unrelenting_faith
+			doctrine = tenet_mendicant_preachers
+			doctrine = tenet_gnosticism
 
 			#Shia
 			#Homosexuality is a sin, but a much more tolerated one.
 			#Witchcraft is frowned upon
 			doctrine = muhammad_succession_zandaqa_doctrine	#Technically Shia
+			doctrine = doctrine_no_head # Believes in the Imams, but disagree with mainline Shias as to who they are. Does not believe the true Imam has been reincarnated yet.
+			doctrine = doctrine_pluralism_fundamentalist
 			doctrine = doctrine_homosexuality_accepted
 			doctrine = doctrine_witchcraft_shunned
 
@@ -697,13 +698,11 @@
 			doctrine = tenet_false_conversion_sanction
 
 			#Shia
-			#No religious head
-			#Monogamy
 			#Divorce forbidden
 			#Homosexuality is a sin
-			#Adultery is a crime
 			#Witchcraft is a sin
-			#Clerical gender - Either
+
+			doctrine = doctrine_monogamy
 			doctrine = muhammad_succession_zandaqa_doctrine	#Technically Shia
 			doctrine = doctrine_no_head
 			doctrine = doctrine_divorce_allowed

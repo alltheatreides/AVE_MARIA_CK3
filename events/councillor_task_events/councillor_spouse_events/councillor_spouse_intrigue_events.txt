@@ -673,8 +673,8 @@ councillor_spouse_intrigue.0006 = {
 		scope:councillor = {
 			is_performing_council_task = task_court_intrigue
 			
-			has_trait = am_mild
-			NOT = { has_trait = am_outgoing }
+			has_trait = trusting
+			NOT = { has_trait = gregarious }
 			number_of_personality_traits >= 3
 		}
 	}
@@ -720,7 +720,7 @@ councillor_spouse_intrigue.0006 = {
 			left_icon = scope:councillor
 
 			scope:councillor = {
-				remove_trait = am_mild
+				remove_trait = trusting
 			}
 		}
 	}
@@ -736,8 +736,8 @@ councillor_spouse_intrigue.0007 = {
 			is_performing_council_task = task_court_intrigue
 
 			NOR = {
-				has_trait = am_honest
-				has_trait = am_deceitful
+				has_trait = honest
+				has_trait = deceitful
 			}
 			number_of_personality_traits <= 3
 		}
@@ -784,7 +784,7 @@ councillor_spouse_intrigue.0007 = {
 			left_icon = scope:councillor
 			
 			scope:councillor = {
-				add_trait = am_deceitful
+				add_trait = deceitful
 			}
 		}
 	}

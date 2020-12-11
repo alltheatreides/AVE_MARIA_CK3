@@ -478,7 +478,7 @@ demand_conversion_vassal_ruler_interaction = {
 						}
 						random_list = {
 							50 = { #They ask for gold
-						modifier = {
+								modifier = {
 									add = 50 # More likely to ask for gold if they're poor
 									scope:recipient.short_term_gold < medium_gold_value
 								}
@@ -494,38 +494,38 @@ demand_conversion_vassal_ruler_interaction = {
 									is_at_war = yes
 									any_character_war = {
 										is_war_leader = scope:recipient
+									}
+								}
+								scope:actor = {
+									trigger_event = {
+										id = religious_interaction.2011
+									}
+								}
 							}
-						}
-						scope:actor = {
-							trigger_event = {
-								id = religious_interaction.2011
-							}
-						}
-					}
 							500 = { #They ask for a favor
-						trigger = {
-								exists = scope:recipient.capital_county
+								trigger = {
+									exists = scope:recipient.capital_county
 									NOT = { has_hook = scope:actor }
-							}
+								}
 								# Direct feudal vassals appreciate favors more (they can improve their contract).
-						modifier = {
+								modifier = {
 									add = {
 										value = 50
 										# This goes double for your Powerful Vassals. A better contract is likely to be much more important than a short-term payout.
 										if = {
 											limit = { is_powerful_vassal_of = scope:actor }
 											add = 100
-						}
-							}
+										}
+									}
 									this.liege = scope:actor
 									has_government = feudal_government
-						}
-						scope:actor = {
-							trigger_event = {
-								id = religious_interaction.2012
+								}
+								scope:actor = {
+									trigger_event = {
+										id = religious_interaction.2012
+									}
+								}
 							}
-						}
-					}
 						}
 
 					}
@@ -860,7 +860,7 @@ convert_at_war_interaction = {
 		scope:actor = {
 			show_as_tooltip = {
 				add_piety_level = -1
-				stress_impact = { am_intolerant = major_stress_impact_gain }
+				stress_impact = { zealous = major_stress_impact_gain }
 			}
 			trigger_event = religious_interaction.2501
 		}
@@ -1125,7 +1125,7 @@ seek_indulgences_interaction = {
 	ai_potential = {
 		short_term_gold >= head_of_faith_gold_value
 		NOT = {
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 
@@ -1968,30 +1968,30 @@ send_to_holy_order_interaction = {
 
 		# Refund piety cost
 		show_as_tooltip = {
-		scope:actor = {
-			add_piety_no_experience = {
+			scope:actor = {
+				add_piety_no_experience = {
 					value = scope:recipient.ask_to_take_vows_piety_cost
-									}
-								}
-							}
-		hidden_effect = {
-				if = {
-					limit = {
-						scope:recipient = {
-						has_variable = vows_piety_spent
-									}
-								}
-				scope:actor = {
-					add_piety_no_experience = {
-						value = scope:recipient.var:vows_piety_spent
-							}
-						}
-				scope:recipient = {
-					remove_variable = vows_piety_spent
 				}
 			}
 		}
-	}
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:recipient = {
+						has_variable = vows_piety_spent
+ 					}
+				}
+				scope:actor = {
+					add_piety_no_experience = {
+						value = scope:recipient.var:vows_piety_spent
+ 					}
+ 				}
+				scope:recipient = {
+					remove_variable = vows_piety_spent
+				}
+ 			}
+ 		}
+ 	}
 
 	auto_accept = no
 
@@ -2133,14 +2133,14 @@ send_to_holy_order_interaction = {
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = am_conventional
+				has_trait = content
 			}
 			desc = TAKE_THE_VOWS_CONTENT
 		}
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = am_humble
+				has_trait = humble
 			}
 			desc = TAKE_THE_VOWS_HUMBLE
 		}
@@ -2676,31 +2676,31 @@ take_vows_interaction = {
 
 		# Refund piety cost
 		show_as_tooltip = {
-		scope:actor = {
-			add_piety_no_experience = {
+			scope:actor = {
+				add_piety_no_experience = {
 					value = scope:recipient.ask_to_take_vows_piety_cost
-									}
-								}
-							}
-		# Refund piety cost
-		hidden_effect = {
-				if = {
-					limit = {
-						scope:recipient = {
-						has_variable = vows_piety_spent
-									}
-								}
-				scope:actor = {
-					add_piety_no_experience = {
-						value = scope:recipient.var:vows_piety_spent
-							}
-						}
-				scope:recipient = {
-					remove_variable = vows_piety_spent
 				}
 			}
 		}
-	}
+		# Refund piety cost
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:recipient = {
+						has_variable = vows_piety_spent
+ 					}
+ 				}
+				scope:actor = {
+					add_piety_no_experience = {
+						value = scope:recipient.var:vows_piety_spent
+ 					}
+				}
+				scope:recipient = {
+					remove_variable = vows_piety_spent
+ 				}
+ 			}
+ 		}
+ 	}
 
 	auto_accept = no
 
@@ -2915,14 +2915,14 @@ take_vows_interaction = {
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = am_conventional
+				has_trait = content
 			}
 			desc = TAKE_THE_VOWS_CONTENT
 		}
 		modifier = {
 			add = 25
 			scope:recipient = {
-				has_trait = am_humble
+				has_trait = humble
 			}
 			desc = TAKE_THE_VOWS_HUMBLE
 		}
@@ -2943,7 +2943,7 @@ take_vows_interaction = {
 		modifier = {
 			add = 50
 			scope:recipient = {
-				has_trait = am_mild
+				has_trait = trusting
 			}
 			desc = TAKE_THE_VOWS_TRUSTING
 		}
@@ -3422,7 +3422,7 @@ temporal_condemnation_interaction = {
 				}
 			}
 			stress_impact = {
-				am_hypocritical = minor_stress_impact_gain
+				cynical = minor_stress_impact_gain
 			}
 		}
 		scope:recipient = {
@@ -3552,8 +3552,8 @@ host_honored_guest_interaction = {
 	on_accept = {
 		scope:actor = {
 			stress_impact = {
-				am_hypocritical = minor_stress_impact_gain
-				am_withdrawn = minor_stress_impact_gain
+				cynical = minor_stress_impact_gain
+				shy = minor_stress_impact_gain
 			}
 		}
 		scope:recipient = {
@@ -3566,7 +3566,7 @@ host_honored_guest_interaction = {
 			# Spend piety based on recipient's tier.
 			if = {
 				limit = {
-					highest_held_title_tier <= tier_county
+					highest_held_title_tier = tier_county
 				}
 				scope:actor = {
 					add_piety = minor_piety_loss
@@ -3607,7 +3607,7 @@ host_honored_guest_interaction = {
 					# Zealous characters more likely to appreciate the religious ceremony (if of your faith)
 					if = {
 						limit = {
-							has_trait = am_intolerant
+							has_trait = zealous
 							faith = scope:actor.faith
 						}
 						add = 10
@@ -3616,7 +3616,7 @@ host_honored_guest_interaction = {
 					else_if = {
 						limit = {
 							OR = {
-								has_trait = am_hypocritical
+								has_trait = cynical
 								NOT = {
 									faith = {
 										has_doctrine_parameter = host_honored_guests_active
@@ -3630,7 +3630,7 @@ host_honored_guest_interaction = {
 					# But arrogant characters like it more regardless.
 					if = {
 						limit = {
-							has_trait = am_pretentious
+							has_trait = arrogant
 						}
 						add = 10
 					}
@@ -4087,7 +4087,7 @@ hof_ask_for_gold_interaction = {
 		}
 
 		modifier = { # Counts get a bad 'exchange rate' due to their low income.
-			highest_held_title_tier < tier_county 
+			highest_held_title_tier = tier_county 
 			scope:recipient.gold < 1500
 			add = -50
 		}
@@ -4118,7 +4118,7 @@ hof_ask_for_gold_interaction = {
 				piety > massive_piety_value
 				NOR = {
 					has_character_modifier = vow_of_poverty_modifier
-					has_trait = am_generous
+					has_trait = generous
 				}
 			}
 		}
@@ -4155,14 +4155,6 @@ hof_ask_for_claim_interaction = {
 			}
 			scope:actor.faith.religious_head = {
 				save_scope_as = recipient
-			}
-		}
-		scope:actor.faith = {
-			if = {
-				limit = { exists = religious_head }
-				religious_head = {
-					save_scope_as = recipient
-				}
 			}
 		}
 	}
@@ -5119,7 +5111,7 @@ literalist_debate_interaction = {
 		custom_tooltip = literalist_debate_interaction.tt_modifiers
 		scope:actor = {
 			stress_impact = {
-				am_hypocritical = minor_stress_impact_gain
+				cynical = minor_stress_impact_gain
 			}
 			custom_tooltip = literalist_debate_interaction.tt_winnings_actor
 		}

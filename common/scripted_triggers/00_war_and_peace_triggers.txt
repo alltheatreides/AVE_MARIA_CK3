@@ -231,6 +231,8 @@ can_use_conquest_cbs_trigger = {
 		has_government = tribal_government
 		has_government = clan_government
 		faith = { has_doctrine_parameter = conquest_cb_enabled }
+		has_trait = ambitious
+		has_trait = greedy
 	}
 }
 
@@ -506,7 +508,7 @@ can_join_war_liege_vassal_check_trigger = {
 				}
 			}
 		}
-		   
+		
 		# actor is attacker, defenders do not include recipient's liege or vassals
 		trigger_else_if = {
 			limit = { $WARRIOR$ = { is_attacker_in_war = scope:target } }

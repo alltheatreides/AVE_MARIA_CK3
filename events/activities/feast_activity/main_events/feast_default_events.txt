@@ -224,7 +224,7 @@ feast_default.1001 = {
 scripted_trigger feast_default_1002_annoyed_guest_trigger = {
 	feast_default_participant_trigger = yes
 	NOT = { has_trait = gluttonous }
-	NOT = { has_trait = am_illtempered }
+	NOT = { has_trait = impatient }
 	NOT = {
 		has_opinion_modifier = {
 			target = root
@@ -247,7 +247,7 @@ feast_default.1002 = {
 	trigger = {
 		NOT = { exists = local_var:had_1002 }
 		has_trait = gluttonous
-		NOT = { has_trait = am_patient }
+		NOT = { has_trait = patient }
 		NOT = { has_character_modifier = feast_gratifying_complaints_modifier }
 		scope:activity = {
 			any_participant = { #There needs to exist someone who can get annoyed at you
@@ -260,11 +260,11 @@ feast_default.1002 = {
 		base = 1
 		modifier = { #Wrathful characters are more likely to be angry
 			add = 0.5
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 		modifier = { #Wrathful characters are more likely to be angry
 			add = 0.5
-			has_trait = am_illtempered
+			has_trait = impatient
 		}
 	}
 
@@ -298,7 +298,7 @@ feast_default.1002 = {
 					NOT = { this = scope:other_guest }
 					OR = {
 						has_trait = gluttonous
-						has_trait = am_illtempered
+						has_trait = impatient
 					}
 				}
 				add_opinion = {
@@ -465,7 +465,7 @@ feast_default.1004 = {
 	trigger = {
 		NOT = { exists = local_var:had_1004 }
 		NOR = {
-			has_trait = am_greedy
+			has_trait = greedy
 			has_trait = temperate
 			has_trait = inappetetic
 		}
@@ -562,7 +562,7 @@ feast_default.1005 = {
 	trigger = {
 		NOT = { exists = local_var:had_1005 }
 		OR = {
-			has_trait = am_withdrawn
+			has_trait = shy
 			has_trait = reclusive
 		}
 		NOT = { has_trait = lifestyle_reveler }
@@ -603,7 +603,7 @@ feast_default.1005 = {
 		add_prestige = medium_prestige_loss
 		stress_impact = {
 			base = minor_stress_impact_loss
-			am_withdrawn = minor_stress_impact_loss
+			shy = minor_stress_impact_loss
 			reclusive = minor_stress_impact_loss
 		}
 		ai_chance = {
@@ -634,7 +634,7 @@ feast_default.1005 = {
 			}
 		}
 		stress_impact = {
-			am_craven = minor_stress_impact_gain
+			craven = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 1000
@@ -645,8 +645,8 @@ feast_default.1005 = {
 		name = feast_default.1005.c
 		add_prestige = medium_prestige_gain
 		stress_impact = {
-			am_craven = minor_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
+			craven = minor_stress_impact_gain
+			shy = medium_stress_impact_gain
 			reclusive = minor_stress_impact_gain
 		}
 		ai_chance = {
@@ -790,7 +790,7 @@ feast_default.1006 = {
 		}
 		stress_impact = {
 			reveler_1 = medium_stress_loss
-			am_outgoing = medium_stress_loss
+			gregarious = medium_stress_loss
 		}
 	}
 
@@ -814,7 +814,7 @@ feast_default.1006 = {
 		}
 		stress_impact = {
 			reveler_2 = medium_stress_loss
-			am_outgoing = medium_stress_loss
+			gregarious = medium_stress_loss
 		}
 	}
 	
@@ -838,7 +838,7 @@ feast_default.1006 = {
 		}
 		stress_impact = {
 			reveler_3 = major_stress_loss
-			am_outgoing = medium_stress_loss
+			gregarious = medium_stress_loss
 		}
 	}
 
@@ -1182,8 +1182,8 @@ feast_default.1010 = {
 	trigger = {
 		NOT = { exists = local_var:had_1010 }
 		NOR = {
-			has_trait = am_deceitful
-			has_trait = am_withdrawn
+			has_trait = deceitful
+			has_trait = shy
 			has_trait = temperate
 		}
 		scope:activity = {
@@ -1198,7 +1198,7 @@ feast_default.1010 = {
 		base = 1
 		modifier = {
 			add = 0.5
-			has_trait = am_outgoing
+			has_trait = gregarious
 		}
 		modifier = {
 			add = 0.5
@@ -1237,7 +1237,7 @@ feast_default.1010 = {
 			}
 		}
 		stress_impact = {
-			am_deceitful = medium_stress_impact_gain
+			deceitful = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -1269,8 +1269,8 @@ feast_default.1010 = {
 			}
 		}
 		stress_impact = {
-			am_pretentious = minor_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			arrogant = minor_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 0
@@ -1354,13 +1354,13 @@ feast_default.1011 = {
 			add = 0.4
 			OR = {
 				has_trait = drunkard
-				has_trait = am_wroth
+				has_trait = wrathful
 			}
 		}
 		modifier = { #Much more likely of you're a drunkard AND wrathful
 			add = 0.5
 			has_trait = drunkard
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 		ai_value_modifier = {
 			ai_compassion = -0.01 # -1 to +1
@@ -1448,13 +1448,13 @@ feast_default.1011 = {
 			base = 50
 			modifier = {
 				add = 50
-				has_trait = am_honest
+				has_trait = honest
 			}
 			modifier = {
 				add = 25
 				OR = {
-					has_trait = am_tolerant
-					has_trait = am_honest
+					has_trait = compassionate
+					has_trait = just
 				}
 			}
 		}
@@ -1496,8 +1496,8 @@ feast_default.1011 = {
 		}
 
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -1522,8 +1522,8 @@ feast_default.1011 = {
 		}
 
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 
 		ai_chance = {
@@ -1668,7 +1668,7 @@ scripted_trigger feast_default_1013_murder_guest_trigger = {
 		}
 	}
 	OR = {
-		has_trait = am_wroth
+		has_trait = wrathful
 		ai_compassion <= low_negative_compassion
 	}
 }
@@ -1745,7 +1745,7 @@ feast_default.1013 = {
 						}
 					}
 					OR = {
-						has_trait = am_wroth
+						has_trait = wrathful
 						ai_compassion <= low_negative_compassion
 					}
 				}
@@ -1776,10 +1776,10 @@ feast_default.1013 = {
 		name = {
 			trigger = {
 				OR = {
-					has_trait = am_wroth
-					has_trait = am_deceitful
+					has_trait = wrathful
+					has_trait = callous
 					has_trait = sadistic
-					has_trait = am_quarrelsome
+					has_trait = vengeful
 				}
 			}
 			text = feast_default.1013.a_1
@@ -1867,7 +1867,7 @@ feast_default.1013 = {
 			}
 		}
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 25
@@ -1889,13 +1889,13 @@ feast_default.1013 = {
 			EXPOSER = scope:guest_to_kill
 		}
 		stress_impact = {
-			am_brave = medium_stress_impact_gain
+			brave = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 50
-				has_trait = am_craven
+				has_trait = craven
 			}
 			ai_value_modifier = {
 				ai_boldness = -0.5
@@ -1981,7 +1981,7 @@ feast_default.1014 = {
 		base = 0.1
 		modifier = { #More likely if you're wrathful
 			add = 0.5
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 		modifier = { #More likely if you already plan to murder them
 			add = 0.5
@@ -2049,7 +2049,7 @@ feast_default.1014 = {
 			text = feast_default.1014.a
 		}
 		name = {
-			trigger = { has_trait = am_wroth }
+			trigger = { has_trait = wrathful }
 			text = feast_default.1014.a_2
 		}
 		random_secret = {
@@ -2072,10 +2072,10 @@ feast_default.1014 = {
 
 	option = { #leave no witnesses!
 		name = feast_default.1014.b
-		trait = am_wroth
+		trait = wrathful
 		trait = sadistic
-		trait = am_deceitful
-		trait = am_diligent
+		trait = callous
+		trait = diligent
 
 		unknown_murder_effect = {
 			VICTIM = scope:witness
@@ -2087,10 +2087,10 @@ feast_default.1014 = {
 			modifier = {
 				add = 50
 				OR = {
-					has_trait = am_wroth
+					has_trait = wrathful
 					has_trait = sadistic
-					has_trait = am_deceitful
-					has_trait = am_diligent
+					has_trait = callous
+					has_trait = diligent
 				}
 			}
 		}
@@ -2152,8 +2152,8 @@ feast_default.2001 = {
 				any_participant = {
 					feast_default_2001_annoying_glutton_trigger = yes
 					OR = {
-						has_trait = am_wroth
-						has_trait = am_illtempered
+						has_trait = wrathful
+						has_trait = impatient
 					}
 					NOT = {
 						reverse_has_opinion_modifier = {
@@ -2179,8 +2179,8 @@ feast_default.2001 = {
 				limit = {
 					feast_default_2001_annoying_glutton_trigger = yes
 					OR = {
-						has_trait = am_wroth
-						has_trait = am_illtempered
+						has_trait = wrathful
+						has_trait = impatient
 					}
 				}
 				alternative_limit = {
@@ -2201,7 +2201,7 @@ feast_default.2001 = {
 			years = 5
 		}
 		stress_impact = {
-			am_illtempered = minor_stress_impact_gain
+			impatient = minor_stress_impact_gain
 			gluttonous = minor_stress_impact_gain
 		}
 		hidden_effect = {
@@ -2218,7 +2218,7 @@ feast_default.2001 = {
 			base = medium_stress_loss
 			comfort_eater = minor_stress_impact_loss
 			temperate = minor_stress_impact_gain
-			am_patient = minor_stress_impact_gain
+			patient = minor_stress_impact_gain
 		}
 		hidden_effect = {
 			add_opinion = {
@@ -2699,13 +2699,13 @@ feast_default.2005 = {
 	option = { #What shameful behavior!
 		name = feast_default.2005.a
 		if = {
-			limit = { NOT = { has_trait = am_inconstant } }
+			limit = { NOT = { has_trait = arbitrary } }
 			stress_impact = {
 				drunkard = minor_stress_impact_gain
-				am_humble = minor_stress_impact_gain
-				am_craven = minor_stress_impact_gain
-				am_withdrawn = minor_stress_impact_gain
-				am_agreeable = medium_stress_impact_gain
+				humble = minor_stress_impact_gain
+				craven = minor_stress_impact_gain
+				shy = minor_stress_impact_gain
+				forgiving = medium_stress_impact_gain
 				reveler_1 = medium_stress_gain
 				reveler_2 = medium_stress_gain
 				reveler_3 = medium_stress_gain
@@ -2734,14 +2734,14 @@ feast_default.2005 = {
 	option = { #What's a little vomit among friends
 		name = feast_default.2005.b
 		if = {
-			limit = { NOT = { has_trait = am_inconstant } }
+			limit = { NOT = { has_trait = arbitrary } }
 			stress_impact = {
 				base = minor_stress_impact_gain
 				temperate = medium_stress_impact_gain
-				am_diligent = minor_stress_impact_gain
-				am_quarrelsome = medium_stress_impact_gain
-				am_pretentious = minor_stress_impact_gain
-				am_outgoing = minor_stress_impact_gain
+				diligent = minor_stress_impact_gain
+				vengeful = medium_stress_impact_gain
+				arrogant = minor_stress_impact_gain
+				gregarious = minor_stress_impact_gain
 			}
 		}
 		add_prestige = minor_prestige_loss
@@ -2776,7 +2776,7 @@ feast_default.2005 = {
 
 scripted_trigger feast_default_2006_trigger = {
 	feast_default_participant_trigger = yes
-	NOT = { has_trait = am_outgoing }
+	NOT = { has_trait = gregarious }
 	OR = {
 		any_scheme = {
 			scheme_type = befriend
@@ -2856,17 +2856,17 @@ feast_default.2006 = {
 			}
 		}
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
-			am_deceitful = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			callous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 40
 				OR = {
-					has_trait = am_outgoing
-					has_trait = am_tolerant
+					has_trait = gregarious
+					has_trait = compassionate
 				}
 			}
 		}
@@ -2897,8 +2897,8 @@ feast_default.2006 = {
 			modifier = {
 				add = 40
 				OR = {
-					has_trait = am_outgoing
-					has_trait = am_tolerant
+					has_trait = gregarious
+					has_trait = compassionate
 					has_trait = lustful
 				}
 			}
@@ -2924,13 +2924,13 @@ feast_default.2006 = {
 		}
 		stress_impact = {
 			reclusive = medium_stress_impact_loss
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 40
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 		}
 	}
@@ -2946,15 +2946,15 @@ feast_default.2006 = {
 		}
 		stress_impact = {
 			reclusive = medium_stress_impact_loss
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 40
 				OR = {
-					has_trait = am_withdrawn
-					has_trait = am_humble
+					has_trait = shy
+					has_trait = humble
 					has_trait = reclusive
 				}
 			}
@@ -3202,11 +3202,11 @@ feast_default.2007 = {
 	option = {
 		name = feast_default.2007.a_compassionate
 		trigger = {
-			has_trait = am_tolerant
+			has_trait = compassionate
 		}
-		trait = am_tolerant
+		trait = compassionate
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
+			compassionate = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -3304,8 +3304,8 @@ feast_default.2008 = {
 			expose_secret = root
 		}
 		stress_impact = {
-			am_agreeable = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -3323,7 +3323,7 @@ feast_default.2008 = {
 			TARGET = scope:homosexual_character
 		}
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -3337,10 +3337,10 @@ feast_default.2008 = {
 	option = { #You're doing WHAT without my approval???
 		name = feast_default.2008.c
 		trigger = {
-			has_trait = am_quarrelsome
+			has_trait = vengeful
 			this = root
 		}
-		trait = am_quarrelsome
+		trait = vengeful
 		add_dread = medium_dread_gain
 		add_character_modifier = {
 			modifier = feast_loyal_servantry_modifier
@@ -3423,7 +3423,7 @@ feast_default.2008 = {
 		}
 		stress_impact = {
 			base = medium_stress_loss
-			am_withdrawn = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -3591,8 +3591,8 @@ scripted_trigger feast_default_2011_favor_character_trigger = {
 	feast_default_participant_trigger = yes
 	is_adult = yes
 	NOT = { has_trait = temperate }
-	NOT = { has_trait = am_withdrawn }
-	NOT = { has_trait = am_deceitful }
+	NOT = { has_trait = shy }
+	NOT = { has_trait = deceitful }
 	root = {
 		can_add_hook = {
 			target = prev
@@ -3632,7 +3632,7 @@ feast_default.2011 = {
 			scope:activity = {
 				any_participant = {
 					feast_default_2011_favor_character_trigger = yes
-					has_trait = am_outgoing
+					has_trait = gregarious
 				}
 			}
 		}
@@ -3653,7 +3653,7 @@ feast_default.2011 = {
 					interesting_feast_participant_modifier = yes
 					modifier = {
 						add = 3
-						has_trait = am_outgoing
+						has_trait = gregarious
 					}
 				}
 				save_scope_as = favor_character
@@ -3685,7 +3685,7 @@ feast_default.2011 = {
 			}
 		}
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 25
@@ -3724,7 +3724,7 @@ scripted_trigger feast_default_2012_murderer_trigger = {
 	}
 	OR = {
 		ai_vengefulness >= high_positive_ai_value
-		has_trait = am_wroth
+		has_trait = wrathful
 	}
 }
 
@@ -3810,7 +3810,7 @@ feast_default.2012 = {
 	option = {
 		name = feast_default.2012.a
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}
 	}
 
@@ -3820,7 +3820,7 @@ feast_default.2012 = {
 			expose_secret = root	
 		}
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 			contrite = medium_stress_impact_loss
 		}
 		ai_chance = {
@@ -3828,8 +3828,8 @@ feast_default.2012 = {
 			modifier = {
 				add = 50
 				OR = {
-					has_trait = am_honest
-					has_trait = am_honest
+					has_trait = honest
+					has_trait = just
 				}
 			}
 			ai_value_modifier = {
@@ -3850,8 +3850,8 @@ feast_default.2012 = {
 			}
 		}
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			honest = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -4186,8 +4186,8 @@ feast_default.3004 = {
 			add_prestige = medium_prestige_loss
 		}
 		stress_impact = {
-			am_wroth = medium_stress_impact_gain
-			am_quarrelsome = medium_stress_impact_gain
+			wrathful = medium_stress_impact_gain
+			vengeful = medium_stress_impact_gain
 			sadistic = medium_stress_impact_gain
 		}
 		ai_chance = {
@@ -4203,7 +4203,7 @@ feast_default.3004 = {
 
 	option = { #Let's get this insult-battle going!
 		name = feast_default.3004.b
-		trait = am_wroth
+		trait = wrathful
 		duel = {
 			skill = prowess
 			target = scope:rival_guest
@@ -4225,12 +4225,12 @@ feast_default.3004 = {
 			years = 5
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_patient = medium_stress_impact_gain
-			am_conventional = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = medium_stress_impact_gain
-			am_agreeable = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			calm = medium_stress_impact_gain
+			content = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 0
@@ -4248,11 +4248,11 @@ feast_default.3004 = {
 		flavor = feast_default.3004.c.tt
 		trigger = {
 			OR = {
-				has_trait = am_outgoing
+				has_trait = gregarious
 				probably_intelligent_trigger = yes
 			}
 		}
-		trait = am_outgoing
+		trait = gregarious
 		add_prestige = medium_prestige_gain
 		scope:rival_guest = {
 			add_prestige = medium_prestige_loss
@@ -4262,10 +4262,10 @@ feast_default.3004 = {
 			}
 		}
 		stress_impact = {
-			am_wroth = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = medium_stress_impact_gain
-			am_agreeable = medium_stress_impact_gain
+			wrathful = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -4342,7 +4342,7 @@ feast_default.3005 = {
 				any_participant = {
 					feast_default_participant_trigger = yes
 					has_relation_rival = root
-					has_trait = am_wroth
+					has_trait = wrathful
 				}
 			}
 		}
@@ -4428,10 +4428,10 @@ feast_default.3005 = {
 			increase_wounds_effect = { REASON = fight }
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_agreeable = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
 			sadistic = medium_stress_impact_loss
-			am_quarrelsome = medium_stress_impact_loss
+			vengeful = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 0
@@ -4458,13 +4458,13 @@ feast_default.3005 = {
 			}
 		}
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 0
 			modifier = {
 				add = 20
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 			ai_value_modifier = {
 				ai_boldness = 1
@@ -4479,10 +4479,10 @@ feast_default.3005 = {
 		}
 		add_prestige = minor_prestige_loss
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
-			am_brave = medium_stress_impact_gain
-			am_wroth = medium_stress_impact_gain
-			am_craven = medium_stress_impact_loss
+			arrogant = medium_stress_impact_gain
+			brave = medium_stress_impact_gain
+			wrathful = medium_stress_impact_gain
+			craven = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 100
@@ -4498,8 +4498,8 @@ feast_default.3005 = {
 			add_prestige = medium_prestige_loss
 		}
 		stress_impact = {
-			am_agreeable = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -4518,8 +4518,8 @@ feast_default.3005 = {
 		}
 
 		stress_impact = {
-			am_agreeable = medium_stress_impact_gain
-			am_tolerant = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 500
@@ -4896,19 +4896,19 @@ feast_default.3006 = {
 				}
 			}
 			stress_impact = {
-				am_intolerant = major_stress_impact_gain
+				zealous = major_stress_impact_gain
 				chaste = major_stress_impact_gain
-				am_deceitful = minor_stress_impact_gain
-				am_hypocritical = minor_stress_impact_gain
-				am_craven = minor_stress_impact_gain
+				callous = minor_stress_impact_gain
+				cynical = minor_stress_impact_gain
+				craven = minor_stress_impact_gain
 			}
 		}
 		else = {
 			stress_impact = {
 				chaste = major_stress_impact_gain
-				am_deceitful = minor_stress_impact_gain
-				am_hypocritical = minor_stress_impact_gain
-				am_craven = minor_stress_impact_gain
+				callous = minor_stress_impact_gain
+				cynical = minor_stress_impact_gain
+				craven = minor_stress_impact_gain
 			}
 		}
 		ai_chance = {
@@ -5171,15 +5171,15 @@ feast_default.3007 = {
 				}
 			}
 			stress_impact = {
-				am_tolerant = minor_stress_impact_gain
-				am_stubborn = minor_stress_impact_gain
-				am_honest = medium_stress_impact_gain
+				compassionate = minor_stress_impact_gain
+				stubborn = minor_stress_impact_gain
+				honest = medium_stress_impact_gain
 			}
 		}
 		else = {
 			stress_impact = {
-				am_tolerant = minor_stress_impact_gain
-				am_stubborn = minor_stress_impact_gain
+				compassionate = minor_stress_impact_gain
+				stubborn = minor_stress_impact_gain
 			}
 		}
 		ai_chance = {
@@ -5217,21 +5217,21 @@ feast_default.3007 = {
 				}
 			}
 			stress_impact = {
-				am_deceitful = medium_stress_impact_gain
+				callous = medium_stress_impact_gain
 				sadistic = medium_stress_impact_gain
-				am_hypocritical = minor_stress_impact_gain
-				am_craven = minor_stress_impact_gain
-				am_conventional = medium_stress_impact_gain
+				cynical = minor_stress_impact_gain
+				craven = minor_stress_impact_gain
+				content = medium_stress_impact_gain
 			}
 		}
 		else = {
 			stress_impact = {
-				am_deceitful = medium_stress_impact_gain
+				callous = medium_stress_impact_gain
 				sadistic = medium_stress_impact_gain
-				am_hypocritical = minor_stress_impact_gain
-				am_craven = minor_stress_impact_gain
-				am_conventional = medium_stress_impact_gain
-				am_deceitful = medium_stress_impact_gain
+				cynical = minor_stress_impact_gain
+				craven = minor_stress_impact_gain
+				content = medium_stress_impact_gain
+				deceitful = medium_stress_impact_gain
 			}
 		}
 		ai_chance = {
@@ -5254,14 +5254,14 @@ feast_default.3007 = {
 		name = feast_default.3007.c
 		trigger = {
 			OR = {
-				has_trait = am_pretentious
+				has_trait = arrogant
 				has_trait = sadistic
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 		}
-		trait = am_pretentious
+		trait = arrogant
 		trait = sadistic
-		trait = am_inconstant
+		trait = arbitrary
 		scope:secret = {
 			expose_secret = scope:spouse
 		}
@@ -5270,9 +5270,9 @@ feast_default.3007 = {
 				limit = {
 					scope:lover = {
 						OR = {
-							has_trait = am_pretentious
+							has_trait = arrogant
 							has_trait = sadistic
-							has_trait = am_inconstant
+							has_trait = arbitrary
 						}
 					}
 				}
@@ -5372,7 +5372,7 @@ feast_default.5001 = {
 		base = 1
 		modifier = { #You're less likely to be intimidated if you're brave
 			factor = 0.3
-			has_trait = am_brave
+			has_trait = brave
 		}
 		compare_modifier = {
 			value = root.dread
@@ -5480,7 +5480,7 @@ feast_default.5002 = {
 		}
 		stress_impact = {
 			sadistic = medium_stress_impact_gain
-			am_deceitful = medium_stress_impact_gain
+			callous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -5509,7 +5509,7 @@ feast_default.5002 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = minor_stress_impact_gain
+			compassionate = minor_stress_impact_gain
 		}
 		add_prestige = medium_prestige_gain
 		ai_chance = {
@@ -5664,25 +5664,25 @@ feast_default.5003 = {
 		}
 		add_prestige = medium_prestige_gain
 		stress_impact = {
-			am_craven = major_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
+			craven = major_stress_impact_gain
+			shy = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 50
 				OR = {
-					has_trait = am_brave
-					has_trait = am_quarrelsome
-					has_trait = am_wroth
-					has_trait = am_honest
+					has_trait = brave
+					has_trait = vengeful
+					has_trait = wrathful
+					has_trait = just
 				}
 			}
 			modifier = {
 				add = 20
 				OR = {
-					has_trait = am_pretentious
-					has_trait = am_intolerant
+					has_trait = arrogant
+					has_trait = zealous
 				}
 			}
 		}
@@ -5695,8 +5695,8 @@ feast_default.5003 = {
 			type = favor_hook
 		}
 		stress_impact = {
-			am_wroth = medium_stress_impact_gain
-			am_deceitful = medium_stress_impact_gain
+			wrathful = medium_stress_impact_gain
+			callous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -5796,10 +5796,10 @@ feast_default.5004 = {
 
 	option = { #This is great!
 		name = feast_default.5004.a
-		random = {
-			chance = 10
-			add_trait = drunkard
-		}
+		# random = {
+		# 	chance = 1
+		# 	add_trait = drunkard
+		# }
 		scope:host = {
 			add_opinion = {
 				target = root
@@ -5828,7 +5828,7 @@ feast_default.5004 = {
 			reveler_3 = minor_stress_impact_loss
 			comfort_eater = minor_stress_impact_loss
 			drunkard = minor_stress_impact_loss
-			am_withdrawn = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
 			temperate = major_stress_impact_gain
 		}
 		ai_chance = {
@@ -5853,7 +5853,7 @@ feast_default.5004 = {
 			}
 		}
 		stress_impact = {
-			am_outgoing = minor_stress_impact_gain
+			gregarious = minor_stress_impact_gain
 			gluttonous = minor_stress_impact_gain
 			inappetetic = minor_stress_impact_loss
 		}
@@ -5863,11 +5863,11 @@ feast_default.5004 = {
 		name = feast_default.5004.c
 		trigger = {
 			OR = {
-				has_trait = am_withdrawn
+				has_trait = shy
 				has_trait = reclusive
 			}
 		}
-		trait = am_withdrawn
+		trait = shy
 		trait = reclusive
 		reverse_add_opinion = {
 			target = scope:host
@@ -5875,7 +5875,7 @@ feast_default.5004 = {
 			opinion = -10
 		}
 		stress_impact = {
-			am_withdrawn = medium_stress_loss
+			shy = medium_stress_loss
 			reclusive = medium_stress_impact_loss
 		}
 		ai_chance = {
@@ -6030,7 +6030,7 @@ feast_default.6001 = {
 		}
 		any_spouse = {
 			is_available = yes
-			NOT = { has_trait = am_lazy }
+			NOT = { has_trait = lazy }
 		}
 	}
 
@@ -6041,10 +6041,10 @@ feast_default.6001 = {
 		}
 		random_spouse = {
 			limit = {
-				has_trait = am_diligent
+				has_trait = diligent
 			}
 			alternative_limit = {
-				NOT = { has_trait = am_lazy }
+				NOT = { has_trait = lazy }
 			}
 			save_scope_as = spouse
 		}
@@ -6146,11 +6146,11 @@ feast_default.6002 = {
 			base = 100
 			modifier = {
 				add = 100
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 		}
 		stress_impact = {
-			am_humble = medium_stress_impact_gain
+			humble = medium_stress_impact_gain
 			family_first = minor_stress_impact_gain
 		}
 		add_prestige = medium_prestige_gain
@@ -6174,7 +6174,7 @@ feast_default.6002 = {
 			modifier = feast_spouse_gave_me_credit_opinion
 		}
 		stress_impact = {
-			am_pretentious = minor_stress_impact_gain
+			arrogant = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -6404,7 +6404,7 @@ feast_default.6101 = {
 		scope:activity = {
 			any_participant = {
 				feast_default_participant_trigger = yes
-				has_trait = am_withdrawn
+				has_trait = shy
 				save_temporary_scope_as = guest_check
 			}
 		}
@@ -6423,7 +6423,7 @@ feast_default.6101 = {
 			random_participant = {
 				limit = {
 					feast_default_participant_trigger = yes
-					has_trait = am_withdrawn
+					has_trait = shy
 				}
 				weight = {
 					base = 1
@@ -6486,7 +6486,7 @@ feast_default.6101 = {
 			type = favor_hook
 		}
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
 			sadistic = medium_stress_impact_gain
 		}
 		ai_chance = {
@@ -6525,8 +6525,8 @@ feast_default.6101 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
 			sadistic = medium_stress_impact_loss
 		}
 		ai_chance = {
@@ -6544,11 +6544,11 @@ feast_default.6101 = {
 		flavor = feast_default.6101.c.tt
 		trigger = {
 			OR = {
-				has_trait = am_withdrawn
+				has_trait = shy
 				has_trait = reclusive
 			}
 		}
-		trait = am_withdrawn
+		trait = shy
 		trait = reclusive
 		add_prestige = medium_prestige_loss
 		reverse_add_opinion = {
@@ -6565,16 +6565,16 @@ feast_default.6101 = {
 			type = favor_hook
 		}
 		stress_impact = {
-			am_withdrawn = minor_stress_impact_loss
+			shy = minor_stress_impact_loss
 			reclusive = medium_stress_impact_loss
 			sadistic = medium_stress_impact_gain
-			am_deceitful = medium_stress_impact_gain
+			callous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 50
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 			ai_value_modifier = {
 				ai_compassion = 0.7
@@ -6690,8 +6690,8 @@ feast_default.6111 = {
 			OPINION = 20
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_loss
-			am_outgoing = medium_stress_impact_loss
+			compassionate = medium_stress_impact_loss
+			gregarious = medium_stress_impact_loss
 		}
 		ai_chance = {
 			base = 50
@@ -6723,12 +6723,12 @@ feast_default.6111 = {
 		trigger = {
 			OR = {
 				has_trait = sadistic
-				has_trait = am_deceitful
+				has_trait = callous
 				has_trait = irritable
 			}
 		}
 		trait = sadistic
-		trait = am_deceitful
+		trait = callous
 		trait = irritable
 		scope:activity = {
 			every_participant = {
@@ -6758,7 +6758,7 @@ feast_default.6111 = {
 		add_prestige = minor_prestige_gain
 		stress_impact = {
 			sadistic = medium_stress_impact_loss
-			am_deceitful = minor_stress_impact_loss
+			callous = minor_stress_impact_loss
 			irritable = medium_stress_impact_loss
 		}
 		ai_chance = {
@@ -6956,7 +6956,7 @@ feast_default.6121 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -6977,7 +6977,7 @@ feast_default.6121 = {
 		}
 		stress_impact = {
 			sadistic = medium_stress_impact_gain
-			am_quarrelsome = medium_stress_impact_gain
+			vengeful = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 0
@@ -7067,7 +7067,7 @@ feast_default.6231 = {
 		}
 		remove_short_term_gold = medium_gold_value
 		stress_impact = {
-			am_greedy = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
 			drunkard = medium_stress_impact_loss
 		}
 		ai_chance = {
@@ -7085,8 +7085,8 @@ feast_default.6231 = {
 		add_prestige = minor_prestige_loss
 		add_gold = minor_gold_value
 		stress_impact = {
-			am_honest = medium_stress_impact_gain
-			am_generous = medium_stress_impact_gain
+			just = medium_stress_impact_gain
+			generous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -7110,7 +7110,7 @@ feast_default.6231 = {
 			years = 10
 		}
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 500
@@ -7206,9 +7206,9 @@ feast_default.6251 = {
 			set_relation_friend = scope:guest
 		}
 		stress_impact = {
-			am_outgoing = minor_stress_impact_loss
-			am_tolerant = minor_stress_impact_loss
-			am_quarrelsome = medium_stress_impact_gain
+			gregarious = minor_stress_impact_loss
+			compassionate = minor_stress_impact_loss
+			vengeful = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 40
@@ -7245,7 +7245,7 @@ feast_default.6251 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 40
@@ -7260,8 +7260,8 @@ feast_default.6251 = {
 				add = 20
 				OR = {
 					has_trait = sadistic
-					has_trait = am_quarrelsome
-					has_trait = am_wroth
+					has_trait = vengeful
+					has_trait = wrathful
 				}
 			}
 			ai_value_modifier = {
@@ -7276,7 +7276,7 @@ feast_default.6251 = {
 			OR = {
 				matching_gender_and_sexuality_trigger = { CHARACTER_1 = root CHARACTER_2 = scope:guest }
 				AND = {
-					scope:guest = { is_attracted_to_gender_of = root }
+					scope:guest = {	is_attracted_to_gender_of = root }
 					root = { has_perk = unshackled_lust_perk }
 				}
 				scope:guest = { might_cheat_on_every_partner_trigger = yes }
@@ -7464,8 +7464,8 @@ feast_default.6261 = {
 			years = 10
 		}
 		stress_impact = {
-			am_fearful = medium_stress_impact_gain
-			am_wroth = medium_stress_impact_gain
+			paranoid = medium_stress_impact_gain
+			wrathful = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -7503,7 +7503,7 @@ feast_default.6261 = {
 			years = 10
 		}
 		stress_impact = {
-			am_fearful = medium_stress_impact_gain
+			paranoid = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -7522,7 +7522,7 @@ feast_default.6261 = {
 			opinion = 15
 		}
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -7743,7 +7743,7 @@ feast_default.8001 = {
 					has_character_flag = murder_feast_to_spare
 					NOR = {
 						has_trait = sadistic
-						has_trait = am_deceitful
+						has_trait = callous
 					}
 				}
 				custom = feast_default.8001_survivors

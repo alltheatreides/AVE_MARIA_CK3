@@ -82,28 +82,7 @@ ave_maria_roman_administration_junior_emperor_coronation_decision = {
 		has_trait = basileus
 		any_relation = {
 			type = junior_emperor
-		}
-		OR = {
-			any_vassal_or_below = {
-				any_relation = {
-					type = junior_emperor
-				}
-				NOT = { has_trait = junior_emperor }
-			}
-			any_courtier = {
-				any_relation = {
-					type = junior_emperor
-				}
-				NOT = { has_trait = junior_emperor }
-			}
-			any_vassal_or_below = {
-				any_courtier = {
-					any_relation = {
-						type = junior_emperor
-					}
-					NOT = { has_trait = junior_emperor }
-				}
-			}
+			NOT = { has_trait = junior_emperor }
 		}
 		NOT = {
 			has_character_flag = imperial_coronation_started_preparations

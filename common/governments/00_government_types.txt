@@ -5,22 +5,17 @@
 
 	fallback = 1
 
-	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
-	required_county_holdings = { castle_holding city_holding church_holding metropolis_constantinople_holding }
-
 	can_get_government = {
 		NOT = {
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
+			any_held_title = {
+				this = title:k_papal_state
 			}
 		}
 	}
+
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { castle_holding city_holding church_holding metropolis_constantinople_holding }
 
 	vassal_contract = {
 		feudal_government_taxes
@@ -62,11 +57,36 @@ theocracy_government = {
 	required_county_holdings = { church_holding castle_holding city_holding }
 
 	can_get_government = {
-		NOT = {
-			faith = {
-				has_doctrine = doctrine_theocracy_lay_clergy
+		trigger_if = {
+			limit = {
+				NOR = {
+					faith = faith:catholic
+					faith = faith:orthodox 
+				}
 			}
-		}
+			NOT = {
+				faith = {
+					has_doctrine = doctrine_theocracy_lay_clergy
+				}
+			}
+		}		
+		trigger_if = {
+			limit = {
+				OR = {
+					faith = faith:catholic
+					faith = faith:orthodox 
+				}
+			}
+			OR = {
+				any_held_title = {
+					de_jure_liege = title:k_church_hierarchy
+				}
+				any_held_title = { this = title:k_orthodox }
+				any_held_title = { this = title:k_papal_state }
+				
+			}
+			
+		}	
 	}
 
 	vassal_contract = { theocracy_government_obligations }
@@ -151,18 +171,6 @@ tribal_government = {
 
 	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
 
-	can_get_government = {
-		NOT = {
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-		}
-	}
 
 	prestige_opinion_override = { -10 0 3 5 10 20 }
 	always_use_patronym = yes	

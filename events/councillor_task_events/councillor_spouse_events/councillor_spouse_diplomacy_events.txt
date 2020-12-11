@@ -562,8 +562,8 @@ councillor_spouse_diplomacy.1005 = {
 		spouse_diplomacy_tier_2_trigger = yes
 		scope:councillor = {
 			has_diplomacy_lifestyle_trait_trigger = yes
-			has_trait = am_withdrawn
-			NOT = { has_trait = am_outgoing }
+			has_trait = shy
+			NOT = { has_trait = gregarious }
 			number_of_personality_traits >= 3
 		}
 	}
@@ -613,7 +613,7 @@ councillor_spouse_diplomacy.1005 = {
 
 			left_icon = scope:councillor
 			scope:councillor = {
-				remove_trait = am_withdrawn
+				remove_trait = shy
 			}
 		}
 	}
@@ -629,8 +629,8 @@ councillor_spouse_diplomacy.1006 = {
 		scope:councillor = {
 			has_diplomacy_lifestyle_trait_trigger = yes
 			NOR = {
-				has_trait = am_withdrawn
-				has_trait = am_outgoing
+				has_trait = shy
+				has_trait = gregarious
 			}
 			number_of_personality_traits <= 3
 		}
@@ -682,7 +682,7 @@ councillor_spouse_diplomacy.1006 = {
 			left_icon = scope:councillor
 			
 			scope:councillor = {
-				add_trait = am_outgoing
+				add_trait = gregarious
 			}
 		}
 	}
@@ -1149,7 +1149,7 @@ councillor_spouse_diplomacy.2001 = {
 			base = 50
 			modifier = {
 				add = 25
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 		}
 	}
@@ -1284,7 +1284,7 @@ councillor_spouse_diplomacy.2002 = {
 				base = 1
 				modifier = {
 					add = 3 #more likely that it's your liege's kid if you're of a lower tier
-					root.highest_held_title_tier <= tier_county
+					root.highest_held_title_tier = tier_county
 					is_child_of = root.liege
 				}
 			}
@@ -1586,7 +1586,7 @@ councillor_spouse_diplomacy.2003 = {
 			}
 		}
 		stress_impact = {
-			am_quarrelsome = medium_stress_impact_gain
+			vengeful = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -1634,7 +1634,7 @@ councillor_spouse_diplomacy.2003 = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -1850,14 +1850,14 @@ councillor_spouse_diplomacy.2004 = {
 			type = favor_hook
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 25
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = 25

@@ -133,7 +133,7 @@ determine_ghw_target_effect = {
 	# Find a random top liege in the area
 	scope:target_kingdom = {
 		random_in_de_jure_hierarchy = {
-			continue = { tier > tier_county }
+			# continue = { tier > tier_county }
 			limit = { #Try to pick the largest ruler in the area.
 				tier = tier_county
 				$FAITH$ = {
@@ -381,7 +381,7 @@ undirected_ghw_recipient_selection_effect = {
 				limit = {
 					this.faith = scope:the_faith
 					is_adult = yes
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOR = {
 						has_trait = excommunicated
 						has_trait = incapable
@@ -545,7 +545,7 @@ undirected_ghw_recipient_selection_on_death_effect = {
 				limit = {
 					this.faith = scope:the_faith
 					is_adult = yes
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOR = {
 						has_trait = excommunicated
 						has_trait = incapable
@@ -714,7 +714,7 @@ undirected_ghw_recipient_selection_on_victory_effect = { #Set in the event of no
 				limit = {
 					faith = scope:the_faith
 					is_adult = yes
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOR = {
 						has_trait = excommunicated
 						has_trait = incapable
@@ -973,10 +973,10 @@ new_faith_created_conversion_effect = {
 			scope:recipient = {
 				is_landed = yes
 				highest_held_title_tier > tier_barony
-				capital_county.faith = scope:recipient.faith
+				primary_title.title_capital_county.faith = scope:recipient.faith
 			}
 		}
-		scope:recipient.capital_county = {
+		scope:recipient.primary_title.title_capital_county = {
 			set_county_faith = scope:actor.faith
 		}
 	}
@@ -1051,10 +1051,10 @@ adopt_religion_interaction_effect = {
 		limit = {
 			scope:actor = {
 				highest_held_title_tier > tier_barony
-				NOT = { capital_county.faith = scope:recipient.faith }
+				NOT = { primary_title.capital_county.faith = scope:recipient.faith }
 			}
 		}
-		scope:actor.capital_county = {
+		scope:actor.primary_title.title_capital_county = {
 			set_county_faith = scope:recipient.faith
 		}
 	}
