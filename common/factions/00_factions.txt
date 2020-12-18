@@ -907,6 +907,8 @@ liberty_faction = {
 			text = character_has_faction_disabling_modifier
 			character_has_faction_disabling_modifier_trigger = yes
 		}
+
+		roman_administration_holds_high_office_title_trigger = no
 	}
 
 	can_character_create = {
@@ -919,6 +921,7 @@ liberty_faction = {
 		}
 		NOT = { is_allied_to = scope:target }
 		NOT = { has_truce = scope:target }
+		uses_roman_govt = no
 		scope:target = {
 			NOT = { has_strong_hook = root }
 		}
@@ -1516,6 +1519,22 @@ claimant_faction = {
 
 		### AVE MARIA
 		modifier = {
+			add = -1000
+			#roman_administration_character_is_in_the_empire = yes
+			scope:claimant = {
+				roman_administration_character_is_in_the_empire = yes
+				NOT = { has_variable = roman_administration_legitimacy }				
+				var:roman_administration_legitimacy < 1
+			}
+		}
+		modifier = {
+			add = 500
+			scope:target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 25
+			}
+		}
+		modifier = {
 			add = 1000
 			scope:target = {
 				has_variable = roman_administration_popularity
@@ -1786,6 +1805,13 @@ claimant_faction = {
 		}
 
 		### AVE MARIA
+		modifier = {
+			add = 500
+			scope:faction.faction_target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 25
+			}
+		}
 		modifier = {
 			add = 1000
 			scope:faction.faction_target = {

@@ -78,6 +78,14 @@ on_title_gain = {
 			root = {
 				roman_administration_accession_to_basileus_effect = yes		
 			}
+			scope:previous_holder = {
+				if = {
+					limit = {
+						is_alive = yes
+					}
+					roman_administration_remove_salary_indicator = yes
+				}
+			}
 		}
 		## INHERITING AN ADMINISTRATIVE TITLE
 		## Checking that it is an duchy tier title from a valid character using administrative title type
@@ -86,6 +94,7 @@ on_title_gain = {
 				root = {
 					roman_administration_character_is_in_the_empire = yes
 					#uses_roman_govt = yes
+					NOT = { any_held_title = { this = title:e_byzantium } }
 				}
 				scope:title = {
 					tier >= tier_duchy
@@ -181,8 +190,7 @@ on_title_gain = {
 			## Starting the terms of office event chain
 			root = {
 				remove_character_modifier = roman_administration_emperor_favourite
-				trigger_event = ave_maria_roman_administration_events.00012
-				remove_character_modifier = roman_administration_emperor_favourite
+				#trigger_event = ave_maria_roman_administration_events.00012
 			}
 
 			change_government = roman_administration_theme_government
@@ -229,23 +237,12 @@ on_title_gain = {
 				}
 			}
 
-			create_character = {
-				employer = this
-				template = bureaucrat_character
-				save_scope_as = new_guy
-			}
-			scope:new_guy = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 20
+				}
 				add_unpressed_claim = scope:title
-				add_random_hexaco_personality_trait = { WHO = this }
-			}
-			create_character = {
-				employer = this
-				template = tagma_commander_character
-				save_scope_as = new_guy
-			}
-			scope:new_guy = {
-				add_unpressed_claim = scope:title
-				add_random_hexaco_personality_trait = { WHO = this }
 			}
 		}
 

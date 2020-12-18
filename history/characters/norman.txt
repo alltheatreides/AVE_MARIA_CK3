@@ -439,7 +439,21 @@
 	1051.1.1 = {
 		add_spouse = 10003
 		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 25 }
 			give_nickname = nick_the_fox
+			add_pressed_claim = d_sicily
+			add_pressed_claim = c_palermo
+			
+			spawn_army = {
+				name = event_troop_default_name
+				# levies = 1000
+				men_at_arms = {
+					type = frankish_shock_cavalry
+					stacks = 20
+				}
+				location = 2619
+				origin = 2619
+			}
 		}
 	}
 	1057.1.1 = {
@@ -490,6 +504,11 @@
 	trait = just
 	trait = calm
 	trait = education_martial_4
+	trait = veteran_4
+	trait = height_tall
+	trait = strong
+	trait = beauty_good_2
+	trait = ambitious
 	father = 1120
 	mother = 10008
 	
@@ -498,6 +517,28 @@
 	}
 	1061.1.1 = {
 		add_spouse = 10014
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 25 }
+			add_pressed_claim = d_sicily
+			add_pressed_claim = c_palermo
+			add_pressed_claim = c_trapani
+			add_pressed_claim = c_calatafimi
+			add_pressed_claim = c_mazara
+			add_pressed_claim = c_castrogiovanni
+			add_pressed_claim = c_caltanisetta
+			add_pressed_claim = c_agrigento
+
+			spawn_army = {
+				name = event_troop_default_name
+				# levies = 1000
+				men_at_arms = {
+					type = frankish_shock_cavalry
+					stacks = 20
+				}
+				location = 2630
+				origin = 2630
+			}
+		}
 	}
 	1087.1.1 = {
 		add_spouse = 70979
@@ -981,7 +1022,7 @@
 				name = event_troop_default_name
 				# levies = 1000
 				men_at_arms = {
-					type = armored_horsemen
+					type = frankish_shock_cavalry
 					stacks = 20
 				}
 				location = 2174

@@ -106,10 +106,10 @@ can_be_court_chaplain_trigger = {
 	trigger_if = {
 		limit = {
 			faith = { has_doctrine = doctrine_theocracy_temporal }
-			$COURT_OWNER$.faith = { NOT = { religion_tag = christianity_religion } }
 		}
 		OR = {
-			is_ruler = no
+			#is_ruler = no
+			has_trait = devoted
 			has_government = theocracy_government
 		}
 	}
@@ -118,25 +118,6 @@ can_be_court_chaplain_trigger = {
 			exists = var:escaped_imprisonment_from
 		}
 		NOT = { var:escaped_imprisonment_from = $COURT_OWNER$ }
-	}
-	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
-	# trigger_if = {
-	# 	limit = {
-	# 		$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
-	# 	}
-	# 	any_held_title = {
-	# 		this = title:k_orthodox
-	# 	}
-	# }
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$.faith = { religion_tag = christianity_religion }
-			NOT = { $COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } } }
-		}
-		OR = {
-			has_trait = devoted
-			has_government = theocracy_government
-		}
 	}
 }
 

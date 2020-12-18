@@ -13,10 +13,14 @@
 	is_shown = {
 		scope:recipient = {
 			NOT = { this = scope:actor }
+			uses_roman_govt = no
 			exists = liege
 			liege = scope:actor
 			is_ruler = yes
 			vassal_contract_has_modifiable_obligations = yes
+		}
+		scope:actor = {
+			uses_roman_govt = no
 		}
 	}
 
@@ -106,15 +110,6 @@
 							generous = medium_stress_impact_gain
 						}
 					}
-				}
-
-				if = {
-					limit = {
-						uses_roman_govt = yes
-					}
-					roman_administration_remove_popularity_small_amount = yes
-				}
-				
 				if = {
 					limit = {
 						always = scope:hook
@@ -124,35 +119,7 @@
 				}
 
 				scope:recipient = {
-					hidden_effect = { set_vassal_contract_modification_blocked = yes }
-
-					if = {
-						limit = {
-							uses_roman_govt = yes
-						}
-						scope:recipient = {
-							set_local_variable = {
-								name = imperial_obligation_tax
-								value = 0
-							}
-							set_local_variable = {
-								name = imperial_obligation_theme
-								value = 0
-							}
-							set_local_variable = {
-								name = imperial_obligation_doukaton
-								value = 0
-							}
-							set_local_variable = {
-								name = imperial_obligation_kouratoreia
-								value = 0
-							}
-						}
-						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_tax }
-						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_theme }
-						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_doukaton }
-						set_obligation_if_changed_effect = { OBLIGATION_TYPE = imperial_obligation_kouratoreia }
-					}
+					# hidden_effect = { set_vassal_contract_modification_blocked = yes }
 					if = {
 						limit = {
 							uses_roman_govt = no
@@ -208,8 +175,12 @@ vassal_modify_vassal_contract_interaction = {
 		scope:actor = {
 			is_independent_ruler = no
 			NOT = { this = scope:recipient }
+			uses_roman_govt = no
 			liege = scope:recipient
 			vassal_contract_has_modifiable_obligations = yes
+		}
+		scope:recipient = {
+			uses_roman_govt = no
 		}
 	}
 
@@ -308,8 +279,10 @@ ai_only_liege_modify_vassal_contract_interaction = {
 		scope:actor = {
 			is_ai = yes
 			has_usable_hook = scope:recipient
+uses_roman_govt = no
 		}
 		scope:recipient = {
+uses_roman_govt = no
 			NOT = { this = scope:actor }
 			NOT = {
 				has_strong_hook = scope:actor
@@ -377,13 +350,16 @@ ai_only_vassal_modify_vassal_contract_interaction = {
 	
 	is_shown = {
 		scope:actor = {
+uses_roman_govt = no
 			is_ai = yes
 			is_independent_ruler = no
 			has_usable_hook = scope:recipient
 			vassal_contract_can_be_modified_trigger = yes
 			does_ai_vassal_in_vassal_contract_desire_obligation_change = yes
+			uses_roman_govt = no
 		}
 		scope:recipient = {
+uses_roman_govt = no
 			NOT = { this = scope:actor }
 			is_ruler = yes
 			NOT = {

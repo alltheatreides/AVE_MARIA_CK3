@@ -3604,7 +3604,13 @@ stewardship_duty.4040 = {
 					multiplier = 3
 				}
 				modifier = { # More likely to be selected if our contract is already changed from default.
-					NOT = { vassal_contract_obligation_level:feudal_government_taxes = feudal_tax_normal_level }
+					trigger_if = {
+						limit = {
+							uses_roman_govt = no
+						}
+						NOT = { vassal_contract_obligation_level:feudal_government_taxes = feudal_tax_normal_level }
+					}
+					
 					factor = 3
 				}
 

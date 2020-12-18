@@ -42,6 +42,7 @@ roman_administration_get_claim = {
 			highest_held_title_tier >= tier_duchy 
 			uses_roman_govt = yes
 			NOT = { this = scope:actor }
+			NOT = { any_held_title = { this = title:e_byzantium } }
 		}
 	}
 	
@@ -347,70 +348,70 @@ roman_administration_send_family_member_for_training = {
 	ai_frequency = 6
 	
 	ai_will_do = {
-		base = 100
+		base = 0
 
-		modifier = {
-			factor = 50
-			scope:recipient = {
-				roman_administration_holds_tagma_title_trigger = yes
-			}
-		}
+		# modifier = {
+		# 	factor = 50
+		# 	scope:recipient = {
+		# 		roman_administration_holds_tagma_title_trigger = yes
+		# 	}
+		# }
 		
 		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:recipient = {
+		# 		OR = {
+		# 			AND = {
+		# 				scope:actor = {
+		# 					ai_greed <= high_positive_ai_value
+		# 				}
+		# 				has_relation_friend = scope:actor
+		# 			}
+		# 			has_relation_best_friend = scope:actor
+		# 			has_relation_soulmate = scope:actor
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 0
-			scope:actor = {
-				gold < 50
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:actor = {
+		# 		gold < 50
+		# 	}
+		# }
 
-		modifier = {
-			factor = 0
-			scope:secondary_recipient = {
-				any_heir_to_title = {
-					tier = tier_duchy
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:secondary_recipient = {
+		# 		any_heir_to_title = {
+		# 			tier = tier_duchy
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 100
-			scope:secondary_recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 100
+		# 	scope:secondary_recipient = {
+		# 		OR = {
+		# 			AND = {
+		# 				scope:actor = {
+		# 					ai_greed <= high_positive_ai_value
+		# 				}
+		# 				has_relation_friend = scope:actor
+		# 			}
+		# 			has_relation_best_friend = scope:actor
+		# 			has_relation_soulmate = scope:actor
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 1000
-			scope:secondary_recipient = {
-				is_close_family_of = scope:actor
-			}
-		}
+		# modifier = {
+		# 	factor = 1000
+		# 	scope:secondary_recipient = {
+		# 		is_close_family_of = scope:actor
+		# 	}
+		# }
 	}
 }
 
@@ -1256,158 +1257,299 @@ roman_administration_replace_bureaucrat = {
 	}
 }
 
-roman_administration_change_to_doukaton = {
-	category = interaction_category_roman_administration
-	interface_priority = 0
+# roman_administration_change_to_doukaton = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
 
-	desc = roman_administration_change_to_doukaton_desc
+# 	desc = roman_administration_change_to_doukaton_desc
 
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_doukaton_government }
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_doukaton_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					set_variable = {
+# 						name = roman_administration_doukaton_title
+# 						value = yes
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# roman_administration_change_to_kouratoreia = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
+
+# 	desc = roman_administration_change_to_kouratoreia_desc
+
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_kouratoreia_government }
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_kouratoreia_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					set_variable = {
+# 						name = roman_administration_kouratoreia_title
+# 						value = yes
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# roman_administration_change_to_theme = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
+
+# 	desc = roman_administration_change_to_theme_desc
+
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_theme_government }
+# 			OR = {
+# 				has_government = roman_administration_kouratoreia_government
+# 				has_government = roman_administration_doukaton_government
+# 			}
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_theme_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					remove_variable = roman_administration_kouratoreia_title
+# 					remove_variable = roman_administration_doukaton_title
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+## Modify Vassal Contract
+roman_administration_change_vassal_contract = {
+	special_interaction = modify_vassal_contract
+	interface = modify_vassal_contract
+	category = interaction_category_vassal
+	common_interaction = yes
+
+	send_name = "modify_vassal_contract_interaction_SEND"
+	desc = liege_modify_vassal_contract_interaction_desc
+
+	force_notification = yes
+	notification_text = MODIFY_VASSAL_CONTRACT_NOTIFICATION_TO_VASSAL
+	
 	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}		
-		}
-		scope:recipient = { 
-			roman_administration_character_is_in_the_empire = yes
-			NOT = { has_government = roman_administration_doukaton_government }
-			highest_held_title_tier = tier_duchy
+		scope:recipient = {
+			NOT = { this = scope:actor }
 			uses_roman_govt = yes
-			NOR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_sekreton_government
-			}
+			exists = liege
+			liege = scope:actor
+			is_ruler = yes
+			vassal_contract_has_modifiable_obligations = yes
+		}
+		scope:actor = {
+			uses_roman_govt = yes
 		}
 	}
 
 	is_valid_showing_failures_only = {
-		scope:recipient = {
+		scope:recipient = { 
 			is_diplomatically_available = yes
+		} 
+		NOT = { scope:actor = { is_at_war_with = scope:recipient } } 
+	}
+
+	can_send = {
+		scope:recipient = {			
+			vassal_contract_is_blocked_from_modification = no
+		}
+			
+		## Cannot change more than three things at once
+		custom_description = {
+			text = "vassal_modify_vassal_contract_obligation_change_limit"
+			value = scope:recipient.count_total_obligation_changes
+			scope:recipient.count_total_obligation_changes <= max_contract_changes
 		}
 	}
 
 	auto_accept = yes
 
-	ai_potential = {
-
-	}
-
 	on_accept = {
-		scope:recipient = {
-			change_government = roman_administration_doukaton_government
-			hidden_effect = {
-				primary_title = {
-					set_variable = {
-						name = roman_administration_doukaton_title
-						value = yes
+		scope:actor = {
+			send_interface_message = {
+				type = msg_vassal_contract_change
+				title = modify_vassal_contract_interaction_notification
+				right_icon = scope:recipient
+				
+				scope:recipient = {
+					hidden_effect = { set_vassal_contract_modification_blocked = yes }
+
+					roman_administration_set_tax_level = { TAX_OBLIGATION_TYPE = imperial_obligation_tax }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
+					hidden_effect = {
+						roman_administration_update_government_after_contract_change = yes
+					}					
+
+					
+					if = {
+						limit = {
+							has_government = roman_administration_theme_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_theme }
 					}
-				}
-			}
-		}
-	}
-}
-
-roman_administration_change_to_kouratoreia = {
-	category = interaction_category_roman_administration
-	interface_priority = 0
-
-	desc = roman_administration_change_to_kouratoreia_desc
-
-	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}		
-		}
-		scope:recipient = { 
-			roman_administration_character_is_in_the_empire = yes
-			NOT = { has_government = roman_administration_kouratoreia_government }
-			highest_held_title_tier = tier_duchy
-			uses_roman_govt = yes
-			NOR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_sekreton_government
-			}
-		}
-	}
-
-	is_valid_showing_failures_only = {
-		scope:recipient = {
-			is_diplomatically_available = yes
-		}
-	}
-
-	auto_accept = yes
-
-	ai_potential = {
-
-	}
-
-	on_accept = {
-		scope:recipient = {
-			change_government = roman_administration_kouratoreia_government
-			hidden_effect = {
-				primary_title = {
-					set_variable = {
-						name = roman_administration_kouratoreia_title
-						value = yes
+					if = {
+						limit = {
+							has_government = roman_administration_doukaton_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_doukaton }
 					}
+					if = {
+						limit = {
+							has_government = roman_administration_kouratoreia_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+					}	
+					if = {
+						limit = {
+							OR = {
+								has_government = roman_administration_sekreton_government
+								has_government = roman_administration_military_government
+							}
+						}
+						roman_administration_set_salary_level = { SALARY_OBLIGATION_TYPE = imperial_high_office_salary }
+					}				
+
+					# custom_description_no_bullet = {
+					# 	text = roman_administration_popularity_hit
+						
+					# 	if = {
+					# 		limit = {
+					# 			scope:recipient = { roman_administration_popularity_decrease_trigger = yes }								
+					# 		}
+					# 		scope:actor = {
+					# 			stress_impact = {
+					# 				just = medium_stress_impact_gain
+					# 				generous = medium_stress_impact_gain
+					# 			}
+					# 			roman_administration_remove_popularity_small_amount = yes
+					# 		}
+					# 	}
+						
+					# }
+					
+				}
+				scope:actor = {
+					roman_administration_remove_popularity_small_amount = yes
 				}
 			}
 		}
 	}
-}
 
-roman_administration_change_to_theme = {
-	category = interaction_category_roman_administration
-	interface_priority = 0
-
-	desc = roman_administration_change_to_theme_desc
-
-	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}		
-		}
-		scope:recipient = { 
-			roman_administration_character_is_in_the_empire = yes
-			NOT = { has_government = roman_administration_theme_government }
-			OR = {
-				has_government = roman_administration_kouratoreia_government
-				has_government = roman_administration_doukaton_government
-			}
-			highest_held_title_tier = tier_duchy
-			uses_roman_govt = yes
-			NOR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_sekreton_government
+	send_option = {
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
 			}
 		}
+		flag = hook
+		localization = SCHEME_HOOK
 	}
-
-	is_valid_showing_failures_only = {
-		scope:recipient = {
-			is_diplomatically_available = yes
-		}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
 	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 
-	auto_accept = yes
-
-	ai_potential = {
-
-	}
-
-	on_accept = {
-		scope:recipient = {
-			change_government = roman_administration_theme_government
-			hidden_effect = {
-				primary_title = {
-					remove_variable = roman_administration_kouratoreia_title
-					remove_variable = roman_administration_doukaton_title
-				}
-			}
-		}
+	send_options_exclusive = no
+	
+	ai_will_do = {
+		base = 0
 	}
 }
 

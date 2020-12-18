@@ -16,42 +16,136 @@
 # CONTRACT SCRIPTED EFFECTS					#
 #############################################
 
-am_change_govt_if_contract_changed_effect = {
+# AM_OBLIGATION_TYPE - The type of the obligation in a vassal contract to set
+# this - The person who's obligation will be changed
+# Requires a local variable of the same name as AM_OBLIGATION_TYPE
+roman_administration_set_tax_level = {
+	set_local_variable = {
+		name = TAX_OBLIGATION_TYPE
+		value = vassal_contract_obligation_level
+	}
 	if = {
 		limit = {
-			local_var:$AM_GOVT_TYPE$ != vassal_contract_obligation_level:$AM_GOVT_TYPE$
+			local_var:$TAX_OBLIGATION_TYPE$ != vassal_contract_obligation_level:$TAX_OBLIGATION_TYPE$
 		}
-		if = {
-			limit = {
-				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
-				vassal_contract_has_flag = is_theme
-			}
-			change_government = roman_administration_theme_government
-		}
-		else_if = {
-			limit = {
-				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_theme
-				vassal_contract_has_flag = is_theme
-			}
-			change_government = roman_administration_theme_government
-		}
-		else_if = {
-			limit = {
-				#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
-				vassal_contract_has_flag = is_doukaton
-			}
-			change_government = roman_administration_doukaton_government
-		}
-		else_if = {
-			limit = {
-				vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_kouratoreia
-				vassal_contract_has_flag = is_kouratoreia
-			}
-			change_government = roman_administration_kouratoreia_government
+		vassal_contract_set_obligation_level = {
+			type = $TAX_OBLIGATION_TYPE$
+			level = local_var:$TAX_OBLIGATION_TYPE$
 		}
 	}
 }
+roman_administration_set_district_type = {
+	set_local_variable = {
+		name = DISTRICT_OBLIGATION_TYPE
+		value = vassal_contract_obligation_level
+	}
+	if = {
+		limit = {
+			local_var:$DISTRICT_OBLIGATION_TYPE$ != vassal_contract_obligation_level:$DISTRICT_OBLIGATION_TYPE$
+		}
+		vassal_contract_set_obligation_level = {
+			type = $DISTRICT_OBLIGATION_TYPE$
+			level = local_var:$DISTRICT_OBLIGATION_TYPE$
+		}
+	}	
+}
+roman_administration_set_salary_level = {
+	set_local_variable = {
+		name = SALARY_OBLIGATION_TYPE
+		value = vassal_contract_obligation_level
+	}
+	if = {
+		limit = {
+			local_var:$SALARY_OBLIGATION_TYPE$ != vassal_contract_obligation_level:$SALARY_OBLIGATION_TYPE$
+		}
+		vassal_contract_set_obligation_level = {
+			type = $SALARY_OBLIGATION_TYPE$
+			level = local_var:$SALARY_OBLIGATION_TYPE$
+		}
+	}	
+}
+roman_administration_set_obligation_if_changed_effect = {
+	set_local_variable = {
+		name = AM_OBLIGATION_TYPE
+		value = vassal_contract_obligation_level
+	}
+	
+	if = {
+		limit = {
+			local_var:$AM_OBLIGATION_TYPE$ != vassal_contract_obligation_level:$AM_OBLIGATION_TYPE$
+		}
+		vassal_contract_set_obligation_level = {
+			type = $AM_OBLIGATION_TYPE$
+			level = local_var:$AM_OBLIGATION_TYPE$
+		}
+	}	
+	
+	
+}
+am_change_govt_if_contract_changed_effect = {
+	# if = {
+	# 	limit = {
+	# 		local_var:$AM_GOVT_TYPE$ != vassal_contract_obligation_level:$AM_GOVT_TYPE$
+	# 	}
+	# 	if = {
+	# 		limit = {
+	# 			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
+	# 			vassal_contract_has_flag = is_theme
+	# 		}
+	# 		change_government = roman_administration_theme_government
+	# 	}
+	# 	else_if = {
+	# 		limit = {
+	# 			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_theme
+	# 			vassal_contract_has_flag = is_theme
+	# 		}
+	# 		change_government = roman_administration_theme_government
+	# 	}
+	# 	else_if = {
+	# 		limit = {
+	# 			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
+	# 			vassal_contract_has_flag = is_doukaton
+	# 		}
+	# 		change_government = roman_administration_doukaton_government
+	# 	}
+	# 	else_if = {
+	# 		limit = {
+	# 			vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_kouratoreia
+	# 			vassal_contract_has_flag = is_kouratoreia
+	# 		}
+	# 		change_government = roman_administration_kouratoreia_government
+	# 	}
+	# }
 
+	if = {
+		limit = {
+			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_fiscalized_theme
+			vassal_contract_has_flag = is_theme
+		}
+		change_government = roman_administration_theme_government
+	}
+	else_if = {
+		limit = {
+			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_theme
+			vassal_contract_has_flag = is_theme
+		}
+		change_government = roman_administration_theme_government
+	}
+	else_if = {
+		limit = {
+			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_doukaton
+			vassal_contract_has_flag = is_doukaton
+		}
+		change_government = roman_administration_doukaton_government
+	}
+	else_if = {
+		limit = {
+			#vassal_contract_obligation_level:$AM_GOVT_TYPE$ = ave_maria_roman_administration_kouratoreia
+			vassal_contract_has_flag = is_kouratoreia
+		}
+		change_government = roman_administration_kouratoreia_government
+	}
+}
 roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
@@ -59,6 +153,10 @@ roman_administration_update_government_after_contract_change = {
 		}
 		NOT = { has_government = roman_administration_theme_government }
 		change_government = roman_administration_theme_government
+		vassal_contract_set_obligation_level = {
+			type = ave_maria_roman_administration_special_contract
+			level = 0
+		}	
 	}
 	if = {
 		limit = {
@@ -66,6 +164,10 @@ roman_administration_update_government_after_contract_change = {
 		}
 		NOT = { has_government = roman_administration_doukaton_government }
 		change_government = roman_administration_doukaton_government
+		vassal_contract_set_obligation_level = {
+			type = ave_maria_roman_administration_special_contract
+			level = 1
+		}	
 	}
 	if = {
 		limit = {
@@ -73,6 +175,10 @@ roman_administration_update_government_after_contract_change = {
 		}
 		NOT = { has_government = roman_administration_kouratoreia_government }
 		change_government = roman_administration_kouratoreia_government
+		vassal_contract_set_obligation_level = {
+			type = ave_maria_roman_administration_special_contract
+			level = 2
+		}	
 	}
 	if = {
 		limit = {
@@ -80,6 +186,10 @@ roman_administration_update_government_after_contract_change = {
 		}
 		NOT = { has_government = roman_administration_military_government }
 		change_government = roman_administration_military_government
+		vassal_contract_set_obligation_level = {
+			type = ave_maria_roman_administration_special_contract
+			level = 3
+		}	
 	}
 	if = {
 		limit = {
@@ -87,6 +197,10 @@ roman_administration_update_government_after_contract_change = {
 		}
 		NOT = { has_government = roman_administration_sekreton_government }
 		change_government = roman_administration_sekreton_government
+		vassal_contract_set_obligation_level = {
+			type = ave_maria_roman_administration_special_contract
+			level = 4
+		}	
 	}
 }
 
@@ -614,6 +728,7 @@ roman_administration_game_start_vassal_terms_of_office_setup = {
 		if = {
 			limit = {
 				highest_held_title_tier = tier_duchy
+				roman_administration_holds_high_office_title_trigger = no
 			}
 			## Romanos Diogenes is special
 			if = {
@@ -739,6 +854,9 @@ roman_administration_game_start_legitimacy_distribution = {
 #############################################
 
 roman_administration_accession_to_basileus_effect = {
+
+	save_scope_as = roman_emperor
+	
 	## Removes terms of office if you were an Official before
 	roman_administration_remove_terms_of_office_modifier_and_variable = yes	
 
@@ -810,6 +928,16 @@ roman_administration_accession_to_basileus_effect = {
 			change = scope:change
 		}
 		resolve_title_and_vassal_change = scope:change	
+	}
+	
+	## Removing ducal claim to avoid AI usurpation
+	every_claim = {
+		limit = {
+			tier = tier_duchy
+		}		
+		scope:roman_emperor = {
+			remove_claim = prev
+		}		
 	}
 }
 
@@ -4916,7 +5044,7 @@ roman_administration_update_legitimacy_variable = {
 	if = {
 		limit = {
 			highest_held_title_tier = tier_empire
-			primary_title = {
+			any_held_title = {
 				this = title:e_byzantium
 			}			
 		}

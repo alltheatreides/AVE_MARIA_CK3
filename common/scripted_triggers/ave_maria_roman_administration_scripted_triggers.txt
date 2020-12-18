@@ -65,17 +65,103 @@ roman_administration_character_is_in_the_empire = {
 ###############################
 
 # Used in place of the vanilla "has_changed_contract_obligations_trigger"
-# Checks if obligations have changed
-ave_maria_roman_changed_obligations_trigger = {
+# Checks if obligations have changed 18/12/20 not working as intended, prevents contract changes
+roman_administration_has_changed_obligations_trigger = {
 	$WHO$ = { save_temporary_scope_as = obligation_check }
 	custom_description = {
 		text = "modify_imperial_contract_select_different_obligation_level"
 		OR = {
 			local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
-			local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
-			local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
-			local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+			local_var:imperial_obligation_tax != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_tax
 		}
+	}
+	trigger_if = {
+		limit = {
+			$WHO$ = {
+				has_government = roman_administration_theme_government
+			}
+		}		
+		custom_description = {
+			text = "modify_imperial_contract_select_different_obligation_level"
+			OR = {
+				local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
+			}
+		}
+		
+	}
+	trigger_if = {
+		limit = {
+			$WHO$ = {
+				has_government = roman_administration_doukaton_government
+			}
+		}		
+		custom_description = {
+			text = "modify_imperial_contract_select_different_obligation_level"
+			OR = {
+				local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
+			}
+		}
+		
+	}
+	trigger_if = {
+		limit = {
+			$WHO$ = {
+				has_government = roman_administration_kouratoreia_government
+			}
+		}		
+		custom_description = {
+			text = "modify_imperial_contract_select_different_obligation_level"
+			OR = {
+				local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+			}
+		}
+		
+	}
+	trigger_if = {
+		limit = { 
+			$WHO$ = {
+				OR = {
+					has_government = roman_administration_sekreton_government
+					has_government = roman_administration_military_government
+				}
+			}
+		}
+		custom_description = {
+			text = "modify_imperial_contract_select_different_obligation_level"
+			OR = {
+				local_var:imperial_high_office_salary != scope:obligation_check.vassal_contract_obligation_level:imperial_high_office_salary
+			}
+		}
+	}
+	# custom_description = {
+	# 	text = "modify_imperial_contract_select_different_obligation_level"
+	# 	OR = {
+	# 		local_var:ave_maria_roman_administration_special_contract != scope:obligation_check.vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
+	# 		local_var:imperial_obligation_theme != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_theme
+	# 		local_var:imperial_obligation_doukaton != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_doukaton
+	# 		local_var:imperial_obligation_kouratoreia != scope:obligation_check.vassal_contract_obligation_level:imperial_obligation_kouratoreia
+	# 	}
+	# }
+}
+
+roman_administration_popularity_decrease_trigger = {
+	trigger_if = {
+		limit = {
+			has_local_variable = imperial_obligation_tax
+		}
+		local_var:imperial_obligation_tax > 4
+	}
+	trigger_if = {
+		limit = {
+			has_local_variable = imperial_high_office_salary
+		}
+		local_var:imperial_high_office_salary > 2
+	}
+	trigger_if = {
+		limit = {
+			has_local_variable = imperial_obligation_kouratoreia
+		}
+		local_var:imperial_obligation_kouratoreia > 2
 	}
 }
 
@@ -102,16 +188,6 @@ ave_maria_cannot_modify_inactive_values = {
 #############################################
 roman_administration_can_vote_in_emperor_election_trigger = {
 	OR = {
-		# AND = {
-		# 	joined_faction = {
-		# 		OR = {
-		# 			faction_is_type = roman_administration_army_faction
-		# 			faction_is_type = roman_administration_bureaucracy_faction
-		# 			faction_is_type = roman_administration_palace_faction
-		# 		}
-		# 	}
-		# 	is_a_faction_leader = yes
-		# }
 		any_held_title = {
 			this = title:d_megas_domestikos
 		}		

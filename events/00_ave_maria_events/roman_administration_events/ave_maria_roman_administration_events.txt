@@ -635,10 +635,19 @@ ave_maria_roman_administration_events.0006 = {
 
 		roman_administration_add_legitimacy_massive_amount = yes
 
-		scope:junior_emperor = {
-			add_trait = junior_emperor
-			roman_administration_add_legitimacy_massive_amount = yes
+		if = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+					count >= 1
+				}
+			}
+			scope:junior_emperor = {
+				add_trait = junior_emperor
+				roman_administration_add_legitimacy_massive_amount = yes
+			}
 		}
+		
 
 		## Ends the coronation activity
 		hidden_effect = {

@@ -107,13 +107,25 @@ roman_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
-				roman_administration_can_be_eligible_for_emperor_trigger = yes				
+				roman_administration_can_be_eligible_for_emperor_trigger = yes		
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
+					}
+					var:roman_administration_legitimacy > 0
+				}		
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
 				roman_administration_can_be_eligible_for_emperor_trigger = yes
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
+					}
+					var:roman_administration_legitimacy > 0
+				}
 			}
 		}
 		add = {
@@ -122,6 +134,12 @@ roman_administration_elective = {
 				roman_administration_character_is_in_the_empire = yes
 				age >= 6
 				is_female = no
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
+					}
+					var:roman_administration_legitimacy > 0
+				}
 			}
 		}
 	}
@@ -190,6 +208,7 @@ roman_administration_tagma_elective = {
 			type = title_claimants
 			limit = {
 				is_landed = yes
+				
 				roman_administration_character_is_in_the_empire = yes
 				is_female = no
 				age >= 20
@@ -256,6 +275,7 @@ roman_administration_tagma_elective = {
 			type = title_claimants
 			limit = {
 				roman_administration_character_is_in_the_empire = yes
+				is_courtier_of = scope:holder
 				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
 				is_female = no
@@ -269,8 +289,13 @@ roman_administration_tagma_elective = {
 			type = holder_close_or_extended_family
 			limit = {
 				roman_administration_character_is_in_the_empire = yes
+				is_courtier_of = scope:holder
 				age >= 20
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				dynasty = scope:holder.dynasty
 				NOT = { has_government = theocracy_government }
 				NOT = {
@@ -397,7 +422,8 @@ roman_administration_civilian_administration_elective = {
 		add = {
 			type = title_claimants
 			limit = {
-				NOT = { has_variable = roman_administration_term_count }			
+				NOT = { has_variable = roman_administration_term_count }	
+				is_courtier_of = scope:holder		
 				age >= 20
 				is_female = no
 				NOT = {
@@ -411,12 +437,17 @@ roman_administration_civilian_administration_elective = {
 			type = holder_close_or_extended_family
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
+				is_courtier_of = scope:holder
 				roman_administration_character_is_in_the_empire = yes
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				age >= 20
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				dynasty = scope:holder.dynasty
 				NOT = { has_government = theocracy_government }
 			}
@@ -517,6 +548,11 @@ roman_administration_family_elective = {
 			limit = {
 				age >= 16
 				dynasty = scope:holder.dynasty
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
+				NOT = { has_government = theocracy_government }
 				#feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 			}
 		}
