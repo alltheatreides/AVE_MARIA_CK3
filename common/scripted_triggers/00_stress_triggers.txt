@@ -70,6 +70,9 @@ can_be_drunkard = {
 		has_trait = drunkard
 		has_trait = hashishiyah
 		has_trait = temperate
+		has_trait = athletic
+		has_trait = whole_of_body
+
 	}
 	faith = { # Can not be Muslim ( some Muslims did actually drink, but ideally we want Muslims to be Hashishiyahs instead of Drunkards because it is more thematic).
 		NOT = {
@@ -84,6 +87,8 @@ can_be_hashishiyah = {
 		has_trait = drunkard
 		has_trait = hashishiyah
 		has_trait = temperate
+		has_trait = athletic
+		has_trait = whole_of_body
 	}
 
 	OR = {
@@ -124,8 +129,8 @@ can_be_rakish = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = rakish }
 	OR = {
 		has_trait = lustful
-		has_trait = am_pretentious
-		has_trait = am_deceitful
+		has_trait = arrogant
+		has_trait = deceitful
 		has_trait = gallant
 		has_trait = seducer
 	}
@@ -134,34 +139,34 @@ can_be_rakish = { # Must have a fitting personality or lifestyle
 can_be_reclusive = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = reclusive }
 	OR = {
-		has_trait = am_withdrawn
-		has_trait = am_lazy
-		has_trait = am_fearful
-		has_trait = am_craven
-		has_trait = am_hypocritical
-		has_trait = am_faithful # Does this make sense here?
+		has_trait = shy
+		has_trait = lazy
+		has_trait = paranoid
+		has_trait = craven
+		has_trait = cynical
+		has_trait = just # Does this make sense here?
 	}
 }
 
 can_be_irritable = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = irritable }
 	OR = {
-		has_trait = am_wroth
-		has_trait = am_illtempered
-		has_trait = am_pretentious
-		has_trait = am_stubborn
-		has_trait = am_quarrelsome
-		has_trait = am_deceitful
+		has_trait = wrathful
+		has_trait = impatient
+		has_trait = arrogant
+		has_trait = stubborn
+		has_trait = vengeful
+		has_trait = callous
 	}
 }
 
 can_be_flagellant = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = flagellant }
 	OR = {
-		has_trait = am_intolerant
+		has_trait = zealous
 		has_trait = chaste
 		has_trait = temperate
-		has_trait = am_humble
+		has_trait = humble
 		has_trait_rank = {
 			trait = lifestyle_mystic
 			rank > 0
@@ -172,33 +177,33 @@ can_be_flagellant = { # Must have a fitting personality or lifestyle
 can_be_profligate = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = profligate }
 	OR = {
-		has_trait = am_greedy
+		has_trait = greedy
 		has_trait = ambitious
-		has_trait = am_inconstant
-		has_trait = am_outgoing
-		has_trait = am_hypocritical
+		has_trait = arbitrary
+		has_trait = gregarious
+		has_trait = cynical
 	}
 }
 
 can_be_improvident = { # Must have a fitting personality or lifestyle
 	NOT = { has_trait = improvident }
 	OR = {	
-		has_trait = am_generous
-		has_trait = am_tolerant
-		has_trait = am_tolerant
-		has_trait = am_faithful
-		has_trait = am_conventional
+		has_trait = generous
+		has_trait = forgiving
+		has_trait = compassionate
+		has_trait = just
+		has_trait = content
 	}
 }
 
 can_be_contrite = {
 	NOT = { has_trait = contrite }
 	OR = { # Must have a fitting personality or lifestyle
-		has_trait = am_deceitful
+		has_trait = deceitful
 		has_trait = schemer
-		has_trait = am_honest
-		has_trait = am_mild
-		has_trait = am_humble
+		has_trait = honest
+		has_trait = trusting
+		has_trait = humble
 	}
 	OR = { # Must have something to feel guilty about / confess to.
 		num_sinful_traits >= 1
@@ -217,10 +222,10 @@ can_be_comfort_eater = { # Must have a fitting personality.
 	}
 	OR = {
 		has_trait = gluttonous
-		has_trait = am_inconstant
-		has_trait = am_inconstant
-		has_trait = am_illtempered
-		has_trait = am_patient
+		has_trait = fickle
+		has_trait = arbitrary
+		has_trait = impatient
+		has_trait = calm
 	}
 }
 
@@ -232,10 +237,10 @@ can_be_inappetetic = { # Must have a fitting personality.
 	}
 	OR = {	
 		has_trait = temperate
-		has_trait = am_conventional
-		has_trait = am_inconstant
-		has_trait = am_patient
-		has_trait = am_diligent
+		has_trait = content
+		has_trait = arbitrary
+		has_trait = patient
+		has_trait = diligent
 	}
 }
 
@@ -251,9 +256,9 @@ can_be_journaller = { # Must be a learned character with the scholarship lifesty
 can_be_confider = { # Must have a close friend they can confide in (and be willing to confide in!)
 	NOT = {
 		has_trait = confider
-		has_trait = am_withdrawn
-		has_trait = am_pretentious
-		has_trait = am_fearful
+		has_trait = shy
+		has_trait = arrogant
+		has_trait = paranoid
 	}
 	any_relation = {
 		type = friend
@@ -264,11 +269,11 @@ can_be_confider = { # Must have a close friend they can confide in (and be willi
 can_be_athletic = { # Must be willing and interested in getting out and exercising.
 	NOT = {
 		has_trait = athletic
-		has_trait = am_lazy
+		has_trait = lazy
 	}
 	OR = {
-		has_trait = am_brave
-		has_trait = am_diligent
+		has_trait = brave
+		has_trait = diligent
 	}
 }
 
@@ -286,7 +291,7 @@ can_do_lustful_stress_conversion = {
 can_inflict_torture = {
 	OR = {
 		has_trait = sadistic
-		has_trait = am_quarrelsome
+		has_trait = vengeful
 		has_trait = torturer
 		has_trait = lifestyle_hunter
 		has_trait = lifestyle_blademaster

@@ -36,7 +36,7 @@
 #
 # Level 3 Mental Breaks
 #	stress_threshold.3001 —	The Voices [Generic]: Begin hearing voices that aren't real.
-#	stress_threshold.3101 —	Wrongdoing [Generic]: Weak grasp on reallity leads to paranoia-like mania.
+#	stress_threshold.3101 —	Wrongdoing [Generic]: Weak grasp on reality leads to paranoia-like mania.
 #	stress_threshold.3201 —	Overload [Generic]: Shuts down from overload, vassal may offer to help.
 #	stress_threshold.3301 —	Heart Ache [Generic]: Dies from heart attack.
 #	stress_threshold.3401 —	Shooting the Messenger: you dramatically punish someone for giving you bad news.
@@ -498,11 +498,11 @@ stress_threshold.1001 = {
 			base = 1
 			modifier = {
 				add = -15
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				add = 15
-				has_trait = am_mild
+				has_trait = trusting
 			}
 		}
 
@@ -530,11 +530,11 @@ stress_threshold.1001 = {
 			base = 1
 			modifier = {
 				add = -5
-				has_trait = am_agreeable
+				has_trait = forgiving
 			}
 			modifier = {
 				add = 15
-				has_trait = am_intolerant
+				has_trait = zealous
 			}
 		}
 
@@ -566,11 +566,11 @@ stress_threshold.1001 = {
 			base = 1
 			modifier = {
 				add = -15
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_generous
+				has_trait = generous
 			}
 		}
 
@@ -596,18 +596,18 @@ stress_threshold.1001 = {
 		}
 		ai_chance = {
 			base = 1
-			modifier = {
-				add = 5
-				has_trait = gluttonous
-			}
-			modifier = {
-				add = 15
-				OR = {
-					has_trait = reveler_1
-					has_trait = reveler_2
-					has_trait = reveler_3
-				}
-			}
+			# modifier = {
+			# 	add = 5
+			# 	has_trait = gluttonous
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	OR = {
+			# 		has_trait = reveler_1
+			# 		has_trait = reveler_2
+			# 		has_trait = reveler_3
+			# 	}
+			# }
 		}
 
 		trait = drunkard
@@ -642,7 +642,7 @@ stress_threshold.1001 = {
 			text = stress_threshold.1001.hashishiyah.effect
 		}
 		ai_chance = {
-			base = 1
+			base = 0
 			modifier = {
 				add = 5
 				has_trait = gluttonous
@@ -692,15 +692,15 @@ stress_threshold.1001 = {
 			base = 5
 			modifier = {
 				add = -15
-				has_trait = am_fearful #A journal might be used as evidence against them!
+				has_trait = paranoid #A journal might be used as evidence against them!
 			}
 			modifier = {
 				add = 5
-				has_trait = am_patient
+				has_trait = calm
 			}
 			modifier = {
 				add = 5
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 
@@ -713,6 +713,43 @@ stress_threshold.1001 = {
 		add_stress = minor_stress_impact_loss
 	}
 
+	option = { # Option H: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 15
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
+	}
+
 	# Option G (Always the 3rd option): Do not gain any coping traits, but major stress gain!
 	option = {
 		name = stress_threshold.1001.endure
@@ -722,7 +759,7 @@ stress_threshold.1001 = {
 			base = 1
 			modifier = {
 				add = 15
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 		}
 	}
@@ -901,7 +938,7 @@ stress_threshold.1011 = {
 			base = 1
 			modifier = {
 				add = -5
-				has_trait = am_withdrawn 
+				has_trait = shy 
 			}
 			modifier = {
 				add = -5
@@ -939,19 +976,19 @@ stress_threshold.1011 = {
 			base = 1
 			modifier = {
 				add = 15
-				has_trait = am_withdrawn 
+				has_trait = shy 
 			}
 			modifier = {
 				add = 5
-				has_trait = am_deceitful
+				has_trait = callous
 			}
 			modifier = {
 				add = -15
-				has_trait = am_outgoing 
+				has_trait = gregarious 
 			}
 			modifier = {
 				add = -15
-				has_trait = am_mild
+				has_trait = trusting
 			}
 		}
 
@@ -970,19 +1007,19 @@ stress_threshold.1011 = {
 			base = 1
 			modifier = {
 				add = 5
-				has_trait = am_inconstant 
+				has_trait = arbitrary 
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = -15
-				has_trait = am_hypocritical 
+				has_trait = cynical 
 			}
 			modifier = {
 				add = -15
-				has_trait = am_intolerant
+				has_trait = zealous
 			}
 		}
 		# Converting to a different Faith of your religion is less penalizing but also reduces less stress.
@@ -1028,19 +1065,19 @@ stress_threshold.1011 = {
 			base = 1
 			modifier = {
 				add = 5
-				has_trait = am_inconstant 
+				has_trait = arbitrary 
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = -15
-				has_trait = am_hypocritical 
+				has_trait = cynical 
 			}
 			modifier = {
 				add = -15
-				has_trait = am_intolerant
+				has_trait = zealous
 			}
 		}
 
@@ -1071,11 +1108,11 @@ stress_threshold.1011 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_diligent
+				has_trait = diligent
 			}
 			modifier = {
 				add = -15
-				has_trait = am_lazy 
+				has_trait = lazy 
 			}
 			modifier = {
 				add = -5
@@ -1088,6 +1125,43 @@ stress_threshold.1011 = {
 		add_stress = medium_stress_impact_loss
 	}
 
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
+	}
+
 	option = { # Option E: Endure, major stress gain.
 		name = stress_threshold.1011.endure
 		add_stress = mental_break_opt_out_stress_gain
@@ -1096,7 +1170,7 @@ stress_threshold.1011 = {
 			base = 1
 			modifier = {
 				add = 5
-				has_trait = am_stubborn  
+				has_trait = stubborn  
 			}
 		}
 	}
@@ -1150,7 +1224,7 @@ stress_threshold.1501 = {
 			has_trait = reclusive
 			has_trait = inappetetic
 			AND = {
-				has_trait = am_hypocritical
+				has_trait = cynical
 				faith = {
 					fervor <= medium_fervor_value
 				}
@@ -1169,15 +1243,15 @@ stress_threshold.1501 = {
 		base = 1
 		modifier = {
 			add = 10
-			has_trait = am_outgoing
+			has_trait = gregarious
 		}
 		modifier = {
 			add = 10
-			has_trait = am_intolerant
+			has_trait = zealous
 		}
 		modifier = {
 			add = -10
-			has_trait = am_withdrawn
+			has_trait = shy
 		}
 		modifier = {
 			add = -10
@@ -1185,7 +1259,7 @@ stress_threshold.1501 = {
 		}
 		modifier = {
 			add = -5
-			has_trait = am_hypocritical
+			has_trait = cynical
 		}
 	}
 
@@ -1217,7 +1291,7 @@ stress_threshold.1501 = {
 		}
 		if = { #
 			limit = {
-				has_trait = am_hypocritical
+				has_trait = cynical
 				faith = {
 					fervor <= medium_fervor_value
 				}
@@ -1275,7 +1349,7 @@ stress_threshold.1501 = {
 		}
 		if = { #Pick random heresy in the event of special option being available.
 			limit = {
-				has_trait = am_hypocritical
+				has_trait = cynical
 				faith = {
 					fervor <= medium_fervor_value
 				}
@@ -1344,23 +1418,23 @@ stress_threshold.1501 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_lazy
+				has_trait = lazy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				add = 15
-				has_trait = am_honest
+				has_trait = just
 			}
 			modifier = {
 				add = 15
-				has_trait = am_craven
+				has_trait = craven
 			}
 		}
 	}
@@ -1377,11 +1451,11 @@ stress_threshold.1501 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			modifier = {
 				add = 15
-				has_trait = am_conventional
+				has_trait = content
 			}
 		}
 	}
@@ -1397,23 +1471,23 @@ stress_threshold.1501 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_lazy
+				has_trait = lazy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				add = 15
-				has_trait = am_honest
+				has_trait = just
 			}
 			modifier = {
 				add = 15
-				has_trait = am_craven
+				has_trait = craven
 			}
 		}
 	}
@@ -1433,11 +1507,11 @@ stress_threshold.1501 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			modifier = {
 				add = 15
-				has_trait = am_conventional
+				has_trait = content
 			}
 		}
 	}
@@ -1447,7 +1521,7 @@ stress_threshold.1501 = {
 			has_character_flag = stress_threshold_option_conversion
 			exists = scope:new_faith
 		}
-		trait = am_hypocritical
+		trait = cynical
 		add_piety = medium_piety_loss
 		set_character_faith_with_conversion = scope:new_faith
 		add_stress = medium_stress_loss
@@ -1464,6 +1538,43 @@ stress_threshold.1501 = {
 		ai_chance = {
 			base = 10
 		}
+	}
+
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
 	}
 
 	after = {
@@ -1528,23 +1639,23 @@ stress_threshold.1502 = {
 		}
 		modifier = {
 			add = 10
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 		modifier = {
 			add = 5
-			has_trait = am_deceitful
+			has_trait = callous
 		}
 		modifier = {
 			add = -10
-			has_trait = am_tolerant
+			has_trait = compassionate
 		}
 		modifier = {
 			add = -10
-			has_trait = am_patient
+			has_trait = patient
 		}
 		modifier = {
 			add = -5
-			has_trait = am_generous
+			has_trait = generous
 		}
 	}
 
@@ -1608,8 +1719,8 @@ stress_threshold.1502 = {
 			random_courtier = {
 				limit = {
 					OR = {
-						has_trait = am_wroth
-						has_trait = am_outgoing
+						has_trait = wrathful
+						has_trait = gregarious
 						has_trait = intellect_bad
 					}
 					is_available_ai_adult = yes
@@ -1664,18 +1775,18 @@ stress_threshold.1502 = {
 			NOT = { has_trait = journaller }
 			has_character_flag = stress_threshold_option_journaller
 		}
-		trait = am_withdrawn
+		trait = shy
 		add_trait = journaller
 		add_stress = minor_stress_loss
 		ai_chance = {
 			base = 10
 			modifier = {
 				add = 15
-				has_trait = am_patient
+				has_trait = patient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_patient
+				has_trait = calm
 			}
 			modifier = {
 				add = 15
@@ -1702,23 +1813,23 @@ stress_threshold.1502 = {
 			base = 30
 			modifier = {
 				add = 15
-				has_trait = am_wroth
+				has_trait = wrathful
 			}
 			modifier = {
 				add = 15
-				has_trait = am_illtempered
+				has_trait = impatient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			modifier = {
 				add = 15
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 			modifier = {
 				add = 15
-				has_trait = am_quarrelsome
+				has_trait = vengeful
 			}
 		}
 	}
@@ -1744,7 +1855,7 @@ stress_threshold.1502 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_quarrelsome
+				has_trait = vengeful
 			}
 			modifier = {
 				add = 15
@@ -1768,23 +1879,23 @@ stress_threshold.1502 = {
 			base = 30
 			modifier = {
 				add = 15
-				has_trait = am_wroth
+				has_trait = wrathful
 			}
 			modifier = {
 				add = 15
-				has_trait = am_illtempered
+				has_trait = impatient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			modifier = {
 				add = 15
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 			modifier = {
 				add = 15
-				has_trait = am_quarrelsome
+				has_trait = vengeful
 			}
 		}
 	}
@@ -1797,27 +1908,27 @@ stress_threshold.1502 = {
 		add_trait = drunkard
 		add_stress = medium_stress_loss
 		ai_chance = {
-			base = 30
-			modifier = {
-				add = 15
-				has_trait = am_wroth
-			}
-			modifier = {
-				add = 15
-				has_trait = am_illtempered
-			}
-			modifier = {
-				add = 15
-				has_trait = am_pretentious
-			}
-			modifier = {
-				add = 15
-				has_trait = am_stubborn
-			}
-			modifier = {
-				add = 15
-				has_trait = am_quarrelsome
-			}
+			base = 1
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = wrathful
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = impatient
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = arrogant
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = stubborn
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = vengeful
+			# }
 		}
 	}
 
@@ -1827,6 +1938,43 @@ stress_threshold.1502 = {
 		ai_chance = {
 			base = 10
 		}
+	}
+
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 15
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
 	}
 
 	after = {
@@ -1866,7 +2014,7 @@ stress_threshold.1503 = {
 		base = 1
 		modifier = {
 			add = 10
-			has_trait = am_generous
+			has_trait = generous
 		}
 		modifier = {
 			add = 10
@@ -1874,7 +2022,7 @@ stress_threshold.1503 = {
 		}
 		modifier = {
 			add = -10
-			has_trait = am_greedy
+			has_trait = greedy
 		}
 		modifier = {
 			add = -10
@@ -1882,7 +2030,7 @@ stress_threshold.1503 = {
 		}
 		modifier = {
 			add = -5
-			has_trait = am_conventional
+			has_trait = content
 		}
 	}
 
@@ -1932,7 +2080,7 @@ stress_threshold.1503 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 			modifier = {
 				add = 15
@@ -1940,11 +2088,11 @@ stress_threshold.1503 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			modifier = {
 				add = 15
-				has_trait = am_outgoing
+				has_trait = gregarious
 			}
 		}
 	}
@@ -1962,11 +2110,11 @@ stress_threshold.1503 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 		}
 	}
@@ -1988,7 +2136,7 @@ stress_threshold.1503 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_greedy
+				has_trait = greedy
 			}
 			modifier = {
 				add = 15
@@ -1996,11 +2144,11 @@ stress_threshold.1503 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			modifier = {
 				add = 15
-				has_trait = am_outgoing
+				has_trait = gregarious
 			}
 		}
 	}
@@ -2020,11 +2168,11 @@ stress_threshold.1503 = {
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 		}
 	}
@@ -2034,6 +2182,43 @@ stress_threshold.1503 = {
 		ai_chance = {
 			base = 10
 		}
+	}
+
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
 	}
 
 	after = {
@@ -2079,7 +2264,7 @@ stress_threshold.1504 = {
 		base = 1
 		modifier = {
 			add = 10
-			has_trait = am_withdrawn
+			has_trait = shy
 		}
 		modifier = {
 			add = 10
@@ -2094,7 +2279,7 @@ stress_threshold.1504 = {
 		}
 		modifier = {
 			add = -10
-			has_trait = am_outgoing
+			has_trait = gregarious
 		}
 		modifier = {
 			add = -10
@@ -2102,7 +2287,7 @@ stress_threshold.1504 = {
 		}
 		modifier = {
 			add = -5
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 	}
 
@@ -2179,23 +2364,23 @@ stress_threshold.1504 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_lazy
+				has_trait = lazy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				add = 15
-				has_trait = am_honest
+				has_trait = just
 			}
 			modifier = {
 				add = 15
-				has_trait = am_craven
+				has_trait = craven
 			}
 		}
 	}
@@ -2221,15 +2406,15 @@ stress_threshold.1504 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_illtempered
+				has_trait = impatient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_inconstant
+				has_trait = fickle
 			}
 			modifier = {
 				add = 15
-				has_trait = am_diligent
+				has_trait = diligent
 			}
 			modifier = {
 				add = 15
@@ -2249,23 +2434,23 @@ stress_threshold.1504 = {
 			base = 20
 			modifier = {
 				add = 15
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_lazy
+				has_trait = lazy
 			}
 			modifier = {
 				add = 15
-				has_trait = am_fearful
+				has_trait = paranoid
 			}
 			modifier = {
 				add = 15
-				has_trait = am_honest
+				has_trait = just
 			}
 			modifier = {
 				add = 15
-				has_trait = am_craven
+				has_trait = craven
 			}
 		}
 	}
@@ -2293,23 +2478,23 @@ stress_threshold.1504 = {
 		}
 		add_stress = medium_stress_loss
 		ai_chance = {
-			base = 20
-			modifier = {
-				add = 15
-				has_trait = am_illtempered
-			}
-			modifier = {
-				add = 15
-				has_trait = am_inconstant
-			}
-			modifier = {
-				add = 15
-				has_trait = am_diligent
-			}
-			modifier = {
-				add = 15
-				has_trait = lifestyle_reveler
-			}
+			base = 1
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = impatient
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = fickle
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = diligent
+			# }
+			# modifier = {
+			# 	add = 15
+			# 	has_trait = lifestyle_reveler
+			# }
 		}
 	}
 	option = { #Gains Irritable
@@ -2325,23 +2510,23 @@ stress_threshold.1504 = {
 			base = 30
 			modifier = {
 				add = 15
-				has_trait = am_wroth
+				has_trait = wrathful
 			}
 			modifier = {
 				add = 15
-				has_trait = am_illtempered
+				has_trait = impatient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			modifier = {
 				add = 15
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 			modifier = {
 				add = 15
-				has_trait = am_quarrelsome
+				has_trait = vengeful
 			}
 		}
 	}
@@ -2358,11 +2543,11 @@ stress_threshold.1504 = {
 			base = 10
 			modifier = {
 				add = 15
-				has_trait = am_patient
+				has_trait = patient
 			}
 			modifier = {
 				add = 15
-				has_trait = am_patient
+				has_trait = calm
 			}
 			modifier = {
 				add = 15
@@ -2382,11 +2567,11 @@ stress_threshold.1504 = {
 			base = 10
 			modifier = {
 				add = 15
-				has_trait = am_brave
+				has_trait = brave
 			}
 			modifier = {
 				add = 15
-				has_trait = am_diligent
+				has_trait = diligent
 			}
 		}
 	}
@@ -2398,11 +2583,47 @@ stress_threshold.1504 = {
 		}
 	}
 
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 15
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
+	}
+
 	after = {
 		stress_threshold_event_aftereffects = yes # Perform stress threshold event clean-up and preparation for future stress threshold events.
 	}
 }
-
 
 #########################################
 # Spinning Thoughts (fallback event)	#
@@ -2567,7 +2788,12 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 			}
 		}
 		if = {
-			limit = { has_trait = confider }
+			limit = {
+				has_trait = confider
+				any_relation = {
+					type = friend
+				}
+			}
 			add_to_variable_list = {
 				name = extra_stress_threshold_event_option
 				target = flag:confider
@@ -2695,9 +2921,34 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 							save_scope_as = friend
 						}
 					}
-					random_relation = {
-						type = friend
-						save_scope_as = friend
+					else_if = {
+						limit = {
+							any_relation = {
+								type = best_friend
+								has_relation_flag = {
+									target = root
+									relation = best_friend
+									flag = has_been_confided_in
+								}
+							}
+						}
+						random_relation = {
+							type = best_friend
+							limit = {
+								has_relation_flag = {
+									target = root
+									relation = best_friend
+									flag = has_been_confided_in
+								}
+							}
+							save_scope_as = friend
+						}
+					}
+					else = {
+						random_relation = {
+							type = friend
+							save_scope_as = friend
+						}
 					}
 				}
 				10 = {
@@ -2943,9 +3194,34 @@ scripted_effect stress_threshold_fallback_event_select_options_effect = {
 								save_scope_as = friend
 							}
 						}
-						random_relation = {
-							type = friend
-							save_scope_as = friend
+						else_if = {
+							limit = {
+								any_relation = {
+									type = best_friend
+									has_relation_flag = {
+										target = root
+										relation = best_friend
+										flag = has_been_confided_in
+									}
+								}
+							}
+							random_relation = {
+								type = best_friend
+								limit = {
+									has_relation_flag = {
+										target = root
+										relation = best_friend
+										flag = has_been_confided_in
+									}
+								}
+								save_scope_as = friend
+							}
+						}
+						else = {
+							random_relation = {
+								type = friend
+								save_scope_as = friend
+							}
 						}
 					}
 					10 = {
@@ -3060,11 +3336,11 @@ stress_threshold.1601 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_greedy
+					has_trait = greedy
 					has_trait = ambitious
-					has_trait = am_inconstant
-					has_trait = am_outgoing
-					has_trait = am_hypocritical
+					has_trait = arbitrary
+					has_trait = gregarious
+					has_trait = cynical
 				}
 			}
 		}
@@ -3099,10 +3375,10 @@ stress_threshold.1601 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = temperate
-					has_trait = am_conventional
-					has_trait = am_inconstant
-					has_trait = am_patient
-					has_trait = am_diligent
+					has_trait = content
+					has_trait = arbitrary
+					has_trait = patient
+					has_trait = diligent
 				}
 			}
 		}
@@ -3131,10 +3407,10 @@ stress_threshold.1601 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = gluttonous
-					has_trait = am_inconstant
-					has_trait = am_inconstant
-					has_trait = am_illtempered
-					has_trait = am_patient
+					has_trait = fickle
+					has_trait = arbitrary
+					has_trait = impatient
+					has_trait = calm
 				}
 			}
 		}
@@ -3165,8 +3441,8 @@ stress_threshold.1601 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = lustful
-					has_trait = am_pretentious
-					has_trait = am_deceitful
+					has_trait = arrogant
+					has_trait = deceitful
 					has_trait = gallant
 					has_trait = seducer
 				}
@@ -3196,12 +3472,12 @@ stress_threshold.1601 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_withdrawn
-					has_trait = am_lazy
-					has_trait = am_fearful
-					has_trait = am_craven
-					has_trait = am_hypocritical
-					has_trait = am_honest
+					has_trait = shy
+					has_trait = lazy
+					has_trait = paranoid
+					has_trait = craven
+					has_trait = cynical
+					has_trait = just
 				}
 			}
 		}
@@ -3229,12 +3505,12 @@ stress_threshold.1601 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_wroth
-					has_trait = am_illtempered
-					has_trait = am_pretentious
-					has_trait = am_stubborn
-					has_trait = am_quarrelsome
-					has_trait = am_deceitful
+					has_trait = wrathful
+					has_trait = impatient
+					has_trait = arrogant
+					has_trait = stubborn
+					has_trait = vengeful
+					has_trait = callous
 				}
 			}
 		}
@@ -3281,20 +3557,30 @@ stress_threshold.1601 = {
 						}
 					}
 				}
-				add_relation_flag = {
-					target = root
-					relation = friend
-					flag = has_been_confided_in
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
+					add_relation_flag = {
+						target = root
+						relation = friend
+						flag = has_been_confided_in
+					}
 				}
 			}
 		}
 		else = {
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 
@@ -3329,8 +3615,8 @@ stress_threshold.1601 = {
 			base = 100
 			modifier = {
 				add = 75
-				has_trait = am_brave
-				has_trait = am_diligent
+				has_trait = brave
+				has_trait = diligent
 			}
 		}
 	}
@@ -3390,10 +3676,10 @@ stress_threshold.1601 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_intolerant
+					has_trait = zealous
 					has_trait = chaste
 					has_trait = temperate
-					has_trait = am_humble
+					has_trait = humble
 					has_trait_rank = {
 						trait = lifestyle_mystic
 						rank > 0
@@ -3432,11 +3718,11 @@ stress_threshold.1601 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_generous
-					has_trait = am_agreeable
-					has_trait = am_tolerant
-					has_trait = am_honest
-					has_trait = am_conventional
+					has_trait = generous
+					has_trait = forgiving
+					has_trait = compassionate
+					has_trait = just
+					has_trait = content
 				}
 			}
 		}
@@ -3503,7 +3789,7 @@ stress_threshold.1601 = {
 		add_stress = medium_stress_impact_loss
 
 		ai_chance = {
-			base = 100
+			base = 1
 		}
 	}
 
@@ -3538,8 +3824,45 @@ stress_threshold.1601 = {
 		add_stress = medium_stress_impact_loss
 
 		ai_chance = {
-			base = 100
+			base = 1
 		}
+	}
+
+	option = { # Option C: Go hunt
+		trigger = {
+			always = yes
+		}
+		name = {
+			trigger= { NOT = { has_trait = obsessive_hunter } }
+			text = stress_threshold.1011.obsessive_hunter.gain
+		}
+		name = {
+			trigger = { has_trait = obsessive_hunter }
+			text = stress_threshold.1001.obsessive_hunter.effect
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = 5
+				has_trait = hunter_1  
+			}
+			modifier = {
+				add = 15
+				has_trait = hunter_2
+			}
+			modifier = {
+				add = 30
+				has_trait = hunter_3 
+			}
+			modifier = {
+				add = -5
+				current_weight > overweight_threshold
+			}
+		}
+
+		trait = obsessive_hunter
+		add_trait = obsessive_hunter
+		add_stress = medium_stress_impact_loss
 	}
 
 	# Endure: major stress gain!
@@ -3560,9 +3883,6 @@ stress_threshold.1601 = {
 	}
 
 	after = {
-		if = {
-			limit = { is_alive = yes }
-		}
 		stress_threshold_event_aftereffects = yes # Perform stress threshold event clean-up and preparation for future stress threshold events.
 	}
 }
@@ -3622,11 +3942,11 @@ stress_threshold.1602 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_greedy
+					has_trait = greedy
 					has_trait = ambitious
-					has_trait = am_inconstant
-					has_trait = am_outgoing
-					has_trait = am_hypocritical
+					has_trait = arbitrary
+					has_trait = gregarious
+					has_trait = cynical
 				}
 			}
 		}
@@ -3661,10 +3981,10 @@ stress_threshold.1602 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = temperate
-					has_trait = am_conventional
-					has_trait = am_inconstant
-					has_trait = am_patient
-					has_trait = am_diligent
+					has_trait = content
+					has_trait = arbitrary
+					has_trait = patient
+					has_trait = diligent
 				}
 			}
 		}
@@ -3693,10 +4013,10 @@ stress_threshold.1602 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = gluttonous
-					has_trait = am_inconstant
-					has_trait = am_inconstant
-					has_trait = am_illtempered
-					has_trait = am_patient
+					has_trait = fickle
+					has_trait = arbitrary
+					has_trait = impatient
+					has_trait = calm
 				}
 			}
 		}
@@ -3727,8 +4047,8 @@ stress_threshold.1602 = {
 				calc_true_if = {
 					amount >= 2
 					has_trait = lustful
-					has_trait = am_pretentious
-					has_trait = am_deceitful
+					has_trait = arrogant
+					has_trait = deceitful
 					has_trait = gallant
 					has_trait = seducer
 				}
@@ -3758,12 +4078,12 @@ stress_threshold.1602 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_withdrawn
-					has_trait = am_lazy
-					has_trait = am_fearful
-					has_trait = am_craven
-					has_trait = am_hypocritical
-					has_trait = am_honest
+					has_trait = shy
+					has_trait = lazy
+					has_trait = paranoid
+					has_trait = craven
+					has_trait = cynical
+					has_trait = just
 				}
 			}
 		}
@@ -3791,12 +4111,12 @@ stress_threshold.1602 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_wroth
-					has_trait = am_illtempered
-					has_trait = am_pretentious
-					has_trait = am_stubborn
-					has_trait = am_quarrelsome
-					has_trait = am_deceitful
+					has_trait = wrathful
+					has_trait = impatient
+					has_trait = arrogant
+					has_trait = stubborn
+					has_trait = vengeful
+					has_trait = callous
 				}
 			}
 		}
@@ -3832,10 +4152,22 @@ stress_threshold.1602 = {
 				}
 			}
 			scope:friend = {
-				add_relation_flag = {
-					target = root
-					relation = friend
-					flag = has_been_confided_in
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
+					add_relation_flag = {
+						target = root
+						relation = friend
+						flag = has_been_confided_in
+					}
 				}
 			}
 		}
@@ -3851,12 +4183,10 @@ stress_threshold.1602 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 
@@ -3891,8 +4221,8 @@ stress_threshold.1602 = {
 			base = 100
 			modifier = {
 				add = 75
-				has_trait = am_brave
-				has_trait = am_diligent
+				has_trait = brave
+				has_trait = diligent
 			}
 		}
 	}
@@ -3952,10 +4282,10 @@ stress_threshold.1602 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_intolerant
+					has_trait = zealous
 					has_trait = chaste
 					has_trait = temperate
-					has_trait = am_humble
+					has_trait = humble
 					has_trait_rank = {
 						trait = lifestyle_mystic
 						rank > 0
@@ -3994,11 +4324,11 @@ stress_threshold.1602 = {
 				add = 75
 				calc_true_if = {
 					amount >= 2
-					has_trait = am_generous
-					has_trait = am_agreeable
-					has_trait = am_tolerant
-					has_trait = am_honest
-					has_trait = am_conventional
+					has_trait = generous
+					has_trait = forgiving
+					has_trait = compassionate
+					has_trait = just
+					has_trait = content
 				}
 			}
 		}
@@ -4065,7 +4395,7 @@ stress_threshold.1602 = {
 		add_stress = medium_stress_impact_loss
 
 		ai_chance = {
-			base = 100
+			base = 1
 		}
 	}
 
@@ -4100,7 +4430,7 @@ stress_threshold.1602 = {
 		add_stress = medium_stress_impact_loss
 
 		ai_chance = {
-			base = 100
+			base = 1
 		}
 	}
 
@@ -4122,9 +4452,6 @@ stress_threshold.1602 = {
 	}
 
 	after = {
-		if = {
-			limit = { is_alive = yes }
-		}
 		stress_threshold_event_aftereffects = yes # Perform stress threshold event clean-up and preparation for future stress threshold events.
 	}
 }
@@ -4157,8 +4484,8 @@ scripted_effect jealousy_at_court_effect = {
 					limit = {	#Skip straight to rivalry if appropriate.
 						calc_true_if = {
 							amount >= $TRUE_RIVAL_NUM$
-							has_trait = am_quarrelsome
-							has_trait = am_wroth
+							has_trait = vengeful
+							has_trait = wrathful
 							has_trait = sadistic
 							has_trait = ambitious
 						}
@@ -4175,8 +4502,8 @@ scripted_effect jealousy_at_court_effect = {
 					limit = {	#Otherwise, increment.
 						calc_true_if = {
 							amount >= $POTENTIAL_RIVAL_NUM$
-							has_trait = am_quarrelsome
-							has_trait = am_wroth
+							has_trait = vengeful
+							has_trait = wrathful
 							has_trait = sadistic
 							has_trait = ambitious
 						}
@@ -4213,49 +4540,49 @@ stress_threshold.1701 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_lazy
+					has_trait = lazy
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_lazy }
 				}
 				desc = stress_threshold.1701.desc.lazy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_wroth
+					has_trait = wrathful
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_wrathful }
 				}
 				desc = stress_threshold.1701.desc.wrathful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_illtempered
+					has_trait = impatient
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_impatient }
 				}
 				desc = stress_threshold.1701.desc.impatient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_arrogant }
 				}
 				desc = stress_threshold.1701.desc.arrogant
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_inconstant
+					has_trait = arbitrary
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_arbitrary }
 				}
 				desc = stress_threshold.1701.desc.arbitrary
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_mild
+					has_trait = trusting
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_trusting }
 				}
 				desc = stress_threshold.1701.desc.trusting
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_stubborn
+					has_trait = stubborn
 					NOT = { has_character_flag = had_stress_threshold_1701_desc_stubborn }
 				}
 				desc = stress_threshold.1701.desc.stubborn
@@ -4276,13 +4603,13 @@ stress_threshold.1701 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_lazy
-			has_trait = am_wroth
-			has_trait = am_illtempered
-			has_trait = am_pretentious
-			has_trait = am_inconstant
-			has_trait = am_mild
-			has_trait = am_stubborn
+			has_trait = lazy
+			has_trait = wrathful
+			has_trait = impatient
+			has_trait = arrogant
+			has_trait = arbitrary
+			has_trait = trusting
+			has_trait = stubborn
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -4767,12 +5094,10 @@ stress_threshold.1701 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 
@@ -4819,7 +5144,7 @@ stress_threshold.1701 = {
 		else = { add_trait = drunkard }
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -4861,7 +5186,7 @@ stress_threshold.1701 = {
 		else = { add_trait = hashishiyah }
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -4886,75 +5211,81 @@ stress_threshold.1701 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_lazy
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_lazy }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_lazy
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = lazy
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_lazy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_lazy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_wroth
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_wrathful }
+			else_if = {
+				limit = {
+					has_trait = wrathful
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_wrathful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_wrathful
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_wrathful
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = impatient
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_impatient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_impatient
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_illtempered
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_impatient }
+			else_if = {
+				limit = {
+					has_trait = arrogant
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_arrogant }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_arrogant
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_impatient
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = arbitrary
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_arbitrary }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_arbitrary
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_pretentious
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_arrogant }
+			else_if = {
+				limit = {
+					has_trait = trusting
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_trusting }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_trusting
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_arrogant
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_inconstant
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_arbitrary }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_arbitrary
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_mild
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_trusting }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_trusting
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_stubborn
-				NOT = { has_character_flag = had_stress_threshold_1701_desc_stubborn }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1701_desc_stubborn
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = stubborn
+					NOT = { has_character_flag = had_stress_threshold_1701_desc_stubborn }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1701_desc_stubborn
+					years = 10
+				}
 			}
 		}
 	}
@@ -4976,28 +5307,28 @@ stress_threshold.1711 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_greedy
+					has_trait = greedy
 					NOT = { has_character_flag = had_stress_threshold_1711_greedy }
 				}
 				desc = stress_threshold.1711.desc.greedy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_diligent
+					has_trait = diligent
 					NOT = { has_character_flag = had_stress_threshold_1711_diligent }
 				}
 				desc = stress_threshold.1711.desc.diligent
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_patient
+					has_trait = patient
 					NOT = { has_character_flag = had_stress_threshold_1711_patient }
 				}
 				desc = stress_threshold.1711.desc.patient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = deceitful
 					NOT = { has_character_flag = had_stress_threshold_1711_deceitful }
 				}
 				desc = stress_threshold.1711.desc.deceitful
@@ -5011,14 +5342,14 @@ stress_threshold.1711 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_honest
+					has_trait = just
 					NOT = { has_character_flag = had_stress_threshold_1711_just }
 				}
 				desc = stress_threshold.1711.desc.just
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOT = { has_character_flag = had_stress_threshold_1711_zealous }
 				}
 				desc = stress_threshold.1711.desc.zealous
@@ -5039,13 +5370,13 @@ stress_threshold.1711 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_greedy
-			has_trait = am_diligent
-			has_trait = am_patient
-			has_trait = am_deceitful
+			has_trait = greedy
+			has_trait = diligent
+			has_trait = patient
+			has_trait = deceitful
 			has_trait = ambitious
-			has_trait = am_honest
-			has_trait = am_intolerant
+			has_trait = just
+			has_trait = zealous
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -5498,7 +5829,7 @@ stress_threshold.1711 = {
 		else = { add_trait = drunkard }
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -5565,75 +5896,82 @@ stress_threshold.1711 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
+
 		if = {
 			limit = {
-				has_trait = am_greedy
-				NOT = { has_character_flag = had_stress_threshold_1711_greedy }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_greedy
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = greedy
+					NOT = { has_character_flag = had_stress_threshold_1711_greedy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_greedy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_diligent
-				NOT = { has_character_flag = had_stress_threshold_1711_diligent }
+			else_if = {
+				limit = {
+					has_trait = diligent
+					NOT = { has_character_flag = had_stress_threshold_1711_diligent }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_diligent
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_diligent
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = patient
+					NOT = { has_character_flag = had_stress_threshold_1711_patient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_patient
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_patient
-				NOT = { has_character_flag = had_stress_threshold_1711_patient }
+			else_if = {
+				limit = {
+					has_trait = deceitful
+					NOT = { has_character_flag = had_stress_threshold_1711_deceitful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_deceitful
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_patient
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = ambitious
+					NOT = { has_character_flag = had_stress_threshold_1711_ambitious }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_ambitious
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_deceitful
-				NOT = { has_character_flag = had_stress_threshold_1711_deceitful }
+			else_if = {
+				limit = {
+					has_trait = just
+					NOT = { has_character_flag = had_stress_threshold_1711_just }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_just
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_deceitful
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = ambitious
-				NOT = { has_character_flag = had_stress_threshold_1711_ambitious }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_ambitious
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_honest
-				NOT = { has_character_flag = had_stress_threshold_1711_just }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_just
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_intolerant
-				NOT = { has_character_flag = had_stress_threshold_1711_zealous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1711_zealous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = zealous
+					NOT = { has_character_flag = had_stress_threshold_1711_zealous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1711_zealous
+					years = 10
+				}
 			}
 		}
 	}
@@ -5669,91 +6007,92 @@ stress_threshold.1721 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_generous
+					has_trait = generous
 					NOT = { has_character_flag = had_stress_threshold_1721_generous }
 				}
 				desc = stress_threshold.1721.desc.generous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_patient
+					has_trait = calm
 					NOT = { has_character_flag = had_stress_threshold_1721_calm }
 				}
 				desc = stress_threshold.1721.desc.calm
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_humble
+					has_trait = humble
 					NOT = { has_character_flag = had_stress_threshold_1721_humble }
 				}
 				desc = stress_threshold.1721.desc.humble
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_honest
+					has_trait = honest
 					NOT = { has_character_flag = had_stress_threshold_1721_honest }
 				}
 				desc = stress_threshold.1721.desc.honest
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_craven
+					has_trait = craven
 					NOT = { has_character_flag = had_stress_threshold_1721_craven }
 				}
 				desc = stress_threshold.1721.desc.craven
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_conventional
+					has_trait = content
 					NOT = { has_character_flag = had_stress_threshold_1721_content }
 				}
 				desc = stress_threshold.1721.desc.content
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_hypocritical
+					has_trait = cynical
 					NOT = { has_character_flag = had_stress_threshold_1721_cynical }
 				}
-				desc = stress_threshold.1721.desc.cynical
+				# Would collide with duke_female_polish before
+				desc = stress_threshold.1721.desc.cynical_no_collide
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_fearful
+					has_trait = paranoid
 					NOT = { has_character_flag = had_stress_threshold_1721_paranoid }
 				}
 				desc = stress_threshold.1721.desc.paranoid
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = callous
 					NOT = { has_character_flag = had_stress_threshold_1721_callous }
 				}
 				desc = stress_threshold.1721.desc.callous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_tolerant
+					has_trait = compassionate
 					NOT = { has_character_flag = had_stress_threshold_1721_compassionate }
 				}
 				desc = stress_threshold.1721.desc.compassionate
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					NOT = { has_character_flag = had_stress_threshold_1721_fickle }
 				}
 				desc = stress_threshold.1721.desc.fickle
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_quarrelsome
+					has_trait = vengeful
 					NOT = { has_character_flag = had_stress_threshold_1721_vengeful }
 				}
 				desc = stress_threshold.1721.desc.vengeful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_agreeable
+					has_trait = forgiving
 					NOT = { has_character_flag = had_stress_threshold_1721_forgiving }
 				}
 				desc = stress_threshold.1721.desc.forgiving
@@ -5776,19 +6115,19 @@ stress_threshold.1721 = {
 		OR = {
 			has_trait = chaste
 			has_trait = temperate
-			has_trait = am_generous
-			has_trait = am_patient
-			has_trait = am_humble
-			has_trait = am_honest
-			has_trait = am_craven
-			has_trait = am_conventional
-			has_trait = am_hypocritical
-			has_trait = am_fearful
-			has_trait = am_deceitful
-			has_trait = am_tolerant
-			has_trait = am_inconstant
-			has_trait = am_quarrelsome
-			has_trait = am_agreeable
+			has_trait = generous
+			has_trait = calm
+			has_trait = humble
+			has_trait = honest
+			has_trait = craven
+			has_trait = content
+			has_trait = cynical
+			has_trait = paranoid
+			has_trait = callous
+			has_trait = compassionate
+			has_trait = fickle
+			has_trait = vengeful
+			has_trait = forgiving
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -6488,12 +6827,10 @@ stress_threshold.1721 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 
@@ -6540,7 +6877,7 @@ stress_threshold.1721 = {
 		else = { add_trait = drunkard }
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -6632,156 +6969,161 @@ stress_threshold.1721 = {
 
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
-		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = chaste
-				NOT = { has_character_flag = had_stress_threshold_1721_chaste }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_chaste
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = chaste
+					NOT = { has_character_flag = had_stress_threshold_1721_chaste }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_chaste
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = temperate
-				NOT = { has_character_flag = had_stress_threshold_1721_temperate }
+			else_if = {
+				limit = {
+					has_trait = temperate
+					NOT = { has_character_flag = had_stress_threshold_1721_temperate }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_temperate
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_temperate
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = generous
+					NOT = { has_character_flag = had_stress_threshold_1721_generous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_generous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_generous
-				NOT = { has_character_flag = had_stress_threshold_1721_generous }
+			else_if = {
+				limit = {
+					has_trait = calm
+					NOT = { has_character_flag = had_stress_threshold_1721_calm }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_calm
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_generous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = humble
+					NOT = { has_character_flag = had_stress_threshold_1721_humble }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_humble
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_patient
-				NOT = { has_character_flag = had_stress_threshold_1721_calm }
+			else_if = {
+				limit = {
+					has_trait = honest
+					NOT = { has_character_flag = had_stress_threshold_1721_honest }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_honest
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_calm
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = craven
+					NOT = { has_character_flag = had_stress_threshold_1721_craven }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_craven
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_humble
-				NOT = { has_character_flag = had_stress_threshold_1721_humble }
+			else_if = {
+				limit = {
+					has_trait = content
+					NOT = { has_character_flag = had_stress_threshold_1721_content }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_content
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_humble
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = cynical
+					NOT = { has_character_flag = had_stress_threshold_1721_cynical }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_cynical
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_honest
-				NOT = { has_character_flag = had_stress_threshold_1721_honest }
+			else_if = {
+				limit = {
+					has_trait = paranoid
+					NOT = { has_character_flag = had_stress_threshold_1721_paranoid }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_paranoid
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_honest
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = callous
+					NOT = { has_character_flag = had_stress_threshold_1721_callous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_callous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_craven
-				NOT = { has_character_flag = had_stress_threshold_1721_craven }
+			else_if = {
+				limit = {
+					has_trait = compassionate
+					NOT = { has_character_flag = had_stress_threshold_1721_compassionate }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_compassionate
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_craven
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = fickle
+					NOT = { has_character_flag = had_stress_threshold_1721_fickle }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_fickle
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_conventional
-				NOT = { has_character_flag = had_stress_threshold_1721_content }
+			else_if = {
+				limit = {
+					has_trait = vengeful
+					NOT = { has_character_flag = had_stress_threshold_1721_vengeful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_vengeful
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_content
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_hypocritical
-				NOT = { has_character_flag = had_stress_threshold_1721_cynical }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_cynical
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_fearful
-				NOT = { has_character_flag = had_stress_threshold_1721_paranoid }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_paranoid
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_deceitful
-				NOT = { has_character_flag = had_stress_threshold_1721_callous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_callous
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_tolerant
-				NOT = { has_character_flag = had_stress_threshold_1721_compassionate }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_compassionate
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_inconstant
-				NOT = { has_character_flag = had_stress_threshold_1721_fickle }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_fickle
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_quarrelsome
-				NOT = { has_character_flag = had_stress_threshold_1721_vengeful }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_vengeful
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_agreeable
-				NOT = { has_character_flag = had_stress_threshold_1721_forgiving }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1721_forgiving
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = forgiving
+					NOT = { has_character_flag = had_stress_threshold_1721_forgiving }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1721_forgiving
+					years = 10
+				}
 			}
 		}
 	}
@@ -6817,21 +7159,21 @@ stress_threshold.1731 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_brave
+					has_trait = brave
 					NOT = { has_character_flag = had_stress_threshold_1731_desc_brave }
 				}
 				desc = stress_threshold.1731.desc.brave
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_withdrawn
+					has_trait = shy
 					NOT = { has_character_flag = had_stress_threshold_1731_desc_shy }
 				}
 				desc = stress_threshold.1731.desc.shy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					NOT = { has_character_flag = had_stress_threshold_1731_desc_gregarious }
 				}
 				desc = stress_threshold.1731.desc.gregarious
@@ -6861,9 +7203,9 @@ stress_threshold.1731 = {
 		OR = {
 			has_trait = lustful
 			has_trait = gluttonous
-			has_trait = am_brave
-			has_trait = am_withdrawn
-			has_trait = am_outgoing
+			has_trait = brave
+			has_trait = shy
+			has_trait = gregarious
 			has_trait = sadistic
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
@@ -7332,10 +7674,22 @@ stress_threshold.1731 = {
 				limit = {
 					this = scope:friend
 				}
-				add_relation_flag = {
-					target = root
-					relation = friend
-					flag = has_been_confided_in
+				if = {
+					limit = {
+						has_relation_best_friend = root
+					}
+					add_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
+				}
+				else = {
+					add_relation_flag = {
+						target = root
+						relation = friend
+						flag = has_been_confided_in
+					}
 				}
 			}
 		}
@@ -7351,12 +7705,10 @@ stress_threshold.1731 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 
@@ -7436,7 +7788,7 @@ stress_threshold.1731 = {
 		else = { add_trait = drunkard }
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -7503,65 +7855,71 @@ stress_threshold.1731 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = lustful
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_lustful }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_lustful
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = lustful
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_lustful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_lustful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = gluttonous
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_gluttonous }
+			else_if = {
+				limit = {
+					has_trait = gluttonous
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_gluttonous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_gluttonous
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_gluttonous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = brave
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_brave }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_brave
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_brave
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_brave }
+			else_if = {
+				limit = {
+					has_trait = shy
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_shy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_shy
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_brave
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = gregarious
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_gregarious }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_gregarious
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_withdrawn
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_shy }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_shy
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_outgoing
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_gregarious }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_gregarious
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = sadistic
-				NOT = { has_character_flag = had_stress_threshold_1731_desc_sadistic }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_1731_desc_sadistic
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = sadistic
+					NOT = { has_character_flag = had_stress_threshold_1731_desc_sadistic }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_1731_desc_sadistic
+					years = 10
+				}
 			}
 		}
 	}
@@ -7612,19 +7970,19 @@ stress_threshold.2001 = {
 	# Option A: Become arbitrary/lose diplomacy, major stress loss.
 	option = {
 		name = {
-			trigger = { NOT = { has_trait = am_inconstant} }
+			trigger = { NOT = { has_trait = arbitrary} }
 			text = stress_threshold.2001.arbitrary.gain
 		}
 		name = {
-			trigger = { has_trait = am_inconstant }
+			trigger = { has_trait = arbitrary }
 			text = stress_threshold.2001.arbitrary.effect
 		}
 
-		trait = am_inconstant
+		trait = arbitrary
 
 		if = {
 			limit = {
-				has_trait = am_inconstant
+				has_trait = arbitrary
 			}
 			if = {
 				limit = {
@@ -7637,7 +7995,7 @@ stress_threshold.2001 = {
 			}
 		}
 		else = {
-			stress_replace_personality_trait_with_opposite_effect = { TRAIT = am_inconstant }
+			stress_replace_personality_trait_with_opposite_effect = { TRAIT = arbitrary }
 		}
 
 		add_stress = major_stress_impact_loss
@@ -7850,9 +8208,9 @@ stress_threshold.2201 = {
 			triggered_desc = {
 				trigger = {
 					OR = {
-						has_trait = am_patient
-						has_trait = am_craven
-						has_trait = am_withdrawn
+						has_trait = calm
+						has_trait = craven
+						has_trait = shy
 					}
 				}
 				desc = stress_threshold.2201.desc.calm
@@ -7896,10 +8254,12 @@ stress_threshold.2201 = {
 				exists = liege
 				NOT = { liege = root }
 				NOT = { has_relation_rival = liege }
+				is_ai = yes
 			}
 			any_vassal = {
 				is_powerful_vassal = yes
 				NOT = { has_relation_rival = root }
+				is_ai = yes
 			}
 		}
 	}
@@ -7909,7 +8269,7 @@ stress_threshold.2201 = {
 
 		modifier = { #More likely if you're angry!
 			add = 2
-			has_trait = am_wroth
+			has_trait = wrathful
 		}
 
 		modifier = { #Scared characters are less likely to get this
@@ -7919,6 +8279,7 @@ stress_threshold.2201 = {
 					exists = liege
 					NOT = { liege = root }
 					NOT = { has_relation_rival = liege }
+					is_ai = yes
 					liege = {
 						dread_modified_ai_boldness = {
 							dreaded_character = root
@@ -7929,6 +8290,7 @@ stress_threshold.2201 = {
 				any_vassal = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
+					is_ai = yes
 					dread_modified_ai_boldness = {
 						dreaded_character = root
 						value <= low_positive_ai_value
@@ -7947,6 +8309,7 @@ stress_threshold.2201 = {
 				exists = liege
 				NOT = { liege = root }
 				NOT = { has_relation_rival = liege }
+				is_ai = yes
 			}
 			liege = {
 				save_scope_as = character_to_yell_at
@@ -7958,10 +8321,12 @@ stress_threshold.2201 = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
 					has_relation_potential_rival = root
+					is_ai = yes
 				}
 				alternative_limit = {
 					is_powerful_vassal = yes
 					NOT = { has_relation_rival = root }
+					is_ai = yes
 				}
 				save_scope_as = character_to_yell_at
 			}
@@ -8020,7 +8385,7 @@ stress_threshold.2201 = {
 
 			modifier = {
 				add = 50
-				has_trait = am_wroth
+				has_trait = wrathful
 			}
 			ai_value_modifier = {
 				ai_vengefulness = 0.5
@@ -8032,10 +8397,10 @@ stress_threshold.2201 = {
 	option = {
 		name = stress_threshold.2201.save
 		trigger = {
-			has_trait = am_outgoing
+			has_trait = gregarious
 			diplomacy < high_skill_rating
 		}
-		trait = am_outgoing
+		trait = gregarious
 		flavor = stress_threshold.2201.save_tt
 
 		scope:character_to_yell_at = {
@@ -8152,7 +8517,14 @@ stress_threshold.2202 = {
 				}
 				desc = stress_threshold.2202.desc.liege
 			}
-			desc = stress_threshold.2202.desc.vassal
+			triggered_desc = {
+				trigger = {
+					scope:stress_character = { is_landed = yes }
+					target_is_vassal_or_below = scope:stress_character
+				}
+				desc = stress_threshold.2202.desc.vassal
+			}
+			desc = stress_threshold.2202.desc.other_relationship
 		}
 		desc = stress_threshold.2202.desc
 		first_valid = {
@@ -8168,21 +8540,6 @@ stress_threshold.2202 = {
 	theme = unfriendly
 	left_portrait = {
 		character = scope:stress_character
-		triggered_animation = {
-			trigger = {
-				scope:stress_character = {
-					dread_modified_ai_boldness = {
-						dreaded_character = root
-						value <= low_positive_ai_value
-					}
-				}
-			}
-			animation = fear
-		}
-		animation = anger
-	}
-	right_portrait = {
-		character = root
 		animation = anger
 	}
 
@@ -8242,14 +8599,14 @@ stress_threshold.2301 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_greedy
+					has_trait = greedy
 					NOT = { has_character_flag = had_stress_threshold_2301_desc_greedy }
 				}
 				desc = stress_threshold.2301.desc.greedy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					NOT = { has_character_flag = had_stress_threshold_2301_desc_gregarious }
 				}
 				desc = stress_threshold.2301.desc.gregarious
@@ -8272,8 +8629,8 @@ stress_threshold.2301 = {
 		OR = {
 			has_trait = lustful
 			has_trait = gluttonous
-			has_trait = am_greedy
-			has_trait = am_outgoing
+			has_trait = greedy
+			has_trait = gregarious
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -8590,7 +8947,7 @@ stress_threshold.2301 = {
 
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -8677,45 +9034,51 @@ stress_threshold.2301 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = lustful
-				NOT = { has_character_flag = had_stress_threshold_2301_desc_lustful }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2301_desc_lustful
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = lustful
+					NOT = { has_character_flag = had_stress_threshold_2301_desc_lustful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2301_desc_lustful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = gluttonous
-				NOT = { has_character_flag = had_stress_threshold_2301_desc_gluttonous }
+			else_if = {
+				limit = {
+					has_trait = gluttonous
+					NOT = { has_character_flag = had_stress_threshold_2301_desc_gluttonous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2301_desc_gluttonous
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2301_desc_gluttonous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = greedy
+					NOT = { has_character_flag = had_stress_threshold_2301_desc_greedy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2301_desc_greedy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_greedy
-				NOT = { has_character_flag = had_stress_threshold_2301_desc_greedy }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2301_desc_greedy
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_outgoing
-				NOT = { has_character_flag = had_stress_threshold_2301_desc_gregarious }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2301_desc_gregarious
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = gregarious
+					NOT = { has_character_flag = had_stress_threshold_2301_desc_gregarious }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2301_desc_gregarious
+					years = 10
+				}
 			}
 		}
 	}
@@ -8737,56 +9100,56 @@ stress_threshold.2311 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_generous
+					has_trait = generous
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_generous }
 				}
 				desc = stress_threshold.2311.desc.generous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_diligent
+					has_trait = diligent
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_diligent }
 				}
 				desc = stress_threshold.2311.desc.diligent
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_wroth
+					has_trait = wrathful
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_wrathful }
 				}
 				desc = stress_threshold.2311.desc.wrathful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_patient
+					has_trait = patient
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_patient }
 				}
 				desc = stress_threshold.2311.desc.patient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_arrogant }
 				}
 				desc = stress_threshold.2311.desc.arrogant
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_humble
+					has_trait = humble
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_humble }
 				}
 				desc = stress_threshold.2311.desc.humble
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = deceitful
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_deceitful }
 				}
 				desc = stress_threshold.2311.desc.deceitful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOT = { has_character_flag = had_stress_threshold_2311_desc_zealous }
 				}
 				desc = stress_threshold.2311.desc.zealous
@@ -8807,17 +9170,17 @@ stress_threshold.2311 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_generous
-			has_trait = am_diligent
-			has_trait = am_wroth
-			has_trait = am_patient
-			has_trait = am_pretentious
-			has_trait = am_humble
-			has_trait = am_deceitful
-			has_trait = am_intolerant
+			has_trait = generous
+			has_trait = diligent
+			has_trait = wrathful
+			has_trait = patient
+			has_trait = arrogant
+			has_trait = humble
+			has_trait = deceitful
+			has_trait = zealous
 		}
 		#Copy is quite religious in flavour.
-		NOT = { has_trait = am_hypocritical }
+		NOT = { has_trait = cynical }
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
 			amount >= 2
@@ -9468,12 +9831,10 @@ stress_threshold.2311 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -9571,7 +9932,7 @@ stress_threshold.2311 = {
 		}
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -9644,85 +10005,91 @@ stress_threshold.2311 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_generous
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_generous }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_generous
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = generous
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_generous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_generous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_diligent
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_diligent }
+			else_if = {
+				limit = {
+					has_trait = diligent
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_diligent }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_diligent
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_diligent
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = wrathful
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_wrathful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_wrathful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_wroth
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_wrathful }
+			else_if = {
+				limit = {
+					has_trait = patient
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_patient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_patient
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_wrathful
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = arrogant
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_arrogant }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_arrogant
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_patient
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_patient }
+			else_if = {
+				limit = {
+					has_trait = humble
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_humble }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_humble
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_patient
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = deceitful
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_deceitful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_deceitful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_pretentious
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_arrogant }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_arrogant
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_humble
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_humble }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_humble
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_deceitful
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_deceitful }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_deceitful
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_intolerant
-				NOT = { has_character_flag = had_stress_threshold_2311_desc_zealous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2311_desc_zealous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = zealous
+					NOT = { has_character_flag = had_stress_threshold_2311_desc_zealous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2311_desc_zealous
+					years = 10
+				}
 			}
 		}
 	}
@@ -9746,35 +10113,35 @@ stress_threshold.2321 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_illtempered
+					has_trait = impatient
 					NOT = { has_character_flag = had_stress_threshold_2321_desc_impatient }
 				}
 				desc = stress_threshold.2321.desc.impatient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_honest
+					has_trait = honest
 					NOT = { has_character_flag = had_stress_threshold_2321_desc_honest }
 				}
 				desc = stress_threshold.2321.desc.honest
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_mild
+					has_trait = trusting
 					NOT = { has_character_flag = had_stress_threshold_2321_desc_trusting }
 				}
 				desc = stress_threshold.2321.desc.trusting
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_tolerant
+					has_trait = compassionate
 					NOT = { has_character_flag = had_stress_threshold_2321_desc_compassionate }
 				}
 				desc = stress_threshold.2321.desc.compassionate
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_agreeable
+					has_trait = forgiving
 					NOT = { has_character_flag = had_stress_threshold_2321_desc_forgiving }
 				}
 				desc = stress_threshold.2321.desc.forgiving
@@ -9798,11 +10165,11 @@ stress_threshold.2321 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_illtempered
-			has_trait = am_honest
-			has_trait = am_mild
-			has_trait = am_tolerant
-			has_trait = am_agreeable
+			has_trait = impatient
+			has_trait = honest
+			has_trait = trusting
+			has_trait = compassionate
+			has_trait = forgiving
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -10105,8 +10472,8 @@ stress_threshold.2321 = {
 				list = affected_by_outburst
 				limit = {
 					NOR = {
-						has_trait = am_wroth
-						has_trait = am_deceitful
+						has_trait = wrathful
+						has_trait = callous
 						has_trait = sadistic
 					}
 					is_alive = yes
@@ -10161,9 +10528,9 @@ stress_threshold.2321 = {
  					list = affected_by_outburst
    					count >= 1
    					NOR = {
-						has_trait = am_inconstant
-						has_trait = am_agreeable
-						has_trait = am_mild
+						has_trait = fickle
+						has_trait = forgiving
+						has_trait = trusting
 					}
 					is_alive = yes
   				}
@@ -10172,9 +10539,9 @@ stress_threshold.2321 = {
 				list = affected_by_outburst
 				limit = {
 					NOR = {
-						has_trait = am_inconstant
-						has_trait = am_agreeable
-						has_trait = am_mild
+						has_trait = fickle
+						has_trait = forgiving
+						has_trait = trusting
 					}
 					is_alive = yes
 				}
@@ -10228,9 +10595,9 @@ stress_threshold.2321 = {
  					list = affected_by_outburst
    					count >= 1
    					NOR = {
-						has_trait = am_generous
-						has_trait = am_tolerant
-						has_trait = am_humble
+						has_trait = generous
+						has_trait = compassionate
+						has_trait = humble
 					}
 					is_alive = yes
 				}
@@ -10239,9 +10606,9 @@ stress_threshold.2321 = {
 				list = affected_by_outburst
 				limit = {
 					NOR = {
-						has_trait = am_generous
-						has_trait = am_tolerant
-						has_trait = am_humble
+						has_trait = generous
+						has_trait = compassionate
+						has_trait = humble
 					}
 					is_alive = yes
 				}
@@ -10293,9 +10660,9 @@ stress_threshold.2321 = {
  					list = affected_by_outburst
    					count >= 1
    					NOR = {
-						has_trait = am_honest
-						has_trait = am_honest
-						has_trait = am_tolerant
+						has_trait = honest
+						has_trait = just
+						has_trait = compassionate
 					}
 					is_alive = yes
    				}
@@ -10304,9 +10671,9 @@ stress_threshold.2321 = {
 				list = affected_by_outburst
 				limit = {
 					NOR = {
-						has_trait = am_honest
-						has_trait = am_honest
-						has_trait = am_tolerant
+						has_trait = honest
+						has_trait = just
+						has_trait = compassionate
 					}
 					is_alive = yes
 				}
@@ -10358,8 +10725,8 @@ stress_threshold.2321 = {
 			limit = {
 				NOR = {
 					has_trait = gluttonous
-					has_trait = am_inconstant
-					has_trait = am_patient
+					has_trait = arbitrary
+					has_trait = calm
 				}
 				is_alive = yes
 			}
@@ -10409,7 +10776,7 @@ stress_threshold.2321 = {
 			list = affected_by_outburst
 			limit = {
 				NOR = {
-					has_trait = am_patient
+					has_trait = patient
 					has_trait = scholar
 					has_trait = theologian
 				}
@@ -10493,12 +10860,10 @@ stress_threshold.2321 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -10507,9 +10872,9 @@ stress_threshold.2321 = {
 			list = affected_by_outburst
 			limit = {
 				NOR = {
-					has_trait = am_outgoing
-					has_trait = am_withdrawn
-					has_trait = am_mild
+					has_trait = gregarious
+					has_trait = shy
+					has_trait = trusting
 				}
 				is_alive = yes
 			}
@@ -10569,8 +10934,8 @@ stress_threshold.2321 = {
 			limit = {
 				NOR = {
 					has_trait = gluttonous
-					has_trait = am_agreeable
-					has_trait = am_tolerant
+					has_trait = forgiving
+					has_trait = compassionate
 				}
 				is_alive = yes
 			}
@@ -10583,7 +10948,7 @@ stress_threshold.2321 = {
 		}
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -10630,8 +10995,8 @@ stress_threshold.2321 = {
 			limit = {
 				NOR = {
 					has_trait = gluttonous
-					has_trait = am_agreeable
-					has_trait = am_tolerant
+					has_trait = forgiving
+					has_trait = compassionate
 				}
 				is_alive = yes
 			}
@@ -10669,55 +11034,61 @@ stress_threshold.2321 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_illtempered
-				NOT = { has_character_flag = had_stress_threshold_2321_desc_impatient }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2321_desc_impatient
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = impatient
+					NOT = { has_character_flag = had_stress_threshold_2321_desc_impatient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2321_desc_impatient
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_honest
-				NOT = { has_character_flag = had_stress_threshold_2321_desc_honest }
+			else_if = {
+				limit = {
+					has_trait = honest
+					NOT = { has_character_flag = had_stress_threshold_2321_desc_honest }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2321_desc_honest
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2321_desc_honest
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = trusting
+					NOT = { has_character_flag = had_stress_threshold_2321_desc_trusting }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2321_desc_trusting
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_mild
-				NOT = { has_character_flag = had_stress_threshold_2321_desc_trusting }
+			else_if = {
+				limit = {
+					has_trait = compassionate
+					NOT = { has_character_flag = had_stress_threshold_2321_desc_compassionate }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2321_desc_compassionate
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2321_desc_trusting
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_tolerant
-				NOT = { has_character_flag = had_stress_threshold_2321_desc_compassionate }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2321_desc_compassionate
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_agreeable
-				NOT = { has_character_flag = had_stress_threshold_2321_desc_forgiving }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2321_desc_forgiving
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = forgiving
+					NOT = { has_character_flag = had_stress_threshold_2321_desc_forgiving }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2321_desc_forgiving
+					years = 10
+				}
 			}
 		}
 	}
@@ -10739,14 +11110,14 @@ stress_threshold.2331 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_patient
+					has_trait = calm
 					NOT = { has_character_flag = had_stress_threshold_2331_desc_calm }
 				}
 				desc = stress_threshold.2331.desc.calm
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_brave
+					has_trait = brave
 					NOT = { has_character_flag = had_stress_threshold_2331_desc_brave }
 				}
 				desc = stress_threshold.2331.desc.brave
@@ -10760,21 +11131,21 @@ stress_threshold.2331 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_honest
+					has_trait = just
 					NOT = { has_character_flag = had_stress_threshold_2331_desc_just }
 				}
 				desc = stress_threshold.2331.desc.just
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = callous
 					NOT = { has_character_flag = had_stress_threshold_2331_desc_callous }
 				}
 				desc = stress_threshold.2331.desc.callous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_stubborn
+					has_trait = stubborn
 					NOT = { has_character_flag = had_stress_threshold_2331_desc_stubborn }
 				}
 				desc = stress_threshold.2331.desc.stubborn
@@ -10795,16 +11166,16 @@ stress_threshold.2331 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_patient
-			has_trait = am_brave
+			has_trait = calm
+			has_trait = brave
 			has_trait = ambitious
-			has_trait = am_honest
-			has_trait = am_deceitful
-			has_trait = am_stubborn
+			has_trait = just
+			has_trait = callous
+			has_trait = stubborn
 		}
 		#For tonal reasons, must not *actually* be a dick.
 		NOR = {
-			has_trait = am_deceitful
+			has_trait = callous
 			has_trait = sadistic
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
@@ -11325,12 +11696,10 @@ stress_threshold.2331 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -11428,7 +11797,7 @@ stress_threshold.2331 = {
 		add_prestige = medium_prestige_loss
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -11498,65 +11867,71 @@ stress_threshold.2331 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_patient
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_calm }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_calm
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = calm
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_calm }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_calm
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_brave
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_brave }
+			else_if = {
+				limit = {
+					has_trait = brave
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_brave }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_brave
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_brave
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = ambitious
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_ambitious }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_ambitious
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = ambitious
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_ambitious }
+			else_if = {
+				limit = {
+					has_trait = just
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_just }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_just
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_ambitious
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = callous
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_callous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_callous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_honest
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_just }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_just
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_deceitful
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_callous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_callous
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_stubborn
-				NOT = { has_character_flag = had_stress_threshold_2331_desc_stubborn }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2331_desc_stubborn
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = stubborn
+					NOT = { has_character_flag = had_stress_threshold_2331_desc_stubborn }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2331_desc_stubborn
+					years = 10
+				}
 			}
 		}
 	}
@@ -11578,35 +11953,35 @@ stress_threshold.2341 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_lazy
+					has_trait = lazy
 					NOT = { has_character_flag = had_stress_threshold_2341_desc_lazy }
 				}
 				desc = stress_threshold.2341.desc.lazy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_craven
+					has_trait = craven
 					NOT = { has_character_flag = had_stress_threshold_2341_desc_craven }
 				}
 				desc = stress_threshold.2341.desc.craven
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_withdrawn
+					has_trait = shy
 					NOT = { has_character_flag = had_stress_threshold_2341_desc_shy }
 				}
 				desc = stress_threshold.2341.desc.shy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_inconstant
+					has_trait = arbitrary
 					NOT = { has_character_flag = had_stress_threshold_2341_desc_arbitrary }
 				}
 				desc = stress_threshold.2341.desc.arbitrary
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_inconstant
+					has_trait = fickle
 					NOT = { has_character_flag = had_stress_threshold_2341_desc_fickle }
 				}
 				desc = stress_threshold.2341.desc.fickle
@@ -11626,11 +12001,11 @@ stress_threshold.2341 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_lazy
-			has_trait = am_craven
-			has_trait = am_withdrawn
-			has_trait = am_inconstant
-			has_trait = am_inconstant
+			has_trait = lazy
+			has_trait = craven
+			has_trait = shy
+			has_trait = arbitrary
+			has_trait = fickle
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -12035,6 +12410,8 @@ stress_threshold.2341 = {
 	option = {
 		trigger = {
 			has_character_flag = stress_threshold_option_confider
+			exists = scope:friend
+			scope:friend = { is_alive = yes }
 		}
 		name = {
 			trigger = { can_be_confider = yes }
@@ -12079,6 +12456,32 @@ stress_threshold.2341 = {
 		else_if = {
 			limit = {
 				any_relation = {
+					type = best_friend
+					this = scope:friend
+					NOT = {
+						has_relation_flag = {
+							target = root
+							relation = friend
+							flag = has_been_confided_in
+						}
+					}
+				}
+			}
+			random_relation = {
+				type = best_friend
+				limit = {
+					this = scope:friend
+				}
+				add_relation_flag = {
+					target = root
+					relation = best_friend
+					flag = has_been_confided_in
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_relation = {
 					type = friend
 					this = scope:friend
 					has_relation_flag = {
@@ -12088,12 +12491,28 @@ stress_threshold.2341 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
+			}
+		}
+		else_if = {
+			limit = {
+				any_relation = {
+					type = best_friend
+					this = scope:friend
+					has_relation_flag = {
+						target = root
+						relation = best_friend
+						flag = has_been_confided_in
+					}
 				}
+			}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -12152,7 +12571,7 @@ stress_threshold.2341 = {
 		add_prestige = medium_prestige_loss
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -12222,55 +12641,61 @@ stress_threshold.2341 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_lazy
-				NOT = { has_character_flag = had_stress_threshold_2341_desc_lazy }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2341_desc_lazy
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = lazy
+					NOT = { has_character_flag = had_stress_threshold_2341_desc_lazy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2341_desc_lazy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_craven
-				NOT = { has_character_flag = had_stress_threshold_2341_desc_craven }
+			else_if = {
+				limit = {
+					has_trait = craven
+					NOT = { has_character_flag = had_stress_threshold_2341_desc_craven }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2341_desc_craven
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2341_desc_craven
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = shy
+					NOT = { has_character_flag = had_stress_threshold_2341_desc_shy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2341_desc_shy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_withdrawn
-				NOT = { has_character_flag = had_stress_threshold_2341_desc_shy }
+			else_if = {
+				limit = {
+					has_trait = arbitrary
+					NOT = { has_character_flag = had_stress_threshold_2341_desc_arbitrary }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2341_desc_arbitrary
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2341_desc_shy
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_inconstant
-				NOT = { has_character_flag = had_stress_threshold_2341_desc_arbitrary }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2341_desc_arbitrary
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_inconstant
-				NOT = { has_character_flag = had_stress_threshold_2341_desc_fickle }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2341_desc_fickle
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = fickle
+					NOT = { has_character_flag = had_stress_threshold_2341_desc_fickle }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2341_desc_fickle
+					years = 10
+				}
 			}
 		}
 	}
@@ -12292,21 +12717,21 @@ stress_threshold.2351 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_conventional
+					has_trait = content
 					NOT = { has_character_flag = had_stress_threshold_2351_desc_content }
 				}
 				desc = stress_threshold.2351.desc.content
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_hypocritical
+					has_trait = cynical
 					NOT = { has_character_flag = had_stress_threshold_2351_desc_cynical }
 				}
 				desc = stress_threshold.2351.desc.cynical
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_fearful
+					has_trait = paranoid
 					NOT = { has_character_flag = had_stress_threshold_2351_desc_paranoid }
 				}
 				desc = stress_threshold.2351.desc.paranoid
@@ -12320,7 +12745,7 @@ stress_threshold.2351 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_quarrelsome
+					has_trait = vengeful
 					NOT = { has_character_flag = had_stress_threshold_2351_desc_vengeful }
 				}
 				desc = stress_threshold.2351.desc.vengeful
@@ -12344,11 +12769,11 @@ stress_threshold.2351 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_conventional
-			has_trait = am_hypocritical
-			has_trait = am_fearful
+			has_trait = content
+			has_trait = cynical
+			has_trait = paranoid
 			has_trait = sadistic
-			has_trait = am_quarrelsome
+			has_trait = vengeful
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -12833,7 +13258,7 @@ stress_threshold.2351 = {
 		add_prestige = medium_prestige_loss
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -12903,55 +13328,61 @@ stress_threshold.2351 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 		
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_conventional
-				NOT = { has_character_flag = had_stress_threshold_2351_desc_content }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2351_desc_content
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = content
+					NOT = { has_character_flag = had_stress_threshold_2351_desc_content }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2351_desc_content
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_hypocritical
-				NOT = { has_character_flag = had_stress_threshold_2351_desc_cynical }
+			else_if = {
+				limit = {
+					has_trait = cynical
+					NOT = { has_character_flag = had_stress_threshold_2351_desc_cynical }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2351_desc_cynical
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2351_desc_cynical
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = paranoid
+					NOT = { has_character_flag = had_stress_threshold_2351_desc_paranoid }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2351_desc_paranoid
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_fearful
-				NOT = { has_character_flag = had_stress_threshold_2351_desc_paranoid }
+			else_if = {
+				limit = {
+					has_trait = sadistic
+					NOT = { has_character_flag = had_stress_threshold_2351_desc_sadistic }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2351_desc_sadistic
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_2351_desc_paranoid
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = sadistic
-				NOT = { has_character_flag = had_stress_threshold_2351_desc_sadistic }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2351_desc_sadistic
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_quarrelsome
-				NOT = { has_character_flag = had_stress_threshold_2351_desc_vengeful }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_2351_desc_vengeful
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = vengeful
+					NOT = { has_character_flag = had_stress_threshold_2351_desc_vengeful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_2351_desc_vengeful
+					years = 10
+				}
 			}
 		}
 	}
@@ -13255,7 +13686,7 @@ stress_threshold.3201 = {
 
 			modifier = {
 				add = -50
-				has_trait = am_stubborn
+				has_trait = stubborn
 			}
 			ai_value_modifier = {
 				ai_energy = -0.5
@@ -13331,26 +13762,26 @@ stress_threshold.3201 = {
 	# Lash out.
 	option = {
 		name = {
-			trigger = { NOT = { has_trait = am_wroth} }
+			trigger = { NOT = { has_trait = wrathful} }
 			text = stress_threshold.3201.wrathful.gain
 		}
 		name = {
-			trigger = { has_trait = am_wroth }
+			trigger = { has_trait = wrathful }
 			text = stress_threshold.3201.wrathful.effect
 		}
-		trait = am_wroth
+		trait = wrathful
 
 		if = {
 			limit = {
-				NOT = { has_trait = am_wroth}
+				NOT = { has_trait = wrathful}
 			}
 			stress_impact = {
 				base = major_stress_impact_loss
-				am_tolerant = medium_stress_impact_gain
-				am_patient = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
 			}
 
-			stress_replace_personality_trait_with_opposite_effect = { TRAIT = am_wroth }
+			stress_replace_personality_trait_with_opposite_effect = { TRAIT = wrathful }
 			scope:vassal = {
 				add_opinion = {
 					modifier = insult_opinion
@@ -13399,7 +13830,7 @@ stress_threshold.3201 = {
 			}
 			stress_impact = {
 				base = major_stress_impact_loss
-				am_tolerant = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
 			}
 		}
 
@@ -13499,42 +13930,42 @@ stress_threshold.3401 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_quarrelsome
+					has_trait = vengeful
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_vengeful }
 				}
 				desc = stress_threshold.3401.desc.vengeful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_wroth
+					has_trait = wrathful
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_wrathful }
 				}
 				desc = stress_threshold.3401.desc.wrathful
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_illtempered
+					has_trait = impatient
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_impatient }
 				}
 				desc = stress_threshold.3401.desc.impatient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_inconstant
+					has_trait = arbitrary
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_arbitrary }
 				}
 				desc = stress_threshold.3401.desc.arbitrary
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_fearful
+					has_trait = paranoid
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_paranoid }
 				}
 				desc = stress_threshold.3401.desc.paranoid
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_deceitful
+					has_trait = callous
 					NOT = { has_character_flag = had_stress_threshold_3401_desc_callous }
 				}
 				desc = stress_threshold.3401.desc.callous
@@ -13569,12 +14000,12 @@ stress_threshold.3401 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_quarrelsome
-			has_trait = am_wroth
-			has_trait = am_illtempered
-			has_trait = am_inconstant
-			has_trait = am_fearful
-			has_trait = am_deceitful
+			has_trait = vengeful
+			has_trait = wrathful
+			has_trait = impatient
+			has_trait = arbitrary
+			has_trait = paranoid
+			has_trait = callous
 			has_trait = sadistic
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
@@ -14059,12 +14490,10 @@ stress_threshold.3401 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -14127,7 +14556,7 @@ stress_threshold.3401 = {
 		add_prestige = medium_prestige_loss
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -14203,75 +14632,81 @@ stress_threshold.3401 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_quarrelsome
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_vengeful }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_vengeful
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = vengeful
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_vengeful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_vengeful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_wroth
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_wrathful }
+			else_if = {
+				limit = {
+					has_trait = wrathful
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_wrathful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_wrathful
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_wrathful
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = impatient
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_impatient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_impatient
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_illtempered
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_impatient }
+			else_if = {
+				limit = {
+					has_trait = arbitrary
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_arbitrary }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_arbitrary
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_impatient
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = paranoid
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_paranoid }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_paranoid
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_inconstant
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_arbitrary }
+			else_if = {
+				limit = {
+					has_trait = callous
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_callous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_callous
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_arbitrary
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_fearful
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_paranoid }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_paranoid
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_deceitful
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_callous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_callous
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = sadistic
-				NOT = { has_character_flag = had_stress_threshold_3401_desc_sadistic }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3401_desc_sadistic
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = sadistic
+					NOT = { has_character_flag = had_stress_threshold_3401_desc_sadistic }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3401_desc_sadistic
+					years = 10
+				}
 			}
 		}
 	}
@@ -14293,63 +14728,63 @@ stress_threshold.3411 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					has_trait = am_generous
+					has_trait = generous
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_generous }
 				}
 				desc = stress_threshold.3411.desc.generous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_diligent
+					has_trait = diligent
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_diligent }
 				}
 				desc = stress_threshold.3411.desc.diligent
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_patient
+					has_trait = patient
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_patient }
 				}
 				desc = stress_threshold.3411.desc.patient
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_humble
+					has_trait = humble
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_humble }
 				}
 				desc = stress_threshold.3411.desc.humble
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_withdrawn
+					has_trait = shy
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_shy }
 				}
 				desc = stress_threshold.3411.desc.shy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_honest
+					has_trait = just
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_just }
 				}
 				desc = stress_threshold.3411.desc.just
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_mild
+					has_trait = trusting
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_trusting }
 				}
 				desc = stress_threshold.3411.desc.trusting
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_tolerant
+					has_trait = compassionate
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_compassionate }
 				}
 				desc = stress_threshold.3411.desc.compassionate
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_agreeable
+					has_trait = forgiving
 					NOT = { has_character_flag = had_stress_threshold_3411_desc_forgiving }
 				}
 				desc = stress_threshold.3411.desc.forgiving
@@ -14370,15 +14805,15 @@ stress_threshold.3411 = {
 		primary_title.tier >= tier_county
 		#Must match at least one appropriate personality trait.
 		OR = {
-			has_trait = am_generous
-			has_trait = am_diligent
-			has_trait = am_patient
-			has_trait = am_humble
-			has_trait = am_withdrawn
-			has_trait = am_honest
-			has_trait = am_mild
-			has_trait = am_tolerant
-			has_trait = am_agreeable
+			has_trait = generous
+			has_trait = diligent
+			has_trait = patient
+			has_trait = humble
+			has_trait = shy
+			has_trait = just
+			has_trait = trusting
+			has_trait = compassionate
+			has_trait = forgiving
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -15065,12 +15500,10 @@ stress_threshold.3411 = {
 					}
 				}
 			}
-			scope:friend = {
-				add_opinion = {
-					target = root
-					modifier = friendliness_opinion
-					opinion = 20
-				}
+			reverse_add_opinion = {
+				target = scope:friend
+				modifier = friendliness_opinion
+				opinion = 20
 			}
 		}
 		
@@ -15175,7 +15608,7 @@ stress_threshold.3411 = {
 		add_prestige_level = -1
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -15282,95 +15715,101 @@ stress_threshold.3411 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = am_generous
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_generous }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_generous
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = generous
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_generous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_generous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_diligent
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_diligent }
+			else_if = {
+				limit = {
+					has_trait = diligent
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_diligent }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_diligent
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_diligent
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = patient
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_patient }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_patient
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_patient
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_patient }
+			else_if = {
+				limit = {
+					has_trait = humble
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_humble }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_humble
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_patient
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = shy
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_shy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_shy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_humble
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_humble }
+			else_if = {
+				limit = {
+					has_trait = just
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_just }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_just
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_humble
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = trusting
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_trusting }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_trusting
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_withdrawn
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_shy }
+			else_if = {
+				limit = {
+					has_trait = compassionate
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_compassionate }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_compassionate
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_shy
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_honest
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_just }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_just
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_mild
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_trusting }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_trusting
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_tolerant
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_compassionate }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_compassionate
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_agreeable
-				NOT = { has_character_flag = had_stress_threshold_3411_desc_forgiving }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3411_desc_forgiving
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = forgiving
+					NOT = { has_character_flag = had_stress_threshold_3411_desc_forgiving }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3411_desc_forgiving
+					years = 10
+				}
 			}
 		}
 	}
@@ -15406,56 +15845,56 @@ stress_threshold.3421 = {
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_greedy
+					has_trait = greedy
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_greedy }
 				}
 				desc = stress_threshold.3421.desc.greedy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_lazy
+					has_trait = lazy
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_lazy }
 				}
 				desc = stress_threshold.3421.desc.lazy
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_pretentious
+					has_trait = arrogant
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_arrogant }
 				}
 				desc = stress_threshold.3421.desc.arrogant
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_craven
+					has_trait = craven
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_craven }
 				}
 				desc = stress_threshold.3421.desc.craven
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_outgoing
+					has_trait = gregarious
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_gregarious }
 				}
 				desc = stress_threshold.3421.desc.gregarious
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_hypocritical
+					has_trait = cynical
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_cynical }
 				}
 				desc = stress_threshold.3421.desc.cynical
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_intolerant
+					has_trait = zealous
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_zealous }
 				}
 				desc = stress_threshold.3421.desc.zealous
 			}
 			triggered_desc = {
 				trigger = {
-					has_trait = am_stubborn
+					has_trait = stubborn
 					NOT = { has_character_flag = had_stress_threshold_3421_desc_stubborn }
 				}
 				desc = stress_threshold.3421.desc.stubborn
@@ -15481,14 +15920,14 @@ stress_threshold.3421 = {
 		OR = {
 			has_trait = lustful
 			has_trait = gluttonous
-			has_trait = am_greedy
-			has_trait = am_lazy
-			has_trait = am_pretentious
-			has_trait = am_craven
-			has_trait = am_outgoing
-			has_trait = am_hypocritical
-			has_trait = am_intolerant
-			has_trait = am_stubborn
+			has_trait = greedy
+			has_trait = lazy
+			has_trait = arrogant
+			has_trait = craven
+			has_trait = gregarious
+			has_trait = cynical
+			has_trait = zealous
+			has_trait = stubborn
 		}
 		#Characters must meet the criteria for at least two event options to qualify for this event (we don't want to fire the event if the player has no choices!).
 		calc_true_if = {
@@ -15787,7 +16226,7 @@ stress_threshold.3421 = {
 			limit = {
 				NOR = {
 					has_trait = sadistic
-					has_trait = am_deceitful
+					has_trait = callous
 				}
 			}
 			custom = stress_threshold.3421.b.reclusive.list
@@ -16033,7 +16472,7 @@ stress_threshold.3421 = {
 		add_prestige_level = -1
 
 		ai_chance = {
-			base = 25
+			base = 10
 			ai_value_modifier = {
 				ai_greed = 0.25
 				ai_energy = -0.25
@@ -16123,105 +16562,111 @@ stress_threshold.3421 = {
 	after = {
 		stress_threshold_event_aftereffects = yes #Perform stress threshold event clean-up and preparation for future stress threshold events.
 
-		#Set-up appropriate desc.
 		if = {
 			limit = {
-				has_trait = lustful
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_lustful }
+				is_alive = yes
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_lustful
-				years = 10
+
+			# Add blocker to prevent us from getting the same event option multiple times in short succession.
+			if = {
+				limit = {
+					has_trait = lustful
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_lustful }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_lustful
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = gluttonous
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_gluttonous }
+			else_if = {
+				limit = {
+					has_trait = gluttonous
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_gluttonous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_gluttonous
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_gluttonous
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = greedy
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_greedy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_greedy
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_greedy
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_greedy }
+			else_if = {
+				limit = {
+					has_trait = lazy
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_lazy }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_lazy
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_greedy
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = arrogant
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_arrogant }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_arrogant
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_lazy
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_lazy }
+			else_if = {
+				limit = {
+					has_trait = craven
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_craven }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_craven
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_lazy
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = gregarious
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_gregarious }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_gregarious
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_pretentious
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_arrogant }
+			else_if = {
+				limit = {
+					has_trait = cynical
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_cynical }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_cynical
+					years = 10
+				}
 			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_arrogant
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = zealous
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_zealous }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_zealous
+					years = 10
+				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_craven
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_craven }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_craven
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_outgoing
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_gregarious }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_gregarious
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_hypocritical
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_cynical }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_cynical
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_intolerant
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_zealous }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_zealous
-				years = 10
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = am_stubborn
-				NOT = { has_character_flag = had_stress_threshold_3421_desc_stubborn }
-			}
-			add_character_flag = {
-				flag = had_stress_threshold_3421_desc_stubborn
-				years = 10
+			else_if = {
+				limit = {
+					has_trait = stubborn
+					NOT = { has_character_flag = had_stress_threshold_3421_desc_stubborn }
+				}
+				add_character_flag = {
+					flag = had_stress_threshold_3421_desc_stubborn
+					years = 10
+				}
 			}
 		}
 	}

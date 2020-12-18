@@ -1,0 +1,52 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_test_events
+
+# ave_maria_test_events
+
+
+# TABLE OF CONTENT:
+
+
+
+#############################################
+# LEGITIMACY VARIABLE HAND OUT				#
+#############################################
+
+## Handing out the Legitimacy Variable
+ave_maria_test_events.0001 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		every_province = {
+			if = {
+				limit = {
+					has_holding = no
+				}
+					root = {
+						set_variable = {
+						name = wtf
+						value = yes
+					}
+				}
+				
+			}			
+		}
+
+	}
+}

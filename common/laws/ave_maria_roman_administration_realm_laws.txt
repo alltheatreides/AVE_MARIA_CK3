@@ -1,12 +1,16 @@
-﻿@crown_authority_cooldown_years = 20
+﻿##################################################
+### Ave Maria: Roman Administration Realm Laws ###
+##################################################
+
+@crown_authority_cooldown_years = 20
 @tribal_authority_cooldown_years = 10
 
 ave_maria_roman_administration_realm_law = {
-	default = ave_maria_roman_administration_realm_law_civilian
-	cumulative = yes
+	default = ave_maria_roman_administration_imperial
 	flag = realm_law
+	cumulative = yes
 	
-	ave_maria_roman_administration_realm_law = {
+	ave_maria_roman_administration_imperial = {
 		flag = vassal_all_wars_banned
 		flag = vassal_internal_wars_banned
 		flag = titles_cannot_leave_realm_on_succession
@@ -14,70 +18,14 @@ ave_maria_roman_administration_realm_law = {
 		flag = vassal_refusal_is_treason
 		# flag = can_designate_heirs
 		modifier = {
-			# roman_administration_civilian_government_tax_contribution_mult = 1
+		
 		}
 
-		can_have = { 
-			OR = {
-				has_government = roman_administration_government
-				# has_government = roman_administration_military_government
-				# has_government = roman_administration_civilian_government
-			}
+		can_keep = { 
+			uses_roman_govt = yes
 		}
 		can_pass = {
-			
+			uses_roman_govt = yes
 		}
 	}
-
-
-	ave_maria_roman_administration_realm_law_civilian = {
-		flag = vassal_all_wars_banned
-		flag = vassal_internal_wars_banned
-		flag = titles_cannot_leave_realm_on_succession
-		flag = vassal_retraction_allowed
-		flag = vassal_refusal_is_treason
-		# modifier = {
-			
-		# }
-
-		can_have = { 
-			OR = {
-				# has_government = roman_administration_government
-				# has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
-			# NOT = {
-			# 	has_government = roman_administration_military_government
-			# }
-		}
-		can_pass = {
-			roman_administration_holds_military_title_trigger = no
-		}
-	}
-	
-	ave_maria_roman_administration_realm_law_military = {
-		flag = vassal_all_wars_banned
-		flag = vassal_internal_wars_banned
-		flag = titles_cannot_leave_realm_on_succession
-		flag = vassal_retraction_allowed
-		flag = vassal_refusal_is_treason
-		modifier = {
-			
-		}
-
-		can_have = { 
-			# OR = {
-			# 	# has_government = roman_administration_government
-			# 	has_government = roman_administration_military_government
-			# 	# has_government = roman_administration_civilian_government
-			# }
-			NOT = {
-				has_government = roman_administration_civilian_government
-			}
-		}
-		can_pass = {
-			roman_administration_holds_military_title_trigger = yes
-		}
-	}
-
 }

@@ -16,7 +16,7 @@ jerusalem = {
 }
 
 rome = {
-	county = c_roma
+	county = c_vaticano
 	barony = b_vaticano
 	
 	character_modifier = {
@@ -47,7 +47,7 @@ santiago = {
 }
 
 kent = {
-	county = c_kent
+	county = c_canterbury
 	barony = b_canterbury
 	
 	character_modifier = {
@@ -271,6 +271,7 @@ tinmallal = {
 
 fes = {
 	county = c_fes
+	barony = b_fes
 	
 	character_modifier = {
 		name = holy_site_fes_effect_name
@@ -376,12 +377,32 @@ yamama = {
 
 # Yazidi
 
-mosul = {
-	county = c_mosul
+sinjar = { # Location of great communal importance, with multiple shrines.
+	county = c_sinjar
 
 	character_modifier = {
-		name = holy_site_mosul_effect_name
+		name = holy_site_sinjar_effect_name
 		# diplomacy_per_piety_level = 1
+	}
+}
+
+baalbek = { # Birthplace of Sheikh Adi, who was renowned his great asceticism as well as performing multiple miracles.
+	county = c_baalbek
+
+	character_modifier = {
+		name = holy_site_sinjar_effect_name
+		clergy_opinion = 10
+		monthly_prestige_gain_mult = 0.2
+	}
+}
+
+lalish = { # Tomb of Sheikh Adi. Considered by some to be the holiest site is Yazidism.
+	county = c_ninive
+
+	character_modifier = {
+		name = holy_site_lalish_effect_name
+		# learning_per_piety_level = 1
+		monthly_piety_gain_mult = 0.2
 	}
 }
 
@@ -438,7 +459,7 @@ sufed = {
 }
 
 gerizim = {
-	county = c_jerusalem
+	county = c_nablus
 	barony = b_nablus
 
 	character_modifier = {
@@ -495,7 +516,7 @@ toledo = {
 }
 
 memphis = {
-	county = c_cairo
+	county = c_hulwan-cairo
 	barony = b_hulwan-cairo
 
 	character_modifier = {
@@ -1133,7 +1154,7 @@ kerch = { # Crimea
 }
 
 olvia = {
-	county = c_odessa
+	county = c_olbia_ETEL
 	barony = b_olbia_ETEL
 
 	character_modifier = {
@@ -1298,6 +1319,46 @@ purang = {
 	character_modifier = {
 		name = holy_site_purang_effect_name
 		# stewardship_per_piety_level = 1
+	}
+}
+
+# Siberian
+
+tyumen = {
+	county = c_tyumen
+
+	character_modifier = {
+		name = holy_site_tyumen_effect_name
+		martial_per_piety_level = 1
+		raid_speed = 0.1
+	}
+}
+
+surgut = {
+	county = c_kazym
+
+	character_modifier = {
+		name = holy_site_surgut_effect_name
+		health = 0.1
+	}
+}
+
+ob = {
+	county = c_ob
+
+	character_modifier = {
+		name = holy_site_ob_effect_name
+		learning = 1
+		fertility = 0.1
+	}
+}
+
+olkhon = {
+	county = c_olkhon
+
+	character_modifier = {
+		name = holy_site_olkhon_effect_name
+		monthly_piety_gain_mult = 0.1
 	}
 }
 

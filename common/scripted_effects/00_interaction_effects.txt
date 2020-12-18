@@ -22,11 +22,11 @@ blackmail_interaction_effect = {
 			}
 		}
 		stress_impact = {
-			am_tolerant = medium_stress_impact_gain
-			am_mild = medium_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-			am_agreeable = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			trusting = medium_stress_impact_gain
+			honest = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+			forgiving = minor_stress_impact_gain
 		}
 	}
 	scope:recipient = { #Nudge towards rivalry
@@ -114,9 +114,9 @@ torture_interaction_actor_effect = {
 				limit = {
 					NOR = {
 						has_trait = sadistic #Extra stress
-						has_trait = am_quarrelsome #Extra stress
-						has_trait = am_tolerant #Lessened impact
-						has_trait = am_agreeable #Lessened impact
+						has_trait = vengeful #Extra stress
+						has_trait = compassionate #Lessened impact
+						has_trait = forgiving #Lessened impact
 					}
 				}
 				add_stress = medium_stress_loss
@@ -124,9 +124,9 @@ torture_interaction_actor_effect = {
 			else = {
 				stress_impact = {
 					sadistic = major_stress_impact_loss
-					am_quarrelsome = major_stress_impact_loss
-					am_tolerant = minor_stress_impact_gain
-					am_agreeable = minor_stress_impact_gain
+					vengeful = major_stress_impact_loss
+					compassionate = minor_stress_impact_gain
+					forgiving = minor_stress_impact_gain
 				}
 			}
 		}
@@ -134,13 +134,13 @@ torture_interaction_actor_effect = {
 		else = {
 			stress_impact = {
 				sadistic = minor_stress_impact_loss
-				am_tolerant = massive_stress_impact_gain
-				am_craven = major_stress_impact_gain
-				am_honest = medium_stress_impact_gain
-				am_agreeable = medium_stress_impact_gain
-				am_generous = medium_stress_impact_gain
-				am_mild = minor_stress_impact_gain
-				am_conventional = minor_stress_impact_gain
+				compassionate = massive_stress_impact_gain
+				craven = major_stress_impact_gain
+				just = medium_stress_impact_gain
+				forgiving = medium_stress_impact_gain
+				generous = medium_stress_impact_gain
+				trusting = minor_stress_impact_gain
+				content = minor_stress_impact_gain
 			}
 		}
 
@@ -296,16 +296,16 @@ torturer_interaction_recipient_effect = {
 		if = {
 			limit = {
 				NOR = {
-					has_trait = am_craven
-					has_trait = am_brave
+					has_trait = craven
+					has_trait = brave
 				}
 			}
 			add_stress = massive_stress_impact_gain
 		}
 		else = {
 			stress_impact = {
-				am_craven = monumental_stress_gain
-				am_brave = medium_stress_impact_gain
+				craven = monumental_stress_gain
+				brave = medium_stress_impact_gain
 			}
 		}
 		
@@ -358,9 +358,9 @@ blind_and_castrate_actor_effect = {
 				limit = {
 					NOR = {
 						has_trait = sadistic #Extra stress
-						has_trait = am_quarrelsome #Extra stress
-						has_trait = am_tolerant #Lessened impact
-						has_trait = am_agreeable #Lessened impact
+						has_trait = vengeful #Extra stress
+						has_trait = compassionate #Lessened impact
+						has_trait = forgiving #Lessened impact
 					}
 				}
 				add_stress = medium_stress_loss
@@ -368,9 +368,9 @@ blind_and_castrate_actor_effect = {
 			else = {
 				stress_impact = {
 					sadistic = major_stress_impact_loss
-					am_quarrelsome = major_stress_impact_loss
-					am_tolerant = minor_stress_impact_gain
-					am_agreeable = minor_stress_impact_gain
+					vengeful = major_stress_impact_loss
+					compassionate = minor_stress_impact_gain
+					forgiving = minor_stress_impact_gain
 				}
 			}
 		}
@@ -378,16 +378,16 @@ blind_and_castrate_actor_effect = {
 		else = {
 			stress_impact = {
 				sadistic = minor_stress_impact_loss
-				am_tolerant = massive_stress_impact_gain
-				am_craven = major_stress_impact_gain
-				am_honest = medium_stress_impact_gain
-				am_agreeable = medium_stress_impact_gain
-				am_generous = medium_stress_impact_gain
-				am_mild = minor_stress_impact_gain
-				am_outgoing = minor_stress_impact_gain
-				am_patient = minor_stress_impact_gain
-				am_conventional = minor_stress_impact_gain
-				am_honest = minor_stress_impact_gain
+				compassionate = massive_stress_impact_gain
+				craven = major_stress_impact_gain
+				just = medium_stress_impact_gain
+				forgiving = medium_stress_impact_gain
+				generous = medium_stress_impact_gain
+				trusting = minor_stress_impact_gain
+				gregarious = minor_stress_impact_gain
+				calm = minor_stress_impact_gain
+				content = minor_stress_impact_gain
+				honest = minor_stress_impact_gain
 			}
 		}
 
@@ -481,16 +481,16 @@ blind_and_castrated_recipient_support_effect = { #To be used in other effects
 	if = {
 		limit = {
 			NOR = {
-				has_trait = am_craven
-				has_trait = am_brave
+				has_trait = craven
+				has_trait = brave
 			}
 		}
 		add_stress = major_stress_impact_gain
 	}
 	else = {
 		stress_impact = {
-			am_craven = massive_stress_gain
-			am_brave = medium_stress_impact_gain
+			craven = massive_stress_gain
+			brave = medium_stress_impact_gain
 		}
 	}
 	add_character_flag = { #TO make sure that they don't get spammed about the release
@@ -1286,11 +1286,8 @@ dynast_claim_title_effect = {
 	scope:actor = {
 		add_unpressed_claim = scope:target
 		stress_impact = {
-			am_conventional = minor_stress_impact_gain
-			am_generous = minor_stress_impact_gain
-		}
-		dynasty = {
-			add_dynasty_prestige = major_dynasty_prestige_loss
+			content = minor_stress_impact_gain
+			generous = minor_stress_impact_gain
 		}
 	}
 	scope:recipient = {
@@ -1329,38 +1326,32 @@ educate_child_interaction_effect = {
 
 		if = {
 			limit = {
-				scope:guardian = { is_ruler = yes }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = yes }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian = scope:ward.host
 				}
 			}
-			visit_court_of = scope:guardian.court_owner
+			visit_court_of = scope:guardian
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = {
-					is_ruler = no
-					any_parent = {
-						this = scope:ward.host
-						is_ruler = yes
-					}
-				}
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = yes }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:ward = scope:guardian.host
 				}
 			}
 			scope:guardian = {
-				visit_court_of = scope:ward.host
+				visit_court_of = scope:ward
 			}
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian.host = scope:ward.host
 				}
 			}
 			visit_court_of = scope:guardian.host
@@ -1498,38 +1489,32 @@ offer_ward_interaction_effect = {
 
 		if = {
 			limit = {
-				scope:guardian = { is_ruler = yes }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = yes }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian = scope:ward.host
 				}
 			}
-			visit_court_of = scope:guardian.court_owner
+			visit_court_of = scope:guardian
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = {
-					is_ruler = no
-					any_parent = {
-						this = scope:ward.host
-						is_ruler = yes
-					}
-				}
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = yes }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:ward = scope:guardian.host
 				}
 			}
 			scope:guardian = {
-				visit_court_of = scope:ward.host
+				visit_court_of = scope:ward
 			}
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian.host = scope:ward.host
 				}
 			}
 			visit_court_of = scope:guardian.host
@@ -1680,7 +1665,7 @@ offer_ward_interaction_effect = {
 		}
 
 		stress_impact = {
-			am_fearful = minor_stress_impact_gain
+			paranoid = minor_stress_impact_gain
 		}
 	}
 }
@@ -1705,40 +1690,45 @@ offer_guardianship_interaction = {
 		
 		set_relation_guardian = scope:guardian
 
+		set_variable = {
+			name = character_requested_as_educator
+			value = scope:guardian
+			years = 10
+		}
+		set_variable = {
+			name = character_making_education_request
+			value = scope:actor
+			years = 10
+		}
+
 		if = {
 			limit = {
-				scope:guardian = { is_ruler = yes }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = yes }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian = scope:ward.host
 				}
 			}
-			visit_court_of = scope:guardian.court_owner
+			visit_court_of = scope:guardian
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = {
-					is_ruler = no
-					any_parent = {
-						this = scope:ward.host
-						is_ruler = yes
-					}
-				}
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = yes }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:ward = scope:guardian.host
 				}
 			}
 			scope:guardian = {
-				visit_court_of = scope:ward.host
+				visit_court_of = scope:ward
 			}
 		}
 		else_if = {
 			limit = {
-				scope:guardian = { is_ruler = no }
-				scope:ward = { is_ruler = no }
+				scope:guardian = { is_landed = no }
+				scope:ward = { is_landed = no }
 				NOT = {
-					scope:guardian.court_owner = scope:ward.host
+					scope:guardian.host = scope:ward.host
 				}
 			}
 			visit_court_of = scope:guardian.host
@@ -1895,7 +1885,7 @@ offer_guardianship_interaction = {
 				this = scope:secondary_actor
 			}
 			stress_impact = {
-				am_withdrawn = minor_stress_impact_gain
+				shy = minor_stress_impact_gain
 			}
 		}
 	}
@@ -1962,7 +1952,7 @@ offer_fealty_interaction_effect = {
 		
 		stress_impact = {
 			ambitious = minor_stress_impact_gain
-			am_pretentious = minor_stress_impact_gain
+			arrogant = minor_stress_impact_gain
 		}
 	}
 	resolve_title_and_vassal_change = scope:change
@@ -2047,9 +2037,9 @@ seduce_interaction_stress_effect = {
 		scope:actor = {		
 			stress_impact = {
 				chaste = medium_stress_impact_gain
-				am_intolerant = minor_stress_impact_gain
-				am_honest = minor_stress_impact_gain
-				am_honest = minor_stress_impact_gain
+				zealous = minor_stress_impact_gain
+				honest = minor_stress_impact_gain
+				just = minor_stress_impact_gain
 			}
 		}
 	}
@@ -2070,14 +2060,14 @@ retract_vassal_interaction_effect = {
 				vassal_revocation_is_tyrannical_trigger = yes
 			}
 			stress_impact = {
-				am_generous = medium_stress_impact_gain
-				am_honest = medium_stress_impact_gain
+				generous = medium_stress_impact_gain
+				just = medium_stress_impact_gain
 			}
 		}
 		else = {
 			stress_impact = {
-				am_generous = medium_stress_impact_gain
-				am_agreeable = minor_stress_impact_gain
+				generous = medium_stress_impact_gain
+				forgiving = minor_stress_impact_gain
 			}
 		}
 		consume_revoke_title_reason = scope:recipient
@@ -2148,11 +2138,16 @@ ask_for_pardon_interaction_effect = {
 			}
 		}
 		stress_impact = {
-			am_stubborn = minor_stress_impact_gain
+			stubborn = minor_stress_impact_gain
 		}
 	}
 	if = {
-		limit = { always = scope:hook }
+		limit = {
+			always = scope:hook
+			scope:actor = { # TO make sure you still have a hook on them
+				has_hook = scope:recipient
+			}
+		}
 		scope:actor = {
 			use_hook = scope:recipient
 		}
@@ -2388,7 +2383,7 @@ declaration_of_repentance_interaction_effect = {
 		}
 		
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
+			cynical = minor_stress_impact_gain
 		}
 	}
 	scope:recipient = {
@@ -2572,8 +2567,8 @@ seek_indulgences_interaction_effect = {
 			opinion = 15
 		}
 		stress_impact = {
-			am_greedy = minor_stress_impact_gain
-			am_hypocritical = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
+			cynical = minor_stress_impact_gain
 		}
 	}
 }
@@ -2648,7 +2643,7 @@ convert_at_war_interaction_effect = {
 			add_piety_level = -3
 		}
 		stress_impact = {
-			am_intolerant = medium_stress_impact_gain
+			zealous = medium_stress_impact_gain
 		}
 	}
 	scope:recipient = {
@@ -2661,8 +2656,8 @@ demand_conversion_vassal_ruler_interaction_effect = {
 	hidden_effect = {
 		if = {
 			limit = {
-				exists = scope:recipient.capital_county
-				scope:recipient.capital_county.faith = scope:recipient.faith
+				exists = scope:recipient.capital_province
+				scope:recipient.capital_province.faith = scope:recipient.faith
 			}
 			save_scope_value_as = {
 				name = convert_capital
@@ -2671,7 +2666,10 @@ demand_conversion_vassal_ruler_interaction_effect = {
 		}
 	}
 	if = {
-		limit = { scope:hook = yes }
+		limit = {
+			scope:hook = yes
+			scope:actor = { has_hook = scope:recipient }
+		}
 		scope:actor = {
 			use_hook = scope:recipient
 		}
@@ -2709,14 +2707,14 @@ title_revocation_stress_effect = {
 			title_revocation_is_tyrannical_trigger = yes
 		}
 		stress_impact = {
-			am_generous = medium_stress_impact_gain
-			am_honest = medium_stress_impact_gain
+			generous = medium_stress_impact_gain
+			just = medium_stress_impact_gain
 		}
 	}
 	else = {
 		stress_impact = {
-			am_generous = medium_stress_impact_gain
-			am_agreeable = minor_stress_impact_gain
+			generous = medium_stress_impact_gain
+			forgiving = minor_stress_impact_gain
 		}
 	}
 }

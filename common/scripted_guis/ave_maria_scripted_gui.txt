@@ -181,7 +181,7 @@ am_institutions_has_no_institutions = {
 			primary_title = {
 				this = title:e_byzantium
 			}
-			top_liege = {
+			any_liege_or_above = {
 				primary_title = {
 					this = title:e_byzantium
 				}
@@ -202,7 +202,7 @@ am_institutions_roman_administration_can_see_senate = {
 			primary_title = {
 				this = title:e_byzantium
 			}
-			top_liege = {
+			any_liege_or_above = {
 				primary_title = {
 					this = title:e_byzantium
 				}
@@ -225,6 +225,10 @@ am_institutions_roman_administration_get_senator_list = {
 					}
 				}				
 			}
+			## Clear variable always before
+			clear_variable_list = list_roman_administration_senators
+
+
 			## Add all the duchy tier vassals to the senate
 			every_vassal = {
 				limit = {
@@ -263,7 +267,7 @@ am_institutions_roman_administration_get_senator_list = {
 							this = title:e_byzantium
 						}
 					}	
-					top_liege = {
+					any_liege_or_above = {
 						primary_title = {
 							this = title:e_byzantium
 						}
@@ -271,6 +275,9 @@ am_institutions_roman_administration_get_senator_list = {
 				}				
 			}
 			title:e_byzantium.holder = {
+				## Clear variable always before
+				clear_variable_list = list_roman_administration_senators
+
 				every_vassal = {
 					limit = {
 						highest_held_title_tier >= tier_county
@@ -355,7 +362,7 @@ am_institutions_roman_administration_can_see_roman_army = {
 			primary_title = {
 				this = title:e_byzantium
 			}
-			top_liege = {
+			any_liege_or_above = {
 				primary_title = {
 					this = title:e_byzantium
 				}
@@ -377,6 +384,11 @@ am_institutions_roman_administration_get_military_officials_list = {
 					}
 				}				
 			}
+			## Clear variable always before
+			clear_variable_list = list_roman_administration_military_officials
+			clear_variable_list = list_roman_administration_military_officials_minus_high_officials
+			clear_variable_list = list_roman_administration_imperial_tagma_officials
+
 			## All the military officials
 			every_vassal = {
 				limit = {
@@ -428,7 +440,7 @@ am_institutions_roman_administration_get_military_officials_list = {
 							this = title:e_byzantium
 						}
 					}	
-					top_liege = {
+					any_liege_or_above = {
 						primary_title = {
 							this = title:e_byzantium
 						}
@@ -436,6 +448,11 @@ am_institutions_roman_administration_get_military_officials_list = {
 				}				
 			}
 			title:e_byzantium.holder = {
+				## Clear variable always before
+				clear_variable_list = list_roman_administration_military_officials
+				clear_variable_list = list_roman_administration_military_officials_minus_high_officials
+				clear_variable_list = list_roman_administration_imperial_tagma_officials
+
 				## All the military officials
 				every_vassal = {
 					limit = {
@@ -496,6 +513,9 @@ am_institutions_roman_administration_get_military_high_officials_list = {
 					}
 				}				
 			}
+			## Clear variable always before
+			clear_variable_list = list_roman_administration_imperial_tagma_officials
+
 			every_vassal = {
 				limit = {
 					roman_administration_holds_tagma_title_trigger = yes
@@ -527,7 +547,7 @@ am_institutions_roman_administration_get_military_high_officials_list = {
 							this = title:e_byzantium
 						}
 					}	
-					top_liege = {
+					any_liege_or_above = {
 						primary_title = {
 							this = title:e_byzantium
 						}
@@ -535,6 +555,9 @@ am_institutions_roman_administration_get_military_high_officials_list = {
 				}				
 			}
 			title:e_byzantium.holder = {
+				## Clear variable always before
+				clear_variable_list = list_roman_administration_imperial_tagma_officials
+
 				every_vassal = {
 					limit = {
 						roman_administration_holds_tagma_title_trigger = yes
@@ -576,7 +599,7 @@ am_institutions_roman_administration_can_see_roman_administration = {
 			primary_title = {
 				this = title:e_byzantium
 			}
-			top_liege = {
+			any_liege_or_above = {
 				primary_title = {
 					this = title:e_byzantium
 				}
@@ -598,11 +621,17 @@ am_institutions_roman_administration_get_administrative_officials_list = {
 					}
 				}				
 			}
+			## Clear variable always before
+			clear_variable_list = list_roman_administration_administrative_officials
+			clear_variable_list = list_roman_administration_administrative_officials_minus_high_officials
+			clear_variable_list = list_roman_administration_high_administration_officials
+
 			## All the administrative officials
 			every_vassal = {
 				limit = {
 					roman_administration_holds_military_title_trigger = no
 					highest_held_title_tier >= tier_duchy
+					NOT = { has_government = theocracy_government }
 				}
 				root = {
 					add_to_variable_list = {
@@ -646,14 +675,21 @@ am_institutions_roman_administration_get_administrative_officials_list = {
 							this = title:e_byzantium
 						}
 					}	
-					top_liege = {
+					any_liege_or_above = {
 						primary_title = {
 							this = title:e_byzantium
 						}
 					}				
 				}				
 			}
+			
+
 			title:e_byzantium.holder = {
+				## Clear variable always before
+				clear_variable_list = list_roman_administration_administrative_officials
+				clear_variable_list = list_roman_administration_administrative_officials_minus_high_officials
+				clear_variable_list = list_roman_administration_high_administration_officials
+
 				## All the administrative officials
 				every_vassal = {
 					limit = {

@@ -23,12 +23,23 @@
 	culture = "greek"
 	trait = education_martial_2
 	trait = strong
-	trait = am_brave
-	trait = am_veteran_3
+	trait = brave
+	trait = veteran_3
 	
 	1031.5.2 = {
 		birth = yes
 	}
+
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 18 }
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
+	}	
 }
 
 111113 = {
@@ -41,12 +52,23 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_3
-	trait = am_tough
-	trait = am_stubborn
-	trait = am_veteran_2
+	trait = tough
+	trait = stubborn
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -60,11 +82,22 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -78,11 +111,22 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -96,11 +140,22 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -114,11 +169,22 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -132,11 +198,22 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
+	}
+
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}			
+		}
 	}
 }
 
@@ -280,7 +357,8 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
-}			
+}	
+## Turnovo/Paristrion		
 111130 = {			
 	name = "Hippolytos"
 	martial = 5		
@@ -294,6 +372,19 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_doukaton
+				level = 3
+			}				
+		}
+	}	
 }			
 111131 = {			
 	name = "Laurentios"
@@ -434,7 +525,8 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
-}			
+}	
+## Anatolia		
 111141 = {			
 	name = "Herakleios"
 	martial = 5		
@@ -447,7 +539,16 @@
 	trait = education_stewardship_3		
 	1028.5.2 = {		
 		birth = yes	
-	}		
+	}	
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_theme
+				level = 4
+			}				
+		}
+	}	
 }			
 ## Holder of Kappadokia Theme
 111142 = {			
@@ -464,12 +565,13 @@
 		birth = yes	
 	}
 	1066.1.1 = {
-		# effect = {
-			# vassal_contract_set_obligation_level = {
-				# type = ave_maria_roman_administration_stratified_theme
-				# level = 1
-			# }
-		# }
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_theme
+				level = 4
+			}				
+		}
 	}
 }			
 111143 = {			
@@ -500,6 +602,7 @@
 		birth = yes	
 	}		
 }			
+## Sebasteia Theme
 111145 = {			
 	name = "Kyrillos"
 	martial = 5		
@@ -515,12 +618,13 @@
 	}	
 
 	1066.1.1 = {
-		# effect = {
-			# vassal_contract_set_obligation_level = {
-				# type = ave_maria_roman_administration_stratified_theme
-				# level = 1
-			# }
-		# }
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_theme
+				level = 4
+			}				
+		}
 	}	
 }			
 111146 = {			
@@ -549,7 +653,16 @@
 	trait = education_stewardship_3		
 	1028.5.2 = {		
 		birth = yes	
-	}		
+	}	
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_theme
+				level = 4
+			}				
+		}
+	}	
 }			
 111148 = {			
 	name = "Isidoros"
@@ -578,7 +691,8 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
-}			
+}	
+## Antioch		
 111150 = {			
 	name = "Germanos"
 	martial = 5		
@@ -592,7 +706,20 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
-}			
+	1066.1.1 = {
+		# effect = {
+		# 	vassal_contract_set_obligation_level = {
+		# 		type = ave_maria_roman_administration_special_contract
+		# 		level = 1
+		# 	}
+		# 	vassal_contract_set_obligation_level = {	
+		# 		type = imperial_obligation_doukaton
+		# 		level = 5
+		# 	}				
+		# }
+	}	
+}	
+## Mesopotamia		
 111151 = {			
 	name = "Eusebios"
 	martial = 5		
@@ -605,8 +732,22 @@
 	trait = education_stewardship_3		
 	1028.5.2 = {		
 		birth = yes	
+	}	
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_doukaton
+				level = 4
+			}				
+		}
 	}		
-}			
+}	
+## Vaspurakan		
 111152 = {			
 	name = "Theodotos"
 	martial = 5		
@@ -619,8 +760,22 @@
 	trait = education_stewardship_3		
 	1028.5.2 = {		
 		birth = yes	
+	}	
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_doukaton
+				level = 2
+			}				
+		}
 	}		
-}			
+}		
+## Greater Armenia	
 111153 = {			
 	name = "David"
 	martial = 5		
@@ -633,6 +788,19 @@
 	trait = education_stewardship_3		
 	1028.5.2 = {		
 		birth = yes	
+	}	
+	1066.1.1 = {
+		effect = {
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {	
+				type = imperial_obligation_doukaton
+				level = 2
+			}				
+		}
 	}		
 }			
 111154 = {			
@@ -664,6 +832,14 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
+	1066.1.1 = {
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 4
+			}
+		}
+	}
 }			
 111156 = {			
 	name = "Leon"
@@ -678,6 +854,14 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
+	1066.1.1 = {
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 4
+			}
+		}
+	}
 }			
 111157 = {			
 	name = "Niketas"
@@ -692,6 +876,14 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
+	1066.1.1 = {
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 4
+			}
+		}
+	}
 }			
 
 ### Fictional Strategos
@@ -705,12 +897,17 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
 	}	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
 }	
 111159 = {			
 	name = "Alexios"
@@ -722,12 +919,17 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
 	}	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
 }	
 111160 = {			
 	name = "Leo"
@@ -739,12 +941,17 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
 	}	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
 }
 111161 = {			
 	name = "Nikephoros"
@@ -756,12 +963,17 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_independent
-	trait = am_veteran_2
+	trait = independent
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
 	}	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
 }
 
 ## HISTORICAL
@@ -777,8 +989,24 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_3
-	trait = am_veteran_2
+	trait = veteran_2
 	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+			add_realm_law = ave_maria_roman_administration_imperial
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {
+				type = imperial_obligation_doukaton
+				level = 3
+			}
+		}
+	}
+	
+
 	1028.5.2 = {
 		birth = yes
 	}	
@@ -795,9 +1023,15 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_stewardship_2
-	trait = am_veteran_2
+	trait = veteran_2
 	
 	1028.5.2 = {
 		birth = yes
 	}	
+	
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
 }

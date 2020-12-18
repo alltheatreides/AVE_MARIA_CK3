@@ -20,22 +20,12 @@ councillor_spouse_background.0001 = {
 				is_capable_adult_ai = yes
 				NOT = { is_performing_council_task = task_spouse_default }
 			}
-			if = {
-				limit = {
-					primary_spouse.primary_title = title:e_hre
-				}
-			}
 			#Diplomacy rank up
 			if = {
 				limit = {
 					is_performing_council_task = task_court_politics
 					NOT = { has_trait = august }
 					var:councillor_spouse_lifestyle_progress > councillor_spouse_lifestyle_rank_up_threshold
-				}
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
 				}
 				councillor_spouse_lifestyle_rank_up_effect = {
 					SKILL = diplomacy
@@ -48,11 +38,6 @@ councillor_spouse_background.0001 = {
 					NOT = { has_trait = strategist }
 					var:councillor_spouse_lifestyle_progress > councillor_spouse_lifestyle_rank_up_threshold
 				}
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
-				}
 				councillor_spouse_lifestyle_rank_up_effect = {
 						SKILL = martial
 				}
@@ -63,11 +48,6 @@ councillor_spouse_background.0001 = {
 					is_performing_council_task = task_court_intrigue
 					NOT = { has_trait = schemer }
 					var:councillor_spouse_lifestyle_progress > councillor_spouse_lifestyle_rank_up_threshold
-				}
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
 				}
 				councillor_spouse_lifestyle_rank_up_effect = {
 					SKILL = intrigue
@@ -80,11 +60,6 @@ councillor_spouse_background.0001 = {
 					NOT = { has_trait = administrator }
 					var:councillor_spouse_lifestyle_progress > councillor_spouse_lifestyle_rank_up_threshold
 				}
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
-				}
 				councillor_spouse_lifestyle_rank_up_effect = {
 					SKILL = stewardship
 				}
@@ -96,23 +71,10 @@ councillor_spouse_background.0001 = {
 					NOT = { has_trait = scholar }
 					var:councillor_spouse_lifestyle_progress > councillor_spouse_lifestyle_rank_up_threshold
 				}
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
-				}
 				councillor_spouse_lifestyle_rank_up_effect = {
 					SKILL = learning
 				}
 			}
-			else = {
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
-					}
-				}
-			}
-
 			if = {
 				limit = {
 					NOT = { exists = scope:ranked_up }
@@ -164,13 +126,6 @@ councillor_spouse_background.0001 = {
 					set_variable = {
 						name = councillor_spouse_lifestyle_progress
 						value = councillor_spouse_lifestyle_progress_increase
-					}
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						primary_spouse.primary_title = title:e_hre
 					}
 				}
 			}

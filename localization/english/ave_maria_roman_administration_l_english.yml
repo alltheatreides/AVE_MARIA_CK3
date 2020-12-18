@@ -7,10 +7,10 @@
  d_varangian_guard:0 "Varangian Guard"
  d_megas_droungarios:0 "Stolos"
  d_excubitor:0 "Exkoubitoi"
- d_vigla:0 "Vigla Tagma"
+ d_vigla:0 "Arithmos"
  d_hikanatoi:0 "Hikanatoi"
- d_regular_tagma_1:0 "Imperial Troops"
- d_regular_tagma_2:0 "Imperial Troops"
+ d_optimatoi_tagma:0 "Optimatoi"
+ d_noumeroi:0 "Noumeroi"
 
  d_sakellion:0 "Sakellion"
  d_quaestor:0 "Iero Palati"
@@ -98,6 +98,7 @@
  cn_c_szerem:0 "Sirmium"
  cn_b_szerem:0 "Sirmium"
  cn_d_philippopolis:0 "Paradounavon"
+ cn_iberia:0 "Iberia"
 
  ## Palace Holdings Naming
  d_utility_family_county:0 "Constantinople"
@@ -145,7 +146,7 @@
  duchy_roman_administration_sakellion:0 "High Office"
  duchy_roman_administration_logothetetes_tou_dromou:0 "High Office"
  duchy_roman_administration_quaestor:0 "High Office"
- duchy_roman_administration_stratified_theme:0 "Theme"
+ duchy_roman_administration_theme:0 "Theme"
 
 
  ### BUILDINGS AND HOLDINGS
@@ -167,12 +168,14 @@
  roman_administration_civilian_government_desc:0 "A form of Roman Administration, Themes are the basic administrative territoriesa of the Empire of the Romans, ruler by a Krites with a focus on the administrative management of the Empire from tax collection to justice."
  roman_administration_military_government:0 "Tagma"
  roman_administration_military_government_desc:0 "A form of Roman Administration, Tagmas were the professional standing troops, garrisoned in and around the capital of Constantinople that were formed around the Imperial Guard units."
- roman_administration_stratified_theme_government:0 "Theme"
- roman_administration_stratified_theme_government_desc:0 "A form of Roman Administration, Stratified Themes are administrative territories managed by military dignitaries overseeing both military and civilian affairs of the territories they are responsible with.\nIn the 11th century most had disappeared and have been replaced by Fiscalized Themes."
+ roman_administration_theme_government:0 "Theme"
+ roman_administration_theme_government_desc:0 "A form of Roman Administration, Stratified Themes are administrative territories managed by military dignitaries overseeing both military and civilian affairs of the territories they are responsible with.\nIn the 11th century most had disappeared and have been replaced by Fiscalized Themes."
  roman_administration_doukaton_government:0 "Doukaton"
- roman_administration_doukaton_government_desc:0 "A form of Roman Administration, Doukaton Districts are administrative territories ruled by a Doux with significant more power and authority due to the strategic importance of the territories he is responsible with."
+ roman_administration_doukaton_government_desc:0 "A form of Roman Administration, Doukaton Districts are administrative territories ruled by a Doux with significantly more power and authority due to the strategic importance of the territories he is responsible with."
  roman_administration_kouratoreia_government:0 "Kouratoreia"
  roman_administration_kouratoreia_government_desc:0 "A form of Roman Administration, Kouratoreia were imperial estate which were often established in conquered lands in order to prevent the great landowning families from acquiring even more power by purchasing the newly available land and leasing it out. They are run by a kourator directely appointed by the emperor."
+ roman_administration_sekreton_government:0 "Sekreton"
+ roman_administration_sekreton_government_desc:0 "Sekreton"
 
 
  empire_roman_administration:0 "Empire"
@@ -180,32 +183,33 @@
  ROMAN_ADMINISTRATION_APPOINTMENT_OPINION:0 "Hierarchical Superior Appointement"
  roman_administration_military_government_vassals_label:0 "Military Governments are salaried professionals joining the Basileus when he calls."
  roman_administration_civilian_government_vassals_label:0 "Civilian Governments are salaried bureaucrats administrating the provinces."
+ roman_administration_sekreton_government_vassals_label:0 "Sekreton are the central bureaucratic offices administrating the Empire."
+ roman_administration_kouratoreia_government_vassals_label:0 "Kouratoreia are imperial estates directly run by an appointee of the emperor."
+ roman_administration_doukaton_government_vassals_label:0 "Doukaton Districts are administrative territories ruled by a Doux."
+ roman_administration_theme_government_vassals_label:0 "Stratified Themes are administrative territories managed by Strategos."
+ roman_administration_government_vassals_label:0 "Roman Magnates."
  
 
  ### GOVERNMENT LAWS
  ave_maria_roman_administration_realm_law:0 "Roman Administration Law"
- ave_maria_roman_administration_realm_law_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
- ave_maria_roman_administration_realm_law_civilian:0 "Roman Civilian Administration Law"
- ave_maria_roman_administration_realm_law_civilian_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
- ave_maria_roman_administration_realm_law_military:0 "Roman Military Administration Law"
- ave_maria_roman_administration_realm_law_military_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
+ ave_maria_roman_administration_imperial:0 "Roman Administration Law"
+ ave_maria_roman_administration_imperial_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
  roman_administration_civilian_government_tax_contribution_mult:0 "Provincial Tax"
 
  ### GOVERNMENT VASSAL CONTRACT
- ave_maria_roman_administration_tagma_salary:0 "Tagma Salary"
- ave_maria_roman_administration_tagma_salary_short:0 "Tagma Salary"
- ave_maria_roman_administration_tagma_salary_exuberant:0 "Lavish Salary"
- ave_maria_roman_administration_tagma_salary_exuberant_short:0 "Lavish"
- ave_maria_roman_administration_tagma_salary_high:0 "High Salary"
- ave_maria_roman_administration_tagma_salary_high_short:0 "High"
- ave_maria_roman_administration_tagma_salary_normal:0 "Normal Salary"
- ave_maria_roman_administration_tagma_salary_normal_short:0 "Normal"
- ave_maria_roman_administration_tagma_salary_low:0 "Low Salary"
- ave_maria_roman_administration_tagma_salary_low_short:0 "Low"
- ave_maria_roman_administration_tagma_salary_very_low:0 "Meagre Salary"
- ave_maria_roman_administration_tagma_salary_very_low_short:0 "Meagre"
+ imperial_high_office_salary:0 "Rogai"
+ imperial_high_office_salary_short:0 "Rogai"
+ imperial_high_office_salary_exuberant:0 "Lavish Rogai"
+ imperial_high_office_salary_exuberant_short:0 "25"
+ imperial_high_office_salary_high:0 "High Rogai"
+ imperial_high_office_salary_high_short:0 "20"
+ imperial_high_office_salary_normal:0 "Normal Rogai"
+ imperial_high_office_salary_normal_short:0 "15"
+ imperial_high_office_salary_low:0 "Low Rogai"
+ imperial_high_office_salary_low_short:0 "10"
+ imperial_high_office_salary_very_low:0 "Meagre Rogai"
+ imperial_high_office_salary_very_low_short:0 "5"
  
-
  ave_maria_roman_administration_theme_taxe:0 "Taxation"
  ave_maria_roman_administration_theme_taxe_very_low:0 "Very Low Taxation"
  ave_maria_roman_administration_theme_taxe_low:0 "Low Taxation"
@@ -245,17 +249,141 @@
  
  ave_maria_roman_administration_special_contract:0 "District Organization"
 
+ ave_maria_roman_administration_special_contract_none:0 "None"
+ ave_maria_roman_administration_special_contract_none_short:0 "None"
  ave_maria_roman_administration_tagma:0 "Tagma Organization"
  ave_maria_roman_administration_tagma_short:0 "Tagma"
- ave_maria_roman_administration_stratified_theme:0 "Stratified Theme"
- ave_maria_roman_administration_stratified_theme_short:0 "Stratified Theme"
- ave_maria_roman_administration_fiscalized_theme:0 "Fiscalized Theme"
- ave_maria_roman_administration_fiscalized_theme_short:0 "Fiscalized Theme"
+ ave_maria_roman_administration_theme:0 "Theme"
+ ave_maria_roman_administration_theme_short:0 "Theme"
+ ave_maria_roman_administration_fiscalized_theme:0 "Theme"
+ ave_maria_roman_administration_fiscalized_theme_short:0 "Theme"
  ave_maria_roman_administration_doukaton:0 "Doukaton"
  ave_maria_roman_administration_doukaton_short:0 "Doukaton"
  ave_maria_roman_administration_kouratoreia:0 "Kouratoreia"
  ave_maria_roman_administration_kouratoreia_short:0 "Kouratoreia"
+ ave_maria_roman_administration_sekreton:0 "Sekreton"
+ ave_maria_roman_administration_sekreton_short:0 "Sekreton"
+ 
+ ave_maria_roman_administration_tagma_contract_tooltip:0 "Cannot change to a Tagma title."
+ ave_maria_roman_administration_sekreton_contract_tooltip:0 "Cannot change to a Sekreton title."
+ ave_maria_roman_administration_doukaton_contract_tooltip:0 "Must be neighbor to a different realm."
 
+ modify_ave_maria_contract_inactive_values:0 "You cannot modify inactive obligations."
+ 
+ roman_administration_popularity_hit:0 "Will decrease Popularity by 5"
+
+ ### IMPERIAL OBLIGATIONS - LEVIES AND TAXES
+ # Basic Tax Slider
+ imperial_obligation_tax:0 "Imperial Taxation"
+ sympatheia_tax:0 "Sympatheia"
+ sympatheia_tax_short:0 "Sympatheia"
+ sympatheia_tax_desc:0 "The state has applied sympatheia to this province, temporarily exempting the people from taxation in response to a crisis."
+ kapnikon_tax:0 "Kapnikon Tax"
+ kapnikon_tax_short:0 "Kapnikon"
+ kapnikon_tax_desc:0 "The kapnikon is the standard imperial personal tax, paid by everyone."
+ demosia_tax:0 "Demosia Tax"
+ demosia_tax_short:0 "Demosia"
+ demosia_tax_desc:0 "The demosia is the standard imperial land tax, paid on all productive land above a certain value."
+ aerikon_tax:0 "Aerikon Tax"
+ aerikon_tax_short:0 "Aerikon"
+ aerikon_tax_desc:0 "The aerikon is the first level of additional tax, only payable in gold nomisma."
+ dikeraton_tax:0 "Dikeraton Tax"
+ dikeraton_tax_short:0 "Dikeraton"
+ dikeraton_tax_desc:0 "The dikeraton is an additional level of tax, applied on every nomisma of tax already paid. The people will not be impressed."
+ hexafollon_tax: "Hexafollon Tax"
+ hexafollon_tax_short: "Hexafollon"
+ hexafollon_tax_desc:0 "Similar to the dikeraton, the hexafollon imposes additional tax exactions on the people. The people will be displeased."
+ kommerkion_tax:0 "Kommerkion Duty"
+ kommerkion_tax_short:0 "Kommerkion"
+ kommerkion_tax_desc:0 "The kommerkion is a transaction duty, levied on mercantile activity and on goods traded. The merchants and wealthy classes will be displeased."
+ logisima_tax:0 "Logisima Revoked"
+ logisima_tax_short:0 "Logisima"
+ logisima_tax_desc:0 "The logisima was a complete tax exemption awarded to church holdings. Revoking it will bring additional revenue, but will greatly upset the ecclesiastical hierarchy."
+ allelengyon_tax:0 "Allelengyon Applied"
+ allelengyon_tax_short:0 "Allelengyon"
+ allelengyon_tax_desc:0 "Applying the principle of allelengyon - collective responsibility for tax owed by a community or territory - will significantly increase revenue at the cost of severely angering the wealthy landowners, on whose backs the tax burden will fall strongest."
+ 
+ # Fiscalised Theme
+ imperial_obligation_theme:0 "Thematic Obligations"
+ imperial_obligation_theme_desc:0 "This province is governed according to the theme system - military-civilian provinces under a Strategos, with lands set aside for military use."
+ theme_disabled:0 "Not Active"
+ theme_disabled_short:0 "Not Active"
+ theme_disabled_desc:0 "This province is not governed according to the thematic system."
+ permit_fiscalisation_theme:0 "Fiscalisation Permitted"
+ permit_fiscalisation_theme_short:0 "Commution"
+ permit_fiscalisation_theme_desc:0 ""Commution of military service through equivalent cash payment is permitted in this province."
+ extend_exemptions_theme:0 "Extension of Exemptions"
+ extend_exemptions_theme_short:0 "Exemptions"
+ extend_exemptions_theme_desc:0 "Exemptions to the strict requirements of stratiotic service have been extended in the province."
+ fiscal_obligation_theme:0 "Fiscal Obligation"
+ fiscal_obligation_theme_short:0 "Fiscalised"
+ fiscal_obligation_theme_desc:0 "Apathy on behalf of the state has resulted in the strateia becoming a purely fiscal obligation."
+ fund_symmachoi_theme:0 "Fund Symmachoi"
+ fund_symmachoi_theme_short:0 "Symmachoi"
+ fund_symmachoi_theme_desc:0 "Fiscalisation is so entrenched in this province that former military lands now provide for foreign mercenaries instead of local soldiers."
+ tagmatic_salaries_theme:0 "Tagmatic Salaries"
+ tagmatic_salaries_theme_short:0 "Tagmata"
+ tagmatic_salaries_theme_desc:0 "The dedicated revenue stream from the stratiotai has been channelled towards an expansion of the tagmata."
+ # Stratified Theme
+ theme_disabled:0 "Not Active"
+ theme_disabled_short:0 "Not Active"
+ theme_disabled_desc:0 "This province is not governed according to the thematic system."
+ peacetime_army_theme:0 "Peacetime Service"
+ peacetime_army_theme_short:0 "Low Service"
+ peacetime_army_theme_desc:0 "For various reasons, the stratiotai here are not required to render regular military service."
+ voluntary_service_theme:0 "Voluntary Service"
+ voluntary_service_theme_short:0 "Voluntary"
+ voluntary_service_theme_desc:0 "The stratiotai are regularly called to service and mostly fulfil their obligation."
+ tax_exemptions_theme:0 "Regular Service"
+ tax_exemptions_theme_short:0 "Regular"
+ tax_exemptions_theme_desc:0 "The stratiotai are exempt from additional taxes and charges, as their service is more valuable than their wealth."
+ protimesis_theme:0 "Enforced Protimesis"
+ protimesis_theme_short:0 "Protimesis"
+ protimesis_theme_desc:0 "Protimesis - the right of pre-emption - has been strictly enforced to prevent the dynatoi from purchasing the stratiotika ktemata and thus depriving the state of troops."
+ full_service_theme:0 "Full Service Required"
+ full_service_theme_short:0 "Full Service"
+ full_service_theme_desc:0 "Every measure has been taken to ensure that all the stratiotai of this theme are providing military service."
+ # Doukaton
+ imperial_obligation_doukaton:0 "Doukaton Obligations"
+ imperial_obligation_doukaton_desc:0 "This province is designated as a doukaton - a regional military command."
+ doukaton_disabled:0 "Not Active"
+ doukaton_disabled_short:0 "Not Active"
+ doukaton_disabled_desc:0 "This province is not organised as a doukaton."
+ vassalised_principality_doukaton:0 "Vassalised Principality"
+ vassalised_principality_doukaton_short:0 "Local"
+ vassalised_principality_doukaton_desc:0 "This doukaton serves as a command structure for an existing autonomous polity."
+ organised_principality_doukaton:0 "Organised Principality"
+ organised_principality_doukaton_short:0 "Organised"
+ organised_principality_doukaton_desc:0 "The imperial framework of a doukaton has assumed more functions of an otherwise autonomous region."
+ frontier_command_doukaton:0 "Frontier Command"
+ frontier_command_doukaton_short:0 "Frontier"
+ frontier_command_doukaton_desc:0 "This province is governed by a clique of senior officers under a doux, whose primary responsibility is to guard the frontier."
+ regional_command_doukaton:0 "Regional Command"
+ regional_command_doukaton_short:0 "Regional"
+ regional_command_doukaton_desc:0 "The responsibilities of the doux has been expanded to include military-civilian primacy over a large region."
+ tagmatic_command_doukaton:0 "Tagmatic Command"
+ tagmatic_command_doukaton_short:0 "Tagmatic"
+ tagmatic_command_doukaton_desc:0 "This doux is one of the most senior positions in the imperial hierarchy as a result of commanding the tagmatic troops permanently established in this doukaton."
+ # Kouratoreia
+ imperial_obligation_kouratoreia:0 "Kouratoreia Obligations"
+ kouratoreia_disabled:0 "Not Active"
+ kouratoreia_disabled_short:0 "Not Active"
+ kouratoreia_disabled_desc:0 "This province is not organised as a kouratoreia."
+ kouratoreia_designated:0 "Designated as a Kouratoreia"
+ kouratoreia_designated_short:0 "Minimum"
+ kouratoreia_designated_desc:0 "The state has designated this as an imperial estate, and as such is beginning the process of maximising revenue streams."
+ kouratoreia_established:0 "Kouratoreia Established"
+ kouratoreia_established_short:0 "Low"
+ kouratoreia_established_desc:0 "The kourator is finishing the process of maximising revenue."
+ kouratoreia_standard_exactions:0 "Kouratoreia Standard Exactions"
+ kouratoreia_standard_exactions_short:0 "Standard"
+ kouratoreia_standard_exactions_desc:0 "This kouratoreia is returning a hefty profit to the imperial treasury, as intended."
+ kouratoreia_heavy_exactions:0 "Kouratoreia Increased Exactions"
+ kouratoreia_heavy_exactions_short:0 "Heavy"
+ kouratoreia_heavy_exactions_desc:0 "Local notables and large estates are subject to further taxes."
+ kouratoreia_maximum_exactions:0 "Kouratoreia Maximum Exactions"
+ kouratoreia_maximum_exactions_short:0 "Maximum"
+ kouratoreia_maximum_exactions_desc:0 "The majority of the population are now subject to additional taxes."
 
  ### SPECIAL COUNCIL NAMES
  roman_administration_councillor_coemperor:0 "Junior Emperor"
@@ -354,9 +482,12 @@
  ### TRAITS
  trait_basileus:0 "Basileus"
  trait_basileus_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_bb_desc:0 "This character has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_bb_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_junior_emperor:0 "Junior Emperor"
  trait_junior_emperor_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ trait_bb2_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ trait_bb2_desc:0 "This character has been crowned Junior Emperor of the Romans during an official ceremony legitimizing his rule over the empire."
 
  
  
@@ -379,6 +510,7 @@
  ave_maria_roman_administration_muster_tagmatic_troops_decision_confirm:0 "Call the men."
  ave_maria_roman_administration_muster_tagmatic_troops_decision_tooltip:0 "The Tagma Regimental Troops will spawn in Constantinople."
  ave_maria_roman_administration_give_power_to_the_senate:0 "Empower the Senate"
+ ave_maria_roman_administration_give_power_to_the_senate_decision_tooltip:0 "Empower the Senate"
  ave_maria_roman_administration_give_power_to_the_senate_confirm:0 "The Senate will be given more power."
  ave_maria_roman_administration_give_power_to_the_senate_desc:0 "Since its foundation by Constantine the Constantinople Senate has played a proeminent role in our society. Over time it has lot much of its meaning. The time has come to relinquish some of the power my predecessors have acquired and give it back to the Senate for the good of the Empire."
  ave_maria_roman_administration_give_power_to_the_senate_tooltip:0 "Will give more power to the Senate and increase its political relevance."
@@ -392,7 +524,7 @@
  start_hunt_decision_roman_confirm:0 "Sound the horn!"
  start_hunt_decision_roman_tooltip:0 "A [hunt|E] will be held"
 
- 
+
 
  ### INTERACTIONS
  ADMINISTRATIVE_ACTIONS:0 "Administration"
@@ -422,6 +554,16 @@
  recipient_secondary_roman_administration_send_family_member_for_training:0 "Family Member"
 
  roman_administration_name_junior_emperor_candidate_requirement:0 "Must be able to inherit the Empire"
+ 
+ roman_administration_change_vassal_contract:0 "Change Administration"
+ roman_administration_change_vassal_contract_desc:00 "Will change District Type"
+
+ roman_administration_change_to_doukaton:0 "Change to Doukaton"
+ roman_administration_change_to_doukaton_desc:0 "Will change government to Doukaton."
+ roman_administration_change_to_kouratoreia:0 "Change to Kouratoreia"
+ roman_administration_change_to_kouratoreia_desc:0 "Will change government to Kouratoreia."
+ roman_administration_change_to_theme:0 "Change to Theme"
+ roman_administration_change_to_theme_desc:0 "Will change government to Theme."
 
 
  ### RELATIONS
@@ -445,6 +587,7 @@
  roman_administration_senate_political_relevance_medium:0 "The Senate's political relevance is currently #medium#!:\nOnly minor related events will happen."
  roman_administration_senate_political_relevance_high:0 "The Senate's political relevance is currently #high#!:\nMajor related events will occur."
  roman_administration_army_tab_header:0 "The Army"
+ roman_administration_administration_tab_header:0 "The Administration"
 
  
  ### EVENTS
@@ -482,6 +625,8 @@
  ave_maria_roman_administration_events.0007.b:0 "I will attend. Reluctantly."
  ave_maria_roman_administration_events.0007.c:0 "I am sad to say that I am busy."
  ave_maria_roman_administration_events.0007.d:0 "No, I refuse!"
+ ave_maria_roman_administration_events.0008.opening:0 "Invitation to the Coronation"
+ ave_maria_roman_administration_events.0008.desc:0 "Illustris, you are hereby invited to the ceremony of imperial coronation in Constantinople. We expect your presence with great pleasure."
  ave_maria_roman_administration_events.0008.a:0 "Of course I will attend."
  ave_maria_roman_administration_events.0008.b:0 "No, I refuse!"
 
@@ -501,7 +646,10 @@
  ave_maria_roman_administration_military_revolt.0050.desc:0 "The time has come.\nThe troops are ready, my agents are in place and my fellow Domestikos and Officials are ready to stand by me to rise up against the tyranny of [liege.GetTitledFirstName].\nThey only await my words"
  ave_maria_roman_administration_military_revolt.0050.OPT_A:0 "Alea Jacta Est"
  ave_maria_roman_administration_military_revolt.0050.OPT_B:0 "This is folly."
+ 
 
+ ### CHARACTERS
+ Abulchares:0 "Abulchares"
 
  ### MODIFIERS
  crowned_basileus:0 "Basileus"

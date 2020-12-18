@@ -28,6 +28,10 @@ namespace = seduce_ongoing
 # 6041 - Spy on their preferences
 # 1801 - Give a compliment, by Mathilda Bjarnehed
 
+## (AI) target personality
+# 7001 - Target is shy, how should you approach?
+
+
 #############################
 ## Second milestone events ##
 #############################
@@ -76,7 +80,7 @@ namespace = seduce_ongoing
 scripted_trigger seduce_gift_giving_tapestry_likes_trigger = {
 	OR = {
 		has_trait = family_first
-		has_trait = am_pretentious
+		has_trait = arrogant
 		has_trait = ambitious
 		AND = {
 			has_dynasty = yes
@@ -87,9 +91,9 @@ scripted_trigger seduce_gift_giving_tapestry_likes_trigger = {
 
 scripted_trigger seduce_gift_giving_tapestry_dislikes_trigger = {
 	OR = {
-		has_trait = am_humble
+		has_trait = humble
 		AND = {
-			has_trait = am_honest
+			has_trait = honest
 			prestige_level < 2
 		}
 	}
@@ -105,21 +109,21 @@ scripted_trigger seduce_gift_giving_horse_likes_trigger = {
 
 scripted_trigger seduce_gift_giving_horse_dislikes_trigger = {
 	OR = {
-		has_trait = am_lazy
-		has_trait = am_craven
+		has_trait = lazy
+		has_trait = craven
 	}
 }
 #Tailored clothes
 scripted_trigger seduce_gift_giving_tailor_likes_trigger = {
 	OR = {
 		has_trait = lifestyle_reveler
-		has_trait = am_pretentious
+		has_trait = arrogant
 	}
 }
 
 scripted_trigger seduce_gift_giving_tailor_dislikes_trigger = {
 	OR = {
-		has_trait = am_conventional
+		has_trait = content
 		has_trait = chaste
 	}
 }
@@ -589,14 +593,14 @@ scripted_trigger seduce_gift_giving_embroidery_likes_trigger = {
 	OR = {
 		has_trait = education_diplomacy
 		has_lifestyle = diplomacy_lifestyle
-		has_trait = am_tolerant
+		has_trait = compassionate
 		has_trait = family_first
 	}
 }
 
 scripted_trigger seduce_gift_giving_embroidery_dislikes_trigger = {
 	OR = {
-		has_trait = am_greedy
+		has_trait = greedy
 	}
 }
 
@@ -607,7 +611,7 @@ scripted_trigger seduce_gift_giving_poem_likes_trigger = {
 		has_trait = lustful
 		has_trait = gluttonous
 		has_trait = lifestyle_reveler
-		has_trait = am_outgoing
+		has_trait = gregarious
 		has_diplomacy_lifestyle_trait_trigger = yes
 		has_trait = ambitious
 	}
@@ -617,7 +621,7 @@ scripted_trigger seduce_gift_giving_poem_dislikes_trigger = {
 	OR = {
 		has_trait = chaste
 		has_trait = temperate
-		has_trait = am_conventional
+		has_trait = content
 	}
 }
 #A Woodcarving of a castle
@@ -632,8 +636,8 @@ scripted_trigger seduce_gift_giving_woodcarving_likes_trigger = {
 
 scripted_trigger seduce_gift_giving_woodcarving_dislikes_trigger = {
 	OR = {
-		has_trait = am_lazy
-		has_trait = am_conventional
+		has_trait = lazy
+		has_trait = content
 	}
 }
 
@@ -1052,9 +1056,9 @@ seduce_ongoing.1507 = {
 #Jewelry
 scripted_trigger seduce_gift_giving_jewelry_likes_trigger = {
 	OR = {
-		has_trait = am_greedy
+		has_trait = greedy
 		has_trait = beauty_good
-		has_trait = am_pretentious
+		has_trait = arrogant
 		has_trait = lustful
 	}
 }
@@ -1062,7 +1066,7 @@ scripted_trigger seduce_gift_giving_jewelry_likes_trigger = {
 scripted_trigger seduce_gift_giving_jewelry_dislikes_trigger = {
 	OR = {
 		has_trait = temperate
-		has_trait = am_generous
+		has_trait = generous
 	}
 }
 #Stuffed animal
@@ -1072,14 +1076,14 @@ scripted_trigger seduce_gift_giving_stuffed_animal_likes_trigger = {
 		has_trait = sadistic
 		has_trait = torturer
 		has_trait = ambitious
-		has_trait = am_deceitful
+		has_trait = deceitful
 	}
 }
 
 scripted_trigger seduce_gift_giving_stuffed_animal_dislikes_trigger = {
 	OR = {
-		has_trait = am_tolerant
-		has_trait = am_conventional
+		has_trait = compassionate
+		has_trait = content
 	}
 }
 #Flower display
@@ -1087,14 +1091,14 @@ scripted_trigger seduce_gift_giving_flower_display_likes_trigger = {
 	OR = {
 		has_stewardship_lifestyle_trait_trigger = yes
 		has_trait = seducer
-		has_trait = am_diligent
+		has_trait = diligent
 		has_trait = beauty_good
 	}
 }
 
 scripted_trigger seduce_gift_giving_flower_display_dislikes_trigger = {
 	OR = {
-		has_trait = am_lazy
+		has_trait = lazy
 	}
 }
 
@@ -1543,7 +1547,7 @@ scripted_trigger seduce_gift_giving_rare_book_likes_trigger = {
 
 scripted_trigger seduce_gift_giving_rare_book_dislikes_trigger = {
 	OR = {
-		has_trait = am_illtempered
+		has_trait = impatient
 		learning < 10
 	}
 }
@@ -1585,7 +1589,7 @@ scripted_trigger seduce_gift_giving_object_likes_trigger = {
 scripted_trigger seduce_gift_giving_object_dislikes_trigger = {
 	OR = {
 		seduce_gift_giving_object_likes_trigger = no
-		has_trait = am_deceitful
+		has_trait = callous
 	}
 }
 
@@ -2120,10 +2124,10 @@ seduce_ongoing.3001 = {
 					}
 					AND = {
 						scope:owner = {
-							highest_held_title_tier <= tier_county
+							highest_held_title_tier = tier_county
 						}
 						scope:close_character = {
-							highest_held_title_tier <= tier_county
+							highest_held_title_tier = tier_county
 						}
 					}
 					AND = {
@@ -2189,6 +2193,16 @@ seduce_ongoing.3001 = {
 				days = { 5 10 }
 			}
 		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
+			}
+		}
 	}
 
 	#Let them off hook
@@ -2217,6 +2231,16 @@ seduce_ongoing.3001 = {
 			trigger_event = {
 				id = seduce_ongoing.3003
 				days = { 5 10 }
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
 			}
 		}
 	}
@@ -2269,6 +2293,16 @@ seduce_ongoing.3001 = {
 				}
 			}
 		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = {
+					value = ai_greed
+					multiply = -1
+				}
+				ai_greed > 0
+			}
+		}
 	}
 	
 	option = {
@@ -2279,6 +2313,9 @@ seduce_ongoing.3001 = {
 				name = declined_seduce_milestone_1_event
 				value = yes
 			}
+		}
+		ai_chance = {
+			base = 50
 		}
 	}
 }
@@ -2439,8 +2476,8 @@ seduce_ongoing.4001 = {
 			}
 		}
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = minor_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -2493,14 +2530,14 @@ seduce_ongoing.4001 = {
 			}
 		}
 		stress_impact = {
-			am_illtempered = medium_stress_impact_gain
-			am_brave = minor_stress_impact_gain
+			impatient = medium_stress_impact_gain
+			brave = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
 			modifier = {
 				add = 100
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -2515,7 +2552,7 @@ seduce_ongoing.4001 = {
 			}
 		}
 		stress_impact = {
-			am_illtempered = major_stress_impact_gain
+			impatient = major_stress_impact_gain
 		}
 		ai_chance = {
 			base = 20
@@ -2780,9 +2817,9 @@ seduce_ongoing.5201 = {
 			modifier = {
 				add = -20
 				OR = {
-					has_trait = am_craven
-					has_trait = am_deceitful
-					has_trait = am_greedy
+					has_trait = craven
+					has_trait = callous
+					has_trait = greedy
 				}
 			}
 			ai_value_modifier = {
@@ -3299,7 +3336,7 @@ seduce_ongoing.5305 = {
 			}
 			modifier = {
 				add = 100
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -3530,7 +3567,7 @@ seduce_ongoing.6041 = {
 			}
 		}
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -4030,7 +4067,218 @@ seduce_ongoing.1802 = {
 	}
 }
 
+##########
+## (AI) target personality
+## by Bianca Savazzi
+##########
 
+
+#Target is shy
+
+scripted_trigger seduce_shy_target_likes_bold_trigger = {
+	OR = {
+		has_trait_emotional_trigger = yes
+		has_trait_extroverted_trigger = yes
+	}
+}
+
+scripted_trigger seduce_shy_target_dislikes_bold_trigger = {
+	OR = {
+		has_trait = reclusive
+		has_trait = chaste
+	}
+}
+
+scripted_trigger seduce_shy_target_likes_gentle_trigger = {
+	OR = {
+		has_trait = content
+		has_trait = chaste
+		has_trait_levelheaded_trigger = yes
+	}
+}
+
+scripted_trigger seduce_shy_target_dislikes_gentle_trigger = {
+	OR = {
+		has_trait_emotional_trigger = yes
+		has_trait_extroverted_trigger = yes
+	}
+}
+
+# How should you approach?
+seduce_ongoing.7001 = {
+	type = character_event
+	title = seduce_ongoing.7001.t
+	desc = seduce_ongoing.7001.desc
+	
+	theme = seduce_scheme
+	left_portrait = scope:target
+	widget = {
+		gui = "event_window_widget_scheme"
+		container = "custom_widgets_container"
+	}
+	
+	trigger = {
+		scope:target = {
+			is_ai = yes
+			OR = {
+				has_personality_submissive_trigger = yes
+				has_personality_introverted_trigger = yes
+			}
+		}	
+	}
+
+	option = { #Be bold! Be romantic!
+		name = seduce_ongoing.7001.a
+		custom_tooltip = seduce_ongoing.7001.a.tt
+		hidden_effect = {
+			random_list = {
+				75 = {
+					modifier = {
+						add = 100
+							seduce_shy_target_likes_bold_trigger = yes
+						}
+						trigger_event = { id = seduce_ongoing.7101 days = { 3 5 } }
+					}
+				25 = {
+					modifier = {
+						add = 100
+						seduce_shy_target_dislikes_bold_trigger = yes
+					}
+					trigger_event = { id = seduce_ongoing.7102 days = { 3 5 } }
+				}
+			}
+		}
+		seduce_ongoing_possible_outcomes_tooltip_effect = { MILESTONE = 1 }
+	}
+
+	option = { #A friendly approach
+		name = seduce_ongoing.7001.b
+		custom_tooltip = seduce_ongoing.7001.b.tt
+		hidden_effect = {
+			random_list = {
+				75 = {
+					modifier = {
+						add = 100
+						seduce_shy_target_likes_gentle_trigger = yes
+					}
+					trigger_event = { id = seduce_ongoing.7201 days = { 3 5 } }
+				}
+				25 = {
+					modifier = {
+						add = 100
+						seduce_shy_target_dislikes_gentle_trigger = yes
+					}
+					trigger_event = { id = seduce_ongoing.7202 days = { 3 5 } }
+				}
+			}
+		}
+		seduce_ongoing_possible_outcomes_tooltip_effect = { MILESTONE = 1 }
+	}
+
+	option = { #Nah
+		name = seduce_ongoing.7001.c
+		custom_tooltip = seduce_ongoing_decline_event.tt
+		scope:scheme = {
+			set_variable = {
+				name = declined_seduce_milestone_1_event
+				value = yes
+			}
+		}
+	}
+}
+
+#Bold Approach: Success
+seduce_ongoing.7101 = {
+	type = character_event
+	title = seduce_ongoing.7001.t
+	desc = { 
+		desc = seduce_ongoing.7101.desc_opening
+		first_valid = {
+			triggered_desc = {
+				trigger = { 
+					OR = { 
+						can_touch_someone_trigger = no 
+						scope:target = { can_touch_someone_trigger = no }
+					}
+				}
+				desc = seduce_ongoing.7101.desc_cannot_touch_arms
+			}
+			desc = seduce_ongoing.7101.desc_can_touch_arms
+		}
+		desc = seduce_ongoing.7101.desc_closing
+	}
+	
+	theme = seduce_scheme
+	left_portrait = scope:target
+
+	trigger = { exists = scope:scheme }
+	
+	option = {
+		name = seduce_ongoing.7101.a
+		add_character_modifier = {
+			modifier = seduce_bold_start_modifier
+			days = 3650
+		}
+		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = success }
+	}
+}
+
+#Bold Approach: Failure
+seduce_ongoing.7102 = {
+	type = character_event
+	title = seduce_ongoing.7001.t
+	desc = seduce_ongoing.7102.desc
+	
+	theme = seduce_scheme
+	left_portrait = scope:target
+	
+	trigger = { exists = scope:scheme }
+
+	immediate = { select_local_animal_effect = yes }
+
+	option = {
+		name = seduce_ongoing.7102.a
+		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = failure }
+	}
+}
+
+#Gentle Approach: Success
+seduce_ongoing.7201 = {
+	type = character_event
+	title = seduce_ongoing.7001.t
+	desc = seduce_ongoing.7201.desc
+	
+	theme = seduce_scheme
+	left_portrait = scope:target
+
+	trigger = { exists = scope:scheme }
+	
+	option = {
+		name = seduce_ongoing.7101.a
+		add_character_modifier = {
+			modifier = seduce_gentle_start_modifier
+			days = 3650
+		}
+		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = success }
+	}
+}
+
+#Gentle Approach: Failure
+seduce_ongoing.7202 = {
+	type = character_event
+	title = seduce_ongoing.7001.t
+	desc = seduce_ongoing.7202.desc
+	
+	theme = seduce_scheme
+	left_portrait = scope:target
+	
+	trigger = { exists = scope:scheme }
+
+	option = {
+		name = seduce_ongoing.7102.a
+		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = failure }
+	}
+}
 
 #############################
 #############################
@@ -4051,7 +4299,7 @@ scripted_trigger seduce_ongoing_1001_dance_trigger = {
 		ai_energy > medium_positive_energy
 		has_trait = lifestyle_reveler
 	}
-	NOT = { has_trait = am_lazy }
+	NOT = { has_trait = lazy }
 }
 
 scripted_trigger seduce_ongoing_1001_walk_trigger = {
@@ -4059,14 +4307,14 @@ scripted_trigger seduce_ongoing_1001_walk_trigger = {
 		has_personality_introverted_trigger = yes
 		ai_rationality > medium_positive_rationality
 	}
-	NOT = { has_trait = am_lazy }
+	NOT = { has_trait = lazy }
 }
 
 scripted_trigger seduce_ongoing_1001_food_trigger = {
 	OR = {
 		ai_greed > medium_positive_greed
 		has_trait = gluttonous
-		has_trait = am_greedy
+		has_trait = greedy
 	}
 }
 
@@ -4076,8 +4324,8 @@ scripted_trigger seduce_ongoing_1001_mockery_trigger = {
 		ai_compassion < high_negative_compassion
 	}
 	NOR = {
-		has_trait = am_outgoing
-		has_trait = am_tolerant
+		has_trait = gregarious
+		has_trait = compassionate
 	}
 }
 
@@ -4155,8 +4403,8 @@ seduce_ongoing.1001 = {
 			value = flag:dance
 		}
 		stress_impact = {
-			am_lazy = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
+			lazy = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -4207,8 +4455,8 @@ seduce_ongoing.1001 = {
 			value = flag:mockery
 		}
 		stress_impact = {
-			am_tolerant = major_stress_impact_gain
-			am_outgoing = minor_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			gregarious = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -4252,7 +4500,7 @@ seduce_ongoing.1001 = {
 								OR = {
 									ai_greed > medium_positive_greed
 									has_trait = gluttonous
-									has_trait = am_greedy
+									has_trait = greedy
 								}
 								scope:dance_approach = flag:food
 							}
@@ -4288,11 +4536,11 @@ seduce_ongoing.1001 = {
 							}
 							modifier = {
 								add = 100
-								has_trait = am_lazy
+								has_trait = lazy
 							}
 							modifier = {
 								add = 100
-								has_trait = am_withdrawn
+								has_trait = shy
 							}
 							trigger_event = {
 								id = seduce_ongoing.1004
@@ -4315,7 +4563,7 @@ seduce_ongoing.1001 = {
 						100 = { #Success
 							modifier = {
 								add = 100
-								has_trait = am_withdrawn
+								has_trait = shy
 							}
 							trigger_event = {
 								id = seduce_ongoing.1003
@@ -4334,7 +4582,7 @@ seduce_ongoing.1001 = {
 							}
 							modifier = {
 								add = 100
-								has_trait = am_lazy
+								has_trait = lazy
 							}
 							trigger_event = {
 								id = seduce_ongoing.1004
@@ -4395,11 +4643,11 @@ seduce_ongoing.1001 = {
 						100 = { #Success
 							modifier = {
 								add = -40
-								has_trait = am_outgoing
+								has_trait = gregarious
 							}
 							modifier = {
 								add = -40
-								has_trait = am_tolerant
+								has_trait = compassionate
 							}
 							trigger_event = {
 								id = seduce_ongoing.1003
@@ -4661,7 +4909,7 @@ scripted_trigger seduce_ongoing_1601_religious_trigger = {
 		learning >= mediocre_skill_rating
 		piety >= medium_piety_value
 		ai_zeal = medium_positive_zeal
-		has_trait = am_intolerant
+		has_trait = zealous
 	}
 }
 
@@ -4893,11 +5141,11 @@ seduce_ongoing.1601 = {
 
 						# Negative Traits
 						modifier = {
-							has_trait = am_pretentious
+							has_trait = arrogant
 							add = -20
 						}
 						modifier = {
-							has_trait = am_illtempered
+							has_trait = impatient
 							add = -20
 						}
 						modifier = {
@@ -5168,12 +5416,12 @@ seduce_ongoing.1606 = {
 #To check that the target will enjoy one of the options
 scripted_trigger seduce_ongoing_1701_strategy_trigger = {
 	OR = {
-		has_trait = am_withdrawn
+		has_trait = shy
 		has_personality_introverted_trigger = yes
 		ai_rationality > medium_positive_rationality
 		has_martial_lifestyle_trait_trigger = yes
 	}
-	NOT = { has_trait = am_lazy }
+	NOT = { has_trait = lazy }
 }
 
 scripted_trigger seduce_ongoing_1701_trap_trigger = {
@@ -5183,8 +5431,8 @@ scripted_trigger seduce_ongoing_1701_trap_trigger = {
 		has_trait = sadistic
 	}
 	NOR = {
-		has_trait = am_tolerant
-		has_trait = am_outgoing
+		has_trait = compassionate
+		has_trait = gregarious
 	}
 }
 
@@ -5195,15 +5443,15 @@ scripted_trigger seduce_ongoing_1701_duel_trigger = {
 		has_trait = lifestyle_blademaster
 	}
 	NOR = {
-		has_trait = am_lazy
-		has_trait = am_withdrawn
+		has_trait = lazy
+		has_trait = shy
 	}
 }
 
 scripted_trigger seduce_ongoing_1701_tax_season_trigger = {
 	OR = {
 		ai_greed > medium_positive_greed
-		has_trait = am_greedy
+		has_trait = greedy
 		has_stewardship_lifestyle_trait_trigger = yes
 		has_trait = education_stewardship
 	}
@@ -5260,8 +5508,8 @@ seduce_ongoing.1701 = {
 			value = flag:duel
 		}
 		stress_impact = {
-			am_lazy = medium_stress_impact_gain
-			am_withdrawn = medium_stress_impact_gain
+			lazy = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -5312,8 +5560,8 @@ seduce_ongoing.1701 = {
 			value = flag:trap
 		}
 		stress_impact = {
-			am_tolerant = major_stress_impact_gain
-			am_outgoing = minor_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			gregarious = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -5361,7 +5609,7 @@ seduce_ongoing.1701 = {
 								AND = {
 									OR = {
 										ai_greed > medium_positive_greed
-										has_trait = am_greedy
+										has_trait = greedy
 										has_stewardship_lifestyle_trait_trigger = yes
 										has_trait = education_stewardship
 									}
@@ -5398,11 +5646,11 @@ seduce_ongoing.1701 = {
 								}
 								modifier = {
 									add = 100
-									has_trait = am_lazy
+									has_trait = lazy
 								}
 								modifier = {
 									add = 100
-									has_trait = am_withdrawn
+									has_trait = shy
 								}
 								trigger_event = {
 									id = seduce_ongoing.1704
@@ -5425,7 +5673,7 @@ seduce_ongoing.1701 = {
 							100 = { #Success
 								modifier = {
 									add = 100
-									has_trait = am_withdrawn
+									has_trait = shy
 								}
 								trigger_event = {
 									id = seduce_ongoing.1703
@@ -5444,7 +5692,7 @@ seduce_ongoing.1701 = {
 								}
 								modifier = {
 									add = 100
-									has_trait = am_lazy
+									has_trait = lazy
 								}
 								trigger_event = {
 									id = seduce_ongoing.1704
@@ -5505,11 +5753,11 @@ seduce_ongoing.1701 = {
 							100 = { #Success
 								modifier = {
 									add = -40
-									has_trait = am_outgoing
+									has_trait = gregarious
 								}
 								modifier = {
 									add = -40
-									has_trait = am_tolerant
+									has_trait = compassionate
 								}
 								trigger_event = {
 									id = seduce_ongoing.1703
@@ -6448,8 +6696,8 @@ seduce_ongoing.4011 = {
 			}
 		}
 		stress_impact = {
-			am_withdrawn = medium_stress_impact_gain
-			am_craven = minor_stress_impact_gain
+			shy = medium_stress_impact_gain
+			craven = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
@@ -6501,14 +6749,14 @@ seduce_ongoing.4011 = {
 			}
 		}
 		stress_impact = {
-			am_illtempered = medium_stress_impact_gain
-			am_brave = minor_stress_impact_gain
+			impatient = medium_stress_impact_gain
+			brave = minor_stress_impact_gain
 		}
 		ai_chance = {
 			base = 100
 			modifier = {
 				add = 100
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -6523,7 +6771,7 @@ seduce_ongoing.4011 = {
 			}
 		}
 		stress_impact = {
-			am_illtempered = major_stress_impact_gain
+			impatient = major_stress_impact_gain
 		}
 		ai_chance = {
 			base = 20
@@ -6850,7 +7098,7 @@ seduce_ongoing.4101 = {
 			base = 100
 			modifier = {
 				add = 50
-				has_trait = am_outgoing
+				has_trait = gregarious
 			}
 			ai_value_modifier = {
 				ai_rationality = 0.5
@@ -6883,7 +7131,7 @@ seduce_ongoing.4101 = {
 			base = 100
 			modifier = {
 				add = 50
-				has_trait = am_illtempered
+				has_trait = impatient
 			}
 			ai_value_modifier = {
 				ai_boldness = 0.5
@@ -6907,8 +7155,8 @@ seduce_ongoing.4101 = {
 			modifier = {
 				add = 50
 				OR = {
-					has_trait = am_withdrawn
-					has_trait = am_craven
+					has_trait = shy
+					has_trait = craven
 				}
 			}
 			ai_value_modifier = {
@@ -7203,9 +7451,9 @@ seduce_ongoing.4105 = {
 	option = { #Intruder! Thief!!
 		name = seduce_ongoing.4105.c
 		trigger = {
-			has_trait = am_fearful
+			has_trait = paranoid
 		}
-		trait = am_fearful
+		trait = paranoid
 
 		add_character_modifier = {
 			modifier = seduce_obvisouly_courted_modifier
@@ -7263,7 +7511,7 @@ seduce_ongoing.4107 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					scope:target = { has_trait = am_fearful }
+					scope:target = { has_trait = paranoid }
 				}
 				desc = seduce_ongoing.4107.desc_paranoid
 			}
@@ -7275,11 +7523,11 @@ seduce_ongoing.4107 = {
 	left_portrait = {
 		character = scope:target
 		triggered_animation = {
-			trigger = { scope:target = { has_trait = am_fearful } }
+			trigger = { scope:target = { has_trait = paranoid } }
 			animation = fear
 		}
 		triggered_animation = {
-			trigger = { scope:target = { NOT = { has_trait = am_fearful } } }
+			trigger = { scope:target = { NOT = { has_trait = paranoid } } }
 			animation = anger
 		}
 	}
@@ -7297,7 +7545,7 @@ seduce_ongoing.4107 = {
 		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = failure }
 		if = {
 			limit = {
-				scope:target = { has_trait = am_fearful }
+				scope:target = { has_trait = paranoid }
 			}
 			custom_tooltip = seduce_ongoing.4107.a.tt
 		}
@@ -7353,7 +7601,7 @@ seduce_ongoing.4108 = {
 			}
 			modifier = {
 				add = 50
-				has_trait = am_withdrawn
+				has_trait = shy
 			}
 		}
 	}
@@ -7444,9 +7692,9 @@ scripted_trigger seduce_ongoing_5001_conversation_trigger = {
 	OR = {
 		has_personality_extroverted_trigger = yes
 		ai_rationality > medium_positive_boldness
-		has_trait = am_outgoing
+		has_trait = gregarious
 	}
-	NOT = { has_trait = am_withdrawn }
+	NOT = { has_trait = shy }
 }
 
 scripted_trigger seduce_ongoing_5001_mockery_trigger = {
@@ -7455,8 +7703,8 @@ scripted_trigger seduce_ongoing_5001_mockery_trigger = {
 		ai_compassion < high_negative_compassion
 	}
 	NOR = {
-		has_trait = am_outgoing
-		has_trait = am_tolerant
+		has_trait = gregarious
+		has_trait = compassionate
 	}
 }
 
@@ -7467,7 +7715,7 @@ scripted_trigger seduce_ongoing_5001_bodily_trigger = {
 		ai_energy > medium_positive_energy
 		has_trait = lustful
 	}
-	NOT = { has_trait = am_withdrawn }
+	NOT = { has_trait = shy }
 }
 
 
@@ -7740,7 +7988,7 @@ seduce_ongoing.5001 = {
 								OR = {
 									has_personality_extroverted_trigger = yes
 									ai_rationality > medium_positive_boldness
-									has_trait = am_outgoing
+									has_trait = gregarious
 								}
 								scope:rival_approach = flag:conversation
 							}
@@ -7790,7 +8038,7 @@ seduce_ongoing.5001 = {
 							}
 							modifier = {
 								add = 100
-								has_trait = am_withdrawn
+								has_trait = shy
 							}
 							trigger_event = {
 								id = seduce_ongoing.5004
@@ -7813,11 +8061,11 @@ seduce_ongoing.5001 = {
 						100 = { #Success
 							modifier = {
 								add = -40
-								has_trait = am_outgoing
+								has_trait = gregarious
 							}
 							modifier = {
 								add = -40
-								has_trait = am_tolerant
+								has_trait = compassionate
 							}
 							trigger_event = {
 								id = seduce_ongoing.5003
@@ -7882,7 +8130,7 @@ seduce_ongoing.5001 = {
 							}
 							modifier = {
 								add = 40
-								has_trait = am_withdrawn
+								has_trait = shy
 							}
 							trigger_event = {
 								id = seduce_ongoing.5004
@@ -8145,9 +8393,9 @@ seduce_ongoing.5011 = {
 			scheme_progress <= 75
 		}
 		is_healthy = yes
-		has_trait = am_wroth
+		has_trait = wrathful
 		scope:target = {
-			has_trait = am_wroth
+			has_trait = wrathful
 			is_healthy = yes
 		}
 	}
@@ -8231,13 +8479,13 @@ seduce_ongoing.5011 = {
 			value = flag:fight
 		}
 		stress_impact = {
-			am_craven = medium_stress_impact_gain
+			craven = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 50
-				has_trait = am_brave
+				has_trait = brave
 			}
 		}
 	}
@@ -8260,13 +8508,13 @@ seduce_ongoing.5011 = {
 			value = flag:help
 		}
 		stress_impact = {
-			am_deceitful = medium_stress_impact_gain
+			callous = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
 			modifier = {
 				add = 100
-				has_trait = am_tolerant
+				has_trait = compassionate
 			}
 		}
 	}
@@ -8293,7 +8541,7 @@ seduce_ongoing.5011 = {
 			value = flag:submit
 		}
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50
@@ -8818,7 +9066,7 @@ seduce_ongoing.5101 = {
 			base = 100
 			modifier = {
 				add = 200
-				has_trait = am_pretentious
+				has_trait = arrogant
 			}
 			ai_value_modifier = {
 				ai_boldness = 0.5
@@ -9325,7 +9573,7 @@ seduce_ongoing.6011 = {
 		name = seduce_ongoing.6011.b
 		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = success }
 		stress_impact = {
-			am_pretentious = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
 		}
 		ai_chance = {
 			base = 50

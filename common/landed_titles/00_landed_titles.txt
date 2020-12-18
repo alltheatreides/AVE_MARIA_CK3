@@ -12,105 +12,7 @@
 #                               													   #
 ########################################################################################
 
-### AVE MARIA ADDITION FOR LANDLESS SYSTEM
-
-###########################################
-# Great Families titles           		  #
-###########################################
-
-### One Duchy entry to host the county tier family titles which are fakely linked to byzantium as a capital for now but should be historically linked to historical families and their original estates
-d_utility_family_county = {
-
-	can_create = {
-		trigger_if = {
-			limit = {
-				always = yes
-			}
-			NOT = { has_culture_group = culture_group:byzantine_group }
-		}
-	}
-
-	color = { 255 249 198 }
-	color2 = { 220 220 0 }
-	
-	capital = c_byzantion
-	no_automatic_claims = yes
-	de_jure_drift_disabled = yes
-	
-	c_roman_family_1 = {				
-		color = { 255 249 198 }			
-		color2 = { 220 220 0 }			
-					
-		no_automatic_claims = yes			
-		de_jure_drift_disabled = yes			
-					
-		b_roman_family_1 = {			
-			province = 496		
-		}			
-	}
-
-
-}
-
-## Duchy Entry for anatolian estates
-d_utility_family_county_anatolia = {
-
-	can_create = {
-		trigger_if = {
-			limit = {
-				always = yes
-			}
-			NOT = { has_culture_group = culture_group:byzantine_group }
-		}
-	}
-
-	color = { 255 249 198 }
-	color2 = { 220 220 0 }
-	
-	capital = c_lycaonia
-
-	## Mistea, arbitrary place of the land estates of Romanos Diogenes
-	c_roman_estate_anatolia_1 = {				
-		color = { 255 249 198 }			
-		color2 = { 220 220 0 }			
-					
-		no_automatic_claims = yes			
-		de_jure_drift_disabled = yes			
-		
-		## mistea
-		b_roman_estate_anatolia_1 = {			
-			province = 5670		
-		}			
-	}	
-
-	## Arbitrary estates of the Doukas Aigialos
-	c_roman_estate_anatolia_2 = {				
-		color = { 255 249 198 }			
-		color2 = { 220 220 0 }			
-					
-		no_automatic_claims = yes			
-		de_jure_drift_disabled = yes			
-		
-		## Aigialos
-		b_roman_estate_anatolia_2 = {			
-			province = 5582		
-		}			
-	}
-	
-	## Arbitrary estates of the Komnenos Ionopolis
-	c_roman_estate_anatolia_3 = {				
-		color = { 255 249 198 }			
-		color2 = { 220 220 0 }			
-					
-		no_automatic_claims = yes			
-		de_jure_drift_disabled = yes			
-					
-		## Ionopolis
-		b_roman_estate_anatolia_3 = {			
-			province = 5583		
-		}			
-	}
-}
+## Written by Atreides thanks to AgentPaper script
 
 ########################################################################################
 #                                         											   #
@@ -1003,18 +905,6 @@ k_england = {
 		}
 	}
 	
-	### AVE MARIA CHRISTIAN FLAVOUR EVECHES
-	d_bishop_canterbury = {
-
-		color =  { 245 105 20 }
-		color2 =  { 255 255 255 }
-		
-		capital = c_reims # Reims
-		
-		landless = yes
-		no_automatic_claims = yes
-	}
-	
 	## VANILLA
 	
 	d_bedford = { # Essex
@@ -1317,7 +1207,7 @@ k_england = {
 				color2 =  { 255 255 255 }
 					b_furness  = {
 					province =  1642
-					color =  { 250 55 5 }
+					color = { 240 25 25 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -2075,7 +1965,7 @@ k_england = {
 				}
 			}
 			c_oxfordshire  = {
-				color =  { 255 115 15 }
+				color = { 255 115 15 }
 				color2 =  { 255 255 255 }
 					b_oxford  = {
 					province =  1558
@@ -3692,29 +3582,29 @@ k_ireland = {
 
 
 			c_athlone  = {
-				color =  { 55 250 85 }
+				color =  { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_athlone  = {
 					province =  34
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
 			c_birr  = {
-				color =  { 55 250 85 }
+				color = { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_birr  = {
 					province =  33
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
 			c_uisneach  = {
-				color =  { 55 250 85 }
+				color = { 35 122 49 }
 				color2 =  { 255 255 255 }
 					b_uisneach  = {
 					province =  36
-					color =  { 55 250 85 }
+					color = { 35 122 49 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -4129,10 +4019,14 @@ e_germany = {
 	capital = c_nassau
 
 	can_create = {
-		NOT = {
-			faith = {
-				religion_tag = christianity_religion
-				has_doctrine = doctrine_spiritual_head
+		custom_description = {
+			text = form_germania_christian_trigger
+			
+			NOT = {
+				faith = {
+					religion_tag = christianity_religion
+					has_doctrine = doctrine_spiritual_head
+				}
 			}
 		}
 	}
@@ -4324,7 +4218,7 @@ k_saxony = {
 
 		capital = c_minden
 
-			c_minden  = {
+			c_diepholz  = {
 				color =  { 205 105 85 }
 				color2 =  { 255 255 255 }
 					b_diepholz  = {
@@ -5230,7 +5124,7 @@ k_saxony = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_brene  = {
+			c_torgau  = {
 				color =  { 235 170 165 }
 				color2 =  { 255 255 255 }
 					b_torgau  = {
@@ -5337,7 +5231,7 @@ k_saxony = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_gottingen  = {
+			c_goslar  = {
 				color =  { 200 160 181 }
 				color2 =  { 255 255 255 }
 					b_goslar  = {
@@ -8354,7 +8248,7 @@ k_east_francia = {	#Germany
 	}
 	
 	d_east_franconia = {
-		color = { 255 255 255 }
+		color = { 245 245 255 }
 		color2 = { 255 255 255 }
 		
 		capital = c_wurzburg #Würzburg
@@ -9697,7 +9591,7 @@ e_byzantium = {
 	}
 
 	### AVE MARIA ADDITION FOR ROMAN SYSTEM
-		
+
 	###########################################
 	# Tagma Military Offices			      #
 	###########################################
@@ -9753,7 +9647,7 @@ e_byzantium = {
 		landless = yes
 		de_jure_drift_disabled = yes	
 	}
-	d_regular_tagma_1 = {
+	d_optimatoi_tagma = {
 		capital = c_raidestos
 		ai_primary_priority = {
 			add = @always_primary_score
@@ -9761,7 +9655,7 @@ e_byzantium = {
 		landless = yes
 		de_jure_drift_disabled = yes	
 	}
-	d_regular_tagma_2 = {
+	d_noumeroi = {
 		capital = c_brysis
 		ai_primary_priority = {
 			add = @always_primary_score
@@ -9776,7 +9670,7 @@ e_byzantium = {
 
 	## Sakellarios / Vestarion, basically the guy responsible for the money
 	d_sakellion = {
-		# capital = c_byzantion
+		capital = c_byzantion
 		ai_primary_priority = {
 			add = @always_primary_score
 		}
@@ -9787,7 +9681,7 @@ e_byzantium = {
 
 	## Justice guy
 	d_quaestor = {
-		# capital = c_byzantion
+		capital = c_byzantion
 		ai_primary_priority = {
 			add = @always_primary_score
 		}
@@ -9798,7 +9692,7 @@ e_byzantium = {
 
 	## Postal Service kinda spy guy
 	d_logothetetes_tou_dromou = {
-		# capital = c_byzantion
+		capital = c_byzantion
 		ai_primary_priority = {
 			add = @always_primary_score
 		}
@@ -9808,433 +9702,16 @@ e_byzantium = {
 	}
 
 	###########################################
+	# New Duchies						      #
+	###########################################
+		
+	
+
+	###########################################
 	# Strategos of Themes				      #
 	###########################################
 
-	k_strategos_titles = {
-		can_create = {
-			trigger_if = {
-				limit = {
-					always = yes
-				}
-				NOT = { has_culture_group = culture_group:byzantine_group }
-			}
-		}
-
-		# d_thrace_strategos = {		
-		# 	capital = c_byzantion	
-		# 	ai_primary_priority = {	
-		# 		add = @always_primary_score
-		# 	}	
-		# 	landless = yes	
-		# 	de_jure_drift_disabled = yes	
-		# }		
-		d_strymon_strategos = {		
-			color = { 49 43 135 }
-			color2 = { 255 255 255 }
-			
-			capital = c_traianopolis # Mosynopolis	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_aegean_islands_strategos = {		
-			color = { 220 30 75 }
-			color2 = { 255 255 255 }
-			
-			capital = c_alexandriatroas # Naxos	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_thessalonika_strategos = {		
-			color = { 189 19 130 }
-			color2 = { 255 255 255 }
-			
-			capital = c_gynaikokastron # Thessaloniki	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_thessaly_strategos = {		
-			color = { 170 30 165 }
-			color2 = { 255 255 255 }
-			
-			capital = c_demetrias # Larissa	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-
-		d_epirus_strategos = {		
-			color = { 134 63 109 }
-			color2 = { 255 255 255 }
-			
-			capital = c_aetolia	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_dyrrachion_strategos = {		
-			color = { 137 27 99 }
-			color2 = { 255 255 255 }
-			
-			capital = c_avlonas # Dyrrachion	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_cephalonia_strategos = {		
-			color = { 180 110 85 }
-			color2 = { 255 255 255 }
-			
-			capital = c_cephalonia # Cephalonia	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-
-		d_athens_strategos = {		
-			color = { 206 66 158 }
-			color2 = { 255 255 255 }
-			
-			capital = c_attica # Athens	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_achaia_strategos = {		
-			color = { 185 55 200 }
-			color2 = { 255 255 255 }
-			
-			capital = c_achaia # Patras	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}	
-
-		d_krete_strategos = {
-			color = { 205 110 35 }
-			color2 = { 255 255 225 }
-			
-			capital = c_chandax # Chandax
-			landless = yes	
-			de_jure_drift_disabled = yes
-		}	
-
-		d_vidin_strategos = {			
-			color = { 120 105 85 }
-			color2 = { 255 255 255 }
-			
-			capital = c_kladovo # Vidin		
-			ai_primary_priority = {		
-				add = @always_primary_score	
-			}		
-			landless = yes		
-			de_jure_drift_disabled = yes		
-		}			
-		d_turnovo_strategos = {			
-			color = { 103 78 91 }
-			color2 = { 255 255 255 }
-			
-			capital = c_nikopolis # Turnovo		
-			ai_primary_priority = {		
-				add = @always_primary_score	
-			}		
-			landless = yes		
-			de_jure_drift_disabled = yes		
-		}			
-		d_dobrudja_strategos = {			
-			color = { 75 100 80 }
-			color2 = { 255 255 255 }
-			
-			capital = c_constanta # Constanta		
-			ai_primary_priority = {		
-				add = @always_primary_score	
-			}		
-			landless = yes		
-			de_jure_drift_disabled = yes		
-		}			
-		d_bulgaria_strategos = {			
-			color = { 120 110 110 }
-			color2 = { 255 255 255 }
-			
-			capital = c_skopje # Naissos / Nis		
-			ai_primary_priority = {		
-				add = @always_primary_score	
-			}		
-			landless = yes		
-			de_jure_drift_disabled = yes		
-		}			
-		d_philippopolis_strategos = {			
-			color = { 75 100 110 }
-			color2 = { 255 255 255 }
-			
-			capital = c_philippopolis # Philippopolis / Plovdiv		
-			ai_primary_priority = {		
-				add = @always_primary_score	
-			}		
-			landless = yes		
-			de_jure_drift_disabled = yes		
-		}					
-
-		d_opsikion_strategos = {		
-			color = { 146 47 130 }
-			color2= { 255 255 255 }
-			
-			capital = c_kyzikos	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_ephese_strategos = {		
-			color = { 132 50 173 }
-			color2= { 255 255 255 }
-			
-			capital = c_ephesos	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_thracesia_strategos = {		
-			color = { 167 74 151 }
-			color2= { 255 255 255 }
-			
-			capital = c_sardes	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_optimatoi_strategos = {		
-			color = { 145 56 151 }
-			color2= { 255 255 255 }
-			
-			capital = c_nikomedia	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_bucellaria_strategos = {		
-			color = { 180 62 127 }
-			color2= { 255 255 255 }
-			
-			capital = c_galatia	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_cilicia_strategos = {		
-			color = { 223 117 26 }
-			color2= { 255 255 255 }
-			
-			capital = c_anazaribus	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_cibyrrhaeot_strategos = {		
-			color = { 215 40 30 }
-			color2= { 255 255 255 }
-			
-			capital = c_attaleia	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-
-		d_anatolia_strategos = {		
-			color = { 200 50 50 }
-			color2= { 255 255 255 }
-			
-			capital = c_amorion	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_cappadocia_strategos = {		
-			color = { 200 77 52 }
-			color2= { 255 255 255 }
-			
-			capital = c_cybistra	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_charsianon_strategos = {		
-			color = { 205 130 85 }
-			color2= { 255 255 255 }
-			
-			capital = c_charsianon	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_paphlagonia_strategos = {		
-			color = { 205 127 158 }
-			color2= { 255 255 255 }
-			
-			capital = c_paphlagonia_2	
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_armeniac_strategos = {		
-			color = { 150 130 180 }
-			color2= { 255 255 255 }
-			
-			capital = c_sinope
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_sebasteia_strategos = {		
-			color = { 197 157 76 }
-			color2= { 255 255 255 }
-			
-			capital = c_sebastopolis
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-		d_chaldia_strategos = {		
-			color = { 150 130 20 }
-			color2 = { 255 255 255 }
-			
-			capital = c_colonea
-			ai_primary_priority = {	
-				add = @always_primary_score
-			}	
-			landless = yes	
-			de_jure_drift_disabled = yes	
-		}		
-
-		d_antioch_strategos = {
-			color = { 142 63 129 }
-			color2 = { 255 255 255 }
-			
-			capital = c_antiocheia
-			landless = yes	
-			de_jure_drift_disabled = yes
-		}
-
-		d_mesopotamia_strategos = {
-			color = { 200 50 50 }
-			color2 = { 255 255 255 }
-			
-			capital = c_theodosiopolis # Theodosiopolis/Erzurum
-			landless = yes	
-			de_jure_drift_disabled = yes
-		}
-		d_vaspurakan_strategos = {
-			color = { 172 82 55 }
-			color2= { 255 255 255 }
-			
-			capital = c_hadamakert # Van
-			landless = yes	
-			de_jure_drift_disabled = yes
-			
-			cultural_names = {
-				turkish = cn_vasburagan
-			}
-		}
-		d_greater_armenia_strategos = {
-			color = { 203 86 66 }
-			color2 = { 255 255 255 }
-			
-			capital = c_bagavan
-			landless = yes	
-			de_jure_drift_disabled = yes
-			
-			cultural_names = {
-				armenian = cn_mets_hayk_
-			}
-		}
-
-		d_sirmium_strategos = {
-			color = { 103 88 51 }
-			color2 = { 255 255 255 }
-			
-			capital = c_ilok
-			landless = yes	
-			de_jure_drift_disabled = yes
-		}
-		
-		d_cyprus_strategos = {
-			color = { 215 215 20 }
-			color2= { 255 255 255 }
-			
-			capital = c_nicosia
-			
-			cultural_names = {
-				turkish = cn_kibris
-			}
-			landless = yes	
-			de_jure_drift_disabled = yes
-		}
-		
-	}
-
-	###########################################
-	# New Duchies						      #
-	###########################################
-
-	
-
-	d_langobardia_roman = {
-		color = { 167 172 63 }
-		color2 = { 255 255 255 }
-
-		capital = c_bari
-	}
-
-	
-
-	
-
+	## deprecated
 
 	## VANILLA
 	
@@ -12307,7 +11784,7 @@ e_byzantium = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_usora  = {
+				c_srebrenik  = {
 					color =  { 170 70 100 }
 					color2 =  { 255 255 255 }
 						b_srebrenik  = {
@@ -12370,7 +11847,7 @@ e_byzantium = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_pset  = {
+				c_bihac  = {
 					color =  { 135 55 65 }
 					color2 =  { 255 255 255}
 						b_bihac  = {
@@ -13023,41 +12500,43 @@ e_byzantium = {
 				}
 			}
 			
-				c_szerem  = {
+			c_szerem  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+
+				cultural_names = {
+					greek = cn_c_szerem
+				}
+					b_szerem  = {
+					province =  3739
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
 
 					cultural_names = {
-						greek = cn_c_szerem
+						greek = cn_b_szerem
 					}
-						b_szerem  = {
-						province =  3739
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
+				}
+			}
 
-						cultural_names = {
-							greek = cn_b_szerem
-						}
-					}
-				}
-				c_ilok  = {
+			c_ilok  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+					b_ilok  = {
+					province =  3611
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
-						b_ilok  = {
-						province =  3611
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
-					}
 				}
-				c_zemun  = {
+			}
+			
+			c_zemun  = {
+				color =  { 179 43 111 }
+				color2 =  { 255 255 255 }
+					b_zemun  = {
+					province =  3613
 					color =  { 179 43 111 }
 					color2 =  { 255 255 255 }
-						b_zemun  = {
-						province =  3613
-						color =  { 179 43 111 }
-						color2 =  { 255 255 255 }
-					}
 				}
+			}
 		}
 	}
 
@@ -16486,6 +15965,7 @@ e_byzantium = {
 			
 			cultural_names = {
 				armenian = cn_mets_hayk_
+				greek = cn_iberia
 			}
 			
 				c_hayk  = {
@@ -17623,6 +17103,13 @@ e_byzantium = {
 					}
 				}
 		}
+
+		d_langobardia_roman = {
+			color = { 167 172 63 }
+			color2 = { 255 255 255 }
+
+			capital = c_bari
+		}
 	}
 	
 	k_venice = {
@@ -18664,7 +18151,7 @@ k_sardinia = {	#Sardinia & Corsica
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_vecchio  = {
+			c_bonifacio  = {
 				color =  { 205 230 235 }
 				color2 =  { 255 255 255 }
 					b_bonifacio  = {
@@ -18822,6 +18309,7 @@ k_romagna = {
 				is_ai = yes
 			}
 			faith = { religion_tag = christianity_religion }
+			NOT = { has_government = theocracy_government }
 		}
 	}
 
@@ -19630,11 +19118,11 @@ k_sweden = {
 				}
 			}
 			c_kungahalla  = {
-				color =  { 220 4 40 }
+				color = { 20 70 215 }
 				color2 =  { 255 255 255 }
 					b_kungahalla  = {
 					province =  318
-					color =  { 220 4 40 }
+					color = { 20 70 215 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -19656,7 +19144,7 @@ k_sweden = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_skara  = {
+			c_lacko  = {
 				color =  { 61 104 227 }
 				color2 =  { 255 255 255 }
 					b_lacko  = {
@@ -22982,13 +22470,6 @@ k_moravia = {
 #		}
 }
 
-k_winideheim = {
-	color = { 158 102 36 }
-	color2 = { 200 0 0 }
-
-	capital = c_praha # Praha
-}
-
 k_poland = {
 	color = { 150 23 23 }
 	color2 = { 200 0 0 }
@@ -24208,7 +23689,7 @@ k_pomerania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_kolobrzeg  = {
+			c_swinoujscie  = {
 				color =  { 121 163 58 }
 				color2 =  { 255 255 255 }
 					b_swinoujscie  = {
@@ -24289,7 +23770,7 @@ k_pomerania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_pila  = {
+			c_walcz  = {
 				color =  { 115 160 40 }
 				color2 =  { 255 255 255 }
 					b_walcz  = {
@@ -24561,7 +24042,7 @@ k_pomerania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_miastko  = {
+			c_hammerstein  = {
 				color =  { 105 125 80 }
 				color2 =  { 255 255 255 }
 					b_hammerstein  = {
@@ -24579,7 +24060,7 @@ k_pomerania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_berent  = {
+			c_schwetz  = {
 				color =  { 90 115 80 }
 				color2 =  { 255 255 255 }
 					b_schwetz  = {
@@ -25046,7 +24527,7 @@ k_lithuania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_bartenstein  = {
+			c_lautenburg  = {
 				color =  { 230 165 165 }
 				color2 =  { 255 255 255 }
 					b_lautenburg  = {
@@ -25088,9 +24569,9 @@ k_lithuania = {
 		color = { 160 95 105 }
 		color2 = { 255 255 255 }
 		
-		capital = c_torun # Chelmno
+		capital = c_kulm # Chelmno
 	
-			c_torun  = {
+			c_kulm  = {
 				color =  { 150 85 95 }
 				color2 =  { 255 255 255 }
 					b_kulm  = {
@@ -25117,7 +24598,7 @@ k_lithuania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_osterode  = {
+			c_eylau  = {
 				color =  { 165 85 85 }
 				color2 =  { 255 255 255 }
 					b_eylau  = {
@@ -25171,7 +24652,7 @@ k_lithuania = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_angerburg  = {
+			c_lotzen = {
 				color =  { 175 85 105 }
 				color2 =  { 255 255 255 }
 					b_lotzen  = {
@@ -28862,7 +28343,7 @@ k_pontic_steppe = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_uman  = {
+			c_yary  = {
 				color =  { 105 60 10 }
 				color2 =  { 255 255 255 }
 					b_yary  = {
@@ -29298,35 +28779,8 @@ k_pontic_steppe = {
 		color = { 153 60 74 }
 		color2= { 255 255 255 }
 		
-		capital = c_kerch # Kerch
+		capital = c_kalos_limen # Kerch
 		
-			# c_kerch  = {
-			# 	color =  { 124 52 63 }
-			# 	color2 =  { 255 255 255 }
-			# 		b_kerch  = {
-			# 		province =  562
-			# 		color =  { 124 52 63 }
-			# 		color2 =  { 255 255 255 }
-			# 	}
-			# }
-			# c_chersonesus  = {
-			# 	color =  { 124 52 63 }
-			# 	color2 =  { 255 255 255 }
-			# 		b_chersonesus  = {
-			# 		province =  560
-			# 		color =  { 124 52 63 }
-			# 		color2 =  { 255 255 255 }
-			# 	}
-			# }
-			# c_theodosia  = {
-			# 	color =  { 124 52 63 }
-			# 	color2 =  { 255 255 255 }
-			# 		b_theodosia  = {
-			# 		province =  561
-			# 		color =  { 124 52 63 }
-			# 		color2 =  { 255 255 255 }
-			# 	}
-			# }
 			c_kalos_limen  = {
 				color =  { 110 32 44 }
 				color2 =  { 255 255 255 }
@@ -29372,6 +28826,34 @@ k_pontic_steppe = {
 					color2 =  { 255 255 255 }
 				}
 			}
+
+			c_chersonesus  = {
+				color =  { 124 52 63 }
+				color2 =  { 255 255 255 }
+					b_chersonesus  = {
+					province =  560
+					color =  { 124 52 63 }
+					color2 =  { 255 255 255 }
+				}
+			}
+			c_kerch  = {
+				color =  { 124 52 63 }
+				color2 =  { 255 255 255 }
+					b_kerch  = {
+					province =  562
+					color =  { 124 52 63 }
+					color2 =  { 255 255 255 }
+				}
+			}		
+			c_theodosia  = {
+				color =  { 124 52 63 }
+				color2 =  { 255 255 255 }
+					b_theodosia  = {
+					province =  561
+					color =  { 124 52 63 }
+					color2 =  { 255 255 255 }
+				}
+			}
 	}
 
 	## AVE MARIA ROMAN ADMIN
@@ -29382,33 +28864,7 @@ k_pontic_steppe = {
 		
 		capital = c_chersonesus
 
-		c_kerch  = {
-			color =  { 124 52 63 }
-			color2 =  { 255 255 255 }
-				b_kerch  = {
-				province =  562
-				color =  { 124 52 63 }
-				color2 =  { 255 255 255 }
-			}
-		}
-		c_chersonesus  = {
-			color =  { 124 52 63 }
-			color2 =  { 255 255 255 }
-				b_chersonesus  = {
-				province =  560
-				color =  { 124 52 63 }
-				color2 =  { 255 255 255 }
-			}
-		}
-		c_theodosia  = {
-			color =  { 124 52 63 }
-			color2 =  { 255 255 255 }
-				b_theodosia  = {
-				province =  561
-				color =  { 124 52 63 }
-				color2 =  { 255 255 255 }
-			}
-		}
+		
 	}
 }
 
@@ -32180,7 +31636,7 @@ k_yugra = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_sosva  = {
+			c_sukhorukova  = {
 				color =  { 200 230 200 }
 				color2 =  { 255 255 255 }
 					b_sukhorukova  = {
@@ -33062,7 +32518,7 @@ k_ob = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_chulym  = {
+			c_chulym_bis  = {
 				color =  { 145 165 160 }
 				color2 =  { 255 255 255 }
 					b_chulym_bis  = {
@@ -34419,7 +33875,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_zarman  = {
+				c_nutsgen_uul  = {
 					color =  { 120 120 5 }
 					color2 =  { 255 255 255 }
 						b_nutsgen_uul  = {
@@ -34535,7 +33991,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_urgamal  = {
+				c_airag  = {
 					color =  { 60 140 65 }
 					color2 =  { 255 255 255 }
 						b_airag  = {
@@ -34898,7 +34354,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_kantegir  = {
+				c_gosudar   = {
 					color =  { 85 150 155 }
 					color2 =  { 255 255 255 }
 						b_gosudar  = {
@@ -35155,7 +34611,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_shor  = {
+				c_kondoma_MON  = {
 					color =  { 125 120 155 }
 					color2 =  { 255 255 255 }
 						b_kondoma_MON  = {
@@ -36116,7 +35572,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_tulun  = {
+				c_kaduy  = {
 					color =  { 41 64 41 }
 					color2 =  { 255 255 255 }
 						b_kaduy  = {
@@ -36184,7 +35640,7 @@ e_mongolia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_ilga  = {
+				c_ilim_MON  = {
 					color =  { 60 70 90 }
 					color2 =  { 255 255 255 }
 						b_ilim_MON  = {
@@ -39930,7 +39386,7 @@ k_khotan = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_dunhuang  = {
+			c_miran = {
 				color =  { 135 240 250 }
 				color2 =  { 255 255 255 }
 					b_miran  = {
@@ -41167,7 +40623,7 @@ k_transoxiana = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_firabr  = {
+			c_paykend  = {
 				color =  { 25 185 75 }
 				color2 =  { 255 255 255 }
 					b_paykend  = {
@@ -41793,7 +41249,7 @@ k_transoxiana = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_isfara  = {
+			c_varukh  = {
 				color =  { 45 155 75 }
 				color2 =  { 255 255 255 }
 					b_varukh  = {
@@ -42167,9 +41623,9 @@ k_transoxiana = {
 		color = { 90 200 110 }
 		color2 = { 255 255 255 }
 		
-		capital = c_sarykamysh	#	Kurtysh
+		capital = c_kurtysh	#	Kurtysh
 		
-			c_sarykamysh  = {
+			c_kurtysh  = {
 				color =  { 88 202 103 }
 				color2 =  { 255 255 255 }
 					b_kurtysh  = {
@@ -42460,7 +41916,7 @@ e_persia = {
 			
 			capital = c_kirman # Kirman
 			
-				c_kirman  = {
+				c_khabis  = {
 					color =  { 165 245 85 }
 					color2 =  { 255 255 255 }
 						b_khabis  = {
@@ -43675,15 +43131,15 @@ e_persia = {
 		color = { 86 250 237 }
 		color2 = { 255 255 255 }
 		
-		capital = c_nishapur # Nishapur
+		capital = c_farhajird # Nishapur
 		
 		d_nishapur = {
 			color = { 85 255 235 }
 			color2 = { 255 255 255 }
 			
-			capital = c_nishapur # Nishapur
+			capital = c_farhajird # Nishapur
 			
-				c_nishapur  = {
+				c_farhajird  = {
 					color =  { 85 250 250 }
 					color2 =  { 255 255 255 }
 						b_farhajird  = {
@@ -44136,9 +43592,9 @@ e_persia = {
 			color = { 13 220 200 }
 			color2 = { 255 255 255 }
 			
-			capital = c_ghur # Firuzkuh
+			capital = c_firuzkuh # Firuzkuh
 			
-				c_ghur  = {
+				c_firuzkuh  = {
 					color =  { 15 225 205 }
 					color2 =  { 255 255 255 }
 						b_firuzkuh  = {
@@ -44174,7 +43630,7 @@ e_persia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_darmashan  = {
+				c_azadawan  = {
 					color =  { 10 215 190 }
 					color2 =  { 255 255 255 }
 						b_azadawan  = {
@@ -44683,9 +44139,9 @@ e_persia = {
 			color = { 100 200 250 }
 			color2 = { 255 255 255 }
 
-			capital = c_gilan
+			capital = c_daylam
 			
-				c_gilan  = {
+				c_daylam  = {
 					color =  { 105 205 255 }
 					color2 =  { 255 255 255 }
 						b_daylam  = {
@@ -44898,7 +44354,7 @@ e_persia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_dihistan  = {
+				c_kerend  = {
 					color =  { 85 190 250 }
 					color2 =  { 255 255 255 }
 						b_kerend  = {
@@ -45571,9 +45027,9 @@ e_persia = {
 			color = { 95 195 50 }
 			color2 = { 255 255 255 }
 			
-			capital = c_bampur	#	Bampur
+			capital = c_bint	#	Bampur
 			
-				c_bampur  = {
+				c_bint  = {
 					color =  { 100 190 45 }
 					color2 =  { 255 255 255 }
 						b_bint  = {
@@ -46541,7 +45997,7 @@ e_persia = {
 			
 			capital = c_basra
 			
-				c_basra  = {
+				c_bajlan  = {
 					color =  { 80 147 30 }
 					color2 =  { 255 255 255 }
 						b_bajlan  = {
@@ -49986,18 +49442,6 @@ k_france = {
 			add = @better_than_the_alternatives_score
 		}
 	}
-
-	### AVE MARIA CHRISTIAN FLAVOUR EVECHES
-	d_bishop_reims = {
-
-		color = { 7 60 160 }
-		color2 = { 255 255 255 }
-		
-		capital = c_reims # Reims
-		
-		landless = yes
-		no_automatic_claims = yes
-	}
 	
 	d_valois = {
 		color = { 24 52 226 }
@@ -50275,7 +49719,7 @@ k_france = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_tourraine  = {
+			c_tours  = {
 				color =  { 25 65 225 }
 				color2 =  { 255 255 255 }
 					b_tours  = {
@@ -50767,7 +50211,7 @@ k_france = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_chartres  = {
+			c_dreux  = {
 				color =  { 23 38 255 }
 				color2 =  { 255 255 255 }
 					b_dreux  = {
@@ -50910,7 +50354,7 @@ k_france = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_coulommiers  = {
+			c_provins  = {
 				color =  { 12 48 170 }
 				color2 =  { 255 255 255 }
 					b_provins  = {
@@ -52044,7 +51488,7 @@ k_aquitaine = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_uses  = {
+			c_montlaur  = {
 				color =  { 130 120 230 }
 				color2 =  { 255 255 255 }
 					b_montlaur  = {
@@ -52521,7 +51965,7 @@ k_aquitaine = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_velay  = {
+			c_le_puy  = {
 				color =  { 70 0 215 }
 				color2 =  { 255 255 255 }
 					b_le_puy  = {
@@ -52600,7 +52044,7 @@ k_aquitaine = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_jaligny  = {
+			c_saint_pourcain  = {
 				color =  { 37 10 150 }
 				color2 =  { 255 255 255 }
 					b_saint_pourcain  = {
@@ -53127,7 +52571,7 @@ k_burgundy = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_canavese  = {
+			c_ivrea  = {
 				color =  { 115 25 45 }
 				color2 =  { 255 255 255 }
 					b_ivrea  = {
@@ -53590,7 +53034,7 @@ k_andalusia = {
 				}
 			}
 
-			c_almader  = {
+			c_alarcos  = {
 				color =  { 65 215 0 }
 				color2 =  { 255 255 255 }
 					b_alarcos  = {
@@ -53609,7 +53053,7 @@ k_andalusia = {
 				}
 			}
 		
-			c_andujar  = {
+			c_jaen  = {
 				color =  { 65 155 40 }
 				color2 =  { 255 255 255 }
 					b_jaen  = {
@@ -54074,7 +53518,7 @@ k_andalusia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_mora  = {
+			c_ucles  = {
 				color =  { 190 130 20 }
 				color2 =  { 255 255 255 }
 					b_ucles  = {
@@ -54154,7 +53598,7 @@ k_badajoz = {	#Badajoz/Lucitania
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_beja  = {
+			c_evora  = {
 				color =  { 155 245 70 }
 				color2 =  { 255 255 255 }
 					b_evora  = {
@@ -54885,7 +54329,7 @@ k_castille = { #Spain
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_cuellar  = {
+			c_segovia  = {
 				color =  { 255 245 10 }
 				color2 =  { 255 255 255 }
 					b_segovia  = {
@@ -55313,7 +54757,7 @@ k_aragon = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_girona  = {
+			c_perpignan  = {
 				color =  { 170 115 110 }
 				color2 =  { 255 255 255 }
 					b_perpignan  = {
@@ -55698,7 +55142,7 @@ k_leon = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_salamanca  = {
+			c_bejar  = {
 				color =  { 195 105 25 }
 				color2 =  { 255 255 255 }
 					b_bejar  = {
@@ -55945,7 +55389,7 @@ k_spanish_galicia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_tui  = {
+			c_monte_faro  = {
 				color =  { 215 200 100 }
 				color2 =  { 255 255 255 }
 					b_monte_faro  = {
@@ -58486,7 +57930,7 @@ k_anbiya = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_tiris  = {
+			c_bir_um-ghrein = {
 				color =  { 161 157 191 }
 				color2 =  { 255 255 255 }
 					b_bir_um-ghrein  = {
@@ -58690,7 +58134,7 @@ k_anbiya = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_saoura  = {
+			c_wadi_daoura  = {
 				color =  { 145 136 116 }
 				color2 =  { 255 255 255 }
 					b_wadi_daoura  = {
@@ -58920,7 +58364,7 @@ k_sahara = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_air  = {
+			c_agadez  = {
 				color =  { 135 102 4 }
 				color2 =  { 255 255 255 }
 					b_agadez  = {
@@ -59334,7 +58778,7 @@ e_arabia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_sirhan  = {
+				c_quraqir  = {
 					color =  { 125 255 18 }
 					color2 =  { 255 255 255 }
 						b_quraqir  = {
@@ -60012,7 +59456,7 @@ e_arabia = {
 						color2 =  { 255 255 255 }
 					}
 				}
-				c_subay  = {
+				c_ad-dathina  = {
 					color =  { 163 203 13 }
 					color2 =  { 255 255 255 }
 						b_ad-dathina  = {
@@ -62948,7 +62392,7 @@ k_abyssinia = {
 	color = { 120 62 20 }
 	color2 = { 255 255 255 }
 
-	capital = c_lasta
+	capital = c_aksum
 
 	ai_primary_priority = {
 		if = {
@@ -62963,9 +62407,9 @@ k_abyssinia = {
 		color = { 186 135 70 }
 		color2 = { 255 255 255 }
 		
-		capital = c_tigre
+		capital = c_aksum
 		
-			c_tigre  = {
+			c_aksum  = {
 				color =  { 188 138 73 }
 				color2 =  { 255 255 255 }
 					b_aksum  = {
@@ -63037,7 +62481,7 @@ k_abyssinia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_intarta  = {
+			c_wiqro  = {
 				color =  { 193 143 78 }
 				color2 =  { 255 255 255 }
 					b_wiqro  = {
@@ -63126,7 +62570,7 @@ k_abyssinia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_bur  = {
+			c_buri  = {
 				color =  { 202 152 89 }
 				color2 =  { 255 255 255 }
 					b_buri  = {
@@ -63159,9 +62603,9 @@ k_abyssinia = {
 		color = { 205 155 95 }
 		color2 = { 255 255 255 }
 		
-		capital = c_lasta
+		capital = c_lalibela
 		
-			c_lasta  = {
+			c_lalibela  = {
 				color =  { 207 157 97 }
 				color2 =  { 255 255 255 }
 					b_lalibela  = {
@@ -63293,9 +62737,9 @@ k_abyssinia = {
 		color = { 123 65 23  }
 		color2 = { 255 255 255 }
 		
-		capital = c_dembiya
+		capital = c_gondar
 		
-			c_dembiya  = {
+			c_gondar  = {
 				color =  { 130 75 30 }
 				color2 =  { 255 255 255 }
 					b_gondar  = {
@@ -63367,7 +62811,7 @@ k_abyssinia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_semien  = {
+			c_kosoge  = {
 				color =  { 127 72 28 }
 				color2 =  { 255 255 255 }
 					b_kosoge  = {
@@ -63757,7 +63201,7 @@ k_nubia = {
 		
 		capital = c_dongola
 		
-			c_dongola  = {
+			c_old_dongola  = {
 				color =  { 145 150 80 }
 				color2 =  { 255 255 255 }
 					b_old_dongola  = {
@@ -64321,7 +63765,7 @@ k_nubia = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_tagali  = {
+			c_kosti  = {
 				color =  { 120 60 15 }
 				color2 =  { 255 255 255 }
 					b_kosti  = {
@@ -64480,7 +63924,7 @@ k_blemmyia = { #Maikele Bahr or Bejaland
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_wadi_amur  = {
+			c_khawr_nubt  = {
 				color =  { 215 120 90 }
 				color2 =  { 255 255 255 }
 					b_khawr_nubt  = {
@@ -64513,9 +63957,9 @@ k_blemmyia = { #Maikele Bahr or Bejaland
 		color = { 253 135 87 }
 		color2 = { 255 255 255 }
 		
-		capital = c_bazin
+		capital = c_tokar
 		
-			c_bazin  = {
+			c_tokar  = {
 				color =  { 240 145 85 }
 				color2 =  { 255 255 255 }
 					b_tokar  = {
@@ -64622,7 +64066,7 @@ k_blemmyia = { #Maikele Bahr or Bejaland
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_djarin  = {
+			c_dherbe = {
 				color =  { 245 160 70 }
 				color2 =  { 255 255 255 }
 					b_dherbe  = {
@@ -64895,9 +64339,9 @@ k_damot = {
 		color = { 180 80 190 }
 		color2 = { 255 255 255 }
 		
-		capital = c_kaffa
+		capital = c_bonga
 		
-			c_kaffa  = {
+			c_bonga  = {
 				color =  { 182 82 192 }
 				color2 =  { 255 255 255 }
 					b_bonga  = {
@@ -65098,9 +64542,9 @@ k_adal = {
 		color = { 138 30 30 }
 		color2 = { 255 255 255 }
 		
-		capital = c_dawaro
+		capital = c_karayu
 		
-			c_dawaro  = {
+			c_karayu  = {
 				color =  { 140 32 32 }
 				color2 =  { 255 255 255 }
 					b_karayu  = {
@@ -65127,7 +64571,7 @@ k_adal = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_gabal  = {
+			c_bate  = {
 				color =  { 142 34 35 }
 				color2 =  { 255 255 255 }
 					b_bate  = {
@@ -65892,11 +65336,11 @@ k_ajuraan = {
 				}
 			}
 			c_hudur  = {
-				color =  { 224 124 55 }
+				color = { 238 114 43 }
 				color2 =  { 255 255 255 }
 					b_hudur  = {
 					province =  8474
-					color =  { 224 124 55 }
+					color = { 238 114 43 }
 					color2 =  { 255 255 255 }
 				}
 			}
@@ -66192,7 +65636,7 @@ k_outer_ajuraan = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_bali  = {
+			c_dumali  = {
 				color =  { 54 134 144 }
 				color2 =  { 255 255 255 }
 					b_dumali  = {
@@ -66234,9 +65678,9 @@ k_outer_ajuraan = {
 		color = { 209 73 44 }
 		color2 = { 255 255 255 }
 		
-		capital = c_marsabit
+		capital = c_lagh_bogal
 		
-			c_marsabit  = {
+			c_lagh_bogal  = {
 				color =  { 219 84 53 }
 				color2 =  { 255 255 255 }
 					b_lagh_bogal  = {
@@ -66356,9 +65800,9 @@ k_kanem = {
 		color = { 120 185 120 }
 		color2 = { 255 255 255 }
 		
-		capital = c_kanem
+		capital = c_manan
 		
-			c_kanem  = {
+			c_manan  = {
 				color =  { 123 188 123 }
 				color2 =  { 255 255 255 }
 					b_manan  = {
@@ -66705,15 +66149,15 @@ k_sao = {
 	color = { 10 200 205 }
 	color2 = { 255 255 255 }
 
-	capital = c_baguirmi
+	capital = c_massenya
 
 	d_baguirmi = {
 		color = { 15 205 205 }
 		color2 = { 255 255 255 }
 		
-		capital = c_baguirmi
+		capital = c_massenya
 		
-			c_baguirmi  = {
+			c_massenya  = {
 				color =  { 17 207 207 }
 				color2 =  { 255 255 255 }
 					b_massenya  = {
@@ -66776,7 +66220,7 @@ k_sao = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_barma  = {
+			c_barma2  = {
 				color =  { 21 212 208 }
 				color2 =  { 255 255 255 }
 					b_barma2  = {
@@ -67539,7 +66983,7 @@ k_darfur = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_east_darfur  = {
+			c_umm_gafala  = {
 				color =  { 189 29 86 }
 				color2 =  { 255 255 255 }
 					b_umm_gafala  = {
@@ -67610,7 +67054,7 @@ k_darfur = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_qimr  = {
+			c_tureiq  = {
 				color =  { 205 34 94 }
 				color2 =  { 255 255 255 }
 					b_tureiq  = {
@@ -67670,9 +67114,9 @@ k_darfur = {
 		color = { 186 32 79 }
 		color2 = { 255 255 255 }
 		
-		capital = c_wadai
+		capital = c_wara
 		
-			c_wadai  = {
+			c_wara  = {
 				color =  { 187 23 82 }
 				color2 =  { 255 255 255 }
 					b_wara  = {
@@ -67699,7 +67143,7 @@ k_darfur = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_dar_sila  = {
+			c_goz_beida = {
 				color =  { 143 37 75 }
 				color2 =  { 255 255 255 }
 					b_goz_beida  = {
@@ -67869,7 +67313,7 @@ k_darfur = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_west_kordofan  = {
+			c_en-nahud  = {
 				color =  { 165 46 66 }
 				color2 =  { 255 255 255 }
 					b_en-nahud  = {
@@ -68651,7 +68095,7 @@ k_ghana = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_masin  = {
+			c_kedama  = {
 				color =  { 168 119 17 }
 				color2 =  { 255 255 255 }
 					b_kedama  = {
@@ -68918,7 +68362,7 @@ k_ghana = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_kingui  = {
+			c_nioro  = {
 				color =  { 145 87 15 }
 				color2 =  { 255 255 255 }
 					b_nioro  = {
@@ -68942,9 +68386,9 @@ k_ghana = {
 		color = { 227 118 23 }
 		color2 = { 255 255 255 }
 		
-		capital = c_kaniaga
+		capital = c_diara
 		
-			c_kaniaga  = {
+			c_diara  = {
 				color =  { 207 107 21 }
 				color2 =  { 255 255 255 }
 					b_diara  = {
@@ -69586,7 +69030,7 @@ k_mali = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_kisi  = {
+			c_falanko  = {
 				color =  { 189 166 19 }
 				color2 =  { 255 255 255 }
 					b_falanko  = {
@@ -69622,7 +69066,7 @@ k_mali = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_solimana  = {
+			c_firiya  = {
 				color =  { 163 145 28 }
 				color2 =  { 255 255 255 }
 					b_firiya  = {
@@ -69798,7 +69242,7 @@ k_takrur = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_galam  = {
+			c_bakel  = {
 				color =  { 69 189 159 }
 				color2 =  { 255 255 255 }
 					b_bakel  = {
@@ -70553,7 +69997,7 @@ k_guinea = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_sanda  = {
+			c_tombo   = {
 				color =  { 153 153 79 }
 				color2 =  { 255 255 255 }
 					b_tombo  = {
@@ -70901,7 +70345,7 @@ k_guinea = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_toma  = {
+			c_macenta = {
 				color =  { 94 94 44 }
 				color2 =  { 255 255 255 }
 					b_macenta  = {
@@ -70963,7 +70407,7 @@ k_guinea = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_grebo  = {
+			c_krawi  = {
 				color =  { 120 115 61 }
 				color2 =  { 255 255 255 }
 					b_krawi  = {
@@ -71253,9 +70697,9 @@ k_kong = {
 		color = { 198 48 20 }
 		color2 = { 255 255 255 }
 		
-		capital = c_kong
+		capital = c_kong-north
 		
-			c_kong  = {
+			c_kong-north  = {
 				color =  { 222 68 65 }
 				color2 =  { 255 255 255 }
 					b_kong-north  = {
@@ -71405,9 +70849,9 @@ k_kong = {
 		color = { 198 48 0 }
 		color2 = { 255 255 255 }
 		
-		capital = c_lobi
+		capital = c_boromo
 		
-			c_lobi  = {
+			c_boromo  = {
 				color =  { 206 76 56 }
 				color2 =  { 255 255 255 }
 					b_boromo  = {
@@ -71665,7 +71109,7 @@ k_akan = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_wassa  = {
+			c_tarkwa  = {
 				color =  { 91 149 71 }
 				color2 =  { 255 255 255 }
 					b_tarkwa  = {
@@ -72030,7 +71474,7 @@ k_akan = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_afram  = {
+			c_ganeboafo  = {
 				color =  { 83 150 71 }
 				color2 =  { 255 255 255 }
 					b_ganeboafo  = {
@@ -72057,7 +71501,7 @@ k_akan = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_nanumba  = {
+			c_akpafu  = {
 				color =  { 85 152 73 }
 				color2 =  { 255 255 255 }
 					b_akpafu  = {
@@ -72744,9 +72188,9 @@ k_yorubaland = {
 		color = { 45 55 222 }
 		color2 = { 255 255 255 }
 		
-		capital = c_oyo
+		capital = c_oyo-ile
 		
-			c_oyo  = {
+			c_oyo-ile  = {
 				color =  { 49 59 227 }
 				color2 =  { 255 255 255 }
 					b_oyo-ile  = {
@@ -72872,7 +72316,7 @@ k_yorubaland = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_yagba  = {
+			c_ikare  = {
 				color =  { 55 66 233 }
 				color2 =  { 255 255 255 }
 					b_ikare  = {
@@ -72994,9 +72438,9 @@ k_yorubaland = {
 		color = { 226 120 128 }
 		color2 = { 255 255 255 }
 		
-		capital = c_benin
+		capital = c_benin-city
 		
-			c_benin  = {
+			c_benin-city  = {
 				color =  { 228 122 130 }
 				color2 =  { 255 255 255 }
 					b_benin-city  = {
@@ -73298,7 +72742,7 @@ k_igbo-benue = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_opanda  = {
+			c_umaisha  = {
 				color =  { 48 53 163 }
 				color2 =  { 255 255 255 }
 					b_umaisha  = {
@@ -74087,7 +73531,7 @@ k_punjab = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_dipalpur  = {
+			c_pancapura  = {
 				color =  { 190 100 41 }
 				color2 =  { 255 255 255 }
 					b_pancapura  = {
@@ -74159,7 +73603,7 @@ k_punjab = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_shorkot  = {
+			c_bhirr  = {
 				color =  { 180 110 61 }
 				color2 =  { 255 255 255 }
 					b_bhirr  = {
@@ -74541,7 +73985,7 @@ k_delhi = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_sthanisvara  = {
+			c_saharanpur  = {
 				color =  { 210 65 12 }
 				color2 =  { 255 255 255 }
 					b_saharanpur  = {
@@ -75106,9 +74550,9 @@ k_gujarat = {
 		color = { 220 100 50 }
 		color2 = { 255 255 255 }
 		
-		capital = c_bhumilka # Bhumilka
+		capital = c_vamanasthali # Bhumilka
 		
-			c_bhumilka  = {
+			c_vamanasthali  = {
 				color =  { 220 120 50 }
 				color2 =  { 255 255 255 }
 					b_vamanasthali  = {
@@ -75287,7 +74731,7 @@ k_gujarat = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_navasarika  = {
+			c_akruresvara  = {
 				color =  { 200 120 90 }
 				color2 =  { 255 255 255 }
 					b_akruresvara  = {
@@ -75366,7 +74810,7 @@ k_rajputana = {
 	color = { 200 70 0 }
 	color2 = { 255 255 255 }
 	
-	capital = c_ajayameru # Ajayameru
+	capital = c_shakambhari # Ajayameru
 	
 	ai_primary_priority = {
 		if = {
@@ -75773,9 +75217,9 @@ k_rajputana = {
 		color = { 230 190 51 }
 		color2 = { 255 255 255 }
 		
-		capital = c_ajayameru # Ajayameru
+		capital = c_shakambhari # Ajayameru
 		
-			c_ajayameru  = {
+			c_shakambhari  = {
 				color =  { 210 190 51 }
 				color2 =  { 255 255 255 }
 					b_shakambhari  = {
@@ -75847,7 +75291,7 @@ k_rajputana = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_vairata  = {
+			c_harshnath  = {
 				color =  { 230 190 71 }
 				color2 =  { 255 255 255 }
 					b_harshnath  = {
@@ -76857,9 +76301,9 @@ k_himalaya = {
 		color = { 255 20 20 }
 		color2 = { 255 255 255 }
 		
-		capital = c_jumla
+		capital = c_sinja
 		
-			c_jumla  = {
+			c_sinja  = {
 				color =  { 245 10 10 }
 				color2 =  { 255 255 255 }
 					b_sinja  = {
@@ -77427,7 +76871,7 @@ k_bengal = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_kotivarsa  = {
+			c_ramavati  = {
 				color =  { 58 200 41 }
 				color2 =  { 255 255 255 }
 					b_ramavati  = {
@@ -82642,9 +82086,9 @@ k_u = {
 		color = { 3 144 212 }
 		color2 = { 255 255 255 }
 		
-		capital = c_lhasa
+		capital = c_potala
 		
-			c_lhasa  = {
+			c_potala  = {
 				color =  { 3 124 202 }
 				color2 =  { 255 255 255 }
 					b_potala  = {
@@ -83214,7 +82658,7 @@ k_tsang = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_gyirong  = {
+			c_kungtang  = {
 				color =  { 15 150 150 }
 				color2 =  { 255 255 255 }
 					b_kungtang  = {
@@ -84187,7 +83631,7 @@ k_amdo = {
 		color = { 52 31 77 }
 		color2 = { 255 255 255 }
 		
-		capital = c_xining
+		capital = c_rusar_huangzhong
 		
 		cultural_names = {
 			bodpa = cn_qingtang
@@ -84197,7 +83641,7 @@ k_amdo = {
 			zhangzhung = cn_qingtang
 		}
 		
-			c_xining  = {
+			c_rusar_huangzhong  = {
 				color =  { 36 22 54 }
 				color2 =  { 255 255 255 }
 					b_rusar_huangzhong  = {
@@ -84875,7 +84319,7 @@ k_gyalrong = {
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_ngawa  = {
+			c_soxiq  = {
 				color =  { 70 127 158 }
 				color2 =  { 255 255 255 }
 					b_soxiq  = {
@@ -86953,7 +86397,7 @@ k_xia = { # Minya/Minyak
 			lhomon = cn_lingchu
 		}
 		
-			c_liangzhou  = {
+			c_gulang  = {
 				color =  { 60 64 199 }
 				color2 =  { 255 255 255 }
 					b_gulang  = {
@@ -87286,7 +86730,7 @@ k_xia = { # Minya/Minyak
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_suzhou  = {
+			c_jiayuguan = {
 				color =  { 220 140 210 }
 				color2 =  { 255 255 255 }
 					b_jiayuguan  = {
@@ -87313,7 +86757,7 @@ k_xia = { # Minya/Minyak
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_yumen  = {
+			c_chijin  = {
 				color =  { 195 120 215 }
 				color2 =  { 255 255 255 }
 					b_chijin  = {
@@ -87399,7 +86843,7 @@ k_xia = { # Minya/Minyak
 					color2 =  { 255 255 255 }
 				}
 			}
-			c_heihe  = {
+			c_hangtian  = {
 				color =  { 130 60 165 }
 				color2 =  { 255 255 255 }
 					b_hangtian  = {
@@ -87441,9 +86885,9 @@ k_xia = { # Minya/Minyak
 		color = { 90 70 175 }
 		color2 = { 255 255 255 }
 		
-		capital = c_guazhou
+		capital = c_anxi
 		
-			c_guazhou  = {
+			c_anxi  = {
 				color =  { 72 55 145 }
 				color2 =  { 255 255 255 }
 					b_anxi  = {
@@ -87635,12 +87079,12 @@ k_xia = { # Minya/Minyak
 k_adiukru = {
 	color = { 180 220 189 }
 	color2 = { 255 255 255 }
-	
+	can_create = { always = no }
 	capital = c_attie
 }
 k_toro = {
 	color = { 110 40 57 }
 	color2 = { 255 255 255 }
-	
+	can_create = { always = no }
 	capital = c_toro
 }

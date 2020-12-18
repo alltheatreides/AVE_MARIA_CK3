@@ -12,10 +12,12 @@
 		scope:attacker.faith = {
 			NOT = { has_doctrine = unreformed_faith_doctrine }
 		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = am_ambitious
-		}
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
+		}		
 	}
 
 	allowed_for_character_display_regardless = {
@@ -44,442 +46,6 @@
 	valid_to_start = {
 		scope:target = {
 			tier = tier_county
-		}
-	}
-
-	should_invalidate = {
-		OR = {
-			NOT = {
-				any_in_list = {
-					list = target_titles
-					any_in_de_jure_hierarchy = {
-						tier = tier_county
-						holder = {
-							OR = {
-								this = scope:defender
-								target_is_liege_or_above = scope:defender
-							}
-						}
-					}
-				}
-			}
-			#Faith change does not immediately invalidate, it's run through event war_event.3100
-			scope:war = { exists = var:invalidate_defender_faith_change }
-			scope:war = { exists = var:invalidate_attacker_faith_change }
-		}
-	}
-
-	on_invalidated_desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = {
-						any_in_list = {
-							list = target_titles
-							any_in_de_jure_hierarchy = {
-								tier = tier_county
-								holder = {
-									OR = {
-										this = scope:defender
-										target_is_liege_or_above = scope:defender
-									}
-								}
-							}
-						}
-					}
-				}
-				desc = msg_religious_war_invalidation_region_message
-			}
-			triggered_desc = {
-				trigger = {
-					scope:war = {
-						OR = {
-							exists = var:invalidate_defender_faith_change
-							exists = var:invalidate_attacker_faith_change
-						}
-					}
-				}
-				desc = msg_religious_war_invalidated_hostility_level_message
-			}
-		}
-	}
-
-	on_invalidated = {
-		
-	}
-
-	cost = {
-		piety = {
-			add = {
-				value = 25
-				desc = CB_BASE_COST
-			}
-			# Faith Doctrine Piety Discounts
-			if = {
-				limit = {
-					scope:attacker.faith = {
-						has_doctrine_parameter = divine_destiny_holy_war_cost_reduction
-					}
-				}
-				multiply = {
-					value = 0.5
-					desc = CB_DIVINE_DESTINY_COST
-				}
-			}
-
-			if = {
-				limit = {
-					scope:attacker.faith = {
-						has_doctrine_parameter = cheaper_holy_wars_active
-					}
-				}
-				multiply = {
-					value = 0.8
-					desc = CB_REDUCED_HOLY_WAR_COST
-				}
-			}
-
-			# Innovation Piety Discounts
-			if = {
-				limit = {
-					scope:attacker = {
-						culture = {
-							has_innovation = innovation_reconquista
-						}
-					}
-				}
-				multiply = {
-					value = 0.9
-					desc = CB_RECONQUISTA_COST
-				}
-			}
-
-			# Bellum Justum Perk
-			if = {
-				limit = {
-					scope:attacker = {
-						has_perk = bellum_justum_perk
-					}
-				}
-				multiply = {
-					add = bellum_justum_discount_percentage
-					divide = 100
-					desc = CB_ATTACKER_BELLUM_JUSTUM
-				}
-			}
-
-			# Dynasty Warfare Perk
-			if = {
-				limit = {
-					scope:attacker = {
-						has_dynasty = yes
-						dynasty = {
-							has_dynasty_perk = warfare_legacy_2
-						}
-					}
-				}
-				multiply = {
-					value = warfare_legacy_2_discount
-					desc = CB_ATTACKER_DYNASTY_WARFARE
-				}
-			}
-
-			# Vassal contract in-realm cost reduction
-			if = {
-				limit = {
-					scope:attacker = {
-						is_independent_ruler = no
-						vassal_contract_has_flag = vassal_contract_war_override
-						liege = scope:defender.liege
-					}
-				}
-				multiply = {
-					value = war_declaration_rights_allowed_cost_reduction
-					desc = "CB_ATTACKER_VASSAL_CONTRACT"
-				}
-			}
-
-			if = {
-				limit = {
-					has_game_rule = no_cost_casus_belli_costs
-				}
-				multiply = {
-					value = 0
-					desc = CB_GAME_RULE_NO_COST
-				}
-			}
-		}
-	}
-
-	on_declaration = {
-		on_declared_war = yes
-	}
-
-	on_victory_desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					scope:attacker.faith = {
-						has_doctrine = doctrine_pluralism_pluralistic
-					}
-				}
-				desc = religious_war_victory_desc_doctrine_pluralism
-			}
-			desc = religious_war_victory_desc
-		}
-	}
-
-	on_victory = {
-		create_title_and_vassal_change = {
-			type = conquest_holy_war
-			save_scope_as = change
-			add_claim_on_loss = yes
-		}
-
-		# go through the dejure hierarchy under target titles, transfer titles with same or worse tolerance holders (their religion equaly or less tolerated than the defender's),
-		# take the holder as vassal otherwise and don't go deeper
-		every_in_list = {
-			list = target_titles
-			custom_tooltip = RELIGIOUS_CB_TITLE
-
-			religious_cb_title_transfer = yes
-		}
-
-		every_in_list = {
-			list = vassals_taken
-			change_liege = {
-				liege = scope:attacker
-				change = scope:change
-			}
-		}
-		
-		every_in_list = {
-			list = titles_taken
-			change_title_holder = {
-				holder = scope:attacker
-				change = scope:change
-				take_baronies = yes
-			}
-		}
-
-		resolve_title_and_vassal_change = scope:change
-
-		# Prestige for the attacker's war allies
-		add_from_contribution_attackers = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-
-		# Prestige for the defender's war allies
-		add_from_contribution_defenders = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-
-		# Piety Progress for the Attacker
-		every_in_list = {
-			list = target_titles
-			scope:attacker = {
-				add_piety_experience = {
-					add = religious_cb_piety_gain_county
-					if = {
-						limit = {
-							scope:attacker.faith = {
-								has_doctrine_parameter = bonus_holy_war_piety_active
-							}
-						}
-						multiply = 1.5
-					}
-				}
-			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -3
-		}
-		scope:defender.faith = {
-			change_fervor = 3
-		}
-
-		# Truce
-		add_truce_attacker_victory_effect = yes
-
-	}
-
-	on_white_peace_desc = {
-		desc = religious_war_white_peace_desc
-	}
-
-	on_white_peace = {
-
-		# Prestige for the attacker's war allies
-		add_from_contribution_attackers = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-
-		# Prestige for the defender's war allies
-		add_from_contribution_defenders = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-
-		# Truce
-		add_truce_white_peace_effect = yes
-
-		scope:attacker = {
-			add_piety = religious_cb_piety_white_peace
-		}
-	}
-
-	on_defeat_desc = {
-		desc = religious_war_defeat_desc
-	}
-
-	on_defeat = {
-
-		# Prestige for the attacker's war allies
-		add_from_contribution_attackers = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-		scope:attacker = {
-			every_vassal = {
-				limit = { faith = scope:attacker.faith }
-				custom = all_attackers_vassals_same_faith
-				add_opinion = {
-					modifier = liege_lost_declared_religious_war
-					target = scope:attacker
-				}
-			}
-		}
-
-		# Prestige for the defender's war allies
-		add_from_contribution_defenders = {
-			prestige = religious_cb_ally_prestige_county
-			opinion = {
-				modifier = contributed_in_war
-			}
-		}
-
-		# piety change
-		every_in_list = {
-			list = target_titles
-
-			scope:defender = {
-				add_piety = {
-					add = religious_cb_piety_gain_county
-					if = {
-						limit = {
-							scope:defender.faith = {
-								has_doctrine_parameter = bonus_holy_war_piety_active
-							}
-						}
-						multiply = 1.5
-					}
-				}
-			}
-
-			scope:attacker = {
-				pay_short_term_income = {
-					years = 2
-					target = scope:defender
-				}
-			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -3
-		}
-
-		# Truce
-		add_truce_attacker_defeat_effect = yes
-
-		scope:attacker = {
-			save_temporary_scope_as = loser
-		}
-		on_lost_aggression_war_discontent_loss = yes
-	}
-
-	on_primary_attacker_death = inherit
-	on_primary_defender_death = inherit
-
-	transfer_behavior = transfer
-
-	attacker_allies_inherit = yes
-	defender_allies_inherit = yes
-
-	war_name = "RELIGIOUS_WAR_NAME"
-	cb_name = "HOLY_WAR_COUNTY_NAME"
-
-	is_holy_war = yes
-
-	interface_priority = 80
-
-	use_de_jure_wargoal_only = yes
-
-	attacker_wargoal_percentage = 0.8
-
-	max_ai_diplo_distance_to_title = 500
-	min_ai_score = 100
-}
-
-religious_war = {
-	group = religious
-
-	defender_faith_can_join = yes
-
-	combine_into_one = yes
-	should_show_war_goal_subview = yes
-	mutually_exclusive_titles = { always = yes }
-
-	# Additional requirements to the defines in 00_casus_belli_groups.txt
-	allowed_for_character = {
-		scope:attacker.faith = {
-			NOT = { has_doctrine = unreformed_faith_doctrine }
-		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = am_ambitious
-		}
-	}
-
-	allowed_for_character_display_regardless = {
-		piety_level >= 2
-	}
-
-	allowed_against_character = {
-		scope:attacker = {
-			faith = {
-				faith_hostility_level = {
-					target = scope:defender.faith
-					value >= religious_cb_enabled_hostility_level
-				}
-			}
-			ALL_FALSE = {
-				top_liege = scope:defender.top_liege
-				liege = scope:defender
-			}
-		}
-	}
-	target_titles = neighbor_land_or_water
-	target_title_tier = all
-	target_de_jure_regions_above = yes
-	ignore_effect = change_title_holder
-
-	valid_to_start = {
-		scope:target = {
-			tier = tier_duchy
 		}
 	}
 
@@ -666,6 +232,7 @@ religious_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -678,7 +245,448 @@ religious_war = {
 			list = target_titles
 			custom_tooltip = RELIGIOUS_CB_TITLE
 
-			religious_cb_title_transfer = yes
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
+		}
+
+		every_in_list = {
+			list = vassals_taken
+			change_liege = {
+				liege = scope:attacker
+				change = scope:change
+			}
+		}
+		
+		every_in_list = {
+			list = titles_taken
+			change_title_holder = {
+				holder = scope:attacker
+				change = scope:change
+				take_baronies = yes
+			}
+		}
+
+		resolve_title_and_vassal_change = scope:change
+
+		# Prestige for the attacker's war allies
+		add_from_contribution_attackers = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+
+		# Prestige for the defender's war allies
+		add_from_contribution_defenders = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+
+		# Piety Progress for the Attacker
+		every_in_list = {
+			list = target_titles
+			scope:attacker = {
+				add_piety_experience = {
+					add = religious_cb_piety_gain_county
+					if = {
+						limit = {
+							scope:attacker.faith = {
+								has_doctrine_parameter = bonus_holy_war_piety_active
+							}
+						}
+						multiply = 1.5
+					}
+				}
+			}
+		}
+
+		scope:attacker.faith = {
+			change_fervor = -1
+		}
+		scope:defender.faith = {
+			change_fervor = 3
+		}
+
+		# Truce
+		add_truce_attacker_victory_effect = yes
+
+	}
+
+	on_white_peace_desc = {
+		desc = religious_war_white_peace_desc
+	}
+
+	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+
+		# Prestige for the attacker's war allies
+		add_from_contribution_attackers = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+
+		# Prestige for the defender's war allies
+		add_from_contribution_defenders = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+
+		# Truce
+		add_truce_white_peace_effect = yes
+
+		scope:attacker = {
+			add_piety = religious_cb_piety_white_peace
+		}
+	}
+
+	on_defeat_desc = {
+		desc = religious_war_defeat_desc
+	}
+
+	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+
+		# Prestige for the attacker's war allies
+		add_from_contribution_attackers = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+		scope:attacker = {
+			every_vassal = {
+				limit = { faith = scope:attacker.faith }
+				custom = all_attackers_vassals_same_faith
+				add_opinion = {
+					modifier = liege_lost_declared_religious_war
+					target = scope:attacker
+				}
+			}
+		}
+
+		# Prestige for the defender's war allies
+		add_from_contribution_defenders = {
+			prestige = religious_cb_ally_prestige_county
+			opinion = {
+				modifier = contributed_in_war
+			}
+		}
+
+		# piety change
+		every_in_list = {
+			list = target_titles
+
+			scope:defender = {
+				add_piety = {
+					add = religious_cb_piety_gain_county
+					if = {
+						limit = {
+							scope:defender.faith = {
+								has_doctrine_parameter = bonus_holy_war_piety_active
+							}
+						}
+						multiply = 1.5
+					}
+				}
+			}
+
+			scope:attacker = {
+				pay_short_term_income = {
+					years = 2
+					target = scope:defender
+				}
+			}
+		}
+
+		# Truce
+		add_truce_attacker_defeat_effect = yes
+
+		scope:attacker = {
+			save_temporary_scope_as = loser
+		}
+		on_lost_aggression_war_discontent_loss = yes
+	}
+
+	on_primary_attacker_death = inherit
+	on_primary_defender_death = inherit
+
+	transfer_behavior = transfer
+
+	attacker_allies_inherit = yes
+	defender_allies_inherit = yes
+
+	war_name = "RELIGIOUS_WAR_NAME"
+	cb_name = "HOLY_WAR_COUNTY_NAME"
+
+	is_holy_war = yes
+
+	interface_priority = 80
+
+	use_de_jure_wargoal_only = yes
+
+	attacker_wargoal_percentage = 0.8
+
+	max_ai_diplo_distance_to_title = 500
+	min_ai_score = 100
+}
+
+religious_war = {
+	group = religious
+
+	defender_faith_can_join = yes
+
+	combine_into_one = yes
+	should_show_war_goal_subview = yes
+	mutually_exclusive_titles = { always = yes }
+
+	# Additional requirements to the defines in 00_casus_belli_groups.txt
+	allowed_for_character = {
+		scope:attacker.faith = {
+			NOT = { has_doctrine = unreformed_faith_doctrine }
+		}
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
+		}
+	}
+
+	allowed_for_character_display_regardless = {
+		piety_level >= 2
+	}
+
+	allowed_against_character = {
+		scope:attacker = {
+			faith = {
+				faith_hostility_level = {
+					target = scope:defender.faith
+					value >= religious_cb_enabled_hostility_level
+				}
+			}
+			ALL_FALSE = {
+				top_liege = scope:defender.top_liege
+				liege = scope:defender
+			}
+		}
+	}
+	target_titles = neighbor_land_or_water
+	target_title_tier = all
+	target_de_jure_regions_above = yes
+	ignore_effect = change_title_holder
+
+	valid_to_start = {
+		scope:target = {
+			tier = tier_duchy
+		}
+	}
+
+	should_invalidate = {
+		OR = {
+			NOT = {
+				any_in_list = {
+					list = target_titles
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+						holder = {
+							OR = {
+								this = scope:defender
+								target_is_liege_or_above = scope:defender
+							}
+						}
+					}
+				}
+			}
+			#Faith change does not immediately invalidate, it's run through event war_event.3100
+			scope:war = { exists = var:invalidate_defender_faith_change }
+			scope:war = { exists = var:invalidate_attacker_faith_change }
+		}
+	}
+
+	on_invalidated_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = {
+						any_in_list = {
+							list = target_titles
+							any_in_de_jure_hierarchy = {
+								tier = tier_county
+								holder = {
+									OR = {
+										this = scope:defender
+										target_is_liege_or_above = scope:defender
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = msg_religious_war_invalidation_region_message
+			}
+			triggered_desc = {
+				trigger = {
+					scope:war = {
+						OR = {
+							exists = var:invalidate_defender_faith_change
+							exists = var:invalidate_attacker_faith_change
+						}
+					}
+				}
+				desc = msg_religious_war_invalidated_hostility_level_message
+			}
+		}
+	}
+
+	on_invalidated = {
+		
+	}
+
+	cost = {
+		piety = {
+			add = {
+				value = 100
+				desc = CB_BASE_COST
+			}
+			# Faith Doctrine Piety Discounts
+			if = {
+				limit = {
+					scope:attacker.faith = {
+						has_doctrine_parameter = divine_destiny_holy_war_cost_reduction
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = CB_DIVINE_DESTINY_COST
+				}
+			}
+
+			if = {
+				limit = {
+					scope:attacker.faith = {
+						has_doctrine_parameter = cheaper_holy_wars_active
+					}
+				}
+				multiply = {
+					value = 0.8
+					desc = CB_REDUCED_HOLY_WAR_COST
+				}
+			}
+
+			# Innovation Piety Discounts
+			if = {
+				limit = {
+					scope:attacker = {
+						culture = {
+							has_innovation = innovation_reconquista
+						}
+					}
+				}
+				multiply = {
+					value = 0.9
+					desc = CB_RECONQUISTA_COST
+				}
+			}
+
+			# Bellum Justum Perk
+			if = {
+				limit = {
+					scope:attacker = {
+						has_perk = bellum_justum_perk
+					}
+				}
+				multiply = {
+					add = bellum_justum_discount_percentage
+					divide = 100
+					desc = CB_ATTACKER_BELLUM_JUSTUM
+				}
+			}
+
+			# Dynasty Warfare Perk
+			if = {
+				limit = {
+					scope:attacker = {
+						has_dynasty = yes
+						dynasty = {
+							has_dynasty_perk = warfare_legacy_2
+						}
+					}
+				}
+				multiply = {
+					value = warfare_legacy_2_discount
+					desc = CB_ATTACKER_DYNASTY_WARFARE
+				}
+			}
+
+			# Vassal contract in-realm cost reduction
+			if = {
+				limit = {
+					scope:attacker = {
+						is_independent_ruler = no
+						vassal_contract_has_flag = vassal_contract_war_override
+						liege = scope:defender.liege
+					}
+				}
+				multiply = {
+					value = war_declaration_rights_allowed_cost_reduction
+					desc = "CB_ATTACKER_VASSAL_CONTRACT"
+				}
+			}
+
+			if = {
+				limit = {
+					has_game_rule = no_cost_casus_belli_costs
+				}
+				multiply = {
+					value = 0
+					desc = CB_GAME_RULE_NO_COST
+				}
+			}
+		}
+	}
+
+	on_declaration = {
+		on_declared_war = yes
+	}
+
+	on_victory_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:attacker.faith = {
+						has_doctrine = doctrine_pluralism_pluralistic
+					}
+				}
+				desc = religious_war_victory_desc_doctrine_pluralism
+			}
+			desc = religious_war_victory_desc
+		}
+	}
+
+	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
+		create_title_and_vassal_change = {
+			type = conquest_holy_war
+			save_scope_as = change
+			add_claim_on_loss = yes
+		}
+
+		# go through the dejure hierarchy under target titles, transfer titles with same or worse tolerance holders (their religion equaly or less tolerated than the defender's),
+		# take the holder as vassal otherwise and don't go deeper
+		every_in_list = {
+			list = target_titles
+			custom_tooltip = RELIGIOUS_CB_TITLE
+
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
 		}
 
 		every_in_list = {
@@ -736,10 +744,10 @@ religious_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -5
+			change_fervor = -2
 		}
 		scope:defender.faith = {
-			change_fervor = 5
+			change_fervor = 4
 		}
 
 		# Truce
@@ -752,6 +760,7 @@ religious_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -782,6 +791,7 @@ religious_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -836,10 +846,6 @@ religious_war = {
 			}
 		}
 
-		scope:attacker.faith = {
-			change_fervor = -5
-		}
-
 		# Truce
 		add_truce_attacker_defeat_effect = yes
 
@@ -886,9 +892,11 @@ major_religious_war = {
 		scope:attacker.faith = {
 			NOT = { has_doctrine = unreformed_faith_doctrine }
 		}
-		OR = {
-			has_trait = am_intolerant
-			has_trait = am_ambitious
+		scope:attacker = {
+			OR = {
+				has_trait = zealous
+				has_trait = ambitious
+			}
 		}
 	}
 
@@ -1113,6 +1121,7 @@ major_religious_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -1124,7 +1133,9 @@ major_religious_war = {
 			list = target_titles
 			custom_tooltip = RELIGIOUS_CB_TITLE
 
-			religious_cb_title_transfer = yes
+			conquest_cb_title_transfer = {
+				RELIGIOUS_WAR = yes
+			}
 		}
 
 		every_in_list = {
@@ -1181,7 +1192,7 @@ major_religious_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -10
+			change_fervor = -5
 		}
 		scope:defender.faith = {
 			change_fervor = 10
@@ -1197,6 +1208,7 @@ major_religious_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -1227,6 +1239,7 @@ major_religious_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 
 		# Prestige for the attacker's war allies
 		add_from_contribution_attackers = {
@@ -1279,10 +1292,6 @@ major_religious_war = {
 					target = scope:attacker
 				}
 			}
-		}
-
-		scope:attacker.faith = {
-			change_fervor = -10
 		}
 
 		# Truce
@@ -1374,6 +1383,7 @@ excommunication_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			reverse_add_opinion = {
 				modifier = pleased_opinion
@@ -1411,6 +1421,7 @@ excommunication_war = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			add_piety = excommunication_cb_piety_white_peace
 		}
@@ -1438,6 +1449,7 @@ excommunication_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		#Handle all piety gains/losses in scripted effects.
 		excommunication_cb_piety_change = {
 			LOSER = scope:attacker
@@ -1554,8 +1566,10 @@ flowery_war_cb = {
 			is_independent_ruler = yes
 			trigger_if = {
 				limit = { scope:attacker = { is_ai = no } } # Already pre-filtered by the AI due to ai_only_against_neighbors = yes. any_neighboring_top_liege_realm_owner is expensive
+				scope:attacker = {
 				any_neighboring_top_liege_realm_owner = {
-					this = scope:attacker
+						this = scope:defender
+					}
 				}
 			}
 		}
@@ -1707,6 +1721,7 @@ flowery_war_cb = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			if = {	#If the attacker enjoys human sacrifice, then this was sacred.
 				limit = {
@@ -2146,6 +2161,7 @@ flowery_war_cb = {
 	}
 
 	on_white_peace = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {	#Piety loss for the attacker if appropriate, otherwise prestige loss.
 			if = {
 				limit = {
@@ -2192,6 +2208,7 @@ flowery_war_cb = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker = {
 			if = {	#If the attacker shares the faith of the defender, and both still enjoy human sacrifice, then this war was at least sacred for them.
 				limit = {
@@ -2673,8 +2690,8 @@ undirected_great_holy_war = {
 	target_de_jure_regions_above = yes
 	use_de_jure_wargoal_only = yes
 	check_all_defenders_for_ticking_war_score = yes # All defenders land in the Crusade Kingdom should count
-	defender_ticking_warscore = 0.03
-	attacker_ticking_warscore = 0.03
+	defender_ticking_warscore = 0.125
+	attacker_ticking_warscore = 0.125
 	max_defender_score_from_occupation = 50
 	max_attacker_score_from_occupation = 150
 	full_occupation_by_defender_gives_victory = no
@@ -2684,6 +2701,11 @@ undirected_great_holy_war = {
 	defender_capital_gives_war_score = no
 	is_great_holy_war = yes
 	landless_attacker_needs_armies = no
+	
+	defender_score_from_battles_scale = 125
+	attacker_score_from_battles_scale = 125
+	
+	max_defender_score_from_battles = 150
 
 	occupation_participation_mult = 0.5
 	siege_participation_mult = 1
@@ -2809,6 +2831,7 @@ undirected_great_holy_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		create_title_and_vassal_change = {
 			type = conquest_holy_war
 			save_scope_as = change
@@ -3162,13 +3185,13 @@ undirected_great_holy_war = {
 			}
 		}
 		
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker.faith = {
 				set_variable = {
 					name = variable_ghw_cooldown
 					value = yes
-					years = 5
+					years = 30
 				}
 			}
 			if = { #Clear pledged gold flag.
@@ -3187,10 +3210,10 @@ undirected_great_holy_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -30
+			change_fervor = -25
 		}
 		scope:defender.faith = {
-			change_fervor = 25
+			change_fervor = 30
 		}
 
 		#Truce between the chief beneficiary & all defenders
@@ -3207,6 +3230,7 @@ undirected_great_holy_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war = {
 			divide_war_chest = {
 				defenders = yes
@@ -3216,7 +3240,7 @@ undirected_great_holy_war = {
 
 		scope:attacker = {
 			faith = {
-			change_fervor = -30
+				change_fervor = -15
 			}
 		}
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
@@ -3263,13 +3287,13 @@ undirected_great_holy_war = {
 		# Truce
 		add_truce_attacker_defeat_effect = yes
 
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker.faith = {
 				set_variable = {
 					name = variable_ghw_cooldown
 					value = yes
-					years = 5
+					years = 30
 				}
 			}
 			if = { #Clear pledged gold flag.
@@ -3467,6 +3491,7 @@ directed_great_holy_war = {
 	}
 
 	on_victory = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
 			save_scope_as = target_kingdom
 		}
@@ -3581,14 +3606,14 @@ directed_great_holy_war = {
 				}
 			}
 		}
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker = {
 				faith = {
 					set_variable = {
 						name = variable_ghw_cooldown
 						value = yes
-						years = 5
+						years = 30
 					}
 				}
 			}
@@ -3601,10 +3626,10 @@ directed_great_holy_war = {
 		}
 
 		scope:attacker.faith = {
-			change_fervor = -30
+			change_fervor = -25
 		}
 		scope:defender.faith = {
-			change_fervor = 25
+			change_fervor = 30
 		}
 
 		#Truce between the chief beneficiary & all defenders
@@ -3633,6 +3658,7 @@ directed_great_holy_war = {
 	}
 
 	on_defeat = {
+		scope:attacker = { show_pow_release_message_effect = yes }
 		scope:attacker.faith.great_holy_war.ghw_target_title = { #Loc keys for localization fluff.
 			save_scope_as = target_kingdom
 		}
@@ -3679,17 +3705,17 @@ directed_great_holy_war = {
 
 		scope:attacker = {
 			faith = {
-				change_fervor = -25
+				change_fervor = -15
 			}
 		}
-		#Set 5 years cooldown.
+		#Set 30 years cooldown.
 		hidden_effect = {
 			scope:attacker = {
 				faith = {
 					set_variable = {
 						name = variable_ghw_cooldown
 						value = yes
-						years = 5
+						years = 30
 					}
 				}
 			}

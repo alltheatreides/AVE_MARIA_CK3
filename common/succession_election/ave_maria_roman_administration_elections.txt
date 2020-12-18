@@ -15,7 +15,7 @@ roman_administration_elective = {
 		modifier = {
 			desc = tooltip_faction_vote_strength_basileus
 			add = 4
-			primary_title = {
+			any_held_title = {
 				OR = {
 					this = title:e_byzantium
 					this = title:e_roman_empire
@@ -25,49 +25,32 @@ roman_administration_elective = {
 
 		## AVE MARIA - Co emperor
 		modifier = {
-			desc = tooltip_faction_vote_strength_patriarch
+			desc = tooltip_faction_vote_strength_junior_emperor
 			add = 2
 			has_trait = junior_emperor
 		}
 
-		## AVE MARIA - Factions Power Army
+		## AVE MARIA - Voter Power Army
 		modifier = {
 			desc = tooltip_faction_vote_strength_army
 			add = 3
-			# joined_faction = {
-			# 	faction_is_type = roman_administration_army_faction
-			# }
-			# is_a_faction_leader = yes
-			primary_title = {
+			any_held_title = {
 				this = title:d_megas_domestikos
 			}
 		}
-		## AVE MARIA - Factions Power Bureaucracy
+		## AVE MARIA - Voter Power Bureaucracy
 		modifier = {
 			desc = tooltip_faction_vote_strength_bureaucracy
 			add = 2
-			# joined_faction = {
-			# 	faction_is_type = roman_administration_bureaucracy_faction
-			# }
-			# is_a_faction_leader = yes
-			primary_title = {
+			any_held_title = {
 				this = title:d_logothetetes_tou_dromou
 			}
 		}
-		## AVE MARIA - Factions Power Palace
-		# modifier = {
-		# 	desc = tooltip_faction_vote_strength_palace
-		# 	add = 1
-		# 	joined_faction = {
-		# 		faction_is_type = roman_administration_palace_faction
-		# 	}
-		# 	is_a_faction_leader = yes
-		# }
-		## AVE MARIA - Factions Power Patriarch
+		## AVE MARIA - Voter Power Patriarch
 		modifier = {
 			desc = tooltip_faction_vote_strength_patriarch
 			add = 2
-			primary_title = {
+			any_held_title = {
 				this = title:k_orthodox
 			}
 		}
@@ -78,38 +61,8 @@ roman_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
-				OR = {
-					any_held_title = {
-						this = title:d_megas_domestikos
-					}		
-					any_held_title = {
-						this = title:d_logothetetes_tou_dromou
-					}
-					any_held_title = {
-						this = title:k_orthodox
-					}
-				}	
-			}
-		}
-		add = {
-			type = title_dejure_vassals
-			limit = {
-				OR = {
-					any_held_title = {
-						this = title:d_megas_domestikos
-					}		
-					any_held_title = {
-						this = title:d_logothetetes_tou_dromou
-					}
-					any_held_title = {
-						this = title:k_orthodox
-					}
-				}	
-			}
-		}
-		add = {
-			type = title_claimants
-			limit = {
+				roman_administration_character_is_in_the_empire = yes
+				highest_held_title_tier >= tier_duchy
 				OR = {
 					any_held_title = {
 						this = title:d_megas_domestikos
@@ -154,62 +107,39 @@ roman_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
-				age >= 16
-				is_female = no
-				NOT = { has_government = theocracy_government }
-				NOT = { 
-					any_held_title = {
-						this = title:k_orthodox
+				roman_administration_can_be_eligible_for_emperor_trigger = yes		
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
 					}
-				}
-				has_variable = roman_administration_legitimacy
-			}
-		}
-		add = {
-			type = title_dejure_vassals
-			limit = {
-				age >= 16
-				is_female = no
-				NOT = { has_government = theocracy_government }
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
-				}
-				NOT = { 
-					any_held_title = {
-						this = title:k_orthodox
-					}
-				}
-				has_variable = roman_administration_legitimacy
+					var:roman_administration_legitimacy > 0
+				}		
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
-				age >= 16
-				is_female = no
-				NOT = { has_government = theocracy_government }
-				NOT = { 
-					any_held_title = {
-						this = title:k_orthodox
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
 					}
+					var:roman_administration_legitimacy > 0
 				}
-				has_variable = roman_administration_legitimacy
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
-				age >= 16
+				roman_administration_character_is_in_the_empire = yes
+				age >= 6
 				is_female = no
-				NOT = { has_government = theocracy_government }
-				NOT = { 
-					any_held_title = {
-						this = title:k_orthodox
+				trigger_if = {
+					limit = {
+						has_variable = roman_administration_legitimacy
 					}
+					var:roman_administration_legitimacy > 0
 				}
-				has_variable = roman_administration_legitimacy
 			}
 		}
 	}
@@ -259,41 +189,31 @@ roman_administration_tagma_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
+				roman_administration_character_is_in_the_empire = yes
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
-				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
 				}
 			}
 		}
 		add = {
 			type = title_dejure_vassals
 			limit = {
+				roman_administration_character_is_in_the_empire = yes
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
-				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
 				}
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
+				is_landed = yes
+				
+				roman_administration_character_is_in_the_empire = yes
 				is_female = no
 				age >= 20
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
-				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
 				}
 			}
 		}
@@ -302,7 +222,7 @@ roman_administration_tagma_elective = {
 	candidate_score = {
 		base = 0
 		######################	Elector self-voting pattern	##########################
-		elector_self_voting_pattern_feudal_elective_modifier = yes
+		#elector_self_voting_pattern_feudal_elective_modifier = yes
 
 		##########################	Holder voting pattern	##########################
 		# holder_voting_pattern_feudal_elective_modifier = yes
@@ -315,9 +235,6 @@ roman_administration_tagma_elective = {
 
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
-
-		## Roman Administration voting patterns (co emperor or favoured by the emperor)
-		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
 		
 		## Roman Administration voting patterns (co emperor, favoured by emperor and not already heir to another title)
 		elector_voting_pattern_opinion_roman_administration_tagma_elective_modifier = yes
@@ -339,75 +256,51 @@ roman_administration_tagma_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# roman_administration_is_a_military_title_trigger = yes
-						# tier = tier_duchy
-					# }
-				# }
 			}
 		} 
 		add = {
 			type = title_dejure_vassals
 			limit = {
+				roman_administration_character_is_in_the_empire = yes
 				NOT = { has_variable = roman_administration_term_count }
-				#scope:title = { save_scope_as = title_to_check }
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# roman_administration_is_a_military_title_trigger = yes
-						# tier = tier_duchy
-					# }
-				# }
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
+				roman_administration_character_is_in_the_empire = yes
+				is_courtier_of = scope:holder
 				NOT = { has_variable = roman_administration_term_count }
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
-				}
 				age >= 20
 				is_female = no
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# roman_administration_is_a_military_title_trigger = yes
-						# tier = tier_duchy
-					# }
-				# }
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
+				roman_administration_character_is_in_the_empire = yes
+				is_courtier_of = scope:holder
 				age >= 20
 				is_female = no
-				dynasty = scope:holder.dynasty
-				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
-				NOT = { has_government = theocracy_government }
-				any_claim = {
-					this = scope:title
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# roman_administration_is_a_tagma_title_trigger = yes
-					# }
-				# }
+				dynasty = scope:holder.dynasty
+				NOT = { has_government = theocracy_government }
+				NOT = {
+					any_held_title = { this = title:e_byzantium }
+				}
 			}
 		}
 	}
@@ -447,11 +340,7 @@ roman_administration_civilian_administration_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
-				}
+				roman_administration_character_is_in_the_empire = yes
 			}
 		}
 		add = {
@@ -460,25 +349,18 @@ roman_administration_civilian_administration_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
-				}
+				roman_administration_character_is_in_the_empire = yes
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
+				is_landed = yes
 				is_female = no
 				age >= 20
+				roman_administration_character_is_in_the_empire = yes
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
-				}
-				top_liege = {
-					primary_title = {
-						this = title:e_byzantium
-					}
 				}
 			}
 		}
@@ -501,9 +383,6 @@ roman_administration_civilian_administration_elective = {
 		##########################	Elector voting patterns (opinion)	##########################
 		elector_voting_pattern_opinion_feudal_elective_modifier = yes
 
-		## Roman Administration voting patterns (co emperor or favoured by the emperor)
-		elector_voting_pattern_opinion_roman_administration_elective_modifier = yes
-		
 		## Roman Administration voting patterns (co emperor, favoured by emperor and not already heir to another title)
 		elector_voting_pattern_opinion_roman_administration_civilian_administration_elective_modifier = yes
 
@@ -524,12 +403,7 @@ roman_administration_civilian_administration_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# tier = tier_duchy
-					# }
-				# }
+				roman_administration_character_is_in_the_empire = yes
 			}
 		} 
 		add = {
@@ -542,63 +416,40 @@ roman_administration_civilian_administration_elective = {
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# tier = tier_duchy
-					# }
-				# }
+				roman_administration_character_is_in_the_empire = yes
 			}
 		} 
 		add = {
 			type = title_claimants
 			limit = {
-				NOT = { has_variable = roman_administration_term_count }
-				liege = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-				}				
+				NOT = { has_variable = roman_administration_term_count }	
+				is_courtier_of = scope:holder		
 				age >= 20
 				is_female = no
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				NOT = { has_government = theocracy_government }
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# tier = tier_duchy
-					# }
-				# }
+				roman_administration_character_is_in_the_empire = yes
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
-				liege = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-				}
+				is_courtier_of = scope:holder
+				roman_administration_character_is_in_the_empire = yes
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
 				}
 				age >= 20
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				dynasty = scope:holder.dynasty
-				feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 				NOT = { has_government = theocracy_government }
-				# any_claim = {
-				# 	this = title:scope:title
-				# }
-				# NOT = {
-					# any_heir_to_title = {
-						# NOT = { this = title:scope:title } ## Not sure if this is working, tests were inconclusive
-						# tier = tier_duchy
-					# }
-				# }
 			}
 		}
 	}
@@ -697,6 +548,11 @@ roman_administration_family_elective = {
 			limit = {
 				age >= 16
 				dynasty = scope:holder.dynasty
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
+				NOT = { has_government = theocracy_government }
 				#feudal_elective_potential_landless_dynastic_candidate_trigger = yes
 			}
 		}

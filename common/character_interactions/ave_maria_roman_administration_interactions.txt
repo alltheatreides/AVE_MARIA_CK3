@@ -1,54 +1,29 @@
-﻿@designate_heir_cost = 0
-# Set one of your children as heir
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA Characters Interactions													   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Characters Interactions             							   #
+#                               													   #
+########################################################################################
+
+## Written by Atreides
+
+# TABLE OF CONTENT:
+
+##### 1) OFFICIALS ADMINISTRATIVE INTERACTIONS
+##### 
+
+##### 2) EMPEROR SPECIFIC INTERACTIONS
+#####
+
+##### 3) REVOLTS AND SCHEME INTERACTIONS
+##### 
 
 
-
-#This interaction is referenced in code! If it's renamed you have to ping a coder
-designate_heir_interaction = {
-
-	category = interaction_category_diplomacy
-
-	desc = designate_heir_interaction_desc
-
-	is_shown = {
-		scope:recipient = {
-			is_child_of = scope:actor
-		}
-		scope:actor = {
-			can_designate_heir_trigger = yes
-		}
-		NOT = {
-			scope:recipient = scope:actor.designated_heir
-		}
-	}
-
-	is_valid_showing_failures_only = {
-		scope:recipient = { is_diplomatically_available = yes }
-		scope:actor = { prestige >= @designate_heir_cost }
-	}
-
-	on_auto_accept = {
-		scope:recipient = {
-			trigger_event = char_interaction.0120
-		}
-	}
-
-	on_accept = {
-		scope:actor = {
-			send_interface_toast = {
-				title = designate_heir_interaction_notification
-
-				left_icon = scope:actor					
-				right_icon = scope:recipient
-
-				set_designated_heir = scope:recipient
-				add_prestige = { subtract = @designate_heir_cost }
-			}
-		}
-	}
-
-	auto_accept = yes
-}
+#############################################
+# OFFICIALS INTERACTIONS					#
+#############################################
 
 ### Signal interest to be a title successor by adding a claim on it
 roman_administration_get_claim = {
@@ -59,34 +34,15 @@ roman_administration_get_claim = {
 
 	is_shown = {
 		scope:actor = {
-			NOT = {
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}			
-			top_liege = {
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}
-			NOT = { has_government = theocracy_government }
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { any_held_title = { this = title:e_byzantium } }
 		}
 		scope:recipient = { 
-			is_landed = yes 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			uses_roman_govt = yes
 			NOT = { this = scope:actor }
+			NOT = { any_held_title = { this = title:e_byzantium } }
 		}
 	}
 	
@@ -99,8 +55,8 @@ roman_administration_get_claim = {
 			## Cost for bribes
 			if = {
 				limit = {
-					scope:recipient.primary_title = {
-						roman_administration_is_a_tagma_title_trigger = yes
+					scope:recipient = {
+						roman_administration_holds_high_office_title_trigger = yes
 					}
 				}
 				remove_short_term_gold = 50
@@ -109,8 +65,8 @@ roman_administration_get_claim = {
 				remove_short_term_gold = 25
 			}
 			## Add the stress impact
-			am_introverted = minor_stress_impact_gain
-			am_fearful = minor_stress_impact_gain
+			introverted = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
 		}
 	}
 
@@ -118,7 +74,7 @@ roman_administration_get_claim = {
 	ai_targets = {
 		ai_recipients = peer_vassals
 	}
-	ai_frequency = 6
+	ai_frequency = 12
 
 	# ai_potential = {
 		
@@ -158,921 +114,36 @@ roman_administration_get_claim = {
 				}
 			}
 		}
-
-		modifier = {
-			factor = 100
-			scope:secondary_recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
-
-		modifier = {
-			factor = 1000
-			scope:secondary_recipient = {
-				is_close_family_of = scope:actor
-			}
-		}
-	}
-}
-
-roman_administration_favour_successor = {
-	category = interaction_category_roman_administration
-	common_interaction = yes
-
-	use_diplomatic_range = yes
-	# target_type = title
-	# target_filter = secondary_recipient_domain_titles	
-	auto_accept = yes
-
-	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}			
-		}
-		scope:recipient = { 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}		
-		}
-	}
-
-	populate_recipient_list = {
-		scope:actor = {
-			every_courtier = {
-				limit = {
-					top_liege = scope:actor
-					is_female = no
-					age >= 18
-					#roman_administration_holds_military_title_trigger = no
-					highest_held_title_tier < tier_duchy
-					NOT = {
-						has_government = theocracy_government
-					}
-				}
-				add_to_list = characters
-			}
-			every_vassal = {
-				limit = {
-					top_liege = scope:actor
-					is_female = no
-					age >= 18
-					#roman_administration_holds_military_title_trigger = no
-					highest_held_title_tier < tier_duchy
-					NOT = {
-						has_government = theocracy_government
-					}
-				}
-				add_to_list = characters
-
-				every_courtier = {
-					limit = {
-						top_liege = scope:actor
-						is_female = no
-						age >= 18
-						#roman_administration_holds_military_title_trigger = no
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					add_to_list = characters
-				}
-			}
-			every_vassal = {
-				every_courtier = {
-					limit = {
-						top_liege = scope:actor
-						is_female = no
-						age >= 18
-						#roman_administration_holds_military_title_trigger = no
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					add_to_list = characters
-				}
-			}
-		}
-	}
-
-	# can_be_picked_title = {
-	# 	scope:target = {
-	# 		roman_administration_is_a_tagma_title_trigger = yes
-	# 	}
-	# }
-	
-	on_accept = {
-		scope:secondary_recipient = {
-			add_unpressed_claim = scope:recipient.primary_title
-			## Add some flag so it has a better score in the election
-			add_character_modifier = roman_administration_emperor_favourite
-			add_opinion = {
-				target = scope:actor
-				modifier = roman_administration_favoured_me
-				opinion = 25
-			}
-		}
-	}
-
-	ai_potential = {
-		#is_at_war = no
-	}
-	
-	ai_targets = {
-		ai_recipients = vassals
-	}
-	ai_frequency = 6
-	
-	ai_will_do = {
-		base = 100
 		
 		modifier = {
 			factor = 0
-			scope:recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
-
-		modifier = {
-			factor = 100
-			scope:secondary_recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
+			scope:actor = {
+				any_claim = {
+					tier = tier_duchy
+					count >= 2
 				}
 			}
 		}
 	}
 }
 
-roman_administration_fire_bureaucrat = {
-	category = interaction_category_roman_administration
-
-	use_diplomatic_range = yes
-
-	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}		
-		}
-		scope:recipient = { 
-			top_liege = scope:actor
-			highest_held_title_tier = tier_duchy 
-			NOR = {
-				has_government = feudal_government
-				has_government = theocracy_government
-				has_government = clan_government
-				has_government = tribal_government
-			}
-			# OR = {
-			# 	has_government = roman_administration_military_government
-			# 	has_government = roman_administration_civilian_government
-			# }
-		}
-	}
-
-	auto_accept = yes
-	
-	ai_potential = {
-		is_at_war = no
-		NOR = {
-			has_trait = am_agreeable
-			has_trait = am_tolerant
-			has_trait = am_patient
-			has_trait = am_mild
-			has_trait = am_gentle
-		}
-	}
-
-	on_accept = {
-		scope:recipient = {
-			## Give title to successor
-			primary_title = {
-				current_heir = {
-					save_scope_as = title_heir
-				}
-			}
-			## Start giving a county to stick the transfer
-			scope:recipient.capital_county = {
-				create_title_and_vassal_change = {
-					type = granted
-					save_scope_as = change
-					add_claim_on_loss = yes
-				}
-				save_temporary_scope_as = title_to_inherit
-				change_title_holder = {
-					holder = scope:title_heir
-					change = scope:change
-				}
-				resolve_title_and_vassal_change = scope:change
-			}
-			resolve_title_and_vassal_change = scope:change
-
-			## hand out the rest
-			primary_title = {
-				## Handing out de jure counties
-				every_in_de_jure_hierarchy = {
-					limit = {
-						tier <= tier_county
-						NOT = { 
-							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
-							has_title_law = ave_maria_roman_administration_family_succession_law							
-							holder = {
-								roman_administration_holds_military_title_trigger = yes
-							}
-						}
-						NOT = { 
-							holder = {
-								primary_title = { this = title:e_byzantium }
-							}
-						}
-						holder = {
-							top_liege = {
-								primary_title = { this = title:e_byzantium }
-							}
-						}
-					}
-					if = {
-						limit = {
-							exists = holder
-						}
-						create_title_and_vassal_change = {
-							type = granted
-							save_scope_as = change
-							add_claim_on_loss = yes
-						}
-						save_temporary_scope_as = title_to_inherit
-						change_title_holder = {
-							holder = scope:title_heir
-							change = scope:change
-						}
-						resolve_title_and_vassal_change = scope:change
-					}
-				}
-				resolve_title_and_vassal_change = scope:change
-
-				## Handing out ducal title
-				create_title_and_vassal_change = {
-					type = granted
-					save_scope_as = change
-					add_claim_on_loss = yes
-				}
-				save_temporary_scope_as = title_to_inherit
-				# current_heir = {
-				# 	save_scope_as = title_heir
-				# }
-				change_title_holder = {
-					holder = scope:title_heir
-					change = scope:change
-				}
-				resolve_title_and_vassal_change = scope:change
-				
-			}
-
-			## Handing back out non dejure title you might have and that belong to the next in line
-			every_held_title = {
-				limit = {
-					tier = tier_county
-					NOT = { 
-						this = { has_title_law = ave_maria_roman_administration_family_succession_law } 
-						de_jure_liege = { this = title:scope:title }
-						de_jure_liege.holder = {
-							this = root
-						}
-					}					
-				}
-				de_jure_liege.holder = {
-					save_scope_as = title_heir
-				}
-				create_title_and_vassal_change = {
-					type = granted
-					save_scope_as = change
-					add_claim_on_loss = yes
-				}
-				change_title_holder = {
-					holder = scope:title_heir
-					change = scope:change
-				}
-				resolve_title_and_vassal_change = scope:change
-			}
-
-			resolve_title_and_vassal_change = scope:change
-			
-			add_opinion = {
-				target = scope:actor
-				modifier = roman_administration_fired_me
-				opinion = -25
-			}
-
-			## Clear variable and modifiers
-			hidden_effect = {
-				remove_character_modifier = roman_administration_terms_of_office_0
-				remove_character_modifier = roman_administration_terms_of_office_1
-				remove_character_modifier = roman_administration_terms_of_office_2
-				remove_character_modifier = roman_administration_terms_of_office_3
-				remove_character_modifier = roman_administration_terms_of_office_4
-				remove_character_modifier = roman_administration_terms_of_office_5
-				remove_variable = roman_administration_term_count
-			}
-		}
-
-		scope:actor = {
-			if = {
-				limit = {
-					scope:recipient = {
-						roman_administration_holds_high_office_title_trigger = yes
-					}
-				}
-				add_tyranny = 5
-			}
-			
-
-			## Add the stress impact
-			am_introverted = minor_stress_impact_gain
-			am_fearful = minor_stress_impact_gain
-			am_sentimental = minor_stress_impact_gain
-			am_craven = minor_stress_impact_gain
-			am_faithful = minor_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-
-			am_intolerant = minor_stress_impact_loss
-			am_inconstant = minor_stress_impact_loss
-		}
-	}
-
-	ai_targets = {
-		ai_recipients = vassals
-		max = 20
-	}
-
-	ai_frequency = 24
-
-	ai_will_do = {
-		base = 0
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				OR = {
-					has_relation_rival = scope:actor
-					has_relation_nemesis = scope:actor
-				}
-			}
-		}
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				is_primary_heir_of = scope:actor
-				OR = {
-					has_trait = inbred
-					has_trait = intellect_bad_3
-					has_trait = incapable
-				}
-			}
-		}
-		
-		modifier = {
-			add = 5
-			ai_vengefulness >= medium_positive_ai_value
-			scope:recipient = {
-				is_heir_of = scope:actor
-			}
-			OR = {
-				AND = {
-					scope:recipient = {
-						has_trait = incestuous
-					}
-					NOT = { is_incestuous_trigger = yes }
-					trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = kinslayer
-					}
-					NOT = { has_trait = kinslayer }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = adulterer
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = fornicator
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = deviant
-					}
-					NOT = {
-						is_deviant_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = witch
-					}
-					NOT = {
-						is_witch_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = sodomite
-					}
-					NOR = {
-						has_trait = sodomite
-						any_secret = {
-							secret_type = secret_homosexual
-						}
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = cannibal
-					}
-					NOT = {
-						is_cannibal_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-			}
-		}
-		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				OR = {
-					has_relation_friend = scope:actor
-					has_relation_best_friend = scope:actor
-				}
-			}
-		}
-		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				is_ai = no
-			}
-		}
-	}
-}
-
-roman_administration_replace_bureaucrat = {
-	category = interaction_category_roman_administration
-
-	use_diplomatic_range = yes
-	# target_type = title
-	# target_filter = secondary_recipient_domain_titles	
-	auto_accept = yes
-
-	is_shown = {
-		scope:actor = {
-			any_held_title = {
-				this = title:e_byzantium
-			}		
-		}
-		scope:recipient = { 
-			top_liege = scope:actor
-			highest_held_title_tier = tier_duchy 
-			NOR = {
-				has_government = feudal_government
-				has_government = theocracy_government
-				has_government = clan_government
-				has_government = tribal_government
-			}
-			# OR = {
-			# 	has_government = roman_administration_military_government
-			# 	has_government = roman_administration_civilian_government
-			# }
-		}
-	}
-
-	populate_recipient_list = {
-		scope:actor = {
-			every_courtier = {
-				limit = {
-					top_liege = scope:actor
-					is_female = no
-					age >= 18
-					#roman_administration_holds_military_title_trigger = no
-					highest_held_title_tier < tier_duchy
-					NOT = {
-						has_government = theocracy_government
-					}
-				}
-				add_to_list = characters
-			}
-			every_vassal = {
-				limit = {
-					top_liege = scope:actor
-					is_female = no
-					age >= 18
-					#roman_administration_holds_military_title_trigger = no
-					highest_held_title_tier < tier_duchy
-					NOT = {
-						has_government = theocracy_government
-					}
-				}
-				add_to_list = characters
-
-				every_courtier = {
-					limit = {
-						top_liege = scope:actor
-						is_female = no
-						age >= 18
-						#roman_administration_holds_military_title_trigger = no
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					add_to_list = characters
-				}
-			}
-			every_vassal = {
-				every_courtier = {
-					limit = {
-						top_liege = scope:actor
-						is_female = no
-						age >= 18
-						#roman_administration_holds_military_title_trigger = no
-						highest_held_title_tier < tier_duchy
-						NOT = {
-							has_government = theocracy_government
-						}
-					}
-					add_to_list = characters
-				}
-			}
-		}
-	}
-
-	# can_be_picked_title = {
-	# 	scope:target = {
-	# 		roman_administration_is_a_tagma_title_trigger = yes
-	# 	}
-	# }
-	
-	on_accept = {
-		scope:recipient = {
-			## Give title to emperor's choice
-			scope:secondary_recipient = {
-				save_scope_as = title_heir
-			}
-			## Start giving a county to stick the transfer
-			scope:recipient.capital_county = {
-				create_title_and_vassal_change = {
-					type = granted
-					save_scope_as = change
-					add_claim_on_loss = yes
-				}
-				save_temporary_scope_as = title_to_inherit
-				change_title_holder = {
-					holder = scope:title_heir
-					change = scope:change
-				}
-			}
-			resolve_title_and_vassal_change = scope:change
-
-			## hand out the rest
-			primary_title = {
-				## Handing out de jure counties
-				every_in_de_jure_hierarchy = {
-					limit = {
-						tier <= tier_county
-						NOT = { 
-							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
-							has_title_law = ave_maria_roman_administration_family_succession_law							
-							holder = {
-								roman_administration_holds_military_title_trigger = yes
-							}
-						}
-						NOT = { 
-							holder = {
-								primary_title = { this = title:e_byzantium }
-							}
-						}
-					}
-					if = {
-						limit = {
-							exists = holder
-						}
-						create_title_and_vassal_change = {
-							type = granted
-							save_scope_as = change
-							add_claim_on_loss = yes
-						}
-						save_temporary_scope_as = title_to_inherit
-						change_title_holder = {
-							holder = scope:title_heir
-							change = scope:change
-						}
-						resolve_title_and_vassal_change = scope:change
-					}
-				}
-				resolve_title_and_vassal_change = scope:change
-
-				## Handing out ducal title
-				create_title_and_vassal_change = {
-					type = granted
-					save_scope_as = change
-					add_claim_on_loss = yes
-				}
-				save_temporary_scope_as = title_to_inherit
-				# current_heir = {
-				# 	save_scope_as = title_heir
-				# }
-				change_title_holder = {
-					holder = scope:title_heir
-					change = scope:change
-				}
-				resolve_title_and_vassal_change = scope:change
-				
-			}
-			resolve_title_and_vassal_change = scope:change
-			
-			add_opinion = {
-				target = scope:actor
-				modifier = roman_administration_fired_me
-				opinion = -25
-			}
-
-			## Clear variable and modifiers
-			hidden_effect = {
-				remove_character_modifier = roman_administration_terms_of_office_0
-				remove_character_modifier = roman_administration_terms_of_office_1
-				remove_character_modifier = roman_administration_terms_of_office_2
-				remove_character_modifier = roman_administration_terms_of_office_3
-				remove_character_modifier = roman_administration_terms_of_office_4
-				remove_character_modifier = roman_administration_terms_of_office_5
-				remove_variable = roman_administration_term_count
-			}
-
-			## Add some opinion
-			scope:secondary_recipient = {
-				add_opinion = {
-					target = scope:actor
-					modifier = roman_administration_favoured_me
-					opinion = 25
-				}
-			}			
-		}
-
-		scope:actor = {
-			if = {
-				limit = {
-					scope:recipient = {
-						roman_administration_holds_high_office_title_trigger = yes
-					}
-				}
-				add_tyranny = 5
-			}
-
-			## Add the stress impact
-			am_introverted = minor_stress_impact_gain
-			am_fearful = minor_stress_impact_gain
-			am_sentimental = minor_stress_impact_gain
-			am_craven = minor_stress_impact_gain
-			am_faithful = minor_stress_impact_gain
-			am_honest = minor_stress_impact_gain
-
-			am_intolerant = minor_stress_impact_loss
-			am_inconstant = minor_stress_impact_loss
-		}
-	}
-
-	ai_potential = {
-		#is_at_war = no
-	}
-	
-	ai_targets = {
-		ai_recipients = vassals
-	}
-	ai_frequency = 6
-	
-	ai_will_do = {
-		base = 0
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				OR = {
-					has_relation_rival = scope:actor
-					has_relation_nemesis = scope:actor
-				}
-			}
-		}
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				is_primary_heir_of = scope:actor
-				OR = {
-					has_trait = inbred
-					has_trait = intellect_bad_3
-					has_trait = incapable
-				}
-			}
-		}
-		
-		modifier = {
-			add = 5
-			ai_vengefulness >= medium_positive_ai_value
-			scope:recipient = {
-				is_heir_of = scope:actor
-			}
-			OR = {
-				AND = {
-					scope:recipient = {
-						has_trait = incestuous
-					}
-					NOT = { is_incestuous_trigger = yes }
-					trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = kinslayer
-					}
-					NOT = { has_trait = kinslayer }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = adulterer
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = fornicator
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = deviant
-					}
-					NOT = {
-						is_deviant_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = witch
-					}
-					NOT = {
-						is_witch_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = sodomite
-					}
-					NOR = {
-						has_trait = sodomite
-						any_secret = {
-							secret_type = secret_homosexual
-						}
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = cannibal
-					}
-					NOT = {
-						is_cannibal_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-			}
-		}
-		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				OR = {
-					has_relation_friend = scope:actor
-					has_relation_best_friend = scope:actor
-				}
-			}
-		}
-		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				is_ai = no
-			}
-		}
-	}
-}
-
+## Official interaction to favour a family member to another title
 roman_administration_favour_family_member = {
 	category = interaction_category_roman_administration
 
 	use_diplomatic_range = yes
-	# target_type = title
-	# target_filter = secondary_recipient_domain_titles	
 	auto_accept = yes
 
 	is_shown = {
 		scope:actor = {
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { any_held_title = { this = title:e_byzantium } }
 		}
 		scope:recipient = { 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			highest_held_title_tier = tier_duchy 
-			NOR = {
-				has_government = feudal_government
-				has_government = theocracy_government
-				has_government = clan_government
-				has_government = tribal_government
-			}
-			# OR = {
-			# 	has_government = roman_administration_military_government
-			# 	has_government = roman_administration_civilian_government
-			# }		
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			uses_roman_govt = yes
+			NOT = { this = scope:actor }
 		}
 	}
 
@@ -1112,14 +183,19 @@ roman_administration_favour_family_member = {
 		## Cost for bribes
 		if = {
 			limit = {
-				scope:recipient.primary_title = {
-					roman_administration_is_a_tagma_title_trigger = yes
+				scope:recipient = {
+					roman_administration_holds_high_office_title_trigger = yes
 				}
 			}
-			remove_short_term_gold = 50
+			scope:actor = {
+				remove_short_term_gold = 50
+			}
+			
 		}
 		else = {
-			remove_short_term_gold = 25
+			scope:actor = {
+				remove_short_term_gold = 25
+			}
 		}
 	}
 
@@ -1192,272 +268,27 @@ roman_administration_favour_family_member = {
 	}
 }
 
-roman_administration_military_revolt = {
-	category = interaction_category_hostile
-
-	ai_potential = {
-		
-	}
-
-	auto_accept = yes
-
-	use_diplomatic_range = yes
-
-	scheme = roman_administration_military_revolt_scheme
-
-	desc = roman_administration_military_revolt_desc
-
-	is_shown = {
-		exists = scope:actor.liege_or_court_owner
-		scope:recipient = {
-			any_held_title = {
-				this = title:e_byzantium
-			}
-		}
-		scope:actor = {
-			roman_administration_holds_military_title_trigger = yes
-			is_imprisoned = no
-		}
-	}
-
-	is_valid = {
-		exists = scope:actor.liege_or_court_owner
-		scope:recipient = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-		}
-		scope:actor = {
-			roman_administration_holds_military_title_trigger = yes
-			is_imprisoned = no
-		}
-
-		scope:recipient = {
-			# any_targeting_faction = {
-			# 	limit = {
-			# 		faction_is_type = roman_administration_army_faction
-			# 	}
-			# 	#faction_discontent >= 100
-			# }
-		}
-	}
-
-	on_accept = {
-		scope:actor = {
-			scope:actor = {
-				stress_impact = {
-					am_tolerant = major_stress_impact_gain
-					am_honest = major_stress_impact_gain
-					am_sincere = medium_stress_impact_gain
-					am_faithful = major_stress_impact_gain
-					am_humble = medium_stress_impact_gain
-				}
-			}
-			hidden_effect = {
-				start_scheme = {
-					target = scope:recipient
-					type = roman_administration_military_revolt_scheme
-				}
-			}
-		}
-	}
-
-	ai_potential = {
-		#is_at_war = no
-	}
-
-	ai_targets = {
-		ai_recipients = liege
-	}
-
-	ai_will_do = {
-		base = 0
-
-		modifier = {
-			add = 500
-			scope:recipient = {
-				has_variable = roman_administration_legitimacy
-				var:roman_administration_legitimacy < 50
-			}
-		}
-
-		modifier = {
-			add = 500
-			scope:recipient = {
-				has_variable = roman_administration_popularity
-				var:roman_administration_popularity < 50
-			}
-		}
-
-		modifier = {
-			add = 250
-			scope:recipient = {
-				has_variable = roman_administration_popularity
-				var:roman_administration_popularity < 100
-			}
-		}
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				OR = {
-					has_relation_rival = scope:actor
-					has_relation_nemesis = scope:actor
-				}
-			}
-		}
-		
-		modifier = {
-			add = 100
-			scope:recipient = {
-				is_primary_heir_of = scope:actor
-				OR = {
-					has_trait = inbred
-					has_trait = intellect_bad_3
-					has_trait = incapable
-				}
-			}
-		}
-		
-		modifier = {
-			add = 5
-			ai_vengefulness >= medium_positive_ai_value
-			scope:recipient = {
-				is_heir_of = scope:actor
-			}
-			OR = {
-				AND = {
-					scope:recipient = {
-						has_trait = incestuous
-					}
-					NOT = { is_incestuous_trigger = yes }
-					trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = kinslayer
-					}
-					NOT = { has_trait = kinslayer }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = adulterer
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = fornicator
-					}
-					NOR = {
-						has_trait = adulterer
-						has_trait = fornicator
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = deviant
-					}
-					NOT = {
-						is_deviant_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = witch
-					}
-					NOT = {
-						is_witch_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = sodomite
-					}
-					NOR = {
-						has_trait = sodomite
-						any_secret = {
-							secret_type = secret_homosexual
-						}
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-				AND = {
-					scope:recipient = {
-						has_trait = cannibal
-					}
-					NOT = {
-						is_cannibal_trigger = yes
-					}
-					trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
-				}
-			}
-		}
-		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				OR = {
-					has_relation_friend = scope:actor
-					has_relation_best_friend = scope:actor
-				}
-			}
-		}
-		
-	}
-}
-
+## Official interaction to send a family member to another official's court
 roman_administration_send_family_member_for_training = {
 	category = interaction_category_roman_administration
 
 	use_diplomatic_range = yes
-	# target_type = title
-	# target_filter = secondary_recipient_domain_titles	
 	auto_accept = yes
 
 	is_shown = {
 		scope:actor = {
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
-				}
-			}
-			#highest_held_title_tier = tier_duchy 
-			OR = {
-				has_government = roman_administration_military_government
-				has_government = roman_administration_civilian_government
-			}
+			roman_administration_character_is_in_the_empire = yes
 		}
 		scope:recipient = { 
-			top_liege = {
-				any_held_title = {
-					OR = {
-						this = title:e_byzantium
-						this = title:e_roman_empire
-					}
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			uses_roman_govt = yes
+			NOT = { this = scope:actor }
+			NOT = { 
+				scope:secondary_recipient = {
+					is_courtier_of = prev
 				}
 			}
-			highest_held_title_tier = tier_duchy 
-			NOR = {
-				has_government = feudal_government
-				has_government = theocracy_government
-				has_government = clan_government
-				has_government = tribal_government
-			}
-			# OR = {
-			# 	has_government = roman_administration_military_government
-			# 	has_government = roman_administration_civilian_government
-			# }		
 		}
 	}
 
@@ -1491,14 +322,19 @@ roman_administration_send_family_member_for_training = {
 		## Cost for bribes
 		if = {
 			limit = {
-				scope:recipient.primary_title = {
-					roman_administration_is_a_tagma_title_trigger = yes
+				scope:recipient = {
+					roman_administration_holds_high_office_title_trigger = yes
 				}
 			}
-			remove_short_term_gold = 25
+			scope:actor = {
+				remove_short_term_gold = 25
+			}
+			
 		}
 		else = {
-			remove_short_term_gold = 12
+			scope:actor = {
+				remove_short_term_gold = 12
+			}
 		}
 	}
 
@@ -1512,73 +348,79 @@ roman_administration_send_family_member_for_training = {
 	ai_frequency = 6
 	
 	ai_will_do = {
-		base = 100
+		base = 0
 
-		modifier = {
-			factor = 50
-			scope:recipient = {
-				roman_administration_holds_tagma_title_trigger = yes
-			}
-		}
+		# modifier = {
+		# 	factor = 50
+		# 	scope:recipient = {
+		# 		roman_administration_holds_tagma_title_trigger = yes
+		# 	}
+		# }
 		
 		
-		modifier = {
-			factor = 0
-			scope:recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:recipient = {
+		# 		OR = {
+		# 			AND = {
+		# 				scope:actor = {
+		# 					ai_greed <= high_positive_ai_value
+		# 				}
+		# 				has_relation_friend = scope:actor
+		# 			}
+		# 			has_relation_best_friend = scope:actor
+		# 			has_relation_soulmate = scope:actor
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 0
-			scope:actor = {
-				gold < 50
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:actor = {
+		# 		gold < 50
+		# 	}
+		# }
 
-		modifier = {
-			factor = 0
-			scope:secondary_recipient = {
-				any_heir_to_title = {
-					tier = tier_duchy
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 0
+		# 	scope:secondary_recipient = {
+		# 		any_heir_to_title = {
+		# 			tier = tier_duchy
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 100
-			scope:secondary_recipient = {
-				OR = {
-					AND = {
-						scope:actor = {
-							ai_greed <= high_positive_ai_value
-						}
-						has_relation_friend = scope:actor
-					}
-					has_relation_best_friend = scope:actor
-					has_relation_soulmate = scope:actor
-				}
-			}
-		}
+		# modifier = {
+		# 	factor = 100
+		# 	scope:secondary_recipient = {
+		# 		OR = {
+		# 			AND = {
+		# 				scope:actor = {
+		# 					ai_greed <= high_positive_ai_value
+		# 				}
+		# 				has_relation_friend = scope:actor
+		# 			}
+		# 			has_relation_best_friend = scope:actor
+		# 			has_relation_soulmate = scope:actor
+		# 		}
+		# 	}
+		# }
 
-		modifier = {
-			factor = 1000
-			scope:secondary_recipient = {
-				is_close_family_of = scope:actor
-			}
-		}
+		# modifier = {
+		# 	factor = 1000
+		# 	scope:secondary_recipient = {
+		# 		is_close_family_of = scope:actor
+		# 	}
+		# }
 	}
 }
 
+
+#############################################
+# EMPEROR INTERACTIONS						#
+#############################################
+
+## Emperor interaction to name a junior emperor
 roman_administration_name_junior_emperor = {
 	category = interaction_category_roman_administration
 	interface_priority = 60
@@ -1587,13 +429,20 @@ roman_administration_name_junior_emperor = {
 
 	is_shown = {
 		scope:actor = {
-			primary_title = {
+			any_held_title = {
 				this = title:e_byzantium
 			}		
 		}
 		scope:recipient = { 
-			top_liege = scope:actor
-			is_adult = yes
+			roman_administration_character_is_in_the_empire = yes
+			age >= 6
+			is_female = no
+			NOT = {
+				has_any_scripted_relation = scope:actor
+			}
+			NOT = {
+				has_trait = junior_emperor
+			}
 		}
 	}
 
@@ -1621,6 +470,7 @@ roman_administration_name_junior_emperor = {
 				type = junior_emperor
 				remove_relation_junior_emperor = scope:actor
 				hidden_effect = { scope:actor = { remove_relation_junior_emperor = prev } }
+				remove_trait = junior_emperor
 				add_opinion = {
 					target = scope:actor
 					modifier = roman_administration_fire_junior_emperor
@@ -1723,68 +573,986 @@ roman_administration_name_junior_emperor = {
 	}
 }
 
+## Emperor interaction to favour a successor to a title
+roman_administration_favour_successor = {
+	category = interaction_category_roman_administration
+	common_interaction = yes
 
-# dummy_test_interaction = {
-# 	category = interaction_category_roman_administration
-# 	common_interaction = yes
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			NOT = { has_government = theocracy_government }					
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 18
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+					}
+				}
+				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					highest_held_title_tier < tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						is_female = no
+						age >= 18
+						highest_held_title_tier < tier_duchy
+						NOR = {
+							has_trait = devoted
+							# has_trait = priest
+						}
+					}
+					add_to_list = characters
+				}
+			}
+		}
+	}
 	
-# 	use_diplomatic_range = yes
+	on_accept = {
+		scope:secondary_recipient = {
+			add_unpressed_claim = scope:recipient.primary_title
+			## Add some flag so it has a better score in the election
+			add_character_modifier = roman_administration_emperor_favourite
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = vassals
+	}
+	ai_frequency = 6
+	
+	ai_will_do = {
+		base = 100
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+	}
+}
+
+## Emperor interaction to fire an official
+roman_administration_fire_bureaucrat = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			NOT = { has_government = theocracy_government }					
+		}
+	}
+
+	auto_accept = yes
+	
+	ai_potential = {
+		is_at_war = no
+		NOR = {
+			has_trait = forgiving
+			has_trait = compassionate
+			has_trait = patient
+			has_trait = trusting
+			has_trait = calm
+		}
+	}
+
+	on_accept = {
+		scope:recipient = {
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				current_heir = {
+					save_scope_as = new_holder
+				}
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+			
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_fired_me
+				opinion = -25
+			}
+
+			## Clear variable and modifiers
+			hidden_effect = {
+				remove_character_modifier = roman_administration_terms_of_office_0
+				remove_character_modifier = roman_administration_terms_of_office_1
+				remove_character_modifier = roman_administration_terms_of_office_2
+				remove_character_modifier = roman_administration_terms_of_office_3
+				remove_character_modifier = roman_administration_terms_of_office_4
+				remove_character_modifier = roman_administration_terms_of_office_5
+				remove_variable = roman_administration_term_count
+			}
+
+			scope:new_holder = {
+				remove_character_modifier = roman_administration_emperor_favourite
+				trigger_event = ave_maria_roman_administration_events.00012
+			}
+		}
+
+		scope:actor = {
+			if = {
+				limit = {
+					scope:recipient = {
+						roman_administration_holds_high_office_title_trigger = yes
+					}
+				}
+				add_tyranny = 5
+			}			
+
+			## Add the stress impact
+			introverted = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
+			sentimental = minor_stress_impact_gain
+			craven = minor_stress_impact_gain
+			faithful = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+
+			zealous = minor_stress_impact_loss
+			arbitrary = minor_stress_impact_loss
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+		max = 20
+	}
+
+	ai_frequency = 24
+
+	ai_will_do = {
+		base = 0
+		
+		# modifier = {
+			# add = 100
+			# scope:recipient = {
+				# OR = {
+					# has_relation_rival = scope:actor
+					# has_relation_nemesis = scope:actor
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# add = 100
+			# scope:recipient = {
+				# is_primary_heir_of = scope:actor
+				# OR = {
+					# has_trait = inbred
+					# has_trait = intellect_bad_3
+					# has_trait = incapable
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# add = 5
+			# ai_vengefulness >= medium_positive_ai_value
+			# scope:recipient = {
+				# is_heir_of = scope:actor
+			# }
+			# OR = {
+				# AND = {
+					# scope:recipient = {
+						# has_trait = incestuous
+					# }
+					# NOT = { is_incestuous_trigger = yes }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = kinslayer
+					# }
+					# NOT = { has_trait = kinslayer }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = adulterer
+					# }
+					# NOR = {
+						# has_trait = adulterer
+						# has_trait = fornicator
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = fornicator
+					# }
+					# NOR = {
+						# has_trait = adulterer
+						# has_trait = fornicator
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = deviant
+					# }
+					# NOT = {
+						# is_deviant_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = witch
+					# }
+					# NOT = {
+						# is_witch_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = sodomite
+					# }
+					# NOR = {
+						# has_trait = sodomite
+						# any_secret = {
+							# secret_type = secret_homosexual
+						# }
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = cannibal
+					# }
+					# NOT = {
+						# is_cannibal_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# factor = 0
+			# scope:recipient = {
+				# OR = {
+					# has_relation_friend = scope:actor
+					# has_relation_best_friend = scope:actor
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# factor = 0
+			# scope:recipient = {
+				# is_ai = no
+			# }
+		# }
+	}
+}
+
+## Emperor interaction to replace an official
+roman_administration_replace_bureaucrat = {
+	category = interaction_category_roman_administration
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			highest_held_title_tier >= tier_duchy 
+			NOT = { has_government = theocracy_government }					
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 18
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+					}
+				}
+				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					highest_held_title_tier < tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						is_female = no
+						age >= 18
+						highest_held_title_tier < tier_duchy
+						NOR = {
+							has_trait = devoted
+							# has_trait = priest
+						}
+					}
+					add_to_list = characters
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		scope:recipient = {
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:secondary_recipient
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:secondary_recipient
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+
+			## Clear variable and modifiers
+			hidden_effect = {
+				remove_character_modifier = roman_administration_terms_of_office_0
+				remove_character_modifier = roman_administration_terms_of_office_1
+				remove_character_modifier = roman_administration_terms_of_office_2
+				remove_character_modifier = roman_administration_terms_of_office_3
+				remove_character_modifier = roman_administration_terms_of_office_4
+				remove_character_modifier = roman_administration_terms_of_office_5
+				remove_variable = roman_administration_term_count
+			}
+
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_fired_me
+				opinion = -25
+			}					
+		}
+
+		## Add some opinion
+		scope:secondary_recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+			remove_character_modifier = roman_administration_emperor_favourite
+			trigger_event = ave_maria_roman_administration_events.00012
+		}	
+
+		scope:actor = {
+			if = {
+				limit = {
+					scope:recipient = {
+						roman_administration_holds_high_office_title_trigger = yes
+					}
+				}
+				add_tyranny = 5
+				roman_administration_remove_popularity_massive_amount = yes
+			}
+
+			## Add the stress impact
+			introverted = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
+			sentimental = minor_stress_impact_gain
+			craven = minor_stress_impact_gain
+			faithful = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+
+			zealous = minor_stress_impact_loss
+			arbitrary = minor_stress_impact_loss
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = vassals
+	}
+	ai_frequency = 6
+	
+	ai_will_do = {
+		base = 0
+		
+		# modifier = {
+			# add = 100
+			# scope:recipient = {
+				# OR = {
+					# has_relation_rival = scope:actor
+					# has_relation_nemesis = scope:actor
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# add = 100
+			# scope:recipient = {
+				# is_primary_heir_of = scope:actor
+				# OR = {
+					# has_trait = inbred
+					# has_trait = intellect_bad_3
+					# has_trait = incapable
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# add = 5
+			# ai_vengefulness >= medium_positive_ai_value
+			# scope:recipient = {
+				# is_heir_of = scope:actor
+			# }
+			# OR = {
+				# AND = {
+					# scope:recipient = {
+						# has_trait = incestuous
+					# }
+					# NOT = { is_incestuous_trigger = yes }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = kinslayer
+					# }
+					# NOT = { has_trait = kinslayer }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = adulterer
+					# }
+					# NOR = {
+						# has_trait = adulterer
+						# has_trait = fornicator
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = fornicator
+					# }
+					# NOR = {
+						# has_trait = adulterer
+						# has_trait = fornicator
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = deviant
+					# }
+					# NOT = {
+						# is_deviant_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = witch
+					# }
+					# NOT = {
+						# is_witch_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = sodomite
+					# }
+					# NOR = {
+						# has_trait = sodomite
+						# any_secret = {
+							# secret_type = secret_homosexual
+						# }
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+				# AND = {
+					# scope:recipient = {
+						# has_trait = cannibal
+					# }
+					# NOT = {
+						# is_cannibal_trigger = yes
+					# }
+					# trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# factor = 0
+			# scope:recipient = {
+				# OR = {
+					# has_relation_friend = scope:actor
+					# has_relation_best_friend = scope:actor
+				# }
+			# }
+		# }
+		
+		# modifier = {
+			# factor = 0
+			# scope:recipient = {
+				# is_ai = no
+			# }
+		# }
+	}
+}
+
+# roman_administration_change_to_doukaton = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
+
+# 	desc = roman_administration_change_to_doukaton_desc
 
 # 	is_shown = {
 # 		scope:actor = {
-# 			NOT = {
-# 				any_held_title = {
-# 					this = title:e_byzantium
-# 				}
-# 			}			
-# 			top_liege = {
-# 				any_held_title = {
-# 					this = title:e_byzantium
-# 				}
-# 			}
-# 			NOT = { has_government = theocracy_government }
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
 # 		}
 # 		scope:recipient = { 
-# 			is_landed = yes 
-# 			top_liege = {
-# 				any_held_title = {
-# 					OR = {
-# 						this = title:e_byzantium
-# 						this = title:e_roman_empire
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_doukaton_government }
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_doukaton_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					set_variable = {
+# 						name = roman_administration_doukaton_title
+# 						value = yes
 # 					}
 # 				}
 # 			}
-# 			highest_held_title_tier = tier_duchy 
-# 			OR = {
-# 				has_government = roman_administration_military_government
-# 				has_government = roman_administration_civilian_government
-# 			}
-# 			NOT = { this = scope:actor }
 # 		}
-# 	}
-	
-# 	auto_accept = yes
-	
-# 	on_accept = {
-# 		scope:recipient = {
-# 			add_to_list = agents_to_join_war
-
-# 		}
-# 	}
-
-# 	# AI
-# 	ai_targets = {
-# 		ai_recipients = peer_vassals
-# 	}
-# 	ai_frequency = 6
-
-# 	ai_potential = {
-# 		always = no
-# 	}
-
-# 	ai_will_do = {
-# 		base = 0
-		
-		
 # 	}
 # }
+
+# roman_administration_change_to_kouratoreia = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
+
+# 	desc = roman_administration_change_to_kouratoreia_desc
+
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_kouratoreia_government }
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_kouratoreia_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					set_variable = {
+# 						name = roman_administration_kouratoreia_title
+# 						value = yes
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# roman_administration_change_to_theme = {
+# 	category = interaction_category_roman_administration
+# 	interface_priority = 0
+
+# 	desc = roman_administration_change_to_theme_desc
+
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}		
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = roman_administration_theme_government }
+# 			OR = {
+# 				has_government = roman_administration_kouratoreia_government
+# 				has_government = roman_administration_doukaton_government
+# 			}
+# 			highest_held_title_tier = tier_duchy
+# 			uses_roman_govt = yes
+# 			NOR = {
+# 				has_government = roman_administration_military_government
+# 				has_government = roman_administration_sekreton_government
+# 			}
+# 		}
+# 	}
+
+# 	is_valid_showing_failures_only = {
+# 		scope:recipient = {
+# 			is_diplomatically_available = yes
+# 		}
+# 	}
+
+# 	auto_accept = yes
+
+# 	ai_potential = {
+
+# 	}
+
+# 	on_accept = {
+# 		scope:recipient = {
+# 			change_government = roman_administration_theme_government
+# 			hidden_effect = {
+# 				primary_title = {
+# 					remove_variable = roman_administration_kouratoreia_title
+# 					remove_variable = roman_administration_doukaton_title
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+## Modify Vassal Contract
+roman_administration_change_vassal_contract = {
+	special_interaction = modify_vassal_contract
+	interface = modify_vassal_contract
+	category = interaction_category_vassal
+	common_interaction = yes
+
+	send_name = "modify_vassal_contract_interaction_SEND"
+	desc = liege_modify_vassal_contract_interaction_desc
+
+	force_notification = yes
+	notification_text = MODIFY_VASSAL_CONTRACT_NOTIFICATION_TO_VASSAL
+	
+	is_shown = {
+		scope:recipient = {
+			NOT = { this = scope:actor }
+			uses_roman_govt = yes
+			exists = liege
+			liege = scope:actor
+			is_ruler = yes
+			vassal_contract_has_modifiable_obligations = yes
+		}
+		scope:actor = {
+			uses_roman_govt = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { 
+			is_diplomatically_available = yes
+		} 
+		NOT = { scope:actor = { is_at_war_with = scope:recipient } } 
+	}
+
+	can_send = {
+		scope:recipient = {			
+			vassal_contract_is_blocked_from_modification = no
+		}
+			
+		## Cannot change more than three things at once
+		custom_description = {
+			text = "vassal_modify_vassal_contract_obligation_change_limit"
+			value = scope:recipient.count_total_obligation_changes
+			scope:recipient.count_total_obligation_changes <= max_contract_changes
+		}
+	}
+
+	auto_accept = yes
+
+	on_accept = {
+		scope:actor = {
+			send_interface_message = {
+				type = msg_vassal_contract_change
+				title = modify_vassal_contract_interaction_notification
+				right_icon = scope:recipient
+				
+				scope:recipient = {
+					hidden_effect = { set_vassal_contract_modification_blocked = yes }
+
+					roman_administration_set_tax_level = { TAX_OBLIGATION_TYPE = imperial_obligation_tax }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = ave_maria_roman_administration_special_contract }
+					hidden_effect = {
+						roman_administration_update_government_after_contract_change = yes
+					}					
+
+					
+					if = {
+						limit = {
+							has_government = roman_administration_theme_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_theme }
+					}
+					if = {
+						limit = {
+							has_government = roman_administration_doukaton_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_doukaton }
+					}
+					if = {
+						limit = {
+							has_government = roman_administration_kouratoreia_government
+						}
+						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+					}	
+					if = {
+						limit = {
+							OR = {
+								has_government = roman_administration_sekreton_government
+								has_government = roman_administration_military_government
+							}
+						}
+						roman_administration_set_salary_level = { SALARY_OBLIGATION_TYPE = imperial_high_office_salary }
+					}				
+
+					# custom_description_no_bullet = {
+					# 	text = roman_administration_popularity_hit
+						
+					# 	if = {
+					# 		limit = {
+					# 			scope:recipient = { roman_administration_popularity_decrease_trigger = yes }								
+					# 		}
+					# 		scope:actor = {
+					# 			stress_impact = {
+					# 				just = medium_stress_impact_gain
+					# 				generous = medium_stress_impact_gain
+					# 			}
+					# 			roman_administration_remove_popularity_small_amount = yes
+					# 		}
+					# 	}
+						
+					# }
+					
+				}
+				scope:actor = {
+					roman_administration_remove_popularity_small_amount = yes
+				}
+			}
+		}
+	}
+
+	send_option = {
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+	
+	ai_will_do = {
+		base = 0
+	}
+}
+
+#############################################
+# REVOLTS AND SCHEME						#
+#############################################

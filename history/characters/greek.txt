@@ -9,8 +9,8 @@
 	culture = "greek"
 	trait = education_martial_2
 	trait = strong
-	trait = am_brave
-	trait = am_deceitful
+	trait = brave
+	trait = deceitful
 	trait = ambitious
 	father = 145129
 	836.5.25 = {
@@ -977,8 +977,8 @@
 	dynasty = 644
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_pretentious
+	trait = greedy
+	trait = arrogant
 	trait = education_diplomacy_2
 	trait = born_in_the_purple
 	father = 1700
@@ -1119,10 +1119,10 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_diligent
-	trait = am_brave
-	trait = am_wroth
+	trait = greedy
+	trait = diligent
+	trait = brave
+	trait = wrathful
 	trait = education_martial_4
 	trait = born_in_the_purple
 	father = 1710
@@ -1163,8 +1163,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_craven
+	trait = arbitrary
+	trait = craven
 	trait = education_intrigue_1
 	trait = born_in_the_purple
 	father = 1710
@@ -1219,9 +1219,9 @@
 	dynasty = 638
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = beauty_good_1
-	trait = am_fearful
+	trait = paranoid
 	father = 70480
 	1010.1.1 = {
 		birth = "1010.1.1"
@@ -1313,7 +1313,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = gluttonous
 	trait = clubfooted
 	trait = lustful
@@ -1336,11 +1336,11 @@
 				#levies = 100
 				men_at_arms = {
 					type = tagma_varangian
-					stacks = 50
+					stacks = 5
 				}
 				men_at_arms = {
 					type = bowmen
-					stacks = 10
+					stacks = 1
 				}
 				location = 496
 				origin = 496
@@ -1370,8 +1370,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
-	trait = am_conventional
+	trait = humble
+	trait = content
 	trait = education_stewardship_4
 	father = 20528
 	1030.1.1 = {
@@ -1392,18 +1392,17 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_brave
-	trait = am_reckless
 	trait = height_tall
 	trait = strong
 	trait = ambitious
 	trait = blademaster_2
-	trait = education_martial_3
+	trait = honest
+	trait = brave
+	trait = wrathful
+	trait = education_martial_2
 	trait = reckless
-	trait = am_veteran_3
+	trait = veteran_3
 	father = 20525
-	
 	1030.1.1 = {
 		birth = "1030.1.1"
 	}
@@ -1411,6 +1410,26 @@
 		add_spouse = 725
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 18 }
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {
+				type = imperial_obligation_doukaton
+				level = 4
+			}
+		}
+	}
+	1066.1.1 = {
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {
+				type = imperial_obligation_doukaton
+				level = 4
+			}
 		}
 	}
 	1068.8.1 = {
@@ -1456,10 +1475,10 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_lazy
-	trait = am_craven
-	trait = am_greedy
+	trait = arbitrary
+	trait = lazy
+	trait = craven
+	trait = greedy
 	trait = education_stewardship_1
 	father = 1732
 	mother = 1733
@@ -1525,7 +1544,7 @@
 }
 
 1742 = {
-	name = "Alexios"
+	name = "Alexios" #Alexios I Komnenos
 	dynasty = 634
 	martial = 9
 	diplomacy = 9
@@ -1533,16 +1552,13 @@
 	stewardship = 9
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
-	trait = am_diligent
-	trait = am_pretentious
-	trait = am_patient
-	trait = am_greedy
-	trait = am_intolerant
+	trait = brave
+	trait = diligent
+	trait = bossy
 	father = 1752
 	mother = 4511
 	1056.1.1 = {
-		birth = "1056.1.1"
+		birth = yes
 	}
 	1071.1.1 = {
 		trait = education_stewardship_4
@@ -1557,7 +1573,7 @@
 		remove_claim = e_byzantium
 	}
 	1118.8.15 = {
-		death = "1118.8.15"
+		death = yes
 	}
 }
 
@@ -1586,7 +1602,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_intrigue_2
 	father = 145169
 	980.1.1 = {
@@ -1616,9 +1632,9 @@
 	trait = education_intrigue_3
 
 	#Personality Traits
-	trait = am_deceitful
+	trait = deceitful
 	trait = ambitious
-	trait = am_quarrelsome
+	trait = vengeful
 	
 	#Other Traits
 	trait = schemer
@@ -1633,6 +1649,10 @@
 	}
 	1066.1.1 = {
 		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 3
+			}
 			set_relation_rival = character:1734	#A bit early, as the events that would cause this wouldn't start till 1067, but better to have the rivalry ready to go straight off the bat.
 		}
 	}
@@ -1746,6 +1766,18 @@
 	1047.1.1 = {
 		birth = "1047.1.1"
 	}
+	1066.1.1 = {
+		effect = {
+			vassal_contract_set_obligation_level = {
+				type = ave_maria_roman_administration_special_contract
+				level = 1
+			}
+			vassal_contract_set_obligation_level = {
+				type = imperial_obligation_doukaton
+				level = 5
+			}
+		}
+	}
 	1072.1.1 = {
 		add_spouse = 9958
 	}
@@ -1796,7 +1828,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_diplomacy_3
 	1027.1.1 = {
 		birth = "1027.1.1"
@@ -1820,8 +1852,8 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
-	trait = am_intolerant
+	trait = generous
+	trait = zealous
 	trait = education_stewardship_2
 	1035.1.1 = {
 		birth = "1035.1.1"
@@ -1858,7 +1890,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_martial_2
 	father = 145164
 	847.1.1 = {
@@ -1899,7 +1931,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = chaste
- 	trait = am_craven
+ 	trait = craven
 	trait = education_intrigue_1
 	father = 145154
 	mother = 145155
@@ -1920,8 +1952,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_hypocritical
+	trait = diligent
+	trait = cynical
 	trait = education_martial_3
 	father = 145154
 	mother = 145155
@@ -2020,8 +2052,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_pretentious
+	trait = honest
+	trait = arrogant
 	trait = temperate
 	trait = education_diplomacy_2
 	father = 1778
@@ -2078,7 +2110,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = ill
 	trait = education_stewardship_1
 	1030.1.1 = {
@@ -2116,7 +2148,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_craven
+	trait = craven
 	trait = education_learning_3
 	989.1.1 = {
 		birth = "989.1.1"
@@ -2158,7 +2190,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
+	trait = zealous
 	trait = education_martial_1
 	father = 145161
 	mother = 145163
@@ -2179,8 +2211,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
-	trait = am_honest
+	trait = humble
+	trait = honest
 	trait = education_intrigue_1
 	father = 70415
 	1030.1.1 = {
@@ -2219,7 +2251,7 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
+	trait = lazy
 	trait = education_intrigue_1
 	1035.1.1 = {
 		birth = "1035.1.1"
@@ -2277,7 +2309,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_martial_2
 	father = 20487
 	1034.1.1 = {
@@ -2356,7 +2388,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = ill
 	trait = education_martial_2
 	father = 41315
@@ -2378,7 +2410,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = education_intrigue_1
 	father = 30820
 	1025.1.1 = {
@@ -2399,8 +2431,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_outgoing
-	trait = am_pretentious
+	trait = gregarious
+	trait = arrogant
 	trait = education_martial_4
 	father = 90089
 	1030.1.1 = {
@@ -2423,8 +2455,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_hypocritical
+	trait = arrogant
+	trait = cynical
 	trait = education_intrigue_2
 	1000.1.1 = {
 		birth = "1000.1.1"
@@ -2447,7 +2479,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_wroth
+	trait = wrathful
 	trait = education_martial_3
 	father = 70425
 	1022.1.1 = {
@@ -2536,7 +2568,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
+	trait = humble
 	trait = education_martial_2
 	958.1.1 = {
 		birth = "958.1.1"
@@ -2555,7 +2587,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = education_martial_2
 	920.1.1 = {
 		birth = "920.1.1"
@@ -2577,7 +2609,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_martial_3
 	1043.1.1 = {
 		birth = "1043.1.1"
@@ -2634,9 +2666,9 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_patient
-	trait = am_hypocritical
+	trait = arbitrary
+	trait = calm
+	trait = cynical
 	trait = education_martial_2
 	father = 20528
 	1022.1.1 = {
@@ -2657,7 +2689,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = chaste
-	trait = am_humble
+	trait = humble
 	trait = gluttonous
 	trait = education_diplomacy_2
 	father = 70430
@@ -2712,7 +2744,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_diplomacy_2
 	900.1.1 = {
 		birth = "900.1.1"
@@ -2735,9 +2767,9 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_inconstant
-	trait = am_greedy
+	trait = deceitful
+	trait = arbitrary
+	trait = greedy
 	trait = ill
 	trait = education_diplomacy_1
 	father = 20564
@@ -2777,7 +2809,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
+	trait = lazy
 	trait = education_intrigue_1
 	1001.1.1 = {
 		birth = "1001.1.1"
@@ -2796,7 +2828,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
+	trait = lazy
 	trait = education_intrigue_2
 	father = 41315
 	1039.1.1 = {
@@ -2857,8 +2889,8 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
-	trait = am_greedy
+	trait = calm
+	trait = greedy
 	trait = education_intrigue_2
 	father = 70400
 	989.1.1 = {
@@ -2917,7 +2949,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_greedy
+	trait = greedy
 	trait = education_martial_2
 	father = 20537
 	1053.1.1 = {
@@ -2937,7 +2969,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = ill
 	trait = education_martial_2
 	father = 41320
@@ -2966,7 +2998,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_withdrawn
+	trait = shy
 	father = 20534
 	mother = 159288
 	1054.1.1 = {
@@ -3004,7 +3036,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
+	trait = zealous
 	trait = education_learning_2
 	1039.1.1 = {
 		birth = "1039.1.1"
@@ -3023,9 +3055,9 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
-	trait = am_brave
-	trait = am_intolerant
+	trait = humble
+	trait = brave
+	trait = zealous
 	trait = education_martial_4
 	1038.1.1 = {
 		birth = "1038.1.1"
@@ -3047,9 +3079,9 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
-	trait = am_honest
-	trait = am_brave
+	trait = generous
+	trait = just
+	trait = brave
 	trait = education_martial_2
 	1039.1.1 = {
 		birth = "1039.1.1"
@@ -3069,8 +3101,8 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_generous
-	trait = am_craven
+	trait = generous
+	trait = craven
 	trait = education_martial_2
 	1039.1.1 = {
 		birth = "1039.1.1"
@@ -3090,8 +3122,8 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_lazy
-	trait = am_honest
+	trait = lazy
+	trait = honest
 	trait = education_diplomacy_2
 	1039.1.1 = {
 		birth = "1039.1.1"
@@ -3131,8 +3163,8 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = chaste
-	trait = am_greedy
-	trait = am_patient
+	trait = greedy
+	trait = calm
 	trait = education_intrigue_1
 	father = 20519
 	mother = 20520
@@ -3154,7 +3186,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = clubfooted
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_intrigue_3
 	1013.1.1 = {
 		birth = "1013.1.1"
@@ -3228,7 +3260,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
+	trait = arrogant
 	trait = education_intrigue_1
 	father = 303451
 	1024.1.1 = {
@@ -3270,9 +3302,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
-	trait = am_inconstant
-	trait = am_craven
+	trait = generous
+	trait = arbitrary
+	trait = craven
 	trait = education_intrigue_1
 	1030.1.1 = {
 		birth = "1030.1.1"
@@ -3375,7 +3407,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_stewardship_2
 	father = 232551
 	1146.1.1 = {
@@ -3400,10 +3432,10 @@
 	culture = "greek"
 	trait = scholar
 	trait = chaste
-	trait = am_honest
-	trait = am_conventional
+	trait = honest
+	trait = content
 	trait = temperate
-	trait = am_patient
+	trait = calm
 	trait = education_diplomacy_4
 	father = 232501
 	1155.1.1 = {
@@ -3443,9 +3475,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
-	trait = am_inconstant
-	trait = am_intolerant
+	trait = generous
+	trait = arbitrary
+	trait = zealous
 	trait = education_learning_3
 	1137.1.1 = {
 		birth = "1137.1.1"
@@ -3464,8 +3496,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_wroth
+	trait = arrogant
+	trait = wrathful
 	trait = education_learning_3
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -3484,7 +3516,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = education_diplomacy_2
 	father = 34442
 	1152.1.1 = {
@@ -3507,9 +3539,9 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
-	trait = am_pretentious
-	trait = am_diligent
+	trait = generous
+	trait = arrogant
+	trait = diligent
 	trait = education_intrigue_4
 	father = 231057
 	mother = 215533
@@ -3530,7 +3562,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = lisping
 	trait = education_intrigue_1
 	1149.1.1 = {
@@ -3550,8 +3582,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
-	trait = am_pretentious
+	trait = cynical
+	trait = arrogant
 	trait = education_learning_2
 	1159.1.1 = {
 		birth = "1159.1.1"
@@ -3572,8 +3604,8 @@
 	culture = "greek"
 	trait = chaste
 	trait = celibate
-	trait = am_conventional
-	trait = am_honest
+	trait = content
+	trait = just
 	trait = education_learning_3
 	father = 232501
 	1140.1.1 = {
@@ -3617,8 +3649,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_honest
+	trait = honest
+	trait = just
 	trait = education_intrigue_2
 	father = 34578
 	1160.1.1 = {
@@ -3658,7 +3690,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_intrigue_1
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -3677,7 +3709,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = education_learning_2
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -3696,7 +3728,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = education_intrigue_2
 	father = 232542
 	mother = 232543
@@ -3717,7 +3749,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = temperate
 	trait = education_stewardship_3
 	father = 34275
@@ -3776,9 +3808,9 @@
 	culture = "greek"
 	father = 145085
 	trait = lustful
-	trait = am_deceitful
+	trait = deceitful
 	trait = gluttonous
-	trait = am_brave
+	trait = brave
 	trait = education_learning_3
 	1172.1.1 = {
 		birth = "1172.1.1"
@@ -3798,7 +3830,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = bastard
-	trait = am_greedy
+	trait = greedy
 	trait = education_learning_2
 	father = 232555
 	1163.1.1 = {
@@ -3836,7 +3868,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
+	trait = humble
 	trait = education_intrigue_2
 	father = 232549
 	1156.1.1 = {
@@ -3911,7 +3943,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_learning_2
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -3948,7 +3980,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = lisping
 	trait = education_learning_3
 	1150.1.1 = {
@@ -3968,7 +4000,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
+	trait = diligent
 	trait = education_diplomacy_3
 	father = 232512
 	mother = 232513
@@ -3992,7 +4024,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_3
 	1166.1.1 = {
 		birth = "1166.1.1"
@@ -4011,7 +4043,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_intrigue_1
 	father = 232508
 	mother = 232511
@@ -4050,7 +4082,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = education_intrigue_2
 	father = 232544
 	mother = 232545
@@ -4071,7 +4103,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = education_martial_3
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -4090,7 +4122,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_martial_2
 	1150.1.1 = {
 		birth = "1150.1.1"
@@ -4109,8 +4141,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
-	trait = am_hypocritical
+	trait = brave
+	trait = cynical
 	trait = education_martial_3
 	trait = ambitious
 	father = 34581
@@ -4137,7 +4169,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_martial_2
 	father = 215060
 	mother = 232536
@@ -4161,8 +4193,8 @@
 	stewardship = 2
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_lazy
+	trait = arbitrary
+	trait = lazy
 	trait = education_stewardship_1
 	father = 215504
 	mother = 215525
@@ -4224,8 +4256,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
-	trait = am_craven
+	trait = lazy
+	trait = craven
 	trait = ambitious
 	father = 215504
 	mother = 215525
@@ -4543,8 +4575,8 @@
 	dynasty = 632
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_honest
+	trait = just
+	trait = honest
 	trait = hunchbacked
 	trait = education_learning_2
 	father = 1735
@@ -4642,7 +4674,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = reveler_1
-	trait = am_greedy
+	trait = greedy
 	trait = ambitious
 	trait = lustful
 	trait = education_intrigue_2
@@ -4668,10 +4700,10 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
-	trait = am_diligent
-	trait = am_pretentious
-	trait = am_patient
+	trait = brave
+	trait = diligent
+	trait = arrogant
+	trait = calm
 	trait = education_martial_2
 	trait = born_in_the_purple
 	father = 223023
@@ -4756,7 +4788,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = education_intrigue_2
 	father = 231057
 	mother = 215533
@@ -4865,7 +4897,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_martial_3
 	1142.1.2 = {
 		birth = "1142.1.2"
@@ -4947,8 +4979,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_brave
+	trait = diligent
+	trait = brave
 	trait = education_stewardship_2
 	father = 215670
 	mother = 215671
@@ -5001,7 +5033,7 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = education_learning_3
 	1152.1.1 = {
 		birth = "1152.1.1"
@@ -5022,7 +5054,7 @@
 	religion = "catholic"
 	culture = "greek"
 	trait = chaste
-	trait = am_wroth
+	trait = wrathful
 	trait = education_intrigue_1
 	1154.1.2 = {
 		birth = "1154.1.2"
@@ -5085,7 +5117,7 @@
 	dynasty = 634
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = education_learning_2
 	mother = 223021
 	1155.1.1 = {
@@ -5141,7 +5173,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
+	trait = zealous
 	trait = beauty_good_1
 	trait = born_in_the_purple
 	father = 1742
@@ -5197,8 +5229,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_wroth
+	trait = greedy
+	trait = wrathful
 	trait = hunchbacked
 	trait = education_learning_2
 	1144.1.1 = {
@@ -5222,8 +5254,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
-	trait = am_honest
+	trait = humble
+	trait = honest
 	trait = education_intrigue_1
 	father = 232504
 	1100.1.1 = {
@@ -5277,7 +5309,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_intrigue_2
 	father = 215060
 	mother = 232536
@@ -5334,8 +5366,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_deceitful
+	trait = greedy
+	trait = deceitful
 	trait = education_martial_2
 	father = 215012
 	1180.1.1 = {
@@ -5355,10 +5387,10 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = chaste
 	trait = celibate
-	trait = am_diligent
+	trait = diligent
 	trait = education_learning_4
 	1110.1.1 = {
 		birth = "1110.1.1"
@@ -5378,8 +5410,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
-	trait = am_withdrawn
+	trait = zealous
+	trait = shy
 	trait = education_stewardship_2
 	father = 231057
 	mother = 215533
@@ -5400,7 +5432,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_craven
+	trait = craven
 	trait = gluttonous
 	trait = education_martial_1
 	father = 231057
@@ -5422,10 +5454,10 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_outgoing
-	trait = am_hypocritical
-	trait = am_brave
+	trait = diligent
+	trait = gregarious
+	trait = cynical
+	trait = brave
 	trait = education_diplomacy_4
 	father = 232507
 	1121.1.1 = {
@@ -5538,7 +5570,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 215035
 	mother = 232505
@@ -5583,7 +5615,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = education_diplomacy_1
 	father = 232512
 	mother = 232513
@@ -5619,8 +5651,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
-	trait = am_hypocritical
+	trait = wrathful
+	trait = cynical
 	trait = education_intrigue_3
 	father = 225005
 	mother = 232517
@@ -5641,7 +5673,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
+	trait = humble
 	trait = education_stewardship_2
 	father = 215003
 	1180.1.1 = {
@@ -5721,8 +5753,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_conventional
+	trait = honest
+	trait = content
 	trait = education_martial_1
 	father = 90090
 	1062.1.1 = {
@@ -5994,9 +6026,9 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
-	trait = am_diligent
-	trait = am_generous
+	trait = calm
+	trait = diligent
+	trait = generous
 	trait = education_martial_3
 	father = 232553
 	mother = 232554
@@ -6301,7 +6333,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = scholar
-	trait = am_outgoing
+	trait = gregarious
 	trait = education_learning_3
 	1006.1.1 = {
 		birth = "1006.1.1"
@@ -6320,9 +6352,9 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_hypocritical
-	trait = am_deceitful
+	trait = arrogant
+	trait = cynical
+	trait = deceitful
 	trait = education_learning_3
 	1018.1.1 = {
 		birth = "1018.1.1"
@@ -6344,7 +6376,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
+	trait = arrogant
 	trait = education_martial_3
 	1030.1.1 = {
 		birth = "1030.1.1"
@@ -6459,9 +6491,9 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
+	trait = arrogant
 	trait = lustful
-	trait = am_greedy
+	trait = greedy
 	trait = education_intrigue_2
 	father = 41314
 	990.1.1 = {
@@ -6579,8 +6611,8 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_honest
+	trait = greedy
+	trait = honest
 	trait = education_martial_2
 	father = 20544
 	mother = 41593
@@ -6720,9 +6752,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_craven
-	trait = am_deceitful
-	trait = am_hypocritical
+	trait = craven
+	trait = deceitful
+	trait = cynical
 	trait = education_diplomacy_2
 	1049.1.1 = {
 		birth = "1049.1.1"
@@ -6744,9 +6776,9 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_generous
-	trait = am_intolerant
+	trait = diligent
+	trait = generous
+	trait = zealous
 	trait = education_martial_2
 	father = 1764
 	mother = 1765
@@ -6792,7 +6824,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_stewardship_3
 	1017.1.1 = {
 		birth = "1017.1.1"
@@ -6815,8 +6847,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_honest
+	trait = diligent
+	trait = just
 	trait = education_learning_4
 	1055.1.1 = {
 		birth = "1055.1.1"
@@ -6918,7 +6950,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
+	trait = humble
 	trait = education_diplomacy_1
 	1315.1.2 = {
 		birth = "1315.1.2"
@@ -6939,7 +6971,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "french"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_intrigue_2
 	father = 462150
 	mother = 487055
@@ -6969,10 +7001,10 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_martial_3
-	trait = am_honest
-	trait = am_craven
+	trait = honest
+	trait = craven
 	father = 465214
 	1270.1.1 = {
 		birth = "1270.1.1"
@@ -6998,7 +7030,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = education_intrigue_2
 	father = 465213
 	1275.1.1 = {
@@ -7018,7 +7050,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = education_diplomacy_3
 	father = 465210
 	mother = 465211
@@ -7082,7 +7114,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = celibate
-	trait = am_intolerant
+	trait = zealous
 	trait = education_learning_3
 	1319.1.1 = {
 		birth = "1319.1.1"
@@ -7101,8 +7133,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
-	trait = am_diligent
+	trait = cynical
+	trait = diligent
 	trait = education_learning_3
 	1295.1.1 = {
 		birth = "1295.1.1"
@@ -7121,8 +7153,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
-	trait = am_greedy
+	trait = wrathful
+	trait = greedy
 	trait = education_martial_2
 	father = 465501
 	mother = 465911
@@ -7147,9 +7179,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_brave
-	trait = am_diligent
+	trait = deceitful
+	trait = brave
+	trait = diligent
 	trait = education_intrigue_2
 	father = 465521
 	mother = 98047
@@ -7314,7 +7346,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
+	trait = lazy
 	trait = temperate
 	trait = education_intrigue_2
 	father = 465527
@@ -7362,9 +7394,9 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_hypocritical
-	trait = am_brave
+	trait = diligent
+	trait = cynical
+	trait = brave
 	trait = education_intrigue_4
 	father = 465528
 	mother = 34444
@@ -7422,8 +7454,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
+	trait = diligent
+	trait = calm
 	trait = ambitious
 	trait = education_learning_2
 	trait = scholar
@@ -7451,7 +7483,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = gluttonous
 	trait = education_diplomacy_3
 	father = 465530
@@ -7473,8 +7505,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_greedy
+	trait = diligent
+	trait = greedy
 	trait = education_learning_2
 	father = 465530
 	mother = 465554
@@ -7578,11 +7610,11 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_wroth
-	trait = am_hypocritical
+	trait = diligent
+	trait = wrathful
+	trait = cynical
 	trait = gluttonous
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 465551
 	mother = 465526
@@ -7604,9 +7636,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = temperate
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 465550
 	1300.1.1 = {
@@ -7648,8 +7680,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_craven
+	trait = honest
+	trait = craven
 	trait = education_learning_3
 	father = 465550
 	1303.1.1 = {
@@ -7710,7 +7742,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = education_learning_2
 	father = 465560
 	1320.1.1 = {
@@ -7850,7 +7882,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_intrigue_1
 	1314.1.2 = {
 		birth = "1314.1.2"
@@ -8047,9 +8079,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_hypocritical
-	trait = am_greedy
+	trait = deceitful
+	trait = cynical
+	trait = greedy
 	trait = education_martial_2
 	1297.1.2 = {
 		birth = "1297.1.2"
@@ -8087,7 +8119,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_stewardship_2
 	1320.1.2 = {
 		birth = "1320.1.2"
@@ -8106,7 +8138,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = ambitious
 	trait = education_intrigue_3
 	1301.1.2 = {
@@ -8165,7 +8197,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = gluttonous
-	trait = am_greedy
+	trait = greedy
 	trait = ambitious
 	trait = education_intrigue_2
 	1285.1.2 = {
@@ -8185,8 +8217,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
-	trait = am_brave
+	trait = wrathful
+	trait = brave
 	trait = education_martial_2
 	father = 465820
 	1317.1.2 = {
@@ -8318,9 +8350,9 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_greedy
-	trait = am_hypocritical
+	trait = arbitrary
+	trait = greedy
+	trait = cynical
 	trait = ill
 	trait = education_diplomacy_1
 	father = 1798
@@ -8341,7 +8373,7 @@
 #	stewardship = 8
 #	religion = "orthodox"
 #	culture = "greek"
-#	trait = am_diligent
+#	trait = diligent
 #	trait = education_diplomacy_2
 #	father = 20491
 #	mother = 4495
@@ -8364,7 +8396,7 @@
 #	religion = "orthodox"
 #	culture = "greek"
 #	trait = ambitious
-#	trait = am_hypocritical
+#	trait = cynical
 #	trait = education_intrigue_3
 #	father = 20491
 #	mother = 4495
@@ -8449,7 +8481,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = intellect_good_1
-	trait = am_diligent
+	trait = diligent
 	trait = education_diplomacy_2
 	father = 20514
 	
@@ -8470,7 +8502,7 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = beauty_bad_2
 	trait = education_martial_2
 	father = 20514
@@ -8492,8 +8524,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_withdrawn
-	trait = am_mild
+	trait = shy
+	trait = trusting
 	trait = education_stewardship_3
 	father = 20524
 	
@@ -8529,8 +8561,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
-	trait = am_pretentious
+	trait = brave
+	trait = arrogant
 	trait = education_martial_3
 	1010.1.1 = {
 		birth = "1010.1.1"
@@ -8549,8 +8581,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_craven
-	trait = am_conventional
+	trait = craven
+	trait = content
 	trait = education_intrigue_2
 	father = 20463
 	1053.1.1 = {
@@ -8570,7 +8602,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
+	trait = zealous
 	trait = ambitious
 	trait = education_diplomacy_2
 	father = 20463
@@ -8592,7 +8624,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_diplomacy_3
 	father = 20463
 	
@@ -8614,7 +8646,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = lustful
-	trait = am_humble
+	trait = humble
 	trait = education_martial_2
 	father = 1766
 	
@@ -8712,7 +8744,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = education_martial_3
 	
 	985.1.1 = {
@@ -8747,8 +8779,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_greedy
+	trait = deceitful
+	trait = greedy
 	trait = education_martial_1
 	1015.1.1 = {
 		birth = "1015.1.1"
@@ -8785,8 +8817,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_humble
+	trait = just
+	trait = humble
 	trait = education_diplomacy_1
 	
 	968.1.1 = {
@@ -8828,7 +8860,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_outgoing
+	trait = gregarious
 	trait = drunkard
 	trait = education_stewardship_4
 	trait = born_in_the_purple
@@ -8859,8 +8891,8 @@
 	stewardship = 6
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_fearful
-	trait = am_honest
+	trait = paranoid
+	trait = just
 	trait = education_martial_1
 	father = 70492
 	
@@ -8882,7 +8914,7 @@
 	stewardship = 5
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = ambitious
 	trait = education_martial_4
 	775.1.1 = {
@@ -8907,7 +8939,7 @@
 	religion = "iconoclast"
 	culture = "greek"
 	trait = ambitious
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_stewardship_3
 	
 	780.1.1 = {
@@ -8927,7 +8959,7 @@
 	stewardship = 6
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_diplomacy_1
 	father = 145834
 	
@@ -8961,7 +8993,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = beauty_good_1
 	trait = education_intrigue_2
 	father = 70497
@@ -9013,8 +9045,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
-	trait = am_inconstant
+	trait = cynical
+	trait = arbitrary
 	trait = education_intrigue_3
 	
 	750.1.1 = {
@@ -9036,10 +9068,10 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = ambitious
-	trait = am_deceitful
-	trait = am_generous
-	trait = am_outgoing
-	trait = am_intolerant
+	trait = deceitful
+	trait = generous
+	trait = gregarious
+	trait = zealous
 	trait = education_intrigue_4
 	father = 145803
 	
@@ -9063,8 +9095,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_craven
-	trait = am_fearful
+	trait = craven
+	trait = paranoid
 	trait = education_intrigue_1
 	father = 70500
 	mother = 70498
@@ -9092,8 +9124,8 @@
 	culture = "greek"
 	trait = born_in_the_purple
 	trait = weak
-	trait = am_honest
-	trait = am_mild
+	trait = honest
+	trait = trusting
 	trait = education_diplomacy_3
 	father = 70501
 	mother = 145787
@@ -9119,10 +9151,10 @@
 	religion = "iconoclast"
 	culture = "greek"
 	trait = born_in_the_purple
-	trait = am_brave
-	trait = am_diligent
-	trait = am_deceitful
-	trait = am_intolerant
+	trait = brave
+	trait = diligent
+	trait = callous
+	trait = zealous
 	trait = education_martial_3
 	father = 70502
 	718.9.1 = {
@@ -9150,7 +9182,7 @@
 	religion = "iconoclast"
 	culture = "greek"
 	trait = scholar
-	trait = am_diligent
+	trait = diligent
 	trait = education_stewardship_4
 	
 	685.1.1 = {
@@ -9171,8 +9203,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
-	trait = am_withdrawn
+	trait = zealous
+	trait = shy
 	trait = education_stewardship_1
 	father = 70499
 	
@@ -9193,7 +9225,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = sadistic
 	trait = education_diplomacy_2
 	
@@ -9214,9 +9246,9 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_deceitful
-	trait = am_deceitful
+	trait = arrogant
+	trait = deceitful
+	trait = callous
 	trait = education_martial_2
 	655.1.1 = {
 		birth = "655.1.1"
@@ -9236,7 +9268,7 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = education_intrigue_2
 	father = 70507
 	669.1.1 = {
@@ -9249,8 +9281,8 @@
 		add_spouse = 146185
 	}
 	705.08.21 = {
-		trait = am_deceitful
-		# trait = sadistic # can't be both am_deceitful and sadistic
+		trait = callous
+		# trait = sadistic # can't be both callous and sadistic
 	}
 	711.11.24 = {
 		death = "711.11.24"
@@ -9267,8 +9299,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_conventional
-	trait = am_diligent
+	trait = content
+	trait = diligent
 	trait = education_stewardship_2
 	father = 70508
 	648.1.1 = {
@@ -9289,8 +9321,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_fearful
+	trait = arbitrary
+	trait = paranoid
 	trait = education_diplomacy_1
 	father = 70509
 	630.11.7 = {
@@ -9312,7 +9344,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = ill
-	trait = am_conventional
+	trait = content
 	trait = education_diplomacy_1
 	father = 145071
 	
@@ -9333,9 +9365,9 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_brave
+	trait = brave
 	trait = scholar
-	trait = am_greedy
+	trait = greedy
 	trait = education_stewardship_3	
 	539.1.1 = {
 		birth = "539.1.1"
@@ -9377,7 +9409,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = temperate
-	trait = am_mild
+	trait = trusting
 	trait = education_stewardship_3
 	
 	431.1.1 = {
@@ -9403,8 +9435,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_patient
+	trait = honest
+	trait = calm
 	trait = education_diplomacy_3
 	
 	425.1.1 = {
@@ -9451,8 +9483,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
-	trait = am_conventional
+	trait = trusting
+	trait = content
 	trait = education_diplomacy_1
 	
 	401.1.1 = {
@@ -9473,7 +9505,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
+	trait = greedy
 	trait = lustful
 	trait = education_intrigue_2
 	father = 70517
@@ -9495,7 +9527,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_humble
+	trait = humble
 	trait = education_stewardship_2
 	father = 145069
 	685.1.1 = {
@@ -9515,8 +9547,8 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_honest
+	trait = just
+	trait = honest
 	trait = education_learning_3
 	
 	1000.1.1 = {
@@ -9537,7 +9569,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = ambitious
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_learning_4
 	
 	995.1.1 = {
@@ -9558,7 +9590,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = celibate
-	trait = am_mild
+	trait = trusting
 	trait = education_learning_3
 	
 	980.1.1 = {
@@ -9578,8 +9610,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_conventional
-	trait = am_humble
+	trait = content
+	trait = humble
 	trait = education_learning_1
 	
 	965.1.1 = {
@@ -9599,8 +9631,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_intolerant
+	trait = deceitful
+	trait = zealous
 	trait = education_learning_1
 	
 	953.1.1 = {
@@ -9641,7 +9673,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
+	trait = trusting
 	trait = education_learning_1
 	
 	921.1.1 = {
@@ -9696,7 +9728,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
+	trait = calm
 	trait = chaste
 	trait = education_learning_1
 	875.1.1 = {
@@ -9716,7 +9748,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_conventional
+	trait = content
 	trait = education_learning_1
 	861.1.1 = {
 		birth = "861.1.1"
@@ -9736,7 +9768,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = ambitious
 	trait = education_learning_3
 	
@@ -9758,7 +9790,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = scholar
-	trait = am_mild
+	trait = trusting
 	trait = education_learning_3
 	
 	851.1.1 = {
@@ -9824,7 +9856,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = celibate
-	trait = am_honest
+	trait = just
 	trait = education_learning_3
 	father = 70494
 	
@@ -9847,7 +9879,7 @@
 	religion = "iconoclast"
 	culture = "greek"
 	trait = scholar
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_learning_3
 	
 	800.1.1 = {
@@ -9867,7 +9899,7 @@
 	stewardship = 5
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = ambitious
 	trait = education_learning_1
 	
@@ -9889,7 +9921,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = celibate
-	trait = am_fearful
+	trait = paranoid
 	trait = education_learning_3
 	
 	758.1.1 = {
@@ -9910,7 +9942,7 @@
 	stewardship = 4
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = ill
 	trait = education_learning_1
 	
@@ -9950,7 +9982,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_learning_1
 	
 	710.1.1 = {
@@ -9971,7 +10003,7 @@
 	religion = "iconoclast"
 	culture = "greek"
 	trait = disfigured
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_learning_3
 	
 	695.1.1 = {
@@ -9991,8 +10023,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_outgoing
-	trait = am_intolerant
+	trait = gregarious
+	trait = zealous
 	trait = education_learning_1
 	
 	678.1.1 = {
@@ -10012,7 +10044,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_conventional
+	trait = content
 	trait = education_learning_1
 	
 	673.1.1 = {
@@ -10073,7 +10105,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
+	trait = diligent
 	trait = education_learning_1
 	
 	642.1.1 = {
@@ -10093,7 +10125,7 @@
 	stewardship = 3
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = celibate
 	trait = education_learning_1
 	635.1.1 = {
@@ -10113,7 +10145,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = celibate
 	trait = education_learning_1
 	634.1.1 = {
@@ -10134,7 +10166,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = scholar
-	trait = am_honest
+	trait = just
 	trait = education_learning_1
 	
 	630.1.1 = {
@@ -10155,7 +10187,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = chaste
-	trait = am_diligent
+	trait = diligent
 	trait = education_learning_1
 	
 	623.1.1 = {
@@ -10175,8 +10207,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_honest
+	trait = arrogant
+	trait = just
 	trait = education_learning_1
 	
 	619.1.1 = {
@@ -10217,8 +10249,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
-	trait = am_honest
+	trait = trusting
+	trait = honest
 	trait = education_learning_3
 	
 	598.1.1 = {
@@ -10238,7 +10270,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
+	trait = diligent
 	trait = education_learning_2
 	
 	575.1.1 = {
@@ -10258,7 +10290,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_learning_3
 	
 	551.1.1 = {
@@ -10278,7 +10310,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = ambitious
 	trait = education_learning_3
 	
@@ -10299,8 +10331,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
-	trait = am_generous
+	trait = lazy
+	trait = generous
 	trait = education_learning_1
 	
 	538.1.1 = {
@@ -10320,8 +10352,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_mild
+	trait = just
+	trait = trusting
 	trait = education_learning_1
 	
 	514.1.1 = {
@@ -10341,8 +10373,8 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
-	trait = am_diligent
+	trait = zealous
+	trait = diligent
 	trait = education_learning_3
 	
 	512.1.1 = {
@@ -10363,7 +10395,7 @@
 	religion = "coptic"
 	culture = "greek"
 	trait = scholar
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_learning_1
 	
 	496.1.1 = {
@@ -10383,8 +10415,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
-	trait = am_outgoing
+	trait = trusting
+	trait = gregarious
 	trait = education_learning_1
 	
 	473.1.1 = {
@@ -10404,8 +10436,8 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_inconstant
+	trait = deceitful
+	trait = arbitrary
 	trait = education_learning_3
 	
 	470.1.1 = {
@@ -10425,8 +10457,8 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_inconstant
-	trait = am_fearful
+	trait = arbitrary
+	trait = paranoid
 	trait = education_learning_3
 	
 	427.1.1 = {
@@ -10446,7 +10478,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_learning_4
 	
 	411.1.1 = {
@@ -10486,7 +10518,7 @@
 	stewardship = 9
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = education_learning_4
 	
 	349.1.1 = {
@@ -10507,7 +10539,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = scholar
-	trait = am_honest
+	trait = just
 	trait = education_learning_1
 	
 	335.1.1 = {
@@ -10549,7 +10581,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = ambitious
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_learning_1
 	
 	330.1.1 = {
@@ -10589,7 +10621,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
+	trait = trusting
 	trait = ambitious
 	trait = education_learning_1
 	
@@ -10610,8 +10642,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_outgoing
-	trait = am_conventional
+	trait = gregarious
+	trait = content
 	trait = education_learning_1
 	
 	237.1.1 = {
@@ -10631,7 +10663,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_1
 	
 	187.1.1 = {
@@ -10651,7 +10683,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_1
 	171.1.1 = {
 		birth = "171.1.1"
@@ -10670,7 +10702,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = scholar
 	trait = education_learning_1
 	
@@ -10693,7 +10725,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = scholar
-	trait = am_diligent
+	trait = diligent
 	trait = education_learning_1
 	
 	89.1.1 = {
@@ -10734,8 +10766,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
-	trait = am_humble
+	trait = just
+	trait = humble
 	trait = education_learning_1
 	1022.1.1 = {
 		birth = "1022.1.1"
@@ -10762,7 +10794,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
+	trait = deceitful
 	trait = ambitious
 	trait = education_learning_1
 	1028.1.1 = {
@@ -10829,9 +10861,9 @@
 	name = "Eleutherius"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	130.1.1 = {
 		birth = "130.1.1"
@@ -10865,9 +10897,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	110.1.1 = {
 		birth = "110.1.1"
@@ -10889,9 +10921,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	100.1.1 = {
 		birth = "100.1.1"
@@ -10913,9 +10945,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	90.1.1 = {
 		birth = "90.1.1"
@@ -10937,9 +10969,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	90.1.1 = {
 		birth = "90.1.1"
@@ -10961,9 +10993,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	42.1.1 = {
 		birth = "42.1.1"
@@ -10985,9 +11017,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	40.1.1 = {
 		birth = "40.1.1"
@@ -11009,9 +11041,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	5.1.1 = {
 		birth = "5.1.1"
@@ -11033,9 +11065,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	20.1.1 = {
 		birth = "20.1.1"
@@ -11057,9 +11089,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	20.1.1 = {
 		birth = "20.1.1"
@@ -11097,9 +11129,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	679.1.1 = {
 		birth = yes
@@ -11121,9 +11153,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	690.1.1 = {
 		birth = yes
@@ -11145,9 +11177,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	664.1.1 = {
 		birth = yes
@@ -11169,9 +11201,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	650.1.1 = {
 		birth = "650.1.1"
@@ -11193,9 +11225,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	650.1.1 = {
 		birth = yes
@@ -11217,9 +11249,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	655.1.1 = {
 		birth = yes
@@ -11241,9 +11273,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	650.1.1 = {
 		birth = yes
@@ -11265,9 +11297,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	630.1.1 = {
 		birth = yes
@@ -11289,9 +11321,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	635.1.1 = {
 		birth = yes
@@ -11313,9 +11345,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	577.1.1 = {
 		birth = yes
@@ -11337,9 +11369,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	577.1.1 = {
 		birth = yes
@@ -11361,9 +11393,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	577.1.1 = {
 		birth = yes
@@ -11385,9 +11417,9 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	550.1.1 = {
 		birth = "550.1.1"
@@ -11411,7 +11443,7 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_diplomacy_1
 	father = 20510
 	mother = 20553
@@ -11433,7 +11465,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = education_martial_2
-	trait = am_brave
+	trait = brave
 	father = 20486
 	1038.1.1 = {
 		birth = "1038.1.1"
@@ -11491,8 +11523,8 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_wroth
-	trait = am_intolerant
+	trait = wrathful
+	trait = zealous
 	trait = education_martial_2
 	father = 20488
 	mother = 90034
@@ -11513,7 +11545,7 @@
 	stewardship = 4
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_lazy
+	trait = lazy
 	trait = education_martial_2
 	father = 20559
 	1030.1.1 = {
@@ -11533,7 +11565,7 @@
 	stewardship = 7
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_conventional
+	trait = content
 	trait = education_intrigue_2
 	1009.1.1 = {
 		birth = "1009.1.1"
@@ -11572,7 +11604,7 @@
 	stewardship = 6
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_martial_3
 	1012.1.1 = {
 		birth = "1012.1.1"
@@ -11591,7 +11623,7 @@
 	stewardship = 5
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_honest
+	trait = just
 	trait = stuttering
 	trait = education_intrigue_3
 	father = 90091
@@ -11612,8 +11644,8 @@
 	stewardship = 8
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_patient
-	trait = am_brave
+	trait = calm
+	trait = brave
 	trait = lisping
 	trait = education_martial_2
 	father = 90091
@@ -13012,8 +13044,8 @@
 	dynasty = 48
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_intolerant
-	trait = am_honest
+	trait = zealous
+	trait = honest
 	trait = education_martial_3
 	father = 465528
 	mother = 34444
@@ -15213,8 +15245,8 @@
 	dynasty = 1022179
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_deceitful
+	trait = arrogant
+	trait = deceitful
 	trait = education_martial_2
 	665.1.1 = {
 		birth = "665.1.1"
@@ -15244,10 +15276,10 @@
 	 dynasty = 1022137
 	 religion = "orthodox"
 	 culture = "greek"
-	 trait = am_diligent
-	 trait = am_brave
-	 trait = am_pretentious
-	 trait = am_honest
+	 trait = diligent
+	 trait = brave
+	 trait = arrogant
+	 trait = just
 	 trait = education_martial_3
 	 trait = faith_warrior
 	 575.1.1 = {
@@ -15263,12 +15295,12 @@
 	dynasty = 1022183
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_greedy
-	trait = am_pretentious
-	trait = am_wroth
-	trait = am_deceitful
-	trait = am_inconstant
-	trait = am_deceitful
+	trait = greedy
+	trait = arrogant
+	trait = wrathful
+	trait = deceitful
+	trait = arbitrary
+	trait = callous
 	trait = education_martial_2
 	547.1.1 = {
 		birth = "547.1.1"
@@ -15283,10 +15315,10 @@
 	dynasty = 1022185
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_generous
+	trait = generous
 	trait = temperate
-	trait = am_honest
-	trait = am_hypocritical
+	trait = honest
+	trait = cynical
 	trait = education_stewardship_2
 	535.1.1 = {
 		birth = "535.1.1"
@@ -16491,7 +16523,7 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = chaste
-	trait = am_conventional
+	trait = content
 	trait = education_stewardship_2
 	838.1.1 = {
 		birth = "838.1.1"
@@ -17618,9 +17650,9 @@
 	dynasty = 642
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_inconstant
-	trait = am_greedy
+	trait = deceitful
+	trait = arbitrary
+	trait = greedy
 	trait = education_diplomacy_1
 	father = 1706
 	896.1.1 = {
@@ -17636,8 +17668,8 @@
 	dynasty = 642
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_mild
-	trait = am_greedy
+	trait = trusting
+	trait = greedy
 	father = 1706
 	899.1.1 = {
 		birth = "899.1.1"
@@ -17652,9 +17684,9 @@
 	dynasty = 1022189
 	religion = "coptic"
 	culture = "greek"
-	trait = am_deceitful
-	trait = am_inconstant
-	trait = am_greedy
+	trait = deceitful
+	trait = arbitrary
+	trait = greedy
 	trait = education_martial_2
 	430.1.1 = {
 		birth = "430.1.1"
@@ -18622,9 +18654,9 @@
 	name = "Marcus"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	250.1.1 = {
 		birth = "250.1.1"
@@ -18642,9 +18674,9 @@
 	name = "Gaius"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	210.1.1 = {
 		birth = "210.1.1"
@@ -18662,9 +18694,9 @@
 	name = "Gaius"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	210.1.1 = {
 		birth = "210.1.1"
@@ -18682,9 +18714,9 @@
 	name = "Hippolytus"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	170.1.1 = {
 		birth = "170.1.1"
@@ -18702,9 +18734,9 @@
 	name = "Linus"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_diplomacy_3
 	10.1.1 = {
 		birth = "10.1.1"
@@ -18722,9 +18754,9 @@
 	name = "Petrus"
 	religion = "catholic"
 	culture = "greek"
-	trait = am_diligent
-	trait = am_patient
-	trait = am_intolerant
+	trait = diligent
+	trait = calm
+	trait = zealous
 	trait = education_learning_4
 	3.1.1 = {
 		birth = yes
@@ -18772,7 +18804,7 @@
 	female = yes
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_honest
+	trait = honest
 	father = 145807
 	
 	735.1.1 = {
@@ -18809,8 +18841,8 @@
 	culture = "greek"
 	trait = born_in_the_purple
 	trait = ambitious
-	trait = am_brave
-	trait = am_greedy
+	trait = brave
+	trait = greedy
 	trait = education_martial_3
 	father = 70501
 	mother = 145788
@@ -18834,8 +18866,8 @@
 	trait = born_in_the_purple
 	trait = chaste
 	trait = temperate
-	trait = am_humble
-	trait = am_intolerant
+	trait = humble
+	trait = zealous
 	trait = education_learning_3
 	father = 70501
 	mother = 145788
@@ -19707,9 +19739,9 @@
 	dynasty = 1022148
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_intolerant
+	trait = zealous
 	trait = sadistic
-	trait = am_diligent
+	trait = diligent
 	trait = education_martial_3
 
 	735.1.1 = {
@@ -20704,9 +20736,9 @@
 	dynasty = 1022275
 	religion = "iconoclast"
 	culture = "greek"
-	trait = am_pretentious
-	trait = am_deceitful
-	trait = am_diligent
+	trait = arrogant
+	trait = callous
+	trait = diligent
 	trait = education_martial_3
 	father = 145930
 	820.1.1 = {
@@ -20725,7 +20757,7 @@
 	dynasty = 101099
 	religion = "orthodox"
 	culture = "greek"
-	trait = am_diligent
+	trait = diligent
 	trait = scholar
 	trait = education_stewardship_3
 
@@ -21277,8 +21309,8 @@
 	stewardship = 9
 	religion = orthodox
 	culture = greek
-	trait = am_mild
-	trait = am_brave
+	trait = trusting
+	trait = brave
 	trait = education_learning_4
 	
 	8.1.1 = {

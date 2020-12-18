@@ -1,0 +1,1703 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_events
+
+# ave_maria_roman_administration_events
+
+
+# TABLE OF CONTENT:
+
+##### 1) DYNAMIC TITLES CREATION
+##### Creates the various titular titles required for the system to work
+
+##### 2) ARMY CREATION
+##### Creates the various armies of the tagma and strategos themes
+
+##### 3) IMPERIAL CORONATION
+##### Events regarding the Imperial Coronation
+
+##### 4) TERMS OF OFFICE EVENTS
+##### Events to track how many years of office on a particular office a character has spent and managing the succession
+######## When inheriting a title, checks that it is a term of office title and give a variable of term count to the holder and add him to the scripted list of title holders
+
+##### 5) MAINTENANCE
+##### Various Events regarding maintenance 
+
+#############################################
+# DYNAMIC TITLE CREATION					#
+#############################################
+
+ave_maria_roman_administration_events.0001 = {
+	# type = character_event
+	hidden = yes
+	
+	trigger = {
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire			
+			}
+		}			
+	}
+	
+	immediate = {
+		save_scope_as = roman_administration_basileus
+		change_government = roman_administration_government
+		if = {
+			limit = {
+				NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+			}
+			add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+		}
+
+		## Creating title claimants and making sure you have the proper laws and governement
+		every_vassal = {
+			if = {
+				limit = {
+					NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+				}
+				add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+			}
+			save_scope_as = de_jure_guy
+			create_character = {
+				employer = this
+				template = bureaucrat_character
+				save_scope_as = new_guy
+			}
+			scope:new_guy = {
+				add_unpressed_claim = prev.primary_title
+				add_random_hexaco_personality_trait = { WHO = this }
+			}
+			create_character = {
+				employer = this
+				template = bureaucrat_character
+				save_scope_as = new_guy
+			}
+			scope:new_guy = {
+				add_unpressed_claim = prev.primary_title
+				add_random_hexaco_personality_trait = { WHO = this }
+			}
+			every_vassal = {
+				if = {
+					limit = {
+						NOT = { has_realm_law = ave_maria_roman_administration_imperial }
+					}
+					add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+				}
+			}
+		}		
+
+		## Making sure you have the proper government
+		change_government = roman_administration_government
+	}
+}
+
+#############################################
+# ARMY CREATION								#
+#############################################
+
+## Create the tagma and the theme armies 
+
+## Tagma Armies
+ave_maria_roman_administration_events.0002 = {
+	type = character_event 				
+	hidden = yes
+
+	## Event only happen for some people at the start of the game
+	trigger = {
+		NOT = {
+			any_held_title = {
+				this = title:d_megas_droungarios
+			}
+		}
+	}
+
+	## Scope to all the tagma and strategos commanders 
+	## Create the Man at Arms Regiments - WRONG, no way to create MAA regiment as of writing (1.0 and 1.1) so activated through a decision for tagma leaders
+	immediate = {
+		## Create a bunch of officers and claimants to the office
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_unpressed_claim = root.primary_title
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+	}
+}
+
+# Varangian Creation for the Emperor
+ave_maria_roman_administration_events.00021 = {
+	type = character_event 				
+	hidden = yes
+
+	## Event only happen for the Emperor at the start of the game
+	trigger = {
+		any_held_title = {
+			OR = {
+				this = title:e_byzantium
+				this = title:e_roman_empire
+			}
+		}
+	}
+
+	## Create the Man at Arms Regiments
+	immediate = {
+		create_character = {
+			employer = root
+			template = varangian_guard_commander_character
+			save_scope_as = varangian_guard_leader
+		}
+		scope:varangian_guard_leader = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		create_character = {
+			employer = root
+			template = eunuch_character
+			save_scope_as = eunuch
+		}
+		scope:eunuch = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+	}
+}
+
+
+#############################################
+# IMPERIAL CORONATION						#
+#############################################
+
+# EMPEROR EVENTS
+## First event triggered by the decision to be crowned
+ave_maria_roman_administration_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0003.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+	right_portrait = scope:junior_emperor
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { is_at_war = no NOT = { has_trait = basileus } }
+				desc = ave_maria_roman_administration_events.0003.desc_no_war
+				## I inherited the mantle of the empire, but it is now time to perform the public ceremony of the coronation in Constantinople so the whole people can see us a legitimate emperor. 
+			}
+			triggered_desc = {
+				trigger = { is_at_war = yes NOT = { has_trait = basileus } }
+				desc = ave_maria_roman_administration_events.0003.desc_yes_war
+				## I inherited the mantle of the empire, but despite the ongoing war it is now more than ever time to perform the public ceremony of the coronation in Constantinople so the whole people is reassured and our legitimacy firmly set. 
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0003.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	## Redudant check as the decision to be crowned byzantine emperor requires you to be emperor
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}	
+	}
+
+	## Flag the character so we know he has decided to start the coronation
+	immediate = {
+		save_scope_as = actor
+		scope:actor = {
+			play_music_cue = mx_cue_sacredrite
+		}		
+		add_character_flag = imperial_coronation_started_preparations
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
+	}
+
+	## Spend a lot for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_A
+		## "Spend lavishly, everyone must see our generosity and magnificence"
+		# Scope to patriarch and give him a positive flag
+		add_character_flag = imperial_coronation_lavish_coronation
+		roman_administration_add_popularity_massive_amount = yes
+		remove_short_term_gold = 300
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				years = 5
+			}
+		}
+	}
+
+	## Spend normal amount for the preparatives, bribes and post coronation feast so you are seen as a generous and good emperor
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_B
+		## "Proceed with the ceremony as is customary"
+		# Scope to patriarch and give him a 60/40 flag
+		add_character_flag = imperial_coronation_normal_coronation
+		roman_administration_add_popularity_medium_amount = yes
+		remove_short_term_gold = 150
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				years = 5
+			}
+		}
+	}
+
+	## Spend the minimum for the preparatives, bribes and post coronation feast
+	option = {
+		name = ave_maria_roman_administration_events.0003.OPT_C
+		## "Save up as much as we can on the ceremony, we need the money elsewhere."
+		# Scope to patriarch and give him a negative flag
+		add_character_flag = imperial_coronation_stingy_coronation
+		roman_administration_remove_popularity_small_amount = yes
+		remove_short_term_gold = 75
+		trigger_event = { id = ave_maria_roman_administration_events.0004 days = 4 }
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 5
+			}
+		}
+	}
+
+
+}
+
+## First part of the procession - Great Palace
+ave_maria_roman_administration_events.0004 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0004.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_hagia_sophia
+	}
+	left_portrait = root
+	right_portrait = scope:junior_emperor
+	
+	trigger = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}	
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { NOT = { has_trait = basileus } }
+				desc = ave_maria_roman_administration_events.0004_desc				
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0004.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
+	}
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0004.OPT_A
+		trigger = {
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+			
+		}
+		## Add some prestige here
+		add_prestige = 75
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 4 }
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0004.OPT_B
+		trigger = {
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = -25
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0005 days = 4 }
+
+	}
+
+}
+
+## Second part of the procession - Hagia Sophia
+ave_maria_roman_administration_events.0005 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0005.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_hagia_sophia
+	}
+	left_portrait = root
+	right_portrait = scope:junior_emperor
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = imperial_coronation_started_preparations	
+					NOT = { has_trait = basileus }			
+				}
+				desc = ave_maria_roman_administration_events.0005_desc
+			}
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = imperial_coronation_started_preparations	
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0005.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
+	}
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0005.OPT_A
+		trigger = {
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+		}
+		## Add some prestige here
+		add_prestige = 75
+
+		## Next event in the 
+		trigger_event = { id = ave_maria_roman_administration_events.0006 }
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0005.OPT_B
+		trigger = {
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = -25
+
+		## Next event in the chain 
+		trigger_event = { id = ave_maria_roman_administration_events.0006 days = 4 }
+	}
+}
+
+## Third  and last part of the procession - Communion and Feast
+ave_maria_roman_administration_events.0006 = {
+	type = character_event
+	title = ave_maria_roman_administration_events.0006.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_hagia_sophia
+	}
+	left_portrait = root
+	right_portrait = scope:junior_emperor
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = imperial_coronation_started_preparations		
+					NOT = { has_trait = basileus }		
+				}
+				desc = ave_maria_roman_administration_events.0006_desc
+				
+			}
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = imperial_coronation_started_preparations	
+					has_trait = basileus
+					any_relation = {
+						type = junior_emperor
+					} 
+				}
+				desc = ave_maria_roman_administration_events.0006.desc_crowning_junior_emperor
+			}
+		}
+	}
+
+	immediate = {
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			save_scope_as = junior_emperor
+		}
+		every_vassal = {
+			every_courtier = {
+				limit = {
+					any_relation = {
+						type = junior_emperor
+					}
+				}			
+				save_scope_as = junior_emperor
+			}
+		}
+	}
+
+	## First positive option because you spent normal or above normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_A
+		trigger = {
+			NOT = { has_trait = basileus }
+			OR = {
+				has_character_flag = imperial_coronation_normal_coronation
+				has_character_flag = imperial_coronation_lavish_coronation
+			}
+		}
+		## Add some prestige here
+		add_prestige = 300
+		## Add some approval rating in Constantinople
+
+		## Add Crowned Basileus trait
+		add_trait = basileus
+
+		every_courtier = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+				}
+			}			
+			add_trait = junior_emperor
+		}
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
+	}
+
+	## negative option because you spent below normal gold
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_B
+		trigger = {
+			NOT = { has_trait = basileus }
+			has_character_flag = imperial_coronation_stingy_coronation
+		}
+		## Remove a bit of prestige here
+		add_prestige = 300
+		
+		## Remove some approval rating in Constantinople
+
+		## Add Crowned Basileus trait
+		add_trait = basileus
+
+		roman_administration_add_legitimacy_massive_amount = yes
+
+		if = {
+			limit = {
+				any_relation = {
+					type = junior_emperor
+					count >= 1
+				}
+			}
+			scope:junior_emperor = {
+				add_trait = junior_emperor
+				roman_administration_add_legitimacy_massive_amount = yes
+			}
+		}
+		
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0006.OPT_C
+		trigger = {
+			has_trait = basileus
+			any_relation = {
+				type = junior_emperor
+			}
+		}
+		scope:junior_emperor = {
+			add_trait = junior_emperor
+			roman_administration_add_legitimacy_massive_amount = yes
+		}
+
+		## Ends the coronation activity
+		hidden_effect = {
+			scope:activity = {
+				complete_activity = yes
+			}
+		}
+
+	}
+}
+
+# INVITATION EVENTS
+#Vassals invitation
+ave_maria_roman_administration_events.0007 = {
+	type = letter_event
+	opening = {
+		first_valid = {
+			desc = ave_maria_roman_administration_events.0007.opening
+		}		
+	}
+	desc = {
+		#desc = ave_maria_roman_administration_events.0007_desc
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > 50
+					}
+				}
+				desc = ave_maria_roman_administration_events.0007.host_likes_me
+			}
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > -1
+					}
+				}
+				desc = ave_maria_roman_administration_events.0007.host_gets_along_with_me
+			}
+			desc = ave_maria_roman_administration_events.0007.host_dislikes_me
+		}
+	}
+	sender = scope:sender
+
+	trigger = {
+		is_available_for_activity_trigger = yes
+		exists = scope:activity.activity_owner
+		target_is_liege_or_above = scope:activity.activity_owner
+		NOT = { exists = var:is_handling_imperial_coronation_invitation }
+	}
+
+	on_trigger_fail = { #Trigger invitation again if it was blocked because the character was handling another invitation
+		if = {
+			limit = {
+				is_available_for_activity_trigger = yes
+				exists = var:is_handling_imperial_coronation_invitation
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_events.0007
+				days = 1
+			}
+		}
+	}
+
+	immediate = {
+		scope:activity.activity_owner = {
+			save_scope_as = sender
+		}
+		scope:activity.activity_province = {
+			barony = {
+				save_scope_as = barony
+			}
+		}
+		set_variable = {
+			name = is_handling_imperial_coronation_invitation
+			value = scope:sender
+			days = 20
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.a
+		trigger = {
+			opinion = {
+				target = liege
+				value >= 0
+			}
+		}
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			gregarious = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.b
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			gregarious = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.c
+		trigger = {
+			opinion = {
+				target = liege
+				value > -1
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			shy = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		add_piety = -75
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+			modifier = {
+				add = -50
+				top_liege = {
+					OR = {
+						has_title = title:e_byzantium
+						has_title = title:e_roman_empire			
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0007.d
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			shy = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		add_piety = -75
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+				ai_vengefulness = 0.5
+			}
+			modifier = {
+				add = -50
+				top_liege = {
+					OR = {
+						has_title = title:e_byzantium
+						has_title = title:e_roman_empire			
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		remove_variable = is_handling_imperial_coronation_invitation
+	}
+}
+
+#Other relations invitation
+ave_maria_roman_administration_events.0008 = {
+	type = letter_event
+	opening = {
+		first_valid = {
+			desc = ave_maria_roman_administration_events.0008.opening
+		}
+		
+	}
+	desc = ave_maria_roman_administration_events.0008.desc
+	sender = scope:sender
+
+	trigger = {
+		is_available_for_activity_trigger = yes
+		NOT = { exists = var:is_handling_imperial_coronation_invitation }
+	}
+
+	on_trigger_fail = { #Trigger invitation again if it was blocked because the character was handling another invitation
+		if = {
+			limit = {
+				is_available_for_activity_trigger = yes
+				exists = var:is_handling_imperial_coronation_invitation
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_events.0008
+				days = 1
+			}
+		}
+	}
+
+	immediate = {
+		scope:activity.activity_owner = {
+			save_scope_as = sender
+		}
+		scope:activity.activity_province = {
+			barony = {
+				save_scope_as = barony
+			}
+		}
+		set_variable = {
+			name = is_handling_imperial_coronation_invitation
+			value = scope:sender
+			days = 20
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0008.a
+		play_music_cue = mx_cue_epic_sacral_moment
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			gregarious = minor_stress_loss
+			lively =  minor_stress_loss
+			sociable = minor_stress_loss
+			talkative = minor_stress_loss
+			cheerful = minor_stress_loss
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_events.0008.b
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			passive = minor_stress_loss
+			shy = minor_stress_loss
+			reserved = minor_stress_loss
+			quiet = minor_stress_loss
+			introverted = minor_stress_loss
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 15
+				scope:sender = {
+					target_is_liege_or_above = scope:sender
+				}
+			}
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+		}
+	}
+
+	after = {
+		remove_variable = is_handling_imperial_coronation_invitation
+	}
+}
+
+# FALLBACK WHEN EMPEROR DIES OR OTHER
+#The host has died during the coronation - event for guests
+# ave_maria_roman_administration_events.0009
+
+#The host has been imprisoned - for host
+# ave_maria_roman_administration_events.00010
+
+#The host has been imprisoned - for guests
+# ave_maria_roman_administration_events.00011
+
+
+#############################################
+# OFFICE TERMS								#
+#############################################
+
+## On gaining a new administrative title this event is triggered and loops each year until you end your office term
+# ave_maria_roman_administration_events.00012 = {
+# 	type = character_event
+# 	hidden = yes
+
+# 	trigger = {
+# 		roman_administration_holds_tagma_title_trigger = yes
+# 	}
+	
+# 	immediate = {
+# 		## Second year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 0
+# 				var:roman_administration_term_count = 0
+# 				# var:roman_administration_term_count < 1
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_0
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_1
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Third year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 1
+# 				var:roman_administration_term_count = 1
+# 				# var:roman_administration_term_count < 2
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_1
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_2
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Fourth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 2
+# 				var:roman_administration_term_count = 2
+# 				# var:roman_administration_term_count < 3
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_2
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_3
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Fifth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 3
+# 				var:roman_administration_term_count = 3
+# 				# var:roman_administration_term_count < 4
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_3
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_4
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## Sixth year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				# var:roman_administration_term_count >= 4
+# 				var:roman_administration_term_count = 4
+# 				# var:roman_administration_term_count < 5
+# 			}
+# 			change_variable = { name = roman_administration_term_count add = 1 }
+# 			remove_character_modifier = roman_administration_terms_of_office_4
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_5
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+
+# 		## End of the sixth year and title change
+# 		if = {
+# 			limit = {
+# 				has_variable = roman_administration_term_count
+# 				var:roman_administration_term_count >= 5
+# 			}
+# 			remove_character_modifier = roman_administration_terms_of_office_5
+
+# 			## Give title to successor
+# 			primary_title = {
+# 				create_title_and_vassal_change = {
+# 					type = conquest
+# 					save_scope_as = change
+# 					add_claim_on_loss = yes
+# 				}
+# 				save_temporary_scope_as = title_to_inherit
+# 				current_heir = {
+# 					save_scope_as = title_heir
+# 				}
+# 				change_title_holder = {
+# 					holder = scope:title_heir
+# 					change = scope:change
+# 				}
+# 			}
+# 			resolve_title_and_vassal_change = scope:change
+
+# 			## Clear variable
+# 			remove_variable = roman_administration_term_count
+# 		}
+
+# 		## First year of Office (numbering starts at 0 in code)
+# 		if = {
+# 			limit = {
+# 				NOT = { 
+# 					has_variable = roman_administration_term_count
+# 				}
+# 			}
+# 			set_variable = { name = roman_administration_term_count value = 0 }
+# 			add_character_modifier = {
+# 				modifier = roman_administration_terms_of_office_0
+# 				years = 10
+# 			}
+# 			trigger_event = { 
+# 				id = ave_maria_roman_administration_events.00012
+# 				days = 365 
+# 			}
+# 		}
+# 		# else = {
+# 		# 	set_variable = { name = roman_administration_term_count value = 0 }
+# 		# 	add_character_modifier = {
+# 		# 		modifier = roman_administration_terms_of_office_0
+# 		# 	}
+# 		# 	trigger_event = { id = ave_maria_roman_administration_events.00012 days = 365 }
+# 		# }
+# 	}
+
+# }
+
+## ON gaining an administrative title: set up the variable and visual modifier - First year of office
+# root = the new holder
+# scope:title = the title that changes hands
+# scope:previous_holder = previous holder. Might be dead
+ave_maria_roman_administration_events.00012 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		#uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+		remove_character_modifier = roman_administration_emperor_favourite
+		## First year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				NOT = { 
+					has_variable = roman_administration_term_count
+				}
+			}
+			set_variable = { name = roman_administration_term_count value = 0 }
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_0
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00013
+				days = 365 
+			}
+		}
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 0
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00015
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 1
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00015
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 2
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00016
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 3
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00017
+		# 		days = 365 
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		has_variable = roman_administration_term_count
+		# 		var:roman_administration_term_count = 4
+		# 	}
+		# 	trigger_event = { 
+		# 		id = ave_maria_roman_administration_events.00018
+		# 		days = 365 
+		# 	}
+		# }
+				
+
+		# ## Give the appropriate counties associated to the job
+		# if = {
+		# 	limit = {
+		# 		primary_title = {
+		# 			this = title:d_megas_domestikos
+		# 		}
+		# 		#scope:title = title:d_megas_domestikos
+		# 	}
+		# 	create_title_and_vassal_change = {
+		# 		type = conquest
+		# 		save_scope_as = change
+		# 		add_claim_on_loss = yes
+		# 	}
+		# 	title:c_selymbria = {
+		# 		change_title_holder = {
+		# 			holder = root
+		# 			change = scope:change
+		# 		}
+		# 	}	
+		# 	resolve_title_and_vassal_change = scope:change
+		# }
+	}
+
+}
+
+## Second year of office
+ave_maria_roman_administration_events.00013 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# Second year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				# var:roman_administration_term_count >= 0
+				var:roman_administration_term_count = 0
+				# var:roman_administration_term_count < 1
+			}
+			change_variable = { name = roman_administration_term_count add = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_0
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_1
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00014
+				days = 365 
+			}
+		}
+	}
+
+}
+
+## Third year of office
+ave_maria_roman_administration_events.00014 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# Third year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				# var:roman_administration_term_count >= 1
+				var:roman_administration_term_count = 1
+				# var:roman_administration_term_count < 2
+			}
+			change_variable = { name = roman_administration_term_count add = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_1
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_2
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00015
+				days = 365 
+			}
+		}
+	}
+
+}
+
+## Fourth year of office
+ave_maria_roman_administration_events.00015 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# Fourth year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				# var:roman_administration_term_count >= 2
+				var:roman_administration_term_count = 2
+				# var:roman_administration_term_count < 3
+			}
+			change_variable = { name = roman_administration_term_count add = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_2
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_3
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00016
+				days = 365 
+			}
+		}
+	}
+
+}
+
+## Fifth year of office
+ave_maria_roman_administration_events.00016 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# Fifth year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				# var:roman_administration_term_count >= 3
+				var:roman_administration_term_count = 3
+				# var:roman_administration_term_count < 4
+			}
+			change_variable = { name = roman_administration_term_count add = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_3
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_4
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00017
+				days = 365 
+			}
+		}
+	}
+
+}
+
+## Sixth year of office
+ave_maria_roman_administration_events.00017 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# Sixth year of Office (numbering starts at 0 in code)
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				# var:roman_administration_term_count >= 4
+				var:roman_administration_term_count = 4
+				# var:roman_administration_term_count < 5
+			}
+			change_variable = { name = roman_administration_term_count add = 1 }
+			remove_character_modifier = roman_administration_terms_of_office_4
+			add_character_modifier = {
+				modifier = roman_administration_terms_of_office_5
+				years = 10
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_events.00018
+				days = 365 
+			}
+		}
+	}
+
+}
+
+## End of the sixth year of office
+ave_maria_roman_administration_events.00018 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		highest_held_title_tier = tier_duchy 
+		uses_roman_govt = yes
+		roman_administration_character_is_in_the_empire = yes
+		NOT = {
+			has_title = title:e_byzantium
+		}
+	}
+
+	immediate = {
+	
+		# End of the sixth year and title change
+		if = {
+			limit = {
+				has_variable = roman_administration_term_count
+				var:roman_administration_term_count >= 5
+			}
+			remove_character_modifier = roman_administration_terms_of_office_5
+
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				current_heir = {
+					save_scope_as = new_holder
+				}
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+
+			every_held_title = {
+				limit = {
+					tier = tier_duchy
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+
+			## Clear variable
+			remove_variable = roman_administration_term_count
+		}
+	}
+
+}
+
+
+#############################################
+# MAINTENANCE								#
+#############################################
+
+
+
+#############################################
+# OFFICIALS PAY								#
+#############################################
+## 04/11/20 Moved to the monthly pulse events
+
+## empty
+ave_maria_roman_administration_events.00050 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		
+	}
+
+	immediate = {
+		
+	}
+}
+
+## empty
+ave_maria_roman_administration_events.00051 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+			
+	}
+
+	immediate = {
+		
+	}
+}
+
+## empty
+ave_maria_roman_administration_events.00052 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {		
+		
+	}
+
+	immediate = {
+		
+	}
+}
+
+
+## TEST
+ave_maria_roman_administration_events.6969 = {
+	type = character_event
+	hidden = yes
+	# title = ave_maria_roman_administration_events.0003.title
+	# theme = crown	
+	# override_background = {
+	# 	event_background = ave_maria_test
+	# }
+	# left_portrait = root
+
+	trigger = {
+
+	}
+
+	immediate = {
+
+		add_realm_law_skip_effects = ave_maria_roman_administration_imperial
+		# every_held_title = {
+		# 	if = {
+		# 		limit = {
+		# 			tier = tier_county
+		# 		}
+		# 		title_province = {
+		# 			add_to_global_variable_list = {
+		# 				name = domain_province_list
+		# 				target = this
+		# 			}					
+		# 		}
+		# 	}
+		# }
+		# travel_distance_dijkstra_white = {
+		# 	white_type = variable
+		# 	white_name = domain_province_list
+		# 	start = root.capital_province
+		# 	max = 10000
+		# 	return_dist = comm_malus_to_capital
+		# 	return_prev = bar
+		# }
+		# every_held_title = {
+		# 	if = {
+		# 		limit = {
+		# 			tier = tier_county
+		# 		}
+		# 		title_province = {
+		# 			if = {
+		# 				limit = {
+		# 					has_variable = comm_malus_to_capital
+		# 					var:comm_malus_to_capital >
+		# 				}
+		# 				prev = {
+		# 					change_county_control = -20
+		# 				}
+		# 			}					
+		# 		}
+		# 	}
+		# }
+		# travel_distance_dijkstra = {
+		# 	start = root.capital_province
+		# }
+
+		# orc_apply_demesne_provinces_distance_malus = yes
+		# every_held_title = {
+		# 	limit = {
+		# 		tier = tier_county
+		# 	}
+		# 	add_county_modifier = {
+		# 		modifier = orc_comm_malus_modifier
+		# 	}
+		# }
+		
+		
+	}
+
+	## TEST
+	# option = {
+	# 	name = ave_maria_roman_administration_events.0003.OPT_C
+	# }
+
+}

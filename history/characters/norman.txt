@@ -27,7 +27,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = education_diplomacy_2
-	trait = am_patient
+	trait = calm
 	1035.1.1 = {
 		birth = yes
 	}
@@ -64,7 +64,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	1000.1.1 = {
 		birth = yes
 	}
@@ -82,7 +82,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_brave
+	trait = brave
 	trait = education_martial_3
 	father = 20112
 	mother = 10015
@@ -108,7 +108,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = lustful
-	trait = am_honest
+	trait = just
 	trait = education_intrigue_2
 	father = 20112
 	mother = 10015
@@ -171,7 +171,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_generous
+	trait = generous
 	trait = education_martial_3
 	990.1.1 = {
 		birth = "990.1.1"
@@ -193,8 +193,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_generous
-	trait = am_pretentious
+	trait = generous
+	trait = arrogant
 	trait = education_martial_2
 	father = 110635
 	1038.1.1 = {
@@ -240,8 +240,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_pretentious
+	trait = honest
+	trait = arrogant
 	trait = gluttonous
 	trait = education_diplomacy_3
 	father = 110635
@@ -263,7 +263,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_brave
+	trait = brave
 	trait = education_stewardship_2
 	980.1.1 = {
 		birth = "980.1.1"
@@ -289,8 +289,8 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
-	trait = am_hypocritical
+	trait = greedy
+	trait = cynical
 	trait = education_intrigue_3
 	father = 1128
 	mother = 1123
@@ -313,7 +313,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = education_martial_2
-	trait = am_greedy
+	trait = greedy
 	father = 1120
 	mother = 10000
 	1011.1.1 = {
@@ -420,11 +420,11 @@
 	religion = "catholic"
 	culture = "norman"
 	disallow_random_traits = yes
-	trait = am_hypocritical
-	trait = am_greedy
+	trait = cynical
+	trait = greedy
 	trait = ambitious
 	trait = education_martial_4
-	trait = am_veteran_4
+	trait = veteran_4
 	trait = height_tall
 	trait = strong
 	trait = beauty_good_2
@@ -439,7 +439,21 @@
 	1051.1.1 = {
 		add_spouse = 10003
 		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 25 }
 			give_nickname = nick_the_fox
+			add_pressed_claim = d_sicily
+			add_pressed_claim = c_palermo
+			
+			spawn_army = {
+				name = event_troop_default_name
+				# levies = 1000
+				men_at_arms = {
+					type = frankish_shock_cavalry
+					stacks = 20
+				}
+				location = 2619
+				origin = 2619
+			}
 		}
 	}
 	1057.1.1 = {
@@ -463,7 +477,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 1120
 	mother = 10008
@@ -487,9 +501,14 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_patient
+	trait = just
+	trait = calm
 	trait = education_martial_4
+	trait = veteran_4
+	trait = height_tall
+	trait = strong
+	trait = beauty_good_2
+	trait = ambitious
 	father = 1120
 	mother = 10008
 	
@@ -498,6 +517,28 @@
 	}
 	1061.1.1 = {
 		add_spouse = 10014
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 25 }
+			add_pressed_claim = d_sicily
+			add_pressed_claim = c_palermo
+			add_pressed_claim = c_trapani
+			add_pressed_claim = c_calatafimi
+			add_pressed_claim = c_mazara
+			add_pressed_claim = c_castrogiovanni
+			add_pressed_claim = c_caltanisetta
+			add_pressed_claim = c_agrigento
+
+			spawn_army = {
+				name = event_troop_default_name
+				# levies = 1000
+				men_at_arms = {
+					type = frankish_shock_cavalry
+					stacks = 20
+				}
+				location = 2630
+				origin = 2630
+			}
+		}
 	}
 	1087.1.1 = {
 		add_spouse = 70979
@@ -517,7 +558,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_deceitful
+	trait = deceitful
 	father = 1132
 	mother = 10014
 	1062.1.2 = {
@@ -594,7 +635,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_martial_2
 	father = 1124
 	mother = 1129
@@ -700,9 +741,9 @@
 	religion = "catholic"
 	culture = "norman"
 	disallow_random_traits = yes
-	trait = am_brave
-	trait = am_hypocritical
-	trait = am_wroth
+	trait = brave
+	trait = cynical
+	trait = wrathful
 	trait = education_martial_2
 	father = 1128
 	mother = 10003
@@ -727,7 +768,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = hunchbacked
 	trait = education_stewardship_2
 	father = 1128
@@ -755,8 +796,8 @@
 	culture = "norman"
 	disallow_random_traits = yes
 	trait = legitimized_bastard
-	trait = am_generous
-	trait = am_diligent
+	trait = generous
+	trait = diligent
 	trait = education_learning_2
 	father = 1128
 	mother = 10003
@@ -777,7 +818,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_generous
+	trait = generous
 	trait = education_intrigue_1
 	father = 30826
 	988.1.1 = {
@@ -798,7 +839,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_intrigue_1
 	father = 1150
 	1012.1.1 = {
@@ -818,7 +859,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_stewardship_2
 	father = 1150
 	1022.1.1 = {
@@ -842,7 +883,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_diligent
+	trait = diligent
 	trait = education_diplomacy_2
 	father = 1120
 	mother = 10008
@@ -863,7 +904,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_diligent
+	trait = diligent
 	trait = education_martial_2
 	father = 1152
 	mother = 1153
@@ -953,8 +994,8 @@
 	culture = "norman"
 	disallow_random_traits = yes
 	trait = ambitious
-	trait = am_diligent
-	trait = am_brave
+	trait = diligent
+	trait = brave
 	trait = legitimized_bastard
 	trait = education_martial_4
 	father = 252
@@ -981,7 +1022,7 @@
 				name = event_troop_default_name
 				# levies = 1000
 				men_at_arms = {
-					type = armored_horsemen
+					type = frankish_shock_cavalry
 					stacks = 20
 				}
 				location = 2174
@@ -1086,8 +1127,8 @@
 	culture = "norman"
 	disallow_random_traits = yes
 	trait = bossy
-	trait = am_intolerant
-	trait = am_lazy
+	trait = zealous
+	trait = lazy
 	trait = education_martial_3
 	father = 140
 	mother = 367
@@ -1173,9 +1214,9 @@
 	religion = "catholic"
 	culture = "norman"
 	disallow_random_traits = yes
-	trait = am_brave
-	trait = am_hypocritical
-	trait = am_generous
+	trait = brave
+	trait = cynical
+	trait = generous
 	sexuality = homosexual
 	trait = education_martial_3
 	father = 140
@@ -1205,7 +1246,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
+	trait = arrogant
 	trait = education_stewardship_2
 	father = 140
 	mother = 367
@@ -1229,11 +1270,11 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
-	trait = am_wroth
+	trait = greedy
+	trait = wrathful
 	trait = ambitious
-	trait = am_deceitful
-	trait = am_deceitful
+	trait = deceitful
+	trait = callous
 	trait = education_learning_2
 	father = 41000
 	mother = 41001
@@ -1278,8 +1319,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_humble
-	trait = am_conventional
+	trait = humble
+	trait = content
 	trait = education_martial_2
 	father = 41000
 	mother = 41001
@@ -1322,8 +1363,8 @@
 	stewardship = 8
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_hypocritical
+	trait = just
+	trait = cynical
 	trait = education_stewardship_2
 	trait = bastard
 	1060.1.2 = {
@@ -1344,7 +1385,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_intrigue_2
 	father = 41000
 	mother = 41001
@@ -1406,7 +1447,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = clubfooted
 	trait = education_learning_2
 	father = 6820
@@ -1428,8 +1469,8 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
-	trait = am_wroth
+	trait = arrogant
+	trait = wrathful
 	trait = education_intrigue_2
 	father = 6820
 	mother = 6821
@@ -1491,7 +1532,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
+	trait = arrogant
 	trait = bastard
 	trait = education_learning_2
 	father = 160403
@@ -1512,7 +1553,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_craven
+	trait = craven
 	trait = education_stewardship_2
 	father = 170
 	mother = 160404
@@ -1533,9 +1574,9 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = hunchbacked
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_martial_2
 	1039.1.2 = {
 		birth = "1039.1.2"
@@ -1560,7 +1601,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 172
 	mother = 173
@@ -1647,7 +1688,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = education_martial_2
 
 	father = 171155
@@ -1670,7 +1711,7 @@
 	stewardship = 9
 	religion = "catholic"
 	culture = "norman"
-	trait = am_patient
+	trait = calm
 	trait = education_stewardship_2
 
 	father = 171155
@@ -1733,7 +1774,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 174
 	1034.1.2 = {
@@ -1779,7 +1820,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_martial_2
 	998.1.2 = {
 		birth = "998.1.2"
@@ -1880,9 +1921,9 @@
 	culture = "norman"
 	trait = education_learning_2
 	trait = ambitious
-	trait = am_inconstant
-	trait = am_pretentious
-	trait = am_wroth
+	trait = arbitrary
+	trait = arrogant
+	trait = wrathful
 	trait = chaste
 	father = 202992
 	mother = 202995
@@ -1908,11 +1949,11 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = education_diplomacy_3
-	trait = am_diligent
-	trait = am_honest
-	trait = am_pretentious
-	trait = am_patient
-	trait = am_brave
+	trait = diligent
+	trait = just
+	trait = arrogant
+	trait = calm
+	trait = brave
 	trait = ambitious
 	father = 140
 	mother = 367
@@ -1943,7 +1984,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_3
 	father = 171
 	mother = 551
@@ -1964,8 +2005,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
-	trait = am_diligent
+	trait = arrogant
+	trait = diligent
 	trait = education_martial_2
 	1098.1.1 = {
 		birth = "1098.1.1"
@@ -1987,9 +2028,9 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_wroth
-	trait = am_brave
-	trait = am_diligent
+	trait = wrathful
+	trait = brave
+	trait = diligent
 	trait = education_martial_2
 	father = 204050
 	mother = 204051
@@ -2010,9 +2051,9 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_wroth
-	trait = am_honest
-	trait = am_diligent
+	trait = wrathful
+	trait = honest
+	trait = diligent
 	trait = education_martial_2
 	father = 204050
 	mother = 204051
@@ -2033,9 +2074,9 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
-	trait = am_honest
-	trait = am_diligent
+	trait = arrogant
+	trait = honest
+	trait = diligent
 	trait = education_martial_2
 	father = 204053
 	1175.1.1 = {
@@ -2055,8 +2096,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_patient
-	trait = am_diligent
+	trait = calm
+	trait = diligent
 	trait = education_learning_3
 	father = 204050
 	mother = 204051
@@ -2095,8 +2136,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_deceitful
-	trait = am_pretentious
+	trait = deceitful
+	trait = arrogant
 	1284.1.2 = {
 		birth = "1284.1.2"
 	}
@@ -2157,7 +2198,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = education_intrigue_2
 	father = 205986
 	mother = 205982
@@ -2218,10 +2259,10 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_generous
-	trait = am_honest
-	trait = am_hypocritical
-	trait = am_brave
+	trait = generous
+	trait = just
+	trait = cynical
+	trait = brave
 	trait = lustful
 	trait = education_diplomacy_2
 	father = 211502
@@ -2244,8 +2285,8 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_wroth
-	trait = am_pretentious
+	trait = wrathful
+	trait = arrogant
 	trait = education_stewardship_1
 	father = 202992
 	mother = 202995
@@ -2267,8 +2308,8 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_outgoing
-	trait = am_wroth
+	trait = gregarious
+	trait = wrathful
 	trait = education_diplomacy_2
 	father = 34605
 	1052.1.1 = {
@@ -2308,7 +2349,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = lustful
-	trait = am_greedy
+	trait = greedy
 	trait = education_learning_2
 	father = 242
 	mother = 241
@@ -2420,7 +2461,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_learning_3
 	father = 248
 	mother = 343
@@ -2465,9 +2506,9 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_lazy
-	trait = am_deceitful
-	trait = am_inconstant
+	trait = lazy
+	trait = deceitful
+	trait = arbitrary
 	trait = education_intrigue_1
 	father = 248
 	1011.1.2 = {
@@ -2573,7 +2614,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_intrigue_1
 	father = 246
 	mother = 6801
@@ -2875,7 +2916,7 @@
 	dynasty = 678
 	religion = "catholic"
 	culture = "norman"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_martial_3
 	father = 7730
 	mother = 1143
@@ -3175,8 +3216,8 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_inconstant
-	trait = am_patient
+	trait = arbitrary
+	trait = calm
 	trait = lustful
 	trait = education_intrigue_1
 	1034.1.2 = {
@@ -3218,7 +3259,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = education_martial_2
-	trait = am_brave
+	trait = brave
 	1098.1.1 = {
 		birth = "1098.1.1"
 	}
@@ -3300,10 +3341,10 @@
 	religion = "catholic"
 	culture = "norman"
 	1003.1.2 = {
-		birth = "1003.1.2"
+		birth = yes
 	}
-	1050.1.2 = {
-		death = "1050.1.2"
+	1050.1.1 = {
+		death = yes
 	}
 }
 
@@ -3654,8 +3695,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_pretentious
+	trait = just
+	trait = arrogant
 	trait = lustful
 	trait = education_martial_2
 	father = 41232
@@ -3699,7 +3740,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = lustful
-	trait = am_brave
+	trait = brave
 	trait = education_martial_2
 	1035.1.1 = {
 		birth = "1035.1.1"
@@ -3721,7 +3762,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
+	trait = arrogant
 	trait = education_diplomacy_1
 	1034.1.1 = {
 		birth = "1034.1.1"
@@ -3762,8 +3803,8 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = gluttonous
-	trait = am_pretentious
-	trait = am_brave
+	trait = arrogant
+	trait = brave
 	trait = education_martial_2
 	father = 41255
 	1025.1.1 = {
@@ -3788,8 +3829,8 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = gluttonous
-	trait = am_wroth
-	trait = am_brave
+	trait = wrathful
+	trait = brave
 	trait = education_martial_2
 	father = 41250
 	mother = 156
@@ -3811,8 +3852,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_humble
+	trait = just
+	trait = humble
 	trait = education_diplomacy_3
 	father = 41250
 	mother = 156
@@ -3834,8 +3875,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_intolerant
+	trait = honest
+	trait = zealous
 	trait = education_learning_2
 	father = 41250
 	mother = 156
@@ -3857,8 +3898,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
-	trait = am_intolerant
+	trait = honest
+	trait = zealous
 	trait = education_stewardship_2
 	father = 41250
 	mother = 156
@@ -3898,7 +3939,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_diligent
+	trait = diligent
 	trait = education_martial_2
 	father = 41013
 	1030.1.2 = {
@@ -3924,7 +3965,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_humble
+	trait = humble
 	father = 41260
 	mother = 41252
 	1062.1.1 = {
@@ -4004,7 +4045,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = lustful
-	trait = am_diligent
+	trait = diligent
 	trait = education_martial_2
 	1049.1.1 = {
 		birth = "1049.1.1"
@@ -4026,7 +4067,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = bastard
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_martial_2
 	father = 1132
 	
@@ -4071,7 +4112,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_martial_3
 	1035.1.2 = {
 		birth = "1035.1.2"
@@ -4200,7 +4241,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_deceitful
+	trait = deceitful
 	trait = education_intrigue_1
 	father = 171154
 	mother = 171153
@@ -4222,7 +4263,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_intolerant
+	trait = zealous
 	trait = education_learning_2
 	father = 171154
 	mother = 171153
@@ -4278,7 +4319,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	father = 171
 	mother = 551
@@ -4302,7 +4343,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_craven
+	trait = craven
 	trait = education_martial_2
 	1061.1.2 = {
 		birth = "1061.1.2"
@@ -4340,7 +4381,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_patient
+	trait = calm
 	trait = education_learning_2
 	1052.1.2 = {
 		birth = "1052.1.2"
@@ -4359,8 +4400,8 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
-	trait = am_hypocritical
+	trait = arrogant
+	trait = cynical
 	trait = education_learning_3
 	1042.1.2 = {
 		birth = "1042.1.2"
@@ -4397,7 +4438,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = just
 	trait = education_intrigue_1
 	father = 6800
 	945.1.2 = {
@@ -4417,7 +4458,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_generous
+	trait = generous
 	trait = education_diplomacy_3
 	father = 6800
 	975.1.2 = {
@@ -4506,9 +4547,9 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
-	trait = am_deceitful
-	trait = am_wroth
+	trait = arrogant
+	trait = deceitful
+	trait = wrathful
 	trait = education_martial_2
 	father = 6806
 	mother = 110639
@@ -4529,7 +4570,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_pretentious
+	trait = arrogant
 	trait = gluttonous
 	trait = education_stewardship_2
 	father = 6806
@@ -4553,7 +4594,7 @@
 	religion = "catholic"
 	culture = "norman"
 	trait = lustful
-	trait = am_honest
+	trait = honest
 	trait = education_stewardship_2
 	father = 6806
 	mother = 110639
@@ -4596,7 +4637,7 @@
 	culture = "norman"
 	trait = temperate
 	trait = chaste
-	trait = am_intolerant
+	trait = zealous
 	trait = education_learning_1
 	father = 6804
 	mother = 6805
@@ -4617,8 +4658,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_inconstant
-	trait = am_hypocritical
+	trait = arbitrary
+	trait = cynical
 	trait = hunchbacked
 	trait = education_learning_1
 	father = 258
@@ -4641,7 +4682,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_honest
+	trait = honest
 	trait = education_learning_2
 	990.1.1 = {
 		birth = "990.1.1"
@@ -4661,9 +4702,9 @@
 	religion = "catholic"
 	culture = "norman"
 	disallow_random_traits = yes
-	trait = am_honest
-	trait = am_patient
-	trait = am_pretentious
+	trait = honest
+	trait = calm
+	trait = arrogant
 
 	trait = education_martial_2
 	father = 258
@@ -4686,9 +4727,9 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = temperate
-	trait = am_craven
+	trait = craven
 	trait = ill
 	trait = education_learning_2
 	father = 6816
@@ -4709,7 +4750,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_humble
+	trait = humble
 	trait = education_intrigue_2
 	father = 258
 	mother = 6817
@@ -4734,7 +4775,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_lazy
+	trait = lazy
 	trait = education_intrigue_1
 	1025.1.1 = {
 		birth = "1025.1.1"
@@ -4753,8 +4794,8 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_patient
-	trait = am_brave
+	trait = calm
+	trait = brave
 	trait = education_martial_3
 	father = 6820
 	mother = 6821
@@ -4894,9 +4935,9 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_hypocritical
+	trait = cynical
 	trait = education_stewardship_3
-	trait = am_greedy
+	trait = greedy
 	trait = hunter_1
 	1035.1.1 = {
 		birth = "1035.1.1"
@@ -5264,7 +5305,7 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "norman"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_martial_2
 	father = 41251
 	1094.1.1 = {
@@ -5309,9 +5350,9 @@
 	1018.1.2 = {
 		birth = yes
 	}
-	1061.1.1 = {
-		add_spouse = 200365
-	}
+	#1061.1.1 = { # Outcommented due to already being married with 171155, Geoffroy.
+	#	add_spouse = 200365
+	#}
 	1071.1.2 = {
 		death = yes
 	}
@@ -5365,7 +5406,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_intolerant
+	trait = zealous
 	trait = education_learning_2
 	father = 85002
 	1041.1.1 = {
@@ -5826,7 +5867,7 @@
 	stewardship = 5
 	religion = "catholic"
 	culture = "norman"
-	trait = am_wroth
+	trait = wrathful
 	trait = education_martial_3
 	father = 41265
 	mother = 32500
@@ -6072,7 +6113,7 @@
 	stewardship = 7
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = education_stewardship_2
 	father = 204576
 	mother = 204577
@@ -6883,10 +6924,10 @@
 	stewardship = 6
 	religion = "catholic"
 	culture = "french"
-	trait = am_inconstant
-	trait = am_generous
-	trait = am_mild
-	trait = am_brave
+	trait = arbitrary
+	trait = generous
+	trait = trusting
+	trait = brave
 	trait = education_martial_2
 	father = 205897
 	mother = 205898
@@ -6931,7 +6972,7 @@
 	stewardship = 4
 	religion = "catholic"
 	culture = "norman"
-	trait = am_inconstant
+	trait = arbitrary
 	trait = education_learning_2
 	father = 30827
 	mother = 168471
@@ -7291,7 +7332,7 @@
 	dynasty = 721
 	religion = "catholic"
 	culture = "norman"
-	trait = am_greedy
+	trait = greedy
 	trait = education_intrigue_1
 	father = 205851
 	mother = 205860

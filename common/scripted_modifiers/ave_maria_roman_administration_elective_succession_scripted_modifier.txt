@@ -1,6 +1,6 @@
 ﻿elector_voting_pattern_opinion_roman_administration_elective_modifier = {
 	
-	##########################	Raw Opinion bonus towards Candidate	##########################
+	## Junior Emperor
 	modifier = { #Raw Opinion bonus (positive)
 		desc = tooltip_roman_administration_junior_emperor_vote_opinion_positive
 		NOT = {
@@ -57,74 +57,20 @@
 		}
 	}
 
-	modifier = { #Raw Opinion bonus (positive)
-		desc = tooltip_roman_administration_emperor_favourite_vote_opinion_positive
-		NOT = {
-			has_relation_rival = scope:candidate #Completely removed for rivals.
-		}
-		NOT = { this = scope:candidate } #Not on yourself.
-		scope:candidate = {
-			has_character_modifier = roman_administration_emperor_favourite
-		}
-		add = {
-			value = 50
-			if = { #Even more so if higher opinion.
-				limit = {
-					opinion = {
-						target = scope:candidate
-						value >= medium_positive_opinion
-					}
-				}
-				add = 15 #30 total
-			}
-			if = { #Even more so if higher opinion.
-				limit = {
-					opinion = {
-						target = scope:candidate
-						value >= high_positive_opinion
-					}
-				}
-				add = 20 #50 total
-			}
-			if = { #Even more so if higher opinion.
-				limit = {
-					opinion = {
-						target = scope:candidate
-						value >= very_high_positive_opinion
-					}
-				}
-				add = 20 #70 total
-			}
-			if = { #Even more so if friend/lover.
-				limit = {
-					OR = {
-						has_relation_friend = scope:candidate
-						has_relation_lover = scope:candidate
-					}
-				}
-				add = 30 #100 total
-			}
-			if = { #Further increased for Tanistry.
-				limit = {
-					scope:title = { has_title_law = gaelic_elective_succession_law }
-				}
-				multiply = 1.5
-			}
-		}
-	}
-
 	## legitimacy
 	modifier = {
 		desc = tooltip_roman_administration_legitimacy_vote_opinion_positive
+		NOT = { this = scope:candidate }
 		scope:candidate = {
 			has_variable = roman_administration_legitimacy
 			var:roman_administration_legitimacy > 0
 		}
 		add = {
-			value = 200
+			add = 1
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 0
 						var:roman_administration_legitimacy <= 50
 					}					
@@ -134,6 +80,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 50
 						var:roman_administration_legitimacy <= 60
 					}					
@@ -143,6 +90,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 60
 						var:roman_administration_legitimacy <= 70
 					}					
@@ -152,6 +100,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 70
 						var:roman_administration_legitimacy <= 80
 					}					
@@ -161,6 +110,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 80
 						var:roman_administration_legitimacy <= 90
 					}					
@@ -170,6 +120,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 90
 						var:roman_administration_legitimacy <= 100
 					}					
@@ -179,6 +130,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 100
 						var:roman_administration_legitimacy <= 110
 					}					
@@ -188,6 +140,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 110
 						var:roman_administration_legitimacy <= 120
 					}					
@@ -197,6 +150,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 120
 						var:roman_administration_legitimacy <= 130
 					}					
@@ -206,6 +160,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 130
 						var:roman_administration_legitimacy <= 140
 					}					
@@ -215,6 +170,7 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy > 140
 						var:roman_administration_legitimacy <= 150
 					}					
@@ -224,10 +180,95 @@
 			if = {
 				limit = {
 					scope:candidate = {
+						has_variable = roman_administration_legitimacy
 						var:roman_administration_legitimacy >= 150
 					}					
 				}
 				add = 600
+			}
+		}
+	}
+
+	## Physical properties
+	modifier = {
+		add = -100
+		desc = tooltip_imperial_vote_strength_emperor_deformed		
+		NOT = { this = scope:candidate }
+		
+		scope:candidate = {
+			OR = {
+				has_trait = infirm
+				has_trait = disfigured
+				has_trait = blind
+				has_trait = eunuch
+				has_trait = dwarf
+				has_trait = maimed
+				has_trait = wounded_3
+				has_trait = clubfooted
+				has_trait = lisping
+				has_trait = inbred
+				has_trait = hunchbacked
+				has_trait = scaly
+				has_trait = albino
+				has_trait = bleeder
+				has_trait = gout_ridden
+			}
+		}
+	}
+
+	## Porphyrogénnētos
+	modifier = {
+		add = 50
+		desc = tooltip_imperial_vote_strength_candidate_purple
+		NOT = { this = scope:candidate }
+
+		scope:candidate = {
+			has_trait = born_in_the_purple
+		}
+	}
+
+	## Martial qualities
+	modifier = {	# Candidate's martial
+		desc = tooltip_imperial_vote_strength_commander_martial
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = { martial >= 10 }
+		add = {
+			value = 5
+			if = {
+				limit = {
+					scope:candidate = { martial > 12 }
+				}
+				add = 6
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 16 }
+				}
+				add = 8
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 18 }
+				}
+				add = 9
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 20 }
+				}
+				add = 10
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 25 }
+				}
+				add = 13
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 30 }
+				}
+				add = 15
 			}
 		}
 	}
@@ -349,20 +390,6 @@ elector_voting_pattern_opinion_roman_administration_tagma_elective_modifier = {
 			}
 		}
 	}
-
-	## Like your children
-	modifier = { #Current ruler will always try to elect his player heir before everybody else.
-		add = 50
-		desc = tooltip_feudal_holder_elector_vote_player_heir
-		player_heir = scope:candidate
-		NOT = { player_heir = root }
-		scope:holder = {
-			this = root
-			NOT = {
-				has_relation_rival = scope:candidate #Unless is rival.
-			}
-		}
-	}
 	
 	## Not another heir
 	modifier = {
@@ -372,20 +399,56 @@ elector_voting_pattern_opinion_roman_administration_tagma_elective_modifier = {
 			any_heir_to_title = {
 				NOT = { this = scope:title }
 				NOT = {
-					this.holder = scope:holder
+					holder = scope:holder
 				}
 				tier = tier_duchy
 			}
 		}
-
-		
 	}
 
-	## Are you a good military mang / soldier ?
-	modifier = {
-		desc = tooltip_roman_administration_competent_soldier_vote_opinion_positive
+	## Martial qualities
+	modifier = {	# Candidate's martial
+		desc = tooltip_imperial_vote_strength_commander_martial
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = { martial >= 10 }
 		add = {
-			value = 50
+			value = 5
+			if = {
+				limit = {
+					scope:candidate = { martial > 12 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 16 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 18 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 20 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 25 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 30 }
+				}
+				add = 5
+			}
 		}
 	}
 }
@@ -506,20 +569,6 @@ elector_voting_pattern_opinion_roman_administration_civilian_administration_elec
 			}
 		}
 	}
-
-	## Like your children
-	modifier = { #Current ruler will always try to elect his player heir before everybody else.
-		add = 50
-		desc = tooltip_feudal_holder_elector_vote_player_heir
-		player_heir = scope:candidate
-		NOT = { player_heir = root }
-		scope:holder = {
-			this = root
-			NOT = {
-				has_relation_rival = scope:candidate #Unless is rival.
-			}
-		}
-	}
 	
 	## Not Another heir
 	modifier = {
@@ -533,8 +582,51 @@ elector_voting_pattern_opinion_roman_administration_civilian_administration_elec
 				}
 				tier = tier_duchy
 			}
-		}
+		}		
+	}
 
-		
+	modifier = {	# Candidate's Stewardship
+		desc = tooltip_saxon_elector_vote_stewardship
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = { stewardship >= 10 }
+		add = {
+			value = 5
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 12 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 16 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 18 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 20 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 25 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { stewardship > 30 }
+				}
+				add = 5
+			}
+		}
 	}
 }

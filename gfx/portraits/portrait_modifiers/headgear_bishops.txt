@@ -1,0 +1,384 @@
+﻿
+headgear_bishops = {
+	# interface_position = 1
+	usage = game
+	selection_behavior = weighted_random
+	
+	no_hat = {
+		usage = game 
+		dna_modifiers = {
+			accessory = {
+				mode = add
+		
+				gene = headgear
+				template = no_headgear
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				AND = {
+					# Deliberately not the "fully naked" one since dropping your crown's intended even if nudity is disabled
+					should_be_naked_trigger = yes
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					is_adult = no
+					highest_held_title_tier >= tier_duchy # Should wear ducal or royal crown instead.
+					AND = {
+						religion = religion:christianity_religion
+						faith.religious_head = this
+					}
+				}
+			}
+		}
+	}
+	
+## Orthodox ##
+	
+	religious_orthodox_high_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = religious_orthodox_high
+	            range = { 0 1 }
+	        }
+	    }
+	    outfit_tags = { bishop_outfit }
+	    weight = {
+	        base = 0
+	        modifier = {
+				add = 130
+				OR = {
+					is_theocratic_lessee = yes
+					AND = { is_ruler = yes has_government = theocracy_government }
+				}
+				faith = faith:orthodox
+				NAND = {	
+					is_ruler = yes
+					primary_title = {
+						exists = controlled_faith
+						controlled_faith = faith:orthodox
+					}
+				}
+			}
+	    }
+	}
+
+	religious_orthodox_head_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = religious_orthodox_high
+	            range = { 0 1 }
+	        }
+	    }
+	    weight = {
+	        base = 0
+	        modifier = {
+	            add = 200
+				is_ruler = yes
+				primary_title = {
+					exists = controlled_faith
+					controlled_faith = faith:orthodox
+				}
+	        }
+	    }
+	}	
+	
+## Coptic ##
+
+	religious_coptic_high_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = religious_jewish_high
+	            range = { 0 1 }
+	        }
+	    }
+	    outfit_tags = { bishop_outfit }
+	    weight = {
+	        base = 0
+	        modifier = {
+				add = 130
+				OR = {
+					is_theocratic_lessee = yes
+					AND = { is_ruler = yes has_government = theocracy_government }
+				}
+				faith = faith:coptic
+				NAND = {	
+					is_ruler = yes
+					primary_title = {
+						exists = controlled_faith
+						controlled_faith = faith:coptic
+					}
+				}
+			}
+	    }
+	}
+
+	religious_coptic_head_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = religious_orthodox_high
+	            range = { 0 1 }
+	        }
+	    }
+	    weight = {
+	        base = 0
+	        modifier = {
+	            add = 200
+				is_ruler = yes
+				primary_title = {
+					exists = controlled_faith
+					controlled_faith = faith:coptic
+				}
+	        }
+	    }
+	}
+	
+	
+## Armenian ##
+
+	religious_armenian_high_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = catholic_high
+	            range = { 1 1 }
+	        }
+	    }
+	    outfit_tags = { bishop_outfit }
+	    weight = {
+	        base = 0
+	        modifier = {
+				add = 130
+				OR = {
+					is_theocratic_lessee = yes
+					AND = { is_ruler = yes has_government = theocracy_government }
+				}
+				faith = faith:armenian_apostolic
+				NAND = {	
+					is_ruler = yes
+					primary_title = {
+						exists = controlled_faith
+						controlled_faith = faith:armenian_apostolic
+					}
+				}
+			}
+	    }
+	}
+
+	religious_armenian_head_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = catholic_high
+	            range = { 1 1 }
+	        }
+	    }
+	    weight = {
+	        base = 0
+	        modifier = {
+	            add = 200
+				is_ruler = yes
+				primary_title = {
+					exists = controlled_faith
+					controlled_faith = faith:armenian_apostolic
+				}
+	        }
+	    }
+	}
+	
+## Nestorian ##
+
+	religious_nestorian_high_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = NO_HEADGEAR
+	            range = { 1 1 }
+	        }
+	    }
+	    outfit_tags = { bishop_outfit }
+	    weight = {
+	        base = 0
+	        modifier = {
+				add = 130
+				OR = {
+					is_theocratic_lessee = yes
+					AND = { is_ruler = yes has_government = theocracy_government }
+				}
+				faith = faith:nestorian
+				NAND = {	
+					is_ruler = yes
+					primary_title = {
+						exists = controlled_faith
+						controlled_faith = faith:nestorian
+					}
+				}
+			}
+	    }
+	}
+
+	religious_nestorian_head_clothes = {
+	    dna_modifiers = {
+	        accessory = {
+	            mode = add
+	            gene = headgear
+	            template = NO_HEADGEAR
+	            range = { 1 1 }
+	        }
+	    }
+	    weight = {
+	        base = 0
+	        modifier = {
+	            add = 200
+				is_ruler = yes
+				primary_title = {
+					exists = controlled_faith
+					controlled_faith = faith:nestorian
+				}
+	        }
+	    }
+	}
+
+## Catholic ##
+	
+	catholic_head = {
+		outfit_tags = { rank_headgear }
+		usage = game
+		dna_modifiers = {
+			morph = {
+				mode = add
+				
+				gene = gene_bs_ear_outward
+				template = ear_outward_neg
+				value = 1.0
+			}
+			accessory = {
+				mode = add
+				
+				gene = headgear
+				template = catholic_head
+				range = { 0 1 }
+			}
+
+			accessory = {
+				mode = add
+				
+				gene = hairstyles
+				template = no_hairstyles
+				range = { 0 1 }
+			}
+		}	
+		weight = {
+			base = 110
+			modifier = {
+				factor = 0
+				NAND = {
+					is_ruler = yes
+					primary_title = {
+						exists = controlled_faith
+						controlled_faith = faith:catholic
+					}
+				}
+			}
+		}
+	}
+	
+	catholic_high = {
+		outfit_tags = { rank_headgear }
+		usage = game
+		dna_modifiers = {
+			morph = {
+				mode = add
+				
+				gene = gene_bs_ear_outward
+				template = ear_outward_neg
+				value = 1.0
+			}
+			accessory = {
+				mode = add
+				
+				gene = headgear
+				template = catholic_high
+				range = { 0 0 }
+			}
+
+			accessory = {
+				mode = add
+				
+				gene = hairstyles
+				template = no_hairstyles
+				range = { 0 1 }
+			}
+		}	
+	    weight = {
+	        base = 120
+	        modifier = {
+	            factor = 0
+	            OR = {
+	            	AND = {
+	                	is_theocratic_lessee = no
+	                	NOT = { AND = { is_ruler = yes has_government = theocracy_government } }
+	                	NOT = { faith.religious_head = root }
+	                }
+	                NOT = { faith = { religion_tag = christianity_religion } }
+	            }
+	        }
+	    }
+	}
+	
+	popes = {
+		outfit_tags = { rank_headgear }
+		usage = game
+		dna_modifiers = {
+			morph = {
+				mode = add
+				
+				gene = gene_bs_ear_outward
+				template = ear_outward_neg
+				value = 1.0
+			}
+			accessory = {
+				mode = add
+				
+				gene = headgear
+				template = catholic_head
+				range = { 0 1 }
+			}
+
+			accessory = {
+				mode = add
+				
+				gene = hairstyles
+				template = no_hairstyles
+				range = { 0 1 }
+			}
+		}	
+		weight = {
+			base = 140
+			modifier = {
+				factor = 0
+				NAND = {
+					is_adult = yes
+					religion = religion:christianity_religion
+					faith.religious_head = this
+				}
+			}
+		}
+	}
+}

@@ -60,7 +60,7 @@ grant_vassal_interaction = {
 		}
 
 		trigger_if = {
-			limit = { scope:recipient.highest_held_title_tier <= tier_county }
+			limit = { scope:recipient.highest_held_title_tier = tier_county }
 			scope:recipient = { highest_held_title_tier > tier_county }
 		}
 		trigger_else = {
@@ -111,10 +111,8 @@ grant_vassal_interaction = {
 			subject = root
 			object = scope:actor
 			NOT = {
-				scope:secondary_actor = {
-					any_vassal_or_below = {
-						is_at_war_with = root
-					}
+				any_vassal_or_below = {
+					is_at_war_with = root
 				}
 			}
 		}
@@ -136,21 +134,35 @@ grant_vassal_interaction = {
 				right_icon = scope:recipient
 				left_icon = scope:secondary_actor
 
+				# If we're granting a vassal to our liege, gain a truce with our former vassal (we can't immediately reconquer them, and they can't attack us either).
+				if = {
+					limit = {
+						scope:secondary_actor = {
+							is_vassal_of = scope:actor
+						}
+					}
+					add_truce_both_ways = {
+						character = scope:secondary_actor
+						days = 3650
+						name = TRUCE_GRANT_INDEPENDENCE
+					}
+				}
+
+				# Transfer the vassal over to their new liege.
 				create_title_and_vassal_change = {
 					type = granted
 					save_scope_as = change
 					add_claim_on_loss = no
 				}
-
 				scope:secondary_actor = {
 					change_liege = {
 						liege = scope:recipient
 						change = scope:change
 					}
 				}
-
 				resolve_title_and_vassal_change = scope:change
 
+				# Gain an opinion bonus with the person we gave a vassal to.
 				scope:recipient = {
 					add_opinion = {
 						target = scope:actor
@@ -159,7 +171,7 @@ grant_vassal_interaction = {
 				}
 
 				stress_impact = {
-					am_greedy = medium_stress_impact_gain
+					greedy = medium_stress_impact_gain
 				}
 			}
 		}
@@ -290,6 +302,7 @@ retract_vassal_interaction = {
 	}
 
 	on_decline = {
+		scope:actor = { vassal_revocation_tyranny_effect = yes }
 		war_for_retraction_effect = yes
 		scope:recipient = {
 			add_opinion = {
@@ -551,7 +564,7 @@ retract_vassal_interaction = {
 						OR = {
 							has_trait = lunatic
 							has_trait = possessed
-							has_trait = am_inconstant
+							has_trait = arbitrary
 						}
 					}
 				}
@@ -733,7 +746,7 @@ start_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						am_honest = medium_stress_impact_gain
+						just = medium_stress_impact_gain
 					}
 				}
 			}
@@ -806,7 +819,7 @@ join_independence_faction_interaction = {
 						is_de_jure_vassal_of_liege_trigger = yes
 					}
 					stress_impact = {
-						am_honest = minor_stress_impact_gain
+						just = minor_stress_impact_gain
 					}
 				}
 			}
@@ -861,15 +874,6 @@ create_claimant_faction_against_interaction = {
 							NOT = { has_trait = incapable }
 						}
 					}
-				}
-			}
-		}
-
-		scope:actor = {
-			custom_description = {
-				text = character_blocked_from_joining
-				NOT = {
-					has_character_flag = joining_faction_block
 				}
 			}
 		}
@@ -1152,7 +1156,7 @@ force_onto_council = {
 					custom_tooltip = force_onto_council.actor.tt.duration
 				}
 			}
-			stress_impact = { am_conventional = minor_stress_impact_gain }
+			stress_impact = { content = minor_stress_impact_gain }
 		}
 		scope:recipient = {
 			assign_council_task = {

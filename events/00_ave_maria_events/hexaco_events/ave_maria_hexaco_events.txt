@@ -1,0 +1,131 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# HEXACO events			   						                    				   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_hexaco_traits_events
+
+# TABLE OF CONTENT:
+
+##### 1) MAINTENANCE EVENTS
+##### Maintenance events making sure everyone has the HEXACO traits and proper variables
+
+########## a) TRAIT AND VARIABLE DISTRIBUTION ON STARTUP:
+########## Giving every character HEXACO traits at the start and corresponding variables
+
+########## b) TRAIT AND VARIABLE DISTRIBUTION ON BIRTH:
+########## Giving every newborn character HEXACO traits from parents and corresponding variables
+
+##### 2) EDUCATION EVENTS
+##### Series of event during childhood where child gains xp in the various education traits
+##### Each category should have specific events and some generic hidden event for xp gain.
+
+########## a) EDUCATION MARTIAL:
+########## Event for the educated ward about the  progress in the martial prowess category
+############ Practice at the pell
+############ Wrestling training
+############ Swordfight duel session
+############ Learning to fight in armor
+
+########## b) EDUCATION RIDING:
+########## Event for the educated ward about the progress in the riding prowess category
+############ Mounting the horse
+############ Controlling on the horse
+############ Horseback lance training and the rotating pell
+
+########## c) EDUCATION ETIQUETTE:
+########## Event for the educated ward about the progress in the etiquette skill category
+
+########## d) EDUCATION READ/WRITE:
+########## Event for the educated ward about the progress in the read/write category
+
+########## e) EDUCATION MATHEMATICS:
+########## Event for the educated ward about the progress in the mathematics category
+
+########## f) EDUCATION PHILOSOPHY:
+########## Event for the educated ward about the progress in the philosophy 
+
+########## g) EDUCATION LAW:
+########## Event for the educated ward about the progress in the law category
+
+########## h) EDUCATION THEOLOGY:
+########## Event for the educated ward about the progress in the theology category
+
+
+#############################################
+# MAINTENANCE								#
+#############################################
+
+## At start_up give all characters HEXACO personality and education traits
+ave_maria_hexaco_traits_events.0001 = {
+	# type = character_event 				
+	hidden = yes						
+		
+	trigger = {
+		## Trigger only to one person, the player in SP and the host in MP
+		# any_player = {
+		# 	is_independent_ruler = yes
+		# }
+	}
+	
+	immediate = {
+
+		## For characters already having some traits, assign the trait variable for personality and education
+		add_hexaco_personality_trait_variable = yes
+		
+		## For characters not having the HEXACO traits give them the personality traits and corresponding variables AND Education traits if old enough
+		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
+		add_random_hexaco_personality_trait = { WHO = this } 
+
+		if = {
+			limit = {
+				roman_administration_can_be_eligible_for_emperor_trigger = yes
+			}
+			roman_administration_update_legitimacy_variable = yes
+		}
+
+		## Scope to all characters, add HEXACO traits, personality and education
+		# every_ruler = {
+		# 	## For characters already having some traits, assign the trait variable for personality and education
+		# 	add_hexaco_personality_trait_variable = yes
+		# 	# add_hexaco_education_trait_variable = yes
+			
+
+		# 	## For characters not having the HEXACO traits give them the personality traits and corresponding variables AND Education traits if old enough
+
+		# 	## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
+		# 	add_random_hexaco_personality_trait = { WHO = this } 
+
+		# 	## Adults and young children get education traits
+		# 	if = {
+		# 		limit = {
+		# 			is_adult = yes
+		# 			age >= 12
+		# 		}
+		# 		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the education trait in each category it adds randomly one of each category
+		# 		# add_hexaco_education_traits = yes 
+		# 	}			
+		# 	every_courtier_or_guest = {
+		# 		## For characters already having some traits, assign the trait variable for personality and education
+		# 		add_hexaco_personality_trait_variable = yes
+	
+		# 		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
+		# 		add_random_hexaco_personality_trait = { WHO = this } 
+		# 	}
+		# }
+		# every_spouse = {
+		# 	## For characters already having some traits, assign the trait variable for personality and education
+		# 	add_hexaco_personality_trait_variable = yes
+
+		# 	## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
+		# 	add_random_hexaco_personality_trait = { WHO = this } 
+		# }
+	}
+
+}

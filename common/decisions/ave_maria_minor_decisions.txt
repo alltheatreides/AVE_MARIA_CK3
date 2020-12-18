@@ -1,0 +1,62 @@
+﻿#DECISIONS TO "USE" YOUR STRESS COPING TRAITS TO LOSE STRESS
+
+stress_loss_obsessive_hunter_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_obsessed_hunter.dds"
+	desc = stress_loss_obsessed_hunter_decision_desc
+	selection_tooltip = stress_loss_obsessed_hunter_decision_tooltip
+
+	ai_check_interval = 120
+
+	cooldown = { days = 1095 }
+
+	is_shown = {
+		has_trait = obsessive_hunter
+	}
+
+	is_valid_showing_failures_only = {
+		is_available = yes
+	}
+
+	cost = {
+		gold = 50
+	}
+
+	effect = {
+		
+		custom_tooltip = stress_loss_obsessed_hunter_decision_tooltip
+
+		hidden_effect = {
+			random_sub_realm_barony = {
+				title_province = {
+					spawn_activity = {
+						type = activity_hunt
+						owner = root
+					}
+				}
+			}
+		}
+	}
+	
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 25
+			stress > low_medium_stress
+		}
+
+		modifier = {
+			add = 50
+			stress > medium_stress
+		}
+
+		modifier = {
+			add = 50
+			stress > high_stress
+		}
+	}
+}

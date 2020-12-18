@@ -39,7 +39,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
+		# using = Window_Background
 
 		widget = {
 			size = { 100% 100% }
@@ -1342,23 +1342,27 @@ types IntrigueWindowTypes
 						expand = {}
 
 						button_standard_small = {
-							name = "expose_button"
-							datacontext = "[IntrigueWindowSecretGroup.GetFirstSecret.GetSecret]"
-							size = { 85 25 }
-							onclick = "[IntrigueWindow.ExposeSecret( Character.Self, 'blackmail_interaction', Secret.Self )]"
-							text = "INTRIGUE_WINDOW_SECRET_EXPOSE"
-							tooltip = "INTRIGUE_WINDOW_SECRET_EXPOSE_TT"
-						}
-
-						button_standard_small = {
 							name = "blackmail_button"
 							datacontext = "[IntrigueWindowSecretGroup.GetFirstSecret.GetSecret]"
-							size = { 155 25 }
+							size = { 120 25 }
 							enabled = "[IntrigueWindowSecretGroup.CanBlackmail]"
 							onclick = "[Character.OpenPlayerInteraction( 'blackmail_interaction' )]"
 							text = "INTRIGUE_WINDOW_SECRET_KNOWN_TO_ME_BLACKMAIL"
 							tooltip = "INTRIGUE_WINDOW_SECRET_BLACKMAIL_TT"
+							using = tooltip_se
 						}
+
+						button_tertiary = {
+							name = "expose_button"
+							datacontext = "[IntrigueWindowSecretGroup.GetFirstSecret.GetSecret]"
+							size = { 120 25 }
+							onclick = "[IntrigueWindow.ExposeSecret( Character.Self, 'blackmail_interaction', Secret.Self )]"
+							text = "INTRIGUE_WINDOW_SECRET_EXPOSE"
+							tooltip = "INTRIGUE_WINDOW_SECRET_EXPOSE_TT"
+							using = tooltip_se
+						}
+
+						
 					}
 				}
 

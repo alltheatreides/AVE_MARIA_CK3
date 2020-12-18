@@ -229,9 +229,10 @@ great_holy_war.0001 = {
 				is_ai = yes
 				is_landed = yes
 				highest_held_title_tier >= tier_county
-				NOT = { this = scope:ghw_sponsor }
-				NOT = {
+				NOR = {
+					this = scope:ghw_sponsor
 					root.great_holy_war = { has_pledged_attacker = prev }
+					target_is_liege_or_above = scope:target_character
 				}
 			}
 			trigger_event = {
@@ -465,6 +466,7 @@ great_holy_war.0005 = {
 	scope = ghw
 
 	immediate = {
+
 		start_ghw_war = undirected_great_holy_war
 		divide_war_chest = {
 			fraction = 0.2
@@ -1047,12 +1049,12 @@ great_holy_war.0015 = {
 	
 	option = {
 		name = great_holy_war.0015.a
-		trigger = { has_trait = am_hypocritical }
+		trigger = { has_trait = cynical }
 	}
 	option = {
 		name = great_holy_war.0015.b
 		trigger = {
-			NOT = { has_trait = am_hypocritical }
+			NOT = { has_trait = cynical }
 		}
 	}
 }
@@ -1168,12 +1170,12 @@ great_holy_war.0016 = {
 	
 	option = {
 		name = great_holy_war.0016.a
-		trigger = { has_trait = am_hypocritical }
+		trigger = { has_trait = cynical }
 	}
 	option = {
 		name = great_holy_war.0016.b
 		trigger = {
-			NOT = { has_trait = am_hypocritical }
+			NOT = { has_trait = cynical }
 		}
 	}
 	after = {
@@ -1239,7 +1241,7 @@ great_holy_war.0016 = {
 		remove_character_flag = ghw_harsh_punishment
 		remove_character_flag = ghw_excommunication
 		stress_impact = {
-			am_intolerant = medium_stress_impact_gain
+			zealous = medium_stress_impact_gain
 		}
 	}
 }
@@ -1397,6 +1399,7 @@ great_holy_war.0020 = {
 		NOT = { has_trait = incapable }
 		ai_zeal >= 0
 		root.faith = scope:the_faith
+		NOT = { target_is_liege_or_above = scope:target_character }
 		scope:the_faith = { # Crusade still exists
 			exists = great_holy_war
 			great_holy_war = {
@@ -1481,19 +1484,19 @@ great_holy_war.0020 = {
 					chance = 35
 					modifier = {
 						factor = 0.75
-						has_trait = am_greedy
+						has_trait = greedy
 					}
 					modifier = {
 						factor = 1.5
-						has_trait = am_generous
+						has_trait = generous
 					}
 					modifier = {
 						factor = 0.25
-						has_trait = am_hypocritical
+						has_trait = cynical
 					}
 					modifier = {
 						factor = 1.75
-						has_trait = am_intolerant
+						has_trait = zealous
 					}
 					modifier = {
 						factor = 1.75
@@ -1592,7 +1595,7 @@ great_holy_war.0020 = {
 					NOT = { exists = great_holy_war.ghw_war }
 					scope:the_faith.great_holy_war = { ghw_attackers_strength < var:half_of_defenders_strength }
 				}
-				modifier = { # Try to prevent the Crusade from failing before even starting. (Less than half of the defenders' strength)
+				modifier = { # Try to prevent the Crusade from failing before even starting. (Less than quarter of the defenders' strength)
 					factor = 0.35
 					NOT = { exists = great_holy_war.ghw_war }
 					scope:the_faith.great_holy_war = { ghw_attackers_strength < var:quarter_of_defenders_strength }
@@ -1616,11 +1619,11 @@ great_holy_war.0020 = {
 				}
 				modifier = { # Basic traits
 					factor = 2
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 				modifier = { # Basic traits
 					factor = 0.5
-					has_trait = am_intolerant
+					has_trait = zealous
 				}
 				modifier = { # Tier
 					factor = 0.75
@@ -1651,6 +1654,7 @@ great_holy_war.0092 = {
 		NOT = { has_trait = incapable }
 		ai_zeal >= 0
 		root.faith = scope:the_faith
+		NOT = { target_is_liege_or_above = scope:target_character }
 		scope:the_faith = { #Crusade still exists
 			exists = great_holy_war
 			great_holy_war = {
@@ -1726,19 +1730,19 @@ great_holy_war.0092 = {
 					chance = 35
 					modifier = {
 						factor = 0.75
-						has_trait = am_greedy
+						has_trait = greedy
 					}
 					modifier = {
 						factor = 1.5
-						has_trait = am_generous
+						has_trait = generous
 					}
 					modifier = {
 						factor = 0.25
-						has_trait = am_hypocritical
+						has_trait = cynical
 					}
 					modifier = {
 						factor = 1.75
-						has_trait = am_intolerant
+						has_trait = zealous
 					}
 					modifier = {
 						factor = 1.75
@@ -1798,11 +1802,11 @@ great_holy_war.0092 = {
 				}
 				modifier = { #Basic traits
 					factor = 2
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 				modifier = { #Basic traits
 					factor = 0.5
-					has_trait = am_intolerant
+					has_trait = zealous
 				}
 				modifier = { #Tier
 					factor = 0.75
@@ -2030,11 +2034,11 @@ great_holy_war.0021 = {
 				}
 				modifier = { #Basic traits
 					factor = 2
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 				modifier = { #Basic traits
 					factor = 0.5
-					has_trait = am_intolerant
+					has_trait = zealous
 				}
 				modifier = { #Tier
 					factor = 0.75
@@ -2206,11 +2210,11 @@ great_holy_war.0093 = {
 				}
 				modifier = { #Basic traits
 					factor = 2
-					has_trait = am_hypocritical
+					has_trait = cynical
 				}
 				modifier = { #Basic traits
 					factor = 0.5
-					has_trait = am_intolerant
+					has_trait = zealous
 				}
 				modifier = { #Tier
 					factor = 0.75
@@ -2429,8 +2433,8 @@ great_holy_war.0023 = {
 			}
 		}
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
-			am_intolerant = minor_stress_impact_loss
+			cynical = minor_stress_impact_gain
+			zealous = minor_stress_impact_loss
 		}
 
 		ai_chance = {
@@ -2446,7 +2450,7 @@ great_holy_war.0023 = {
 			modifier = {
 				factor = 0.1
 				is_independent_ruler = no
-				highest_held_title_tier <= tier_county
+				highest_held_title_tier = tier_county
 			}
 			modifier = {
 				factor = 5
@@ -2497,10 +2501,10 @@ great_holy_war.0023 = {
 			}
 		}
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
-			am_greedy = minor_stress_impact_gain
-			am_generous = minor_stress_impact_loss
-			am_intolerant = minor_stress_impact_loss
+			cynical = minor_stress_impact_gain
+			greedy = minor_stress_impact_gain
+			generous = minor_stress_impact_loss
+			zealous = minor_stress_impact_loss
 		}
 		ai_chance = {
 			base = 10
@@ -2560,8 +2564,8 @@ great_holy_war.0023 = {
 			days = 37
 		}
 		stress_impact = {
-			am_intolerant = minor_stress_impact_gain
-			am_hypocritical = minor_stress_impact_loss
+			zealous = minor_stress_impact_gain
+			cynical = minor_stress_impact_loss
 		}
 		ai_chance = {
 			base = 0
@@ -3182,8 +3186,8 @@ great_holy_war.0040 = {
 			days = 7300
 		}
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
-			am_greedy = medium_stress_impact_gain
+			cynical = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}
 	}
 	option = { # Medium donation.
@@ -3208,8 +3212,8 @@ great_holy_war.0040 = {
 			days = 7300
 		}
 		stress_impact = {
-			am_hypocritical = minor_stress_impact_gain
-			am_greedy = medium_stress_impact_gain
+			cynical = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
 		}
 	}
 	option = { # Small donation.
@@ -3677,11 +3681,11 @@ great_holy_war.0055 = {
 		ghw_war_declarer.faith = { save_scope_as = the_faith }
 
 		faith = {
-			change_fervor = -25
+			change_fervor = -10
 			set_variable = {
 				name = variable_ghw_cooldown
 				value = yes
-				years = 5
+				years = 30
 			}
 		}
 		every_player = {
@@ -3814,6 +3818,14 @@ great_holy_war.0060 = {
 		faith.great_holy_war.ghw_target_title = { save_scope_as = target_kingdom }
 		scope:army = {
 			army_commander = { trigger_event = great_holy_war.0057 }
+			army_owner = {
+				every_knight = {
+					limit = {
+						location = scope:current_location
+					}
+					trigger_event = great_holy_war.0057
+				}
+			}
 		}
 	}
 }

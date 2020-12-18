@@ -22,7 +22,7 @@
 			holder = scope:actor
 			is_capital_barony = no # we'll use the county in that case
 			trigger_if = {
-				limit = { tier <= tier_county }
+				limit = { tier = tier_county }
 				title_province = {
 					has_holding_type = tribal_holding
 				}
@@ -39,7 +39,7 @@
 	has_valid_target_showing_failures_only = {
 		scope:target = {
 			trigger_if = {
-				limit = { tier <= tier_county }
+				limit = { tier = tier_county }
 				title_province.barony_controller = scope:actor
 			}
 		}
@@ -66,5 +66,9 @@
 				}
 			}
 		}
+	}
+
+	ai_will_do = {
+		base = 150
 	}
 }
