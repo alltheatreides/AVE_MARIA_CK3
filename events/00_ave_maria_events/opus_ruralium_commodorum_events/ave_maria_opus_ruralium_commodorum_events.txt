@@ -1,0 +1,75 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# OPUS RURALIUM COMMODORUM EVENTS													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_opus_ruralium_commodorum
+
+# 
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_opus_ruralium_commodorum.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		## original
+		# orc_apply_demesne_provinces_distance_malus = yes
+		# #orc_apply_demesne_provinces_distance_malus_modifier = yes
+
+		# every_vassal = {
+		# 	orc_apply_demesne_provinces_distance_malus = yes
+		# 	#orc_apply_demesne_provinces_distance_malus_modifier = yes
+		# }
+		## original end
+
+		##New tests
+		every_province = {
+			add_to_global_variable_list = {
+				name = domain_province_list
+				target = this
+			}		       
+		}
+		every_in_global_list = {
+			variable = every_water
+			
+			add_to_global_variable_list = { name = domain_province_list target = this }
+		}
+		travel_distance_dijkstra_white = {
+			white_type = variable
+			white_name = domain_province_list
+			start = this.capital_province
+			max = 500
+			return_dist = am_comm_malus_to_capital
+			return_prev = bar
+		}
+		orc_apply_demesne_provinces_distance_malus_modifier = yes
+		clear_global_variable_list = domain_province_list
+	}
+}
+
+ave_maria_opus_ruralium_commodorum.0002 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		
+	}
+}

@@ -1,62 +1,62 @@
-﻿roman_administration_councillor_coemperor = {
-	name = roman_administration_councillor_coemperor
-	skill = diplomacy
-	tooltip = game_concept_roman_administration_councillor_coemperor_desc
-	valid_position = {
-		culture = culture:greek
-		root.liege_or_court_owner = {
-			primary_title = {
-				this = title:e_byzantium
-				# any_election_candidate = {
-				# 	NOT = {
-				# 		has_trait = coemperor
-				# 	}
-				# }
-			}
-		}
-		root.liege_or_court_owner = {
-			primary_title = {
-				any_election_candidate = {
-					NOT = {
-						has_trait = coemperor
-					} 
-				}
-			}
-		}
+﻿# roman_administration_councillor_coemperor = {
+# 	name = roman_administration_councillor_coemperor
+# 	skill = diplomacy
+# 	tooltip = game_concept_roman_administration_councillor_coemperor_desc
+# 	valid_position = {
+# 		culture = culture:greek
+# 		root.liege_or_court_owner = {
+# 			primary_title = {
+# 				this = title:e_byzantium
+# 				# any_election_candidate = {
+# 				# 	NOT = {
+# 				# 		has_trait = coemperor
+# 				# 	}
+# 				# }
+# 			}
+# 		}
+# 		root.liege_or_court_owner = {
+# 			primary_title = {
+# 				any_election_candidate = {
+# 					NOT = {
+# 						has_trait = coemperor
+# 					} 
+# 				}
+# 			}
+# 		}
 
-	}
-	valid_character = {
-		# scope:root.liege_or_court_owner = {
-		# 	primary_title = {
-		# 		any_election_candidate = {
-		# 			NOT = {
-		# 				has_trait = coemperor
-		# 			}
-		# 		}
-		# 	}
-		# }
-		OR = {
-			is_close_family_of = root.liege_or_court_owner
-			highest_held_title_tier >= tier_duchy
-		}
-		age >= 20
-	}
+# 	}
+# 	valid_character = {
+# 		# scope:root.liege_or_court_owner = {
+# 		# 	primary_title = {
+# 		# 		any_election_candidate = {
+# 		# 			NOT = {
+# 		# 				has_trait = coemperor
+# 		# 			}
+# 		# 		}
+# 		# 	}
+# 		# }
+# 		OR = {
+# 			is_close_family_of = root.liege_or_court_owner
+# 			highest_held_title_tier >= tier_duchy
+# 		}
+# 		age >= 20
+# 	}
 
-	modifier = {
-		#name = roman_administration_councillor_coemperor_modifier
-	}	
+# 	modifier = {
+# 		#name = roman_administration_councillor_coemperor_modifier
+# 	}	
 
-	on_get_position = {
-		#gave_minor_title_effect = yes 		
-		#add_trait = coemperor			
-	}
+# 	on_get_position = {
+# 		#gave_minor_title_effect = yes 		
+# 		#add_trait = coemperor			
+# 	}
 	
-	on_fired_from_position = {
+# 	on_fired_from_position = {
 		
-	}		
+# 	}		
 
-	portrait_animation = chaplain
-}
+# 	portrait_animation = chaplain
+# }
 
 # roman_councillor_drome = {
 # 	skill = diplomacy
