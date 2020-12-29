@@ -95,6 +95,14 @@ can_be_spymaster_trigger = {
 	can_be_councillor_basics_trigger = yes
 	NOT = { has_council_position = councillor_spouse }
 	exists = $COURT_OWNER$ #so we can have the argument but get no errors
+
+	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
+		}
+		is_landed = no
+	}
 }
 
 can_be_court_chaplain_trigger = {

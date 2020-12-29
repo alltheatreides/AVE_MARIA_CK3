@@ -1,0 +1,246 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_imperial_expedition_events
+
+# ave_maria_roman_administration_imperial_expedition_events
+
+
+# TABLE OF CONTENT:
+
+## Initial decision
+ave_maria_roman_administration_imperial_expedition_events.0001 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0001.title
+	theme = martial
+	left_portrait = root
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_attacker = root
+							primary_defender = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_asia_minor
+											geographical_region = world_middle_east
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0001.desc_east
+			}
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_defender = root
+							primary_attacker = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_asia_minor
+											geographical_region = world_middle_east
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0001.desc_east
+			}
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_attacker = root
+							primary_defender = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_europe
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0001.desc_west
+			}
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_defender = root
+							primary_attacker = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_europe
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0001.desc_west
+			}
+		}
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0001.OPT_A
+		hidden_effect = {
+			set_variable = {
+				name = roman_administration_imperial_expedition
+				value = yes
+			}
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0002 days = 2 }
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0001.OPT_B
+	}
+}
+
+
+## Farewell to the city
+ave_maria_roman_administration_imperial_expedition_events.0002 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0002.title
+	theme = martial
+	left_portrait = root
+	override_background = {
+		event_background = ave_maria_constantinople_sea_view
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_attacker = root
+							primary_defender = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_asia_minor
+											geographical_region = world_middle_east
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0002.desc_east
+			}
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_defender = root
+							primary_attacker = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_asia_minor
+											geographical_region = world_middle_east
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0002.desc_east
+			}
+			triggered_desc = {
+				trigger = {
+					root = {
+						any_character_war = {
+							primary_attacker = root
+							primary_defender = {
+								any_held_title = {
+									title_province = {
+										OR = {
+											geographical_region = world_europe
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0002.desc_west
+			}
+			triggered_desc = {
+				trigger = {
+					any_character_war = {
+						primary_defender = root
+						primary_attacker = {
+							any_held_title = {
+								title_province = {
+									OR = {
+										geographical_region = world_europe
+									}
+								}
+							}
+						}
+					}
+					
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0002.desc_west
+			}
+		}
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0002.OPT_A
+		
+
+		
+	}
+
+}

@@ -287,7 +287,18 @@ can_be_knight_trigger = {
 			is_courtier = yes
 		}	
 	}
-	is_ai = yes
+	trigger_if = {
+		limit = {
+			$ARMY_OWNER$ = {
+				NOT = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}			
+		}
+		is_ai = yes
+	}	
 }
 
 can_be_commander_basic_trigger = {
@@ -312,10 +323,42 @@ can_be_commander_basic_trigger = {
 			}
 		}
 	}
-	OR = { # You can always lead your own armies
-		this = $ARMY_OWNER$
-		can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $ARMY_OWNER$ }
+	trigger_if = {
+		limit = {
+			$ARMY_OWNER$ = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+				NOT = { has_variable = roman_administration_imperial_expedition }
+			}
+		}
+		always = yes
 	}
+	trigger_if = {
+		limit = {
+			$ARMY_OWNER$ = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+				has_variable = roman_administration_imperial_expedition
+			}
+		}
+		this = $ARMY_OWNER$
+	}
+	trigger_if = {
+		limit = {
+			$ARMY_OWNER$ = {
+				any_held_title = {
+					NOT = { this = title:e_byzantium }
+				}
+			}
+		}
+		OR = { # You can always lead your own armies
+			this = $ARMY_OWNER$
+			can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $ARMY_OWNER$ }
+		}
+	}
+	
 	
 	trigger_if = {
 		limit = {
