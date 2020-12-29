@@ -4,27 +4,51 @@ stress_loss_obsessive_hunter_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_ave_maria_obsessed_hunter.dds"
 	desc = stress_loss_obsessed_hunter_decision_desc
 	selection_tooltip = stress_loss_obsessed_hunter_decision_tooltip
-
-	ai_check_interval = 120
-
-	cooldown = { days = 1095 }
-
-	is_shown = {
-		has_trait = obsessive_hunter
-	}
-
-	is_valid_showing_failures_only = {
-		is_available = yes
-	}
+	ai_check_interval = 60
 
 	cost = {
 		gold = 50
 	}
 
-	effect = {
-		
-		custom_tooltip = stress_loss_obsessed_hunter_decision_tooltip
+	cooldown = { days = 365 }
 
+	is_shown = {
+		has_trait = obsessive_hunter
+		is_landed = yes
+		highest_held_title_tier > tier_barony
+	}
+
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = start_hunt_decision_go_on_hunt
+
+		#Stress loss
+		if = {
+			limit = {
+				has_trait = lazy
+			}
+			custom_tooltip = start_hunt_decision_stress_lazy
+		}
+		else = {
+			stress_impact = {
+				base = hunt_stress_loss_value
+				compassionate = activity_stress_gain_impact
+				craven = activity_stress_gain_impact
+				diligent = activity_stress_loss_impact
+				athletic = activity_stress_loss_impact
+				sadistic = activity_stress_loss_impact
+				brave = activity_stress_loss_impact
+				hunter_1 = activity_stress_loss_impact
+				hunter_2 = activity_stress_loss_impact
+				hunter_3 = activity_stress_loss_impact
+			}
+		}
+
+		custom_tooltip = start_hunt_decision_prestige
+		
 		hidden_effect = {
 			random_sub_realm_barony = {
 				title_province = {
@@ -38,25 +62,36 @@ stress_loss_obsessive_hunter_decision = {
 	}
 	
 	ai_potential = {
-		always = yes
+		short_term_gold > standard_activity_cost
 	}
 
 	ai_will_do = {
-		base = 0
+		base = 70
 
-		modifier = {
-			add = 25
-			stress > low_medium_stress
+		ai_value_modifier = {
+			ai_energy = 1
+			ai_greed = -0.5
+			ai_compassion = -0.5
 		}
 
 		modifier = {
-			add = 50
-			stress > medium_stress
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 0
+			}
+		}
+		modifier = {
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 2
+			}
 		}
 
 		modifier = {
-			add = 50
-			stress > high_stress
+			add = 35
+			stress > low_stress
 		}
 	}
 }

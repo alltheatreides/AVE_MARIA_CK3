@@ -301,7 +301,11 @@ on_birth_child = {
 			limit = {
 				exists = scope:father
 				exists = scope:mother
-				scope:father = { any_held_title = { this = title:e_byzantium } }
+				#scope:father = { any_held_title = { this = title:e_byzantium } }
+				OR = {
+					scope:father = { has_variable = roman_administration_legitimacy }
+					scope:mother = { has_variable = roman_administration_legitimacy }
+				}
 			}
 			roman_administration_update_legitimacy_variable = yes
 		}

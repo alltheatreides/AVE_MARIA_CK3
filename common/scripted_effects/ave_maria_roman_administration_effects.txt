@@ -157,6 +157,18 @@ roman_administration_update_government_after_contract_change = {
 			type = ave_maria_roman_administration_special_contract
 			level = 0
 		}	
+		primary_title = {
+			if = {
+				limit = {
+					OR = {
+						has_variable = roman_administration_doukaton_title
+						has_variable = roman_administration_kouratoreia_title
+					}
+				}
+				remove_variable = roman_administration_doukaton_title
+				remove_variable = roman_administration_kouratoreia_title
+			}
+		}
 	}
 	if = {
 		limit = {
@@ -168,6 +180,12 @@ roman_administration_update_government_after_contract_change = {
 			type = ave_maria_roman_administration_special_contract
 			level = 1
 		}	
+		primary_title = {
+			set_variable = {
+				name = roman_administration_doukaton_title
+				value = yes
+			}
+		}
 	}
 	if = {
 		limit = {
@@ -179,6 +197,12 @@ roman_administration_update_government_after_contract_change = {
 			type = ave_maria_roman_administration_special_contract
 			level = 2
 		}	
+		primary_title = {
+			set_variable = {
+				name = roman_administration_kouratoreia_title
+				value = yes
+			}
+		}
 	}
 	if = {
 		limit = {
@@ -1112,14 +1136,14 @@ roman_administration_update_total_salary_cost = {
 			}
 		}			
 	}
-	## We have now the number of high officials as a variable, apply it to the cost variable, multiply by the monthly salary: 5 (yes it's lucrative)
+	## We have now the number of high officials as a variable, apply it to the cost variable, multiply by the monthly salary: 3 (yes it's lucrative)
 	change_variable = {
 		name = total_number_of_high_officials_cost
 		add = var:total_number_of_high_officials
 	}	
 	change_variable = {
 		name = total_number_of_high_officials_cost
-		multiply = 5
+		multiply = 3
 	}	
 
 	## Counting Strategos Salary
@@ -5137,6 +5161,7 @@ roman_administration_update_legitimacy_variable = {
 			add = 25
 		}
 	}
+
 	
 	## REMOVAL
 	## Known murderer, the removal of legitimacy effect from murdering someone from imperial family should go in murder scheme effects with a trigger if they are of the imperial family

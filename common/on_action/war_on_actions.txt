@@ -509,6 +509,21 @@ on_war_won_attacker = {
 			}
 			
 		}
+
+		## Removing the variable Imperial Expedition if you had it
+		if = {
+			limit = {
+				scope:attacker = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:attacker = {
+				remove_variable = roman_administration_imperial_expedition
+			}
+		}
 	}
 
 	events = {
@@ -591,6 +606,21 @@ on_war_won_defender = {
 				roman_administration_add_legitimacy_massive_amount = yes
 			}
 		}
+
+		## Removing the variable Imperial Expedition if you had it
+		if = {
+			limit = {
+				scope:defender = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:defender = {
+				remove_variable = roman_administration_imperial_expedition
+			}
+		}
 	}
 
 	events = {
@@ -618,6 +648,34 @@ on_war_white_peace = {
 					}
 					remove_character_flag = mustered
 				}
+			}
+		}
+
+		## Removing the variable Imperial Expedition if you had it
+		if = {
+			limit = {
+				scope:attacker = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:attacker = {
+				remove_variable = roman_administration_imperial_expedition
+			}
+		}
+		if = {
+			limit = {
+				scope:defender = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:defender = {
+				remove_variable = roman_administration_imperial_expedition
 			}
 		}
 	}
@@ -657,6 +715,34 @@ on_war_invalidated = {
 					}
 					remove_character_flag = mustered
 				}
+			}
+		}
+
+		## Removing the variable Imperial Expedition if you had it
+		if = {
+			limit = {
+				scope:attacker = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:attacker = {
+				remove_variable = roman_administration_imperial_expedition
+			}
+		}
+		if = {
+			limit = {
+				scope:defender = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+					has_variable = roman_administration_imperial_expedition
+				}
+			}
+			scope:defender = {
+				remove_variable = roman_administration_imperial_expedition
 			}
 		}
 	}

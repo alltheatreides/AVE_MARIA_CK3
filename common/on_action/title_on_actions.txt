@@ -321,6 +321,21 @@ on_title_gain_usurpation = {
 on_title_lost = {
 	events = {
 	}
+
+	effect = {
+		if = {
+			limit = {
+				scope:title = { this = title:e_byzantium }
+				exists = root
+				root = { is_alive = yes }
+			}
+			root = {
+				roman_administration_remove_salary_indicator = yes
+				remove_trait = basileus
+				remove_trait = junior_emperor
+			}
+		}
+	}
 }
 
 # A claim is gained by a character

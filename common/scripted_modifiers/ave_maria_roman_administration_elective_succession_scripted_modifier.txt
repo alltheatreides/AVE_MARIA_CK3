@@ -216,11 +216,24 @@
 		}
 	}
 
+	modifier = {
+		add = 50
+		desc = tooltip_imperial_vote_strength_comely
+
+		scope:candidate = {
+			OR = {
+				has_trait = beauty_good_1
+				has_trait = beauty_good_2
+				has_trait = beauty_good_3
+			}
+		}
+	}
+
 	## Porphyrogénnētos
 	modifier = {
 		add = 50
 		desc = tooltip_imperial_vote_strength_candidate_purple
-		NOT = { this = scope:candidate }
+		#NOT = { this = scope:candidate }
 
 		scope:candidate = {
 			has_trait = born_in_the_purple
