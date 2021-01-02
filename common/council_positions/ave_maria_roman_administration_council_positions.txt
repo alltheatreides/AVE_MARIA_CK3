@@ -319,26 +319,172 @@
 
 
 # ### Second tab of councillors, represent the dignities, people receiving rogai but no office
-# roman_dignities_protospatharios = {
-
-# }
-
-# roman_dignities_patrikios = {
+roman_dignities_protospatharios = {
+	name = roman_dignities_protospatharios
+	tooltip = game_concept_advisor_desc
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
 	
-# }
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
 
-# roman_dignities_anthypatos = {
+	portrait_animation = marshal
+}
+
+roman_dignities_patrikios = {
+	name = roman_dignities_patrikios
+	tooltip = game_concept_advisor_desc
+	portrait_animation = personality_content
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
 	
-# }
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+}
 
-# roman_dignities_magistros = {
+roman_dignities_anthypatos = {
+	name = roman_dignities_anthypatos
+	tooltip = game_concept_advisor_desc
+	portrait_animation = chancellor
+
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
 	
-# }
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+}
 
-# roman_dignities_vestarches  = {
+roman_dignities_magistros = {
+	name = roman_dignities_magistros
+	tooltip = game_concept_advisor_desc
+	portrait_animation = war_defender
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
 	
-# }
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+}
 
-# roman_dignities_proedros  = {
+roman_dignities_vestarches  = {
+	name = roman_dignities_vestarches
+	tooltip = game_concept_advisor_desc
+	portrait_animation = personality_rational
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
+	
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+}
 
-# }
+roman_dignities_proedros  = {
+	name = roman_dignities_proedros
+	tooltip = game_concept_advisor_desc
+	portrait_animation = flirtation
+	valid_position = {
+		OR = {
+			primary_title = {
+				this = title:e_byzantium
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_byzantium
+				}
+			}
+			highest_held_title_tier = tier_empire
+		}
+	}
+	valid_character = {
+	
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+}
