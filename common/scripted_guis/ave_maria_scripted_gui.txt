@@ -172,6 +172,29 @@ am_institutions_administration_gui_close = {
 #############################################
 ## CONDITIONAL SCRIPTED GUI TO DETERMINE WHAT INSTITUTIONS YOU CAN SEE
 
+## Checks for the gui file if you are the roman emperor
+am_councillor_is_roman_emperor = {
+	scope = character
+
+	is_shown = {
+		primary_title = {
+			this = title:e_byzantium
+		}
+	}
+}
+
+am_councillor_not_roman_emperor = {
+	scope = character
+
+	is_shown = {
+		primary_title = {
+			NOT = {
+				this = title:e_byzantium
+			}			
+		}
+	}
+}
+
 ## Checks for the gui file to see if you can have no institutions
 am_institutions_has_no_institutions = {
 	scope = character

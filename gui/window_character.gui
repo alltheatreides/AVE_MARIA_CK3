@@ -662,6 +662,7 @@ window = {
 
 					size = { 35 35 }
 
+					visible = "[Or( Character.GetFocus.IsValid, Character.PlayerCanManageFocus )]"
 					tooltip = "PLAYER_LIFESTYLE_TOOLTIP"
 					using = tooltip_ne
 
@@ -828,7 +829,7 @@ window = {
 								hbox = {
 									visible = "[Not(IsDataModelEmpty( CharacterWindow.GetTraits ))]"
 									layoutpolicy_vertical = expanding
-									margin = { 5 10 }
+										margin = { 2 5 }
 
 									divider_light = {
 										layoutpolicy_vertical = expanding
@@ -853,15 +854,18 @@ window = {
 											}
 										}
 									}
+									
 								}
-
+									#### Changed ####
+									# Slightly increased size of the icons to reduce wasted space
+									#################
 								fixedgridbox = {
 									name = "traits_medium"
 									datamodel = "[CharacterWindow.GetTraits]"
 									visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)5'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)7'))]"
 									flipdirection = yes
-									addcolumn = 39
-									addrow = 40
+										addcolumn = 41
+										addrow = 42
 									maxhorizontalslots = 7
 									maxverticalslots = 1
 
@@ -869,7 +873,63 @@ window = {
 										icon_trait = {
 											blockoverride "icon_size"
 											{
-												size = { 40 40 }
+													size = { 48 48 }
+												}
+												
+												blockoverride "glow_radius"
+												{
+													glow_radius = 4
+												}
+											}
+										}
+									}
+									
+									#### NEW ####
+									# 1 row 8 icons, smaller size to make transition to 10 icons more gradual
+									#################
+									fixedgridbox = {
+										name = "traits_medium_8_icons_step"
+										datamodel = "[CharacterWindow.GetTraits]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)7'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8'))]"
+										flipdirection = yes
+										addcolumn = 36
+										addrow = 37
+										maxhorizontalslots = 8
+										maxverticalslots = 1
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 43 43 }
+												}
+												
+												blockoverride "glow_radius"
+												{
+													glow_radius = 4
+												}
+											}
+										}
+									}
+
+									fixedgridbox = {
+										#### NEW ####
+										# 1 row 9 icons, smaller size to make transition to 10 icons more gradual
+										#################
+										name = "traits_medium_9_icons_step"
+										datamodel = "[CharacterWindow.GetTraits]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)9'))]"
+										flipdirection = yes
+										addcolumn = 32
+										addrow = 33
+										maxhorizontalslots = 9
+										maxverticalslots = 1
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 38 38 }
 											}
 												
 												blockoverride "glow_radius"
@@ -880,13 +940,16 @@ window = {
 									}
 								}
 
+									#### NEW ####
+									# 1 row 10 icons, made size of icons slightly bigger for better visibility and reduced space between them
+									#################
 								fixedgridbox = {
 									name = "traits_small"
 									datamodel = "[CharacterWindow.GetTraits]"
-									visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)7'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10'))]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)9'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10'))]"
 									flipdirection = yes
-									addcolumn = 28
-									addrow = 29
+										addcolumn = 29
+										addrow = 30
 									maxhorizontalslots = 10
 									maxverticalslots = 1
 
@@ -894,7 +957,7 @@ window = {
 										icon_trait = {
 											blockoverride "icon_size"
 											{
-												size = { 29 29 }
+													size = { 34 34 }
 											}
 
 												blockoverride "glow_radius"
@@ -905,15 +968,52 @@ window = {
 									}
 								}
 
+									#### Changed ####
+									# added extra traits to fill out some of the blank spacethe space 
+									# changed visibility condition to display this preset between 10 and 24 traits
+									# Now traits_tiny will display up to 24 traits at once
+									#################
 								fixedgridbox = {
 									name = "traits_tiny"
 									datamodel = "[CharacterWindow.GetTraits]"
-									visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10')]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24'))]"
 									flipdirection = yes
-									addcolumn = 24
-									addrow = 25
-									maxhorizontalslots = 11
-									datamodel_wrap = 11
+										addcolumn = 24.2
+										addrow = 25.2
+										maxhorizontalslots = 12
+										datamodel_wrap = 12
+										maxverticalslots = 2
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 30 30 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+
+									### NEW ###
+									# Added new to make trait size transition more gradual
+									# Will display up to 28 traits on 2 rows at once
+									###########
+									fixedgridbox = {
+										name = "traits_tiny_second_row_extra_icons"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)28'))]"
+										flipdirection = yes
+										addcolumn = 20.8
+										addrow = 21.8
+										maxhorizontalslots = 14
+										datamodel_wrap = 14
 									maxverticalslots = 2
 
 									item = {
@@ -930,6 +1030,69 @@ window = {
 										}
 									}
 								}
+
+									### NEW ###
+									# Further decreasing icon size, but keeping the row count to 2
+									# This will make transition even more smooth when we hit third row
+									# Will display up to 32 traits on 2 rows at once
+									###########
+									fixedgridbox = {
+										name = "traits_tiny_second_row_extra_icons_smaller"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)28')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)28'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)32'))]"
+										flipdirection = yes
+										addcolumn = 18.2
+										addrow = 19.2
+										maxhorizontalslots = 16
+										datamodel_wrap = 16
+										maxverticalslots = 2
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 22 22 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+									
+									### NEW ###
+									# Add third row and display up to 48 traits
+									# This is the potential max without making icons super tiny.
+									###########
+									fixedgridbox = {
+										name = "traits_tiny_third_row"
+										datamodel = "[CharacterWindow.GetTraits]"
+										visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)32')]"
+										#visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)28'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)32'))]"
+										flipdirection = yes
+										addcolumn = 18.2
+										addrow = 19.2
+										maxhorizontalslots = 16
+										datamodel_wrap = 16
+										maxverticalslots = 3
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 22 22 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
 
 								expand = {}
 							}
@@ -959,13 +1122,16 @@ window = {
 								hbox = {
 									visible = "[Not(IsDataModelEmpty( CharacterWindow.GetTraits ))]"
 									layoutpolicy_vertical = expanding
-									margin = { 5 10 }
+										margin = { 2 10 }
 
 									divider_light = {
 										layoutpolicy_vertical = expanding
 									}
 								}
 
+									#### Changed ####
+									# maxhorizontalslots from 5 to 4, the extra slot did not appear to serve any purpose anyway
+									#################
 								fixedgridbox = {
 									name = "traits_big"
 									datamodel = "[CharacterWindow.GetTraits]"
@@ -973,7 +1139,7 @@ window = {
 									flipdirection = yes
 									addcolumn = 54
 									addrow = 55
-									maxhorizontalslots = 5
+										maxhorizontalslots = 4
 									maxverticalslots = 1
 
 									item = {
@@ -986,21 +1152,53 @@ window = {
 									}
 								}
 
+									#### Changed ####
+									# Reduced maxhorizontalslots to 6 from 7 to make transition to 10 more smooth
+									# Slightly increased size of the icons to reduce wasted space
+									#################
 								fixedgridbox = {
 									name = "traits_medium"
 									datamodel = "[CharacterWindow.GetTraits]"
 									visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)4'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)6'))]"
 									flipdirection = yes
-									addcolumn = 39
-									addrow = 40
-									maxhorizontalslots = 7
+										addcolumn = 39.5
+										addrow = 40.5
+										maxhorizontalslots = 6
+										maxverticalslots = 1
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 45 45 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 4
+												}
+											}
+										}
+									}
+
+									### NEW ####
+									# 1 row 8 icons, smaller size to make transition to 10 icons more gradual
+									#############
+									fixedgridbox = {
+										name = "traits_medium_8_icons_step"
+										datamodel = "[CharacterWindow.GetTraits]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)6'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8'))]"
+										flipdirection = yes
+										addcolumn = 29.5
+										addrow = 30.5
+										maxhorizontalslots = 8
 									maxverticalslots = 1
 
 									item = {
 										icon_trait = {
 											blockoverride "icon_size"
 											{
-												size = { 40 40 }
+													size = { 35 35 }
 											}
 
 												blockoverride "glow_radius"
@@ -1014,10 +1212,10 @@ window = {
 								fixedgridbox = {
 									name = "traits_small"
 									datamodel = "[CharacterWindow.GetTraits]"
-									visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)6'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8'))]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10'))]"
 									flipdirection = yes
-									addcolumn = 28
-									addrow = 29
+										addcolumn = 24
+										addrow = 25
 									maxhorizontalslots = 10
 									maxverticalslots = 1
 
@@ -1025,7 +1223,7 @@ window = {
 										icon_trait = {
 											blockoverride "icon_size"
 											{
-												size = { 29 29 }
+													size = { 26 26 }
 											}
 
 												blockoverride "glow_radius"
@@ -1036,15 +1234,53 @@ window = {
 									}
 								}
 
+									#### Changed ####
+									# added extra traits to make the row more compact, both rows row will display 10 traits each
+									# For a total of 20 traits at once
+									# Increased size of icons to 27 to make them slightly bigger since a lot of space between each icon
+									#################
 								fixedgridbox = {
 									name = "traits_tiny"
 									datamodel = "[CharacterWindow.GetTraits]"
-									visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8')]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)8')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)10'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)20'))]"
 									flipdirection = yes
 									addcolumn = 24
 									addrow = 25
-									maxhorizontalslots = 9
-									datamodel_wrap = 9
+										maxhorizontalslots = 10
+										datamodel_wrap = 10
+										maxverticalslots = 2
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 26 26 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+
+									fixedgridbox = {
+										#### NEW ####
+										# added extra icon to the row, altered their size and spacing a little
+										# this makes transition more smooth between icon amounts
+										# Maximum of 22 traits displayed at once
+										#################
+										name = "traits_tiny_second_row_extra_icons"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)20')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)20'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)22'))]"
+										flipdirection = yes
+										addcolumn = 21.6
+										addrow = 22.6
+										maxhorizontalslots = 11
+										datamodel_wrap = 11
 									maxverticalslots = 2
 
 									item = {
@@ -1062,6 +1298,133 @@ window = {
 									}
 								}
 
+									fixedgridbox = {
+										#### NEW ####
+										# added extra icon to the row, altered their size and spacing a little
+										# this makes transition more smooth between icon amounts
+										# Maximum of 24 traits displayed at once
+										#################
+										name = "traits_tiny_second_row_extra_icons_smaller"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)22')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)22'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24'))]"
+										flipdirection = yes
+										addcolumn = 19.7
+										addrow = 20.7
+										maxhorizontalslots = 12
+										datamodel_wrap = 12
+										maxverticalslots = 2
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 24 24 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+
+									fixedgridbox = {
+										#### NEW ####
+										# added extra icon to the row, altered their size and spacing a little
+										# this makes transition more smooth between icon amounts
+										# Maximum of 24 traits displayed at once
+										#################
+										name = "traits_tiny_third_row"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)39'))]"
+										flipdirection = yes
+										addcolumn = 18.4
+										addrow = 19.4
+										maxhorizontalslots = 13
+										datamodel_wrap = 13
+										maxverticalslots = 3
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 21 21 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+
+									fixedgridbox = {
+										#### NEW ####
+										# added extra icon to the row, altered their size and spacing a little
+										# this in order to bring it in line with 3 personal traits maximum trait size
+										# Maximum of 45 traits displayed at once
+										#################
+										name = "traits_tiny_third_row_45_icons"
+										datamodel = "[CharacterWindow.GetTraits]"
+										#visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)39')]"
+										visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)39'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)45'))]"
+										flipdirection = yes
+										addcolumn = 16
+										addrow = 17
+										maxhorizontalslots = 15
+										datamodel_wrap = 15
+										maxverticalslots = 3
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 19 19 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
+
+									fixedgridbox = {
+										#### NEW ####
+										# With this, the number of trait icons will be the same for characters with 3 personality traits
+										# and characters with 4 personality traits.
+										# Maximum of 48 traits displayed at once
+										#################
+										name = "traits_tiny_third_row_48_icons"
+										datamodel = "[CharacterWindow.GetTraits]"
+										visible = "[GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)45')]"
+										#visible = "[And(GreaterThan_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)22'), LessThanOrEqualTo_int32(GetDataModelSize(CharacterWindow.GetTraits), '(int32)24'))]"
+										flipdirection = yes
+										addcolumn = 14.9
+										addrow = 15.9
+										maxhorizontalslots = 16
+										datamodel_wrap = 16
+										maxverticalslots = 3
+
+										item = {
+											icon_trait = {
+												blockoverride "icon_size"
+												{
+													size = { 18 18 }
+												}
+
+												blockoverride "glow_radius"
+												{
+													glow_radius = 2
+												}
+											}
+										}
+									}
 								expand = {}
 							}
 						}

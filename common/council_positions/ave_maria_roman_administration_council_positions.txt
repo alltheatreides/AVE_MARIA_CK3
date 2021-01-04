@@ -1,338 +1,366 @@
-﻿# roman_administration_councillor_coemperor = {
-# 	name = roman_administration_councillor_coemperor
-# 	skill = diplomacy
-# 	tooltip = game_concept_roman_administration_councillor_coemperor_desc
-# 	valid_position = {
-# 		culture = culture:greek
-# 		root.liege_or_court_owner = {
-# 			primary_title = {
-# 				this = title:e_byzantium
-# 				# any_election_candidate = {
-# 				# 	NOT = {
-# 				# 		has_trait = coemperor
-# 				# 	}
-# 				# }
-# 			}
-# 		}
-# 		root.liege_or_court_owner = {
-# 			primary_title = {
-# 				any_election_candidate = {
-# 					NOT = {
-# 						has_trait = coemperor
-# 					} 
-# 				}
-# 			}
-# 		}
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA decisions																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Roman Administration Decisions						                        	   #
+#                               													   #
+########################################################################################
 
-# 	}
-# 	valid_character = {
-# 		# scope:root.liege_or_court_owner = {
-# 		# 	primary_title = {
-# 		# 		any_election_candidate = {
-# 		# 			NOT = {
-# 		# 				has_trait = coemperor
-# 		# 			}
-# 		# 		}
-# 		# 	}
-# 		# }
-# 		OR = {
-# 			is_close_family_of = root.liege_or_court_owner
-# 			highest_held_title_tier >= tier_duchy
-# 		}
-# 		age >= 20
-# 	}
+## Written by Atreides
 
-# 	modifier = {
-# 		#name = roman_administration_councillor_coemperor_modifier
-# 	}	
+## TABLE OF CONTENTS
+## Replacement of Vanilla councillors
+## New Roman councillors
 
-# 	on_get_position = {
-# 		#gave_minor_title_effect = yes 		
-# 		#add_trait = coemperor			
-# 	}
-	
-# 	on_fired_from_position = {
-		
-# 	}		
+## VANILLA COUNCILLORS REPLACEMENT
+## Chancellor
+roman_councillor_drome = {
+	skill = diplomacy
 
-# 	portrait_animation = chaplain
-# }
-
-# roman_councillor_drome = {
-# 	skill = diplomacy
-	
-# 	name = "Logothete of the Drome"
-
-# 	tooltip = game_concept_chancellor_desc
-
-# 	modifier = {
-# 		name = councillor_chancellor_modifier
-# 		fellow_vassal_opinion = 5
-# 		monthly_diplomacy_lifestyle_xp_gain_mult = 0.05
-# 		scale = council_scaled_by_liege_tier
-# 	}
-
-# 	modifier = {
-# 		name = councillor_chancellor_modifier
-# 		monthly_prestige = 1
-# 		scale = council_scaled_monthly_income
-# 	}
-
-# 	council_owner_modifier = {
-# 		name = learn_on_the_job_modifier
-# 		diplomacy = 1
-# 		scale = chancellor_learn_on_the_job_scale
-# 	}
-
-# 	valid_character = {
-# 		exists = root.liege_or_court_owner
-# 		can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
-# 	}
-
-# 	on_get_position = {
-# 		got_council_position_effect = yes
-# 	}
-
-# 	on_fired_from_position = {
-# 		fired_from_council_position_effect = yes
-# 	}
-
-# 	portrait_animation = chancellor
-# }
-
-# roman_councillor_sakellarios= {
-# 	skill = stewardship
-	
-# 	name = "Sakellarios"
-# 	tooltip = game_concept_steward_desc
-	
-# 	modifier = {
-# 		name = councillor_steward_modifier
-# 		monthly_income = 1
-# 		scale = council_scaled_monthly_income
-# 	}
-
-# 	modifier = {
-# 		name = councillor_steward_modifier
-# 		build_gold_cost = -0.05
-# 		monthly_stewardship_lifestyle_xp_gain_mult = 0.05
-# 		domain_tax_mult = 0.05
-# 		scale = council_scaled_by_liege_tier
-# 	}
-
-# 	council_owner_modifier = {
-# 		name = learn_on_the_job_modifier
-# 		stewardship = 1
-# 		scale = steward_learn_on_the_job_scale
-# 	}
-
-# 	valid_character = {
-# 		exists = root.liege_or_court_owner
-# 		can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
-# 	}
-
-# 	on_get_position = {
-# 		got_council_position_effect = yes
-# 	}
-
-# 	on_fired_from_position = {
-# 		fired_from_council_position_effect = yes
-# 	}
-
-# 	portrait_animation = steward
-# }
-
-# roman_councillor_domestikos = {
-# 	skill = martial
-	
-# 	name = "Domestikos of the Scholai"
-# 	tooltip = game_concept_marshal_desc
-
-# 	modifier = {
-# 		name = councillor_marshal_modifier
-# 		prowess = 1
-# 		army_maintenance_mult = -0.05
-# 		monthly_martial_lifestyle_xp_gain_mult = 0.05
-# 		levy_size = 0.05
-# 		scale = council_scaled_by_liege_tier
-# 	}
-
-# 	council_owner_modifier = {
-# 		name = learn_on_the_job_modifier
-# 		martial = 1
-# 		scale = marshal_learn_on_the_job_scale
-# 	}
-
-# 	valid_character = {
-# 		exists = root.liege_or_court_owner
-# 		can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
-# 	}
-
-# 	on_get_position = {
-# 		got_council_position_effect = yes
-# 	}
-
-# 	on_fired_from_position = {
-# 		fired_from_council_position_effect = yes
-# 	}
-
-# 	portrait_animation = marshal
-# }
-
-# roman_councillor_kanikleios = {
-# 	skill = intrigue
-	
-# 	name = "Kanikleios"
-# 	tooltip = game_concept_spymaster_desc
-
-# 	modifier = {
-# 		name = councillor_spymaster_modifier
-# 		hostile_scheme_power_add = 5
-# 		owned_hostile_scheme_success_chance_add = 2
-# 		monthly_intrigue_lifestyle_xp_gain_mult = 0.05
-# 		dread_baseline_add = 10
-# 		scale = council_scaled_by_liege_tier
-# 	}
-
-# 	council_owner_modifier = {
-# 		name = learn_on_the_job_modifier
-# 		intrigue = 1
-# 		scale = spymaster_learn_on_the_job_scale
-# 	}
-
-# 	valid_character = {
-# 		exists = root.liege_or_court_owner
-# 		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
-# 	}
-
-# 	on_get_position = {
-# 		got_council_position_effect = yes
-# 	}
-
-# 	on_fired_from_position = {
-# 		fired_from_council_position_effect = yes
-# 	}
-	
-# 	use_for_scheme_power = yes
-# 	use_for_scheme_resistance = yes
-
-# 	portrait_animation = spymaster
-# }
-
-# roman_councillor_synkellos = {
-# 	skill = learning
-
-# 	auto_fill = yes
-# 	can_fire = {
-# 		custom_description = {
-# 			text = "court_chaplain_cant_fire_doctrines"
-# 			faith = {
-# 				NOT = {
-# 					has_doctrine_parameter = clerical_appointment_fixed
-# 				}
-# 			}
-# 		}
-# 	}
-	
-# 	can_reassign = {
-# 		custom_description = {
-# 			text = "court_chaplain_cant_reassign_doctrines"
-# 			faith = {
-# 				has_doctrine_parameter = clerical_appointment_ruler
-# 			}
-# 		}
-# 	}
-	
-# 	can_change_once = {
-# 		faith = {
-# 			has_doctrine_parameter = clerical_appointment_fixed
-# 		}
-# 	}
-	
-# 	inherit = no
-# 	fill_from_pool = yes
-	
-# 	councillor_cooldown_days = {
-# 		value = 0
-# 		if = {
-# 			limit = {
-# 				faith = {
-# 					NOT = {
-# 						has_doctrine_parameter = clerical_appointment_fixed
-# 					}
-# 				}
-# 			}
-# 			add = 3650
-# 		}
-# 	}
-	
-# 	name = "Synkellos"
-
-# 	tooltip = {
-# 		first_valid = {
-# 			triggered_desc = {
-# 				trigger = {
-# 					scope:councillor_liege.faith = { has_doctrine = doctrine_theocracy_temporal }
-# 				}
-# 				desc = game_concept_realm_priest_desc
-# 			}
-# 			desc = game_concept_court_chaplain_desc
-# 		}
-# 	}
-
-# 	modifier = {
-# 		name = councillor_court_chaplain_modifier
-# 		county_opinion_add = 5
-# 		monthly_learning_lifestyle_xp_gain_mult = 0.05
-# 		scale = council_scaled_by_liege_tier
-# 	}
-
-# 	modifier = {
-# 		name = councillor_court_chaplain_modifier
-# 		monthly_piety = 1
-# 		scale = council_scaled_monthly_income
-# 	}
-
-# 	council_owner_modifier = {
-# 		name = learn_on_the_job_modifier
-# 		learning = 1
-# 		scale = court_chaplain_learn_on_the_job_scale
-# 	}
-
-# 	pool_character_config = pool_court_chaplain
-	
-# 	valid_character = {
-# 		exists = root.liege_or_court_owner
-# 		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
-# 	}
-
-# 	on_get_position = {
-# 		got_council_position_effect = yes
-# 	}
-
-# 	on_fired_from_position = {
-# 		fired_from_council_position_effect = yes
-# 	}
-
-# 	portrait_animation = chaplain
-# }
-
-
-# ### Second tab of councillors, represent the dignities, people receiving rogai but no office
-roman_dignities_protospatharios = {
-	name = roman_dignities_protospatharios
-	tooltip = game_concept_advisor_desc
 	valid_position = {
 		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+	
+	name = "Logothetes"
+
+	tooltip = game_concept_chancellor_desc
+
+	modifier = {
+		name = councillor_chancellor_modifier
+		fellow_vassal_opinion = 5
+		monthly_diplomacy_lifestyle_xp_gain_mult = 0.05
+		scale = council_scaled_by_liege_tier
+	}
+
+	modifier = {
+		name = councillor_chancellor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		diplomacy = 1
+		scale = chancellor_learn_on_the_job_scale
+	}
+
+	valid_character = {
+		exists = root.liege_or_court_owner
+		can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = chancellor
+}
+## Steward
+roman_councillor_sakellarios= {
+	skill = stewardship
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+	
+	name = "Sakellarios"
+	tooltip = game_concept_steward_desc
+	
+	modifier = {
+		name = councillor_steward_modifier
+		monthly_income = 1
+		scale = council_scaled_monthly_income
+	}
+
+	modifier = {
+		name = councillor_steward_modifier
+		build_gold_cost = -0.05
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.05
+		domain_tax_mult = 0.05
+		scale = council_scaled_by_liege_tier
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		stewardship = 1
+		scale = steward_learn_on_the_job_scale
+	}
+
+	valid_character = {
+		exists = root.liege_or_court_owner
+		can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = steward
+}
+## marshall
+roman_councillor_domestikos = {
+	skill = martial
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+	
+	name = "Domestikos"
+	tooltip = game_concept_marshal_desc
+
+	modifier = {
+		name = councillor_marshal_modifier
+		prowess = 1
+		army_maintenance_mult = -0.05
+		monthly_martial_lifestyle_xp_gain_mult = 0.05
+		levy_size = 0.05
+		scale = council_scaled_by_liege_tier
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		martial = 1
+		scale = marshal_learn_on_the_job_scale
+	}
+
+	valid_character = {
+		exists = root.liege_or_court_owner
+		can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = marshal
+}
+## Spymaster
+roman_councillor_kanikleios = {
+	skill = intrigue
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+	
+	name = "Kanikleios"
+	tooltip = game_concept_spymaster_desc
+
+	modifier = {
+		name = councillor_spymaster_modifier
+		hostile_scheme_power_add = 5
+		owned_hostile_scheme_success_chance_add = 2
+		monthly_intrigue_lifestyle_xp_gain_mult = 0.05
+		dread_baseline_add = 10
+		scale = council_scaled_by_liege_tier
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		intrigue = 1
+		scale = spymaster_learn_on_the_job_scale
+	}
+
+	valid_character = {
+		exists = root.liege_or_court_owner
+		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+	
+	use_for_scheme_power = yes
+	use_for_scheme_resistance = yes
+
+	portrait_animation = spymaster
+}
+## Court Chaplain
+roman_councillor_synkellos = {
+	skill = learning
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+
+	auto_fill = yes
+	can_fire = {
+		custom_description = {
+			text = "court_chaplain_cant_fire_doctrines"
+			faith = {
+				NOT = {
+					has_doctrine_parameter = clerical_appointment_fixed
 				}
 			}
-			highest_held_title_tier = tier_empire
+		}
+	}
+	
+	can_reassign = {
+		custom_description = {
+			text = "court_chaplain_cant_reassign_doctrines"
+			faith = {
+				has_doctrine_parameter = clerical_appointment_ruler
+			}
+		}
+	}
+	
+	can_change_once = {
+		faith = {
+			has_doctrine_parameter = clerical_appointment_fixed
+		}
+	}
+	
+	inherit = no
+	
+	councillor_cooldown_days = {
+		value = 0
+		if = {
+			limit = {
+				faith = {
+					NOT = {
+						has_doctrine_parameter = clerical_appointment_fixed
+					}
+				}
+			}
+			add = 3650
+		}
+	}
+	
+	name = "Synkellos"
+
+	tooltip = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege.faith = { has_doctrine = doctrine_theocracy_temporal }
+				}
+				desc = game_concept_realm_priest_desc
+			}
+			desc = game_concept_court_chaplain_desc
+		}
+	}
+
+	modifier = {
+		name = councillor_court_chaplain_modifier
+		county_opinion_add = 5
+		monthly_learning_lifestyle_xp_gain_mult = 0.05
+		scale = council_scaled_by_liege_tier
+	}
+
+	modifier = {
+		name = councillor_court_chaplain_modifier
+		monthly_piety = 1
+		scale = council_scaled_monthly_income
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		learning = 1
+		scale = court_chaplain_learn_on_the_job_scale
+	}
+
+	pool_character_config = pool_court_chaplain
+	
+	valid_character = {
+		exists = root.liege_or_court_owner
+		is_landed = no
+		age >=16
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = chaplain
+}
+
+
+## NEW COUNCILLORS
+# ### Second tab of councillors, represent the dignities, people receiving rogai but no office
+## Co emperor
+roman_councillor_coemperor = {
+	name = roman_administration_councillor_coemperor
+	tooltip = game_concept_councillor_coemperor_desc
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
+		}
+	}
+	valid_character = {
+		OR = {
+			is_close_family_of = root.liege_or_court_owner
+			highest_held_title_tier >= tier_duchy
+		}
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = personality_callous
+}
+
+## First Sword bearer
+roman_dignities_protospatharios = {
+	name = roman_dignities_protospatharios
+	tooltip = roman_dignities_protospatharios_desc
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+
+	valid_position = {
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
 		}
 	}
 	valid_character = {
@@ -350,19 +378,20 @@ roman_dignities_protospatharios = {
 
 roman_dignities_patrikios = {
 	name = roman_dignities_patrikios
-	tooltip = game_concept_advisor_desc
+	tooltip = roman_dignities_patrikios_desc
 	portrait_animation = personality_content
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+
 	valid_position = {
 		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
-				}
-			}
-			highest_held_title_tier = tier_empire
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
 		}
 	}
 	valid_character = {
@@ -378,20 +407,20 @@ roman_dignities_patrikios = {
 
 roman_dignities_anthypatos = {
 	name = roman_dignities_anthypatos
-	tooltip = game_concept_advisor_desc
+	tooltip = roman_dignities_anthypatos_desc
 	portrait_animation = chancellor
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
 
 	valid_position = {
 		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
-				}
-			}
-			highest_held_title_tier = tier_empire
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
 		}
 	}
 	valid_character = {
@@ -407,19 +436,20 @@ roman_dignities_anthypatos = {
 
 roman_dignities_magistros = {
 	name = roman_dignities_magistros
-	tooltip = game_concept_advisor_desc
+	tooltip = roman_dignities_magistros_desc
 	portrait_animation = war_defender
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+
 	valid_position = {
 		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
-				}
-			}
-			highest_held_title_tier = tier_empire
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
 		}
 	}
 	valid_character = {
@@ -433,49 +463,44 @@ roman_dignities_magistros = {
 	}
 }
 
-roman_dignities_vestarches  = {
-	name = roman_dignities_vestarches
-	tooltip = game_concept_advisor_desc
-	portrait_animation = personality_rational
-	valid_position = {
-		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
-				}
-			}
-			highest_held_title_tier = tier_empire
-		}
-	}
-	valid_character = {
+## Removed to make space to co emperor
+# roman_dignities_vestarches  = {
+# 	name = roman_dignities_vestarches
+# 	tooltip = game_concept_advisor_desc
+# 	portrait_animation = personality_rational
+# 	valid_position = {
+# 		OR = {
+# 			has_title = title:e_byzantium
+# 			has_title = title:e_roman_empire			
+# 		}
+# 	}
+# 	valid_character = {
 	
-	}
-	on_get_position = {
-		got_council_position_effect = yes
-	}
-	on_fired_from_position = {
-		fired_from_council_position_effect = yes
-	}
-}
+# 	}
+# 	on_get_position = {
+# 		got_council_position_effect = yes
+# 	}
+# 	on_fired_from_position = {
+# 		fired_from_council_position_effect = yes
+# 	}
+# }
 
 roman_dignities_proedros  = {
 	name = roman_dignities_proedros
-	tooltip = game_concept_advisor_desc
+	tooltip = roman_dignities_proedros_desc
 	portrait_animation = flirtation
+
+	modifier = {
+		name = roman_councillor_coemperor_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+
 	valid_position = {
 		OR = {
-			primary_title = {
-				this = title:e_byzantium
-			}
-			any_liege_or_above = {
-				primary_title = {
-					this = title:e_byzantium
-				}
-			}
-			highest_held_title_tier = tier_empire
+			has_title = title:e_byzantium
+			has_title = title:e_roman_empire			
 		}
 	}
 	valid_character = {

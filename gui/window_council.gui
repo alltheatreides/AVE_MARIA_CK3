@@ -27,8 +27,8 @@ window = {
 
 		on_start = "[GetVariableSystem.Clear('minor_council')]"
 		on_start = "[GetVariableSystem.Clear('liege_council')]"
-		on_start = "[GetVariableSystem.Clear('liege_minor_council')]"
-		on_start = "[GetVariableSystem.Clear('minor_titles')]"
+		on_start = "[GetVariableSystem.Clear('basileus_dignities')]"
+		on_start = "[GetVariableSystem.Clear('dignities')]"
 		on_start = "[GetVariableSystem.Set( 'council', 'true' )]"
 		on_start = "[CouncilWindow.SetPlayerCouncil]"
 	}
@@ -76,8 +76,8 @@ window = {
 						
 						onclick = "[GetVariableSystem.Clear('minor_council')]"
 						onclick = "[GetVariableSystem.Clear('liege_council')]"
-						onclick = "[GetVariableSystem.Clear('liege_minor_council')]"
-						onclick = "[GetVariableSystem.Clear('minor_titles')]"
+						onclick = "[GetVariableSystem.Clear('basileus_dignities')]"
+						onclick = "[GetVariableSystem.Clear('dignities')]"
 						onclick = "[GetVariableSystem.Set( 'council', 'true' )]"
 						onclick = "[CouncilWindow.SetPlayerCouncil]"
 						down = "[GetVariableSystem.Exists('council')]"
@@ -94,28 +94,29 @@ window = {
 					## AVE MARIA BUTTON TAB TO OPEN THE DIGNITIES WINDOW (show the dignities widget and hide the vanilla council ones)
 					button_tab = {
 						layoutpolicy_horizontal = expanding
-						text = "MINOR_COUNCIL_WINDOW_PLAYER_COUNCIL"	
+						text = "DIGNITIES_WINDOW_PLAYER"	
 						
-						datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_roman_administration')]"
+						datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
 						visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 
 						onclick = "[GetVariableSystem.Clear('council')]"
 						onclick = "[GetVariableSystem.Clear('liege_council')]"
-						onclick = "[GetVariableSystem.Clear('liege_minor_council')]"
+						onclick = "[GetVariableSystem.Clear('basileus_dignities')]"
 						onclick = "[GetVariableSystem.Set( 'minor_council', 'true' )]"
-						onclick = "[GetVariableSystem.Set( 'minor_titles', 'true' )]"
+						onclick = "[GetVariableSystem.Set( 'dignities', 'true' )]"
 						onclick = "[CouncilWindow.SetPlayerCouncil]"
 						down = "[GetVariableSystem.Exists('minor_council')]"
 					}
 
+					## Vanilla button to see liege's council
 					button_tab = {
 						visible = "[Not(GetPlayer.IsIndependentRuler)]"
 						layoutpolicy_horizontal = expanding
 						text = "COUNCIL_WINDOW_LIEGE_COUNCIL"
-						onclick = "[GetVariableSystem.Clear('liege_minor_council')]"
+						onclick = "[GetVariableSystem.Clear('basileus_dignities')]"
 						onclick = "[GetVariableSystem.Clear('minor_council')]"
 						onclick = "[GetVariableSystem.Clear('council')]"
-						onclick = "[GetVariableSystem.Clear('minor_titles')]"
+						onclick = "[GetVariableSystem.Clear('dignities')]"
 						onclick = "[GetVariableSystem.Set( 'liege_council', 'true' )]"
 						onclick = "[CouncilWindow.SetLiegeCouncil]"
 						down = "[GetVariableSystem.Exists('liege_council')]"
@@ -138,20 +139,21 @@ window = {
 						#}
 					}
 
+					## Button tab to open the emperor dignities window as a vassal
 					button_tab = {
-						visible = ""
+						#visible = "[Not(GetPlayer.IsIndependentRuler)]"
 						layoutpolicy_horizontal = expanding
-						text = "MINOR_COUNCIL_WINDOW_LIEGE_COUNCIL"
+						text = "DIGNITIES_WINDOW_LIEGE"
 
-						datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_roman_administration')]"
+						datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
 						visible = "[And( Not(GetPlayer.IsIndependentRuler), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 						onclick = "[GetVariableSystem.Clear('liege_council')]"
 						onclick = "[GetVariableSystem.Clear('minor_council')]"
 						onclick = "[GetVariableSystem.Clear('council')]"
-						onclick = "[GetVariableSystem.Set( 'liege_minor_council', 'true' )]"
-						onclick = "[GetVariableSystem.Set( 'minor_titles', 'true' )]"
+						onclick = "[GetVariableSystem.Set( 'basileus_dignities', 'true' )]"
+						onclick = "[GetVariableSystem.Set( 'dignities', 'true' )]"
 						onclick = "[CouncilWindow.SetLiegeCouncil]"
-						down = "[GetVariableSystem.Exists('liege_minor_council')]"
+						down = "[GetVariableSystem.Exists('basileus_dignities')]"
 
 						# onclick = "[PdxGuiTriggerAllAnimations('council_refresh')]"
 
@@ -161,14 +163,6 @@ window = {
 						# 	on_finish = "[CouncilWindow.SetLiegeCouncil]"
 						# }
 
-						text_single = {
-							minimumsize = { 277 38 }
-							margin = { 15 0 }
-							text = "COUNCIL_WINDOW_LIEGE_COUNCIL"
-							resizeparent = yes
-							align = center|nobaseline
-							default_format = "#low"
-						}
 					}
 				}
 
@@ -1073,7 +1067,7 @@ types CouncilTaskTypes
 
 				## Vanilla Spouse
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_spouse')]"
@@ -1160,7 +1154,9 @@ types CouncilTaskTypes
 
 				## Vanilla Court Chaplain
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					datacontext = "[GetScriptedGui('am_councillor_not_roman_emperor')]"
+					#visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_court_chaplain')]"
@@ -1186,31 +1182,41 @@ types CouncilTaskTypes
 				}
 
 				## AVE MARIA
-				## Protospatharios
+				## synkellos
 				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
+					datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_protospatharios')]"
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_synkellos')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
 
-					flowcontainer = {
-						direction = vertical
-						parentanchor = center
-						margin = { 0 20 }
-						icon = {
-							name = "crown"
-							visible = "[And(Not(CouncilWindow.IsLiegeCouncilShown),LessThan_int32(GetPlayer.GetPrimaryTitle.GetTierFrame, '(int32)5'))]"
-							parentanchor = center
-							texture = "gfx/interface/coat_of_arms/crown_strip_115.dds"
-							frame = "5"
-							framesize = { 80 56 }	
-										
-						}
+					background =  {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_daphne_courtyard.dds"
+						alpha = 0.6
+						using = Mask_Rough_Edges
 					}
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}
 
+				## AVE MARIA
+				## Co Emperor
+				widget_councillor_item = {
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_coemperor')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+					
+	
 					blockoverride "regular_task" {}
 
 					blockoverride "spouse_task"
@@ -1247,54 +1253,6 @@ types CouncilTaskTypes
 					}
 
 					background =  {
-						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
-						using = Mask_Rough_Edges
-						alpha = 0.7
-					}
-
-					background = {
-						texture = "gfx/interface/component_masks/mask_vignette.dds"
-						color = { 0.15 0.15 0.15 1 }
-						alpha = 0.3
-					}
-				}
-
-				## AVE MARIA
-				## Patrikios
-				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
-					layoutpolicy_horizontal = expanding
-					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_patrikios')]"
-					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
-					datacontext = "[ActiveCouncilTask.GetPositionType]"
-					datacontext = "[ActiveCouncilTask.GetCouncillor]"
-					
-	
-					flowcontainer = {
-						direction = vertical
-						parentanchor = center
-						margin = { 0 20 }
-						icon = {
-							name = "crown"
-							visible = "[And(Not(CouncilWindow.IsLiegeCouncilShown),LessThan_int32(GetPlayer.GetPrimaryTitle.GetTierFrame, '(int32)5'))]"
-							parentanchor = center
-							texture = "gfx/interface/coat_of_arms/crown_strip_115.dds"
-							frame = "5"
-							framesize = { 80 56 }				
-						}
-					}
-					
-					text_label_center = {
-						visible = "[And(Not(CouncilWindow.IsLiegeCouncilShown),LessThan_int32(GetPlayer.GetPrimaryTitle.GetTierFrame, '(int32)5'))]"
-						parentanchor = bottom|hcenter
-						position = { 0 -10 }
-						text = "MINOR_TITLE_NOT_AVAILABLE_KING"
-						default_format = "#low;italic"
-						max_width = 235
-					}
-
-					background =  {
 						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_daphne_courtyard.dds"
 						alpha = 0.6
 						using = Mask_Rough_Edges
@@ -1306,6 +1264,30 @@ types CouncilTaskTypes
 					}
 				}
 
+				## AVE MARIA
+				## Protospatharios
+				widget_councillor_item = {
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_protospatharios')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+					background =  {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+						using = Mask_Rough_Edges
+						alpha = 0.7
+					}
+
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}				
+
 			}
 
 			hbox = {
@@ -1316,7 +1298,9 @@ types CouncilTaskTypes
 
 				## Vanilla Chancellor
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					datacontext = "[GetScriptedGui('am_councillor_not_roman_emperor')]"
+					#visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_chancellor')]"
@@ -1339,7 +1323,9 @@ types CouncilTaskTypes
 
 				## Vanilla Steward
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					datacontext = "[GetScriptedGui('am_councillor_not_roman_emperor')]"
+					#visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_steward')]"
@@ -1359,14 +1345,62 @@ types CouncilTaskTypes
 						alpha = 0.3
 					}
 				}
-				
+
 				## AVE MARIA
-				## anthypatos
+				## Roman Chancellor
 				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
+					datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_anthypatos')]"
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_drome')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+					background =  {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_great_palace_interior.dds"
+						alpha = 0.6
+						using = Mask_Rough_Edges
+					}
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}
+
+				## AVE MARIA
+				## Roman Steward
+				widget_councillor_item = {
+					datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_sakellarios')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+					background =  {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_great_palace_interior.dds"
+						alpha = 0.6
+						using = Mask_Rough_Edges
+					}
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}
+				
+				## AVE MARIA
+				## Patrikios
+				widget_councillor_item = {
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_patrikios')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
@@ -1407,29 +1441,15 @@ types CouncilTaskTypes
 				}
 
 				## AVE MARIA
-				## magistros
+				## anthypatos
 				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_magistros')]"
+					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_anthypatos')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
-
-					flowcontainer = {
-						direction = vertical
-						parentanchor = center
-						margin = { 0 20 }
-						icon = {
-							name = "crown"
-							visible = "[And(Not(CouncilWindow.IsLiegeCouncilShown),LessThan_int32(GetPlayer.GetPrimaryTitle.GetTierFrame, '(int32)4'))]"
-							parentanchor = center
-							texture = "gfx/interface/coat_of_arms/crown_strip_115.dds"
-							frame = "4"
-							framesize = { 80 56 }				
-						}
-					}
 
 					background =  {
 						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_great_palace_interior.dds"
@@ -1454,7 +1474,9 @@ types CouncilTaskTypes
 
 				## Vanilla Marshall
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					datacontext = "[GetScriptedGui('am_councillor_not_roman_emperor')]"
+					#visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_marshal')]"
@@ -1477,7 +1499,9 @@ types CouncilTaskTypes
 
 				## Vanilla Spymaster
 				widget_councillor_item = {
-					visible = "[Not(GetVariableSystem.Exists( 'minor_titles' ))]"
+					datacontext = "[GetScriptedGui('am_councillor_not_roman_emperor')]"
+					#visible = "[Not(GetVariableSystem.Exists( 'dignities' ))]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('councillor_spymaster')]"
@@ -1497,20 +1521,70 @@ types CouncilTaskTypes
 						alpha = 0.3
 					}
 				}
-						
+
 				## AVE MARIA
-				## vestarches
+				## Roman Marshall
 				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
+					datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_vestarches')]"
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_domestikos')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
 
 					background =  {
-						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_daphe_palace_window.dds"
+						texture = "gfx/interface/illustrations/council/bg_council_marshal.dds"
+						using = Mask_Rough_Edges
+						alpha = 0.7
+					}
+
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}
+
+				## AVE MARIA
+				## Roman Spymaster
+				widget_councillor_item = {
+					datacontext = "[GetScriptedGui('am_councillor_is_roman_emperor')]"
+					visible = "[And( Not(GetVariableSystem.Exists( 'dignities' )), ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_councillor_kanikleios')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+					background =  {
+						texture = "gfx/interface/illustrations/council/bg_council_spymaster.dds"
+						using = Mask_Rough_Edges
+						alpha = 0.7
+					}
+
+					background = {
+						texture = "gfx/interface/component_masks/mask_vignette.dds"
+						color = { 0.15 0.15 0.15 1 }
+						alpha = 0.3
+					}
+				}
+
+				## AVE MARIA
+				## magistros
+				widget_councillor_item = {
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_magistros')]"
+					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+					datacontext = "[ActiveCouncilTask.GetPositionType]"
+					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+					background =  {
+						texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantine_forum_view.dds"
 						alpha = 0.6
 						using = Mask_Rough_Edges
 					}
@@ -1520,11 +1594,34 @@ types CouncilTaskTypes
 						alpha = 0.3
 					}
 				}
+						
+				## AVE MARIA
+				## vestarches
+				# widget_councillor_item = {
+				# 	visible = "[GetVariableSystem.Exists( 'dignities' )]"
+				# 	layoutpolicy_horizontal = expanding
+				# 	layoutpolicy_vertical = expanding
+				# 	datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_vestarches')]"
+				# 	datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+				# 	datacontext = "[ActiveCouncilTask.GetPositionType]"
+				# 	datacontext = "[ActiveCouncilTask.GetCouncillor]"
+
+				# 	background =  {
+				# 		texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_daphe_palace_window.dds"
+				# 		alpha = 0.6
+				# 		using = Mask_Rough_Edges
+				# 	}
+				# 	background = {
+				# 		texture = "gfx/interface/component_masks/mask_vignette.dds"
+				# 		color = { 0.15 0.15 0.15 1 }
+				# 		alpha = 0.3
+				# 	}
+				# }
 
 				## AVE MARIA
 				## proedros
 				widget_councillor_item = {
-					visible = "[GetVariableSystem.Exists( 'minor_titles' )]"
+					visible = "[GetVariableSystem.Exists( 'dignities' )]"
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 					datacontext = "[CouncilWindow.GetCouncillor('roman_dignities_proedros')]"
