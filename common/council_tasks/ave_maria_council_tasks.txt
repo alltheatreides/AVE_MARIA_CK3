@@ -19,7 +19,7 @@ coemperor_task_coemperor_default = {
 	default_task = yes
 	position = roman_councillor_coemperor
 
-	effect_desc = task_coemperor_default_effect_desc
+	effect_desc = coemperor_task_coemperor_default_desc
 
 	task_type = task_type_general
 	task_progress = task_progress_infinite
@@ -1129,11 +1129,17 @@ synkellos_task_intellectual_activity = {
 	task_type = task_type_general
 	task_progress = task_progress_infinite
 	
-	effect_desc = task_advisor_6_default_effect_desc
+	effect_desc = synkellos_task_intellectual_activity_desc
+
+	council_owner_modifier = {
+		name = court_chaplain_learning_modifier
+		monthly_learning_lifestyle_xp_gain_mult = 0.2
+		scale = court_chaplain_religious_relations_modifier
+	}
 
 	council_owner_modifier = {
 		name = court_chaplain_innovation_modifier
-		monthly_learning_lifestyle_xp_gain_mult = 0.1
+		cultural_head_fascination_add = 0.1
 		scale = court_chaplain_religious_relations_modifier
 	}
 
