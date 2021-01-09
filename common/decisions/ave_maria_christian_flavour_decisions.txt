@@ -22,10 +22,13 @@
 		}
 	}
 
-	ai_check_interval = 12
+	ai_check_interval = 48
 
 	ai_potential = {
-		has_free_council_slot = yes
+		#has_free_council_slot = yes
+		NOT = {
+			has_councillor_for_skill = learning
+		}
 	}
 
 	ai_will_do = {

@@ -33,19 +33,17 @@ ave_maria_test_events.0001 = {
 	}
 	
 	immediate = {
-		every_province = {
-			if = {
-				limit = {
-					has_holding = no
-				}
-					root = {
-						set_variable = {
-						name = wtf
-						value = yes
-					}
-				}
+		if = {
+			limit = {
+				# any_held_title = {
+				# 	this = title:e_byzantium
+				# }
+				# has_variable = roman_administration_imperial_expedition
+				has_character_flag = roman_administration_imperial_expedition
 				
-			}			
+			}
+			remove_character_flag = roman_administration_imperial_expedition
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }				
 		}
 
 	}

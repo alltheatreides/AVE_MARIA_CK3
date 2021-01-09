@@ -16,6 +16,26 @@ namespace = ave_maria_roman_administration_imperial_expedition_events
 
 # TABLE OF CONTENT:
 
+ave_maria_roman_administration_imperial_expedition_events.0000 = {
+	#type = character_event
+	hidden = yes
+
+	immediate = {
+		if = {
+			limit = {
+				# any_held_title = {
+				# 	this = title:e_byzantium
+				# }
+				# has_variable = roman_administration_imperial_expedition
+				has_character_flag = roman_administration_imperial_expedition
+				
+			}
+			remove_character_flag = roman_administration_imperial_expedition
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }				
+		}
+	}
+}
+
 ## Initial decision
 ave_maria_roman_administration_imperial_expedition_events.0001 = {
 	type = character_event
@@ -121,10 +141,11 @@ ave_maria_roman_administration_imperial_expedition_events.0001 = {
 	option = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0001.OPT_A
 		hidden_effect = {
-			set_variable = {
-				name = roman_administration_imperial_expedition
-				value = yes
-			}
+			# set_variable = {
+			# 	name = roman_administration_imperial_expedition
+			# 	value = 1
+			# }
+			add_character_flag = roman_administration_imperial_expedition
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0002 days = 2 }
 		}
 	}
@@ -133,7 +154,6 @@ ave_maria_roman_administration_imperial_expedition_events.0001 = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0001.OPT_B
 	}
 }
-
 
 ## Farewell to the city
 ave_maria_roman_administration_imperial_expedition_events.0002 = {
@@ -247,3 +267,595 @@ ave_maria_roman_administration_imperial_expedition_events.0002 = {
 	}
 
 }
+
+## Victory in war during imperial expedition: organize triumph event
+ave_maria_roman_administration_imperial_expedition_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0003.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = war_over_win
+	}
+
+	desc = ave_maria_roman_administration_imperial_expedition_events.0003_desc
+
+	override_background = {
+		event_background = army_camp
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0003.OPT_A
+		remove_short_term_gold = 300
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0004 days = 3 }
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0003.OPT_B
+	}
+}
+
+## Triumph - Private celebration with high officials - trigger a feast
+ave_maria_roman_administration_imperial_expedition_events.0004 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0004.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = war_over_win
+	}
+
+	desc = ave_maria_roman_administration_imperial_expedition_events.0004_desc
+
+	override_background = {
+		event_background = ave_maria_constantinople_boukoleon_sea_view
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	## Large expensive feast
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_A
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt		
+		roman_administration_add_popularity_massive_amount = yes
+		remove_short_term_gold = 200
+		capital_province = {
+			spawn_activity = {
+				type = activity_feast
+				owner = root
+			}
+		}
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0005 days = 30 }
+		}
+	}
+
+	## Go pray
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_B
+		roman_administration_add_popularity_small_amount = yes
+		custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
+		add_piety = 150
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0005 days = 30 }
+		}
+	}
+
+	## Just wait
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_C
+		roman_administration_remove_popularity_medium_amount = yes		
+		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0005 days = 30 }
+		}
+	}
+}
+
+## Triumph - Parade through the city
+ave_maria_roman_administration_imperial_expedition_events.0005 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0005.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = ecstasy
+	}
+
+	desc = ave_maria_roman_administration_imperial_expedition_events.0005_desc
+
+	override_background = {
+		event_background = ave_maria_porta_aurea
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	## Require children to give you flowers wreaths
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0005.OPT_A
+		trigger = {
+			OR = {				
+				has_trait = arrogant
+				has_trait = greedy
+				has_trait = arbitrary
+				has_trait = cynical
+				has_trait = deceitful
+			}
+		}
+		add_prestige = 300		
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0006 days = 3 }
+		}
+	}
+
+	## Throw coin at the people
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0005.OPT_B
+		trigger = {
+			OR = {				
+				has_trait = faithful
+				has_trait = honest
+				has_trait = just
+				has_trait = generous
+				has_trait = humble
+				has_trait = forgiving
+				has_trait = compassionate
+				has_trait = patient
+				has_trait = trusting
+				has_trait = calm
+			}
+		}
+		add_prestige = 75
+		remove_short_term_gold = 75
+		custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+		roman_administration_add_popularity_medium_amount = yes		
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0006 days = 3 }
+		}
+	}
+
+	## bask in the glory (no trigger)
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0005.OPT_C
+		add_prestige = 150		
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0006 days = 3 }
+		}
+	}
+}
+
+## Triumph - Victory Races decision prompt
+ave_maria_roman_administration_imperial_expedition_events.0006 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0006.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		#animation = war_defender
+	}
+
+	desc = ave_maria_roman_administration_imperial_expedition_events.0006_desc
+	
+	override_background = {
+		event_background = ave_maria_constantinople_hippodrome
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	## Yes
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A
+		remove_short_term_gold = 300
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
+		roman_administration_add_popularity_massive_amount = yes		
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
+		}
+		ai_chance = {
+			base = 90
+		}
+	}
+
+	## Yes and I will participate in it
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_B
+		remove_short_term_gold = 300
+		add_piety = -75
+		custom_tooltip = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A.tt
+		roman_administration_add_popularity_massive_amount = yes		
+		hidden_effect = {
+			add_character_flag = am_racing_emperor
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
+		}
+
+		ai_chance = {
+			base = 0
+		}
+	}
+
+	## No - end of triumph
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_C
+		add_piety = 150
+		roman_administration_remove_popularity_medium_amount = yes		
+		#roman_administration_add_legitimacy_small_amount = yes
+		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
+		#custom_tooltip = ave_maria_roman_administration_small_legitimacy_gain.tt
+		hidden_effect = {
+			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+## Triumph - Victory Races morning
+ave_maria_roman_administration_imperial_expedition_events.0007 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0007.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = ecstasy
+	}
+
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = am_racing_emperor
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0007_desc_A
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { has_character_flag = am_racing_emperor }
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0007_desc_B
+			}
+		}
+	}
+
+	override_background = {
+		event_background = ave_maria_hippodrome_1
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	## Tense race
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B
+		trigger = {
+			has_character_flag = am_racing_emperor
+		}
+		random_list = {
+			# You win
+			5 = {
+				add_character_flag = am_morning_race_winner
+				add_prestige = 50
+				#custom_tooltip = ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B.tt.1
+				modifier = {
+					factor = martial
+				}
+				modifier = {
+					factor = prowess
+				}
+			}
+			# You lose
+			95 = {
+				add_character_flag = am_morning_race_loser
+				add_prestige = -25
+				#custom_tooltip = ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B.tt.2
+			}
+		}
+		hidden_effect = {
+			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0008
+		}
+	}
+
+	## Cheer on
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0007.OPT_A
+		trigger = {
+			NOT = { has_character_flag = am_racing_emperor }
+		}
+		hidden_effect = {
+			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0008
+		}
+	}
+
+	
+
+}
+
+## Triumph - Victory Races afternoon
+ave_maria_roman_administration_imperial_expedition_events.0008 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0008.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = personality_coward
+	}
+	
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_winner
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0008_desc_A
+			}
+			triggered_desc = {
+				trigger = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_loser
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0008_desc_B
+			}
+			triggered_desc = {
+				trigger = {
+					OR = {
+						NOT = {
+							has_character_flag = am_racing_emperor
+						}
+						has_character_flag = am_morning_race_loser
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0008_desc_C
+			}
+		}
+	}
+
+	override_background = {
+		event_background = ave_maria_hippodrome_1
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0008.OPT_A
+		trigger = {
+			has_character_flag = am_racing_emperor
+			has_character_flag = am_morning_race_winner
+		}
+		random_list = {
+			# You win
+			5 = {
+				add_character_flag = am_afternoon_race_winner
+				add_prestige = 50
+				modifier = {
+					factor = martial
+				}
+				modifier = {
+					factor = prowess
+				}
+			}
+			# You lose
+			95 = {
+				add_character_flag = am_afternoon_race_loser
+				
+			}
+		}
+		hidden_effect = {
+			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0009
+		}
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0008.OPT_B
+		trigger = {
+			OR = {
+				NOT = { 
+					has_character_flag = am_racing_emperor
+				}
+				AND = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_loser
+				}
+			}
+			
+		}
+		hidden_effect = {
+			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0009
+		}
+	}
+
+}
+
+## Triumph - Victory Races conclusion
+ave_maria_roman_administration_imperial_expedition_events.0009 = {
+	type = character_event
+	title = ave_maria_roman_administration_imperial_expedition_events.0009.title
+	theme = martial
+	left_portrait = { 
+		character = root 
+		animation = war_over_win
+	}
+	right_portrait = {
+		character = scope:target
+		animation = ecstasy
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_winner
+					has_character_flag = am_afternoon_race_winner
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0009_desc_A
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { has_character_flag = am_racing_emperor }
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0009_desc_B
+			}
+			triggered_desc = {
+				OR = {
+					AND = {
+						has_character_flag = am_racing_emperor
+						has_character_flag = am_morning_race_winner
+						has_character_flag = am_afternoon_race_loser
+					}
+					AND = {
+						has_character_flag = am_racing_emperor
+						has_character_flag = am_morning_race_loser
+					}
+				}
+				desc = ave_maria_roman_administration_imperial_expedition_events.0009_desc_C
+			}
+		}
+	}
+
+	override_background = {
+		event_background = ave_maria_hippodrome_1
+	}
+
+	trigger = {
+				
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				root = {
+					OR = {
+						AND = {
+							has_character_flag = am_racing_emperor
+							has_character_flag = am_morning_race_loser
+						}
+						has_character_flag = am_afternoon_race_loser
+						NOT = { has_character_flag = am_racing_emperor }
+					}					
+				}
+			}
+			# Create race winner
+			create_character = {
+				employer = root
+				#template = christian_monk_character
+				save_scope_as = target
+				gender_female_chance = 0
+			}
+			scope:target = {
+				hidden_effect = {
+					add_trait = chariot_racer
+				}
+				add_random_hexaco_personality_trait = { WHO = this }
+			}
+		}
+
+	}
+
+	## Was cool - end of triumph
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0009.OPT_A
+		trigger = {
+			NOT = { has_character_flag = am_racing_emperor }
+		}
+		add_prestige = 150	
+		roman_administration_add_popularity_medium_amount = yes
+		custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+	}
+
+	## You won nice - end of triumph
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0009.OPT_B
+		trigger = {
+			has_character_flag = am_racing_emperor
+			has_character_flag = am_morning_race_winner
+			has_character_flag = am_afternoon_race_winner
+		}
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
+		custom_tooltip = ave_maria_roman_administration_small_legitimacy_gain.tt
+		roman_administration_add_popularity_massive_amount = yes	
+		roman_administration_add_legitimacy_small_amount = yes
+		add_prestige = 300		
+	}
+
+	## You lost - end of triumph
+	option = {
+		name = ave_maria_roman_administration_imperial_expedition_events.0009.OPT_C
+		trigger = {
+			OR = {
+				AND = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_winner
+					has_character_flag = am_afternoon_race_loser
+				}
+				AND = {
+					has_character_flag = am_racing_emperor
+					has_character_flag = am_morning_race_loser
+				}
+			}
+		}
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
+		roman_administration_add_popularity_massive_amount = yes
+		
+	}
+
+	after = {
+		remove_character_flag = am_racing_emperor
+		remove_character_flag = am_morning_race_winner
+		remove_character_flag = am_afternoon_race_winner
+		remove_character_flag = am_morning_race_loser
+		remove_character_flag = am_afternoon_race_loser
+	}
+
+}
+

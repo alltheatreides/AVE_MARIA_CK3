@@ -395,7 +395,11 @@
  roman_dignities_magistros_desc:0 "Magistros is one important court title."
  roman_dignities_proedros_desc:0 "An important court title, the Proedros is officialy the president of the Senate."
  
-
+ roman_councillor_drome:0 "Logothetes"
+ roman_councillor_sakellarios:0 "Sakellarios"
+ roman_councillor_domestikos:0 "Domestikos"
+ roman_councillor_kanikleios:0 "Kanikleios"
+ roman_councillor_synkellos:0 "Synkellos"
  roman_dignities_protospatharios:0 "Protospatharios"
  roman_dignities_patrikios:0 "Patrikios"
  roman_dignities_anthypatos:0 "Anthypatos"
@@ -447,9 +451,19 @@
  task_advisor_5_default_effect_desc:0 "Monthly Prestige:#P+0.05#!\n\nThe Vestarches takes parts in courtly life and is present with the Basileus in official ceremonies or public appearances."
  ave_maria_task_court_life_proedros:0 "Arbitrate the Senate"
  task_advisor_6_default_effect_desc:0 "Monthly Prestige:#P+0.05#!\n\nThe Proedros takes parts in courtly life and is present with the Basileus in official ceremonies or public appearances."
- ### modifier name
+ ### task modifier name
  roman_councillor_coemperor_modifier:0 "Symbasileis"
+ task_coemperor_default_diplomacy_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_default_martial_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_default_stewardship_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_default_intrigue_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_default_learning_modifier:0 "Assistance from Symbasileis"
  task_advisor_default_generic_modifier:0 "Court Ceremonial"
+ task_coemperor_court_politics_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_chivalry_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_manage_domain_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_court_intrigue_modifier:0 "Assistance from Symbasileis"
+ task_coemperor_patronage_modifier:0 "Assistance from Symbasileis"
  court_chaplain_innovation_modifier:0 "Synkellos Intellectual Activity"
  court_chaplain_learning_modifier:0 "Synkellos Intellectual Activity"
 
@@ -548,13 +562,17 @@
  
  ### TRAITS
  trait_basileus:0 "Basileus"
- trait_basileus_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
+ trait_basileus_desc:0 "This character has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_bb_desc:0 "This character has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_bb_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Basileus of the Romans during an official ceremony legitimizing his rule over the empire."
  trait_junior_emperor:0 "Junior Emperor"
- trait_junior_emperor_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
+ trait_junior_emperor_desc:0 "This character has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
  trait_bb2_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been crowned Junior Emperor of the Romans during an official ceremony ensuring a stable succession when the senior Emperor will ascend to heaven."
  trait_bb2_desc:0 "This character has been crowned Junior Emperor of the Romans during an official ceremony legitimizing his rule over the empire."
+ chariot_racer:0 "Chariot Racer"
+ trait_chariot_racer:0 "Chariot Racer"
+ trait_chariot_racer_desc:0 "This character is a professional chariot racer competing in chariot races all over the Empire and employed by the factional racing organisations, the Demes."
+ trait_chariot_racer_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] is a professional chariot racer competing in chariot races all over the Empire and employed by the factional racing organisations, the Demes."
 
  
  
@@ -668,8 +686,8 @@
  ave_maria_roman_administration_events.0003.desc_no_war:0 "I inherited the mantle of the Empire from my predecessor, but it is now time to perform the public ceremony of the Imperial Coronation in Constantinople so the whole people can see us a legitimate emperor."
  ave_maria_roman_administration_events.0003.desc_yes_war:0 "I inherited the mantle of the empire, but despite the ongoing war it is now more than ever time to perform the public ceremony of the coronation in Constantinople so the whole people is reassured and our legitimacy firmly set."
  ave_maria_roman_administration_events.0003.desc_crowning_junior_emperor:0 "I am Basileus of the Romans in my own right, but in order to perpetuate my rule, it is now time to perform the public ceremony of my junior emperor coronation in Constantinople so the whole people is reassured and his legitimacy firmly set to smooth out the succession when I ascend in Heaven."
- ave_maria_roman_administration_events.0003.OPT_A:0 "Spend lavishly, everyone must see our generosity and magnificence. @popularity_icon! +20"
- ave_maria_roman_administration_events.0003.OPT_B:0 "Proceed with the ceremony as is customary. @popularity_icon! +10"
+ ave_maria_roman_administration_events.0003.OPT_A:0 "Spend lavishly, everyone must see our generosity and magnificence. @popularity_icon! +#P20#!"
+ ave_maria_roman_administration_events.0003.OPT_B:0 "Proceed with the ceremony as is customary. @popularity_icon! +#P10#!"
  ave_maria_roman_administration_events.0003.OPT_C:0 "Save up as much as we can on the ceremony, we need the money elsewhere."
  ave_maria_roman_administration_events.0004.title:0 "Imperial Procession"
  ave_maria_roman_administration_events.0004_desc:0 "It is now time to start the coronation procession. As prescribed by the Book of Ceremonies, I moved through the rooms and sections of the Great Palace of Constantinople wearing my short purple cloak over a long-sleeved tunic accompanied by my personal staff and bodyguards. As we moved through the palace complex I paused to meet the chiefs of the army, the consuls and senators.\nThe arrangement was very artful; all women stood behind silken drapes so that none of the men could see the adornment of their faces, while they could see everything that was to be seen. Some singers stood robed in marvelous vestments, they had long, wide robes like sticharia, but all belted, and the sleeves of the robes were also long and wide. Some robes were of brocade, others of silk, with gold and braid on their shoulders. On their heads the singers wore pointed hats with braid."
@@ -684,9 +702,9 @@
  ave_maria_roman_administration_events.0006.title:0 "Imperial Procession"
  ave_maria_roman_administration_events.0006_desc:0 "After receiveing the kiss of the various factions leaders, important people and a few selected individuals, it is now time to enter back to the nave of the church to receive communion at the hands of the Patriarch at the altar of Christ together with the priests. As I am leaving the church, showers of small silver coins with a cross are showered upon be before I head back on horseback to the Great Palace for a post-coronation feast."
  ave_maria_roman_administration_events.0006.desc_crowning_junior_emperor:0 "After receiveing the kiss of the various factions leaders, important people and a few selected individuals, it is now time to enter back to the nave of the church to receive communion at the hands of the Patriarch at the altar of Christ together with the priests. As we are leaving the church, showers of small silver coins with a cross are showered upon be before we head back on horseback to the Great Palace for a post-coronation feast."
- ave_maria_roman_administration_events.0006.OPT_A:0 "Basileus, finally! @legitimacy_icon! +20"
- ave_maria_roman_administration_events.0006.OPT_B:0 "Basileus, finally! @legitimacy_icon! +20"
- ave_maria_roman_administration_events.0006.OPT_C:0 "He is now properly Junior Emperor! @legitimacy_icon! +20"
+ ave_maria_roman_administration_events.0006.OPT_A:0 "Basileus, finally! @legitimacy_icon! #P 20#!"
+ ave_maria_roman_administration_events.0006.OPT_B:0 "Basileus, finally! @legitimacy_icon! #P 20#!"
+ ave_maria_roman_administration_events.0006.OPT_C:0 "He is now properly Junior Emperor! @legitimacy_icon! #P 20#!"
 
  ave_maria_roman_administration_events.0007:0 "Invitation to the Coronation"
  ave_maria_roman_administration_events.0007.opening:0 "Invitation to the Imperial Coronation"
@@ -731,6 +749,67 @@
  ave_maria_roman_administration_imperial_expedition_events.0002.desc_east:0 "As you depart in the imperial ship to sail to Pylai to join the army as is customary, a servant comes to tell you that the time has come to say farewell to your capital.\n\nRising up from your couch, you turn your gaze westwards towards the City, it might be the last time you see it.\n\nYou raise your hands to heaven, making the sign of the cross three times over your beloved capital and pray to God:\n\"Lord Jesus Christ, my God, I place this City in Your hands. Defend it from all enemies and misfortunes which approach it, from civil strife and from the inroads of the heathens. Guard it impregnable and unassailable, for we place our hopes in You, You are the Lord of forgiveness, Father of compassion, God of every supplication and Yours is the power of mercy, salvation, deliverance from temptations and dangers, now and always forever more. Amen\"."
  ave_maria_roman_administration_imperial_expedition_events.0002.desc_west:0 "As you depart through the Golden Gate towards the Via Egnatia, a servant comes to tell you that the time has come to say farewell to your capital.\n\nDescending from your saddle, you turn your gaze eastwards towards the City, it might be the last time you see it.\n\nYou raise your hands to heaven, make the sign of the cross three times over your beloved capital and pray to God:\n\"Lord Jesus Christ, my God, I place this City in Your hands. Defend it from all enemies and misfortunes which approach it, from civil strife and from the inroads of the heathens. Guard it impregnable and unassailable, for we place our hopes in You, You are the Lord of forgiveness, Father of compassion, God of every supplication and Yours is the power of mercy, salvation, deliverance from temptations and dangers, now and always forever more. Amen\"."
  ave_maria_roman_administration_imperial_expedition_events.0002.OPT_A:0 "Farewell Constantinople, we shall meet again."
+
+ ave_maria_roman_administration_imperial_expedition_events.0003.title:0 "Stauros Nika"
+ ave_maria_roman_administration_imperial_expedition_events.0003_desc:0 "Everywhere in the land of the Romans the victory cry of the cross is shouted for once again we have vanquished the enemies of Rome !\n\Under the Basileus's guidance our brave soldiers of Christ proved once again the favour God bestowed upon the Empire.\n\nTo celebrate this victory, maybe a triumph should be organized in the capital ?"
+ ave_maria_roman_administration_imperial_expedition_events.0003.OPT_A:0 "I will have a triumph !"
+ ave_maria_roman_administration_imperial_expedition_events.0003.OPT_B:0 "It is not necessary."
+
+ ave_maria_roman_administration_imperial_expedition_events.0004.title:0 "Coming back to the City"
+ ave_maria_roman_administration_imperial_expedition_events.0004_desc:0 "I have finally come back to the City after this victorious campaign.\n\nThe Eparch of the city, the praesental tribune and the consistory of all senators who remained to guard the City have come to welcome me and pay homage.\n\nAll dressed in white they offer me victory crowns and congratulate me on the victory.\n\nThe rest of the army should arrive in a few days for the victory parade."
+ ave_maria_roman_administration_imperial_expedition_events.0004.OPT_A:0 "We shall have a feast in the meantime !"
+ ave_maria_roman_administration_imperial_expedition_events.0004.OPT_B:0 "I shall go pray to the Church of the Holy Virgin to thank her of our victory."
+ ave_maria_roman_administration_imperial_expedition_events.0004.OPT_C:0 "Thanks them."
+
+ ave_maria_roman_administration_imperial_expedition_events.0005.title:0 "Victory Parade"
+ ave_maria_roman_administration_imperial_expedition_events.0005_desc:0 "The Eparch has prepared the City for the victory parade of the army for weeks now. The military procession is going from the Golden Gate, whose central great gate has been opened for the occasion, up to the Chalkē. The whole road has been garlanded with laurel, rosemary, myrtle and rose, silk hangings and skaramaggia.\n\nThe best booty of war and important prisoners are paraded triumphally to the Great Palace by the troops chanting processional military hymns while cheered on by the people of the City.\n\nThe richly attired demarchs of the Green and Blue factions are even here to acclamate me ! "
+ ave_maria_roman_administration_imperial_expedition_events.0005.OPT_A:0 "I want every child to give me flowers wreaths !"
+ ave_maria_roman_administration_imperial_expedition_events.0005.OPT_B:0 "I will throw coin at the people !"
+ ave_maria_roman_administration_imperial_expedition_events.0005.OPT_C:0 "Bask in the glory of the day."
+
+ ave_maria_roman_administration_imperial_expedition_events.0006.title:0 "Victory Races"
+ ave_maria_roman_administration_imperial_expedition_events.0006_desc:0 "To celebrate our victory even further, I could organize chariot races in the Hippodrome ?\n\nSome church officials would disapprove this display reminiscent of the pagan past but it would definitely please the people of the City."
+ ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A:0 "Of course !"
+ ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A.tt:0 "You gain @popularity_icon! #P 20#!"
+ ave_maria_roman_administration_imperial_expedition_events.0006.OPT_B:0 "I will even compete in it myself !"
+ ave_maria_roman_administration_imperial_expedition_events.0006.OPT_C:0 "The church would be displeased..."
+
+ ave_maria_roman_administration_imperial_expedition_events.0007.title:0 "Victory Races"
+ ave_maria_roman_administration_imperial_expedition_events.0007_desc_A:0 "Today is Monday, race day... there should be eight today and the Hippodrome seems to be packed for the exceptional occasion, especially as I am competing. I can hear immense roar of the crowd as if my cassidion crash helmet was not here.\n\nThe charioteers drew lots at the urnatorium of the Carceres yesterday and we are are now aligned for the start of the morning races...\n\nThey recite the customary prayers and hymns before me and then it is time to start !"
+ ave_maria_roman_administration_imperial_expedition_events.0007_desc_B:0 "Today is Monday, race day...and the Hippodrome seems to be packed for the exceptional occasion.\n\nAs I climb the spiralled stairs leading to the imperial kathisma box of the Hippodrome, I can hear the immense roar of the crowd.\n\nAs we settle down in the box with the imperial household, I make the sign of the cross three times over the factions and the cheers of the vast assembly of men before me grows even louder.\n\nThe charioteers drew lots at the urnatorium of the Carceres yesterday and are now aligned for the start of the morning races.\nThey recite the customary prayers and hymns before me and then it is time to start ! "
+ ave_maria_roman_administration_imperial_expedition_events.0007.OPT_A:0 "This promises to be competitive !"
+ ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B:0 "Seven laps and one winner !"
+ ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B.tt.1:0 "You win the race"
+ ave_maria_roman_administration_imperial_expedition_events.0007.OPT_B.tt.2:0 "You lose the race"
+ am_morning_race_winner:0 "Morning Race Win"
+ am_morning_race_loser:0 "Morning Race Loss"
+
+ ave_maria_roman_administration_imperial_expedition_events.0008.title:0 "Victory Races"
+ ave_maria_roman_administration_imperial_expedition_events.0008_desc_A:0 "After the rest of midday interlude lunch and my victory in the morning races, wrestling, theatrical performances and other shows have been held in the skamma below the kathisma imperial box.\n\nIt is now the late afternoon and the final race determining the winner should take place..."
+ ave_maria_roman_administration_imperial_expedition_events.0008_desc_B:0 "I lost the morning races !\n\nAfter the rest of midday interlude lunch and my defeat in the morning races, wrestling, theatrical performances and other shows have been held in the skamma below the kathisma imperial box.\n\nIt is now the late afternoon and the final race determining the winner should take place..."
+ ave_maria_roman_administration_imperial_expedition_events.0008_desc_C:0 "After the rest of midday interlude lunch and the riveting morning races, wrestling, theatrical performances and other shows have been held in the skamma below the kathisma imperial box.\n\nIt is now the late afternoon and the final race determining the winner should take place..."
+ ave_maria_roman_administration_imperial_expedition_events.0008.OPT_A:0 "My palms are sweaty..."
+ ave_maria_roman_administration_imperial_expedition_events.0008.OPT_B:0 "Now this is chariot racing !"
+
+ ave_maria_roman_administration_imperial_expedition_events.0009.title:0 "Victory Races"
+ ave_maria_roman_administration_imperial_expedition_events.0009_desc_A:0 "I won the races !\n\nAfter a gruelling and difficult seventh lap I managed to emerge victorious ! One can say the others charioteers did not try to give me any slack in this competition despite me being the Basileus (or did they ?)\n\nAfter the traditional hymns and prayers it is now time to hand over the other victors their prizes of branches of palm-trees, coins and special trophies.\n\nThe people are ecstatic after this day and my victory in the races !\n\nMany years of rule !"
+ ave_maria_roman_administration_imperial_expedition_events.0009_desc_B:0 "We have a winner ! [target.GetFullName] managed to win the race after a grueling and tense seventh lap. The competition was ferocious that day.\n\nAfter the traditional hymns and prayers it is now time to hand over the victors their prizes of branches of palm-trees, coins and special trophies.\n\nThe people seems satisfied by this magnificent racing day !\n\nMany years of rule !"
+ ave_maria_roman_administration_imperial_expedition_events.0009_desc_C:0 "You have lost the afternoon race but we have now a winner ! [target.GetFullName] managed to win the race after a grueling and tense seventh lap. The competition was ferocious that day.\n\nAfter the traditional hymns and prayers it is now time to hand over the victors their prizes of branches of palm-trees, coins and special trophies.\n\nThe people seems satisfied by this magnificent racing day !\n\nMany years of rule !"
+ ave_maria_roman_administration_imperial_expedition_events.0009.OPT_B:0 "A great victory !"
+ ave_maria_roman_administration_imperial_expedition_events.0009.OPT_A:0 "Good Games !"
+ ave_maria_roman_administration_imperial_expedition_events.0009.OPT_C:0 "I participated at least !"
+
+
+ ##Legitimacy and Popularity tooltip
+ ave_maria_roman_administration_massive_popularity_gain.tt:0 "You gain @popularity_icon! #P 20#!"
+ ave_maria_roman_administration_normal_popularity_gain.tt:0 "You gain @popularity_icon! #P 10#!"
+ ave_maria_roman_administration_small_popularity_gain.tt:0 "You gain @popularity_icon! #P 5#!"
+ ave_maria_roman_administration_massive_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 20#!"
+ ave_maria_roman_administration_normal_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 10#!"
+ ave_maria_roman_administration_small_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 5#!"
+ ave_maria_roman_administration_massive_popularity_loss.tt:0 "You lose @popularity_icon! #N 20#!"
+ ave_maria_roman_administration_medium_popularity_loss.tt:0 "You lose @popularity_icon! #N 10#!"
+ ave_maria_roman_administration_small_popularity_loss.tt:0 "You lose @popularity_icon! #N 5#!"
  
 
  ### CHARACTERS
@@ -774,9 +853,9 @@
  roman_administration_happy_constantinople_populace:0 "Content Populace"
 
  ## LEGITIMACY & POPULARITY
- legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!\n \n\n#T [legitimacy_level|E]:"
+ legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!\n \n\n#T [legitimacy_level|E]: @legitimacy_icon!"
 
- popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue|0]#!\n \n\n#T [popularity_level|E]: #T[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity_level_display').GetValue|0]"
+ popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue|0]#!\n \n\n#T [popularity_level|E]: @popularity_icon! #T[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity_level_display').GetValue|0]"
 
  despised_desc:0 "Despised"
  unworthy_desc:0 "Unworthy"

@@ -1314,10 +1314,10 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = arbitrary
-	trait = gluttonous
-	trait = clubfooted
+	#trait = gluttonous
+	#trait = clubfooted
 	trait = lustful
-	trait = education_stewardship_1
+	trait = education_martial_3
 	trait = basileus
 	father = 1744
 	1006.1.1 = {
@@ -1330,6 +1330,12 @@
 		effect = {
 			roman_administration_update_popularity_variable = yes
 			roman_administration_update_legitimacy_variable = yes
+			
+			fire_councillor = cp:roman_councillor_coemperor
+			assign_councillor_type = {
+				type = roman_councillor_coemperor
+				target = character:1736
+			}
 
 			spawn_army = {
 				name = "Varangian Guard"
@@ -1476,10 +1482,11 @@
 	religion = "orthodox"
 	culture = "greek"
 	trait = arbitrary
-	trait = lazy
+	trait = shy
 	trait = craven
-	trait = greedy
-	trait = education_stewardship_1
+	# trait = greedy
+	trait = junior_emperor
+	trait = education_learning_2
 	father = 1732
 	mother = 1733
 	1050.1.1 = {

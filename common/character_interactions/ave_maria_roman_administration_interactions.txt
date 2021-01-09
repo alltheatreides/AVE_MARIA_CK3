@@ -444,6 +444,9 @@ roman_administration_name_junior_emperor = {
 			NOT = {
 				has_trait = junior_emperor
 			}
+			NOT = {
+				has_government = theocracy_government
+			}
 		}
 	}
 
@@ -477,10 +480,21 @@ roman_administration_name_junior_emperor = {
 					modifier = roman_administration_fire_junior_emperor
 				}
 			}
+			if = {
+				limit = {
+					exists = cp:roman_councillor_coemperor
+				}
+				fire_councillor = cp:roman_councillor_coemperor
+			}
+			assign_councillor_type = {
+				type = roman_councillor_coemperor
+				target = scope:recipient
+			}
 		}
 
 		scope:recipient = {
 			set_relation_junior_emperor = scope:actor
+
 		}
 	}
 

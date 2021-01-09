@@ -410,6 +410,23 @@ on_war_won_attacker = {
 					change_government = roman_administration_government
 					add_realm_law = ave_maria_roman_administration_imperial
 				}
+
+				if = {
+					limit = {
+						# any_held_title = {
+						# 	this = title:e_byzantium
+						# }
+						# has_variable = roman_administration_imperial_expedition
+						has_character_flag = roman_administration_imperial_expedition
+						
+					}
+					# remove_variable = roman_administration_imperial_expedition
+					remove_character_flag = roman_administration_imperial_expedition
+					trigger_event = { 
+						id = ave_maria_roman_administration_imperial_expedition_events.0003 
+						days = 1 
+					}				
+				}	
 			}
 		}
 
@@ -477,20 +494,22 @@ on_war_won_attacker = {
 			}			
 		}
 		## Military officials gain also legitimacy
-		every_war_participant = {
-			if = {
-				limit = {
-					NOT = {
-						any_held_title = {
-							this = title:e_byzantium
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						NOT = {
+							any_held_title = {
+								this = title:e_byzantium
+							}
 						}
+						roman_administration_character_is_in_the_empire = yes
 					}
-					roman_administration_character_is_in_the_empire = yes
+	
+					roman_administration_add_legitimacy_massive_amount = yes				
 				}
-
-				roman_administration_add_legitimacy_massive_amount = yes				
 			}
-		}
+		}	
 
 
 		## Removing Legitimacy and Popularity if you are the Emperor and lost
@@ -511,23 +530,27 @@ on_war_won_attacker = {
 		}
 
 		## Removing the variable Imperial Expedition if you had it
-		if = {
-			limit = {
-				scope:attacker = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:attacker = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
+		# scope:attacker = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:attacker = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }		
 	}
 
 	events = {
-		
+		# ave_maria_roman_administration_imperial_expedition_events.0000
 	}
 }
 
@@ -557,6 +580,23 @@ on_war_won_defender = {
 						has_character_flag = mustered
 					}
 					remove_character_flag = mustered
+				}
+
+				if = {
+					limit = {
+						# any_held_title = {
+						# 	this = title:e_byzantium
+						# }
+						# has_variable = roman_administration_imperial_expedition
+						has_character_flag = roman_administration_imperial_expedition
+						
+					}
+					# remove_variable = roman_administration_imperial_expedition
+					remove_character_flag = roman_administration_imperial_expedition
+					trigger_event = { 
+						id = ave_maria_roman_administration_imperial_expedition_events.0003 
+						days = 1 
+					}				
 				}
 			}
 		}
@@ -597,34 +637,40 @@ on_war_won_defender = {
 			roman_administration_add_legitimacy_massive_amount = yes
 		}
 		## Military officials gain also legitimacy
-		every_war_participant = {
-			if = {
-				limit = {
-					roman_administration_character_is_in_the_empire = yes
-					NOT = { any_held_title = { this  = title:e_byzantium } }
+		scope:war = {
+			every_war_participant = {
+				if = {
+					limit = {
+						roman_administration_character_is_in_the_empire = yes
+						NOT = { any_held_title = { this  = title:e_byzantium } }
+					}
+					roman_administration_add_legitimacy_massive_amount = yes
 				}
-				roman_administration_add_legitimacy_massive_amount = yes
 			}
 		}
 
-		## Removing the variable Imperial Expedition if you had it
-		if = {
-			limit = {
-				scope:defender = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:defender = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
+		# ## Removing the variable Imperial Expedition if you had it
+		# scope:winner = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:winner = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }	
 	}
 
 	events = {
-		
+		# ave_maria_roman_administration_imperial_expedition_events.0000
 	}
 }
 
@@ -648,40 +694,65 @@ on_war_white_peace = {
 					}
 					remove_character_flag = mustered
 				}
+
+				if = {
+					limit = {
+						# any_held_title = {
+						# 	this = title:e_byzantium
+						# }
+						# has_variable = roman_administration_imperial_expedition
+						has_character_flag = roman_administration_imperial_expedition
+						
+					}
+					# remove_variable = roman_administration_imperial_expedition
+					remove_character_flag = roman_administration_imperial_expedition
+					trigger_event = { 
+						id = ave_maria_roman_administration_imperial_expedition_events.0003 
+						days = 1 
+					}				
+				}	
 			}
 		}
 
 		## Removing the variable Imperial Expedition if you had it
-		if = {
-			limit = {
-				scope:attacker = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:attacker = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
-		if = {
-			limit = {
-				scope:defender = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:defender = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
+		# scope:attacker = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:attacker = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }
+		# scope:defender = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:defender = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }
 	}
 
 	events = {
-		
+		# ave_maria_roman_administration_imperial_expedition_events.0000
 	}
 }
 
@@ -715,39 +786,64 @@ on_war_invalidated = {
 					}
 					remove_character_flag = mustered
 				}
+
+				if = {
+					limit = {
+						# any_held_title = {
+						# 	this = title:e_byzantium
+						# }
+						# has_variable = roman_administration_imperial_expedition
+						has_character_flag = roman_administration_imperial_expedition
+						
+					}
+					# remove_variable = roman_administration_imperial_expedition
+					remove_character_flag = roman_administration_imperial_expedition
+					trigger_event = { 
+						id = ave_maria_roman_administration_imperial_expedition_events.0003 
+						days = 1 
+					}				
+				}	
 			}
 		}
 
 		## Removing the variable Imperial Expedition if you had it
-		if = {
-			limit = {
-				scope:attacker = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:attacker = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
-		if = {
-			limit = {
-				scope:defender = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-					has_variable = roman_administration_imperial_expedition
-				}
-			}
-			scope:defender = {
-				remove_variable = roman_administration_imperial_expedition
-			}
-		}
+		# scope:attacker = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:attacker = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }
+		# scope:defender = {
+		# 	if = {
+		# 		limit = {
+		# 			# any_held_title = {
+		# 			# 	this = title:e_byzantium
+		# 			# }
+		# 			# has_variable = roman_administration_imperial_expedition
+		# 			has_character_flag = roman_administration_imperial_expedition
+					
+		# 		}
+		# 		scope:defender = {
+		# 			# remove_variable = roman_administration_imperial_expedition
+		# 			remove_character_flag = roman_administration_imperial_expedition
+		# 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0003 days = 1 }
+		# 		}				
+		# 	}
+		# }
 	}
 
 	events = {
-		
+		# ave_maria_roman_administration_imperial_expedition_events.0000
 	}
 }

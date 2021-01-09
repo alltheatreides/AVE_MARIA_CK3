@@ -188,6 +188,9 @@ roman_councillor_kanikleios = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 
 	on_get_position = {
@@ -330,9 +333,14 @@ roman_councillor_coemperor = {
 		}
 	}
 	valid_character = {
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 		OR = {
 			is_close_family_of = root.liege_or_court_owner
-			highest_held_title_tier >= tier_duchy
+			roman_administration_holds_high_office_title_trigger = yes
+			roman_administration_holds_doukaton_title_trigger = yes			
 		}
 	}
 	on_get_position = {
@@ -364,7 +372,10 @@ roman_dignities_protospatharios = {
 		}
 	}
 	valid_character = {
-	
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 	on_get_position = {
 		got_council_position_effect = yes
@@ -395,7 +406,10 @@ roman_dignities_patrikios = {
 		}
 	}
 	valid_character = {
-	
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 	on_get_position = {
 		got_council_position_effect = yes
@@ -424,7 +438,10 @@ roman_dignities_anthypatos = {
 		}
 	}
 	valid_character = {
-	
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 	on_get_position = {
 		got_council_position_effect = yes
@@ -453,7 +470,10 @@ roman_dignities_magistros = {
 		}
 	}
 	valid_character = {
-	
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 	on_get_position = {
 		got_council_position_effect = yes
@@ -504,7 +524,10 @@ roman_dignities_proedros  = {
 		}
 	}
 	valid_character = {
-	
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
 	}
 	on_get_position = {
 		got_council_position_effect = yes
