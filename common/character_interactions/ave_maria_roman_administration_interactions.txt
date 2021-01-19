@@ -438,9 +438,9 @@ roman_administration_name_junior_emperor = {
 			roman_administration_character_is_in_the_empire = yes
 			age >= 6
 			is_female = no
-			NOT = {
-				has_any_scripted_relation = scope:actor
-			}
+			# NOT = {
+			# 	has_any_scripted_relation = scope:actor
+			# }
 			NOT = {
 				has_trait = junior_emperor
 			}
@@ -473,7 +473,8 @@ roman_administration_name_junior_emperor = {
 		scope:actor = {
 			every_relation = {
 				type = junior_emperor
-				remove_relation_junior_emperor = scope:actor
+				#scope:actor = { remove_relation_junior_emperor = prev }
+				
 				hidden_effect = { scope:actor = { remove_relation_junior_emperor = prev } }
 				remove_trait = junior_emperor
 				add_opinion = {
@@ -481,21 +482,23 @@ roman_administration_name_junior_emperor = {
 					modifier = roman_administration_fire_junior_emperor
 				}
 			}
-			if = {
-				limit = {
-					exists = cp:roman_councillor_coemperor
-				}
-				fire_councillor = cp:roman_councillor_coemperor
-			}
-			assign_councillor_type = {
-				type = roman_councillor_coemperor
-				target = scope:recipient
-			}
+			# if = {
+			# 	limit = {
+			# 		exists = cp:roman_councillor_coemperor
+			# 	}
+			# 	fire_councillor = cp:roman_councillor_coemperor
+			# }
+			# assign_councillor_type = {
+			# 	type = roman_councillor_coemperor
+			# 	target = scope:recipient
+			# }
+
+			#set_relation_junior_emperor = scope:recipient
 		}
 
 		scope:recipient = {
 			set_relation_junior_emperor = scope:actor
-
+			add_trait = junior_emperor
 		}
 	}
 

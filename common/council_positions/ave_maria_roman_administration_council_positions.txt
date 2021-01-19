@@ -274,42 +274,42 @@
 ## NEW COUNCILLORS
 # ### Second tab of councillors, represent the dignities, people receiving rogai but no office
 ## Co emperor
-roman_councillor_coemperor = {
-	name = roman_administration_councillor_coemperor
-	tooltip = game_concept_councillor_coemperor_desc
+# roman_councillor_coemperor = {
+# 	name = roman_administration_councillor_coemperor
+# 	tooltip = game_concept_councillor_coemperor_desc
 
-	modifier = {
-		name = roman_councillor_coemperor_modifier
-		monthly_prestige = 1
-		scale = council_scaled_monthly_income
-	}
+# 	modifier = {
+# 		name = roman_councillor_coemperor_modifier
+# 		monthly_prestige = 1
+# 		scale = council_scaled_monthly_income
+# 	}
 
-	valid_position = {
-		OR = {
-			has_title = title:e_byzantium
-			has_title = title:e_roman_empire			
-		}
-	}
-	valid_character = {
-		is_female = no
-		NOT = { 
-			has_government = theocracy_government
-		}
-		OR = {
-			is_close_family_of = root.liege_or_court_owner
-			roman_administration_holds_high_office_title_trigger = yes
-			roman_administration_holds_doukaton_title_trigger = yes			
-		}
-	}
-	on_get_position = {
-		got_council_position_effect = yes
-	}
-	on_fired_from_position = {
-		fired_from_council_position_effect = yes
-	}
+# 	valid_position = {
+# 		OR = {
+# 			has_title = title:e_byzantium
+# 			has_title = title:e_roman_empire			
+# 		}
+# 	}
+# 	valid_character = {
+# 		is_female = no
+# 		NOT = { 
+# 			has_government = theocracy_government
+# 		}
+# 		OR = {
+# 			is_close_family_of = root.liege_or_court_owner
+# 			roman_administration_holds_high_office_title_trigger = yes
+# 			roman_administration_holds_doukaton_title_trigger = yes			
+# 		}
+# 	}
+# 	on_get_position = {
+# 		got_council_position_effect = yes
+# 	}
+# 	on_fired_from_position = {
+# 		fired_from_council_position_effect = yes
+# 	}
 
-	portrait_animation = personality_callous
-}
+# 	portrait_animation = personality_callous
+# }
 
 # ## First Sword bearer
 # roman_dignities_protospatharios = {
