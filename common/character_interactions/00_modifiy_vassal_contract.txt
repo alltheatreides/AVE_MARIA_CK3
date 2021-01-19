@@ -20,7 +20,14 @@
 			vassal_contract_has_modifiable_obligations = yes
 		}
 		scope:actor = {
-			uses_roman_govt = no
+			trigger_if = {
+				limit = {
+					uses_roman_govt = yes
+				}
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 		}
 	}
 
@@ -180,7 +187,14 @@ vassal_modify_vassal_contract_interaction = {
 			vassal_contract_has_modifiable_obligations = yes
 		}
 		scope:recipient = {
-			uses_roman_govt = no
+			trigger_if = {
+				limit = {
+					uses_roman_govt = yes
+				}
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 		}
 	}
 
@@ -279,10 +293,10 @@ ai_only_liege_modify_vassal_contract_interaction = {
 		scope:actor = {
 			is_ai = yes
 			has_usable_hook = scope:recipient
-uses_roman_govt = no
+			uses_roman_govt = no
 		}
 		scope:recipient = {
-uses_roman_govt = no
+			uses_roman_govt = no
 			NOT = { this = scope:actor }
 			NOT = {
 				has_strong_hook = scope:actor
@@ -350,7 +364,7 @@ ai_only_vassal_modify_vassal_contract_interaction = {
 	
 	is_shown = {
 		scope:actor = {
-uses_roman_govt = no
+			uses_roman_govt = no
 			is_ai = yes
 			is_independent_ruler = no
 			has_usable_hook = scope:recipient
@@ -359,7 +373,7 @@ uses_roman_govt = no
 			uses_roman_govt = no
 		}
 		scope:recipient = {
-uses_roman_govt = no
+			uses_roman_govt = no
 			NOT = { this = scope:actor }
 			is_ruler = yes
 			NOT = {

@@ -1,0 +1,289 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_reconquest_events
+
+# ave_maria_roman_administration_reconquest_events
+
+
+# TABLE OF CONTENT:
+
+
+
+#############################################
+# REPLACE ME								#
+#############################################
+
+ave_maria_roman_administration_reconquest_events.0001 = {
+	type = character_event
+	title = ave_maria_roman_administration_reconquest_events.0001.title
+	desc = ave_maria_roman_administration_reconquest_events.0001.desc
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+			
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+	}
+
+	## Make it a theme
+	option = {
+		name = ave_maria_roman_administration_reconquest_events.0001.OPT.A
+		custom_tooltip = ave_maria_roman_administration_reconquest_events.0001.OPT.A.tt
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			gender_female_chance = 0
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		hidden_effect = {
+			scope:title = {
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_guy
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_guy
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+	
+				add_title_law = ave_maria_roman_administration_tagma_succession_law 
+				add_title_law = male_only_law
+			}
+		}
+		
+
+		ai_chance = {
+			base = 80
+		}
+	}
+
+	## Make it a doukaton
+	option = {
+		name = ave_maria_roman_administration_reconquest_events.0001.OPT.B
+		custom_tooltip = ave_maria_roman_administration_reconquest_events.0001.OPT.B.tt
+		create_character = {
+			employer = root
+			template = tagma_commander_character
+			gender_female_chance = 0
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		hidden_effect = {
+			scope:title = {
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_guy
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_guy
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+
+				add_title_law = ave_maria_roman_administration_tagma_succession_law 
+				add_title_law = male_only_law
+	
+				holder = {
+					change_government = roman_administration_doukaton_government
+					vassal_contract_set_obligation_level = {	
+						type = ave_maria_roman_administration_special_contract
+						level = 1
+					}	
+					vassal_contract_set_obligation_level = {	
+						type = imperial_obligation_doukaton
+						level = 5
+					}	
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 10
+
+			modifier = {
+				factor = 100
+				scope:title = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+						#continue = { tier > tier_barony }
+						any_neighboring_county = {
+							tier = tier_county
+							holder = {
+								NOT = {
+									any_liege_or_above = {
+										this = title:e_byzantium.holder
+									}
+								}
+							}
+						}
+					}					
+				}
+			}
+		}
+		
+	}
+
+	## Make it a kouratoreia
+	option = {
+		name = ave_maria_roman_administration_reconquest_events.0001.OPT.C
+		custom_tooltip = ave_maria_roman_administration_reconquest_events.0001.OPT.C.tt
+		create_character = {
+			employer = root
+			template = eunuch_character
+			gender_female_chance = 0
+			save_scope_as = new_guy
+		}
+		scope:new_guy = {
+			add_trait = rhetorician_2
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		hidden_effect = {
+			scope:title = {
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						NOT = { this = title:c_byzantion }
+						holder = {
+							roman_administration_character_is_in_the_empire = yes
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_guy
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_guy
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+
+				add_title_law = ave_maria_roman_administration_tagma_succession_law 
+				add_title_law = male_only_law
+	
+				holder = {
+					change_government = roman_administration_kouratoreia_government
+					vassal_contract_set_obligation_level = {	
+						type = ave_maria_roman_administration_special_contract
+						level = 2
+					}	
+					vassal_contract_set_obligation_level = {	
+						type = imperial_obligation_kouratoreia
+						level = 2
+					}	
+				}
+			}
+		}		
+
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 10
+				root = {
+					has_trait = greedy
+				}
+			}
+		}
+	}
+
+	## I'll keep it
+	option = {
+		name = ave_maria_roman_administration_reconquest_events.0001.OPT.F
+		roman_administration_update_popularity_variable = yes	
+		change_variable = {
+			name = roman_administration_popularity
+			add = 100
+		}
+		custom_tooltip = ave_maria_roman_administration_reconquest_events.0001.OPT.F.tt.1
+		custom_tooltip = ave_maria_roman_administration_reconquest_events.0001.OPT.F.tt.2
+
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+

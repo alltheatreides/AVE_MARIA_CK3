@@ -1,0 +1,210 @@
+﻿activity_tzykanion = {
+	expiration_days = 100
+	has_activity_window = yes
+	days_until_auto_start = 10
+	frame = 2
+	color = { 0.853906 0.867188 0.105469 1 }
+	valid = {
+		activity_owner = {
+			is_alive = yes
+			is_imprisoned = no
+		}
+	}
+	on_spawn = {
+		invite_character_to_activity = activity_owner
+		accept_invitation_for_character = activity_owner
+		
+		activity_owner = {
+			## Invite friends first
+			every_sibling = {
+				limit = {
+					has_relation_friend = prev
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_trait = devoted }
+				}
+				add_to_temporary_list = tzykanion_potential_guests
+			}
+			every_vassal = {
+				limit = {
+					has_relation_friend = prev
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_government = theocracy_government }
+				}
+				add_to_temporary_list = tzykanion_potential_guests	
+			}
+			every_courtier = {
+				limit = {
+					has_relation_friend = prev
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_trait = devoted }
+				}
+				add_to_temporary_list = tzykanion_potential_guests	
+			}	
+			any_liege_or_above = {
+				any_vassal = {
+					limit = {
+						has_relation_friend = prev
+						is_available_for_activity_trigger = yes
+						is_adult = yes
+						is_female = no
+						age <= 50
+						NOT = { has_government = theocracy_government }
+					}
+					add_to_temporary_list = tzykanion_potential_guests
+				}
+			}
+
+			## Rest
+			every_sibling = {
+				limit = {
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_trait = devoted }
+				}
+				add_to_temporary_list = tzykanion_potential_guests
+			}
+			every_vassal = {
+				limit = {
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_government = theocracy_government }
+				}
+				add_to_temporary_list = tzykanion_potential_guests	
+			}
+			every_courtier = {
+				limit = {
+					is_available_for_activity_trigger = yes
+					is_adult = yes
+					is_female = no
+					age <= 50
+					NOT = { has_trait = devoted }
+				}
+				add_to_temporary_list = tzykanion_potential_guests	
+			}			
+			any_liege_or_above = {
+				any_vassal = {
+					limit = {
+						is_available_for_activity_trigger = yes
+						is_adult = yes
+						is_female = no
+						age <= 50
+						NOT = { has_government = theocracy_government }
+					}
+					add_to_temporary_list = tzykanion_potential_guests
+				}
+			}
+			every_in_list = {
+				list = tzykanion_potential_guests
+				scope:activity = {
+					invite_character_to_activity = prev
+				}
+				trigger_event = {
+					id = ave_maria_roman_administration_sports_events.0001
+					days = { 1 3 }
+				}
+			}
+	
+		}
+	}
+	on_activate = {
+		if = {
+			limit = {
+				# Check that there are guests apart from the feast host.
+				NOT = {
+					any_participant = {
+						NOT = {	this = scope:activity.activity_owner }
+					}
+				}
+			}
+			# If there are no other guests, throw this event.
+			activity_owner = {
+				trigger_event = ave_maria_roman_administration_sports_events.2003
+			}
+		}
+		else = {
+		# If there are guests present
+			activity_owner = { # The host gets their events
+				## Event for host triggering team assignation and subsequent event for every participant
+				trigger_event = ave_maria_roman_administration_sports_events.0002
+			}
+			every_participant = {
+				limit = { NOT = { this = scope:activity.activity_owner } }
+				#Remove blocker for invitations to feasts (the feast is now active and will work as a blocker)
+				remove_variable = booked_for_a_party
+			}
+		}
+	}
+	on_complete = {
+		every_participant = {
+			remove_variable = tzykanion_team_1
+			remove_variable = tzykanion_team_members
+		}
+		activity_owner = {
+			remove_variable = tzykanion_team_members
+		}
+	}
+	on_expire = { # Should never happen - kept as fallback for weirdness only
+		activity_owner = {
+			trigger_event = feast.2002
+		}
+	}
+	
+	on_participant_death = {
+	
+	}
+	on_invalidated = {
+		activity_owner = {
+			save_scope_as = host
+		}
+		every_participant = {
+			limit = {
+				NOT = { this = scope:host }
+			}
+			add_to_list = tzykanion_participants
+		}
+		complete_activity = yes
+		if = {
+			limit = {
+				scope:host = {
+					is_alive = no
+				}
+			}
+			#Host died
+			every_in_list = {
+				list = tzykanion_participants
+				trigger_event = {
+					id = ave_maria_roman_administration_sports_events.5003
+					days = 2 #So you don't get spammed
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:host = {
+					is_imprisoned = yes
+				}
+			}
+			#Host has been imprisoned
+			every_in_list = {
+				list = feast_participants
+				trigger_event = ave_maria_roman_administration_sports_events.5005
+			}
+			scope:host = {
+				trigger_event = ave_maria_roman_administration_sports_events.5004
+			}
+		}
+	}
+}

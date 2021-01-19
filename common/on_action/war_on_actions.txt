@@ -406,6 +406,9 @@ on_war_won_attacker = {
 							has_government = roman_administration_kouratoreia_government
 						}
 						is_independent_ruler = yes
+						NOT = {
+							this = title:e_byzantium.holder
+						}
 					}
 					change_government = roman_administration_government
 					add_realm_law = ave_maria_roman_administration_imperial
@@ -422,10 +425,16 @@ on_war_won_attacker = {
 					}
 					# remove_variable = roman_administration_imperial_expedition
 					remove_character_flag = roman_administration_imperial_expedition
-					trigger_event = { 
-						id = ave_maria_roman_administration_imperial_expedition_events.0003 
-						days = 1 
-					}				
+					if = {
+						limit = {
+							this = scope:attacker
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_imperial_expedition_events.0003 
+							days = 1 
+						}
+					}
+									
 				}	
 			}
 		}
@@ -445,6 +454,9 @@ on_war_won_attacker = {
 						has_government = roman_administration_sekreton_government
 					}
 					is_independent_ruler = yes
+					NOT = {
+						this = title:e_byzantium.holder
+					}
 				}
 				change_government = roman_administration_government
 				every_vassal = {
@@ -593,10 +605,19 @@ on_war_won_defender = {
 					}
 					# remove_variable = roman_administration_imperial_expedition
 					remove_character_flag = roman_administration_imperial_expedition
-					trigger_event = { 
-						id = ave_maria_roman_administration_imperial_expedition_events.0003 
-						days = 1 
-					}				
+					if = {
+						limit = {
+							this = scope:defender
+						}
+						trigger_event = { 
+							id = ave_maria_roman_administration_imperial_expedition_events.0003 
+							days = 1 
+						}
+					}
+					# trigger_event = { 
+					# 	id = ave_maria_roman_administration_imperial_expedition_events.0003 
+					# 	days = 1 
+					# }				
 				}
 			}
 		}

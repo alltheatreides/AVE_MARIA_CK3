@@ -80,11 +80,9 @@ ave_maria_roman_administration_junior_emperor_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		has_trait = basileus
-		exists = cp:roman_councillor_coemperor
-		cp:roman_councillor_coemperor = {
-			NOT = {
-				has_trait = junior_emperor
-			}
+		any_relation = {
+			type = junior_emperor
+			NOT = { has_trait = junior_emperor }
 		}
 		NOT = {
 			has_character_flag = imperial_coronation_started_preparations
@@ -99,11 +97,9 @@ ave_maria_roman_administration_junior_emperor_coronation_decision = {
 			has_title = title:e_roman_empire			
 		}
 		has_trait = basileus
-		exists = cp:roman_councillor_coemperor
-		cp:roman_councillor_coemperor = {
-			NOT = {
-				has_trait = junior_emperor
-			}
+		any_relation = {
+			type = junior_emperor
+			NOT = { has_trait = junior_emperor }
 		}
 		NOT = {
 			has_character_flag = imperial_coronation_started_preparations
@@ -232,6 +228,112 @@ ave_maria_roman_administration_imperial_expedition = {
 
 		hidden_effect = {
 			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0001
+		}
+	}
+}
+
+## Play a game of Tzykanion
+ave_maria_roman_administration_tzykanion_game = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_decision_tzykanion_game.dds"
+	desc = ave_maria_roman_administration_tzykanion_game_desc
+	selection_tooltip = ave_maria_roman_administration_tzykanion_game_tooltip
+	ai_check_interval = 60
+
+	cost = {
+		gold = 25
+	}
+
+	cooldown = { days = 180 }
+
+	is_shown = {
+		is_ruler = yes
+		highest_held_title_tier > tier_barony
+		has_culture_group = culture_group:byzantine_group
+		is_female = no
+		age < 50
+		age >= 16
+	}
+
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = ave_maria_roman_administration_tzykanion_game
+
+		#Stress loss
+		if = {
+			limit = {
+				has_trait = lazy
+			}
+			custom_tooltip = ave_maria_roman_administration_tzykanion_game_lazy
+		}
+		else = {
+			stress_impact = {
+				base = hunt_stress_loss_value
+				
+				athletic = activity_stress_loss_impact
+
+				gregarious = activity_stress_loss_impact
+				lively = activity_stress_loss_impact
+				sociable = activity_stress_loss_impact
+				talkative = activity_stress_loss_impact
+				cheerful = activity_stress_loss_impact
+
+				brave = activity_stress_loss_impact
+				tough = activity_stress_loss_impact
+				independent = activity_stress_loss_impact
+				selfassured = activity_stress_loss_impact
+				stable = activity_stress_loss_impact
+
+			}
+		}
+
+		custom_tooltip = ave_maria_roman_administration_tzykanion_game_prestige
+		
+		hidden_effect = {
+			capital_barony = {
+				title_province = {
+					spawn_activity = {
+						type = activity_tzykanion
+						owner = root
+					}
+				}
+			}
+		}
+	}
+	
+	ai_potential = {
+		short_term_gold > standard_activity_cost
+	}
+
+	ai_will_do = {
+		base = 70
+
+		ai_value_modifier = {
+			ai_energy = 1
+			ai_greed = -0.5
+			ai_compassion = -0.5
+		}
+
+		modifier = {
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 0
+			}
+		}
+		modifier = {
+			add = 10
+			has_trait_rank = {
+				trait = education_martial
+				rank > 2
+			}
+		}
+
+		modifier = {
+			add = 35
+			stress > low_stress
 		}
 	}
 }

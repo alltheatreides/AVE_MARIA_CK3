@@ -1,0 +1,3307 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_sports_events
+
+# ave_maria_roman_administration_sports_events
+
+
+# TABLE OF CONTENT:
+
+## TZYKANION GAME FROM DECISION
+#### Initial invitation triggered from the activity on_start, triggers the following event once 8 players are found
+#### Hidden event to split players into teams (assigning variables and saving scopes) and triggering the next event
+#### Event to inform the players of their respective team, start the match by calculating each team's added up prowess and see who is winning 
+
+## TZYKANION GAME FROM INTERACTION/CHOOSING YOUR TEAM
+
+
+#############################################
+# TZYKANION GAME FROM DECISION				#
+#############################################
+
+##Test filler
+ave_maria_roman_administration_sports_events.0000 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.0001.title
+	desc = ave_maria_roman_administration_sports_events.0001.desc
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+			
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.OPT.A
+		
+		
+
+		ai_chance = {
+			base = 80
+		}
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.OPT.B
+		
+
+		ai_chance = {
+			base = 10
+
+			
+			}
+		}
+		
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.OPT.C
+		
+		}		
+
+		ai_chance = {
+			base = 10
+			
+		}
+	}
+
+	## 
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.OPT.F
+		
+
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+### Tzykanion - initial invitation
+ave_maria_roman_administration_sports_events.0001 = {
+	type = letter_event
+	opening = {
+		desc = ave_maria_roman_administration_sports_events.0001.opening
+	}
+	desc = {
+		desc = ave_maria_roman_administration_sports_events.0001.opening_desc
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > 50
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.0001.host_likes_me
+			}
+			triggered_desc = {
+				trigger = {
+					reverse_opinion = {
+						target = scope:sender
+						value > -1
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.0001.host_gets_along_with_me
+			}
+			desc = ave_maria_roman_administration_sports_events.0001.host_dislikes_me
+		}
+	}
+	sender = scope:sender
+
+	trigger = {
+		is_available_for_activity_trigger = yes
+		exists = scope:activity.activity_owner
+		NOT = { exists = var:is_handling_tzykanion_invitation }
+		scope:activity.activity_owner = {
+			trigger_if = {
+				limit = {
+					has_variable = tzykanion_team_members
+				}
+				var:tzykanion_team_members < 8	
+			}
+		}
+	}
+
+	on_trigger_fail = { #Trigger invitation again if it was blocked because the character was handling another invitation
+		if = {
+			limit = {
+				is_available_for_activity_trigger = yes
+				exists = var:is_handling_tzykanion_invitation
+				scope:activity.activity_owner = {
+					NOT = {
+						has_variable = tzykanion_team_members
+						var:tzykanion_team_members >= 8
+					}
+				}
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_sports_events.0001
+				days = 1
+			}
+		}
+	}
+
+	immediate = {
+		scope:activity.activity_owner = {
+			save_scope_as = sender
+		}
+		scope:activity.activity_province = {
+			barony = {
+				save_scope_as = barony
+			}
+		}
+		set_variable = {
+			name = is_handling_tzykanion_invitation
+			value = scope:sender
+			days = 20
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.a
+		trigger = {
+			opinion = {
+				target = liege
+				value >= 0
+			}
+		}
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			diligent = activity_stress_loss_impact
+			athletic = activity_stress_loss_impact
+			brave = activity_stress_loss_impact
+		}
+		## Counting how many players you have
+		scope:activity.activity_owner = {
+			if = {
+				limit = {
+					NOT = {
+						has_variable = tzykanion_team_members
+					}
+				}
+				set_variable = {
+					name = tzykanion_team_members
+					value = 0
+				}
+				change_variable = {
+					name = tzykanion_team_members
+					add = 1
+				}
+			}
+			if = {
+				limit = {
+					has_variable = tzykanion_team_members
+				}
+				change_variable = {
+					name = tzykanion_team_members
+					add = 1
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.b
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		scope:activity = {
+			accept_invitation_for_character = prev
+		}
+		set_variable = {
+			name = booked_for_a_party
+			value = scope:sender
+			days = 20
+		}
+		stress_impact = {
+			diligent = major_stress_loss
+			athletic = major_stress_loss
+			brave = major_stress_loss
+		}
+		## Counting how many players you have
+		scope:activity.activity_owner = {
+			if = {
+				limit = {
+					NOT = {
+						has_variable = tzykanion_team_members
+					}
+				}
+				set_variable = {
+					name = tzykanion_team_members
+					value = 0
+				}
+				change_variable = {
+					name = tzykanion_team_members
+					add = 1
+				}
+			}
+			if = {
+				limit = {
+					has_variable = tzykanion_team_members
+				}
+				change_variable = {
+					name = tzykanion_team_members
+					add = 1
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+			opinion_modifier = {
+				opinion_target = scope:sender
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.c
+		trigger = {
+			opinion = {
+				target = liege
+				value > -1
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			reclusive = minor_stress_loss
+		}
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_sports_events.0001.d
+		trigger = {
+			opinion = {
+				target = liege
+				value < 0
+			}
+		}
+		scope:activity = {
+			decline_invitation_for_character = prev
+		}
+		stress_impact = {
+			reclusive = minor_stress_loss
+		}
+		ai_chance = {
+			base = 10
+			ai_value_modifier = {
+				ai_boldness = 0.2
+			}
+		}
+	}
+
+	after = {
+		remove_variable = is_handling_tzykanion_invitation
+	}
+}
+
+## Hidden event to give participants their events and divide up into teams
+ave_maria_roman_administration_sports_events.0002 = {
+	hidden = yes
+
+	immediate = {
+		#Look for various conditions for host events to address:
+
+		# Look for a target you're trying to befriend
+		if = {
+			limit = {
+				any_scheme = {
+					scheme_type = befriend
+					scheme_target = {
+						in_activity_with = scope:activity.activity_owner
+					}
+				}
+			}
+			random_scheme = {
+				limit = {
+					scheme_type = befriend
+					scheme_target = { in_activity_with = scope:activity.activity_owner }
+				}
+				scheme_target = {
+					scope:activity = {
+						set_variable = {
+							name = potential_friend
+							value = prev
+						}
+					}
+				}
+				scheme_freeze_days = 10
+			}
+		}
+
+		## Divide participants into teams
+		if = {
+			limit = {
+				scope:activity.activity_owner = {
+					this = root
+				}
+			}
+			scope:activity = {
+				every_participant = {
+					add_to_list = tzykanion_players
+
+					if = {
+						limit = {
+							NOT = {
+								has_variable = roman_administration_tzykanion_xp
+							}
+						}
+						set_variable = {
+							name = roman_administration_tzykanion_xp
+							value = 0
+						}
+					}
+					if = {
+						limit = {
+							has_variable = roman_administration_tzykanion_xp
+						}
+						change_variable = {
+							name = roman_administration_tzykanion_xp
+							add = 1
+						}
+					}
+				}
+			}	
+			ordered_in_list = {
+				list = tzykanion_players
+				max = 4
+				set_variable = {
+					name = tzykanion_team_1
+					value = this
+				}
+			}
+			ordered_in_list = {
+				list = tzykanion_players
+				limit = {
+					NOT = {
+						has_variable = tzykanion_team_1
+					}
+				}
+				max = 4
+				set_variable = {
+					name = tzykanion_team_2
+					value = this
+				}
+			}
+
+			## Getting the proper saved scopes for each team member
+			## Team 1 - first team member is always root/host
+			if = {
+				limit = {
+					has_variable = tzykanion_team_1
+				}
+				scope:activity.activity_owner = {
+					save_scope_as = tzykanion_team_1_player_1
+				}
+				every_in_list = {
+					list = tzykanion_players
+					limit = {
+						has_variable = tzykanion_team_1
+					}
+					save_scope_as = tzykanion_team_1_player_2
+				}
+				every_in_list = {
+					list = tzykanion_players
+					limit = {
+						has_variable = tzykanion_team_1
+						NOT = {
+							this = scope:tzykanion_team_1_player_2
+						}
+					}
+					save_scope_as = tzykanion_team_1_player_3
+				}
+				every_in_list = {
+					list = tzykanion_players
+					limit = {
+						has_variable = tzykanion_team_1
+						NOT = {
+							this = scope:tzykanion_team_1_player_2
+							this = scope:tzykanion_team_1_player_3
+						}
+					}
+					save_scope_as = tzykanion_team_1_player_4
+				}
+			}
+			## Team 2
+			every_in_list = {
+				list = tzykanion_players
+				limit = {
+					has_variable = tzykanion_team_2
+				}
+				save_scope_as = tzykanion_team_2_player_1
+			}
+			every_in_list = {
+				list = tzykanion_players
+				limit = {
+					has_variable = tzykanion_team_2
+					NOT = {
+						this = scope:tzykanion_team_2_player_1
+					}
+				}
+				save_scope_as = tzykanion_team_2_player_2
+			}
+			every_in_list = {
+				list = tzykanion_players
+				limit = {
+					has_variable = tzykanion_team_2
+					NOT = {
+						this = scope:tzykanion_team_2_player_1
+						this = scope:tzykanion_team_2_player_2
+					}
+				}
+				save_scope_as = tzykanion_team_2_player_3
+			}
+			every_in_list = {
+				list = tzykanion_players
+				limit = {
+					has_variable = tzykanion_team_2
+					NOT = {
+						this = scope:tzykanion_team_2_player_1
+						this = scope:tzykanion_team_2_player_2
+						this = scope:tzykanion_team_2_player_3
+					}
+				}
+				save_scope_as = tzykanion_team_2_player_4
+			}
+		}		
+		
+		#Give all participants the start of the match event
+		scope:activity = {
+			every_participant = {
+				if = { #You're busy at another party! (invites were sent the same day, but you agreed to another party after this one )
+					limit = {
+						exists = var:booked_for_a_party
+						var:booked_for_a_party = { NOT = { this = scope:activity.activity_owner } }
+					}
+					trigger_event = feast.0010
+				}
+				else = {
+					trigger_event = ave_maria_roman_administration_sports_events.2001
+				}
+			}
+		}
+	}
+}
+
+## Start of the match 
+ave_maria_roman_administration_sports_events.2001 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.2001.title
+	
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_tzykanion_field
+	}
+	left_portrait = {
+		character = scope:tzykanion_team_1_player_1
+		# trigger = {
+			# has_variable = tzykanion_team_1
+		# }
+		animation = war_over_win
+	}
+	## Team 1 portraits - for team 1 root
+	right_portrait = {
+		character = scope:tzykanion_team_1_player_2
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = scope:tzykanion_team_1_player_3
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_left_portrait = {
+		character = scope:tzykanion_team_1_player_4
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:activity.activity_owner = {
+						this = root
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2001.desc.host
+			}
+			triggered_desc = {
+				trigger = {
+					scope:activity.activity_owner = {
+						NOT = { this = root }
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2001.desc.participant
+			}
+		}
+	}
+			
+	trigger = {
+				
+	}
+	
+	immediate = {
+		## Getting the prowess of each team added up
+		if = {
+			limit = {
+				scope:activity.activity_owner = {
+					this = root
+				}
+			}
+			set_variable = {
+				name = tzykanion_team_1_skill
+				value = 0
+			}
+			set_variable = {
+				name = tzykanion_team_2_skill
+				value = 0
+			}
+			scope:activity = {
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_1
+						}
+						root = {
+							change_variable = {
+								name = tzykanion_team_1_skill
+								add = prev.prowess
+							}
+						}
+					}
+				}
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_2
+						}
+						root = {
+							change_variable = {
+								name = tzykanion_team_2_skill
+								add = prev.prowess
+							}
+						}
+					}
+				}
+			}
+		}		
+		
+		
+	}
+
+	## start of the match - host team is tzykanion_team_1, tzykanion_team_2 are the other team - deciding the outcome of the match on clicking
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.A
+		custom_tooltip = ave_maria_roman_administration_sports_events.2001.OPT.A.tt
+		## Trigger the next event from the result of team's skill difference only from the host scope/perspective 
+		if = {
+			limit = {
+				scope:activity.activity_owner = {
+					this = root
+				}
+			}
+			## Team 1 is winning
+			if = {
+				limit = {
+					var:tzykanion_team_1_skill > var:tzykanion_team_2_skill
+				}
+				## How much are they winning ?
+				change_variable = {
+					name = tzykanion_team_1_skill
+					subtract = var:tzykanion_team_2_skill
+				}					
+
+				## Setting up the flags on the host for tracking
+				## Winning sligthly team 1 
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill <= 5
+					}
+					add_character_flag = team_1_winning_slightly
+				}
+				## Winning normally team 1 
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill > 5
+						var:tzykanion_team_1_skill <= 10
+					}
+					add_character_flag = team_1_winning_normally
+				}
+				## Winning easily team 1 
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill > 10
+					}
+					add_character_flag = team_1_winning_easily
+				}
+				## Sending the result event of first matches to each team members
+				scope:activity = {
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_1
+							}
+						}
+						## next event in the chain
+						trigger_event = ave_maria_roman_administration_sports_events.2002
+					}
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_2
+							}
+						}
+						## next event in the chain
+						trigger_event = ave_maria_roman_administration_sports_events.2003
+					}
+				}
+				
+			}
+			## Team 2 is winning
+			else_if = {
+				limit = {
+					var:tzykanion_team_2_skill > var:tzykanion_team_1_skill
+				}
+				## How much are they winning ?
+				change_variable = {
+					name = tzykanion_team_2_skill
+					subtract = var:tzykanion_team_1_skill
+				}					
+
+				## Setting up the flags on the host for tracking
+				## Winning sligthly team 2
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill <= 5
+					}
+					add_character_flag = team_2_winning_slightly
+				}
+				## Winning normally team 2
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill > 5
+						var:tzykanion_team_1_skill <= 10
+					}
+					add_character_flag = team_2_winning_normally
+				}
+				## Winning easily team 2
+				if = {
+					limit = {
+						var:tzykanion_team_1_skill > 10
+					}
+					add_character_flag = team_2_winning_easily
+				}
+				## Sending the result event of first matches to each team members
+				scope:activity = {
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_1
+							}
+						}
+						## next event in the chain
+						trigger_event = ave_maria_roman_administration_sports_events.2002
+					}
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_2
+							}
+						}
+						## next event in the chain
+						trigger_event = ave_maria_roman_administration_sports_events.2003
+					}
+				}
+				
+			}
+			## tie
+			else_if = {
+				limit = {
+					var:tzykanion_team_1_skill = var:tzykanion_team_2_skill
+				}
+				add_character_flag = tie
+				scope:activity = {
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_1
+							}
+						}
+						## next event in the chain for team 1
+						trigger_event = ave_maria_roman_administration_sports_events.2002
+					}
+					every_participant = {
+						if = {
+							limit = {
+								has_variable = tzykanion_team_2
+							}
+						}
+						## next event in the chain for team 2
+						trigger_event = ave_maria_roman_administration_sports_events.2003
+					}
+				}
+			}			
+		}
+	}
+}
+
+## Result of first rounds - Team 1 - events are separated because portraits do not seem to support multiple entries/triggers
+ave_maria_roman_administration_sports_events.2002 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.2001.title
+	
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_tzykanion_field
+	}
+	left_portrait = {
+		character = scope:tzykanion_team_1_player_1
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	## Team 1 portraits - for team 1 root
+	right_portrait = {
+		character = scope:tzykanion_team_1_player_2
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = scope:tzykanion_team_1_player_3
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_left_portrait = {
+		character = scope:tzykanion_team_1_player_4
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}	
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_slightly
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_winning_slightly
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_normally
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_winning_normally
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_easily
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_winning_easily
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_slightly
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_slightly
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_normally
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_normally
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_easily
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_easily
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.tie
+			}
+		}
+	}
+			
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+	}
+
+	## Team 1 Winning - Rejoice, gain prestige
+	## Team 1 losing slightly - team leader can do a daring manoeuvre to try to win/tie
+	## Team 1 losing normally - team leader can do a daring manoeuvre to try to tie
+	## Team 1 losing badly - team leader can do a daring manoeuvre to try to have an honourable loss
+	## Team 1 losing regardless of gravity - information for all the other players
+	## Team 1 losing regardeless of gravity - give up and take an infamouse loss
+	## Tie
+		
+
+	## Team 1 winning - option for team 1 members
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.A
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_1_winning_slightly
+					has_character_flag = team_1_winning_normally
+					has_character_flag = team_1_winning_easily
+				}				
+			}
+		}
+		add_prestige = 50	
+	}
+
+	## Team 2 winning slightly - option for team 1 team 1st member to do a daring manoeuvre against a team 2 player to get victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.B
+		trigger = {
+			has_variable = tzykanion_team_1
+			this = scope:tzykanion_team_1_player_1
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = tie
+					has_character_flag = team_2_winning_slightly
+				}				
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_2
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_clear_victory
+					}
+				}
+			}
+			## Success
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_close_victory
+					}
+				}			
+			}
+			## Failure
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_honorable_loss
+					}
+				}
+				
+			}
+		}	
+
+		ai_chance = {
+			base = 50
+		}
+	}
+
+	## Team 2 winning normally - option for team 1 team 1st member to do a daring manoeuvre against a team 2 player to get tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.C
+		trigger = {
+			has_variable = tzykanion_team_1
+			this = scope:tzykanion_team_1_player_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_winning_normally
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_2
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_close_victory
+					}
+					
+				}
+			}
+			## Success
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = second_round_tie
+					}
+				}			
+			}
+			## Failure
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_honorable_loss
+					}
+				}
+				
+			}
+		}	
+
+		ai_chance = {
+			base = 60
+		}
+	}
+
+	## Team 2 winning easily - option for team 1 team 1st member to do a daring manoeuvre against a team 2 player to save face
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.D
+		trigger = {
+			has_variable = tzykanion_team_1
+			this = scope:tzykanion_team_1_player_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_winning_easily
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_2
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success - you win !
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_honorable_loss
+					}
+				}
+			}
+			## Success - you win
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_honorable_loss
+					}
+				}			
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_1_humiliating_loss
+					}
+				}
+				
+			}
+		}		
+
+		ai_chance = {
+			base = 60
+		}
+	}
+
+	## Team 2 winning regardless of gravity - info event for other team players outside of the first
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.E
+		trigger = {
+			has_variable = tzykanion_team_1
+			NOT = {
+				this = scope:tzykanion_team_1_player_1
+			}
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_2_winning_slightly
+					has_character_flag = team_2_winning_normally
+					has_character_flag = team_2_winning_easily
+				}				
+			}
+		}
+		add_prestige = -50
+	}
+
+	## Team 2 winning slightly/normally/easily - give up any hope for team 1 members
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.F
+		trigger = {
+			has_variable = tzykanion_team_1
+			this = scope:tzykanion_team_1_player_1
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_2_winning_slightly
+					has_character_flag = team_2_winning_normally
+					has_character_flag = team_2_winning_easily
+				}				
+			}
+		}
+		add_prestige = -100
+		every_in_list = {
+			list = tzykanion_players
+			limit = {
+				NOT = { this = root }
+				has_variable = tzykanion_team_1
+			}
+			add_prestige = -50
+		}
+		ai_chance = {
+			base = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_trait = ambitious
+					has_trait = diligent
+					has_trait = arrogant
+					has_trait = brave
+					has_trait = vengeful
+					has_trait = stubborn
+					has_trait = wrathful
+					has_trait = impatient
+					has_trait = thorough
+					has_trait = reckless
+				}
+			}
+			modifier = {
+				factor = 10
+				OR = {
+					has_trait = lazy
+					has_trait = vulnerable
+					has_trait = fickle
+					has_trait = negligent
+					has_trait = content
+				}
+			}
+		}
+	}	
+	
+	## Tie  - info event for other team players outside of the first when tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.G
+		trigger = {
+			has_variable = tzykanion_team_1
+			NOT = {
+				this = scope:tzykanion_team_1_player_1
+			}
+			scope:activity.activity_owner = {
+				has_character_flag = tie			
+			}
+		}
+		add_prestige = 25
+	}
+
+	after = {
+		if = {
+			limit = {
+				this = scope:tzykanion_team_1_player_1
+			}
+			scope:activity = {
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_1
+						}
+						trigger_event = { id = ave_maria_roman_administration_sports_events.2004 delayed = yes }
+					}
+				}
+			}
+			
+		}
+		if = {
+			limit = {
+				this = scope:tzykanion_team_2_player_1
+			}
+			scope:activity = {
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_2
+						}
+						trigger_event = { id = ave_maria_roman_administration_sports_events.2005 delayed = yes }
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+## Result of first rounds - Team 2 - events are separated because portraits do not seem to support multiple entries/triggers
+ave_maria_roman_administration_sports_events.2003 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.2001.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_tzykanion_field
+	}
+	## Team 2 portraits - for team 2 root
+	left_portrait = {
+		character = scope:tzykanion_team_2_player_1
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	right_portrait = {
+		character = scope:tzykanion_team_2_player_2
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = scope:tzykanion_team_2_player_3
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	lower_left_portrait = {
+		character = scope:tzykanion_team_2_player_4
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_slightly
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2003.desc.team_1_winning_slightly
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_normally
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_winning_normally
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_winning_easily
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_winning_easily
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_slightly
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_slightly
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_normally
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_normally
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_winning_easily
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_winning_easily
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.tie
+			}
+		}
+	}
+			
+	trigger = {
+				
+	}
+	
+	immediate = {
+		
+	}
+
+	## Team 2 Winning - Rejoice, gain prestige
+	## Team 2 losing slightly - do a daring manoeuvre to try to win/tie
+	## Team 2 losing normally - do a daring manoeuvre to try to tie
+	## Team 2 losing badly - do a daring manoeuvre to try to have an honourable loss
+	## Team 2 losing regardeless of gravity - give up and take an infamouse loss
+
+	## Team 1 winning slightly - option for team 2 team 1st member to do a daring manoeuvre against a team 1 player to get victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.A
+		trigger = {
+			has_variable = tzykanion_team_2
+			this = scope:tzykanion_team_2_player_1
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = tie
+					has_character_flag = team_1_winning_slightly
+				}
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_1
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_clear_victory
+					}
+					
+				}
+			}
+			## Success
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_close_victory
+					}
+				}			
+			}
+			## Failure
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.B.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_honorable_loss
+					}
+				}
+				
+			}
+		}
+
+		ai_chance = {
+			base = 50
+		}
+	}
+
+	## Team 1 winning normally - option for team 2 team 1st member to do a daring manoeuvre against a team 1 player to get tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.B
+		trigger = {
+			has_variable = tzykanion_team_2
+			this = scope:tzykanion_team_2_player_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_winning_normally
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_1
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_slight_victory
+					}
+				}
+			}
+			## Success
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = second_round_tie
+					}
+				}			
+			}
+			## Failure
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_honorable_loss
+					}
+				}
+				
+			}
+		}
+
+		ai_chance = {
+			base = 60
+		}
+	}
+
+	## Team 1 winning easily - option for team 2 team 1st member to do a daring manoeuvre against a team 1 player to save face
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.C
+		trigger = {
+			has_variable = tzykanion_team_2
+			this = scope:tzykanion_team_2_player_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_winning_easily
+			}
+		}
+		random_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_1
+			}
+			save_scope_as = tzykanion_nemesis
+		}
+		duel = {
+			skill = prowess
+			target = scope:tzykanion_nemesis
+
+			## Huge success - you win !
+			15 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.success
+				add_prestige = 25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_honorable_loss
+					}
+				}
+			}
+			## Success - you win
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2
+				}
+				add_prestige = 25
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.small_success
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_honorable_loss
+					}
+				}			
+			}
+			25 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -1
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.OPT.C.failure
+				add_prestige = -25
+				## subsequent event
+				scope:activity = {
+					scope:activity.activity_owner = {
+						add_character_flag = team_2_humiliating_loss
+					}
+				}
+				
+			}
+		}
+
+		ai_chance = {
+			base = 60
+		}
+	}
+
+	## Team 1 winning slightly/normally/easily - give up any hope option for team 2 members
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.D
+		trigger = {
+			has_variable = tzykanion_team_2
+			this = scope:tzykanion_team_2_player_1
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_2_winning_slightly
+					has_character_flag = team_2_winning_normally
+					has_character_flag = team_2_winning_easily
+				}
+				
+			}
+		}
+		add_prestige = -100
+		every_in_list = {
+			list = tzykanion_players
+			limit = {
+				has_variable = tzykanion_team_2
+				NOT = { this = root } 
+			}
+			add_prestige = -50
+		}
+		ai_chance = {
+			base = 40
+			modifier = {
+				factor = 0
+				OR = {
+					has_trait = ambitious
+					has_trait = diligent
+					has_trait = arrogant
+					has_trait = brave
+					has_trait = vengeful
+					has_trait = stubborn
+					has_trait = wrathful
+					has_trait = impatient
+					has_trait = thorough
+					has_trait = reckless
+				}
+			}
+			modifier = {
+				factor = 10
+				OR = {
+					has_trait = lazy
+					has_trait = vulnerable
+					has_trait = fickle
+					has_trait = negligent
+					has_trait = content
+				}
+			}
+		}
+	}
+
+	## Team 1 winning regardless of gravity - info event for other team players outside of the first
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.E
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_1_winning_slightly
+					has_character_flag = team_1_winning_normally
+					has_character_flag = team_1_winning_easily
+				}				
+			}
+		}
+		add_prestige = -50
+	}
+
+	## Team 2 winning - option for team 2 members
+	option = {
+		name = ave_maria_roman_administration_sports_events.2001.OPT.J
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = team_2_winning_slightly
+					has_character_flag = team_2_winning_normally
+					has_character_flag = team_2_winning_easily
+				}
+				
+			}
+		}
+		add_prestige = 50			
+	}
+
+	## Tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2002.OPT.F
+		trigger = {
+			has_variable = tzykanion_team_2
+			NOT = {
+				this = scope:tzykanion_team_1_player_1
+			}
+			scope:activity.activity_owner = {
+				OR = {
+					has_character_flag = tie
+				}				
+			}
+		}
+		add_prestige = 25
+	}
+
+	after = {
+		if = {
+			limit = {
+				this = scope:tzykanion_team_1_player_1
+			}
+			scope:activity = {
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_1
+						}
+						trigger_event = { id = ave_maria_roman_administration_sports_events.2004 delayed = yes }
+					}
+				}
+			}
+			
+		}
+		if = {
+			limit = {
+				this = scope:tzykanion_team_2_player_1
+			}
+			scope:activity = {
+				every_participant = {
+					if = {
+						limit = {
+							has_variable = tzykanion_team_2
+						}
+						trigger_event = { id = ave_maria_roman_administration_sports_events.2005 delayed = yes }
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+## Result of second rounds - Team 1 - events are separated because portraits do not seem to support multiple entries/triggers
+ave_maria_roman_administration_sports_events.2004 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.2001.title
+	
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_tzykanion_field
+	}
+	left_portrait = {
+		character = scope:tzykanion_team_1_player_1
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	## Team 1 portraits - for team 1 root
+	right_portrait = {
+		character = scope:tzykanion_team_1_player_2
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = scope:tzykanion_team_1_player_3
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}
+	lower_left_portrait = {
+		character = scope:tzykanion_team_1_player_4
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_1
+			}
+		}
+		animation = war_over_win
+	}	
+
+	desc = {
+		first_valid = {
+			## Team 1 results
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_clear_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_clear_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_close_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_close_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_honorable_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_honorable_loss
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = second_round_tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.second_round_tie
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_humiliating_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_humiliating_loss
+			}
+			## Team 2 results
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_clear_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_2_clear_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_close_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_2_close_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_honorable_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_2_honorable_loss
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = second_round_tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.second_round_tie
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_1
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_humiliating_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_2_humiliating_loss
+			}
+		}
+	}
+
+	## TEAM 1
+	## Clear victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_1_clear_victory
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_clear_victory
+			}
+		}
+		add_prestige = 100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## Close victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_1_close_victory
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_close_victory
+			}
+		}
+		add_prestige = 75
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## honorable_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_1_honorable_loss
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_honorable_loss
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## second_round_tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.second_round_tie
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = second_round_tie
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## humiliating_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_1_humiliating_loss
+
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_humiliating_loss
+			}
+		}
+		add_prestige = -100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## TEAM 2
+	## Clear victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_2_clear_victory
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_clear_victory
+			}
+		}
+		add_prestige = -75
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## Close victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_2_close_victory
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_close_victory
+			}
+		}
+		add_prestige = -25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## honorable_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_2_honorable_loss
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_honorable_loss
+			}
+		}
+		add_prestige = 75
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## second_round_tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.second_round_tie
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = second_round_tie
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## humiliating_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2004.OPT.A.team_2_humiliating_loss
+
+		trigger = {
+			has_variable = tzykanion_team_1
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_humiliating_loss
+			}
+		}
+		add_prestige = 100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	after = {
+		trigger_event = { id = ave_maria_roman_administration_sports_events.20018 days = 2 }
+	}
+}
+
+## Result of second rounds - Team 2 - events are separated because portraits do not seem to support multiple entries/triggers
+ave_maria_roman_administration_sports_events.2005 = {
+	type = character_event
+	title = ave_maria_roman_administration_sports_events.2001.title
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_tzykanion_field
+	}
+	## Team 2 portraits - for team 2 root
+	left_portrait = {
+		character = scope:tzykanion_team_2_player_1
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	right_portrait = {
+		character = scope:tzykanion_team_2_player_2
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	lower_center_portrait = {
+		character = scope:tzykanion_team_2_player_3
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+	lower_left_portrait = {
+		character = scope:tzykanion_team_2_player_4
+		trigger = {
+			root = {
+				has_variable = tzykanion_team_2
+			}
+		}
+		animation = war_over_win
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_clear_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2005.desc.team_2_clear_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_close_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2005.desc.team_2_close_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_honorable_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_2_honorable_loss
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = second_round_tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2005.desc.second_round_tie
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_2_humiliating_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2005.desc.team_2_humiliating_loss
+			}
+
+			## Team 1 results
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_clear_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_clear_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_close_victory
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_close_victory
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_honorable_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2002.desc.team_1_honorable_loss
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = second_round_tie
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.second_round_tie
+			}
+			triggered_desc = {
+				trigger = {
+					has_variable = tzykanion_team_2
+					scope:activity.activity_owner = {
+						has_character_flag = team_1_humiliating_loss
+					}
+				}
+				desc = ave_maria_roman_administration_sports_events.2004.desc.team_1_humiliating_loss
+			}
+		}
+	}
+
+	## TEAM 2
+	## Clear victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_2_clear_victory
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_clear_victory
+			}
+		}
+		add_prestige = 100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## Close victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_2_close_victory
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_close_victory
+			}
+		}
+		add_prestige = 75
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## honorable_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_2_honorable_loss
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_honorable_loss
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## second_round_tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.second_round_tie
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = second_round_tie
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## humiliating_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_2_humiliating_loss
+
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_2_humiliating_loss
+			}
+		}
+		add_prestige = -100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## TEAM 1
+	## Clear victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_1_clear_victory
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_clear_victory
+			}
+		}
+		add_prestige = -100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## Close victory
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_1_close_victory
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_close_victory
+			}
+		}
+		add_prestige = -25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## honorable_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_1_honorable_loss
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_honorable_loss
+			}
+		}
+		add_prestige = 75
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## second_round_tie
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.second_round_tie
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = second_round_tie
+			}
+		}
+		add_prestige = 25
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	## humiliating_loss
+	option = {
+		name = ave_maria_roman_administration_sports_events.2005.OPT.A.team_1_humiliating_loss
+
+		trigger = {
+			has_variable = tzykanion_team_2
+			scope:activity.activity_owner = {
+				has_character_flag = team_1_humiliating_loss
+			}
+		}
+		add_prestige = 100
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 5
+				var:roman_administration_tzykanion_xp <= 10
+			}
+			add_trait = tzykanion_player_1
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 10
+				var:roman_administration_tzykanion_xp <= 15
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 15
+				var:roman_administration_tzykanion_xp <= 20
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+		if = {
+			limit = {
+				has_variable = roman_administration_tzykanion_xp
+				var:roman_administration_tzykanion_xp >= 20
+				var:roman_administration_tzykanion_xp <= 25
+			}
+			change_trait_rank = {
+				trait = tzykanion_player
+				rank = 1
+				max = 4
+			}
+		}
+	}
+
+	after = {
+		trigger_event = { id = ave_maria_roman_administration_sports_events.20018 days = 2 }
+	}
+}
+
+## End of the match
+ave_maria_roman_administration_sports_events.20018 = {
+	hidden = yes
+	
+	
+	immediate = {
+		scope:activity = {
+			every_participant = {
+				remove_variable = tzykanion_team_1
+				remove_variable = tzykanion_team_2
+				remove_variable = tzykanion_team_members
+				remove_variable = tzykanion_team_1_skill
+				remove_variable = tzykanion_team_2_skill
+				remove_character_flag = tie
+				remove_character_flag = tzykanion_team_1_
+				remove_character_flag = team_1_winning_slightly
+				remove_character_flag = team_1_winning_normally
+				remove_character_flag = team_1_winning_easily
+				remove_character_flag = team_2_winning_slightly
+				remove_character_flag = team_2_winning_normally
+				remove_character_flag = team_2_winning_easily
+				remove_character_flag = team_1_humiliating_loss
+				remove_character_flag = team_2_humiliating_loss
+				remove_character_flag = second_round_tie
+				remove_character_flag = team_1_close_victory
+				remove_character_flag = team_1_honorable_loss
+				remove_character_flag = team_1_close_victory
+				remove_character_flag = team_1_clear_victory
+				remove_character_flag = team_2_close_victory
+				remove_character_flag = team_2_honorable_loss
+				remove_character_flag = team_2_close_victory
+				remove_character_flag = team_2_clear_victory
+			}
+			activity_owner = {
+				remove_variable = tzykanion_team_1
+				remove_variable = tzykanion_team_2
+				remove_variable = tzykanion_team_members
+				remove_variable = tzykanion_team_1_skill
+				remove_variable = tzykanion_team_2_skill
+				remove_character_flag = tie
+				remove_character_flag = tzykanion_team_1_
+				remove_character_flag = team_1_winning_slightly
+				remove_character_flag = team_1_winning_normally
+				remove_character_flag = team_1_winning_easily
+				remove_character_flag = team_2_winning_slightly
+				remove_character_flag = team_2_winning_normally
+				remove_character_flag = team_2_winning_easily
+				remove_character_flag = team_1_humiliating_loss
+				remove_character_flag = team_2_humiliating_loss
+				remove_character_flag = second_round_tie
+				remove_character_flag = team_1_close_victory
+				remove_character_flag = team_1_honorable_loss
+				remove_character_flag = team_1_close_victory
+				remove_character_flag = team_1_clear_victory
+				remove_character_flag = team_2_close_victory
+				remove_character_flag = team_2_honorable_loss
+				remove_character_flag = team_2_close_victory
+				remove_character_flag = team_2_clear_victory
+			}
+			complete_activity = yes
+		}
+	}
+
+	
+}
+
+
+## No one showed up
+ave_maria_roman_administration_sports_events.4003 = {
+
+}
+
+## Start of the match - for guests
+ave_maria_roman_administration_sports_events.2501 = {
+
+}
+
+## host died
+ave_maria_roman_administration_sports_events.5003 = {
+
+}
+
+## Host imprison - for the host
+ave_maria_roman_administration_sports_events.5004 = {
+
+}
+
+## Host imprisoned - for the participants
+ave_maria_roman_administration_sports_events.5005 = {
+
+}

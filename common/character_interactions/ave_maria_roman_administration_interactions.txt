@@ -444,8 +444,9 @@ roman_administration_name_junior_emperor = {
 			NOT = {
 				has_trait = junior_emperor
 			}
-			NOT = {
+			NOR = {
 				has_government = theocracy_government
+				has_government = feudal_government
 			}
 		}
 	}
@@ -728,7 +729,12 @@ roman_administration_fire_bureaucrat = {
 		scope:recipient = { 
 			roman_administration_character_is_in_the_empire = yes
 			highest_held_title_tier >= tier_duchy 
-			NOT = { has_government = theocracy_government }					
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}				
 		}
 	}
 
@@ -989,7 +995,12 @@ roman_administration_replace_bureaucrat = {
 		scope:recipient = { 
 			roman_administration_character_is_in_the_empire = yes
 			highest_held_title_tier >= tier_duchy 
-			NOT = { has_government = theocracy_government }					
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}							
 		}
 	}
 

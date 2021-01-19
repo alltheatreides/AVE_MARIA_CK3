@@ -203,6 +203,8 @@ pope = {
 
 	flag = can_not_marry
 
+	random_creation = 0
+
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -222,6 +224,8 @@ bishop = {
 
 	flag = can_not_marry
 
+	random_creation = 0
+
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -238,6 +242,8 @@ bishop = {
 
 basileus = {
 	index = 470
+
+	random_creation = 0
 
 	vassal_opinion = 5
 	religious_vassal_opinion = 5
@@ -260,6 +266,8 @@ basileus = {
 
 junior_emperor = {
 	index = 471
+
+	random_creation = 0
 
 	vassal_opinion = 5
 	monthly_prestige = 1
@@ -424,4 +432,225 @@ chariot_racer = {
 
 	ai_energy = 25
 	ai_boldness = 5
+}
+
+rhetorician_1 = {
+	index = 479
+
+	minimum_age = 16
+	group = education_learning_rhetorician
+	level = 1
+
+	stewardship = 1
+	learning = 1
+	monthly_learning_lifestyle_xp_gain_mult = 0.1
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_rhetorician_1_desc
+			}
+			desc = trait_rhetorician_1_character_desc
+		}
+	}
+}
+
+rhetorician_2 = {
+	index = 480
+
+	minimum_age = 16
+	group = education_learning_rhetorician
+	level = 2
+
+	stewardship = 2
+	learning = 2
+	monthly_learning_lifestyle_xp_gain_mult = 0.2
+
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_rhetorician_2_desc
+			}
+			desc = trait_rhetorician_2_character_desc
+		}
+	}
+}
+
+rhetorician_3 = {
+	index = 481
+
+	minimum_age = 16
+	group = education_learning_rhetorician
+	level = 3
+
+	stewardship = 3
+	learning = 3
+	monthly_learning_lifestyle_xp_gain_mult = 0.3
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_rhetorician_3_desc
+			}
+			desc = trait_rhetorician_3_character_desc
+		}
+	}
+}
+
+rhetorician_4 = {
+	index = 480
+
+	minimum_age = 16
+	group = education_learning_rhetorician
+	level = 4
+
+	stewardship = 4
+	learning = 4
+	monthly_learning_lifestyle_xp_gain_mult = 0.4
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_rhetorician_4_desc
+			}
+			desc = trait_rhetorician_4_character_desc
+		}
+	}
+}
+
+
+tzykanion_player_1 = {
+	index = 481
+
+	minimum_age = 16
+	group = tzykanion_player
+	level = 1
+
+	prowess = 1
+	martial = 1
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_tzykanion_player_1_desc
+			}
+			desc = trait_tzykanion_player_1_character_desc
+		}
+	}
+}
+
+tzykanion_player_2 = {
+	index = 482
+
+	minimum_age = 16
+	group = tzykanion_player
+	level = 2
+
+	prowess = 2
+	martial = 1
+
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_tzykanion_player_2_desc
+			}
+			desc = trait_tzykanion_player_2_character_desc
+		}
+	}
+}
+
+tzykanion_player_3 = {
+	index = 483
+
+	minimum_age = 16
+	group = tzykanion_player
+	level = 3
+
+	prowess = 3
+	martial = 2
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_tzykanion_player_3_desc
+			}
+			desc = trait_tzykanion_player_3_character_desc
+		}
+	}
+}
+
+tzykanion_player_4 = {
+	index = 484
+
+	minimum_age = 16
+	group = tzykanion_player
+	level = 4
+
+	prowess = 4
+	martial = 2
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_tzykanion_player_4_desc
+			}
+			desc = trait_tzykanion_player_4_character_desc
+		}
+	}
 }
