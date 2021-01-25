@@ -563,11 +563,13 @@
  tooltip_roman_administration_already_heir_to_administrative_title_vote_opinion_negative:0 "Is already Heir to another Administrative Title: $VALUE|=+0$"
  tooltip_roman_administration_legitimacy_vote_opinion_positive:0 "Legitimacy: $VALUE|=+0$"
 
- ## MAN AT ARMS REGIMENT
+ ## MAN / MEN AT ARMS REGIMENT
  tagma_heavy_cavalry:0 "Kataphraktoi"
  tagma_heavy_cavalry_flavor:0 "#F Heavily armed and armored, equipped with melee and ranged weapons, Kataphraktoi can break almost any defensive line with their charge.#!"
  tagma_varangian:0 "Varangian"
  tagma_varangian_flavor:0 "#F Equipped with distinctive fearsome axes, the Varangians are both bodyguard to the Emperor and effective soldiers on the battlefield.#!"
+ tagma_menaulatoi:0 "Menaulatoi"
+ tagma_menaulatoi_flavor:0 "#F A recent innovation, the Menaulatoi are strong and valiant men armed with long spears used before the main infantry formation to bar the way of enemy cavalry."
 
  
  ### TRAITS
@@ -657,8 +659,6 @@
  ave_maria_roman_administration_tzykanion_game_confirm:0 "Saddle my horse !"
  ave_maria_roman_administration_tzykanion_game_lazy:0 "#N You will not lose [stress|E] since you are [GetTrait('lazy').GetName( GetPlayer )]#!"
 
- 
-
  ## Vanilla copied decision for custom art
  invite_knights_decision_roman:0 "Invite $knight_culture_player_plural_no_tooltip$"
  invite_knights_decision_roman_confirm:0 "Send the herald"
@@ -667,6 +667,13 @@
  start_hunt_decision_roman_desc:0 "#F The untamed wilds are calling, and all manner of beasts are awaiting my spear and arrow!#!"
  start_hunt_decision_roman_confirm:0 "Sound the horn!"
  start_hunt_decision_roman_tooltip:0 "A [hunt|E] will be held"
+
+ ## UTILITY
+ ave_maria_utility_roman_emperor_update_vassal_taxes:0 "Utility - Update Vassal Taxation"
+ ave_maria_utility_roman_emperor_update_vassal_taxes_desc:0 "Decision to update vassal taxation from vanilla errors that can creep up after reloading a save.\nOnce this decision has been used, let one day pass to gain the proper taxation."
+ ave_maria_utility_roman_emperor_update_vassal_taxes_tooltip:0 "Refresh Taxation"
+ ave_maria_utility_roman_emperor_update_vassal_taxes_confirm:0 "Update"
+
 
 
 
@@ -709,6 +716,9 @@
  roman_administration_change_to_theme:0 "Change to Theme"
  roman_administration_change_to_theme_desc:0 "Will change government to Theme."
 
+ roman_administration_change_vassal_contract_popularity_loss:0 "You lose @popularity_icon! #P 20#! [popularity|E]"
+ roman_administration_change_vassal_contract_popularity_gain:0 "You gain @popularity_icon! #P 20#! [popularity|E]"
+
 
  ### RELATIONS
  set_relation_junior_emperor:0 "Appoints [recipient.GetShortUIName|U] as Symbasileis."
@@ -739,8 +749,8 @@
  ave_maria_roman_administration_events.0003.desc_no_war:0 "I inherited the mantle of the Empire from my predecessor, but it is now time to perform the public ceremony of the Imperial Coronation in Constantinople so the whole people can see us a legitimate emperor."
  ave_maria_roman_administration_events.0003.desc_yes_war:0 "I inherited the mantle of the empire, but despite the ongoing war it is now more than ever time to perform the public ceremony of the coronation in Constantinople so the whole people is reassured and our legitimacy firmly set."
  ave_maria_roman_administration_events.0003.desc_crowning_junior_emperor:0 "I am Basileus of the Romans in my own right, but in order to perpetuate my rule, it is now time to perform the public ceremony of my junior emperor coronation in Constantinople so the whole people is reassured and his legitimacy firmly set to smooth out the succession when I ascend in Heaven."
- ave_maria_roman_administration_events.0003.OPT_A:0 "Spend lavishly, everyone must see our generosity and magnificence. @popularity_icon! +#P20#!"
- ave_maria_roman_administration_events.0003.OPT_B:0 "Proceed with the ceremony as is customary. @popularity_icon! +#P10#!"
+ ave_maria_roman_administration_events.0003.OPT_A:0 "Spend lavishly, everyone must see our generosity and magnificence."
+ ave_maria_roman_administration_events.0003.OPT_B:0 "Proceed with the ceremony as is customary."
  ave_maria_roman_administration_events.0003.OPT_C:0 "Save up as much as we can on the ceremony, we need the money elsewhere."
  ave_maria_roman_administration_events.0004.title:0 "Imperial Procession"
  ave_maria_roman_administration_events.0004_desc:0 "It is now time to start the coronation procession. As prescribed by the Book of Ceremonies, I moved through the rooms and sections of the Great Palace of Constantinople wearing my short purple cloak over a long-sleeved tunic accompanied by my personal staff and bodyguards. As we moved through the palace complex I paused to meet the chiefs of the army, the consuls and senators.\nThe arrangement was very artful; all women stood behind silken drapes so that none of the men could see the adornment of their faces, while they could see everything that was to be seen. Some singers stood robed in marvelous vestments, they had long, wide robes like sticharia, but all belted, and the sleeves of the robes were also long and wide. Some robes were of brocade, others of silk, with gold and braid on their shoulders. On their heads the singers wore pointed hats with braid."
@@ -755,9 +765,9 @@
  ave_maria_roman_administration_events.0006.title:0 "Imperial Procession"
  ave_maria_roman_administration_events.0006_desc:0 "After receiveing the kiss of the various factions leaders, important people and a few selected individuals, it is now time to enter back to the nave of the church to receive communion at the hands of the Patriarch at the altar of Christ together with the priests. As I am leaving the church, showers of small silver coins with a cross are showered upon be before I head back on horseback to the Great Palace for a post-coronation feast."
  ave_maria_roman_administration_events.0006.desc_crowning_junior_emperor:0 "After receiveing the kiss of the various factions leaders, important people and a few selected individuals, it is now time to enter back to the nave of the church to receive communion at the hands of the Patriarch at the altar of Christ together with the priests. As we are leaving the church, showers of small silver coins with a cross are showered upon be before we head back on horseback to the Great Palace for a post-coronation feast."
- ave_maria_roman_administration_events.0006.OPT_A:0 "Basileus, finally! @legitimacy_icon! #P 20#!"
- ave_maria_roman_administration_events.0006.OPT_B:0 "Basileus, finally! @legitimacy_icon! #P 20#!"
- ave_maria_roman_administration_events.0006.OPT_C:0 "He is now properly Junior Emperor! @legitimacy_icon! #P 20#!"
+ ave_maria_roman_administration_events.0006.OPT_A:0 "Basileus, finally!"
+ ave_maria_roman_administration_events.0006.OPT_B:0 "Basileus, finally!"
+ ave_maria_roman_administration_events.0006.OPT_C:0 "He is now properly Junior Emperor!"
 
  ave_maria_roman_administration_events.0007:0 "Invitation to the Coronation"
  ave_maria_roman_administration_events.0007.opening:0 "Invitation to the Imperial Coronation"
@@ -823,7 +833,7 @@
  ave_maria_roman_administration_imperial_expedition_events.0006.title:0 "Victory Races"
  ave_maria_roman_administration_imperial_expedition_events.0006_desc:0 "To celebrate our victory even further, I could organize chariot races in the Hippodrome ?\n\nSome church officials would disapprove this display reminiscent of the pagan past but it would definitely please the people of the City."
  ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A:0 "Of course !"
- ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A.tt:0 "You gain @popularity_icon! #P 20#!"
+ ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A.tt:0 "You gain @popularity_icon! #P 20#! [popularity|E]"
  ave_maria_roman_administration_imperial_expedition_events.0006.OPT_B:0 "I will even compete in it myself !"
  ave_maria_roman_administration_imperial_expedition_events.0006.OPT_C:0 "The church would be displeased..."
 
@@ -863,7 +873,7 @@
  ave_maria_roman_administration_reconquest_events.0001.OPT.C.tt:0 "A new Kourator will inherit the Kouratoreia and all its de-jure counties."
  ave_maria_roman_administration_reconquest_events.0001.OPT.F:0 "Actually I will keep it myself."
  ave_maria_roman_administration_reconquest_events.0001.OPT.F.tt.1:0 "You will keep the title."
- ave_maria_roman_administration_reconquest_events.0001.OPT.F.tt.2:0 "You lose @popularity_icon! #N 100#!"
+ ave_maria_roman_administration_reconquest_events.0001.OPT.F.tt.2:0 "You lose @popularity_icon! #N 100#! [popularity|E]"
 
  ## Tzykanion EVENTS 
  ave_maria_roman_administration_sports_events.2001.title:0 "Tzykanion Game"
@@ -930,18 +940,18 @@
  ave_maria_roman_administration_sports_events.2001.desc.host:0 "[ROOT.Var('tzykanion_team_1_skill').GetValue|0]\n[ROOT.Var('tzykanion_team_2_skill').GetValue|0]"
 
  ##Legitimacy and Popularity tooltip
- ave_maria_roman_administration_massive_popularity_gain.tt:0 "You gain @popularity_icon! #P 20#!"
- ave_maria_roman_administration_normal_popularity_gain.tt:0 "You gain @popularity_icon! #P 10#!"
- ave_maria_roman_administration_small_popularity_gain.tt:0 "You gain @popularity_icon! #P 5#!"
- ave_maria_roman_administration_massive_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 20#!"
- ave_maria_roman_administration_normal_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 10#!"
- ave_maria_roman_administration_small_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 5#!"
- ave_maria_roman_administration_massive_popularity_loss.tt:0 "You lose @popularity_icon! #N 20#!"
- ave_maria_roman_administration_medium_popularity_loss.tt:0 "You lose @popularity_icon! #N 10#!"
- ave_maria_roman_administration_small_popularity_loss.tt:0 "You lose @popularity_icon! #N 5#!"
+ ave_maria_roman_administration_massive_popularity_gain.tt:0 "You gain @popularity_icon! #P 20#! [popularity|E]"
+ ave_maria_roman_administration_normal_popularity_gain.tt:0 "You gain @popularity_icon! #P 10#! [popularity|E]"
+ ave_maria_roman_administration_small_popularity_gain.tt:0 "You gain @popularity_icon! #P 5#! [popularity|E]"
+ ave_maria_roman_administration_massive_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 20#! [popularity|E]"
+ ave_maria_roman_administration_normal_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 10#! [popularity|E]"
+ ave_maria_roman_administration_small_legitimacy_gain.tt:0 "You gain @legitimacy_icon! #P 5#! [popularity|E]"
+ ave_maria_roman_administration_massive_popularity_loss.tt:0 "You lose @popularity_icon! #N 20#! [popularity|E]"
+ ave_maria_roman_administration_medium_popularity_loss.tt:0 "You lose @popularity_icon! #N 10#! [popularity|E]"
+ ave_maria_roman_administration_small_popularity_loss.tt:0 "You lose @popularity_icon! #N 5#! [popularity|E]"
  
 
- ### Lifestyle
+ ### LIFESTYLE
  basileus_lifestyle_name:0 "Basileus"
  basileus_lifestyle_desc:0 "Focus on administrating the Empire of the Romans, lead its armies as well as further arts and science."
  
@@ -954,6 +964,61 @@
  basileus_lifestyle_scholarship_focus:0 "Scholarship Focus"
  basileus_lifestyle_scholarship_focus_desc:0 "Philosophy and Arts make us civilized."
  basileus_lifestyle_scholarship_focus_effect_desc:0 "Focusing on Scholarship will grants:"
+
+ #Martial: Strategy Tree
+ military_name:0 "Military"
+ basileus_lead_by_example_perk_name:0 "Lead by Example"
+ basileus_organized_supply_chain_perk_name:0 "Organized Supply Chain"
+ basileus_prepared_fortifications_perk_name:0 "Rigorous Garrisoning"
+ basileus_efficient_pay_system_perk_name:0 "Efficient Pay System"
+ basileus_phokian_tactics_perk_name:0 "Phokian Tactics"
+ basileus_siege_specialists_perk_name:0 "Siege Specialists"
+ basileus_relentless_drillmaster_perk_name:0 "Relentless Drillmaster"
+ basileus_military_tutoring_perk_name:0 "Military Tutoring"
+ basileus_strategist_perk_name:0 "Strategist"
+ basileus_military_tutoring_perk_effect:0 "Gain #P 50%#! of [marshal|E]' primary [skills|E]"
+ MARSHAL_GRANT_SKILL_BONUS:0 "Gain #P 50%#! of [marshal|E]' primary [skills|E]"
+ I_GAIN_MARSHAL_SKILL_MYSELF:1 "#P 50%#! of [marshal|E]'[skills|E] added to your own"
+ THEY_GAIN_MARSHAL_SKILL_THEMSELVES:0 "#P 50%#! of [marshal|E]'[skills|E] added to [CHARACTER.GetHerHis] own"
+ basileus_strategist_perk_effect:0 "You gain the [trait|E] [GetTrait('strategist').GetName( GetNullCharacter )|LV]"
+ #Diplomacy: Majesty Tree
+ administration_name:0 "Administration"
+ basileus_extravagant_court_titles_perk_name:0 "Extravagant Court Titles"
+ basileus_ingenious_fiscal_loopholes_perk_name:0 "Fiscal Loopholes"
+ basileus_city_above_all_perk_name:0 "The City Above All"
+ basileus_relentless_tax_officials_perk_name:0 "Relentless Tax Officials"
+ basileus_man_of_the_people_perk_name:0 "Man of the People"
+ basileus_elite_diplomats_perk_name:0 "Elite Diplomats"
+ basileus_autocrat_life_perk_name:0 "Autocrat Life"
+ basileus_pedigree_perk_name:0 "Eugenios"
+ basileus_administrator_perk_name:0 "Administrator"
+ basileus_ingenious_fiscal_loopholes_perk_effect:0 "Can use the [extort_subjects|E] [decision|E]"
+ roman_administration_the_city_above_all_modifier:0 "The City Above All"
+ basileus_city_above_all_perk_effect:0 "Every [county|E] in the [de_jure|E] Roman Empire gains [GetModifier('roman_administration_the_city_above_all').GetNameWithTooltip]"
+ #Learning: Scholarship Tree
+ basileus_scholarship_name:0 "Scholarship"
+ basileus_elite_pedadogue_perk_name:0 "Elite Pedagogues"
+ basileus_legal_code_simplification_perk_name:0 "Legal Code Simplification"
+ basileus_professional_workforce_perk_name:0 "Renowned Architects"
+ basileus_scholar_sponsor_perk_name:0 "Church Sponsor"
+ basileus_dynastic_glorification_perk_name:0 "Dynastic Glorification"
+ basileus_hospital_sponsor_perk_name:0 "Hospital Sponsor"
+ basileus_pedagogy_perk_name:0 "Pedagogy"
+ basileus_open_minded_perk_name:0 "Open-Minded"
+ basileus_apostate_perk_name:0 "Apostate"
+ basileus_prophet_perk_name:0 "Prophet"
+ basileus_scientific_perk_name:0 "Scientific"
+ basileus_planned_cultivation_perk_name:0 "Planned Cultivation"
+ basileus_scholarly_circles_perk_name:0 "Scholarly Circles"
+ basileus_learn_on_the_job_perk_name:0 "Learn on the Job"
+ basileus_sanctioned_loopholes_perk_name:0 "Sanctioned Loopholes"
+ basileus_scholar_perk_name:0 "Scholar"
+
+
+ action_lifestyle_basileus:0 "$action_can_spend_perk_point$"
+ action_lifestyle_basileus_label:0 "$action_can_spend_perk_point_label$"
+ action_lifestyle_basileus_desc:0 "$action_can_spend_perk_point_desc$"
+ action_lifestyle_basileus_click:0 "$action_can_spend_perk_point_click$"
 
 
  ### CHARACTERS
@@ -1006,6 +1071,8 @@
  tolerated_desc:0 "Tolerated"
  worthy_desc:0 "Worthy"
  beloved_desc:0 "Beloved"
+
+ roman_administration_the_city_above_all:0 "The City Above All"
  
  
  emperor_salary_cost_modifier_1:0 "Total Salary Cost"

@@ -95,3 +95,21 @@ stress_loss_obsessive_hunter_decision = {
 		}
 	}
 }
+
+ave_maria_utility_roman_emperor_update_vassal_taxes = {
+	desc = ave_maria_utility_roman_emperor_update_vassal_taxes_desc
+	selection_tooltip = ave_maria_utility_roman_emperor_update_vassal_taxes_tooltip
+
+	cooldown = { days = 1 }
+
+	is_shown = {
+		is_ai = no
+		any_held_title = {
+			this = title:e_byzantium
+		}
+	}
+
+	effect = {
+		trigger_event = ave_maria_utility_events.0001
+	}
+}

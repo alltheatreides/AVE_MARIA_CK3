@@ -1343,10 +1343,48 @@ roman_administration_change_vassal_contract = {
 
 	on_accept = {
 		scope:actor = {
+			
 			send_interface_message = {
 				type = msg_vassal_contract_change
 				title = modify_vassal_contract_interaction_notification
 				right_icon = scope:recipient
+
+				if = {
+					limit = { 
+						always = scope:hook 
+						scope:recipient = { count_obligation_improvements_for_vassal < 0 }
+					}
+					use_hook = scope:recipient
+				}
+
+				if = {
+					limit = {
+						NOT = { always = scope:hook }
+						scope:recipient = { count_obligation_improvements_for_vassal < 0 }
+					}
+					custom_tooltip = roman_administration_change_vassal_contract_popularity_loss
+					scope:actor = {
+						change_variable = {
+							name = roman_administration_popularity
+							subtract = 20
+						}
+					}
+					
+				}
+
+				if = {
+					limit = {
+						NOT = { always = scope:hook }
+						scope:recipient = { count_obligation_improvements_for_vassal_include_hook > 0 }
+					}
+					custom_tooltip = roman_administration_change_vassal_contract_popularity_gain
+					scope:actor = {
+						change_variable = {
+							name = roman_administration_popularity
+							add = 20
+						}
+					}					
+				}
 				
 				scope:recipient = {
 					hidden_effect = { 
@@ -1362,7 +1400,6 @@ roman_administration_change_vassal_contract = {
 					hidden_effect = {
 						roman_administration_update_government_after_contract_change = yes
 					}					
-
 					
 					if = {
 						limit = {
@@ -1392,27 +1429,8 @@ roman_administration_change_vassal_contract = {
 						roman_administration_set_salary_level = { SALARY_OBLIGATION_TYPE = imperial_high_office_salary }
 					}				
 
-					# custom_description_no_bullet = {
-					# 	text = roman_administration_popularity_hit
-						
-					# 	if = {
-					# 		limit = {
-					# 			scope:recipient = { roman_administration_popularity_decrease_trigger = yes }								
-					# 		}
-					# 		scope:actor = {
-					# 			stress_impact = {
-					# 				just = medium_stress_impact_gain
-					# 				generous = medium_stress_impact_gain
-					# 			}
-					# 			roman_administration_remove_popularity_small_amount = yes
-					# 		}
-					# 	}
-						
-					# }
 					
-				}
-				scope:actor = {
-					roman_administration_remove_popularity_small_amount = yes
+					
 				}
 			}
 		}

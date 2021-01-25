@@ -4953,7 +4953,7 @@ roman_administration_remove_popularity_small_amount = {
 	roman_administration_update_popularity_variable = yes	
 	change_variable = {
 		name = roman_administration_popularity
-		add = -5
+		subtract = 5
 	}	
 }
 
@@ -4962,7 +4962,7 @@ roman_administration_remove_popularity_medium_amount = {
 	roman_administration_update_popularity_variable = yes	
 	change_variable = {
 		name = roman_administration_popularity
-		add = -10
+		subtract = 10
 	}
 }
 
@@ -4971,7 +4971,7 @@ roman_administration_remove_popularity_massive_amount = {
 	roman_administration_update_popularity_variable = yes	
 	change_variable = {
 		name = roman_administration_popularity
-		add = -15
+		subtract = 15
 	}
 }
 
@@ -5309,7 +5309,7 @@ roman_administration_remove_legitimacy_small_amount = {
 	roman_administration_update_legitimacy_variable = yes
 	change_variable = {
 		name = roman_administration_legitimacy
-		add = -5
+		subtract = 5
 	}
 }
 
@@ -5318,7 +5318,7 @@ roman_administration_remove_legitimacy_medium_amount = {
 	roman_administration_update_legitimacy_variable = yes
 	change_variable = {
 		name = roman_administration_legitimacy
-		add = -10
+		subtract = 10
 	}
 }
 
@@ -5327,7 +5327,7 @@ roman_administration_remove_legitimacy_massive_amount = {
 	roman_administration_update_legitimacy_variable = yes
 	change_variable = {
 		name = roman_administration_legitimacy
-		add = -15
+		subtract = 15
 	}
 }
 
@@ -5390,3 +5390,13 @@ roman_administration_update_legitimacy_level_display = {
 	
 }
 
+
+#############################################
+# LIFESTYLE EFFECTS							#
+#############################################
+
+basileus_military_tutoring_perk_effect = {
+	global = MARSHAL_GRANT_SKILL_BONUS
+	first = I_GAIN_MARSHAL_SKILL_MYSELF
+	third = THEY_GAIN_MARSHAL_SKILL_THEMSELVES
+}

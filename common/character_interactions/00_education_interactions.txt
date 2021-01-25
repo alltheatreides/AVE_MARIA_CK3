@@ -132,6 +132,25 @@ educate_child_interaction = {
 				}
 				add_to_list = characters
 			}
+			every_vassal = {
+				limit = {
+					is_physically_able_adult = yes
+					num_of_relation_ward < 2
+					is_imprisoned = no
+					NOT = { has_trait = incapable }
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						is_physically_able_adult = yes
+						num_of_relation_ward < 2
+						is_imprisoned = no
+						NOT = { has_trait = incapable }
+					}
+					add_to_list = characters
+				}
+			}
 		}
 	}
 
@@ -437,7 +456,7 @@ educate_child_interaction = {
 	ai_target_quick_trigger = {
 		adult = no
 	}
-	ai_frequency = 24
+	ai_frequency = 12
 	
 	ai_potential = {
 		always = yes
@@ -455,6 +474,95 @@ educate_child_interaction = {
 			scope:actor = scope:secondary_actor
 			scope:secondary_recipient = {
 				is_heir_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 2000
+			scope:secondary_actor = {
+				has_trait = intellect_good_3
+			}
+		}
+
+		modifier = {
+			add = 1000
+			scope:secondary_actor = {
+				has_trait = intellect_good_2
+			}
+		}
+
+		modifier = {
+			add = 500
+			scope:secondary_actor = {
+				OR = {
+					has_trait = intellect_good_1
+					has_trait = shrewd
+				}
+			}
+		}
+
+		modifier = {
+			add = {
+				value = scope:secondary_actor.diplomacy
+				multiply = 30
+			}
+			scope:secondary_recipient = {
+				has_focus = education_diplomacy
+			}
+			scope:secondary_actor = {
+				diplomacy >= 12 
+			}
+		}
+
+		modifier = {
+			add = {
+				value = scope:secondary_actor.martial
+				multiply = 30
+			}
+			scope:secondary_recipient = {
+				has_focus = education_martial
+			}
+			scope:secondary_actor = {
+				martial >= 12 
+			}
+		}
+
+		modifier = {
+			add = {
+				value = scope:secondary_actor.stewardship
+				multiply = 30
+			}
+			scope:secondary_recipient = {
+				has_focus = education_stewardship
+			}
+			scope:secondary_actor = {
+				stewardship >= 12 
+			}
+		}
+
+		modifier = {
+			add = {
+				value = scope:secondary_actor.intrigue
+				multiply = 30
+			}
+			scope:secondary_recipient = {
+				has_focus = education_intrigue
+			}
+			scope:secondary_actor = {
+				intrigue >= 12 
+			}
+		}
+
+		modifier = {
+			add = {
+				value = scope:secondary_actor.learning
+				multiply = 30
+			}
+			scope:secondary_recipient = {
+				has_focus = education_learning
+			}
+			scope:secondary_actor = {
+				learning >= 12 
 			}
 		}
 		
@@ -537,19 +645,19 @@ educate_child_interaction = {
 			}
 		}
 
-		modifier = { # Random peasants can only dream about educating noble children!
-			add = -1000
-			scope:actor = {
-				is_lowborn = no
-			}
-			scope:secondary_recipient = {
-				is_lowborn = yes
-				NOR = {
-					is_councillor = yes
-					is_knight = yes
-				}
-			}
-		}
+		# modifier = { # Random peasants can only dream about educating noble children!
+		# 	add = -1000
+		# 	scope:actor = {
+		# 		is_lowborn = no
+		# 	}
+		# 	scope:secondary_recipient = {
+		# 		is_lowborn = yes
+		# 		NOR = {
+		# 			is_councillor = yes
+		# 			is_knight = yes
+		# 		}
+		# 	}
+		# }
 
 		modifier = { # Don't care about random children
 			factor = 0
