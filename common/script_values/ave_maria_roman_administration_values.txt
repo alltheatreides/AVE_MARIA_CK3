@@ -1,0 +1,90 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA SCRIPTED VALUES															   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA ROMAN SCRIPTED VALUES													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+
+
+###########################################
+# LEGITIMACY						      #
+###########################################
+
+roman_administration_legitimacy_monthly = {
+	value = 0
+
+	switch = {
+		trigger = trait
+
+		basileus = { add = 1 }
+		junior_emperor = { add = 0.5 }
+		born_in_the_purple = { add = 0.5 }
+		murderer = { substract = 0.5 }
+	}
+	
+	if = {
+		limit = {
+			has_trait = junior_emperor
+		}
+		add = 0.5
+	}
+	
+	if = {
+		limit = {
+			OR = {
+				roman_administration_holds_doukaton_title_trigger = yes
+				roman_administration_holds_high_administration_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
+			}
+			
+		}
+		add = 0.25
+	}
+
+	if = {
+		limit = {
+			has_dynasty = yes
+			dynasty = {
+				has_variable = roman_administration_dynastic_number_of_emperors
+				var:roman_administration_dynastic_number_of_emperors >= 1
+			}
+		}
+		add = 0.5
+	}
+
+	if = {
+		limit = {
+			any_spouse = {
+				NOT = { faith = faith:orthodox }
+			}
+		}
+		substract = 0.25
+	}
+	
+	## Married to a non roman character
+	if = {
+		limit = {
+			any_spouse = {
+				NOT = { culture = culture:greek }
+			}
+		}
+		substract = 0.25
+	}
+
+	## bad traits
+	if = {
+		limit = {
+			OR = {
+				has_trait = eunuch
+				has_trait = infirm
+				has_trait = maimed
+			}
+		}
+		substract = 1
+	}
+}

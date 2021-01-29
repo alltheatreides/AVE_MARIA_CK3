@@ -130,7 +130,7 @@ ave_maria_roman_administration_imperial_expedition_events.0001 = {
 	}
 
 	trigger = {
-				
+		is_at_war = no
 	}
 	
 	immediate = {
@@ -335,7 +335,11 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 	option = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_A
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt		
-		roman_administration_add_popularity_massive_amount = yes
+		#roman_administration_add_popularity_massive_amount = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = 20
+		}
 		remove_short_term_gold = 200
 		capital_province = {
 			spawn_activity = {
@@ -351,7 +355,11 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 	## Go pray
 	option = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_B
-		roman_administration_add_popularity_small_amount = yes
+		#roman_administration_add_popularity_small_amount = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = 5
+		}
 		custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
 		add_piety = 150
 		hidden_effect = {
@@ -362,7 +370,11 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 	## Just wait
 	option = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0004.OPT_C
-		roman_administration_remove_popularity_medium_amount = yes		
+		#roman_administration_remove_popularity_medium_amount = yes		
+		change_variable = {
+			name = roman_administration_popularity
+			add = -5
+		}
 		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0005 days = 30 }
@@ -433,7 +445,11 @@ ave_maria_roman_administration_imperial_expedition_events.0005 = {
 		add_prestige = 75
 		remove_short_term_gold = 75
 		custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
-		roman_administration_add_popularity_medium_amount = yes		
+		#roman_administration_add_popularity_medium_amount = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = 10
+		}		
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0006 days = 3 }
 		}
@@ -479,7 +495,11 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A
 		remove_short_term_gold = 300
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
-		roman_administration_add_popularity_massive_amount = yes		
+		#roman_administration_add_popularity_massive_amount = yes		
+		change_variable = {
+			name = roman_administration_popularity
+			add = 20
+		}
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
 		}
@@ -494,7 +514,11 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 		remove_short_term_gold = 300
 		add_piety = -75
 		custom_tooltip = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_A.tt
-		roman_administration_add_popularity_massive_amount = yes		
+		#roman_administration_add_popularity_massive_amount = yes	
+		change_variable = {
+			name = roman_administration_popularity
+			add = 20
+		}	
 		hidden_effect = {
 			add_character_flag = am_racing_emperor
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
@@ -509,7 +533,11 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 	option = {
 		name = ave_maria_roman_administration_imperial_expedition_events.0006.OPT_C
 		add_piety = 150
-		roman_administration_remove_popularity_medium_amount = yes		
+		#roman_administration_remove_popularity_medium_amount = yes		
+		change_variable = {
+			name = roman_administration_popularity
+			add = -10
+		}
 		#roman_administration_add_legitimacy_small_amount = yes
 		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
 		#custom_tooltip = ave_maria_roman_administration_small_legitimacy_gain.tt
@@ -809,7 +837,11 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 			NOT = { has_character_flag = am_racing_emperor }
 		}
 		add_prestige = 150	
-		roman_administration_add_popularity_medium_amount = yes
+		#roman_administration_add_popularity_medium_amount = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = 10
+		}
 		custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
 	}
 
@@ -823,8 +855,16 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 		}
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
 		custom_tooltip = ave_maria_roman_administration_small_legitimacy_gain.tt
-		roman_administration_add_popularity_massive_amount = yes	
-		roman_administration_add_legitimacy_small_amount = yes
+		#roman_administration_add_popularity_massive_amount = yes	
+		change_variable = {
+			name = roman_administration_popularity
+			add = 20
+		}
+		change_variable = {
+			name = roman_administration_legitimacy
+			add = 5
+		}
+		#roman_administration_add_legitimacy_small_amount = yes
 		add_prestige = 300		
 	}
 
@@ -845,7 +885,11 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 			}
 		}
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_gain.tt
-		roman_administration_add_popularity_massive_amount = yes
+		#roman_administration_add_popularity_massive_amount = yes
+		change_variable = {
+			name = roman_administration_popularity
+			add = 20
+		}
 		
 	}
 

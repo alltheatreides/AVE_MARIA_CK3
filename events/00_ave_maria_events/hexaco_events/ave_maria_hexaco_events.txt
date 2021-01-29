@@ -76,12 +76,15 @@ ave_maria_hexaco_traits_events.0001 = {
 	
 	immediate = {
 
+		add_hexaco_personality_trait_adolescent = yes
+
 		## For characters already having some traits, assign the trait variable for personality and education
 		add_hexaco_personality_trait_variable = yes
 		
 		## For characters not having the HEXACO traits give them the personality traits and corresponding variables AND Education traits if old enough
 		## Scripted Effect in HEXACO_scripted_effects basically if you don't have any of the traits in each category it adds randomly one of each category and also sets the trait variable
-		add_random_hexaco_personality_trait = { WHO = this } 
+		#add_random_hexaco_personality_trait = { WHO = this } 
+
 
 		if = {
 			limit = {

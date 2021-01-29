@@ -187,10 +187,15 @@ on_title_gain = {
 				# }				
 			# }
 			
-			## Starting the terms of office event chain
+			## Starting the terms of office event chain - removed
 			root = {
 				remove_character_modifier = roman_administration_emperor_favourite
 				#trigger_event = ave_maria_roman_administration_events.00012
+			}
+
+			add_character_modifier = {
+				modifier = roman_administration_new_office
+				days = 180
 			}
 
 			change_government = roman_administration_theme_government
@@ -244,6 +249,21 @@ on_title_gain = {
 				}
 				add_unpressed_claim = scope:title
 			}
+		}
+
+		## Event for the Emperor when he gets a duchy title so he can redistribute it
+		if = {
+			limit = {
+				scope:title = {
+					tier = tier_duchy
+				}
+				root = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}
+			trigger_event = ave_maria_roman_administration_reconquest_events.0001
 		}
 
 		### AVE MARIA CHRISTIAN FLAVOUR EFFECTS
@@ -320,37 +340,39 @@ on_title_gain_usurpation = {
 # scope:new_holder = new holder.
 on_title_lost = {
 	events = {
+		ave_maria_roman_administration_utility_events.0001
 	}
 
-	effect = {
-		## Removing traits and modifiers if you are the Basileus
-		if = {
-			limit = {
-				scope:title = { this = title:e_byzantium }
-				exists = root
-				root = { is_alive = yes }
-			}
-			root = {
-				roman_administration_remove_salary_indicator = yes
-				remove_trait = basileus
-				remove_trait = junior_emperor
-			}
-		}
+	## this below has been moved to events above as error log spazzes out
+	# effect = {
+	# 	## Removing traits and modifiers if you are the Basileus
+	# 	if = {
+	# 		limit = {
+	# 			scope:title = { this = title:e_byzantium }
+	# 			exists = root
+	# 			root = { is_alive = yes }
+	# 		}
+	# 		root = {
+	# 			roman_administration_remove_salary_indicator = yes
+	# 			remove_trait = basileus
+	# 			remove_trait = junior_emperor
+	# 		}
+	# 	}
 
-		## Removing salary modifier indicator if you are a high official
-		if = {
-			limit = {
-				scope:title = {
-					OR = {
-						roman_administration_holds_high_office_title_trigger = yes
-					}
-				}
-			}
-			root = {
-				remove_character_modifier = roman_administration_high_official_salary
-			}
-		}
-	}
+	# 	## Removing salary modifier indicator if you are a high official
+	# 	if = {
+	# 		limit = {
+	# 			scope:title = {
+	# 				OR = {
+	# 					roman_administration_is_a_high_office_title_trigger = yes
+	# 				}
+	# 			}
+	# 		}
+	# 		root = {
+	# 			remove_character_modifier = roman_administration_high_official_salary
+	# 		}
+	# 	}
+	# }
 }
 
 # A claim is gained by a character

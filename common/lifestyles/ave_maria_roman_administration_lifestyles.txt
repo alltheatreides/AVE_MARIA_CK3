@@ -1,8 +1,33 @@
-﻿basileus_lifestyle = {
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA LIFESTYLE																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA ROMAN LIFESTYLE 														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+basileus_lifestyle = {
 	is_valid = {
 		any_held_title = {
 			this = title:e_byzantium
 		}
+	}
+	xp_per_level = 1000
+	base_xp_gain = 25
+}
+
+strategos_lifestyle = {
+	is_valid = {
+		any_liege_or_above = {
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+		highest_held_title_tier = tier_duchy
+		uses_roman_govt = yes
 	}
 	xp_per_level = 1000
 	base_xp_gain = 25

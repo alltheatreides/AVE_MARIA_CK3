@@ -953,8 +953,7 @@
 
  ### LIFESTYLE
  basileus_lifestyle_name:0 "Basileus"
- basileus_lifestyle_desc:0 "Focus on administrating the Empire of the Romans, lead its armies as well as further arts and science."
- 
+ basileus_lifestyle_desc:0 "Focus on administrating the Empire of the Romans, lead its armies as well as further arts and science." 
  basileus_lifestyle_rulership_focus:0 "Administration Focus"
  basileus_lifestyle_rulership_focus_desc:0 "The Administration is the blood of the Empire."
  basileus_lifestyle_rulership_focus_effect_desc:0 "Focusing on Administration will grants:"
@@ -964,6 +963,9 @@
  basileus_lifestyle_scholarship_focus:0 "Scholarship Focus"
  basileus_lifestyle_scholarship_focus_desc:0 "Philosophy and Arts make us civilized."
  basileus_lifestyle_scholarship_focus_effect_desc:0 "Focusing on Scholarship will grants:"
+
+ strategos_lifestyle_name:0 "Strategos"
+ strategos_lifestyle_desc:0 "Focus on martial life, drilling your troops for war, training yourself and your household in martial arts. "
 
  #Martial: Strategy Tree
  military_name:0 "Military"
@@ -981,6 +983,7 @@
  I_GAIN_MARSHAL_SKILL_MYSELF:1 "#P 50%#! of [marshal|E]'[skills|E] added to your own"
  THEY_GAIN_MARSHAL_SKILL_THEMSELVES:0 "#P 50%#! of [marshal|E]'[skills|E] added to [CHARACTER.GetHerHis] own"
  basileus_strategist_perk_effect:0 "You gain the [trait|E] [GetTrait('strategist').GetName( GetNullCharacter )|LV]"
+ basileus_lifestyle_military_focus_modifier:0 "Military Focus"
  #Diplomacy: Majesty Tree
  administration_name:0 "Administration"
  basileus_extravagant_court_titles_perk_name:0 "Extravagant Court Titles"
@@ -995,6 +998,7 @@
  basileus_ingenious_fiscal_loopholes_perk_effect:0 "Can use the [extort_subjects|E] [decision|E]"
  roman_administration_the_city_above_all_modifier:0 "The City Above All"
  basileus_city_above_all_perk_effect:0 "Every [county|E] in the [de_jure|E] Roman Empire gains [GetModifier('roman_administration_the_city_above_all').GetNameWithTooltip]"
+ basileus_lifestyle_rulership_focus_modifier:0 "Administration Focus" 
  #Learning: Scholarship Tree
  basileus_scholarship_name:0 "Scholarship"
  basileus_elite_pedadogue_perk_name:0 "Elite Pedagogues"
@@ -1013,7 +1017,7 @@
  basileus_learn_on_the_job_perk_name:0 "Learn on the Job"
  basileus_sanctioned_loopholes_perk_name:0 "Sanctioned Loopholes"
  basileus_scholar_perk_name:0 "Scholar"
-
+ basileus_lifestyle_scholarship_focus_modifier:0 "Scholarship Focus"
 
  action_lifestyle_basileus:0 "$action_can_spend_perk_point$"
  action_lifestyle_basileus_label:0 "$action_can_spend_perk_point_label$"
@@ -1060,6 +1064,11 @@
 
  roman_administration_frustrated_constantinople_populace:0 "Frustrated Populace"
  roman_administration_happy_constantinople_populace:0 "Content Populace"
+
+ roman_administration_new_office:0 "Newly Appointed"
+ roman_administration_new_office_modifier:0 "Newly Appointed"
+ roman_administration_new_office_desc:0 "This character has been recently appointed to his post and is yet to be fully operational."
+ roman_administration_new_office_modifier_desc:0 "This character has been recently appointed to his post and is yet to be fully operational."
 
  ## LEGITIMACY & POPULARITY
  legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!\n \n\n#T [legitimacy_level|E]: @legitimacy_icon!"
