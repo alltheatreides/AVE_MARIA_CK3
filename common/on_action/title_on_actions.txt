@@ -96,8 +96,11 @@ on_title_gain = {
 					#uses_roman_govt = yes
 					NOT = { any_held_title = { this = title:e_byzantium } }
 				}
+				# scope:previous_holder = {
+				# 	roman_administration_character_is_in_the_empire = yes
+				# }
 				scope:title = {
-					tier >= tier_duchy
+					tier = tier_duchy
 					NOT = { this = title:e_byzantium }
 				}
 			}
@@ -193,10 +196,16 @@ on_title_gain = {
 				#trigger_event = ave_maria_roman_administration_events.00012
 			}
 
-			add_character_modifier = {
-				modifier = roman_administration_new_office
-				days = 180
+			if = {
+				limit = {
+					uses_roman_govt = yes
+				}
+				add_character_modifier = {
+					modifier = roman_administration_new_office
+					days = 180
+				}
 			}
+			
 
 			change_government = roman_administration_theme_government
 
@@ -250,6 +259,22 @@ on_title_gain = {
 				add_unpressed_claim = scope:title
 			}
 		}
+
+		## CHECKING IF YOU ARE NOT ADMINISTRATIVE AND IN THE EMPIRE
+		# if = {
+		# 	limit = {
+		# 		root = {
+		# 			roman_administration_character_is_in_the_empire = yes
+		# 		}
+		# 		scope:title = {
+		# 			## is the title in th eproper list
+		# 			NOT = {
+
+		# 			}
+		# 		}
+		# 	}
+		# 	change_government = 
+		# }
 
 		## Event for the Emperor when he gets a duchy title so he can redistribute it
 		if = {

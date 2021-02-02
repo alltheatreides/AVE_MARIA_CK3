@@ -17,23 +17,52 @@
 
 roman_administration_legitimacy_monthly = {
 	value = 0
-
-	switch = {
-		trigger = trait
-
-		basileus = { add = 1 }
-		junior_emperor = { add = 0.5 }
-		born_in_the_purple = { add = 0.5 }
-		murderer = { substract = 0.5 }
-	}
 	
+	## Traits
+	if = {
+		limit = {
+			has_trait = basileus
+		}
+		add = 0.5
+	}
 	if = {
 		limit = {
 			has_trait = junior_emperor
 		}
-		add = 0.5
+		add = 0.25
+	}
+	if = {
+		limit = {
+			has_trait = born_in_the_purple
+		}
+		add = 0.25
+	}
+	if = {
+		limit = {
+			has_trait = murderer
+		}
+		add = -0.25
 	}
 	
+	## Vassal contracts
+	if = {
+		limit = {
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+		every_vassal = {
+			## logisima_tax
+			if = {
+				limit = {
+					vassal_contract_has_flag = church_imperial_tax_flag
+				}
+				add = -0.05
+			}
+		}
+	}
+	
+
 	if = {
 		limit = {
 			OR = {
@@ -43,7 +72,7 @@ roman_administration_legitimacy_monthly = {
 			}
 			
 		}
-		add = 0.25
+		add = 0.1
 	}
 
 	if = {
@@ -54,7 +83,7 @@ roman_administration_legitimacy_monthly = {
 				var:roman_administration_dynastic_number_of_emperors >= 1
 			}
 		}
-		add = 0.5
+		add = 0.25
 	}
 
 	if = {
@@ -63,7 +92,7 @@ roman_administration_legitimacy_monthly = {
 				NOT = { faith = faith:orthodox }
 			}
 		}
-		substract = 0.25
+		add = -0.1
 	}
 	
 	## Married to a non roman character
@@ -73,7 +102,7 @@ roman_administration_legitimacy_monthly = {
 				NOT = { culture = culture:greek }
 			}
 		}
-		substract = 0.25
+		add = -0.1
 	}
 
 	## bad traits
@@ -85,6 +114,115 @@ roman_administration_legitimacy_monthly = {
 				has_trait = maimed
 			}
 		}
-		substract = 1
+		add = -0.5
 	}
+}
+
+###########################################
+# POPULARITY						      #
+###########################################
+
+roman_administration_popularity_monthly = {
+	value = 0
+	
+	if = {
+		limit = {
+			has_trait = basileus
+		}
+		add = 0.3
+	}
+	if = {
+		limit = {
+			has_trait = junior_emperor
+		}
+		add = 0.1
+	}
+	if = {
+		limit = {
+			has_trait = born_in_the_purple
+		}
+		add = 0.1
+	}
+	if = {
+		limit = {
+			has_trait = murderer
+		}
+		add = -0.1
+	}
+
+	## Vassal contracts as basileus
+	if = {
+		limit = {
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+		every_vassal = {
+			if = {
+				limit = {
+					vassal_contract_has_flag = sympatheia_flag
+				}
+				add = 0.15
+			}
+			if = {
+				limit = {
+					vassal_contract_has_flag = kapnikon_tax
+				}
+				add = 0.1
+			}
+	
+			## Negative
+			## hexafollon_tax
+			if = {
+				limit = {
+					vassal_contract_has_flag = severe_imperial_tax_flag
+				}
+				add = -0.05
+			}
+			## kommerkion_tax
+			if = {
+				limit = {
+					vassal_contract_has_flag = merchant_imperial_tax_flag
+				}
+				add = -0.1
+			}
+			## logisima_tax
+			if = {
+				limit = {
+					vassal_contract_has_flag = church_imperial_tax_flag
+				}
+				add = -0.15
+			}
+			## allelengyon_tax
+			if = {
+				limit = {
+					vassal_contract_has_flag = maximum_imperial_tax_flag
+				}
+				add = -0.2
+			}
+		}
+	}
+	
+	
+	if = {
+		limit = {
+			OR = {
+				roman_administration_holds_doukaton_title_trigger = yes
+				roman_administration_holds_high_administration_title_trigger = yes
+				roman_administration_holds_tagma_title_trigger = yes
+			}
+			
+		}
+		add = 0.1
+	}
+
+	if = {
+		limit = {
+			any_spouse = {
+				NOT = { faith = faith:orthodox }
+			}
+		}
+		add = -0.25
+	}
+	
 }

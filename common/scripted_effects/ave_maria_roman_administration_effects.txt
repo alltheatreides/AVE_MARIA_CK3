@@ -856,9 +856,20 @@ roman_administration_game_start_legitimacy_distribution = {
 	every_vassal = {
 		if = {
 			limit = {
-				roman_administration_can_be_eligible_for_emperor_trigger = yes
+				OR = {
+					roman_administration_holds_high_office_title_trigger = yes
+					roman_administration_holds_doukaton_title_trigger = yes
+				}
 			}
 			roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_monthly_display
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_monthly_display
+				value = roman_administration_popularity_monthly
+			}
 		}
 		
 	}
@@ -868,6 +879,14 @@ roman_administration_game_start_legitimacy_distribution = {
 				roman_administration_can_be_eligible_for_emperor_trigger = yes
 			}
 			roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_monthly_display
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_monthly_display
+				value = roman_administration_popularity_monthly
+			}
 		}
 		
 	}	
@@ -916,12 +935,131 @@ roman_administration_accession_to_basileus_effect = {
 
 	roman_administration_update_popularity_variable = yes
 	roman_administration_update_legitimacy_variable = yes
+	
+	if = {
+		limit = {
+			var:roman_administration_legitimacy < 25
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_usurper_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 25
+			var:roman_administration_legitimacy < 50
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_improper_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 50
+			var:roman_administration_legitimacy < 75
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_accepted_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 75
+			var:roman_administration_legitimacy < 150
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_established_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 150
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_venerated_desc
+		}
+	}
+
+	if = {
+		limit = {
+			var:roman_administration_popularity < 25
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_despised_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 25
+			var:roman_administration_popularity < 50
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_unworthy_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 50
+			var:roman_administration_popularity < 75
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_tolerated_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 75
+			var:roman_administration_popularity < 150
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_worthy_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 150
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_beloved_desc
+		}
+	}
+
+	set_variable = {
+		name = roman_administration_legitimacy_info_display_basileus
+		value = roman_administration_legitimacy_monthly
+	}
+	set_variable = {
+		name = roman_administration_popularity_info_display_basileus
+		value = roman_administration_popularity_monthly
+	}
+
 	every_vassal = {
 		if = {
 			limit = {
-				roman_administration_can_be_eligible_for_emperor_trigger = yes
+				OR = {
+					roman_administration_holds_high_office_title_trigger = yes
+					roman_administration_holds_doukaton_title_trigger = yes
+				}
 			}
 			roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_info_display_basileus
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_info_display_basileus
+				value = roman_administration_popularity_monthly
+			}
 		}
 		
 	}
@@ -931,6 +1069,14 @@ roman_administration_accession_to_basileus_effect = {
 				roman_administration_can_be_eligible_for_emperor_trigger = yes
 			}
 			roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_info_display_basileus
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_info_display_basileus
+				value = roman_administration_popularity_monthly
+			}
 		}
 		
 	}	
@@ -4802,44 +4948,44 @@ roman_administration_update_popularity_variable = {
 		value = 0
 	}
 	## Dividing Prestige Value by 10 as prestige values are pretty big
-	set_variable = {
-		name = calculate_character_popularity_prestige
-		value = 0
-	}
-	change_variable = {
-		name = calculate_character_popularity_prestige
-		add = prestige 
-	}
-	change_variable = {
-		name = calculate_character_popularity_prestige
-		multiply = 0.1 
-	}
+	# set_variable = {
+	# 	name = calculate_character_popularity_prestige
+	# 	value = 0
+	# }
+	# change_variable = {
+	# 	name = calculate_character_popularity_prestige
+	# 	add = prestige 
+	# }
+	# change_variable = {
+	# 	name = calculate_character_popularity_prestige
+	# 	multiply = 0.1 
+	# }
 	# Adding the result to popularity variable
-	change_variable = {
-		name = calculate_character_popularity
-		add = var:calculate_character_popularity_prestige
-	}
-	remove_variable = calculate_character_popularity_prestige
+	# change_variable = {
+	# 	name = calculate_character_popularity
+	# 	add = var:calculate_character_popularity_prestige
+	# }
+	# remove_variable = calculate_character_popularity_prestige
 
 	## Dividing Piety Value by 10 as piety values are pretty big
-	set_variable = {
-		name = calculate_character_popularity_piety
-		value = 0
-	}
-	change_variable = {
-		name = calculate_character_popularity_piety
-		add = piety 
-	}
-	change_variable = {
-		name = calculate_character_popularity_piety
-		multiply = 0.1 
-	}
-	# Adding the result to popularity variable
-	change_variable = {
-		name = calculate_character_popularity
-		add = var:calculate_character_popularity_piety
-	}
-	remove_variable = calculate_character_popularity_piety
+	# set_variable = {
+	# 	name = calculate_character_popularity_piety
+	# 	value = 0
+	# }
+	# change_variable = {
+	# 	name = calculate_character_popularity_piety
+	# 	add = piety 
+	# }
+	# change_variable = {
+	# 	name = calculate_character_popularity_piety
+	# 	multiply = 0.1 
+	# }
+	# # Adding the result to popularity variable
+	# change_variable = {
+	# 	name = calculate_character_popularity
+	# 	add = var:calculate_character_popularity_piety
+	# }
+	# remove_variable = calculate_character_popularity_piety
 	
 	## Straight up adding Martial, Stewardship, Prowess
 	change_variable = {
@@ -5001,60 +5147,54 @@ roman_administration_remove_popularity_massive_amount = {
 
 ## Character Scope effect to display correct Popularity Level
 roman_administration_update_popularity_level_display = {
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_popularity			
-			var:roman_administration_popularity > 0			
-			var:roman_administration_popularity <= 50			
-		}				
-		set_variable = {				
-			name = roman_administration_popularity_level_display			
-			value = flag:despised			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_popularity			
-			var:roman_administration_popularity > 50
-			var:roman_administration_popularity <= 100			
-		}				
-		set_variable = {				
-			name = roman_administration_popularity_level_display			
-			value = flag:unworthy			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_popularity			
-			var:roman_administration_popularity > 100
-			var:roman_administration_popularity <= 150			
-		}				
-		set_variable = {				
-			name = roman_administration_popularity_level_display			
-			value = flag:tolerated			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_popularity			
-			var:roman_administration_popularity > 200
-			var:roman_administration_popularity <= 250			
-		}				
-		set_variable = {				
-			name = roman_administration_popularity_level_display			
-			value = flag:worthy			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_popularity			
-			var:roman_administration_popularity >= 300		
-		}				
-		set_variable = {				
-			name = roman_administration_popularity_level_display			
-			value = flag:beloved			
-		}				
-	}			
+	if = {
+		limit = {
+			var:roman_administration_popularity < 25
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_despised_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 25
+			var:roman_administration_popularity < 50
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_unworthy_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 50
+			var:roman_administration_popularity < 75
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_tolerated_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 75
+			var:roman_administration_popularity < 150
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_worthy_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_popularity >= 150
+		}
+		set_variable = {
+			name = popularity_level
+			value = flag:popularity_level_beloved_desc
+		}
+	}		
 	
 }
 
@@ -5358,61 +5498,54 @@ roman_administration_remove_legitimacy_massive_amount = {
 
 ## Character Scope effect to display correct Legitimacy Level
 roman_administration_update_legitimacy_level_display = {
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_legitimacy			
-			var:roman_administration_legitimacy > 0			
-			var:roman_administration_legitimacy <= 50			
-		}				
-		set_variable = {				
-			name = roman_administration_legitimacy_level_display			
-			value = flag:despised			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_legitimacy			
-			var:roman_administration_legitimacy > 50
-			var:roman_administration_legitimacy <= 100			
-		}				
-		set_variable = {				
-			name = roman_administration_legitimacy_level_display			
-			value = flag:unworthy			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_legitimacy			
-			var:roman_administration_legitimacy > 100
-			var:roman_administration_legitimacy <= 150			
-		}				
-		set_variable = {				
-			name = roman_administration_legitimacy_level_display			
-			value = flag:tolerated			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_legitimacy			
-			var:roman_administration_legitimacy > 200
-			var:roman_administration_legitimacy <= 250			
-		}				
-		set_variable = {				
-			name = roman_administration_legitimacy_level_display			
-			value = flag:worthy			
-		}				
-	}	
-	if = { 					
-		limit = {				
-			has_variable = roman_administration_legitimacy			
-			var:roman_administration_legitimacy >= 300		
-		}				
-		set_variable = {				
-			name = roman_administration_legitimacy_level_display			
-			value = flag:beloved			
-		}				
-	}			
-	
+	if = {
+		limit = {
+			var:roman_administration_legitimacy < 25
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_usurper_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 25
+			var:roman_administration_legitimacy < 50
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_improper_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 50
+			var:roman_administration_legitimacy < 75
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_accepted_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 75
+			var:roman_administration_legitimacy < 150
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_established_desc
+		}
+	}
+	if = {
+		limit = {
+			var:roman_administration_legitimacy >= 150
+		}
+		set_variable = {
+			name = legitimacy_level
+			value = flag:legitimacy_level_venerated_desc
+		}
+	}
 }
 
 

@@ -276,15 +276,17 @@
  
  roman_administration_popularity_hit:0 "Will decrease Popularity by 5"
 
+ kommerkion_tax_tt:0 "Reduces Popularity"
+
  ### IMPERIAL OBLIGATIONS - LEVIES AND TAXES
  # Basic Tax Slider
  imperial_obligation_tax:0 "Imperial Taxation"
  sympatheia_tax:0 "Sympatheia"
  sympatheia_tax_short:0 "Sympatheia"
- sympatheia_tax_desc:0 "The state has applied sympatheia to this province, temporarily exempting the people from taxation in response to a crisis."
+ sympatheia_tax_desc:0 "[popularity|E]: @popularity_icon! #P +0.15#!/monthly #!\n\nThe state has applied sympatheia to this province, temporarily exempting the people from taxation in response to a crisis."
  kapnikon_tax:0 "Kapnikon Tax"
  kapnikon_tax_short:0 "Kapnikon"
- kapnikon_tax_desc:0 "The kapnikon is the standard imperial personal tax, paid by everyone."
+ kapnikon_tax_desc:0 "[popularity|E]: @popularity_icon! #P +0.1#!/monthly #!\n\nThe kapnikon is the standard imperial personal tax, paid by everyone."
  demosia_tax:0 "Demosia Tax"
  demosia_tax_short:0 "Demosia"
  demosia_tax_desc:0 "The demosia is the standard imperial land tax, paid on all productive land above a certain value."
@@ -299,13 +301,13 @@
  hexafollon_tax_desc:0 "Similar to the dikeraton, the hexafollon imposes additional tax exactions on the people. The people will be displeased."
  kommerkion_tax:0 "Kommerkion Duty"
  kommerkion_tax_short:0 "Kommerkion"
- kommerkion_tax_desc:0 "The kommerkion is a transaction duty, levied on mercantile activity and on goods traded. The merchants and wealthy classes will be displeased."
+ kommerkion_tax_desc:0 "[popularity|E]: @popularity_icon! #N -0.1#!/monthly #!\n\nThe kommerkion is a transaction duty, levied on mercantile activity and on goods traded. The merchants and wealthy classes will be displeased."
  logisima_tax:0 "Logisima Revoked"
  logisima_tax_short:0 "Logisima"
- logisima_tax_desc:0 "The logisima was a complete tax exemption awarded to church holdings. Revoking it will bring additional revenue, but will greatly upset the ecclesiastical hierarchy."
+ logisima_tax_desc:0 "[legitimacy|E]: @legitimacy_icon! #N -0.05#!/monthly #!\n[popularity|E]: @popularity_icon! #N -0.15#!/monthly #!\n\nThe logisima was a complete tax exemption awarded to church holdings. Revoking it will bring additional revenue, but will greatly upset the ecclesiastical hierarchy."
  allelengyon_tax:0 "Allelengyon Applied"
  allelengyon_tax_short:0 "Allelengyon"
- allelengyon_tax_desc:0 "Applying the principle of allelengyon - collective responsibility for tax owed by a community or territory - will significantly increase revenue at the cost of severely angering the wealthy landowners, on whose backs the tax burden will fall strongest."
+ allelengyon_tax_desc:0 "[legitimacy|E]: @legitimacy_icon! #N -0.05#!/monthly #!\n[popularity|E]: @popularity_icon! #N -0.2#!/monthly #!\n\nApplying the principle of allelengyon - collective responsibility for tax owed by a community or territory - will significantly increase revenue at the cost of severely angering the wealthy landowners, on whose backs the tax burden will fall strongest."
  
  # Fiscalised Theme
  imperial_obligation_theme:0 "Thematic Obligations"
@@ -716,8 +718,13 @@
  roman_administration_change_to_theme:0 "Change to Theme"
  roman_administration_change_to_theme_desc:0 "Will change government to Theme."
 
+ roman_administration_change_contract_timer:0 "You cannot propose new changes yet"
+
  roman_administration_change_vassal_contract_popularity_loss:0 "You lose @popularity_icon! #P 20#! [popularity|E]"
  roman_administration_change_vassal_contract_popularity_gain:0 "You gain @popularity_icon! #P 20#! [popularity|E]"
+
+ roman_administration_convert_feudal:0 "Integrate Feudal"
+ roman_administration_convert_feudal_desc:0 "Will integrate this character into the regular administration of the Empire."
 
 
  ### RELATIONS
@@ -1071,10 +1078,26 @@
  roman_administration_new_office_modifier_desc:0 "This character has been recently appointed to his post and is yet to be fully operational."
 
  ## LEGITIMACY & POPULARITY
- legitimacy_tooltip:0 "#T [legitimacy|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!\n \n\n#T [legitimacy_level|E]: @legitimacy_icon!"
+ legitimacy_tooltip:0 "#T [legitimacy|E]: #V [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy').GetValue|0]#!#!\n#V +[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_legitimacy_monthly_display').GetValue|1]#!/month \n\n#T [legitimacy_level|E]: #!@legitimacy_icon! #V [CharacterWindow.GetCharacter.MakeScope.Char.Custom( 'LegitimacyLevelDisplay' )]"
 
- popularity_tooltip:0 "#T [popularity|E]: [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue|0]#!\n \n\n#T [popularity_level|E]: @popularity_icon! #T[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity_level_display').GetValue|0]"
+ popularity_tooltip:0 "#T [popularity|E]: #V [CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity').GetValue|0]#!#!\n#V +[CharacterWindow.GetCharacter.MakeScope.Var('roman_administration_popularity_monthly_display').GetValue|1]#!/month \n\n#T [popularity_level|E]: #!@popularity_icon! #V [CharacterWindow.GetCharacter.MakeScope.Char.Custom( 'PopularityLevelDisplay' )]"
 
+ # legitimacy_level_test:0 "[ROOT.Char.GetLocalizedText( 'legitimacy_level_test' )]"
+ test_option:0 "[ROOT.Char.GetLocalizedText( 'legitimacy_level_test' )]"
+ legitimacy_level_usurper_desc:0 "Usurper"
+ legitimacy_level_improper_desc:0 "Improper"
+ legitimacy_level_accepted_desc:0 "Accepted"
+ legitimacy_level_established_desc:0 "Established"
+ legitimacy_level_venerated_desc:0 "Venerated"
+ legitimacy_level_effect:0 "[ROOT.Char.Custom( 'LegitimacyLevelDisplay' )]"
+
+ popularity_level_despised_desc:0 "Despised"
+ popularity_level_unworthy_desc:0 "Unworthy"
+ popularity_level_tolerated_desc:0 "Tolerated"
+ popularity_level_worthy_desc:0 "Worthy"
+ popularity_level_beloved_desc:0 "Beloved"
+ popularity_level_effect:0 "[ROOT.Char.Custom( 'PopularityLevelDisplay' )]"
+ 
  despised_desc:0 "Despised"
  unworthy_desc:0 "Unworthy"
  tolerated_desc:0 "Tolerated"

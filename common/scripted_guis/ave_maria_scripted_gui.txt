@@ -27,6 +27,7 @@ am_institutions_gui_toggle = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		has_variable = am_institutions_gui_toggle
 	}
 
@@ -48,6 +49,7 @@ am_institutions_gui_close = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		always = yes
 	}
 
@@ -63,6 +65,7 @@ am_institutions_senate_gui_toggle = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		has_variable = am_institutions_senate_gui_toggle
 	}
 
@@ -84,6 +87,7 @@ am_institutions_senate_gui_close = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		always = yes
 	}
 
@@ -99,6 +103,7 @@ am_institutions_army_gui_toggle = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		has_variable = am_institutions_army_gui_toggle
 	}
 
@@ -120,6 +125,7 @@ am_institutions_army_gui_close = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		always = yes
 	}
 
@@ -135,6 +141,7 @@ am_institutions_administration_gui_toggle = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		has_variable = am_institutions_administration_gui_toggle
 	}
 
@@ -156,6 +163,7 @@ am_institutions_administration_gui_close = {
 	scope = character
 	
 	is_shown = {
+		exists = this
 		always = yes
 	}
 
@@ -200,6 +208,7 @@ am_institutions_has_no_institutions = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		NOR = {
 			primary_title = {
 				this = title:e_byzantium
@@ -221,6 +230,7 @@ am_institutions_roman_administration_can_see_senate = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		OR = {
 			primary_title = {
 				this = title:e_byzantium
@@ -339,6 +349,7 @@ am_institutions_roman_administration_senate_political_relevance_irrelevant = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		root = {
 			title:e_byzantium = {
 				has_variable = roman_administration_senate_political_relevance_irrelevant
@@ -350,6 +361,7 @@ am_institutions_roman_administration_senate_political_relevance_medium = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		root = {
 			title:e_byzantium = {
 				has_variable = roman_administration_senate_political_relevance_medium
@@ -362,6 +374,7 @@ am_institutions_roman_administration_senate_political_relevance_high = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		root = {
 			title:e_byzantium = {
 				has_variable = roman_administration_senate_political_relevance_high
@@ -381,6 +394,7 @@ am_institutions_roman_administration_can_see_roman_army = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		OR = {
 			primary_title = {
 				this = title:e_byzantium
@@ -618,6 +632,7 @@ am_institutions_roman_administration_can_see_roman_administration = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		OR = {
 			primary_title = {
 				this = title:e_byzantium
@@ -767,6 +782,7 @@ am_roman_administration_has_popularity = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		has_variable = roman_administration_popularity
 	}
 }
@@ -775,6 +791,7 @@ am_roman_administration_has_legitimacy = {
 	scope = character
 
 	is_shown = {
+		exists = this
 		has_variable = roman_administration_legitimacy		
 	}
 }

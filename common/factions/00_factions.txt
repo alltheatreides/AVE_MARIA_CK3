@@ -170,9 +170,9 @@
 
 		# for each character.religion != factionTarget.religion add X join-score
 		pluralism_fundamentalism_modifier = {
-			ASTRAY_BASE_VALUE = 25
-			HOSTILE_BASE_VALUE = 50
-			EVIL_BASE_VALUE = 100
+			ASTRAY_BASE_VALUE = 13
+			HOSTILE_BASE_VALUE = 25
+			EVIL_BASE_VALUE = 50
 			BASE_FAITH = faith
 			TARGET_FAITH = scope:target.faith
 		}
@@ -1217,7 +1217,7 @@ claimant_faction = {
 	}
 
 	ai_create_score = { # How likely is an AI to create a faction?
-		base = -25
+		base = 0
 
 		####
 		# BLOCKERS
@@ -1525,22 +1525,63 @@ claimant_faction = {
 			#roman_administration_character_is_in_the_empire = yes
 			scope:claimant = {
 				roman_administration_character_is_in_the_empire = yes
-				NOT = { has_variable = roman_administration_legitimacy }				
-				var:roman_administration_legitimacy < 1
+				OR = {
+					NOT = { has_variable = roman_administration_legitimacy }	
+					AND = {
+						has_variable = roman_administration_legitimacy
+						var:roman_administration_legitimacy < 1
+					}							
+				}
+				
 			}
 		}
 		modifier = {
-			add = 5000
+			add = -1000
+			scope:claimant = {
+				roman_administration_character_is_in_the_empire = no
+			}
+		}
+		modifier = {
+			add = -100000
+			scope:claimant = {
+				OR = {
+					has_trait = blind
+					has_trait = eunuch
+				}
+			}
+		}
+		modifier = {
+			add = -500
+			scope:claimant = {
+				is_female = yes
+			}
+		}
+		modifier = {
+			add = 250
+			scope:target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 50
+			}
+		}
+		modifier = {
+			add = 500
 			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 25
 			}
 		}
 		modifier = {
-			add = 10000
+			add = 1000
 			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 10
+			}
+		}
+		modifier = {
+			add = 2000
+			scope:target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 0
 			}
 		}
 	}
@@ -1808,17 +1849,31 @@ claimant_faction = {
 
 		### AVE MARIA
 		modifier = {
-			add = 5000
+			add = 200
+			scope:faction.faction_target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 50
+			}
+		}
+		modifier = {
+			add = 500
 			scope:faction.faction_target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 25
 			}
 		}
 		modifier = {
-			add = 10000
+			add = 1000
 			scope:faction.faction_target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 10
+			}
+		}
+		modifier = {
+			add = 2000
+			scope:faction.faction_target = {
+				has_variable = roman_administration_popularity
+				var:roman_administration_popularity < 0
 			}
 		}
 	}

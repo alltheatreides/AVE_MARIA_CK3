@@ -440,9 +440,19 @@ on_game_start_after_lobby = {
 		## Roman Administration
 		title:e_byzantium.holder = {
 			trigger_event = ave_maria_roman_administration_events.0001
+			
+			#trigger_event = { id = ave_maria_utility_events.0001 days = 1 }
 	
 			## Set up emperor legitimacy
 			roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_monthly_display
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_monthly_display
+				value = roman_administration_popularity_monthly
+			}
 	
 			## Set up emperor popularity
 			roman_administration_update_popularity_variable = yes
@@ -540,6 +550,13 @@ on_game_start_after_lobby = {
 						}
 					}
 				}
+			}
+		}
+
+		title:e_byzantium = {
+			set_variable = {
+				name = roman_administration_tagmatic_doukaton_limit
+				value = 2
 			}
 		}
 

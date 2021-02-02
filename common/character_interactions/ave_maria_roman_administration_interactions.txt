@@ -758,7 +758,7 @@ roman_administration_fire_bureaucrat = {
 		scope:recipient = {
 			every_held_title = {
 				limit = {
-					tier = tier_duchy
+					tier >= tier_duchy
 				}
 				current_heir = {
 					save_scope_as = new_holder
@@ -789,7 +789,7 @@ roman_administration_fire_bureaucrat = {
 			}
 			every_held_title = {
 				limit = {
-					tier = tier_duchy
+					tier >= tier_duchy
 				}
 				create_title_and_vassal_change = {
 					type = granted
@@ -839,6 +839,7 @@ roman_administration_fire_bureaucrat = {
 					name = roman_administration_popularity
 					add = -20
 				}
+				roman_administration_update_popularity_level_display = yes
 			}			
 
 			## Add the stress impact
@@ -1061,7 +1062,7 @@ roman_administration_replace_bureaucrat = {
 		scope:recipient = {
 			random_held_title = {
 				limit = {
-					tier = tier_duchy
+					tier >= tier_duchy
 				}
 
 				if = {
@@ -1190,12 +1191,12 @@ roman_administration_replace_bureaucrat = {
 
 			if = {
 				limit = {
-					highest_held_title_tier = tier_duchy
+					highest_held_title_tier >= tier_duchy
 					uses_roman_govt = yes
 				}
 				every_held_title = {
 					limit = {
-						tier = tier_duchy
+						tier >= tier_duchy
 						NOT = {
 							this = scope:recipient_ducal_title
 						}
@@ -1261,6 +1262,7 @@ roman_administration_replace_bureaucrat = {
 					name = roman_administration_popularity
 					add = -20
 				}
+				roman_administration_update_popularity_level_display = yes
 			}
 
 			## Add the stress impact
@@ -1283,7 +1285,7 @@ roman_administration_replace_bureaucrat = {
 	ai_targets = {
 		ai_recipients = vassals
 	}
-	ai_frequency = 6
+	ai_frequency = 12
 	
 	ai_will_do = {
 		base = 0
@@ -1454,7 +1456,7 @@ roman_administration_change_vassal_contract = {
 				}
 			}
 		}
-		
+				
 			
 		## Cannot change more than three things at once
 		custom_description = {
@@ -1579,6 +1581,254 @@ roman_administration_change_vassal_contract = {
 	
 	ai_will_do = {
 		base = 0
+	}
+}
+
+## Emperor interaction to convert a feudal to a doukaton
+roman_administration_convert_feudal = {
+	category = interaction_category_vassal
+	common_interaction = yes
+
+	desc = roman_administration_convert_feudal_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}		
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			is_landed = yes
+			uses_roman_govt = no
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}		
+			prestige >= 100
+			gold >= 500 
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			is_landed = yes
+			#is_ruler = yes
+			uses_roman_govt = no
+		}
+		scope:recipient = {
+			opinion = {
+				target = scope:actor
+				value >= medium_positive_opinion
+			}
+		}
+	}
+
+	auto_accept = yes
+
+	cost = {
+		prestige = 100
+		gold = {
+			value = {
+				add = 100
+				if = {
+					limit = {
+						scope:recipient.primary_title = {
+							tier = tier_duchy
+						}
+					}
+					add = 400
+				}
+				if = {
+					limit = {
+						scope:recipient.primary_title = {
+							tier > tier_duchy
+						}
+					}
+					add = 500
+				}
+			}
+		}
+		
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = {
+					scope:recipient = {
+						highest_held_title_tier >= tier_duchy
+					}
+					OR = {
+						scope:recipient.primary_title = {
+							any_in_de_jure_hierarchy = {
+								tier = tier_county
+								#continue = { tier > tier_barony }
+								any_neighboring_county = {
+									tier = tier_county
+									holder = {
+										NOT = {
+											any_liege_or_above = {
+												this = title:e_byzantium.holder
+											}
+										}
+									}
+								}
+							}					
+						}
+						scope:recipient = {
+							any_vassal = {
+								primary_title = {
+									any_in_de_jure_hierarchy = {
+										tier = tier_county
+										#continue = { tier > tier_barony }
+										any_neighboring_county = {
+											tier = tier_county
+											holder = {
+												NOT = {
+													any_liege_or_above = {
+														this = title:e_byzantium.holder
+													}
+												}
+											}
+										}
+									}	
+								}
+							}
+						}
+						any_held_title = {
+							any_in_de_jure_hierarchy = {
+								tier = tier_county
+								#continue = { tier > tier_barony }
+								any_neighboring_county = {
+									tier = tier_county
+									holder = {
+										NOT = {
+											any_liege_or_above = {
+												this = title:e_byzantium.holder
+											}
+										}
+									}
+								}
+							}	
+						}
+					}
+					
+				}
+				change_government = roman_administration_doukaton_government
+				vassal_contract_set_obligation_level = {
+					type = ave_maria_roman_administration_special_contract
+					level = 1
+				}
+				scope:recipient.primary_title = {
+					add_title_law = ave_maria_roman_administration_tagma_succession_law
+					add_title_law = male_only_law 
+				}
+			}
+			if = {
+				limit = {
+					scope:recipient = {
+						highest_held_title_tier < tier_duchy
+					}
+				}
+				change_government = roman_administration_government
+			}
+			if = {
+				limit = {
+					scope:recipient = {
+						highest_held_title_tier >= tier_duchy
+					}
+					NOR = {
+						scope:recipient.primary_title = {
+							any_in_de_jure_hierarchy = {
+								tier = tier_county
+								#continue = { tier > tier_barony }
+								any_neighboring_county = {
+									tier = tier_county
+									holder = {
+										NOT = {
+											any_liege_or_above = {
+												this = title:e_byzantium.holder
+											}
+										}
+									}
+								}
+							}					
+						}
+						scope:recipient = {
+							any_vassal = {
+								primary_title = {
+									any_in_de_jure_hierarchy = {
+										tier = tier_county
+										#continue = { tier > tier_barony }
+										any_neighboring_county = {
+											tier = tier_county
+											holder = {
+												NOT = {
+													any_liege_or_above = {
+														this = title:e_byzantium.holder
+													}
+												}
+											}
+										}
+									}	
+								}
+							}
+						}
+						any_held_title = {
+							any_in_de_jure_hierarchy = {
+								tier = tier_county
+								#continue = { tier > tier_barony }
+								any_neighboring_county = {
+									tier = tier_county
+									holder = {
+										NOT = {
+											any_liege_or_above = {
+												this = title:e_byzantium.holder
+											}
+										}
+									}
+								}
+							}	
+						}
+					}
+				}
+				change_government = roman_administration_theme_government
+				vassal_contract_set_obligation_level = {
+					type = imperial_obligation_theme
+					level = 0
+				}
+				scope:recipient.primary_title = {
+					add_title_law = ave_maria_roman_administration_tagma_succession_law
+					add_title_law = male_only_law 
+				}
+			}
+		}
+		scope:actor = {
+			if = {
+				limit = {
+					title:e_byzantium = {
+						any_in_de_jure_hierarchy = {
+							this = scope:recipient.primary_title
+						}
+					}
+				}
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = 10
+				}
+				roman_administration_update_legitimacy_level_display = yes
+				change_variable = {
+					name = roman_administration_popularity
+					add = 10
+				}
+				roman_administration_update_popularity_level_display = yes
+				custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+				custom_tooltip = ave_maria_roman_administration_normal_legitimacy_gain.tt
+			}
+		}
 	}
 }
 

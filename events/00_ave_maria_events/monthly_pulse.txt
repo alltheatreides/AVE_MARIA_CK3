@@ -171,6 +171,10 @@ monthly_pulse.13 = {
 			}
 
 			## Popularity Gain
+			change_variable = {
+				name = roman_administration_popularity
+				add = roman_administration_popularity_monthly
+			}
 
 			## Legitimacy Gain
 			# Emperor legitimacy monthly gain
@@ -178,6 +182,7 @@ monthly_pulse.13 = {
 				name = roman_administration_legitimacy
 				add = roman_administration_legitimacy_monthly
 			}
+			
 			# Vassal legitimacy monthly gain
 			every_vassal = {
 				if = {
@@ -233,6 +238,23 @@ monthly_pulse.13 = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
 					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_variable = roman_administration_popularity
+					var:roman_administration_popularity < 25
+				}
+				every_vassal = {
+					limit = {
+						OR = {
+							roman_administration_holds_tagma_title_trigger = yes
+							roman_administration_holds_high_administration_title_trigger = yes
+							roman_administration_holds_doukaton_title_trigger = yes
+						}
+					}
+					add_unpressed_claim = title:e_byzantium
 				}
 			}
 			

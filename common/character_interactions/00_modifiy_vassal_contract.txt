@@ -13,21 +13,10 @@
 	is_shown = {
 		scope:recipient = {
 			NOT = { this = scope:actor }
-			uses_roman_govt = no
 			exists = liege
 			liege = scope:actor
 			is_ruler = yes
 			vassal_contract_has_modifiable_obligations = yes
-		}
-		scope:actor = {
-			trigger_if = {
-				limit = {
-					uses_roman_govt = yes
-				}
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}
 		}
 	}
 
@@ -103,10 +92,11 @@
 				type = msg_vassal_contract_change
 				title = modify_vassal_contract_interaction_notification
 				right_icon = scope:recipient
-
 				if = {
 					limit = {
-						uses_roman_govt = no
+						scope:recipient = {
+							uses_roman_govt = no
+						}
 					}
 					# Add tyranny for each level increased. Can spend one hook to avoid one level of tyranny hit.
 					add_tyranny = vassal_obligation_increase_tyranny_gain
@@ -117,20 +107,16 @@
 							generous = medium_stress_impact_gain
 						}
 					}
-				if = {
-					limit = {
-						always = scope:hook
-					}
-					use_hook = scope:recipient
-					add_achievement_flag = { FLAG = achievement_fine_print_flag }
-				}
-
-				scope:recipient = {
-					# hidden_effect = { set_vassal_contract_modification_blocked = yes }
 					if = {
 						limit = {
-							uses_roman_govt = no
+							always = scope:hook
 						}
+						use_hook = scope:recipient
+						add_achievement_flag = { FLAG = achievement_fine_print_flag }
+					}
+					scope:recipient = {
+						hidden_effect = { set_vassal_contract_modification_blocked = yes }
+						
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_taxes }
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = feudal_government_levies }
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = special_contract }
@@ -142,9 +128,8 @@
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = council_rights }
 						set_obligation_if_changed_effect = { OBLIGATION_TYPE = title_revocation_rights }
 					}
-					
-					
 				}
+				
 			}
 		}
 	}
@@ -182,19 +167,8 @@ vassal_modify_vassal_contract_interaction = {
 		scope:actor = {
 			is_independent_ruler = no
 			NOT = { this = scope:recipient }
-			uses_roman_govt = no
 			liege = scope:recipient
 			vassal_contract_has_modifiable_obligations = yes
-		}
-		scope:recipient = {
-			trigger_if = {
-				limit = {
-					uses_roman_govt = yes
-				}
-				any_held_title = {
-					this = title:e_byzantium
-				}
-			}
 		}
 	}
 
@@ -293,10 +267,8 @@ ai_only_liege_modify_vassal_contract_interaction = {
 		scope:actor = {
 			is_ai = yes
 			has_usable_hook = scope:recipient
-			uses_roman_govt = no
 		}
 		scope:recipient = {
-			uses_roman_govt = no
 			NOT = { this = scope:actor }
 			NOT = {
 				has_strong_hook = scope:actor
@@ -364,16 +336,13 @@ ai_only_vassal_modify_vassal_contract_interaction = {
 	
 	is_shown = {
 		scope:actor = {
-			uses_roman_govt = no
 			is_ai = yes
 			is_independent_ruler = no
 			has_usable_hook = scope:recipient
 			vassal_contract_can_be_modified_trigger = yes
 			does_ai_vassal_in_vassal_contract_desire_obligation_change = yes
-			uses_roman_govt = no
 		}
 		scope:recipient = {
-			uses_roman_govt = no
 			NOT = { this = scope:actor }
 			is_ruler = yes
 			NOT = {

@@ -41,9 +41,9 @@
 #### Basic Tax Slider
 ## Level 0 - Sympatheia (0.00, boosts control gain and recovery rate, and boosts Popularity)
 ## Level 1 - Kapnikon: tax = 0.5
-## Level 2 - Demosia: tax = 0.10 [default]
+## Level 2 - Demosia: tax = 0.10 
 ## Level 3 - Aerikon: tax = 0.15
-## Level 4 - Dikeraton: tax = 0.20
+## Level 4 - Dikeraton: tax = 0.20 [default]
 ## Level 5 - Hexafollon: tax = 0.25 [Minor Popularity Penalty]
 ## Level 6 - Impose Kommerkion: tax = 0.30, vassal_modifier = { republic_government_tax_contribution_add = 0.10 } [Popularity Penalty]
 ## Level 7 - Revoke Logisima: tax = 0.35, vassal_modifier = { theocracy_government_tax_contribution_add = 0.10 } [Popularity + Legitimacy Penalty]
@@ -531,7 +531,7 @@ imperial_obligation_theme = {
 
 ### Doukaton Theme Slider
 imperial_obligation_doukaton = { # Can't switch down from frontier command level
-	display_mode = tree
+	display_mode = radiobutton
 	icon = soldier_icon
 	is_shown = {
 		scope:vassal.primary_title.tier >= tier_duchy
@@ -542,7 +542,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 	obligation_levels = {
 		## 0
 		doukaton_disabled = {
-			default = yes
+			#default = yes
 			position = { 0 0 }
 
 			flag = doukaton_disabled_flag
@@ -551,7 +551,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 		vassalised_principality_doukaton = {
 			position = { 1 0 }
 			parent = doukaton_disabled
-		
+			default = yes
 			# levies = -1
 			tax_factor = -0.2
 			
@@ -579,6 +579,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			parent = organised_principality_doukaton
 			
 			# levies = -1
+			tax_factor = -0.3
 			
 			vassal_modifier = {
 				levy_reinforcement_rate = 0.10
@@ -596,7 +597,7 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 			parent = frontier_command_doukaton
 			
 			# levies = -1
-			tax_factor = -0.1
+			tax_factor = -0.4
 			
 			vassal_modifier = {
 				levy_reinforcement_rate = 0.15
@@ -613,9 +614,15 @@ imperial_obligation_doukaton = { # Can't switch down from frontier command level
 		tagmatic_command_doukaton = {
 			position = { 5 0 }
 			parent = regional_command_doukaton
+
+			is_valid = {
+				scope:vassal.primary_title = {
+					this = title:d_antioch
+				}
+			}
 			
 			# levies = -1
-			tax_factor = -0.2
+			tax_factor = -0.5
 			
 			vassal_modifier = {
 				men_at_arms_cap = 1
