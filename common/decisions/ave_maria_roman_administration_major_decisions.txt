@@ -146,6 +146,7 @@ ave_maria_roman_administration_give_power_to_the_senate = {
 	ai_check_interval = 72
 
 	is_shown = {
+		always = no
 		OR = {
 			has_title = title:e_byzantium
 			has_title = title:e_roman_empire			
@@ -243,7 +244,7 @@ ave_maria_roman_administration_tzykanion_game = {
 		gold = 25
 	}
 
-	cooldown = { days = 180 }
+	cooldown = { days = 250 }
 
 	is_shown = {
 		is_ruler = yes
@@ -335,5 +336,240 @@ ave_maria_roman_administration_tzykanion_game = {
 			add = 35
 			stress > low_stress
 		}
+	}
+}
+
+## Retire
+ave_maria_roman_administration_retire = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_idyllic_fishing.dds"
+	desc = ave_maria_roman_administration_retire_desc
+	selection_tooltip = ave_maria_roman_administration_retire_tooltip
+	ai_check_interval = 60
+	major = yes
+
+	cost = {
+		prestige = 25
+	}
+
+	#cooldown = { days = 180 }
+
+	is_shown = {
+		is_ruler = yes
+		uses_roman_govt = yes
+		highest_held_title_tier >= tier_duchy 
+		NOT = {
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+		age >= 50
+	}
+
+	is_valid_showing_failures_only = {
+		is_ruler = yes
+		uses_roman_govt = yes
+		highest_held_title_tier >= tier_duchy 
+		age >= 50
+		is_available_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = ave_maria_roman_administration_retire_tooltip
+		every_held_title = {
+			limit = {
+				tier >= tier_duchy
+			}
+			current_heir = {
+				save_temporary_scope_as = new_holder
+			}
+
+			if = {
+				limit = {
+					scope:new_holder = {
+						is_landed = no
+					}
+				}
+				save_temporary_scope_as = recipient_ducal_title
+				scope:recipient_ducal_title = { 
+					every_in_de_jure_hierarchy = {
+						limit = {
+							tier = tier_county
+							NOT = { 
+								this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+								has_title_law = ave_maria_roman_administration_family_succession_law							
+							}
+							NOT = { this = title:c_byzantion }
+							holder = {
+								roman_administration_character_is_in_the_empire = yes
+							}
+						}
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = scope:new_holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+				scope:recipient_ducal_title = {
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+
+			if = {
+				limit = {
+					scope:new_holder = {
+						is_landed = yes
+					}
+				}
+				save_temporary_scope_as = recipient_ducal_title
+				scope:recipient_ducal_title = {
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+
+				scope:recipient_ducal_title = { 
+					every_in_de_jure_hierarchy = {
+						limit = {
+							tier = tier_county
+							NOT = { 
+								this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+								has_title_law = ave_maria_roman_administration_family_succession_law							
+							}
+							NOT = { this = title:c_byzantion }
+							holder = {
+								roman_administration_character_is_in_the_empire = yes
+							}
+						}
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = scope:new_holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+			}
+		}
+	}
+
+	ai_potential = {
+		age >= 50
+		NOT = { has_trait = ambitious }
+	}
+
+	ai_will_do = {
+		base = 70
+
+		ai_value_modifier = {
+			ai_energy = 1
+			ai_greed = 0.5
+			ai_compassion = -0.5
+		}
+
+		modifier = {
+			add = -20
+			has_trait_rank = {
+				trait = education_martial
+				rank > 3
+			}
+		}
+
+		modifier = {
+			add = -50
+			health = excellent_health
+		}
+
+		modifier = {
+			add = 50
+			health = poor_health
+		}
+	}
+}
+
+## Decision for the Emperor to sponsor some church
+ave_maria_roman_administration_sponsor_church_renovation = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_decision_church_mosaic.dds"
+	#major = yes
+	desc = ave_maria_roman_administration_sponsor_church_renovation_desc
+
+	ai_check_interval = 72
+
+	cooldown = { days = 730 }
+
+	is_shown = {
+		OR = {
+			has_title = title:e_byzantium
+			AND = {
+				uses_roman_govt = yes
+				any_liege_or_above = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}
+					
+		}
+		religion = religion:christianity_religion
+	}
+
+	is_valid = {
+		is_at_war = no
+		is_available_adult = yes
+	}
+
+	cost = {
+		#gold = 250
+	}
+
+	effect = {
+		custom_tooltip = ave_maria_roman_administration_sponsor_church_renovation_tooltip
+		trigger_event = ave_maria_roman_administration_orthodox_church_events.0001
+	}
+
+	ai_potential = {
+		short_term_gold > standard_activity_cost
+	}
+
+	ai_will_do = {
+		base = 70
+
+		ai_value_modifier = {
+			ai_energy = 1
+			ai_greed = -0.5
+			ai_compassion = -0.5
+		}
+
+		modifier = {
+			add = 50
+			has_variable = roman_administration_popularity
+			var:roman_administration_popularity <= 25
+		}
+	
 	}
 }

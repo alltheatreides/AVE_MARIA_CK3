@@ -548,6 +548,15 @@ roman_administration_name_junior_emperor = {
 		}
 
 		modifier = {
+			add = 500
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
 			add = 100 
 			title:e_byzantium = {
 				any_election_candidate = {

@@ -15716,6 +15716,15 @@ e_byzantium = {
 				add = @correct_culture_primary_score
 			}
 		}
+
+		can_create = {
+			trigger_if = {
+				limit = {
+					always = yes
+				}
+				NOT = { has_culture = has_culture:greek }
+			}
+		}
 		
 		cultural_names = {
 			armenian = cn_hayastan
@@ -41736,7 +41745,7 @@ e_bactria = {
 }
 
 e_persia = {
-	color = { 133 240 7 }
+	color = { 43 185 186 }
 	color2 = { 255 255 255 }
 	
 	capital = c_isfahan #	Esfahan

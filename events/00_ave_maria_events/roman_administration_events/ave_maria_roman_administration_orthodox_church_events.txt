@@ -1,0 +1,1008 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN ADMINISTRATION EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_roman_administration_orthodox_church_events
+
+# ave_maria_roman_administration_orthodox_church_events
+
+
+# TABLE OF CONTENT:
+
+
+
+#############################################
+# RENOVATE CHURCH INTERIOR					#
+#############################################
+
+## Initial event
+ave_maria_roman_administration_orthodox_church_events.0001 = {
+	type = character_event
+	title = ave_maria_roman_administration_orthodox_church_events.0001.title
+	theme = faith	
+	override_background = {
+		event_background = temple ## change to a better historical church interior
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0001.desc.1
+			}
+			triggered_desc = {
+				trigger = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0001.desc.2
+			}
+		}
+	}
+
+	## Particular description depending on where you are, if you are in constantinople, 
+
+	left_portrait = {
+		character = scope:painter
+	}
+	# lower_right_portrait = {
+	# 	character = scope:painter
+		
+	# }
+	right_portrait = {
+		character = scope:famous_painter
+		
+	}
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		## get a random county in your demesne (or if you are the emperore anywhere in the empire but not too far) to localize things
+		create_character = {
+			employer = root
+			template = christian_famous_painter_character
+			save_scope_as = famous_painter
+		}
+		scope:famous_painter = {
+			add_random_hexaco_personality_trait_new = yes
+		}
+		create_character = {
+			employer = root
+			template = christian_painter_character
+			save_scope_as = painter
+		}
+		scope:painter = {
+			add_random_hexaco_personality_trait_new = yes
+		}
+
+		## If in constantinople get a random church/monastery to localize the text
+		if = {
+			limit = {
+				capital_province = {
+					this = province:496
+				}
+			}
+			random_list = {
+				34 = {
+					add_character_flag = {
+						flag = random_church_name_1
+						days = 725
+					}
+				}
+				33 = {
+					add_character_flag = {
+						flag = random_church_name_2
+						days = 725
+					}
+				}
+				33 = {
+					add_character_flag = {
+						flag = random_church_name_3
+						days = 725
+					}
+				}
+			}
+		}
+	}
+
+	## Option A , get me the best architect/artist for that - will reduce timer of construction/renovation to half a year 
+	## random chances of things fucking up and taking more time lessened
+	## costs cash: 500
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0001.OPT.A
+		custom_tooltip = ave_maria_roman_administration_orthodox_church_events.0001.OPT.A.tt
+		if = {
+			limit = {
+				highest_held_title_tier <= tier_duchy
+			}
+			remove_short_term_gold = 150
+		}
+		if = {
+			limit = {
+				highest_held_title_tier > tier_duchy
+			}
+			remove_short_term_gold = 300
+		}
+		hidden_effect = {
+			random_list = {
+				## Renovation on time!
+				38 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 365
+						# days = 3
+					}
+					modifier = {
+						add = 10
+						has_trait = architect
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = organized
+							has_trait = diligent
+							has_trait = careful
+							has_trait = thorough
+							has_trait = precise
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_on_time
+						days = 375
+						# days = 3
+					}
+				}
+				## Only a bit behind schedule (456 days)
+				38 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 456
+						# days = 3
+					}
+					modifier = {
+						add = 10
+						has_trait = architect
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = organized
+							has_trait = diligent
+							has_trait = careful
+							has_trait = thorough
+							has_trait = precise
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_slightly_behind_schedule
+						days = 456
+					}
+				}
+				## Behind schedule (547 days)
+				12 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 547
+						# days = 3
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = sloppy
+							has_trait = negligent
+							has_trait = reckless
+							has_trait = lazy
+							has_trait = fickle
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_behind_schedule
+						days = 557
+					}
+				}
+				## Exploded schedule (638 days)
+				12 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 638
+						# days = 3
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = sloppy
+							has_trait = negligent
+							has_trait = reckless
+							has_trait = lazy
+							has_trait = fickle
+						}
+					}
+					add_character_flag = {
+						flag = roman_administration_renovating_church_way_behind_schedule
+						days = 648
+					}
+				}
+			}
+
+			trigger_event = {
+				id = ave_maria_roman_administration_orthodox_church_events.0002
+				days = 1
+			}
+			##kill other guy
+			scope:painter = {
+				death = {
+					death_reason = death_vanished
+				}
+			}
+		}
+		
+		## start the renovation activity and put the painter to it
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				title_province = {
+					NOT = {
+						has_holding = sparsly_populated_holding
+					}
+					religion = religion:christianity_religion
+				}
+			}
+			title_province = {
+				spawn_activity = {
+					type = activity_church_renovation
+					owner = scope:famous_painter
+				}
+				save_scope_as = location
+			}
+			save_scope_as = location
+			scope:famous_painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+	}
+
+	## Option B , yeah go for it - puts a timer of a year for the reward - random chances of things fucking up and taking more time
+	## costs cash: 250
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0001.OPT.B
+		custom_tooltip = ave_maria_roman_administration_orthodox_church_events.0001.OPT.B.tt
+		if = {
+			limit = {
+				highest_held_title_tier <= tier_duchy
+			}
+			remove_short_term_gold = 100
+		}
+		if = {
+			limit = {
+				highest_held_title_tier > tier_duchy
+			}
+			remove_short_term_gold = 50
+		}
+		hidden_effect = {
+			random_list = {
+				## Renovation on time!
+				25 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 365
+						# days = 3
+					}
+					modifier = {
+						add = 10
+						has_trait = architect
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = organized
+							has_trait = diligent
+							has_trait = careful
+							has_trait = thorough
+							has_trait = precise
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_on_time
+						days = 375
+					}
+				}
+				## Only a bit behind schedule (456 days)
+				25 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 456
+						# days = 3
+					}
+					modifier = {
+						add = 10
+						has_trait = architect
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = organized
+							has_trait = diligent
+							has_trait = careful
+							has_trait = thorough
+							has_trait = precise
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_slightly_behind_schedule
+						days = 456
+					}
+				}
+				## Behind schedule (547 days)
+				25 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 547
+						# days = 3
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = sloppy
+							has_trait = negligent
+							has_trait = reckless
+							has_trait = lazy
+							has_trait = fickle
+						}
+					}
+					add_character_flag = { 
+						flag = roman_administration_renovating_church_behind_schedule
+						days = 557
+					}
+				}
+				## Exploded schedule (638 days)
+				25 = {
+					trigger_event = {
+						id = ave_maria_roman_administration_orthodox_church_events.0003
+						days = 638
+						# days = 3
+					}
+					modifier = {
+						add = 5
+						OR = {
+							has_trait = sloppy
+							has_trait = negligent
+							has_trait = reckless
+							has_trait = lazy
+							has_trait = fickle
+						}
+					}
+					add_character_flag = {
+						flag = roman_administration_renovating_church_way_behind_schedule
+						days = 648
+					}
+				}
+			}
+			trigger_event = {
+				id = ave_maria_roman_administration_orthodox_church_events.0002
+				days = 1
+			}
+			##kill other guy
+			scope:famous_painter = {
+				death = {
+					death_reason = death_vanished
+				}
+			}
+		}
+		
+		## start the renovation activity and put the painter to it
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				title_province = {
+					NOT = {
+						has_holding = sparsly_populated_holding
+					}
+					religion = religion:christianity_religion
+				}
+			}
+			title_province = {
+				spawn_activity = {
+					type = activity_church_renovation
+					owner = scope:painter
+				}
+				save_scope_as = location
+			}
+			save_scope_as = location
+			scope:painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+
+	}
+
+	## Option C, nah fuck it
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0001.OPT.C
+	}
+	
+	
+}
+
+## What do you want to represent ?
+ave_maria_roman_administration_orthodox_church_events.0002 = {
+	type = character_event
+	title = ave_maria_roman_administration_orthodox_church_events.0002.title
+	theme = faith	
+	override_background = {
+		event_background = temple ## change to a better historical church interior
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:famous_painter
+					scope:famous_painter = {
+						is_alive = yes
+					}
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0002_desc.1
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:painter
+					scope:painter = {
+						is_alive = yes
+					}
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0002_desc.2
+			}
+		}
+	}
+	left_portrait = {
+		character = root
+	}
+	lower_right_portrait = {
+		character = scope:painter
+		trigger = {
+			#exists = scope:painter
+			scope:painter = {
+				is_alive = yes
+			}
+		}
+	}
+	right_portrait = {
+		character = scope:famous_painter
+		trigger = {
+			#exists = scope:famous_painter
+			scope:famous_painter = {
+				is_alive = yes
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = scope:painter
+				scope:painter = {
+					is_alive = yes
+				}
+			}
+			scope:painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:famous_painter
+				scope:famous_painter = {
+					is_alive = yes
+				}
+			}
+			scope:famous_painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+	}
+
+	## Christ Pantokrator
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0002.OPT.A
+		add_character_flag = {
+			flag = pantokrator_mosaic
+			days = 700
+		}
+	}
+
+	## Virgin Mary
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0002.OPT.B
+		add_character_flag = {
+			flag = virgin_mary_mosaic
+			days = 700
+		}
+	}
+
+	## Angels
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0002.OPT.C
+		add_character_flag = {
+			flag = angels_mosaic
+			days = 700
+		}
+	}
+
+	# ## Saint George
+	# option = {
+	# 	name = ave_maria_roman_administration_orthodox_church_events.0002.OPT.D
+	# 	add_character_flag = {
+	# 		flag = george_mosaic
+	# 		days = 700
+	# 	}
+	# }
+}
+
+## Construction is finished, yay
+ave_maria_roman_administration_orthodox_church_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_orthodox_church_events.0003.title
+	theme = faith	
+	override_background = {
+		event_background = temple ## change to a better historical church interior
+	}
+	desc = {
+		first_valid = {
+			## Intelligent painter
+			triggered_desc = {
+				trigger = {
+					exists = scope:famous_painter
+					scope:famous_painter = {
+						is_alive = yes
+					}
+					has_character_flag = pantokrator_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.pantokrator_mosaic.1
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:famous_painter
+					scope:famous_painter = {
+						is_alive = yes
+					}
+					has_character_flag = virgin_mary_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.virgin_mary_mosaic.1
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:famous_painter
+					scope:famous_painter = {
+						is_alive = yes
+					}
+					has_character_flag = angels_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.angels_mosaic.1
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:famous_painter
+					scope:famous_painter = {
+						is_alive = yes
+					}
+					has_character_flag = george_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.george_mosaic.1
+			}
+			## Normal painter
+			triggered_desc = {
+				trigger = {
+					exists = scope:painter
+					scope:painter = {
+						is_alive = yes
+					}
+					has_character_flag = pantokrator_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.pantokrator_mosaic.2
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:painter
+					scope:painter = {
+						is_alive = yes
+					}
+					has_character_flag = virgin_mary_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.virgin_mary_mosaic.2
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:painter
+					scope:painter = {
+						is_alive = yes
+					}
+					has_character_flag = angels_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.angels_mosaic.2
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:painter
+					scope:painter = {
+						is_alive = yes
+					}
+					has_character_flag = george_mosaic
+				}
+				desc = ave_maria_roman_administration_orthodox_church_events.0003_desc.george_mosaic.2
+			}
+		}
+	}
+	left_portrait = {
+		character = root
+	}
+	lower_right_portrait = {
+		character = scope:painter
+		trigger = {
+			#exists = scope:painter
+			scope:painter = {
+				is_alive = yes
+			}
+		}
+	}
+	right_portrait = {
+		character = scope:famous_painter
+		trigger = {
+			#exists = scope:famous_painter
+			scope:famous_painter = {
+				is_alive = yes
+			}
+		}
+	}
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		## shit does nto work yo, looks like ending activites for landless people bugs out
+		# if = {
+		# 	limit = {
+		# 		exists = scope:painter
+		# 		is_alive = yes
+		# 	}
+		# 	scope:painter = {
+		# 		scope:activity = {
+		# 			scope:activity_owner = {
+		# 				complete_activity = yes
+		# 			}
+					
+		# 		}
+		# 	}
+		# }
+		# if = {
+		# 	limit = {
+		# 		exists = scope:famous_painter
+		# 		is_alive = yes
+		# 	}
+		# 	#recruit_courtier = scope:famous_painter
+		# 	scope:famous_painter = {
+		# 		scope:activity = {
+		# 			complete_activity = yes
+		# 		}
+		# 	}
+		# }
+		if = {
+			limit = {
+				exists = scope:painter
+				scope:painter = {
+					is_alive = yes
+				}
+			}
+			scope:painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:famous_painter
+				scope:famous_painter = {
+					is_alive = yes
+				}
+			}
+			scope:famous_painter = {
+				location = {
+					save_scope_as = location
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				has_character_flag = pantokrator_mosaic
+			}
+			add_character_modifier = {
+				modifier = church_renovation_christ_pantokrator_icon
+				days = 365
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = virgin_mary_mosaic
+			}
+			add_character_modifier = {
+				modifier = church_renovation_virgin_mary_icon
+				days = 365
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = angels_mosaic
+			}
+			add_character_modifier = {
+				modifier = church_renovation_angels_icon
+				days = 365
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = george_mosaic
+			}
+			add_character_modifier = {
+				modifier = church_renovation_george_icon
+				days = 365
+			}
+		}
+	}
+
+	## Keep the architect - costs cash
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0003.OPT.A
+		trigger = {
+			scope:painter = {
+				is_alive = yes
+			}
+		}
+		remove_short_term_gold = 75
+		if = {
+			limit = {
+				exists = scope:painter
+				scope:painter = {
+					is_alive = yes
+				}
+			}
+			add_prestige = minor_prestige_value
+			add_piety = medium_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 10
+				}
+				roman_administration_update_popularity_level_display = yes
+				custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+			}
+		}
+		else = {
+			add_prestige = miniscule_prestige_value
+			add_piety = minor_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 5
+				}
+				roman_administration_update_popularity_level_display = yes
+
+				custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
+				
+			}
+		}		
+		
+		# hidden_effect = {
+		# 	if = {
+		# 		limit = {
+		# 			exists = scope:painter
+		# 		}
+		# 		scope:painter = {
+		# 			scope:activity = {
+		# 				complete_activity = yes
+		# 			}
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			exists = scope:famous_painter
+		# 		}
+		# 		scope:famous_painter = {
+		# 			scope:activity = {
+		# 				scope:activity_owner = {
+		# 					complete_activity = yes
+		# 				}
+						
+		# 			}
+		# 		}
+		# 	}
+		# }
+	}
+
+	## Keep the architect - costs cash
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0003.OPT.B
+		remove_short_term_gold = 75
+		trigger = {
+			scope:famous_painter = {
+				is_alive = yes
+			}
+		}
+		if = {
+			limit = {
+				exists = scope:famous_painter
+				scope:famous_painter = {
+					is_alive = yes
+				}
+			}
+			add_prestige = minor_prestige_value
+			add_piety = medium_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 10
+				}
+				roman_administration_update_popularity_level_display = yes
+				custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+			}
+		}
+		else = {
+			add_prestige = miniscule_prestige_value
+			add_piety = minor_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 5
+				}
+				roman_administration_update_popularity_level_display = yes
+				custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
+			}
+		}		
+		
+		# hidden_effect = {
+		# 	if = {
+		# 		limit = {
+		# 			exists = scope:painter
+		# 		}
+		# 		scope:painter = {
+		# 			scope:activity = {
+		# 				complete_activity = yes
+		# 			}
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			exists = scope:famous_painter
+		# 		}
+		# 		scope:famous_painter = {
+		# 			scope:activity = {
+		# 				scope:activity_owner = {
+		# 					complete_activity = yes
+		# 				}
+						
+		# 			}
+		# 		}
+		# 	}
+		# }
+	}
+
+	## yay cool - adds piety, a bit of prestige, and popularity
+	option = {
+		name = ave_maria_roman_administration_orthodox_church_events.0003.OPT.C
+		if = {
+			limit = {
+				exists = scope:famous_painter
+			}
+			add_prestige = minor_prestige_value
+			add_piety = medium_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 10
+				}
+				roman_administration_update_popularity_level_display = yes
+
+				custom_tooltip = ave_maria_roman_administration_normal_popularity_gain.tt
+			}
+		}
+		else = {
+			add_prestige = miniscule_prestige_value
+			add_piety = minor_piety_value
+			if = {
+				limit = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+				change_variable = {
+					name = roman_administration_popularity
+					add = 5
+				}
+				roman_administration_update_popularity_level_display = yes
+			}
+		}	
+
+		## kill the architect if you have not chosen to keep him
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = scope:painter
+				}
+				scope:painter = {
+					scope:activity = {
+						complete_activity = yes
+					}
+					death = {
+						death_reason = death_vanished
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = scope:famous_painter
+				}
+				scope:famous_painter = {
+					scope:activity = {
+						complete_activity = yes
+					}
+					death = {
+						death_reason = death_vanished
+					}
+				}
+			}
+		}
+	}
+
+	
+}
+
+## Delay in construction, shit

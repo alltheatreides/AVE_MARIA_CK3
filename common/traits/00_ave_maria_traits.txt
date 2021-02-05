@@ -654,3 +654,28 @@ tzykanion_player_4 = {
 		}
 	}
 }
+
+artist_painter = {
+	index = 487
+
+	minimum_age = 16
+	learning = 2
+	prowess = -10
+	
+	ruler_designer_cost = 40
+
+	random_creation = 0
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_artist_painter_desc
+			}
+			desc = trait_artist_painter_character_desc
+			
+		}
+	}
+}

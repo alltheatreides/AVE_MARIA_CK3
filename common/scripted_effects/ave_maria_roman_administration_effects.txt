@@ -933,8 +933,19 @@ roman_administration_accession_to_basileus_effect = {
 	}
 	resolve_title_and_vassal_change = scope:change
 
+	set_realm_capital = title:c_byzantion
+
 	roman_administration_update_popularity_variable = yes
 	roman_administration_update_legitimacy_variable = yes
+	set_variable = {
+		name = roman_administration_legitimacy_monthly_display
+		value = roman_administration_legitimacy_monthly
+	}
+	set_variable = {
+		name = roman_administration_popularity_monthly_display
+		value = roman_administration_popularity_monthly
+	}
+
 	
 	if = {
 		limit = {
@@ -1080,6 +1091,17 @@ roman_administration_accession_to_basileus_effect = {
 		}
 		
 	}	
+	every_close_or_extended_family_member = {
+		roman_administration_update_legitimacy_variable = yes
+			set_variable = {
+				name = roman_administration_legitimacy_info_display_basileus
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_info_display_basileus
+				value = roman_administration_popularity_monthly
+			}
+	}
 	every_held_title = {
 		limit = {
 			tier = tier_duchy

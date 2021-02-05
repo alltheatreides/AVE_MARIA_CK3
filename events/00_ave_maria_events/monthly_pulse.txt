@@ -170,6 +170,15 @@ monthly_pulse.13 = {
 				}
 			}
 
+			set_variable = {
+				name = roman_administration_legitimacy_monthly_display
+				value = roman_administration_legitimacy_monthly
+			}
+			set_variable = {
+				name = roman_administration_popularity_monthly_display
+				value = roman_administration_popularity_monthly
+			}
+
 			## Popularity Gain
 			change_variable = {
 				name = roman_administration_popularity
@@ -192,6 +201,10 @@ monthly_pulse.13 = {
 							is_close_or_extended_family_of = title:e_byzantium.holder
 						}
 					}
+					set_variable = {
+						name = roman_administration_legitimacy_monthly_display
+						value = roman_administration_legitimacy_monthly
+					}
 					change_variable = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
@@ -205,6 +218,10 @@ monthly_pulse.13 = {
 							NOR = {
 								is_close_or_extended_family_of = title:e_byzantium.holder
 							}
+						}
+						set_variable = {
+							name = roman_administration_legitimacy_monthly_display
+							value = roman_administration_legitimacy_monthly
 						}
 						change_variable = {
 							name = roman_administration_legitimacy
@@ -222,6 +239,10 @@ monthly_pulse.13 = {
 							is_close_or_extended_family_of = title:e_byzantium.holder
 						}
 					}
+					set_variable = {
+						name = roman_administration_legitimacy_monthly_display
+						value = roman_administration_legitimacy_monthly
+					}
 					change_variable = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
@@ -233,6 +254,10 @@ monthly_pulse.13 = {
 				if = {
 					limit = {
 						has_variable = roman_administration_legitimacy
+					}
+					set_variable = {
+						name = roman_administration_legitimacy_monthly_display
+						value = roman_administration_legitimacy_monthly
 					}
 					change_variable = {
 						name = roman_administration_legitimacy

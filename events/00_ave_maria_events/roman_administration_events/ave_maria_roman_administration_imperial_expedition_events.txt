@@ -340,6 +340,7 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 			name = roman_administration_popularity
 			add = 20
 		}
+		roman_administration_update_popularity_level_display = yes
 		remove_short_term_gold = 200
 		capital_province = {
 			spawn_activity = {
@@ -360,6 +361,7 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 			name = roman_administration_popularity
 			add = 5
 		}
+		roman_administration_update_popularity_level_display = yes
 		custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
 		add_piety = 150
 		hidden_effect = {
@@ -375,6 +377,7 @@ ave_maria_roman_administration_imperial_expedition_events.0004 = {
 			name = roman_administration_popularity
 			add = -5
 		}
+		roman_administration_update_popularity_level_display = yes
 		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0005 days = 30 }
@@ -449,7 +452,8 @@ ave_maria_roman_administration_imperial_expedition_events.0005 = {
 		change_variable = {
 			name = roman_administration_popularity
 			add = 10
-		}		
+		}
+		roman_administration_update_popularity_level_display = yes		
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0006 days = 3 }
 		}
@@ -500,6 +504,7 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 			name = roman_administration_popularity
 			add = 20
 		}
+		roman_administration_update_popularity_level_display = yes
 		hidden_effect = {
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
 		}
@@ -519,6 +524,7 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 			name = roman_administration_popularity
 			add = 20
 		}	
+		roman_administration_update_popularity_level_display = yes
 		hidden_effect = {
 			add_character_flag = am_racing_emperor
 			trigger_event = { id = ave_maria_roman_administration_imperial_expedition_events.0007 days = 2 }
@@ -538,6 +544,7 @@ ave_maria_roman_administration_imperial_expedition_events.0006 = {
 			name = roman_administration_popularity
 			add = -10
 		}
+		roman_administration_update_popularity_level_display = yes
 		#roman_administration_add_legitimacy_small_amount = yes
 		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
 		#custom_tooltip = ave_maria_roman_administration_small_legitimacy_gain.tt
@@ -860,10 +867,12 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 			name = roman_administration_popularity
 			add = 20
 		}
+		roman_administration_update_popularity_level_display = yes
 		change_variable = {
 			name = roman_administration_legitimacy
 			add = 5
 		}
+		roman_administration_update_legitimacy_level_display = yes
 		#roman_administration_add_legitimacy_small_amount = yes
 		add_prestige = 300		
 	}
@@ -890,7 +899,7 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 			name = roman_administration_popularity
 			add = 20
 		}
-		
+		roman_administration_update_popularity_level_display = yes
 	}
 
 	after = {

@@ -29,16 +29,18 @@ ave_maria_roman_administration_utility_events.0001 = {
 
 	
 	trigger = {
-				
+		scope:title = { 
+			this = title:e_byzantium 
+		}
+		exists = root
+		root = { is_alive = yes }
 	}
 	
 	immediate = {
 		## Removing traits and modifiers if you are the Basileus
 		if = {
 			limit = {
-				scope:title = { this = title:e_byzantium }
-				exists = root
-				root = { is_alive = yes }
+				
 			}
 			root = {
 				roman_administration_remove_salary_indicator = yes

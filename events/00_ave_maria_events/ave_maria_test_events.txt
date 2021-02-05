@@ -25,7 +25,7 @@ namespace = ave_maria_test_events
 ## TEST
 ave_maria_test_events.0001 = {
 	type = character_event
-	hidden = yes
+	#hidden = yes
 
 	
 	trigger = {
@@ -33,7 +33,16 @@ ave_maria_test_events.0001 = {
 	}
 	
 	immediate = {
-		add_hexaco_personality_trait_adolescent = { WHO = this }
+		# scope:activity = {
+		# 	complete_activity = yes
+		# }
+	}
+
+	option = {
+		name = "zz"
+		scope:activity = {
+			complete_activity = yes
+		}
 	}
 	
 }

@@ -1,0 +1,25 @@
+﻿activity_church_renovation = {
+	solo = yes
+	frame = 2
+	has_activity_window = yes
+	days_until_auto_start = 1
+	expiration_days = 638
+	color = { 0.8 0.8 0.8 1 }
+	valid = {
+		activity_owner = {
+			is_alive = yes
+			is_imprisoned = no
+		}
+	}
+	on_spawn = {
+		invite_character_to_activity = activity_owner
+		accept_invitation_for_character = activity_owner
+
+	}
+	on_activate = {
+		
+	}
+	on_complete = {
+			
+	}
+}
