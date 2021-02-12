@@ -91,33 +91,33 @@ ave_maria_roman_administration_orthodox_church_events.0001 = {
 		}
 
 		## If in constantinople get a random church/monastery to localize the text
-		if = {
-			limit = {
-				capital_province = {
-					this = province:496
-				}
-			}
-			random_list = {
-				34 = {
-					add_character_flag = {
-						flag = random_church_name_1
-						days = 725
-					}
-				}
-				33 = {
-					add_character_flag = {
-						flag = random_church_name_2
-						days = 725
-					}
-				}
-				33 = {
-					add_character_flag = {
-						flag = random_church_name_3
-						days = 725
-					}
-				}
-			}
-		}
+		# if = {
+			# limit = {
+				# capital_province = {
+					# this = province:496
+				# }
+			# }
+			# random_list = {
+				# 34 = {
+					# add_character_flag = {
+						# flag = random_church_name_1
+						# days = 725
+					# }
+				# }
+				# 33 = {
+					# add_character_flag = {
+						# flag = random_church_name_2
+						# days = 725
+					# }
+				# }
+				# 33 = {
+					# add_character_flag = {
+						# flag = random_church_name_3
+						# days = 725
+					# }
+				# }
+			# }
+		# }
 	}
 
 	## Option A , get me the best architect/artist for that - will reduce timer of construction/renovation to half a year 
@@ -267,12 +267,12 @@ ave_maria_roman_administration_orthodox_church_events.0001 = {
 					type = activity_church_renovation
 					owner = scope:famous_painter
 				}
-				save_scope_as = location
+				save_scope_as = church_location
 			}
-			save_scope_as = location
+			save_scope_as = church_location
 			scope:famous_painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}
@@ -422,12 +422,12 @@ ave_maria_roman_administration_orthodox_church_events.0001 = {
 					type = activity_church_renovation
 					owner = scope:painter
 				}
-				save_scope_as = location
+				save_scope_as = church_location
 			}
-			save_scope_as = location
+			save_scope_as = church_location
 			scope:painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}
@@ -504,7 +504,7 @@ ave_maria_roman_administration_orthodox_church_events.0002 = {
 			}
 			scope:painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}
@@ -517,7 +517,7 @@ ave_maria_roman_administration_orthodox_church_events.0002 = {
 			}
 			scope:famous_painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}
@@ -718,7 +718,7 @@ ave_maria_roman_administration_orthodox_church_events.0003 = {
 			}
 			scope:painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}
@@ -731,7 +731,7 @@ ave_maria_roman_administration_orthodox_church_events.0003 = {
 			}
 			scope:famous_painter = {
 				location = {
-					save_scope_as = location
+					save_scope_as = church_location
 				}
 			}
 		}

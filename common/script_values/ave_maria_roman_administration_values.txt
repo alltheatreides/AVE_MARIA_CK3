@@ -43,6 +43,20 @@ roman_administration_legitimacy_monthly = {
 		}
 		add = -0.25
 	}
+
+	## Parents
+	if = {
+		limit = {
+			exists = father
+			father = {
+				is_alive = yes
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+		add = 0.2
+	}
 	
 	## Vassal contracts
 	if = {
@@ -62,7 +76,7 @@ roman_administration_legitimacy_monthly = {
 		}
 	}
 	
-
+	## Titles
 	if = {
 		limit = {
 			OR = {
@@ -75,6 +89,7 @@ roman_administration_legitimacy_monthly = {
 		add = 0.1
 	}
 
+	## Dynasty
 	if = {
 		limit = {
 			has_dynasty = yes
@@ -86,6 +101,7 @@ roman_administration_legitimacy_monthly = {
 		add = 0.25
 	}
 
+	## Faith
 	if = {
 		limit = {
 			any_spouse = {

@@ -12,8 +12,9 @@ window = {
 	layer = windows_layer
 
 	## AVE MARIA ADDITION TO CLOSE DOWN THE INSTITUTION WINDOW
-	datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
-	visible = "[And(IsGameViewOpen('my_realm'), Not(ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)))]"
+	visible = "[GetVariableSystem.Exists( 'am_realm_tab_toggle' )]"
+	datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
 
 	using = Window_Size_MainTab
 

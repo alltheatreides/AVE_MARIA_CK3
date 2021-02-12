@@ -1318,6 +1318,7 @@
 	#trait = clubfooted
 	trait = lustful
 	trait = education_martial_3
+	trait = commander_1
 	trait = basileus
 	father = 1744
 	1006.1.1 = {
@@ -1328,6 +1329,10 @@
 	}
 	1066.1.1 = {
 		effect = {
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 3
+			}
 			roman_administration_update_popularity_variable = yes
 			roman_administration_update_legitimacy_variable = yes
 			
@@ -1410,6 +1415,7 @@
 	trait = education_martial_2
 	trait = reckless
 	trait = veteran_3
+	trait = commander_3
 	father = 20525
 	1030.1.1 = {
 		birth = "1030.1.1"
@@ -1418,6 +1424,10 @@
 		add_spouse = 725
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 18 }
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 12
+			}
 			vassal_contract_set_obligation_level = {
 				type = ave_maria_roman_administration_special_contract
 				level = 1
@@ -1642,7 +1652,7 @@
 
 	#Personality Traits
 	trait = deceitful
-	trait = ambitious
+	# trait = ambitious
 	trait = vengeful
 	
 	#Other Traits

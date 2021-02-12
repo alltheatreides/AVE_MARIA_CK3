@@ -915,7 +915,7 @@ roman_administration_accession_to_basileus_effect = {
 	## Changing government
 	change_government = roman_administration_government
 
-	## Transferring byzantium
+	## Transferring byzantium and setting the capital
 	title:c_byzantion = {
 		create_title_and_vassal_change = {
 			type = granted
@@ -932,21 +932,69 @@ roman_administration_accession_to_basileus_effect = {
 		}
 	}
 	resolve_title_and_vassal_change = scope:change
-
 	set_realm_capital = title:c_byzantion
 
+
+	## Computing Popularity/Legitimacy and the monthly gain
 	roman_administration_update_popularity_variable = yes
 	roman_administration_update_legitimacy_variable = yes
-	set_variable = {
-		name = roman_administration_legitimacy_monthly_display
-		value = roman_administration_legitimacy_monthly
-	}
-	set_variable = {
-		name = roman_administration_popularity_monthly_display
-		value = roman_administration_popularity_monthly
+
+	## Giving the Basileus focus to the AI so they don't dick around without a focus
+	if = {
+		limit = {
+			is_ai = yes
+		}
+		random_list = {
+			34 = {
+				set_focus = basileus_lifestyle_rulership_focus
+				modifier = {
+					add = 50
+					OR = {
+						has_trait = education_diplomacy_1
+						has_trait = education_diplomacy_2
+						has_trait = education_diplomacy_3
+						has_trait = education_diplomacy_4
+						has_trait = education_stewardship_1
+						has_trait = education_stewardship_2
+						has_trait = education_stewardship_3
+						has_trait = education_stewardship_4
+					}
+				}
+			}
+			33 = {
+				set_focus = basileus_lifestyle_military_focus
+				modifier = {
+					add = 50
+					OR = {
+						has_trait = education_martial_1
+						has_trait = education_martial_2
+						has_trait = education_martial_3
+						has_trait = education_martial_4
+						has_trait = education_martial_prowess_1
+						has_trait = education_martial_prowess_2
+						has_trait = education_martial_prowess_3
+						has_trait = education_martial_prowess_4
+					}
+				}
+			}
+			33 = {
+				set_focus = basileus_lifestyle_scholarship_focus
+				modifier = {
+					add = 50
+					OR = {
+						has_trait = education_learning_1
+						has_trait = education_learning_2
+						has_trait = education_learning_3
+						has_trait = education_learning_4
+					}
+				}
+			}
+		}
 	}
 
-	
+
+
+	## Putting variables/flags for legitimacy levels
 	if = {
 		limit = {
 			var:roman_administration_legitimacy < 25
@@ -996,6 +1044,7 @@ roman_administration_accession_to_basileus_effect = {
 		}
 	}
 
+	## Putting variables/flags for popularity levels
 	if = {
 		limit = {
 			var:roman_administration_popularity < 25
@@ -1054,6 +1103,7 @@ roman_administration_accession_to_basileus_effect = {
 		value = roman_administration_popularity_monthly
 	}
 
+	## Handing out legitimacy to relevant people
 	every_vassal = {
 		if = {
 			limit = {
@@ -1153,6 +1203,24 @@ roman_administration_accession_to_basileus_effect = {
 		scope:roman_emperor = {
 			remove_claim = prev
 		}		
+	}
+
+	set_variable = {
+		name = roman_administration_legitimacy_monthly_display
+		value = roman_administration_legitimacy_monthly
+	}
+	set_variable = {
+		name = roman_administration_popularity_monthly_display
+		value = roman_administration_popularity_monthly
+	}
+
+	change_variable = {
+		name = roman_administration_popularity
+		add = roman_administration_popularity_monthly
+	}
+	change_variable = {
+		name = roman_administration_legitimacy
+		add = roman_administration_legitimacy_monthly
 	}
 }
 
@@ -5021,6 +5089,44 @@ roman_administration_update_popularity_variable = {
 	change_variable = {
 		name = calculate_character_popularity
 		add = prowess
+	}
+
+	## Add popularity if Born in the Purple - Fair
+	if = {
+		limit = {
+			has_trait = born_in_the_purple
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = 20
+		}
+	}
+	if = {
+		limit = {
+			has_trait = beauty_good_1
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = 10
+		}
+	}
+	if = {
+		limit = {
+			has_trait = beauty_good_2
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = 15
+		}
+	}
+	if = {
+		limit = {
+			has_trait = beauty_good_3
+		}
+		change_variable = {
+			name = calculate_character_popularity
+			add = 20
+		}
 	}
 
 	## Then static removal of points from traits (for now 5, might need to balance higher ?)

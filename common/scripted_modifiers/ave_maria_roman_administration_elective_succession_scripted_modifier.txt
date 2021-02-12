@@ -11,7 +11,7 @@
 			has_trait = junior_emperor
 		}
 		add = {
-			value = 100
+			value = 150
 			if = { #Even more so if higher opinion.
 				limit = {
 					opinion = {
@@ -62,130 +62,616 @@
 		desc = tooltip_roman_administration_legitimacy_vote_opinion_positive
 		NOT = { this = scope:candidate }
 		scope:candidate = {
+			is_alive = yes
 			has_variable = roman_administration_legitimacy
 			var:roman_administration_legitimacy > 0
 		}
+		# add = {
+		# 	add = var:roman_administration_legitimacy
+		# }
 		add = {
-			add = 1
+			add = 0
 			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 0
-						var:roman_administration_legitimacy <= 50
-					}					
-				}
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 1 } }
+				add = 1
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 2 } }
+				add = 2
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 3 } }
+				add = 3
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 4 } }
+				add = 4
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 5 } }
+				add = 5
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 6 } }
+				add = 6
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 7 } }
+				add = 7
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 8 } }
+				add = 8
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 9 } }
+				add = 9
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 10 } }
+				add = 10
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 11 } }
+				add = 11
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 12 } }
+				add = 12
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 13 } }
+				add = 13
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 14 } }
+				add = 14
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 15 } }
+				add = 15
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 16 } }
+				add = 16
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 17 } }
+				add = 17
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 18 } }
+				add = 18
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 19 } }
+				add = 19
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 20 } }
+				add = 20
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 21 } }
+				add = 21
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 22 } }
+				add = 22
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 23 } }
+				add = 23
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 24 } }
+				add = 24
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 25 } }
+				add = 25
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 26 } }
+				add = 26
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 27 } }
+				add = 27
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 28 } }
+				add = 28
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 29 } }
+				add = 29
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 30 } }
+				add = 30
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 31 } }
+				add = 31
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 32 } }
+				add = 32
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 33 } }
+				add = 33
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 34 } }
+				add = 34
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 35 } }
+				add = 35
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 36 } }
+				add = 36
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 37 } }
+				add = 37
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 38 } }
+				add = 38
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 39 } }
+				add = 39
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 40 } }
+				add = 40
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 41 } }
+				add = 41
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 42 } }
+				add = 42
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 43 } }
+				add = 43
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 44 } }
+				add = 44
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 45 } }
+				add = 45
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 46 } }
+				add = 46
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 47 } }
+				add = 47
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 48 } }
+				add = 48
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 49 } }
+				add = 49
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 50 } }
 				add = 50
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 50
-						var:roman_administration_legitimacy <= 60
-					}					
-				}
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 51 } }
+				add = 51
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 52 } }
+				add = 52
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 53 } }
+				add = 53
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 54 } }
+				add = 54
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 55 } }
+				add = 55
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 56 } }
+				add = 56
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 57 } }
+				add = 57
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 58 } }
+				add = 58
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 59 } }
+				add = 59
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 60 } }
+				add = 60
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 61 } }
+				add = 61
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 62 } }
+				add = 62
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 63 } }
+				add = 63
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 64 } }
+				add = 64
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 65 } }
+				add = 65
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 66 } }
+				add = 66
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 67 } }
+				add = 67
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 68 } }
+				add = 68
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 69 } }
+				add = 69
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 70 } }
+				add = 70
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 71 } }
+				add = 71
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 72 } }
+				add = 72
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 73 } }
+				add = 73
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 74 } }
+				add = 74
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 75 } }
+				add = 75
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 76 } }
+				add = 76
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 77 } }
+				add = 77
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 78 } }
+				add = 78
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 79 } }
+				add = 79
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 80 } }
+				add = 80
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 81 } }
+				add = 81
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 82 } }
+				add = 82
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 83 } }
+				add = 83
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 84 } }
+				add = 84
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 85 } }
+				add = 85
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 86 } }
+				add = 86
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 87 } }
+				add = 87
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 88 } }
+				add = 88
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 89 } }
+				add = 89
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 90 } }
+				add = 90
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 91 } }
+				add = 91
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 92 } }
+				add = 92
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 93 } }
+				add = 93
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 94 } }
+				add = 94
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 95 } }
+				add = 95
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 96 } }
+				add = 96
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 97 } }
+				add = 97
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 98 } }
+				add = 98
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 99 } }
+				add = 99
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 100 } }
 				add = 100
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 60
-						var:roman_administration_legitimacy <= 70
-					}					
-				}
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 101 } }
+				add = 101
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 102 } }
+				add = 102
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 103 } }
+				add = 103
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 104 } }
+				add = 104
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 105 } }
+				add = 105
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 106 } }
+				add = 106
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 107 } }
+				add = 107
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 108 } }
+				add = 108
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 109 } }
+				add = 109
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 110 } }
+				add = 110
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 111 } }
+				add = 111
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 112 } }
+				add = 112
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 113 } }
+				add = 113
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 114 } }
+				add = 114
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 115 } }
+				add = 115
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 116 } }
+				add = 116
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 117 } }
+				add = 117
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 118 } }
+				add = 118
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 119 } }
+				add = 119
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 120 } }
+				add = 120
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 121 } }
+				add = 121
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 122 } }
+				add = 122
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 123 } }
+				add = 123
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 124 } }
+				add = 124
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 125 } }
+				add = 125
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 126 } }
+				add = 126
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 127 } }
+				add = 127
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 128 } }
+				add = 128
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 129 } }
+				add = 129
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 130 } }
+				add = 130
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 131 } }
+				add = 131
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 132 } }
+				add = 132
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 133 } }
+				add = 133
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 134 } }
+				add = 134
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 135 } }
+				add = 135
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 136 } }
+				add = 136
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 137 } }
+				add = 137
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 138 } }
+				add = 138
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 139 } }
+				add = 139
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 140 } }
+				add = 140
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 141 } }
+				add = 141
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 142 } }
+				add = 142
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 143 } }
+				add = 143
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 144 } }
+				add = 144
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 145 } }
+				add = 145
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 146 } }
+				add = 146
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 147 } }
+				add = 147
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 148 } }
+				add = 148
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy = 149 } }
+				add = 149
+			}	
+			if = {	
+				limit = { scope:candidate = { has_variable = roman_administration_legitimacy var:roman_administration_legitimacy >= 150 } }
 				add = 150
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 70
-						var:roman_administration_legitimacy <= 80
-					}					
-				}
-				add = 200
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 80
-						var:roman_administration_legitimacy <= 90
-					}					
-				}
-				add = 250
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 90
-						var:roman_administration_legitimacy <= 100
-					}					
-				}
-				add = 300
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 100
-						var:roman_administration_legitimacy <= 110
-					}					
-				}
-				add = 350
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 110
-						var:roman_administration_legitimacy <= 120
-					}					
-				}
-				add = 400
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 120
-						var:roman_administration_legitimacy <= 130
-					}					
-				}
-				add = 450
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 130
-						var:roman_administration_legitimacy <= 140
-					}					
-				}
-				add = 500
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy > 140
-						var:roman_administration_legitimacy <= 150
-					}					
-				}
-				add = 550
-			}
-			if = {
-				limit = {
-					scope:candidate = {
-						has_variable = roman_administration_legitimacy
-						var:roman_administration_legitimacy >= 150
-					}					
-				}
-				add = 600
-			}
+			}	
+			
 		}
 	}
 

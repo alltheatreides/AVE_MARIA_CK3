@@ -22,157 +22,158 @@
 # FUNCTIONAL TYPE SCRIPTED GUI				#
 #############################################
 
+
 ## Toggle Institution Tab
-am_institutions_gui_toggle = {
-	scope = character
+# am_institutions_gui_toggle = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		has_variable = am_institutions_gui_toggle
-	}
+# 	is_shown = {
+# 		exists = this
+# 		has_variable = am_institutions_gui_toggle
+# 	}
 
-	effect = {
-		if = {
-			limit = {
-				has_variable = am_institutions_gui_toggle
-			}
-			remove_variable = am_institutions_gui_toggle
-		}
-		else = {
-			set_variable = am_institutions_gui_toggle
-		}
-	}
-}
+# 	effect = {
+# 		if = {
+# 			limit = {
+# 				has_variable = am_institutions_gui_toggle
+# 			}
+# 			remove_variable = am_institutions_gui_toggle
+# 		}
+# 		else = {
+# 			set_variable = am_institutions_gui_toggle
+# 		}
+# 	}
+# }
 
-## Close Institution Tab
-am_institutions_gui_close = {
-	scope = character
+# ## Close Institution Tab
+# am_institutions_gui_close = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		always = yes
-	}
+# 	is_shown = {
+# 		exists = this
+# 		always = yes
+# 	}
 
-	effect = {
-		remove_variable = am_institutions_gui_toggle
-		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
-		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
-	}
-}
+# 	effect = {
+# 		remove_variable = am_institutions_gui_toggle
+# 		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+# 		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+# 	}
+# }
 
-## Toggle Senate Window
-am_institutions_senate_gui_toggle = {
-	scope = character
+# ## Toggle Senate Window
+# am_institutions_senate_gui_toggle = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		has_variable = am_institutions_senate_gui_toggle
-	}
+# 	is_shown = {
+# 		exists = this
+# 		has_variable = am_institutions_senate_gui_toggle
+# 	}
 
-	effect = {
-		if = {
-			limit = {
-				has_variable = am_institutions_senate_gui_toggle
-			}
-			remove_variable = am_institutions_senate_gui_toggle
-		}
-		else = {
-			set_variable = am_institutions_senate_gui_toggle
-		}
-	}
-}
+# 	effect = {
+# 		if = {
+# 			limit = {
+# 				has_variable = am_institutions_senate_gui_toggle
+# 			}
+# 			remove_variable = am_institutions_senate_gui_toggle
+# 		}
+# 		else = {
+# 			set_variable = am_institutions_senate_gui_toggle
+# 		}
+# 	}
+# }
 
-## Close Senate Window
-am_institutions_senate_gui_close = {
-	scope = character
+# ## Close Senate Window
+# am_institutions_senate_gui_close = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		always = yes
-	}
+# 	is_shown = {
+# 		exists = this
+# 		always = yes
+# 	}
 
-	effect = {
-		remove_variable = am_institutions_senate_gui_toggle
-		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
-		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
-	}
-}
+# 	effect = {
+# 		remove_variable = am_institutions_senate_gui_toggle
+# 		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+# 		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+# 	}
+# }
 
-## Toggle Army Window
-am_institutions_army_gui_toggle = {
-	scope = character
+# ## Toggle Army Window
+# am_institutions_army_gui_toggle = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		has_variable = am_institutions_army_gui_toggle
-	}
+# 	is_shown = {
+# 		exists = this
+# 		has_variable = am_institutions_army_gui_toggle
+# 	}
 
-	effect = {
-		if = {
-			limit = {
-				has_variable = am_institutions_army_gui_toggle
-			}
-			remove_variable = am_institutions_army_gui_toggle
-		}
-		else = {
-			set_variable = am_institutions_army_gui_toggle
-		}
-	}
-}
+# 	effect = {
+# 		if = {
+# 			limit = {
+# 				has_variable = am_institutions_army_gui_toggle
+# 			}
+# 			remove_variable = am_institutions_army_gui_toggle
+# 		}
+# 		else = {
+# 			set_variable = am_institutions_army_gui_toggle
+# 		}
+# 	}
+# }
 
-## Close Army Window
-am_institutions_army_gui_close = {
-	scope = character
+# ## Close Army Window
+# am_institutions_army_gui_close = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		always = yes
-	}
+# 	is_shown = {
+# 		exists = this
+# 		always = yes
+# 	}
 
-	effect = {
-		remove_variable = am_institutions_army_gui_toggle
-		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
-		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
-	}
-}
+# 	effect = {
+# 		remove_variable = am_institutions_army_gui_toggle
+# 		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+# 		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = army_leader } remove_variable = army_leader } }
+# 	}
+# }
 
-## Toggle administration Window
-am_institutions_administration_gui_toggle = {
-	scope = character
+# ## Toggle administration Window
+# am_institutions_administration_gui_toggle = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		has_variable = am_institutions_administration_gui_toggle
-	}
+# 	is_shown = {
+# 		exists = this
+# 		has_variable = am_institutions_administration_gui_toggle
+# 	}
 
-	effect = {
-		if = {
-			limit = {
-				has_variable = am_institutions_administration_gui_toggle
-			}
-			remove_variable = am_institutions_administration_gui_toggle
-		}
-		else = {
-			set_variable = am_institutions_administration_gui_toggle
-		}
-	}
-}
+# 	effect = {
+# 		if = {
+# 			limit = {
+# 				has_variable = am_institutions_administration_gui_toggle
+# 			}
+# 			remove_variable = am_institutions_administration_gui_toggle
+# 		}
+# 		else = {
+# 			set_variable = am_institutions_administration_gui_toggle
+# 		}
+# 	}
+# }
 
-## Close administration Window
-am_institutions_administration_gui_close = {
-	scope = character
+# ## Close administration Window
+# am_institutions_administration_gui_close = {
+# 	scope = character
 	
-	is_shown = {
-		exists = this
-		always = yes
-	}
+# 	is_shown = {
+# 		exists = this
+# 		always = yes
+# 	}
 
-	effect = {
-		remove_variable = am_institutions_administration_gui_toggle
-		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
-		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = administration_leader } remove_variable = administration_leader } }
-	}
-}
+# 	effect = {
+# 		remove_variable = am_institutions_administration_gui_toggle
+# 		## probablement remplacer ici une commande pour trouver les leader des institutions (scoper sur le holder de l'empire, ses vassaux/courtier qui ont tel ou tel  character flag et leur retier le flag
+# 		## title:e_byzantium.holder = { random_vassal = { limit { has_variable = administration_leader } remove_variable = administration_leader } }
+# 	}
+# }
 
 
 #############################################

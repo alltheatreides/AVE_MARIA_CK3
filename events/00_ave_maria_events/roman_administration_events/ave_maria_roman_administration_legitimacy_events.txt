@@ -19,48 +19,242 @@ namespace = ave_maria_roman_administration_legitimacy_events
 
 
 #############################################
-# LEGITIMACY VARIABLE HAND OUT				#
+# WHAT TO DO OF THE PREVIOUS EMPEROR		#
 #############################################
 
-## Handing out the Legitimacy Variable
+## What to do
 ave_maria_roman_administration_legitimacy_events.0001 = {
 	type = character_event
-	hidden = yes
+	title = ave_maria_roman_administration_legitimacy_events.0001.title
+	desc = ave_maria_roman_administration_legitimacy_events.0001.desc
+	theme = crown
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = { 
+		character = root 
+		animation = war_over_win
 
-	
+	}
+
 	trigger = {
 				
 	}
 	
 	immediate = {
-		## Handing out the Legitimacy Variable Tracking Courtier
-		every_courtier = {
-			if = {
-				limit = {
-					roman_administration_can_have_legitimacy_variable_trigger = yes					
-				}
-				roman_administration_update_legitimacy_variable = yes
-			}
-		}		
-			
-		## Handing out the Legitimacy Variable Tracking Vassals
-		every_vassal = {
-			if = {
-				limit = {
-					roman_administration_can_have_legitimacy_variable_trigger = yes
-				}
-				roman_administration_update_legitimacy_variable = yes
-			}
-			# Handing out the Legitimacy Variable Tracking Vassals's courtiers
-			every_courtier = {
-				if = {
-					limit = {
-						roman_administration_can_have_legitimacy_variable_trigger = yes
+		
+
+	}
+
+	option = {
+		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.A
+		imprison = {
+			target = scope:previous_holder 
+			type = house_arrest
+		}
+
+		ai_chance = {
+			base = 80
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = faithful
+						has_trait = just
+						has_trait = honest
+						has_trait = generous
+						has_trait = humble
 					}
-					roman_administration_update_legitimacy_variable = yes
+				}
+			}
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = forgiving
+						has_trait = compassionate
+						has_trait = patient
+						has_trait = trusting
+						has_trait = calm
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.B
+		scope:previous_holder = {
+			add_trait = blind
+			add_opinion = {
+				modifier = blinded_me
+				target = root
+			}
+	
+			if = {
+				limit = {
+					exists = primary_spouse
+					primary_spouse = { is_alive = yes }
+					NOT = { primary_spouse = { this = root } }
+				}
+				primary_spouse = { add_to_list = family_of_tortured }
+			}
+			every_close_family_member = {
+				limit = { NOT = { this = root } }
+				add_to_list = family_of_tortured
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = family_of_tortured
+						count = 1
+						always = yes
+					}
+				}
+				every_in_list = {
+					list = family_of_tortured
+					add_opinion = {
+						target = root
+						modifier = blinded_family_member
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_in_list = {
+						list = family_of_tortured
+						count > 1
+						always = yes
+					}
+				}
+				every_in_list = {
+					list = family_of_tortured
+					custom = all_close_family_and_spouses
+					add_opinion = {
+						target = root
+						modifier = blinded_family_member
+					}
 				}
 			}
 		}
 
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR =  {
+						has_trait = arrogant
+						has_trait = greedy
+						has_trait = arbitrary
+						has_trait = cynical
+						has_trait = deceitful
+					}
+				}
+			}
+			modifier = {
+				add = 25
+				root = {
+					OR =  {
+						has_trait = impatient
+						has_trait = vengeful
+						has_trait = stubborn
+						has_trait = zealous
+						has_trait = wrathful
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.C
+		scope:previous_holder = {
+			add_trait = eunuch
+			add_opinion = {
+				modifier = castrated_me
+				target = root
+			}
+	
+			if = {
+				limit = {
+					exists = primary_spouse
+					primary_spouse = { is_alive = yes }
+					NOT = { primary_spouse = { this = root } }
+				}
+				primary_spouse = { add_to_list = family_of_tortured }
+			}
+			every_close_family_member = {
+				limit = { NOT = { this = root } }
+				add_to_list = family_of_tortured
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = family_of_tortured
+						count = 1
+						always = yes
+					}
+				}
+				every_in_list = {
+					list = family_of_tortured
+					add_opinion = {
+						target = root
+						modifier = castrated_family_member
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_in_list = {
+						list = family_of_tortured
+						count > 1
+						always = yes
+					}
+				}
+				every_in_list = {
+					list = family_of_tortured
+					custom = all_close_family_and_spouses
+					add_opinion = {
+						target = root
+						modifier = castrated_family_member
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					has_trait = sadistic
+				}
+			}
+			modifier = {
+				add = 25
+				root = {
+					OR =  {
+						has_trait = arrogant
+						has_trait = greedy
+						has_trait = arbitrary
+						has_trait = cynical
+						has_trait = deceitful
+					}
+				}
+			}
+			modifier = {
+				add = 25
+				root = {
+					OR =  {
+						has_trait = impatient
+						has_trait = vengeful
+						has_trait = stubborn
+						has_trait = zealous
+						has_trait = wrathful
+					}
+				}
+			}
+		}
 	}
 }

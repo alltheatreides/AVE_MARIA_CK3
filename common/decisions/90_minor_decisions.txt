@@ -338,7 +338,7 @@ commit_suicide_decision = { #by Linnéa Thimrén
 }
 
 pet_dog_decision = { #by Linnéa Thimrén
-	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_pet_the_dog.dds"
 
 	desc = pet_dog_decision_desc
 	selection_tooltip = pet_dog_decision_tooltip
@@ -1294,6 +1294,12 @@ stress_loss_athletic_decision = { #by Linnéa Thimrén
 
 		trigger_event = {
 			on_action = stress_loss_athletic
+		}
+
+		hidden_effect = {
+			target_weight_modifier_effect = {
+				VALUE = -3
+			}
 		}
 	}
 	

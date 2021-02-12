@@ -41,6 +41,7 @@ ave_maria_de_re_militari_events.0001 = {
 		}
 		
 		scope:winning_side = {
+			## Adding veteran status for the side commander
 			if = {
 				limit = {
 					exists = side_commander
@@ -67,7 +68,8 @@ ave_maria_de_re_militari_events.0001 = {
 					change_variable = { name = de_re_militari_combat_experience add = 1 }
 					update_de_re_militari_veteran_trait = yes
 				}
-			}			
+			}		
+			## Adding veteran status for every knight	
 			every_side_knight = {
 				if = {
 					limit = {
@@ -85,11 +87,65 @@ ave_maria_de_re_militari_events.0001 = {
 					set_variable = { name = de_re_militari_combat_experience value = 0 }
 					change_variable = { name = de_re_militari_combat_experience add = 1 }
 					update_de_re_militari_veteran_trait = yes
+				}
+			}
+			## Adding commander path experience status for the side commander
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						has_variable = de_re_militari_commander_experience
+					}
+				}
+				side_commander = {
+					change_variable = { name = de_re_militari_commander_experience add = 0.5 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+			}
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_commander_experience }
+					}
+				}
+				side_commander = {
+					set_variable = { name = de_re_militari_commander_experience value = 0 }
+					change_variable = { name = de_re_militari_commander_experience add = 0.5 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+			}
+			## Every knights in the battle gain a little bit of commander xp by participating in the campaign 
+			every_side_knight = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_commander_experience
+					}
+					change_variable = { name = de_re_militari_commander_experience add = 0.25 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+				if = {
+					limit = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_commander_experience }
+					}
+					set_variable = { name = de_re_militari_commander_experience value = 0 }
+					change_variable = { name = de_re_militari_commander_experience add = 0.25 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
 				}
 			}
 		}
 
+
 		enemy_side = {
+			## Adding veteran status for the side commander
 			if = {
 				limit = {
 					exists = side_commander
@@ -117,6 +173,7 @@ ave_maria_de_re_militari_events.0001 = {
 					update_de_re_militari_veteran_trait = yes
 				}
 			}
+			## Adding veteran status for every knight	
 			every_side_knight = {
 				if = {
 					limit = {
@@ -134,6 +191,59 @@ ave_maria_de_re_militari_events.0001 = {
 					set_variable = { name = de_re_militari_combat_experience value = 0 }
 					change_variable = { name = de_re_militari_combat_experience add = 1 }
 					update_de_re_militari_veteran_trait = yes
+				}
+			}
+
+			## Adding commander path experience status for the side commander
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						has_variable = de_re_militari_commander_experience
+					}
+				}
+				side_commander = {
+					change_variable = { name = de_re_militari_commander_experience add = 0.5 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+			}
+			if = {
+				limit = {
+					exists = side_commander
+					side_commander = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_commander_experience }
+					}
+				}
+				side_commander = {
+					set_variable = { name = de_re_militari_commander_experience value = 0 }
+					change_variable = { name = de_re_militari_commander_experience add = 0.5 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+			}
+			## Every knights in the battle gain a little bit of commander xp by participating in the campaign 
+			every_side_knight = {
+				if = {
+					limit = {
+						is_alive = yes
+						has_variable = de_re_militari_commander_experience
+					}
+					change_variable = { name = de_re_militari_commander_experience add = 0.25 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
+				}
+				if = {
+					limit = {
+						is_alive = yes
+						NOT = { has_variable = de_re_militari_commander_experience }
+					}
+					set_variable = { name = de_re_militari_commander_experience value = 0 }
+					change_variable = { name = de_re_militari_commander_experience add = 0.25 }
+					de_re_militari_commander_battle_learning = yes
+					de_re_militari_update_commander_trait = yes
 				}
 			}
 		}

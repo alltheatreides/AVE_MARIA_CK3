@@ -231,6 +231,83 @@ ave_maria_roman_administration_imperial_expedition = {
 			trigger_event = ave_maria_roman_administration_imperial_expedition_events.0001
 		}
 	}
+
+	ai_potential = {
+		is_at_war = yes
+	}
+
+	ai_will_do = {
+		base = 1	
+
+		modifier = {
+			add = 5
+			has_trait = education_martial_1
+		}
+
+		modifier = {
+			add = 10
+			has_trait = education_martial_2
+		}
+
+		modifier = {
+			add = 15
+			has_trait = education_martial_3
+		}
+
+		modifier = {
+			add = 25
+			has_trait = education_martial_4
+		}
+
+		modifier = {
+			add = 5
+			has_trait = education_martial_prowess_1
+		}
+
+		modifier = {
+			add = 10
+			has_trait = education_martial_prowess_2
+		}
+
+		modifier = {
+			add = 15
+			has_trait = education_martial_prowess_3
+		}
+
+		modifier = {
+			add = 25
+			has_trait = education_martial_prowess_4
+		}
+
+		modifier = {
+			add = 15
+			OR = {
+				has_trait = brave
+				has_trait = tough
+				has_trait = independent
+				has_trait = selfassured
+				has_trait = stable
+			}
+		}
+		modifier = {
+			add = -15
+			OR = {
+				has_trait = vulnerable
+				has_trait = anxious
+				has_trait = paranoid
+				has_trait = sentimental
+				has_trait = craven
+			}
+		}
+
+		modifier = {
+			factor = martial
+		}
+
+		modifier = {
+			factor = prowess
+		}
+	}
 }
 
 ## Play a game of Tzykanion
@@ -248,6 +325,7 @@ ave_maria_roman_administration_tzykanion_game = {
 
 	is_shown = {
 		is_ruler = yes
+		is_landed = yes
 		highest_held_title_tier > tier_barony
 		has_culture_group = culture_group:byzantine_group
 		is_female = no
@@ -569,6 +647,12 @@ ave_maria_roman_administration_sponsor_church_renovation = {
 			add = 50
 			has_variable = roman_administration_popularity
 			var:roman_administration_popularity <= 25
+		}
+
+		modifier = {
+			add = 25
+			has_variable = roman_administration_popularity
+			var:roman_administration_popularity <= 50
 		}
 	
 	}

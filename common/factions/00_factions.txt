@@ -1522,6 +1522,11 @@ claimant_faction = {
 		### AVE MARIA
 		modifier = {
 			add = -1000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			#roman_administration_character_is_in_the_empire = yes
 			scope:claimant = {
 				roman_administration_character_is_in_the_empire = yes
@@ -1537,12 +1542,33 @@ claimant_faction = {
 		}
 		modifier = {
 			add = -1000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			scope:claimant = {
 				roman_administration_character_is_in_the_empire = no
 			}
 		}
 		modifier = {
+			add = -1000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			scope:claimant = {
+				NOT = { has_culture = culture:greek }
+			}
+		}
+		modifier = {
 			add = -100000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			scope:claimant = {
 				OR = {
 					has_trait = blind
@@ -1552,12 +1578,22 @@ claimant_faction = {
 		}
 		modifier = {
 			add = -500
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			scope:claimant = {
 				is_female = yes
 			}
 		}
 		modifier = {
 			add = 250
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 50
@@ -1566,6 +1602,11 @@ claimant_faction = {
 		modifier = {
 			add = 500
 			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 25
 			}
@@ -1573,12 +1614,22 @@ claimant_faction = {
 		modifier = {
 			add = 1000
 			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 10
 			}
 		}
 		modifier = {
 			add = 2000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
 			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 0

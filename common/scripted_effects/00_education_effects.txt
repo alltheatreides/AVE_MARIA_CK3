@@ -32,6 +32,7 @@ education_point_acquisition_effect = {
 	else_if = {
 		limit = { has_focus = education_martial }
 		education_point_acquisition_support_effect = { SKILL = martial }
+		education_point_acquisition_support_effect = { SKILL = prowess }
 	}
 	else_if = {
 		limit = { has_focus = education_stewardship }
@@ -345,18 +346,94 @@ assign_commander_trait_effect = {
 		100 = {
 			trigger = { NOT = { has_trait = logistician } }
 			add_trait = logistician
+			modifier = {
+				add = 10
+				has_trait = precise
+			}
+			modifier = {
+				add = 20
+				has_trait = thorough
+			}
+			modifier = {
+				add = 30
+				has_trait = careful
+			}
+			modifier = {
+				add = 40
+				has_trait = diligent
+			}
+			modifier = {
+				add = 50
+				has_trait = organized
+			}
 		}
 		100 = {
 			trigger = { NOT = { has_trait = military_engineer } }
 			add_trait = military_engineer
+			modifier = {
+				add = 10
+				has_trait = precise
+			}
+			modifier = {
+				add = 20
+				has_trait = thorough
+			}
+			modifier = {
+				add = 30
+				has_trait = careful
+			}
+			modifier = {
+				add = 40
+				has_trait = diligent
+			}
+			modifier = {
+				add = 50
+				has_trait = organized
+			}
 		}
 		100 = {
 			trigger = { NOT = { has_trait = aggressive_attacker } }
 			add_trait = aggressive_attacker
+			modifier = {
+				add = 20
+				has_trait = impatient
+			}
+			modifier = {
+				add = 30
+				has_trait = vengeful
+			}
+			modifier = {
+				add = 40
+				has_trait = stubborn
+			}
+			modifier = {
+				add = 50
+				has_trait = wrathful
+			}
 		}
 		100 = {
 			trigger = { NOT = { has_trait = unyielding_defender } }
 			add_trait = unyielding_defender
+			modifier = {
+				add = 10
+				has_trait = stable
+			}
+			modifier = {
+				add = 20
+				has_trait = selfassured
+			}
+			modifier = {
+				add = 30
+				has_trait = independent
+			}
+			modifier = {
+				add = 40
+				has_trait = tough
+			}
+			modifier = {
+				add = 50
+				has_trait = brave
+			}
 		}
 		100 = {
 			trigger = { NOT = { has_trait = forder } }
@@ -365,6 +442,26 @@ assign_commander_trait_effect = {
 		100 = {
 			trigger = { NOT = { has_trait = flexible_leader } }
 			add_trait = flexible_leader
+			modifier = {
+				add = 10
+				has_trait = thoughtful
+			}
+			modifier = {
+				add = 20
+				has_trait = innovative
+			}
+			modifier = {
+				add = 30
+				has_trait = unconventional
+			}
+			modifier = {
+				add = 40
+				has_trait = creative
+			}
+			modifier = {
+				add = 50
+				has_trait = intellectual
+			}
 		}
 		100 = {
 			trigger = {
@@ -429,6 +526,22 @@ assign_commander_trait_effect = {
 		100 = {
 			trigger = { NOT = { has_trait = reckless } }
 			add_trait = reckless
+			modifier = {
+				add = 20
+				has_trait = impatient
+			}
+			modifier = {
+				add = 30
+				has_trait = vengeful
+			}
+			modifier = {
+				add = 40
+				has_trait = stubborn
+			}
+			modifier = {
+				add = 50
+				has_trait = wrathful
+			}
 		}
 		100 = {
 			trigger = { NOT = { has_trait = holy_warrior } }

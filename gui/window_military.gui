@@ -9,8 +9,10 @@ window = {
 	datacontext = "[GetPlayer]"
 	parentanchor = top|right
 	
-	datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
-	visible = "[And(IsGameViewOpen('military'), Not(ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)))]"
+	## AVE MARIA ADDITION TO CLOSE DOWN THE INSTITUTION WINDOW
+	visible = "[GetVariableSystem.Exists( 'am_military_tab_toggle' )]"
+	datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
 
 	layer = windows_layer
 	movable = no

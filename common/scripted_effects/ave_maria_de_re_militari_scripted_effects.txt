@@ -87,3 +87,580 @@ update_de_re_militari_veteran_trait = {
 		add_trait = veteran_4			
 	}			
 }
+
+## Commander trait assignement at adolescence
+#To assign a commander trait (based on culture, faith, etc.) to a child with a martial education
+de_re_militari_assign_commander_trait_effect = {
+	random_list = {
+		60 = {
+			## Openness to Experience malus
+			modifier = {	
+				add = 5
+				has_trait = shallow
+			}	
+			modifier = {	
+				add = 10
+				has_trait = unimaginative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = content
+			}	
+			modifier = {	
+				add = 20
+				has_trait = uninspired
+			}	
+			modifier = {	
+				add = 25
+				has_trait = simple
+			}	
+			## Conscientiousness malus
+			modifier = {	
+				add = 25
+				has_trait = sloppy
+			}	
+			modifier = {	
+				add = 20
+				has_trait = negligent
+			}	
+			modifier = {	
+				add = 15
+				has_trait = reckless
+			}	
+			modifier = {	
+				add = 10
+				has_trait = lazy
+			}	
+			modifier = {	
+				add = 5
+				has_trait = fickle
+			}						
+		}
+		15 = {
+			add_trait = commander_1
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 3
+			}
+			## Mentor is a proven commander
+			modifier = {
+				add = 35
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_1			
+				}	
+			}
+			modifier = {
+				add = 40
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_2		
+				}	
+			}
+			modifier = {
+				add = 45
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_3	
+				}	
+			}
+			modifier = {
+				add = 50
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_4
+				}	
+			}
+			## Openness to Experience bonus
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}				
+			## Conscientiousness bonus
+			modifier = {		
+				add = 25	
+				has_trait = organized	
+			}		
+			modifier = {		
+				add = 20	
+				has_trait = diligent	
+			}		
+			modifier = {		
+				add = 15	
+				has_trait = careful	
+			}		
+			modifier = {		
+				add = 10	
+				has_trait = thorough	
+			}		
+			modifier = {		
+				add = 5	
+				has_trait = precise	
+			}			
+		}
+		10 = {
+			add_trait = commander_2
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 7
+			}
+			## Mentor is a proven commander
+			modifier = {
+				add = 25
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_1			
+				}	
+			}
+			modifier = {
+				add = 30
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_2		
+				}	
+			}
+			modifier = {
+				add = 35
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_3	
+				}	
+			}
+			modifier = {
+				add = 40
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_4
+				}	
+			}
+			## Openness to Experience bonus
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}				
+			## Conscientousness bonus
+			modifier = {		
+				add = 25	
+				has_trait = organized	
+			}		
+			modifier = {		
+				add = 20	
+				has_trait = diligent	
+			}		
+			modifier = {		
+				add = 15	
+				has_trait = careful	
+			}		
+			modifier = {		
+				add = 10	
+				has_trait = thorough	
+			}		
+			modifier = {		
+				add = 5	
+				has_trait = precise	
+			}	
+		}
+		10 = {
+			add_trait = commander_3
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 12
+			}
+			## Mentor is a proven commander
+			modifier = {
+				add = 15
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_1			
+				}	
+			}
+			modifier = {
+				add = 20
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_2		
+				}	
+			}
+			modifier = {
+				add = 25
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_3	
+				}	
+			}
+			modifier = {
+				add = 30
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_4
+				}	
+			}
+			## Openness to Experience bonus
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}				
+			## Conscientousness bonus
+			modifier = {		
+				add = 25	
+				has_trait = organized	
+			}		
+			modifier = {		
+				add = 20	
+				has_trait = diligent	
+			}		
+			modifier = {		
+				add = 15	
+				has_trait = careful	
+			}		
+			modifier = {		
+				add = 10	
+				has_trait = thorough	
+			}		
+			modifier = {		
+				add = 5	
+				has_trait = precise	
+			}	
+		}
+		5 = {
+			add_trait = commander_4
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 18
+			}
+			## Mentor is a proven commander
+			modifier = {
+				add = 5
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_1			
+				}	
+			}
+			modifier = {
+				add = 10
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_2		
+				}	
+			}
+			modifier = {
+				add = 15
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_3	
+				}	
+			}
+			modifier = {
+				add = 20
+				any_relation = {				
+					type = guardian			
+					has_trait = commander_4
+				}	
+			}
+			## Openness to Experience bonus
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}				
+			## Conscientousness bonus
+			modifier = {		
+				add = 25	
+				has_trait = organized	
+			}		
+			modifier = {		
+				add = 20	
+				has_trait = diligent	
+			}		
+			modifier = {		
+				add = 15	
+				has_trait = careful	
+			}		
+			modifier = {		
+				add = 10	
+				has_trait = thorough	
+			}		
+			modifier = {		
+				add = 5	
+				has_trait = precise	
+			}	
+		}
+	}
+}
+
+## To update commander traits based on the variable
+de_re_militari_update_commander_trait = {
+	if = {	#	commander_1
+		limit = {			
+			var:de_re_militari_commander_experience >= 3		
+			var:de_re_militari_commander_experience < 7		
+			NOT = { has_trait = commander_1 }		
+		}
+		remove_trait = commander_1
+		remove_trait = commander_2
+		remove_trait = commander_3
+		remove_trait = commander_4
+
+		add_trait = commander_1	
+	}				
+	if = {	#	commander 2
+		limit = {			
+			var:de_re_militari_commander_experience >= 7	
+			var:de_re_militari_commander_experience < 11		
+			NOT = { has_trait = commander_2 }		
+		}			
+		remove_trait = commander_1
+		remove_trait = commander_2
+		remove_trait = commander_3
+		remove_trait = commander_4
+
+		add_trait = commander_2
+	}				
+	if = {	#	commander 3	
+		limit = {			
+			var:de_re_militari_commander_experience >= 12		
+			var:de_re_militari_commander_experience < 16		
+			NOT = { has_trait = commander_3 }		
+		}
+		remove_trait = commander_1
+		remove_trait = commander_2
+		remove_trait = commander_3
+		remove_trait = commander_4
+
+		add_trait = commander_3	
+	}				
+	if = {	#	commander 4
+		limit = {			
+			var:de_re_militari_commander_experience  >= 18			
+			NOT = { has_trait = commander_4 }		
+		}
+		remove_trait = commander_1
+		remove_trait = commander_2
+		remove_trait = commander_3
+		remove_trait = commander_4
+
+		add_trait = commander_4		
+	}						
+}
+
+## How many commander xp points you get depends on your traits
+de_re_militari_commander_battle_learning = {
+	random_list = {
+		
+		## You gain nothing
+		80 = {
+
+		}
+
+		## You progress and gain 1 points - good
+		15 = {
+			if = {
+				limit = {
+					NOT = {
+						has_variable = de_re_militari_commander_experience
+					}
+				}
+				set_variable = { name = de_re_militari_commander_experience value = 0 }
+			}
+			if = {
+				limit = {
+					has_variable = de_re_militari_commander_experience
+				}
+				change_variable = { name = de_re_militari_commander_experience add = 1 }
+			}
+			## Intelligence
+			modifier = {
+				add = 5
+				has_trait = intellect_good_1
+			}
+			modifier = {
+				add = 15
+				has_trait = intellect_good_2
+			}
+			modifier = {
+				add = 25
+				has_trait = intellect_good_3
+			}
+			## Honesty Humilty :
+			## "Did I needlesly order men to their death by misjudging the timing or did they mess it up ?" "No they obviously messed it up I did nothing wrong"
+			modifier = {	
+				add = 25
+				has_trait = faithful
+			}	
+			modifier = {	
+				add = 20
+				has_trait = just
+			}	
+			modifier = {	
+				add = 15
+				has_trait = honest
+			}	
+			modifier = {	
+				add = 10
+				has_trait = generous
+			}	
+			modifier = {	
+				add = 5
+				has_trait = humble
+			}			
+			## Openness To Experience - "Okay what can I do to make it better next time ?"
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}
+			
+		}
+		## You progress and gain 2 points - exceptionnal
+		5 = {
+			if = {
+				limit = {
+					NOT = {
+						has_variable = de_re_militari_commander_experience
+					}
+				}
+				set_variable = { name = de_re_militari_commander_experience value = 0 }
+			}
+			if = {
+				limit = {
+					has_variable = de_re_militari_commander_experience
+				}
+				change_variable = { name = de_re_militari_commander_experience add = 2 }
+			}
+			## Intelligence
+			modifier = {
+				add = 5
+				has_trait = intellect_good_1
+			}
+			modifier = {
+				add = 15
+				has_trait = intellect_good_2
+			}
+			modifier = {
+				add = 25
+				has_trait = intellect_good_3
+			}
+			## Honesty Humilty - 
+			## "Did I needlesly order men to their death by misjudging the timing or did they mess it up ?" "No they obviously messed it up I did nothing wrong"
+			modifier = {	
+				add = 25
+				has_trait = faithful
+			}	
+			modifier = {	
+				add = 20
+				has_trait = just
+			}	
+			modifier = {	
+				add = 15
+				has_trait = honest
+			}	
+			modifier = {	
+				add = 10
+				has_trait = generous
+			}	
+			modifier = {	
+				add = 5
+				has_trait = humble
+			}		
+			## Openness To Experience - Okay what can I do to make it better next time ?
+			modifier = {	
+				add = 25
+				has_trait = intellectual
+			}	
+			modifier = {	
+				add = 20
+				has_trait = creative
+			}	
+			modifier = {	
+				add = 15
+				has_trait = unconventional
+			}	
+			modifier = {	
+				add = 10
+				has_trait = innovative
+			}	
+			modifier = {	
+				add = 5
+				has_trait = thoughtful
+			}
+		}
+	}
+}

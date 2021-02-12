@@ -94,9 +94,8 @@ widget = {
 		
 		using = Window_Size_MainTab
 		using = Window_Background
-		
-		datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
-		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				
+		visible = "[GetVariableSystem.Exists( 'am_institutions_gui_toggle' )]"
 		datacontext = "[GetVariableSystem]"
 		datacontext = "[GetPlayer]"		
 
@@ -106,8 +105,8 @@ widget = {
 			using = Sound_WindowShow_Standard
 			using = Window_Position_MainTab
 			
-			#on_start = "[GetVariableSystem.Set( 'society_view_tabs', 'societies' )]"
 			on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
+
 		}
 		
 		state = {
@@ -159,14 +158,13 @@ widget = {
 						
 						blockoverride "button_close"
 						{
-							# datacontext = "[GetScriptedGui('societies_gui_close')]"
-							# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-							onclick = "[GetScriptedGui('am_institutions_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-							onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-							onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 						}
 
-						## Image of the Title (not working 05/11/20)
+						## Image of the Title (not working 05/11/20 - need a GetPlayer to work)
 						widget = {
 							layoutpolicy_vertical = growing
 							allow_outside = yes
@@ -274,12 +272,13 @@ widget = {
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_administration_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_administration_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_army_gui_toggle' )]"
 
 											background = {
 												fittype = centercrop
-												texture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration.dds"
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_open_book.dds"
 												modify_texture = {
 													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
 													blend_mode = alphamultiply
@@ -327,8 +326,9 @@ widget = {
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_army_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_army_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_administration_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
 
 											background = {
 												fittype = centercrop
@@ -381,8 +381,9 @@ widget = {
 											size = { 0 80 }
 																					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_senate_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-											onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_senate_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_army_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_administration_gui_toggle' )]"
 
 											text_single = {
 												margin_top = 10
@@ -430,8 +431,10 @@ widget = {
 		size = { 1000 950 }
 		position = { -150 0 }
 		layer = windows_layer
-		datacontext = "[GetScriptedGui('am_institutions_senate_gui_toggle')]"
-		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		#datacontext = "[GetScriptedGui('am_institutions_senate_gui_toggle')]"
+		#visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+		visible = "[GetVariableSystem.Exists( 'am_institutions_senate_gui_toggle' )]"
 		
 		using = Window_Background
 		using = Window_Decoration
@@ -449,8 +452,9 @@ widget = {
 				}
 				blockoverride "button_close"
 				{
-					datacontext = "[GetScriptedGui('am_institutions_senate_gui_close')]"
-					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					# datacontext = "[GetScriptedGui('am_institutions_senate_gui_close')]"
+					# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 				}
 			}
 
@@ -637,8 +641,10 @@ widget = {
 		size = { 1000 950 }
 		position = { -150 0 }
 		layer = windows_layer
-		datacontext = "[GetScriptedGui('am_institutions_army_gui_toggle')]"
-		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		# datacontext = "[GetScriptedGui('am_institutions_army_gui_toggle')]"
+		# visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+		visible = "[GetVariableSystem.Exists( 'am_institutions_army_gui_toggle' )]"
 		
 		using = Window_Background
 		using = Window_Decoration
@@ -656,8 +662,9 @@ widget = {
 				}
 				blockoverride "button_close"
 				{
-					datacontext = "[GetScriptedGui('am_institutions_army_gui_close')]"
-					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					# datacontext = "[GetScriptedGui('am_institutions_army_gui_close')]"
+					# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 				}
 			}
 
@@ -870,9 +877,9 @@ widget = {
 		size = { 1000 950 }
 		position = { -150 0 }
 		layer = windows_layer
-		datacontext = "[GetScriptedGui('am_institutions_administration_gui_toggle')]"
-		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 		
+		visible = "[GetVariableSystem.Exists( 'am_institutions_administration_gui_toggle' )]"
+
 		using = Window_Background
 		using = Window_Decoration
 
@@ -889,8 +896,7 @@ widget = {
 				}
 				blockoverride "button_close"
 				{
-					datacontext = "[GetScriptedGui('am_institutions_administration_gui_close')]"
-					onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 				}
 			}
 
@@ -1883,9 +1889,11 @@ widget = {
 						down = "[IsGameViewOpen('my_realm')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-	
+						onclick = "[GetVariableSystem.Toggle( 'am_realm_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
@@ -1912,9 +1920,11 @@ widget = {
 						down = "[IsGameViewOpen('military')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-						
+						onclick = "[GetVariableSystem.Toggle( 'am_military_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
@@ -1941,9 +1951,11 @@ widget = {
 						down = "[IsGameViewOpen('council_window')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-						
+						onclick = "[GetVariableSystem.Toggle( 'am_council_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
@@ -1987,9 +1999,11 @@ widget = {
 						down = "[IsGameViewOpen( 'court_window' )]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-						
+						onclick = "[GetVariableSystem.Toggle( 'am_court_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
@@ -2016,9 +2030,11 @@ widget = {
 						down = "[IsGameViewOpen('intrigue_window')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-						
+						onclick = "[GetVariableSystem.Toggle( 'am_intrigue_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
@@ -2045,8 +2061,11 @@ widget = {
 						down = "[IsGameViewOpen('factions_window')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onclick = "[GetVariableSystem.Toggle( 'am_factions_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 						
 					}
 
@@ -2074,8 +2093,8 @@ widget = {
 						down = "[IsGameViewOpen('decisions')]"
 
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
-						datacontext = "[GetScriptedGui('am_institutions_gui_close')]"
-						onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onclick = "[GetVariableSystem.Toggle( 'am_decisions_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 						
 					}
 
@@ -2099,12 +2118,25 @@ widget = {
 					{
 						texture = "gfx/interface/icons/hud_maintab/maintab_institutions.dds"
 
-						# datacontext = "[GetScriptedGui('am_institutions_gui_toggle')]"
-						# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-						onclick = "[GetScriptedGui('am_institutions_gui_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-						onclick = "[GetScriptedGui('am_institutions_senate_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-						onclick = "[GetScriptedGui('am_institutions_army_gui_close').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
-						down = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						## Opening the Institutions tab
+						onclick = "[GetVariableSystem.Toggle( 'am_institutions_gui_toggle' )]"
+						## Closing the other tabs
+						onclick = "[GetVariableSystem.Clear( 'am_realm_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_military_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_council_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_court_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_intrigue_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_factions_tab_toggle' )]"
+						onclick = "[GetVariableSystem.Clear( 'am_decisions_tab_toggle' )]"
+
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						## Stuff to make it work ?
+						datacontext = "[GetVariableSystem]"
+						datacontext = "[GetPlayer.GetID]"	
+						## Click on the button again to close the window
+						down = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 					}
 
 					state = {

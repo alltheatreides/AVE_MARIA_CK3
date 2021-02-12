@@ -184,6 +184,10 @@ monthly_pulse.13 = {
 				name = roman_administration_popularity
 				add = roman_administration_popularity_monthly
 			}
+			
+			## Popularity Display
+			roman_administration_update_popularity_level_display = yes
+			
 
 			## Legitimacy Gain
 			# Emperor legitimacy monthly gain
@@ -191,6 +195,9 @@ monthly_pulse.13 = {
 				name = roman_administration_legitimacy
 				add = roman_administration_legitimacy_monthly
 			}
+			
+			## Legitimacy Display
+			roman_administration_update_legitimacy_level_display = yes
 			
 			# Vassal legitimacy monthly gain
 			every_vassal = {
@@ -209,6 +216,8 @@ monthly_pulse.13 = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
 					}
+					## Legitimacy Display
+					roman_administration_update_legitimacy_level_display = yes
 				}
 				# Vassal courtier legitimacy monthly gain
 				every_courtier = {
@@ -227,6 +236,8 @@ monthly_pulse.13 = {
 							name = roman_administration_legitimacy
 							add = roman_administration_legitimacy_monthly
 						}
+						## Legitimacy Display
+						roman_administration_update_legitimacy_level_display = yes
 					}
 				}
 			}
@@ -247,6 +258,8 @@ monthly_pulse.13 = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
 					}
+					## Legitimacy Display
+					roman_administration_update_legitimacy_level_display = yes
 				}
 			}
 			# Emperor Family legitimacy monthly gain
@@ -263,9 +276,28 @@ monthly_pulse.13 = {
 						name = roman_administration_legitimacy
 						add = roman_administration_legitimacy_monthly
 					}
+					## Legitimacy Display
+					roman_administration_update_legitimacy_level_display = yes
 				}
 			}
-
+			# every_child = {
+			# 	if = {
+			# 		limit = {
+			# 			has_variable = roman_administration_legitimacy
+			# 		}
+			# 		set_variable = {
+			# 			name = roman_administration_legitimacy_monthly_display
+			# 			value = roman_administration_legitimacy_monthly
+			# 		}
+			# 		change_variable = {
+			# 			name = roman_administration_legitimacy
+			# 			add = roman_administration_legitimacy_monthly
+			# 		}
+			# 		## Legitimacy Display
+			# 		roman_administration_update_legitimacy_level_display = yes
+			# 	}
+			# }
+			## Keeping the emperor on his toes by giving claim on the empire if you are below 25 popularity
 			if = {
 				limit = {
 					has_variable = roman_administration_popularity

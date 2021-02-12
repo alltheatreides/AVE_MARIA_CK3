@@ -107,6 +107,7 @@ roman_administration_elective = {
 		add = {
 			type = holder_direct_vassals
 			limit = {
+				is_alive = yes
 				roman_administration_can_be_eligible_for_emperor_trigger = yes		
 				trigger_if = {
 					limit = {
@@ -114,11 +115,16 @@ roman_administration_elective = {
 					}
 					var:roman_administration_legitimacy > 0
 				}		
+				NOR = {
+					has_trait = blind
+					has_trait = eunuch
+				}
 			}
 		}
 		add = {
 			type = title_claimants
 			limit = {
+				is_alive = yes
 				roman_administration_can_be_eligible_for_emperor_trigger = yes
 				trigger_if = {
 					limit = {
@@ -126,11 +132,16 @@ roman_administration_elective = {
 					}
 					var:roman_administration_legitimacy > 0
 				}
+				NOR = {
+					has_trait = blind
+					has_trait = eunuch
+				}
 			}
 		}
 		add = {
 			type = holder_close_or_extended_family
 			limit = {
+				is_alive = yes
 				roman_administration_character_is_in_the_empire = yes
 				age >= 6
 				is_female = no
@@ -139,6 +150,10 @@ roman_administration_elective = {
 						has_variable = roman_administration_legitimacy
 					}
 					var:roman_administration_legitimacy >= 0
+				}
+				NOR = {
+					has_trait = blind
+					has_trait = eunuch
 				}
 			}
 		}
@@ -207,14 +222,25 @@ roman_administration_tagma_elective = {
 		add = {
 			type = title_claimants
 			limit = {
-				is_landed = yes
+				#is_landed = yes
 				
 				roman_administration_character_is_in_the_empire = yes
 				is_female = no
 				age >= 20
-				NOT = {
-					any_held_title = { this = title:e_byzantium }
+				trigger_if = {
+					limit = {
+						scope:title = {
+							NOT = {
+								has_variable = roman_administration_kouratoreia_title
+							}
+							
+						}
+					}					
+					NOT = {
+						any_held_title = { this = title:e_byzantium }
+					}
 				}
+				
 			}
 		}
 	}
@@ -251,7 +277,12 @@ roman_administration_tagma_elective = {
 			limit = {
 				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
+				age < 55
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
@@ -264,7 +295,12 @@ roman_administration_tagma_elective = {
 				roman_administration_character_is_in_the_empire = yes
 				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
+				age < 55
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
@@ -275,10 +311,16 @@ roman_administration_tagma_elective = {
 			type = title_claimants
 			limit = {
 				roman_administration_character_is_in_the_empire = yes
-				is_courtier_of = scope:holder
+				# is_courtier_of = scope:holder
+				is_ruler = no
 				NOT = { has_variable = roman_administration_term_count }
 				age >= 20
+				age < 55
 				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
 				NOT = { has_government = theocracy_government }
 				NOT = {
 					any_held_title = { this = title:e_byzantium }
@@ -289,8 +331,10 @@ roman_administration_tagma_elective = {
 			type = holder_close_or_extended_family
 			limit = {
 				roman_administration_character_is_in_the_empire = yes
-				is_courtier_of = scope:holder
+				# is_courtier_of = scope:holder
+				is_ruler = no
 				age >= 20
+				age < 55
 				is_female = no
 				NOR = {
 					has_trait = devoted

@@ -22,32 +22,8 @@ namespace = ave_maria_test_events
 # TEST TEST TEST TEST TEST TEST				#
 #############################################
 
-## TEST
+## TEST make everyone feudal independent and allied, need a stunted allied game rule
 ave_maria_test_events.0001 = {
-	type = character_event
-	#hidden = yes
-
-	
-	trigger = {
-				
-	}
-	
-	immediate = {
-		# scope:activity = {
-		# 	complete_activity = yes
-		# }
-	}
-
-	option = {
-		name = "zz"
-		scope:activity = {
-			complete_activity = yes
-		}
-	}
-	
-}
-
-ave_maria_test_events.0002 = {
 	type = character_event
 	hidden = yes
 
@@ -57,10 +33,178 @@ ave_maria_test_events.0002 = {
 	}
 	
 	immediate = {
+		every_ruler = {
+			limit = {
+				has_government = feudal_government
+				highest_held_title_tier >= tier_duchy
+			}
+			primary_title = {
+				save_scope_as = liege_title
+			}
+			every_vassal = {
+				create_alliance = {
+					target = prev
+					allied_through_owner = this
+					allied_through_target = prev
+				}
+				
+				create_title_and_vassal_change = {
+					type = independency
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				# this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+					# add_opinion = {
+						# modifier = perk_negotiated_alliance_opinion
+						# target = prev
+					# }
+				# }
+				becomes_independent = { change = scope:change }
+				resolve_title_and_vassal_change = scope:change
+
+				primary_title = {
+					set_variable = {
+						name = feodum_liege_title
+						value = scope:liege_title
+					}
+				}
+				
+				every_vassal = {
+					create_alliance = {
+						target = prev
+						allied_through_owner = this
+						allied_through_target = prev
+					}
+					# this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+					# add_opinion = {
+							# modifier = perk_negotiated_alliance_opinion
+							# target = prev
+						# }
+					# }
+					create_title_and_vassal_change = {
+						type = independency
+						save_scope_as = change
+						add_claim_on_loss = no
+					}
+					becomes_independent = { change = scope:change }
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+		}
+	}
+
+	
+	
+}
+
+## make vassals independent
+ave_maria_test_events.0002 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
 		
+	}
+	
+	immediate = {
 		
+		every_vassal = {
+			create_alliance = {
+				target = root
+				allied_through_owner = this
+				allied_through_target = root
+			}
+			
+			create_title_and_vassal_change = {
+				type = independency
+				save_scope_as = change
+				add_claim_on_loss = no
+			}
+			becomes_independent = { change = scope:change }
+			resolve_title_and_vassal_change = scope:change
+			
+			every_vassal = {
+				create_alliance = {
+					target = prev
+					allied_through_owner = this
+					allied_through_target = prev
+				}
+			
+				create_title_and_vassal_change = {
+					type = independency
+					save_scope_as = change
+					add_claim_on_loss = no
+				}
+				becomes_independent = { change = scope:change }
+				resolve_title_and_vassal_change = scope:change
+			}
+		}
 	}
 
 }
+
+## TEST  get the feodum variable for testing
+ave_maria_test_events.0003 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		set_global_variable = { 
+			name = feodum_test
+			value = yes
+		}
+	}
+
+	
+	
+}
+
+## TEST - break alliance
+ave_maria_test_events.0004 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		title:k_france.holder = {
+			save_scope_as = zzzzzz
+		}
+		break_alliance = scope:zzzzzz
+	}
+
+	
+	
+}
+
+## Test
+ave_maria_test_events.0005 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		faith = {
+			trigger_event = heresy.0001
+		}
+	}
+
+	
+	
+}
+
 
 

@@ -428,6 +428,7 @@
 	trait = height_tall
 	trait = strong
 	trait = beauty_good_2
+	trait = commander_3
 	father = 1120
 	mother = 10008
 	1015.1.1 = {
@@ -440,6 +441,10 @@
 		add_spouse = 10003
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 25 }
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 12
+			}
 			give_nickname = nick_the_fox
 			add_pressed_claim = d_sicily
 			add_pressed_claim = c_palermo
@@ -447,6 +452,23 @@
 				target = character:2008
 				allied_through_owner = character:1128
 				allied_through_target = character:2008
+			}
+			character:2008 = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+				add_opinion = {
+					modifier = perk_negotiated_alliance_opinion
+					target = character:1128
+				}
+			}
+			create_alliance = {
+				target = character:1119
+				allied_through_owner = character:1128
+				allied_through_target = character:1119
+			}
+			character:1119 = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+				add_opinion = {
+					modifier = perk_negotiated_alliance_opinion
+					target = character:1128
+				}
 			}
 			spawn_army = {
 				name = event_troop_default_name
@@ -1002,6 +1024,7 @@
 	trait = brave
 	trait = legitimized_bastard
 	trait = education_martial_4
+	trait = commander_3
 	father = 252
 	mother = 41001
 	1027.1.15 = {
@@ -1021,6 +1044,10 @@
 	}
 	1066.9.12 = {
 		effect = {
+			set_variable = {
+				name = de_re_military_commander_experience
+				value = 12
+			}
 			#Troops remain after William dies, to make it slightly easier to keep England should William win
 			spawn_army = {
 				name = event_troop_default_name
