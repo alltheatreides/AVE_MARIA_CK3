@@ -424,12 +424,40 @@ on_title_gain = {
 			add_trait = bishop
 		}
 
+		## Feodum - make independent
 		if = {
 			limit = {
 				exists = global_var:feodum_test
 				highest_held_title_tier >= tier_duchy
 				has_government = feudal_government 
 			}
+			primary_title = {
+				save_temporary_scope_as = liege_title
+				add_to_variable_list = {
+					name = realm_titles
+					target = this
+				}
+			}
+			every_vassal = {
+				every_held_title = {
+					limit = {
+						tier >= tier_county
+					}
+					scope:liege_title = {
+						add_to_variable_list = {
+							name = realm_titles
+							target = prev
+						}
+					}				
+				}
+			}
+			primary_title = {
+				ordered_in_list = {
+					list = realm_titles
+					order_by = realm_title_hierarchy
+				}
+			}
+			
 			every_vassal = {
 				create_alliance = {
 					target = root
@@ -473,28 +501,91 @@ on_title_gain = {
 			}
 		}
 
+		## Feodum - checks when you inherit a title if this is a vassal title and allies you to your liege
 		if = {
 			limit = {
 				exists = global_var:feodum_test
 				scope:title = {
+					## Initial code
 					has_variable = feodum_liege_title
+					## end Initial code
 				}
 			}
 			scope:title = {
+				## Initial code that works by "variabling" each vassal title and then checking if they have the variable then allying the liege saved from the variable
 				var:feodum_liege_title = {
 					holder = {
 						save_scope_as = feodum_liege
 					}
 				}
-				holder = {
-					create_alliance = {
-						target = scope:feodum_liege
-						allied_through_owner = this
-						allied_through_target = scope:feodum_liege
+				if = {
+					limit = {
+						root = {
+							tier_difference = {
+								target = scope:feodum_liege
+								value < 0
+							}
+						}
 					}
-					add_opinion = {
-						modifier = perk_negotiated_alliance_opinion
-						target = scope:feodum_liege
+					holder = {
+						create_alliance = {
+							target = scope:feodum_liege
+							allied_through_owner = this
+							allied_through_target = scope:feodum_liege
+						}
+						add_opinion = {
+							modifier = perk_negotiated_alliance_opinion
+							target = scope:feodum_liege
+						}
+					}
+				}
+				## end Initial code
+				
+				
+			}
+			
+		}
+		
+		## Feodum - checks if the title is a liege title and ally you with the vassals of the title
+		if = {
+			limit = {
+				exists = global_var:feodum_test
+				scope:title = {
+					has_variable_list = realm_titles
+				}				
+			}
+			
+			scope:title = {
+				##New test
+				every_in_list = {
+					variable = realm_titles
+					limit = {
+						NOT = {
+							this = scope:title
+							holder = {
+								this = root
+							}
+						}
+					}
+					holder = {
+						if = {
+							limit = {
+								tier_difference = {
+									target = root
+									value < 0
+								}
+							}
+							create_alliance = {
+								target = root
+								allied_through_owner = this
+								allied_through_target = root
+							}
+							add_opinion = {
+								modifier = perk_negotiated_alliance_opinion
+								target = root
+							}
+						}
+						
 					}
 				}
 			}

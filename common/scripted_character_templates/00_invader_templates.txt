@@ -1,0 +1,110 @@
+﻿################################
+# Almohads
+################################
+### Ibn Tumart
+ibn_tumart_character_template = { # (history database char id 125501)
+	age = 49 # Around 50 when the attack on the Almoravids proper began
+	gender = male
+	martial = 8
+	diplomacy = 14
+	intrigue = 10
+	stewardship = 10
+	learning = 12
+	faith = "masmudi"
+	culture = culture:baranis
+	trait = zealous
+	trait = stubborn
+	trait = vengeful
+	trait = scholar
+	trait = education_learning_4
+	trait = reckless
+	random_traits = no
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
+	}
+}
+
+### Abd al-Mu'min
+abd_al_mumin_character_template = {
+	age = 35 # Around 15 years younger than Ibn Tumart
+	gender = male
+	martial = 14
+	diplomacy = 10
+	intrigue = 14
+	stewardship = 6
+	learning = 10
+	faith = "masmudi"
+	culture = culture:baranis
+	trait = ambitious
+	trait = diligent
+	trait = zealous
+	trait = diplomat
+	trait = education_learning_3
+	trait = holy_warrior
+	random_traits = no
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
+	}
+}
+
+################################
+# Hungarian Migration
+################################
+### Local Warlords
+post_migration_local_warlord_template = {
+	age = { 20 40 }
+	random_traits = yes
+	culture = scope:seceding_duchy.title_capital_county.title_province.culture
+	faith = scope:seceding_duchy.title_capital_county.title_province.faith
+	gender_female_chance = {
+		if = {
+			limit = { scope:seceding_duchy.title_capital_county.title_province.faith = { has_doctrine = doctrine_gender_male_dominated } }
+			add = 0
+		}
+		else_if = {
+			limit = { scope:seceding_duchy.title_capital_county.title_province.faith = { has_doctrine = doctrine_gender_female_dominated } }
+			add = 100
+		}
+		else = {
+			add = 50
+		}
+	}
+	martial = {
+		min_template_decent_skill
+		max_template_decent_skill
+	}
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
+	}
+}
+
+post_migration_minor_warlord_template = {
+	age = { 20 40 }
+	random_traits = yes
+	culture = scope:seceding_county.title_capital_county.title_province.culture
+	faith = scope:seceding_county.title_capital_county.title_province.faith
+	gender_female_chance = {
+		if = {
+			limit = { scope:seceding_county.title_capital_county.title_province.faith = { has_doctrine = doctrine_gender_male_dominated } }
+			add = 0
+		}
+		else_if = {
+			limit = { scope:seceding_county.title_capital_county.title_province.faith = { has_doctrine = doctrine_gender_female_dominated } }
+			add = 100
+		}
+		else = {
+			add = 50
+		}
+	}
+	martial = {
+		min_template_decent_skill
+		max_template_decent_skill
+	}
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
+	}
+}

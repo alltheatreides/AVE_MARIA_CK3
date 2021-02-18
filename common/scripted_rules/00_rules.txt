@@ -110,15 +110,15 @@ allowed_to_be_granted_titles_by = {
 }
 
 is_character_allowed_to_be_player = {
-	custom_description = {
-		text = "GAME_OVER_CANNOT_PLAY_THEOCRACY"
-		NOT = { has_government = theocracy_government }
-	}
+	# custom_description = {
+		# text = "GAME_OVER_CANNOT_PLAY_THEOCRACY"
+		# NOT = { has_government = theocracy_government }
+	# }
 
-	custom_description = {
-		text = "GAME_OVER_CANNOT_PLAY_REPUBLIC"
-		NOT = { has_government = republic_government }
-	}
+	# custom_description = {
+		# text = "GAME_OVER_CANNOT_PLAY_REPUBLIC"
+		# NOT = { has_government = republic_government }
+	# }
 }
 
 # Determines if a secret is considered available for blackmail for use in the GUI (icon/tooltip listing a secret you know as usable for blackmail)
@@ -222,21 +222,30 @@ is_dangerous_faction = {
 # Root = First character of alliance reason
 # scope:second = Second character of alliance reason
 is_alliance_valid = {
-	OR = {
-		any_spouse = {
-			this = scope:second
-		}
-		betrothed = scope:second
-		is_parent_of = scope:second
-		is_child_of = scope:second
-		is_sibling_of = scope:second
-		scope:second = {
-			has_opinion_modifier = {
-				modifier = perk_negotiated_alliance_opinion
-				target = root
-			}
-		}
-	}
+	# OR = {
+		# any_spouse = {
+			# this = scope:second
+		# }
+		# betrothed = scope:second
+		# is_parent_of = scope:second
+		# is_child_of = scope:second
+		# is_sibling_of = scope:second
+		# scope:second = {
+			# has_opinion_modifier = {
+				# modifier = perk_negotiated_alliance_opinion
+				# target = root
+			# }
+		# }
+		
+		# trigger_if = {
+			# limit = {
+				# exists = global_var:feodum_test
+			# }
+			# always = yes
+		# }
+	# }
+	
+	always = yes
 
 	## AVE MARIA - Preventing alliance between feudal(and others) and romans
 	# trigger_if = {

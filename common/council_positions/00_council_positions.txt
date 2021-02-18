@@ -1,7 +1,32 @@
 ﻿councillor_chancellor = {
 	skill = diplomacy
 	
-	name = councillor_chancellor
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}					
+				}
+				desc = councillor_chancellor_basileus
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						NOT = {
+							any_held_title = {
+								this = title:e_byzantium
+							}
+						}
+					}
+				}
+				desc = councillor_chancellor
+			}
+		}
+	}
 
 	valid_position = {
 		# NOR = {
@@ -57,7 +82,33 @@ councillor_steward = {
 		# }
 	}
 	
-	name = councillor_steward
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}					
+				}
+				desc = councillor_steward_basileus
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						NOT = {
+							any_held_title = {
+								this = title:e_byzantium
+							}
+						}
+					}
+				}
+				desc = councillor_steward
+			}
+		}
+	}
+	
 	tooltip = game_concept_steward_desc
 	
 	modifier = {
@@ -106,7 +157,33 @@ councillor_marshal = {
 		# }
 	}
 	
-	name = councillor_marshal
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}					
+				}
+				desc = councillor_marshal_basileus
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						NOT = {
+							any_held_title = {
+								this = title:e_byzantium
+							}
+						}
+					}
+				}
+				desc = councillor_marshal
+			}
+		}
+	}
+
 	tooltip = game_concept_marshal_desc
 
 	modifier = {
@@ -150,7 +227,33 @@ councillor_spymaster = {
 		# }
 	}
 	
-	name = councillor_spymaster
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}					
+				}
+				desc = councillor_spymaster_basileus
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						NOT = {
+							any_held_title = {
+								this = title:e_byzantium
+							}
+						}
+					}
+				}
+				desc = councillor_spymaster
+			}
+		}
+	}
+
 	tooltip = game_concept_spymaster_desc
 
 	modifier = {
@@ -242,6 +345,16 @@ councillor_court_chaplain = {
 	
 	name = {
 		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						any_held_title = {
+							this = title:e_byzantium
+						}
+					}					
+				}
+				desc = councillor_court_chaplain_basileus
+			}
 			triggered_desc = {
 				trigger = {
 					scope:councillor_liege.faith = { has_doctrine = doctrine_theocracy_temporal }
@@ -342,6 +455,27 @@ councillor_court_chaplain = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		# trigger_if = {
+		# 	limit = {
+		# 		root.liege_or_court_owner = {
+		# 			any_held_title = {
+		# 				this = title:e_byzantium
+		# 			}
+		# 		}
+		# 	}
+		# 	NOR = {
+		# 		any_held_title = {
+		# 			this = title:k_orthodox
+		# 		}
+		# 	}
+		# 	OR = {
+		# 		has_trait = devoted
+		# 		# has_trait = priest
+		# 		has_trait = rhetorician_3
+		# 		has_trait = rhetorician_4
+		# 	}
+		# }
+			
 	}
 
 	on_get_position = {

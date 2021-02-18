@@ -1,0 +1,48 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA Laws																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ISLAMIC EMPIRE SUCCESSION LAWS													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+title_succession_laws = {
+	
+	#Seljuk Tanistry
+	seljuk_elective_succession_law = {
+		can_have = {
+			has_government = clan_government
+			highest_held_title_tier >= tier_duchy
+		}
+		can_pass = {
+			can_change_title_law_trigger = yes
+			custom_description = {
+				OR = {
+					has_culture_group = culture_group:turkic_group
+					has_culture_group = culture_group:mongolic_group
+				}
+				text = succession_laws_must_have_valid_seljuk_tanistry_culture
+			}
+		}
+		can_title_have = {
+			can_title_have_law_general_trigger = yes
+		}
+		succession = {
+			order_of_succession = election
+			election_type = gaelic_elective
+		}
+		flag = elective_succession_law
+		title_allegiance_opinion = 5
+		revoke_cost = {
+			prestige = change_title_succession_law_prestige_cost
+		}
+		pass_cost = {
+			prestige = change_title_succession_law_prestige_cost
+		}
+	}
+	
+	
+}

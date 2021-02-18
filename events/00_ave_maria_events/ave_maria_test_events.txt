@@ -39,8 +39,32 @@ ave_maria_test_events.0001 = {
 				highest_held_title_tier >= tier_duchy
 			}
 			primary_title = {
-				save_scope_as = liege_title
+				save_temporary_scope_as = liege_title
+				add_to_variable_list = {
+					name = realm_titles
+					target = this
+				}
 			}
+			every_vassal = {
+				every_held_title = {
+					limit = {
+						tier >= tier_county
+					}
+					scope:liege_title = {
+						add_to_variable_list = {
+							name = realm_titles
+							target = prev
+						}
+					}				
+				}
+			}
+			primary_title = {
+				ordered_in_list = {
+					list = realm_titles
+					order_by = realm_title_hierarchy
+				}
+			}
+			
 			every_vassal = {
 				create_alliance = {
 					target = prev
@@ -53,16 +77,16 @@ ave_maria_test_events.0001 = {
 					save_scope_as = change
 					add_claim_on_loss = no
 				}
-				# this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
-					# add_opinion = {
-						# modifier = perk_negotiated_alliance_opinion
-						# target = prev
-					# }
-				# }
+				this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+					add_opinion = {
+						modifier = perk_negotiated_alliance_opinion
+						target = root
+					}
+				}
 				becomes_independent = { change = scope:change }
 				resolve_title_and_vassal_change = scope:change
 
-				primary_title = {
+				every_held_title = {
 					set_variable = {
 						name = feodum_liege_title
 						value = scope:liege_title
@@ -75,12 +99,12 @@ ave_maria_test_events.0001 = {
 						allied_through_owner = this
 						allied_through_target = prev
 					}
-					# this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
-					# add_opinion = {
-							# modifier = perk_negotiated_alliance_opinion
-							# target = prev
-						# }
-					# }
+					this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+						add_opinion = {
+							modifier = perk_negotiated_alliance_opinion
+							target = prev
+						}
+					}
 					create_title_and_vassal_change = {
 						type = independency
 						save_scope_as = change
@@ -90,6 +114,13 @@ ave_maria_test_events.0001 = {
 					resolve_title_and_vassal_change = scope:change
 				}
 			}
+		}
+		
+		title:k_france.holder = {
+			save_scope_as = zzzzzz
+		}
+		title:d_normandy.holder = {
+			break_alliance = scope:zzzzzz
 		}
 	}
 
@@ -108,12 +139,38 @@ ave_maria_test_events.0002 = {
 	}
 	
 	immediate = {
+		primary_title = {
+			save_temporary_scope_as = liege_title
+			add_to_variable_list = {
+				name = realm_titles
+				target = this
+			}
+		}
+		every_vassal = {
+			every_held_title = {
+				limit = {
+					tier >= tier_county
+				}
+				scope:liege_title = {
+					add_to_variable_list = {
+						name = realm_titles
+						target = prev
+					}
+				}				
+			}
+		}
+		primary_title = {
+			ordered_in_list = {
+				list = realm_titles
+				order_by = realm_title_hierarchy
+			}
+		}
 		
 		every_vassal = {
 			create_alliance = {
-				target = root
+				target = prev
 				allied_through_owner = this
-				allied_through_target = root
+				allied_through_target = prev
 			}
 			
 			create_title_and_vassal_change = {
@@ -121,8 +178,21 @@ ave_maria_test_events.0002 = {
 				save_scope_as = change
 				add_claim_on_loss = no
 			}
+			this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+				add_opinion = {
+					modifier = perk_negotiated_alliance_opinion
+					target = root
+				}
+			}
 			becomes_independent = { change = scope:change }
 			resolve_title_and_vassal_change = scope:change
+
+			every_held_title = {
+				set_variable = {
+					name = feodum_liege_title
+					value = scope:liege_title
+				}
+			}
 			
 			every_vassal = {
 				create_alliance = {
@@ -130,7 +200,12 @@ ave_maria_test_events.0002 = {
 					allied_through_owner = this
 					allied_through_target = prev
 				}
-			
+				this = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+				add_opinion = {
+						modifier = perk_negotiated_alliance_opinion
+						target = prev
+					}
+				}
 				create_title_and_vassal_change = {
 					type = independency
 					save_scope_as = change
@@ -179,7 +254,10 @@ ave_maria_test_events.0004 = {
 		title:k_france.holder = {
 			save_scope_as = zzzzzz
 		}
-		break_alliance = scope:zzzzzz
+		title:d_normandy.holder = {
+			break_alliance = scope:zzzzzz
+		}
+		
 	}
 
 	
@@ -197,12 +275,71 @@ ave_maria_test_events.0005 = {
 	}
 	
 	immediate = {
-		faith = {
-			trigger_event = heresy.0001
+		primary_title = {
+			save_temporary_scope_as = liege_title
+			add_to_variable_list = {
+				name = realm_titles
+				target = this
+			}
 		}
+		every_vassal = {
+			every_held_title = {
+				limit = {
+					tier >= tier_county
+				}
+				scope:liege_title = {
+					add_to_variable_list = {
+						name = realm_titles
+						target = prev
+					}
+				}				
+			}
+		}
+		primary_title = {
+			ordered_in_list = {
+				list = realm_titles
+				order_by = realm_title_hierarchy
+			}
+		}
+		
+		## Trying to make the list the same name as the liege title, (cf orc_test scripted effect) does not work
+		# primary_title = {
+			# set_variable = {
+				# name = liege_title
+				# value = this
+			# }
+		# }
+		# orc_test = { 
+			# LIEGE_TITLE = var:liege_title
+		# }
 	}
 
 	
+	
+}
+
+## Test
+ave_maria_test_events.0006 = {
+	type = character_event
+	hidden = yes
+
+	
+	trigger = {
+				
+	}
+	
+	immediate = {
+		add_character_modifier = {
+			modifier = test_modifier
+			
+		}
+		# add_character_modifier = {
+			# modifier = test_modifier_2
+			
+		# }
+		# remove_character_modifier = test_modifier
+		
+	}
 	
 }
 

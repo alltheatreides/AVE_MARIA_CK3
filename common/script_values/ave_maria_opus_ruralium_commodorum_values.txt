@@ -1,0 +1,40 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA SCRIPTED VALUES															   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA ORC SCRIPTED VALUES														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+
+realm_title_hierarchy = {
+	value = 0
+		
+	if = {
+		limit = {
+			tier = tier_county
+		}
+		add = 1
+	}
+	if = {
+		limit = {
+			tier = tier_duchy
+		}
+		add = 2
+	}
+	if = {
+		limit = {
+			tier = tier_kingdom
+		}
+		add = 3
+	}
+	if = {
+		limit = {
+			tier = tier_empire
+		}
+		add = 4
+	}
+}

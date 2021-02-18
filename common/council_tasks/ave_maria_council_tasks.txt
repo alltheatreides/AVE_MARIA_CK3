@@ -1123,11 +1123,19 @@ synkellos_task_conversion = {
 	}
 }
 synkellos_task_intellectual_activity = {
-	position = roman_councillor_synkellos
+	position = councillor_court_chaplain
 	# default_task = yes
 	
 	task_type = task_type_general
 	task_progress = task_progress_infinite
+
+	is_shown = {
+		scope:councillor_liege = {
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+	}
 	
 	effect_desc = synkellos_task_intellectual_activity_desc
 
@@ -1151,7 +1159,16 @@ synkellos_task_intellectual_activity = {
 
 sakellarios_task_collect_taxes = {
 	default_task = yes
-	position = roman_councillor_sakellarios
+	position = councillor_steward
+
+	is_shown = {
+		# scope:councillor_liege = {
+		# 	any_held_title = {
+		# 		this = title:e_byzantium
+		# 	}
+		# }
+		always = no
+	}
 
 	task_type = task_type_general
 	task_progress = task_progress_infinite
@@ -1232,13 +1249,22 @@ sakellarios_task_collect_taxes = {
 	}
 }
 sakellarios_task_manage_treasury = {
-	position = roman_councillor_sakellarios
+	position = councillor_steward
+
+	is_shown = {
+		# scope:councillor_liege = {
+		# 	any_held_title = {
+		# 		this = title:e_byzantium
+		# 	}
+		# }
+		always = no
+	}
 
 	task_type = task_type_general
 	task_progress = task_progress_infinite
 
 	effect_desc = {
-		desc = task_collect_taxes_effect_desc
+		desc = sakellarios_task_manage_treasury_desc
 	}
 
 	council_owner_modifier = {
@@ -1252,7 +1278,7 @@ sakellarios_task_manage_treasury = {
 	}
 }
 sakellarios_task_develop_county = {
-	position = roman_councillor_sakellarios
+	position = councillor_steward
 
 	task_type = task_type_county
 	county_target = realm
@@ -1261,6 +1287,15 @@ sakellarios_task_develop_county = {
 	task_current_value = scope:councillor_liege.steward_develop_county_current_progress
 	task_max_value = 100
 	highlight_own_realm = yes
+
+	is_shown = {
+		# scope:councillor_liege = {
+		# 	any_held_title = {
+		# 		this = title:e_byzantium
+		# 	}
+		# }
+		always = no
+	}
 
 	effect_desc = {
 		desc = task_develop_county_complete_effect_desc

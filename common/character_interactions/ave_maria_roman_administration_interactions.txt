@@ -1895,6 +1895,1252 @@ roman_administration_convert_feudal = {
 	}
 }
 
+## Emperor naming a Protospatharios
+roman_administration_name_protospatharios = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_protospatharios_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_protospatharios
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_protospatharios
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = protospatharios
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_protospatharios = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_protospatharios
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_protospatharios = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_protospatharios
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming a Patrikios
+roman_administration_name_patrikios = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_patrikios_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_patrikios
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_patrikios
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = patrikios
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_patrikios = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_patrikios
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_patrikios = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_patrikios
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming an Anthypatos
+roman_administration_name_anthypatos = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_anthypatos_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_anthypatos
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_anthypatos
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = anthypatos
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_anthypatos = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_anthypatos
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_anthypatos = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_anthypatos
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming a Magistros
+roman_administration_name_magistros = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_magistros_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_magistros
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_magistros
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = magistros
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_magistros = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_magistros
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_magistros = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_magistros
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming a Proedros
+roman_administration_name_proedros = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_proedros_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_proedros
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_proedros
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = proedros
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_proedros = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_proedros
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_proedros = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_proedros
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming a Vestarches
+roman_administration_name_vestarches = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_vestarches_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_vestarches
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_vestarches
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = vestarches
+				
+				hidden_effect = { 
+					
+				}
+				scope:actor = { 
+					remove_relation_vestarches = prev 
+					remove_opinion = {
+						modifier = roman_administration_dignity
+						target = prev
+					}
+					add_opinion = {
+						target = prev
+						modifier = roman_administration_fire_dignities
+					}
+				} 
+				remove_character_modifier = roman_administration_vestarches
+				
+			}
+			
+		}
+		scope:recipient = {
+			set_relation_vestarches = scope:actor
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_dignity
+				days = 800
+			}
+			add_character_modifier = {
+				modifier = roman_administration_vestarches
+			}
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+## Emperor naming a Spatharios
+roman_administration_name_spatharios = {
+	category = interaction_category_vassal
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	desc = roman_administration_name_spatharios_desc
+
+	is_shown = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			NOT = { has_government = theocracy_government }
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_spatharios
+			}			
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			any_held_title = {
+				this = title:e_byzantium
+			}			
+		}
+		scope:recipient = { 
+			roman_administration_character_is_in_the_empire = yes
+			age >= 16
+			is_female = no			
+			NOT = {
+				has_character_modifier = roman_administration_spatharios
+			}			
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			if = {
+				limit = {
+					num_of_relation_spatharios < 5
+				}
+				scope:recipient = {
+					set_relation_spatharios = scope:actor
+					add_opinion = {
+						target = scope:actor
+						modifier = roman_administration_dignity
+						days = 800
+					}
+					add_character_modifier = {
+						modifier = roman_administration_spatharios
+					}
+				}
+			}
+			else = {
+				random_relation = {
+					type = spatharios
+					
+					hidden_effect = { 
+						
+					}
+					scope:actor = { 
+						remove_relation_spatharios = prev 
+						remove_opinion = {
+							modifier = roman_administration_dignity
+							target = prev
+						}
+						add_opinion = {
+							target = prev
+							modifier = roman_administration_fire_dignities
+						}
+					} 
+					remove_character_modifier = roman_administration_spatharios
+					
+				}
+				scope:recipient = {
+					set_relation_spatharios = scope:actor
+					add_opinion = {
+						target = scope:actor
+						modifier = roman_administration_dignity
+						days = 800
+					}
+					add_character_modifier = {
+						modifier = roman_administration_spatharios
+					}
+				}
+			}
+			
+			
+		}
+		
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 48
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			add = -200
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 60
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				opinion = {
+					target = scope:actor
+					value >= 80
+				}
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 200
+			scope:recipient = {
+				is_powerful_vassal = yes
+				opinion = {
+					target = scope:actor
+					value <= 0
+				}
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+# roman_administration_revoke_dignity = {
+# 	category = interaction_category_vassal
+
+# 	use_diplomatic_range = yes
+# 	auto_accept = yes
+
+# 	desc = roman_administration_revoke_dignity_desc
+
+# 	is_shown = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}			
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			NOT = { has_government = theocracy_government }
+# 			age >= 16
+# 			is_female = no			
+# 			OR = {
+# 				has_character_modifier = roman_administration_protospatharios
+# 				has_character_modifier = roman_administration_patrikios
+# 				has_character_modifier = roman_administration_anthypatos
+# 				has_character_modifier = roman_administration_magistros
+# 				has_character_modifier = roman_administration_vestarches
+# 				has_character_modifier = roman_administration_proedros
+# 				has_character_modifier = roman_administration_spatharios
+# 			}		
+# 		}
+# 	}
+
+# 	is_valid = {
+# 		scope:actor = {
+# 			any_held_title = {
+# 				this = title:e_byzantium
+# 			}			
+# 		}
+# 		scope:recipient = { 
+# 			roman_administration_character_is_in_the_empire = yes
+# 			age >= 16
+# 			is_female = no			
+# 			OR = {
+# 				has_character_modifier = roman_administration_protospatharios
+# 				has_character_modifier = roman_administration_patrikios
+# 				has_character_modifier = roman_administration_anthypatos
+# 				has_character_modifier = roman_administration_magistros
+# 				has_character_modifier = roman_administration_vestarches
+# 				has_character_modifier = roman_administration_proedros
+# 				has_character_modifier = roman_administration_spatharios
+# 			}				
+# 		}
+# 	}
+
+# 	on_accept = {
+# 		scope:actor = {
+# 			if = {
+# 				limit = {
+# 					scope:recipient = {
+
+# 					}
+# 				}
+# 				every_relation = {
+# 					type = spatharios
+					
+# 					hidden_effect = { 
+						
+# 					}
+# 					scope:actor = { 
+# 						remove_relation_spatharios = prev 
+# 						remove_opinion = {
+# 							modifier = roman_administration_dignity
+# 							target = prev
+# 						}
+# 						add_opinion = {
+# 							target = prev
+# 							modifier = roman_administration_fire_dignities
+# 						}
+# 					} 
+# 					remove_character_modifier = roman_administration_spatharios
+					
+# 				}
+# 			}
+# 		}
+# 		scope:recipient = {
+# 			remove_character_modifier = roman_administration_protospatharios
+# 			remove_character_modifier = roman_administration_patrikios
+# 			remove_character_modifier = roman_administration_anthypatos
+# 			remove_character_modifier = roman_administration_magistros
+# 			remove_character_modifier = roman_administration_vestarches
+# 			remove_character_modifier = roman_administration_proedros
+# 			remove_character_modifier = roman_administration_spatharios
+# 		}
+# 	}
+# }
+
 #############################################
 # REVOLTS AND SCHEME						#
 #############################################

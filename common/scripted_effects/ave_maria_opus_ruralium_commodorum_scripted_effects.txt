@@ -15,6 +15,31 @@
 # 	change_county_control = $orc_distance_to_capital$
 # }
 
+## Test
+orc_test = {
+	primary_title = {
+		save_temporary_scope_as = liege_title
+		add_to_variable_list = {
+			name = $LIEGE_TITLE$_vassal_titles
+			target = this
+		}
+	}
+	
+	every_vassal = {
+		every_held_title = {
+			limit = {
+				tier >= tier_county
+			}
+			scope:liege_title = {
+				add_to_variable_list = {
+					name = $LIEGE_TITLE$_vassal_titles
+					target = prev
+				}
+			}				
+		}
+	}
+}
+
 ## Distance on province domain
 orc_apply_demesne_provinces_distance_malus = {
     every_held_title = {

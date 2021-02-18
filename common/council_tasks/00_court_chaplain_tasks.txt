@@ -852,6 +852,16 @@ task_fabricate_claim = {
 	task_progress = task_progress_percentage
 	restart_on_finish = yes
 
+	is_shown = {
+		scope:councillor_liege = {
+			NOT = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+	}
+
 	effect_desc = {
 		desc = task_fabricate_claim_effect_desc
 

@@ -268,7 +268,7 @@ widget = {
 	
 										button_standard = {
 											layoutpolicy_horizontal = expanding
-											#parentanchor = center
+											parentanchor = left
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
@@ -278,7 +278,7 @@ widget = {
 
 											background = {
 												fittype = centercrop
-												texture = "gfx/interface/illustrations/decisions/z_ave_maria_open_book.dds"
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_clerk_desk.dds"
 												modify_texture = {
 													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
 													blend_mode = alphamultiply
@@ -293,8 +293,7 @@ widget = {
 												using = Font_Size_Medium
 												#default_format = "#low"
 											}
-										}
-	
+										}	
 										
 									}
 
@@ -332,7 +331,7 @@ widget = {
 
 											background = {
 												fittype = centercrop
-												texture = "gfx/interface/illustrations/decisions/decision_ave_maria_roman_administration_muster_all_the_tagma.dds"
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
 												modify_texture = {
 													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
 													blend_mode = alphamultiply
@@ -442,7 +441,7 @@ widget = {
 		## Main box
 		vbox = {
 			using = Window_Margins
-			
+			parentanchor = top
 			## Header
 			header_pattern = {
 				layoutpolicy_horizontal = expanding
@@ -460,6 +459,7 @@ widget = {
 
 			## Main Box where senate things are
 			hbox = {
+				parentanchor = top
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
 				
@@ -469,6 +469,7 @@ widget = {
 
 					## 
 					vbox = {
+						parentanchor = top
 						spacing = 10
 						#name = "main_senate_box"
 						#spacing = 15
@@ -488,6 +489,7 @@ widget = {
 
 						### Box w
 						vbox = {
+							parentanchor = top
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
 
@@ -502,6 +504,7 @@ widget = {
 
 							## Box where senators dynamic box entries are
 							hbox = {
+								parentanchor = top
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
 
@@ -662,13 +665,11 @@ widget = {
 				}
 				blockoverride "button_close"
 				{
-					# datacontext = "[GetScriptedGui('am_institutions_army_gui_close')]"
-					# onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 				}
 			}
 
-			## Main Box where senate things are
+			## Main Box where army things are
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
@@ -681,72 +682,7 @@ widget = {
 					vbox = {
 						spacing = 10
 
-						## High Office Box
-						vbox = {
-							spacing = 10
-						
-							vbox = {
-								name = "high_military_offices"
-								layoutpolicy_horizontal = expanding
-								spacing = 15
-
-								text_label_center = {
-									text = "Military High Offices"
-									using = Font_Size_Medium
-									default_format = "#high"								
-								}
-
-								background = {
-									#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
-									fittype = centercrop
-									alpha = 0.8
-
-									using = Mask_Rough_Edges
-								}
-
-								hbox = {
-									name = "high_military_offices_grid"
-									spacing = 70
-
-									dynamicgridbox = {
-										datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_imperial_tagma_officials')]"
-										datamodel_wrap = 7
-										flipdirection = yes
-										
-										state = {
-											name = get_list
-											trigger_on_create = yes
-											duration = 2
-											on_start = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-											next = get_list
-										}
-
-										item = {
-											portrait_shoulders = {
-												datacontext = "[Scope.GetCharacter]"
-
-												blockoverride "description_relation_text" {
-													text = "[Character.GetPlayerGuestDescription]"
-												}
-
-												background = {
-													using = Background_Area
-												}
-											}
-										}
-									}
-								}
-
-							}
-
-							## Line to visually divide stuff
-							divider = {
-								layoutpolicy_horizontal = expanding
-							}
-
-						}
-
-						## Provincial military official list box
+						## High military official list box
 						vbox = {
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
@@ -763,7 +699,7 @@ widget = {
 							hbox = {
 								layoutpolicy_horizontal = expanding
 								text_label_center = {
-									text = "Provincial Military Offices"
+									text = "Military Offices"
 									using = Font_Size_Medium
 									default_format = "#high"								
 								}
@@ -774,65 +710,647 @@ widget = {
 								layoutpolicy_horizontal = expanding
 							}
 
-
-							vbox = {
+							## new experiment
+							scrollbox = {
+								name = "character_military_officials_grid"
+								parentanchor = top
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
 
-								hbox = {
-									layoutpolicy_horizontal = expanding
-									layoutpolicy_vertical = expanding
+								blockoverride "scrollbox_margins" { }
+		
+								blockoverride "scrollbox_content"
+								{
+									spacing = 20
+									margin = { 0 20 }
 
-									scrollbox  = {
-										name = "character_military_officials_grid"
-										parentanchor = top
-										layoutpolicy_horizontal = expanding
-										layoutpolicy_vertical = expanding
-		
-										blockoverride "scrollbox_margins" { }
-		
-										blockoverride "scrollbox_content"
-										{
-											spacing = 20
-											margin = { 0 20 }
-		
-											vbox = {
-												layoutpolicy_horizontal = expanding
-												layoutpolicy_vertical = expanding
-												spacing = 0
-		
-												dynamicgridbox = {
-													datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_military_officials_minus_high_officials')]"
-													datamodel_wrap = 7
-													flipdirection = yes
-													
-													state = {
-														name = get_list
-														trigger_on_create = yes
-														duration = 2
-														on_start = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-														next = get_list
-													}
-		
-													item = {
-														portrait_shoulders = {
-															datacontext = "[Scope.GetCharacter]"
-		
-															blockoverride "description_relation_text" {
-																text = "[Character.GetPlayerGuestDescription]"
-															}
+									## First row
+									hbox = {
+										spacing = 20
 
-															background = {
-																using = Background_Area
-															}
+										## Domestikos
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_porta_aurea.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_domestikos')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_domestikos_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
 														}
 													}
 												}
 											}
-										}								
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Domestikos of the East"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "megas_domestikos_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										## Antioch
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_muslim_palace.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_antioch')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_antioch_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Doux of Antioch"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "antioch_doukaton_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
 									}
+
+									## Second row
+									hbox = {
+										spacing = 20
+
+										## Anatolia
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/steppe.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_anatolia')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_anatolia_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Strategos of Anatolikon"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "strategos_anatolia_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										## Exkoubitor
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_excubitor')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_excubitor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Domestikos of the Exkoubitoi"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "exkoubitor_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+									}
+
+									## third row
+									hbox = {
+										spacing = 20
+
+										## Vigla
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantine_forum_view.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_vigla')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_vigla_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Domestikos of the Vigla"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "vigla_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										## Droungarios
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/character_view/ave_maria_roman_administration_droungarios_tou_stolou.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_droungarios')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_droungarios_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Droungarios of the Fleet"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "droungarios_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+									}
+
+									## fourth row
+									hbox = {
+										spacing = 20
+
+										## Hikanatoi
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_great_palace_interior.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_hikanatoi')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_hikanatoi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Domestikos of the Hikanatoi"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "hikanatoi_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										## Noumeroi
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_daphne_palace_window.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_noumeroi')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_noumeroi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Domestikos of the Noumeroi"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "noumeroi_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+									}
+
+									divider = {
+										layoutpolicy_horizontal = expanding
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										text_label_center = {
+											text = "doukaton_gui_text"
+											using = Font_Size_Medium
+											default_format = "#high"								
+										}
+									}
+
+									## Fifth row and beyond
+									hbox = {
+										dynamicgridbox = {
+											datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_doukaton_list')]"
+											datamodel_wrap = 7
+											flipdirection = yes
+											
+											state = {
+												name = get_list
+												trigger_on_create = yes
+												duration = 2
+												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_doukaton_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												next = get_list
+											}
+	
+											item = {
+												portrait_shoulders = {
+													datacontext = "[Scope.GetCharacter]"
+	
+													blockoverride "description_relation_text" {
+														text = "[Character.GetPlayerGuestDescription]"
+													}
+	
+													background = {
+														using = Background_Area
+													}
+												}
+												
+											}
+										}
+									}									
+
+									divider = {
+										layoutpolicy_horizontal = expanding
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										text_label_center = {
+											text = "theme_gui_text"
+											using = Font_Size_Medium
+											default_format = "#high"								
+										}
+									}
+
+									## 6th row and beyond
+									hbox = {
+										dynamicgridbox = {
+											datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_theme_list')]"
+											datamodel_wrap = 7
+											flipdirection = yes
+											
+											state = {
+												name = get_list
+												trigger_on_create = yes
+												duration = 2
+												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_theme_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												next = get_list
+											}
+	
+											item = {
+												portrait_shoulders = {
+													datacontext = "[Scope.GetCharacter]"
+	
+													blockoverride "description_relation_text" {
+														text = "[Character.GetPlayerGuestDescription]"
+													}
+	
+													background = {
+														using = Background_Area
+													}
+												}
+												
+											}
+										}
+									}
+									
 								}
 							}
+
 							#Make a difference east / west ?
 							hbox = {
 								vbox = {
@@ -900,7 +1418,7 @@ widget = {
 				}
 			}
 
-			## Main Box where senate things are
+			## Main Box where army things are
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
@@ -913,72 +1431,7 @@ widget = {
 					vbox = {
 						spacing = 10
 
-						## High Office Box
-						vbox = {
-							spacing = 10
-						
-							vbox = {
-								name = "high_military_offices"
-								layoutpolicy_horizontal = expanding
-								spacing = 15
-
-								text_label_center = {
-									text = "Administration High Offices"
-									using = Font_Size_Medium
-									default_format = "#high"								
-								}
-
-								background = {
-									#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
-									fittype = centercrop
-									alpha = 0.8
-
-									using = Mask_Rough_Edges
-								}
-
-								hbox = {
-									name = "high_military_offices_grid"
-									spacing = 70
-
-									dynamicgridbox = {
-										datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_high_administration_officials')]"
-										datamodel_wrap = 7
-										flipdirection = yes
-										
-										state = {
-											name = get_list
-											trigger_on_create = yes
-											duration = 2
-											on_start = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-											next = get_list
-										}
-
-										item = {
-											portrait_shoulders = {
-												datacontext = "[Scope.GetCharacter]"
-
-												blockoverride "description_relation_text" {
-													text = "[Character.GetPlayerGuestDescription]"
-												}
-
-												background = {
-													using = Background_Area
-												}
-											}
-										}
-									}
-								}
-
-							}
-
-							## Line to visually divide stuff
-							divider = {
-								layoutpolicy_horizontal = expanding
-							}
-
-						}
-
-						## Provincial official list box
+						## High military official list box
 						vbox = {
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
@@ -995,7 +1448,7 @@ widget = {
 							hbox = {
 								layoutpolicy_horizontal = expanding
 								text_label_center = {
-									text = "Provincial Administrative Offices"
+									text = "Administrative Offices"
 									using = Font_Size_Medium
 									default_format = "#high"								
 								}
@@ -1006,65 +1459,276 @@ widget = {
 								layoutpolicy_horizontal = expanding
 							}
 
-
-							vbox = {
+							## new experiment
+							scrollbox = {
+								name = "character_administrative_officials_grid"
+								parentanchor = top
 								layoutpolicy_horizontal = expanding
 								layoutpolicy_vertical = expanding
 
-								hbox = {
-									layoutpolicy_horizontal = expanding
-									layoutpolicy_vertical = expanding
+								blockoverride "scrollbox_margins" { }
+		
+								blockoverride "scrollbox_content"
+								{
+									spacing = 20
+									margin = { 0 20 }
 
-									scrollbox  = {
-										name = "character_military_officials_grid"
-										parentanchor = top
-										layoutpolicy_horizontal = expanding
-										layoutpolicy_vertical = expanding
-		
-										blockoverride "scrollbox_margins" { }
-		
-										blockoverride "scrollbox_content"
-										{
-											spacing = 20
-											margin = { 0 20 }
-		
-											vbox = {
-												layoutpolicy_horizontal = expanding
-												layoutpolicy_vertical = expanding
-												spacing = 0
-		
-												dynamicgridbox = {
-													datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_administrative_officials_minus_high_officials')]"
-													datamodel_wrap = 7
-													flipdirection = yes
-													
-													state = {
-														name = get_list
-														trigger_on_create = yes
-														duration = 2
-														on_start = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-														next = get_list
-													}
-		
-													item = {
-														portrait_shoulders = {
-															datacontext = "[Scope.GetCharacter]"
-		
-															blockoverride "description_relation_text" {
-																text = "[Character.GetPlayerGuestDescription]"
-															}
+									## First row
+									hbox = {
+										spacing = 20
 
-															background = {
-																using = Background_Area
-															}
+										## logothetes
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_roman_palace_interior.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_logothetetes')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_logothetetes_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
 														}
 													}
 												}
 											}
-										}								
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Logothetes of the Drome"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "logothetes_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										## Sakellarios
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/councilchamber.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_sakellion')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_sakellion_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Chartoularios of the Sakellion"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "sakellarios_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
 									}
+
+									## Second row
+									hbox = {
+										spacing = 20
+
+										## Quaestor
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											size = { 450 160 }	
+											background = {
+												fittype = centercrop
+												#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+												texture = "gfx/interface/illustrations/event_scenes/gallows.dds"
+												
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+											
+											dynamicgridbox = {
+												datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_quaestor')]"
+												datamodel_wrap = 7
+												flipdirection = yes
+												
+												state = {
+													name = get_list
+													trigger_on_create = yes
+													duration = 2
+													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_quaestor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													next = get_list
+												}
+	
+												item = {
+													portrait_shoulders = {
+														datacontext = "[Scope.GetCharacter]"
+	
+														blockoverride "description_relation_text" {
+															text = "[Character.GetPlayerGuestDescription]"
+														}
+
+														background = {
+															using = Background_Area
+														}
+													}
+												}
+											}
+
+											text_single = {
+												margin_top = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "Quaestor"
+												using = Font_Size_Medium
+												default_format = "#V"
+											}
+
+											textbox = {
+												margin_top = 150
+												margin_right = 10
+												margin_left = 145
+												layoutpolicy_horizontal = expanding
+												text = "quaestor_gui_text"
+												using = Font_Size_Small
+												#default_format = "#low"
+											}
+
+										}
+
+										button = {
+											size = { 450 160 }	
+										}
+									}
+
+									divider = {
+										layoutpolicy_horizontal = expanding
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										text_label_center = {
+											text = "kouratoreia_gui_text"
+											using = Font_Size_Medium
+											default_format = "#high"								
+										}
+									}								
+
+									
+
+									## 6th row and beyond
+									hbox = {
+										dynamicgridbox = {
+											datamodel = "[GetPlayer.MakeScope.GetList('list_roman_administration_administrative_officials_minus_high_officials')]"
+											datamodel_wrap = 7
+											flipdirection = yes
+											
+											state = {
+												name = get_list
+												trigger_on_create = yes
+												duration = 2
+												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												next = get_list
+											}
+	
+											item = {
+												portrait_shoulders = {
+													datacontext = "[Scope.GetCharacter]"
+	
+													blockoverride "description_relation_text" {
+														text = "[Character.GetPlayerGuestDescription]"
+													}
+	
+													background = {
+														using = Background_Area
+													}
+												}
+												
+											}
+										}
+									}
+									
 								}
 							}
+
 							#Make a difference east / west ?
 							hbox = {
 								vbox = {
@@ -1094,7 +1758,7 @@ widget = {
 
 			## Footer area
 			hbox = {
-				name = "footer_administration"
+				name = "footer_army"
 				layoutpolicy_horizontal = expanding
 				
 				
@@ -2095,7 +2759,9 @@ widget = {
 						## AVE MARIA TO CLOSE DOWN INSTITUTION WINDOW
 						onclick = "[GetVariableSystem.Toggle( 'am_decisions_tab_toggle' )]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
-						
+						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 					}
 
 					state = {
