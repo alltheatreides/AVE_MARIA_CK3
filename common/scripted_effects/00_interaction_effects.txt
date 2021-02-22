@@ -2656,8 +2656,8 @@ demand_conversion_vassal_ruler_interaction_effect = {
 	hidden_effect = {
 		if = {
 			limit = {
-				exists = scope:recipient.capital_province
-				scope:recipient.capital_province.faith = scope:recipient.faith
+				exists = scope:recipient.capital_county
+				scope:recipient.capital_county.faith = scope:recipient.faith
 			}
 			save_scope_value_as = {
 				name = convert_capital

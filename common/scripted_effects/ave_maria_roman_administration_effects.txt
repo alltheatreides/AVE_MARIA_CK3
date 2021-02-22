@@ -911,6 +911,13 @@ roman_administration_accession_to_basileus_effect = {
 	remove_trait = junior_emperor
 
 	remove_character_modifier = roman_administration_emperor_favourite
+	remove_character_modifier = roman_administration_protospatharios
+	remove_character_modifier = roman_administration_patrikios
+	remove_character_modifier = roman_administration_anthypatos
+	remove_character_modifier = roman_administration_magistros
+	remove_character_modifier = roman_administration_vestarches
+	remove_character_modifier = roman_administration_proedros
+	remove_character_modifier = roman_administration_spatharios
 
 	## Changing government
 	change_government = roman_administration_government
@@ -5262,9 +5269,9 @@ roman_administration_update_popularity_variable = {
 		}
 
 		## Replace new value with the other
-		set_variable = {
+		change_variable = {
 			name = roman_administration_popularity
-			value = var:calculate_character_popularity
+			add = var:calculate_character_popularity
 		}
 	}
 
@@ -5614,9 +5621,9 @@ roman_administration_update_legitimacy_variable = {
 		}
 
 		## Replace new value with the other
-		set_variable = {
+		change_variable = {
 			name = roman_administration_legitimacy
-			value = var:calculate_character_legitimacy
+			add = var:calculate_character_legitimacy
 		}
 	}
 

@@ -1548,6 +1548,19 @@ claimant_faction = {
 				}
 			}
 			scope:claimant = {
+				any_heir_title = {
+					this = title:e_byzantium
+				}
+			}
+		}
+		modifier = {
+			add = -1000
+			scope:target = {
+				any_held_title = {
+					this = title:e_byzantium
+				}
+			}
+			scope:claimant = {
 				roman_administration_character_is_in_the_empire = no
 			}
 		}

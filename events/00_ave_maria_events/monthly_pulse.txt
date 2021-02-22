@@ -139,13 +139,28 @@ monthly_pulse.12 = {
 	hidden = yes
 	
 	immediate = {
-		
+		every_duchy = {
+			limit = {
+				is_landless_type_title = yes
+				is_mercenary_company = no
+				is_holy_order = no
+				has_variable = faction
+				holder = {
+					has_trait = peasant_leader
+					is_at_war = no
+				}
+			}
+			holder = {
+				death = natural
+			}
+		}
 	}
 	
 	option = {
 	}
 }
 
+## Every month
 monthly_pulse.13 = {
 	type = empty
 	hidden = yes
@@ -316,6 +331,7 @@ monthly_pulse.13 = {
 			}
 			
 		}
+		
 	}
 	
 	option = {

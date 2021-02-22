@@ -116,11 +116,42 @@ can_be_court_chaplain_trigger = {
 			faith = { has_doctrine = doctrine_theocracy_temporal }
 		}
 		OR = {
-			#is_ruler = no
-			has_trait = devoted
+			is_ruler = no
 			has_government = theocracy_government
 		}
 	}
+	trigger_if = {
+		limit = {
+			faith = { 
+				has_doctrine = doctrine_clerical_succession_temporal_appointment
+				religion = religion:christianity_religion 
+			}
+		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}
+			}
+			NOT = {
+				any_held_title = {
+					this = title:k_orthodox
+				}
+			}
+		}
+		OR = {
+			has_government = theocracy_government
+			has_trait = devoted
+			# has_trait = priest
+			has_trait_rank = {
+				trait = education_learning_rhetorician
+				rank >= 3
+			}
+		}
+	}
+	
 	trigger_if = {
 		limit = {
 			exists = var:escaped_imprisonment_from

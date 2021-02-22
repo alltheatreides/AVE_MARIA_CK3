@@ -320,7 +320,7 @@ ave_maria_test_events.0005 = {
 
 ## Test
 ave_maria_test_events.0006 = {
-	type = character_event
+	# type = character_event
 	hidden = yes
 
 	
@@ -329,15 +329,10 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		add_character_modifier = {
-			modifier = test_modifier
-			
+		change_variable = {
+			name = roman_administration_popularity
+			add = 100
 		}
-		# add_character_modifier = {
-			# modifier = test_modifier_2
-			
-		# }
-		# remove_character_modifier = test_modifier
 		
 	}
 	

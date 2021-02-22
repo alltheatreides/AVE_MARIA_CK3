@@ -32,6 +32,7 @@ on_death = {
 
 		invalidate_claimant_factions_on_death_effect = yes
 
+		
 		## AVE MARIA
 		if = {
 			limit = {
@@ -59,6 +60,66 @@ on_death = {
 				hidden_effect = { scope:actor = { remove_relation_junior_emperor = prev } }
 				remove_trait = junior_emperor
 			}
+			
+
+			## Transferring 1/3 of popularity
+			title:e_byzantium = {
+				current_heir = {
+					if = {
+						limit = {
+							dynasty = {
+								any_dynasty_member = {
+									this = title:e_byzantium.holder
+								}
+							}
+							root = {
+								has_variable = roman_administration_popularity
+							}
+						}
+	
+						if = {
+							limit = {
+								has_variable = roman_administration_popularity
+							}
+							set_variable = {
+								name = popularity_transfer
+								value = root.var:roman_administration_popularity
+							}
+							change_variable = {
+								name = popularity_transfer
+								multiply = 0.3
+							}
+							change_variable = {
+								name = roman_administration_popularity
+								add = var:popularity_transfer
+							}
+							remove_variable = popularity_transfer
+						}
+						
+						if = {
+							limit = {
+								NOT = {
+									has_variable = roman_administration_popularity
+								}
+							}
+							set_variable = {
+								name = popularity_transfer
+								value = root.var:roman_administration_popularity
+							}
+							change_variable = {
+								name = popularity_transfer
+								multiply = 0.3
+							}
+							set_variable = {
+								name = roman_administration_popularity
+								value = var:popularity_transfer
+							}
+							remove_variable = popularity_transfer
+						}
+					}
+				}
+			}
+
 		}
 		
 	}

@@ -133,7 +133,7 @@ determine_ghw_target_effect = {
 	# Find a random top liege in the area
 	scope:target_kingdom = {
 		random_in_de_jure_hierarchy = {
-			# continue = { tier > tier_county }
+			continue = { tier > tier_county }
 			limit = { #Try to pick the largest ruler in the area.
 				tier = tier_county
 				$FAITH$ = {
@@ -973,10 +973,10 @@ new_faith_created_conversion_effect = {
 			scope:recipient = {
 				is_landed = yes
 				highest_held_title_tier > tier_barony
-				primary_title.title_capital_county.faith = scope:recipient.faith
+				capital_county.faith = scope:recipient.faith
 			}
 		}
-		scope:recipient.primary_title.title_capital_county = {
+		scope:recipient.capital_county = {
 			set_county_faith = scope:actor.faith
 		}
 	}
@@ -1051,10 +1051,10 @@ adopt_religion_interaction_effect = {
 		limit = {
 			scope:actor = {
 				highest_held_title_tier > tier_barony
-				NOT = { primary_title.capital_county.faith = scope:recipient.faith }
+				NOT = { capital_county.faith = scope:recipient.faith }
 			}
 		}
-		scope:actor.primary_title.title_capital_county = {
+		scope:actor.capital_county = {
 			set_county_faith = scope:recipient.faith
 		}
 	}

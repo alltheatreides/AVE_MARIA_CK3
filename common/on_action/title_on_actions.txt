@@ -84,6 +84,56 @@ on_title_gain = {
 						}
 					}
 					trigger_event = ave_maria_roman_administration_legitimacy_events.0001
+					scope:previous_holder = {
+						every_relation = {
+							type = protospatharios
+							scope:previous_holder = {
+								remove_relation_protospatharios = prev
+							}
+						}
+						every_relation = {
+							type = patrikios
+							scope:previous_holder = {
+								remove_relation_patrikios = prev
+							}
+						}
+						every_relation = {
+							type = anthypatos
+							scope:previous_holder = {
+								remove_relation_anthypatos = prev
+							}
+						}
+						every_relation = {
+							type = magistros
+							scope:previous_holder = {
+								remove_relation_magistros = prev
+							}
+						}
+						every_relation = {
+							type = vestarches
+							scope:previous_holder = {
+								remove_relation_vestarches = prev
+							}
+						}
+						every_relation = {
+							type = proedros
+							scope:previous_holder = {
+								remove_relation_proedros = prev
+							}
+						}
+						every_relation = {
+							type = spatharios
+							scope:previous_holder = {
+								remove_relation_spatharios = prev
+							}
+						}
+						every_relation = {
+							type = junior_emperor
+							scope:previous_holder = {
+								remove_relation_junior_emperor = prev
+							}
+						}
+					}
 				}
 				if = {
 					limit = {

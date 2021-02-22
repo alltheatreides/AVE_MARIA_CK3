@@ -222,20 +222,20 @@ is_dangerous_faction = {
 # Root = First character of alliance reason
 # scope:second = Second character of alliance reason
 is_alliance_valid = {
-	# OR = {
-		# any_spouse = {
-			# this = scope:second
-		# }
-		# betrothed = scope:second
-		# is_parent_of = scope:second
-		# is_child_of = scope:second
-		# is_sibling_of = scope:second
-		# scope:second = {
-			# has_opinion_modifier = {
-				# modifier = perk_negotiated_alliance_opinion
-				# target = root
-			# }
-		# }
+	OR = {
+		any_spouse = {
+			this = scope:second
+		}
+		betrothed = scope:second
+		is_parent_of = scope:second
+		is_child_of = scope:second
+		is_sibling_of = scope:second
+		scope:second = {
+			has_opinion_modifier = {
+				modifier = perk_negotiated_alliance_opinion
+				target = root
+			}
+		}
 		
 		# trigger_if = {
 			# limit = {
@@ -243,9 +243,9 @@ is_alliance_valid = {
 			# }
 			# always = yes
 		# }
-	# }
+	}
 	
-	always = yes
+	# always = yes
 
 	## AVE MARIA - Preventing alliance between feudal(and others) and romans
 	# trigger_if = {

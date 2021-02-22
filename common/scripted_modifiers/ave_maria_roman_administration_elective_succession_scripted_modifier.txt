@@ -702,6 +702,7 @@
 		}
 	}
 
+	## Nice guy
 	modifier = {
 		add = 50
 		desc = tooltip_imperial_vote_strength_comely
@@ -770,6 +771,17 @@
 				add = 15
 			}
 		}
+	}
+
+	## Basileus is a badass and I respect his authority
+	modifier = {
+		desc = tooltip_imperial_vote_strength_basileus_authority
+		NOT = { this = scope:candidate }
+		scope:holder = {
+			has_variable = roman_administration_popularity
+			var:roman_administration_popularity >= 100
+		}
+		add = 100
 	}
 }
 

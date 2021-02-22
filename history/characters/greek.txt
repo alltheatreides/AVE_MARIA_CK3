@@ -1329,6 +1329,14 @@
 	}
 	1066.1.1 = {
 		effect = {
+			# set_variable = {
+				# name = roman_administration_legitimacy
+				# value = -25
+			# }
+			# set_variable = {
+				# name = roman_administration_popularity
+				# value = -15
+			# }
 			set_variable = {
 				name = de_re_military_commander_experience
 				value = 3
@@ -1641,7 +1649,7 @@
 
 	#Skills
 	diplomacy = 15
-	martial = 4
+	martial = 10
 	stewardship = 12
 	intrigue = 5
 	learning = 10
@@ -1667,6 +1675,10 @@
 		add_spouse = 1783
 	}
 	1066.1.1 = {
+		set_variable = {
+			name = roman_administration_legitimacy
+			value = -50
+		}
 		effect = {
 			vassal_contract_set_obligation_level = {
 				type = ave_maria_roman_administration_special_contract
@@ -1787,6 +1799,7 @@
 	culture = "greek"
 	father = 1752
 	mother = 4511
+	trait = education_martial_3
 	1047.1.1 = {
 		birth = "1047.1.1"
 	}
