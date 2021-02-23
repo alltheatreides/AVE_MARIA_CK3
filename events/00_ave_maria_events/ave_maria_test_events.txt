@@ -329,9 +329,85 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		change_variable = {
-			name = roman_administration_popularity
-			add = 100
+		set_variable = {
+			name = test_count
+			value = 0
+		}
+		title:k_ireland = {
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_county
+				}
+				root = {
+					change_variable = {
+						name = test_count
+						add = 1
+					}
+				}
+			}
+		}
+	
+		capital_province = {
+			set_variable = {
+				name = test
+				value = 50
+			}
+		}
+		capital_province = {
+			set_variable = {
+				name = total_population
+				value = 1134
+			}
+		}
+		
+		
+		capital_province = {
+			set_variable = {
+				name = test_clergy
+				value = 5
+			}
+		}
+
+		capital_province = {
+			set_variable = {
+				name = test_soldier
+				value = 50
+			}
+		}
+		
+		capital_province = {
+			set_variable = {
+				name = test_fishmonger
+				value = 100
+			}
+		}
+		
+		capital_province = {
+			set_variable = {
+				name = test_farmer
+				value = 800
+			}
+		}
+		
+		capital_province = {
+			set_variable = {
+				name = test_herder
+				value = 200
+			}
+		}
+		
+		capital_province = {
+			set_variable = {
+				name = test_laborer
+				value = 100
+			}
+		}
+		
+		capital_province = {
+			set_variable = {
+				name = test_artisan
+				value = 0
+			}
 		}
 		
 	}
