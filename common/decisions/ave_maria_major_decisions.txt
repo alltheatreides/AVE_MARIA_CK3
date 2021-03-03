@@ -1,0 +1,34 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA DECISIONS																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# VARIOUS MAJOR DECISIONS UNCLASSIFIED					                        	   #
+#                               													   #
+########################################################################################
+
+
+## UNLOCK SWISS PIKEMEN - made by TheNunnceler
+establish_pike_regiments_decision = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_establish_pike_regiments_decision.dds"
+	desc = establish_pike_regiments_decision_desc
+	selection_tooltip = establish_pike_regiments_decision_tooltip
+	confirm_text = establish_pike_regiments_decision_confirm
+
+	major = yes
+
+	is_shown = {
+		has_culture = culture:swabian
+		culture:swabian = { has_cultural_era_or_later = culture_era_late_medieval }
+		is_landed = yes
+		capital_county = { title_province = { geographical_region = custom_core_switzerland } }
+		NOT = {
+			culture:swabian = { has_innovation = innovation_swiss_pikemen }
+		}
+		highest_held_title_tier >= tier_duchy
+	}
+ 
+	effect = {
+		culture:swabian = { add_innovation = innovation_swiss_pikemen }
+	}
+}

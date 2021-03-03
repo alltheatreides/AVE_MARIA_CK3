@@ -205,3 +205,33 @@ frankish_shock_cavalry = {
 	ai_quality = { value = @cultural_maa_extra_ai_score }
 	icon = norman_knights
 }
+
+
+## SWISS PIKEMEN MAA - made by TheNunnceler
+swiss_pikemen = {
+	type = pikemen
+ 
+	damage = 30
+	toughness = 24
+	pursuit = 10
+	screen = 0
+ 
+	terrain_bonus = {
+		mountains = { toughness = 12 }
+		desert_mountains = { toughness = 12 }
+		hills = { toughness = 8 }
+	}
+ 
+	counters = {
+		light_cavalry = 2
+		heavy_cavalry = 2
+	}
+ 
+	buy_cost = { gold = 80 }
+	low_maintenance_cost = { gold = 0.35 }
+	high_maintenance_cost = { gold = 1 }
+ 
+	stack = 100
+ 
+	icon = pikemen
+}
