@@ -1,0 +1,177 @@
+﻿@administration_1 = "gfx/interface/icons/culture_innovations/innovation_administration_01.dds"
+@administration_2 = "gfx/interface/icons/culture_innovations/innovation_administration_02.dds"
+@administration_3 = "gfx/interface/icons/culture_innovations/innovation_administration_03.dds"
+@civil_construction_1 = "gfx/interface/icons/culture_innovations/innovation_civil_construction_01.dds"
+@civil_construction_2 = "gfx/interface/icons/culture_innovations/innovation_civil_construction_02.dds"
+@leadership_1 = "gfx/interface/icons/culture_innovations/innovation_leadership_01.dds"
+@leadership_2 = "gfx/interface/icons/culture_innovations/innovation_leadership_02.dds"
+@raised_banner = "gfx/interface/icons/culture_innovations/innovation_raised_banner.dds"
+@fortifications = "gfx/interface/icons/culture_innovations/innovation_fortifications.dds"
+@siege_weapons = "gfx/interface/icons/culture_innovations/innovation_siege_weapons.dds"
+@levy_building = "gfx/interface/icons/culture_innovations/innovation_levy_building.dds"
+@maa_01 = "gfx/interface/icons/culture_innovations/innovation_maa_01.dds"
+@maa_02 = "gfx/interface/icons/culture_innovations/innovation_maa_02.dds"
+@weapons_and_armor_01 = "gfx/interface/icons/culture_innovations/innovation_weapons_and_armor_01.dds"
+@weapons_and_armor_02 = "gfx/interface/icons/culture_innovations/innovation_weapons_and_armor_02.dds"
+@knight = "gfx/interface/icons/culture_innovations/innovation_knight.dds"
+@majesty_01 = "gfx/interface/icons/culture_innovations/innovation_majesty_01.dds"
+@majesty_02 = "gfx/interface/icons/culture_innovations/innovation_majesty_02.dds"
+@majesty_03 = "gfx/interface/icons/culture_innovations/innovation_majesty_03.dds"
+@nobility_01 = "gfx/interface/icons/culture_innovations/innovation_nobility_01.dds"
+@nobility_02 = "gfx/interface/icons/culture_innovations/innovation_nobility_02.dds"
+@nobility_03 = "gfx/interface/icons/culture_innovations/innovation_nobility_03.dds"
+@nobility_04 = "gfx/interface/icons/culture_innovations/innovation_nobility_04.dds"
+@misc_inventions = "gfx/interface/icons/culture_innovations/innovation_misc_inventions.dds"
+
+@camel = "gfx/interface/icons/culture_innovations/innovation_camel.dds"
+@elephant = "gfx/interface/icons/culture_innovations/innovation_elephant.dds"
+@special_maa_01 = "gfx/interface/icons/culture_innovations/innovation_special_maa_01.dds"
+@special_maa_02 = "gfx/interface/icons/culture_innovations/innovation_special_maa_02.dds"
+
+#Berber-Originated Cultural Innovations - Nicked from dangitsdaaaaang's Sui Generis mod (with permission)
+innovation_barb_horses_berber = {
+	group = culture_group_regional
+	culture_era = culture_era_tribal
+	region = world_africa_north_west
+	icon = @maa_02
+		
+	potential = {
+		this.culture_group = culture_group:berber_group
+	}
+	
+	maa_upgrade = {
+		type = light_cavalry
+		damage = 8
+		toughness = 8
+		pursuit = 10
+	}
+	
+	flag = global_regional
+	flag = tribal_era_regional
+}
+
+innovation_barb_horses_andalusian = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = @maa_02
+		
+	potential = {
+		#North African/Iberian Muslims employing Berber horses in the early days of the Iberian Conquest
+		OR = {
+			this = culture:andalusian
+			this = culture:maghrebi
+		}
+	}
+	
+	maa_upgrade = {
+		type = light_cavalry
+		damage = 5
+		toughness = 5
+		pursuit = 8
+	}
+	
+	flag = global_regional
+	flag = early_medieval_era_regional
+}
+
+innovation_barb_horses_iberian = {
+	group = culture_group_regional
+	culture_era = culture_era_high_medieval
+	icon = @special_maa_01
+		
+	potential = { #Iberian Christians employing Berber horses acquired (forcibly or not) from Muslims during the Reconquista
+		OR = { 
+			this = culture:castilian
+			this = culture:portuguese
+			this = culture:galician
+			this = culture:asturleonese
+			this = culture:aragonese
+			this = culture:basque
+			this = culture:catalan
+		}
+	}
+	
+	can_progress = {
+		can_spread_from_neighboring_diff_culture_county = { 
+			HAS_INNOVATION_LIST = "has_innovation = innovation_barb_horses_berber has_innovation = innovation_barb_horses_andalusian has_innovation = innovation_barb_horses_iberian"
+		}
+	}
+	
+	maa_upgrade = {
+		type = light_cavalry
+		damage = 5
+		toughness = 5
+		pursuit = 8
+	}
+	
+	flag = global_regional
+	flag = high_medieval_era_regional
+	
+	custom = sg_can_spread_from_neighboring_diff_culture_county
+}
+
+innovation_barb_horses_world = {
+	group = culture_group_regional
+	culture_era = culture_era_late_medieval
+	icon = @special_maa_01
+		
+	potential = { 
+		NOT = { #Excluding cultures covered in previous iterations
+			OR = { 
+				this.culture_group = culture_group:berber_group
+				
+				this = culture:andalusian
+				this = culture:maghrebi
+				
+				this = culture:castilian
+				this = culture:portuguese
+				this = culture:galician
+				this = culture:asturleonese
+				this = culture:aragonese
+				this = culture:basque
+				this = culture:catalan
+			}
+		}
+		can_show_innovation_due_to_exposure = {
+			HAS_INNOVATION_LIST = "has_innovation = innovation_barb_horses_berber has_innovation = innovation_barb_horses_andalusian has_innovation = innovation_barb_horses_iberian"
+		}
+	}
+	
+	can_progress = {
+		can_spread_from_neighboring_diff_culture_county = { 
+			HAS_INNOVATION_LIST = "has_innovation = innovation_barb_horses_berber has_innovation = innovation_barb_horses_andalusian has_innovation = innovation_barb_horses_iberian"
+		}
+	}
+	
+	maa_upgrade = {
+		type = light_cavalry
+		damage = 5
+		toughness = 5
+		pursuit = 8
+	}
+	
+	flag = global_regional
+	flag = late_medieval_era_regional
+	
+	custom = sg_can_spread_from_neighboring_diff_culture_county
+}
+
+innovation_barbary_corsairs = {
+	group = culture_group_regional
+	culture_era = culture_era_early_medieval
+	icon = "gfx/interface/icons/culture_innovations/innovation_north_african_piracy.dds"
+	
+	potential = {
+		culture_group = culture_group:berber_group
+	}
+	
+	modifier = {
+		embarkation_cost_mult = -0.25
+		naval_movement_speed_mult = 0.40
+	}
+	
+	custom = sg_unlocks_corsair_raiding
+	
+	flag = global_regional
+	flag = high_medieval_era_regional
+}
