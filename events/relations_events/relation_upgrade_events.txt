@@ -176,6 +176,7 @@ relation_upgrade.0001 = {
 	}
 
 	trigger = {
+		is_available_adult = yes
 		any_relation = {
 			type = potential_rival
 			type = rival
@@ -637,13 +638,14 @@ relation_upgrade.0001 = {
 			base = medium_stress_impact_loss
 			drunkard = minor_stress_impact_loss
 		}
+		if = {
+			limit = {
+				NOT = { has_trait = drunkard }
+			}
 		random = {
 			chance = 1
 			add_trait = drunkard
 		}
-
-		ai_chance = {
-			base = 0
 		}
 	}
 

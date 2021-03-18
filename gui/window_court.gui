@@ -177,7 +177,7 @@ window = {
 												layoutpolicy_horizontal = expanding
 												margin = { 0 10 }
 
-												button_decision_entry = {
+												button_court = {
 													name = "hire_physician_decision"
 													datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
 													visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
@@ -240,7 +240,7 @@ window = {
 									hbox = {
 										spacing = 10
 
-										button_decision_entry = {
+										button_court = {
 											name = "invite_knights_decision"
 											datacontext = "[GetDecisionWithKey('invite_knights_decision')]"
 											visible = "[Decision.IsShownForPlayer]"
@@ -259,7 +259,7 @@ window = {
 											}
 										}
 
-										button_decision_entry = {
+										button_court = {
 											name = "invite_claimants_decision"
 											datacontext = "[GetDecisionWithKey('invite_claimants_decision')]"
 											visible = "[Decision.IsShownForPlayer]"
@@ -384,7 +384,7 @@ window = {
 
 					background = {
 						visible = "[LessThanOrEqualTo_int32( CharacterSelectionList.GetTotalNumber, '(int32)0' )]"
-						texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+						texture = "gfx/interface/skinned/illustrations/dungeon.dds"
 						margin = { -5 0 }
 						fittype = centercrop
 						framesize = { 700 800 }
@@ -398,10 +398,10 @@ window = {
 
 					background = {
 						visible = "[GreaterThan_int32( CharacterSelectionList.GetTotalNumber, '(int32)4' )]"
-						texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+						texture = "gfx/interface/skinned/illustrations/dungeon.dds"
 						margin = { -5 0 }
 						fittype = end
-						alpha = 0.7
+						alpha = 0.4
 
 						modify_texture = {
 							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
@@ -614,7 +614,7 @@ window = {
 									datacontext = "[CharacterListItem.GetCharacter]"
 
 									background = {
-										texture = "gfx/interface/illustrations/event_scenes/dungeon.dds"
+										texture = "gfx/interface/skinned/illustrations/dungeon.dds"
 										margin = { -5 0 }
 										fittype = centercrop
 										alpha = 0.3

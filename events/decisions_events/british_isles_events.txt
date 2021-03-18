@@ -114,6 +114,7 @@ british_isles.1002 = {
 		character = scope:restorer
 		animation = personality_honorable
 	}
+	override_background = { event_background = farmland }
 
 	option = { # Not Danish
 		name = british_isles.1002.a
@@ -161,6 +162,867 @@ british_isles.1002 = {
 					set_culture = culture:english
 				}
 			}
+		}
+	}
+}
+
+#	You proposition a powerful opposing warlord about partitioning the nation.
+#		by Ewan Cowhig Croft
+british_isles.1011 = {
+	type = character_event
+	title = british_isles.1011.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { negotiate_the_danelaw_norse_side_trigger = yes }
+				desc = british_isles.1011.nord
+			}
+			desc = british_isles.1011.brit
+		}
+		desc = british_isles.1011.outro
+	}
+	theme = crown
+	left_portrait = {
+		character = scope:ntd_actor
+		animation = personality_rational
+	}
+	right_portrait = {
+		character = scope:ntd_recipient
+		animation = personality_bold
+	}
+
+	immediate = {
+		# Grab actors.
+		## Root initially.
+		save_scope_as = ntd_actor
+		## But also the best possible opposition.
+		### We start by grabbing all possible opposition.
+		title:k_england = {
+			every_in_de_jure_hierarchy = {
+				limit = {
+					exists = holder
+					holder = { negotiate_the_danelaw_valid_danelaw_opponent_trigger = yes }
+				}
+				holder = { add_to_list = possible_danelaw_partners_list }
+			}
+		}
+		### Then sort through those to find the best.
+		ordered_in_list = {
+			list = possible_danelaw_partners_list
+			order_by = negotiate_the_danelaw_preferable_opponent_value
+			save_scope_as = ntd_recipient
+		}
+		## Now, let's figure out who's who.
+		scope:ntd_actor = {
+			if = {
+				limit = { negotiate_the_danelaw_british_side_trigger = yes }
+				save_scope_as = ntd_brit
+			}
+			else = { save_scope_as = ntd_nord }
+		}
+		scope:ntd_recipient = {
+			if = {
+				limit = { exists = scope:ntd_brit }
+				save_scope_as = ntd_nord
+			}
+			else = { save_scope_as = ntd_brit }
+		}
+	}
+
+	# Send the letter.
+	option = {
+		name = british_isles.1011.a
+
+		# Scope:ntd_recipient will get to decide.
+		custom_tooltip = british_isles.1011.a.tt
+		scope:ntd_recipient = { trigger_event = british_isles.1021 }
+		# Show the possible results.
+		show_as_tooltip = { negotiate_the_danelaw_each_way_effect = yes }
+
+		# No stress for the basic option.
+		ai_chance = {
+			# AI should always be fairly likely to pick this.
+			base = 100
+		}
+	}
+	
+	# Send the letter, and an open hand of friendship.
+	option = {
+		name = british_isles.1011.b
+		trigger = {
+			# Must be following a reformed faith.
+			faith = {
+				NOT = { has_doctrine = unreformed_faith_doctrine }
+			}
+			# And be able to accept them as a friend.
+			can_set_relation_friend_trigger = { CHARACTER = scope:ntd_recipient }
+		}
+
+		# All of the above results apply.
+		custom_tooltip = british_isles.1011.b.above_applies.tt
+		# But also you'll take them into your faith & household.
+		custom_tooltip = british_isles.1011.b.offer_faith.tt
+		save_scope_value_as = {
+			name = ntd_friendship_offered
+			value = yes
+		}
+		scope:ntd_recipient = { trigger_event = british_isles.1021 }
+
+		stress_impact = {
+			gregarious = minor_stress_impact_loss
+			zealous = medium_stress_impact_loss
+			forgiving = major_stress_impact_loss
+			trusting = major_stress_impact_loss
+			shy = minor_stress_impact_gain
+			cynical = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+			paranoid = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 1
+				ai_vengefulness = -1
+			}
+			modifier = {	# Weight up for stress.
+				add = 10
+				has_trait = gregarious
+			}
+			modifier = {	# Weight up for stress.
+				add = 20
+				has_trait = zealous
+			}
+			modifier = {	# Weight up for stress.
+				add = 30
+				has_trait = forgiving
+			}
+			modifier = {	# Weight up for stress.
+				add = 30
+				has_trait = trusting
+			}
+			modifier = {	# Weight down for stress.
+				add = -10
+				has_trait = shy
+			}
+			modifier = {	# Weight down for stress.
+				add = -20
+				has_trait = cynical
+			}
+			modifier = {	# Weight down for stress.
+				add = -30
+				has_trait = vengeful
+			}
+			modifier = {	# Weight down for stress.
+				add = -30
+				has_trait = paranoid
+			}
+		}
+	}
+	
+	# Diplomacy is the coward's way out!
+	option = {
+		name = british_isles.1011.c
+
+		# The Danelaw may yet be negotiated by someone else.
+		custom_tooltip = british_isles.1011.c.tt
+		remove_list_global_variable = {
+			name = unavailable_unique_decisions
+			target = flag:negotiate_the_danelaw_decision
+		}
+
+		# No stress for cancelling out of a decision before it's started.
+		ai_chance = {
+			# If the AI has taken the decision, then they should always go through with it.
+			base = 0
+		}
+	}
+}
+
+scripted_effect british_isles_1021_notify_other_players_effect = {
+	every_player = {
+		limit = {
+			NOR = {
+				this = scope:ntd_actor
+				this = scope:ntd_recipient
+			}
+			any_sub_realm_county = {
+				title_province = { geographical_region = world_europe_west_britannia }
+			}
+		}
+		trigger_event = british_isles.1022
+	}
+}
+
+#	An enemy ruler proposes that you and they partition k_england.
+#		by Ewan Cowhig Croft
+british_isles.1021 = {
+	type = character_event
+	title = british_isles.1021.t
+	desc = {
+		desc = british_isles.1021.intro
+		first_valid = {
+			triggered_desc = {
+				trigger = { negotiate_the_danelaw_norse_side_trigger = yes }
+				desc = british_isles.1021.nord
+			}
+			desc = british_isles.1021.brit
+		}
+		desc = british_isles.1021.outro
+	}
+	theme = crown
+	left_portrait = {
+		character = scope:ntd_recipient
+		animation = personality_rational
+	}
+	right_portrait = {
+		character = scope:ntd_actor
+		animation = personality_bold
+	}
+	override_background = { event_background = farmland }
+
+	trigger = { negotiate_the_danelaw_basic_filter_trigger = yes }
+
+	on_trigger_fail = {
+		# Inform scope:ntd_actor that something has gone wrong.
+		scope:ntd_actor = {
+			send_interface_toast = {	
+				title = british_isles.1021.invalidation.t
+				left_icon = scope:ntd_recipient
+				custom_tooltip = british_isles.1021.invalidation.tt
+				remove_list_global_variable = {
+					name = unavailable_unique_decisions
+					target = flag:negotiate_the_danelaw_decision
+				}
+			}
+		}
+	}
+
+	# A crown that none can deny, you say?
+	option = {
+		name = british_isles.1021.a
+
+		# Inform scope:ntd_actor.
+		hidden_effect = {
+			scope:ntd_actor = {
+				send_interface_toast = {	
+					title = british_isles.1021.a.accepted
+					left_icon = scope:ntd_recipient
+					custom_tooltip = british_isles.1021.a.accepted.tt
+				}
+			}
+		}
+		# And inform other players.
+		british_isles_1021_notify_other_players_effect = yes
+		# Then apply effects.
+		negotiate_the_danelaw_accept_effect = yes
+
+		# No stress for the basic option.
+		ai_chance = {
+			# AI should always be fairly likely to pick this.
+			base = 100
+		}
+	}
+
+	# Perhaps... perhaps it #EMP is#! time for a change...
+	option = {
+		name = british_isles.1021.b
+		trigger = { exists = scope:ntd_friendship_offered }
+
+		# Inform scope:ntd_actor.
+		hidden_effect = {
+			scope:ntd_actor = {
+				send_interface_toast = {	
+					title = british_isles.1021.b.accepted.critical
+					left_icon = scope:ntd_recipient
+					custom_tooltip = british_isles.1021.b.accepted.critical.tt
+				}
+			}
+		}
+		# And inform other players.
+		british_isles_1021_notify_other_players_effect = yes
+		# All of the above results apply.
+		custom_tooltip = british_isles.1021.b.above_applies.tt
+		hidden_effect = { negotiate_the_danelaw_accept_effect = yes }
+		# And _also_ you switch faith and are accepted as a friend of scope:ntd_actor.
+		set_relation_friend = scope:ntd_recipient
+		# If possible, switch to scope:ntd_actor's faith.
+		## Yeah, I realise that this is an easy way to skirt the restrictions from HumSac'ing a HoF. :) Benefits of having a godperson vouch for you.
+		if = {
+			limit = {
+				NOT = { scope:ntd_recipient.faith = scope:ntd_actor.faith }
+			}
+			scope:ntd_recipient = { set_character_faith_with_conversion = scope:ntd_actor }
+		}
+
+		stress_impact = {
+			gregarious = minor_stress_impact_loss
+			cynical = medium_stress_impact_loss
+			trusting = medium_stress_impact_loss
+			shy = minor_stress_impact_gain
+			zealous = major_stress_impact_gain
+			paranoid = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 0.5
+				ai_vengefulness = -0.25
+				ai_zeal = -1
+			}
+			modifier = {	# Weight up for stress.
+				add = 10
+				has_trait = gregarious
+			}
+			modifier = {	# Weight up for stress.
+				add = 20
+				has_trait = cynical
+			}
+			modifier = {	# Weight up for stress.
+				add = 20
+				has_trait = trusting
+			}
+			modifier = {	# Weight down for stress.
+				add = -10
+				has_trait = shy
+			}
+			modifier = {	# Weight down for stress.
+				add = -30
+				has_trait = zealous
+			}
+			modifier = {	# Weight down for stress.
+				add = -30
+				has_trait = paranoid
+			}
+		}
+	}
+	
+	# What rot! Let all the world see HerHis cowardice!
+	option = {
+		name = british_isles.1021.c
+
+		# Inform scope:ntd_actor that their bargain has been rejected.
+		hidden_effect = {
+			scope:ntd_actor = {
+				send_interface_toast = {	
+					title = british_isles.1021.c.rejected
+					left_icon = scope:ntd_recipient
+					custom_tooltip = british_isles.1021.c.rejected.tt
+				}
+			}
+		}
+		# Apply rejection effects.
+		negotiate_the_danelaw_reject_effect = yes
+
+		# No stress for not going in on the risky game-changing deal.
+		ai_chance = {
+			# We basically always want the AI to agree to this.
+			base = 0
+		}
+	}
+}
+
+#	Danelaw Negotiated, other POV.
+#		by Ewan Cowhig Croft
+british_isles.1022 = {
+	type = character_event
+	title = british_isles.1022.t
+	desc = british_isles.1022.desc
+	theme = crown
+	left_portrait = {
+		character = scope:ntd_actor
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = scope:ntd_recipient
+		animation = personality_rational
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_peace_ensues"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = { negotiate_the_danelaw_accept_effect = yes }
+		# Save a dummy gender for loc.
+		random_dummy_gender_soldier_effect = { SCOPE_NAME = dummy_gender }		
+	}
+
+	# What brazen treachery of their countrywomenmen is this?
+	option = {
+		name = british_isles.1022.a
+
+		# A partition is begun...
+		custom_tooltip = british_isles.1022.a.tt
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Partition Result - Destruction
+british_isles.1031 = {
+	hidden = yes
+
+	trigger = {
+		# Partition must be active.
+		exists = global_var:partition_active_danelaw
+		# And the destroyed title must be one of the two partitioned entities.
+		OR = {
+			scope:landed_title = title:k_england
+			scope:landed_title = title:k_danelaw
+		}
+	}
+
+	immediate = {
+		# If k_england has been destroyed, set k_danelaw as the de jure inheritor.
+		if = {
+			limit = { scope:landed_title = title:k_england }
+			title:k_danelaw = { save_scope_as = partition_winner }
+			# Try to grab the old holder for down the line.
+			if = {
+				limit = {
+					exists = this
+					is_alive = yes
+				}
+				save_scope_as = loser
+			}
+		}
+		# If k_danelaw has been destroyed, set k_england as the de jure inheritor.
+		if = {
+			limit = { scope:landed_title = title:k_danelaw }
+			title:k_england = { save_scope_as = partition_winner }
+			if = {
+				limit = {
+					exists = this
+					is_alive = yes
+				}
+				save_scope_as = loser
+			}
+		}
+		# Either way, trigger the maintenance event.
+		trigger_event = british_isles.1041
+	}
+}
+
+#	Partition Result - Gained Both
+british_isles.1032 = {
+	hidden = yes
+
+	trigger = {
+		# Partition must be active.
+		exists = global_var:partition_active_danelaw
+		# The gained title must be one of the two partitioned entities.
+		OR = {
+			scope:title = title:k_england
+			scope:title = title:k_danelaw
+		}
+		# And you must now hold both titles.
+		this = title:k_england.holder
+		this = title:k_danelaw.holder
+	}
+
+	immediate = {
+		# If k_england has been inherited, set k_danelaw as the de jure inheritor.
+		if = {
+			limit = { scope:title = title:k_england }
+			title:k_danelaw = { save_scope_as = partition_winner }
+			# Try to grab the old holder for down the line.
+			if = {
+				limit = { exists = scope:previous_holder }
+				scope:previous_holder = { save_scope_as = loser }
+			}
+		}
+		# If k_danelaw has been inherited, set k_england as the de jure inheritor.
+		if = {
+			limit = { scope:title = title:k_danelaw }
+			title:k_england = { save_scope_as = partition_winner }
+			# Try to grab the old holder for down the line.
+			if = {
+				limit = { exists = scope:previous_holder }
+				scope:previous_holder = { save_scope_as = loser }
+			}
+		}
+		# Either way, trigger the maintenance event.
+		trigger_event = british_isles.1041
+	}
+}
+
+scripted_trigger british_isles_1033_england_lost_last_de_jure_trigger = {
+	AND = {
+		this = title:k_england.holder
+		title:k_england = {
+			any_in_de_jure_hierarchy = {
+				tier = tier_county
+				count = 0
+				save_temporary_scope_as = county
+				root = {
+					any_sub_realm_county = { this = scope:county }
+				}
+			}
+		}
+	}
+}
+
+scripted_trigger british_isles_1033_danelaw_lost_last_de_jure_trigger = {
+	AND = {
+		this = title:k_danelaw.holder
+		title:k_danelaw = {
+			any_in_de_jure_hierarchy = {
+				tier = tier_county
+				count <= 0
+				save_temporary_scope_as = county
+				root = {
+					any_sub_realm_county = { this = scope:county }
+				}
+			}
+		}
+	}
+}
+
+#	Partition Result - Lost All De Jure
+british_isles.1033 = {
+	hidden = yes
+
+	trigger = {
+		# Partition must be active.
+		exists = global_var:partition_active_danelaw
+		# Must hold one of the two partitioned titles.
+		OR = {
+			this = title:k_england.holder
+			this = title:k_danelaw.holder
+		}
+		# But not any of the de jure land beneath them.
+		OR = {
+			# First the k_england check.
+			british_isles_1033_england_lost_last_de_jure_trigger = yes
+			# Then the k_danelaw check.
+			british_isles_1033_danelaw_lost_last_de_jure_trigger = yes
+		}
+	}
+
+	immediate = {
+		# If k_england has lost its last de jure, set k_danelaw as the de jure inheritor.
+		if = {
+			limit = { british_isles_1033_england_lost_last_de_jure_trigger = yes }
+			title:k_danelaw = { save_scope_as = partition_winner }
+			# Try to grab the old holder for down the line.
+			title:k_england = {
+				if = {
+					limit = {
+						exists = this.holder
+						holder = { is_alive = yes }
+					}
+					holder = { save_scope_as = loser }
+				}
+			}
+		}
+		# If k_danelaw has lost its last de jure, set k_england as the de jure inheritor.
+		if = {
+			limit = { british_isles_1033_danelaw_lost_last_de_jure_trigger = yes }
+			title:k_england = { save_scope_as = partition_winner }
+			# Try to grab the old holder for down the line.
+			title:k_danelaw = {
+				if = {
+					limit = {
+						exists = this.holder
+						holder = { is_alive = yes }
+					}
+					holder = { save_scope_as = loser }
+				}
+			}
+		}
+		# Either way, trigger the maintenance event.
+		trigger_event = british_isles.1041
+	}
+}
+
+#	Partition Result - Processing
+british_isles.1041 = {
+	hidden = yes
+
+	trigger = {
+		# Prevent looping my ensuring that the partition is active...
+		exists = global_var:partition_active_danelaw
+	}
+
+	immediate = {
+		# ... & then immediately removing its active status.
+		remove_global_variable = partition_active_danelaw
+		# First, let's save some scopes for loc & general convenience.
+		scope:partition_winner.holder = { save_scope_as = victor }
+		if = {
+			limit = { scope:partition_winner = title:k_england }
+			title:k_danelaw = { save_scope_as = partition_loser }
+		}
+		else_if = {
+			limit = { scope:partition_winner = title:k_danelaw }
+			title:k_england = { save_scope_as = partition_loser }
+		}
+		title:k_england = { save_scope_as = england }
+		# Send out result events.
+		## To the winner.
+		scope:victor = { trigger_event = british_isles.1051 }
+		## If they're still alive, to the loser.
+		if = {
+			limit = { exists = scope:loser }
+			scope:loser = { trigger_event = british_isles.1052 }
+		}
+		## And any other players within the British Isles.
+		every_player = {
+			limit = {
+				NOR = {
+					this = scope:victor
+					AND = {
+						exists = scope:loser
+						this = scope:loser
+					}
+				}
+				any_sub_realm_county = {
+					title_province = { geographical_region = world_europe_west_britannia }
+				}
+			}
+			trigger_event = british_isles.1053
+		}
+		# Process the actual results.
+		## We do this last so that we can show correct tooltips in the various preceding events.
+		resolve_danelaw_partition_effect = yes
+	}
+}
+
+#	Danelaw Partition Settled, Scope:victor POV.
+#		by Ewan Cowhig Croft
+british_isles.1051 = {
+	type = character_event
+	title = british_isles.1051.t
+	desc = british_isles.1051.desc
+	theme = crown
+	left_portrait = {
+		character = scope:victor
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = scope:loser
+		animation = shame
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_peace_ensues"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = { resolve_danelaw_partition_effect = yes }
+	}
+
+	# One realm, one GetTitleAsName!
+	option = {
+		name = british_isles.1051.a
+
+		# Gain a hefty chunk of prestige.
+		add_prestige = massive_prestige_gain
+		# The partition is ended!
+		custom_tooltip = british_isles.1051.a.tt
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Danelaw Partition Settled, Scope:loser POV.
+#		by Ewan Cowhig Croft
+british_isles.1052 = {
+	type = character_event
+	title = british_isles.1052.t
+	desc = british_isles.1052.desc
+	theme = crown
+	left_portrait = {
+		character = scope:loser
+		animation = shame
+	}
+	right_portrait = {
+		character = scope:victor
+		animation = schadenfreude
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_murder"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = { resolve_danelaw_partition_effect = yes }
+	}
+
+	# There will be a reckoning for this slight.
+	option = {
+		name = british_isles.1052.a
+
+		# Gain some penalty stress.
+		add_stress = medium_stress_gain
+		# The partition is ended!
+		custom_tooltip = british_isles.1052.a.tt
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Danelaw Partition Settled, other POV.
+#		by Ewan Cowhig Croft
+british_isles.1053 = {
+	type = character_event
+	title = british_isles.1053.t
+	desc = british_isles.1053.desc
+	theme = crown
+	left_portrait = {
+		character = scope:victor
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = scope:loser
+		animation = shame
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_peace_ensues"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = { resolve_danelaw_partition_effect = yes }
+	}
+
+	# Stability for England at last?
+	option = {
+		name = british_isles.1053.a
+
+		# The partition is ended!
+		custom_tooltip = british_isles.1053.a.tt
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Daneland Formalised, Scope:founder POV.
+#		by Ewan Cowhig Croft
+british_isles.1061 = {
+	type = character_event
+	title = british_isles.1061.t
+	desc = british_isles.1061.desc
+	theme = crown
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = scope:england
+		animation = rage
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_peace_ensues"
+		# Show the effects playing out elsewhere.
+		formalise_the_daneland_effect = yes
+	}
+
+	# We shall find out together.
+	option = {
+		name = british_isles.1061.a
+
+		# Gain a hefty chunk of prestige.
+		add_prestige = major_prestige_gain
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Daneland Formalised, Scope:england POV.
+#		by Ewan Cowhig Croft
+british_isles.1062 = {
+	type = character_event
+	title = british_isles.1062.t
+	desc = british_isles.1062.desc
+	theme = crown
+	left_portrait = {
+		character = scope:england
+		animation = shame
+	}
+	right_portrait = {
+		character = scope:founder
+		animation = schadenfreude
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_murder"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = {
+			scope:founder = { formalise_the_daneland_effect = yes }
+		}
+	}
+
+	# HerHis soil was English once, and will be English again.
+	option = {
+		name = british_isles.1062.a
+
+		# Gain some penalty stress.
+		add_stress = medium_stress_gain
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
+		}
+	}
+}
+
+#	Daneland Formalised, other POV.
+#		by Ewan Cowhig Croft
+british_isles.1063 = {
+	type = character_event
+	title = british_isles.1063.t
+	desc = british_isles.1063.desc
+	theme = crown
+	left_portrait = {
+		character = scope:founder
+		animation = personality_honorable
+	}
+	right_portrait = {
+		character = scope:england
+		animation = shame
+	}
+	override_background = { event_background = farmland }
+
+	immediate = {
+		play_music_cue = "mx_cue_peace_ensues"
+		# Show the effects playing out elsewhere.
+		show_as_tooltip = {
+			scope:founder = { formalise_the_daneland_effect = yes }
+		}
+	}
+
+	# Perhaps this will calm some tempers...
+	option = {
+		name = british_isles.1063.a
+
+		# The partition is ended!
+		custom_tooltip = british_isles.1063.a.tt
+
+		# No stress for a simply notification event.
+		ai_chance = {
+			# No need for complex AI chance for single-option event.
+			base = 100
 		}
 	}
 }

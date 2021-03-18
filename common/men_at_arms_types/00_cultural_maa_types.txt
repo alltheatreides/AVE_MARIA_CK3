@@ -21,6 +21,11 @@ huscarl = {
 		pikemen = 1
 		archers = 1
 	}
+
+	winter_bonus = {
+		normal_winter = { toughness = 6 screen = 6 }
+		harsh_winter = { toughness = 6 screen = 6 }
+	}
 	
 	buy_cost = { gold = huscarls_recruitment_cost }
 	low_maintenance_cost = { gold = huscarls_low_maint_cost }
@@ -28,7 +33,7 @@ huscarl = {
 	
 	stack = 100
 	ai_quality = { value = @cultural_maa_extra_ai_score }
-	icon = heavy_infantry
+	icon = danish_huskarls
 }
 
 landsknecht = {
@@ -130,6 +135,11 @@ gendarme = {
 		archers = 1
 	}
 
+	winter_bonus = {
+		normal_winter = { damage = -15 toughness = -5 }
+		harsh_winter = { damage = -30 toughness = -10 }
+	}
+
 	buy_cost = { gold = gendarme_recruitment_cost }
 	low_maintenance_cost = { gold = gendarme_low_maint_cost }
 	high_maintenance_cost = { gold = gendarme_high_maint_cost }
@@ -159,6 +169,10 @@ chasseur = {
 
 	counters = {
 		archers = 1
+	}
+
+	winter_bonus = {
+		harsh_winter = { damage = -5 toughness = -2 }
 	}
 
 	buy_cost = { gold = chasseur_recruitment_cost }
@@ -240,6 +254,10 @@ caballero = {
 		archers = 1
 	}
 
+	winter_bonus = {
+		harsh_winter = { damage = -5 toughness = -2 }
+	}
+
 	buy_cost = { gold = caballero_recruitment_cost }
 	low_maintenance_cost = { gold = caballero_low_maint_cost }
 	high_maintenance_cost = { gold = caballero_high_maint_cost }
@@ -263,11 +281,16 @@ cataphract = {
 		hills = { damage = -10 }
 		mountains = { damage = -50 }
 		desert_mountains = { damage = -50 }
-		wetlands = { damage = -90 toughness = -15 pursuit = -20 }
+		wetlands = { damage = -80 toughness = -15 pursuit = -20 }
 	}
 
 	counters = {
 		archers = 1
+	}
+
+	winter_bonus = {
+		normal_winter = { damage = -15 toughness = -5 }
+		harsh_winter = { damage = -30 toughness = -10 }
 	}
 
 	buy_cost = { gold = cataphract_recruitment_cost }
@@ -297,6 +320,10 @@ hobelar = {
 
 	counters = {
 		archers = 1
+	}
+
+	winter_bonus = {
+		harsh_winter = { damage = -5 }
 	}
 
 	buy_cost = { gold = hobelar_recruitment_cost }
@@ -352,6 +379,11 @@ metsanvartija = {
 
 	counters = {
 		skirmishers = 1
+	}
+	
+	winter_bonus = {
+		normal_winter = { toughness = 4 screen = 8 }
+		harsh_winter = { toughness = 4 screen = 8 }
 	}
 
 	buy_cost = { gold = metsanvartija_recruitment_cost }
@@ -473,11 +505,15 @@ hussar = {
 		hills = { damage = -15 }
 		mountains = { damage = -15 pursuit = -40 }
 		desert_mountains = { damage = -20 pursuit = -50 }
-		wetlands = { damage = -20 toughness = -10 pursuit = -50 screen = -20 }
+		wetlands = { damage = -15 toughness = -10 pursuit = -50 screen = -20 }
 	}
 
 	counters = {
 		archers = 1
+	}
+
+	winter_bonus = {
+		harsh_winter = { damage = -5 }
 	}
 
 	buy_cost = { gold = hussar_recruitment_cost }
@@ -606,6 +642,11 @@ mountaineer = {
 	counters = {
 		pikemen = 1
 	}
+
+	winter_bonus = {
+		normal_winter = { damage = 5 }
+		harsh_winter = { damage = 5 }
+	}
 	
 	buy_cost = { gold = mountaineer_recruitment_cost }
 	low_maintenance_cost = { gold = mountaineer_low_maint_cost }
@@ -638,6 +679,10 @@ sahel_horsemen = {
 	counters = {
 		archers = 1
 		heavy_infantry = 1
+	}
+
+	winter_bonus = {
+		harsh_winter = { damage = -5 toughness = -2 }
 	}
 
 	buy_cost = { gold = sahel_rider_recruitment_cost }

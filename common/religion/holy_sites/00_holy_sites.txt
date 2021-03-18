@@ -952,11 +952,18 @@ ushi-darena = {
 }
 
 
-#############
-# Pagan		#
-#############
+#####################
+# Eurasian Pagan	#
+#####################
 
 # Norse
+# Uppsala	- Site of Scandinavia's pre-eminent temple, both pre & post Christianisation.
+# Lejre		- (Retired) Hrólfr's Hall, a legendary king.
+# Paderborn	- Site of Saxon Irminsul.
+# Zeeland	- (Retired) Focal point for an old major Germanic cult. Probably.
+# Ranaheim	- Important religious site in assorted sagas.
+# York		- Focal point for Norse activities in the British Isles, place of Ragnar's "martyrdom" (and subsequently suddenly genealogically important for half of Scandinavia's nobility).
+# Kiev		- Focal point for Norse activities in Russia & symbolic of their influence in the east.
 
 uppsala = {
 	county = c_upland
@@ -1005,6 +1012,26 @@ ranaheim = {
 		name = holy_site_ranaheim_effect_name
 		# naval_movement_speed_mult = 0.2
 		# men_at_arms_maintenance = -0.05
+	}
+}
+
+jorvik = {
+	county = c_north_riding
+
+	character_modifier = {
+		name = holy_site_jorvik_effect_name
+		knight_effectiveness_mult = 0.2
+		# prowess_per_piety_level = 1
+	}
+}
+
+konugardr = {
+	county = c_kiev
+
+	character_modifier = {
+		name = holy_site_konugardr_effect_name
+		# prowess_per_piety_level = 1
+		# supply_duration = 0.2
 	}
 }
 

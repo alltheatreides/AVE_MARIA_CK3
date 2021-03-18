@@ -547,7 +547,6 @@ rhetorician_4 = {
 	}
 }
 
-
 tzykanion_player_1 = {
 	index = 483
 
@@ -802,6 +801,44 @@ goat_fucker = {
 				desc = trait_commander_4_desc
 			}
 			desc = trait_commander_4_character_desc
+		}
+	}
+}
+
+slave = {
+	index = 493
+	random_creation = 0
+	ruler_designer_cost = 0
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_slave_desc
+			}
+			desc = trait_slave_character_desc
+		}
+	}
+}
+
+ghulam = {
+	index = 494
+	random_creation = 0
+	ruler_designer_cost = 0
+
+	prowess = 4
+	martial = 2
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_ghulam_desc
+			}
+			desc = trait_ghulam_character_desc
 		}
 	}
 }

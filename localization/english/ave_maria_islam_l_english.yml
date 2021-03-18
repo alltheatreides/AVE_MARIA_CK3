@@ -1,20 +1,55 @@
 ﻿l_english:
  ## TITLE NAME
- shia_fatimid_leader:0 "Imam"
- kingdom_shia_fatimid:0 "Caliphate"
- shia_fatimid_leader:0 "Imam"
- empire_shia_fatimid:0 "Caliphate"
+ shia_fatimid_leader:0 "Imām"
+ kingdom_shia_fatimid:0 "Khalīfah"
+ shia_fatimid_leader:0 "Imām"
+ empire_shia_fatimid:0 "Khalīfah"
+
+ barony_islamic_empire:0 "Kufur"
+ county_islamic_empire:0 "Kūra"
+ duchy_islamic_empire:0 "Imārah"
+ kingdom_islamic_empire:0 "Salṭanah"
+ empire_islamic_empire:0 "Salṭanah"
+ duchy_islamic_empire_amir_government:0 "Imārah"
+ kingdom_islamic_empire_amir_government:0 "Salṭanah"
+ duchy_islamic_empire_diwan_government:0 "Dīwān"
+ kingdom_islamic_empire_diwan_government:0 "Dīwān"
+
+ baron_islamic_empire_male:0 "Šayh"
+ baron_islamic_empire_female:0 "Šayh"
+ count_islamic_empire_male:0 "Šayh"
+ count_islamic_empire_female:0 "Šayh"
+ duke_islamic_empire_male:0 "Amīr"
+ duke_islamic_empire_female:0 "Amīr"
+ king_islamic_empire_male:0 "Sultān"
+ king_islamic_empire_female:0 "Sultān"
+ empire_islamic_empire_male:0 "Sultān"
+ empire_islamic_empire_female:0 "Sultān"
+ duke_islamic_empire_diwan_government_male:0 "Kātib"
+ duke_islamic_empire_diwan_government_female:0 "Kātib"
+ king_islamic_empire_diwan_government_male:0 "Kātib"
+ king_islamic_empire_diwan_government_female:0 "Kātib"
+
+ k_fatimid_dawa_holder_name:0 "Da'i al-du'at"
+
+ cn_islam_damascus:0 "Dimasqh"
+
+ ## TITLES
+ e_egypt:0 "Misr"
+ d_fatimid_diwan_al_insha:0 "Dīwān al-Insha"
+ d_fatimid_hajib:0 "Hajib"
+ k_fatimid_dawa:0 "Ismā'īli Da'Wa"
 
  ## INNOVATIONS
  innovation_north_african_piracy:0 "North African Piracy"
- innovation_north_african_piracy_desc:0 ""
+ innovation_north_african_piracy_desc:0 "Yaaaar"
  north_african_piracy_unlock:0 "Unlocks the ability to [raid|E] overseas."
 
  innovation_egyptian_mamluk:0 "Egyptian Mamluks"
- innovation_egyptian_mamluk_desc:0 "Mamluk were military slave soldiers, purchased, trained and equipped to fight on the behalf of the ruler as expert cavalrymen. Since the Tulunids they were also employed alongside infantry slave soldiers from Sudan who have a long history of fighting for Egypt's rulers."
+ innovation_egyptian_mamluk_desc:0 "Mamluk were military slave soldiers, purchased, trained and equipped to fight on the behalf of the ruler as expert heavy cavalrymen. Since the Tulunids they were also employed alongside infantry slave soldiers from Sudan who have a long history of fighting for Egypt's rulers."
  
  innovation_mongol_warfare:0 "Mongol Military Organization"
- innovation_mongol_warfare_desc:0 "The Mongol military tactics and organization enabled the Mongol Empire to conquer nearly all of continental Asia, along with parts of the Middle East and Eastern Europe. Their organization and command structure was highly flexible and allowed the Mongol armies to attack and defeat larger ennemies formation."
+ innovation_mongol_warfare_desc:0 "The Mongol military tactics and organization enabled the Mongol Empire to conquer nearly all of continental Asia, along with parts of the Middle East and Eastern Europe. Their organization and command structure was highly flexible and allowed the Mongol armies to attack and defeat larger ennemy formations."
  mongol_warfare_unlock:0 "Unlocks Mongol Tactics."
 
  ## REGIMENTS
@@ -26,7 +61,7 @@
  mamluk_cavalry_flavor:0 "Slave Soldiers trained and equipped to fight as both shock cavalry and horse archers."
 
 
- ##DECISIONS
+ ## DECISIONS
  hire_physician_decision_muslim:0 "Search for Physician"
  hire_physician_decision_muslim_tooltip:0 "You will be presented with a group of [court_physician|E] candidates and may hire one of them for a fee"
  hire_physician_decision_muslim_confirm:0 "Start the search"
@@ -45,9 +80,96 @@
 
  ## LAWS
  seljuk_elective_succession_law:0 "Seljuk Tanistry"
+ fatimid_elective_succession_law:0 "Ismā'īli Succession"
+ fatimid_shia_elective_electors:0 "Imām"
+ fatimid_shia_elective_candidates:0 "Successor"
+ fatimid_shia_elective_electors_tooltip:0 "As the possessor of God-given infallibility, the Imām chooses his successor through the formal act of naṣṣ."
+ fatimid_shia_elective_candidates_tooltip:0 "In order to be a valid Candidate under the Ismā'īli Succession, a character must fulfill all of the following conditions:\n$EFFECT_LIST_BULLET$Have the [GetTrait('sayyid').GetName( GetNullCharacter )|LV] trait.\n$EFFECT_LIST_BULLET$Be of the current Imām [dynasty|E]"
 
- ## TITLES
- e_egypt:0 "Misr"
+ ave_maria_islamic_empire_realm_law:0 "Fiqh"
+ ave_maria_islamic_imperial:0 "Fiqh"
+
+ ### GOVERNMENT
+ islamic_empire_government:0 "Dawla"
+ islamic_empire_diwan_government:0 "Dīwān"
+ islamic_empire_amir_government:0 "Imārah"
+ islamic_empire_civilian_government:0 "Wilāya"
+
+ ### COUNCILLORS
+
+ ### CONTRACTS
+ islamic_empire_kharaj_right:0 "Kharaj Right"
+ islamic_empire_kharaj_right_none:0 "Restricted Kharaj"
+ islamic_empire_kharaj_right_none_short:0 "Restricted Kharaj"
+ islamic_empire_kharaj_right_allowed:0 "Local Kharaj"
+ islamic_empire_kharaj_right_allowed_short:0 "Local Kharaj"
+ islamic_empire_qadi_right:0 "Qāḍī Nomination"
+ islamic_empire_qadi_right_none:0 "Caliph Appointed Qāḍī"
+ islamic_empire_qadi_right_none_short:0 "Caliph Appointed Qāḍī"
+ islamic_empire_qadi_right_allowed:0 "Local Appointed Qāḍī"
+ islamic_empire_qadi_right_allowed_short:0 "Local Appointed Qāḍī"
+ islamic_empire_inheritance_right:0 "Title Inheritance"
+ islamic_empire_inheritance_right_none:0 "No Inheritance"
+ islamic_empire_inheritance_right_none_short:0 "No Inheritance"
+ islamic_empire_inheritance_right_allowed:0 "Dynastic Inheritance"
+ islamic_empire_inheritance_right_allowed_short:0 "Dynastic Inheritance"
+ islamic_empire_war_right:0 "War Right"
+ islamic_empire_war_right_none:0 "No War"
+ islamic_empire_war_right_none_short:0 "No War"
+ islamic_empire_war_right_allowed:0 "War Right"
+ islamic_empire_war_right_allowed_short:0 "War Right"
+ islamic_empire_iqta:0 "Iqta"
+ islamic_empire_iqta_none:0 "No Iqta"
+ islamic_empire_iqta_allowed:0 "Iqta"
+ islamic_empire_iqta_none_short:0 "No Iqta"
+ islamic_empire_iqta_allowed_short:0 "Iqta"
+ islamic_empire_thugur:0 "Thugur"
+ islamic_empire_thugur_none:0 "No Thugur"
+ islamic_empire_thugur_allowed:0 "Thugur"
+ islamic_empire_thugur_none_short:0 "No Thugur"
+ islamic_empire_thugur_allowed_short:0 "Thugur"
+
+ islamic_empire_muslim_tax:0 "Islamic Taxation"
+ waqf_tax:0 "Waqf"
+ zakat_tax:0 "Zakat"
+ kharaj_tax:0 "Kharaj"
+ ushr_tax:0 "Ushr"
+ baratil_tax:0 "Baratil"
+ mukus_tax:0 "Mukus"
+ waqf_tax_short:0 "Waqf"
+ zakat_tax_short:0 "Zakat"
+ kharaj_tax_short:0 "Kharaj"
+ ushr_tax_short:0 "Ushr"
+ baratil_tax_short:0 "Baratil"
+ mukus_tax_short:0 "Mukus"
+
+ islamic_empire_non_muslim_tax:0 "Ḏimmī Jizyah"
+ jizya_tax_gentle:0 "Gentle"
+ jizya_tax_normal:0 "Normal"
+ jizya_tax_extortionate:0 "Extortionate"
+ jizya_tax_gentle_short:0 "Gentle"
+ jizya_tax_normal_short:0 "Normal"
+ jizya_tax_extortionate_short:0 "Extortionate"
+
+ ## TRAITS
+ trait_slave:0 "Slave"
+ trait_slave_desc:0 "This character has been enslaved and now only serves as a property of his master."
+ trait_slave_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been enslaved and now only serves as a property of his master."
+ trait_ghulam:0 "Ghilmān"
+ trait_ghulam_desc:0 "This character has been enslaved as a young boy and trained thoroughly in the art of war to serve his master as a professional soldier."
+ trait_ghulam_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been enslaved as a young boy and trained thoroughly in the art of war to serve his master as a professional soldier."
+
+ ## BOOKMARK
+ bm_1066_islamic_empire:0 "The Time of the Sword"
+ bm_1066_islamic_empire_desc:0 "#bold The Dâr al-Islâm is divided.#!\n\nDivided by the Ismā'īli Fatimid ambition to reunite the muslim world under their guidance that saw them emerge from their humble beginnings in Ifrīqya to their current situation as masters of Egypt and Syria.\n\nDivided by the competition between the Sword and the Pen, with the Sword currently ascendant as attested by the take-over of Baghdad by the latest Turkic conquerors emerged from the ever turbulent steppe, the Seljuks.\n\n#bold Who will emerge victorious in this fratricide struggle ?\nWill the Dâr al-Islâm ever be united and the Khalīfah free himself from the shackles of the Sword ?#!"
+
+ bookmark_islamic_empire_al_mustansir:0 "Abū Tamīm Ma'ad al-Mustanṣir"
+ bookmark_islamic_empire_al_mustansir_desc:0 "Considered incapable with a court dominated by military strongmen and his mother's favourite officials, Abū Tamīm Ma'ad al-Mustanṣir bi-llāh was the last Ismā'īli Imām before the disastrous split that divided the Ismā'īli caliphate in two with the competition between two of his sons.\nDuring his reign, famine struck and the treasury was exhausted by factional infighting between the various army corps.\n\n#bold Will you be strong enough to keep the realm stable and fulfill the Fatimid dream of muslim unity ?#!"
+ bookmark_islamic_empire_alp_arslan:0 "Muhammad bin Da'ud Chaghri"
+ bookmark_islamic_empire_alp_arslan_desc:0 "Sole ruler of the Seljuks and Persia since the battle of Damghan where he defeated his uncle, Muhammad bin Da'ud Chaghri, nicknamed Alp Arslan, the Heroic Lion, is a powerful force to be reckoned with.\nThanks to the administrative help of Abu Ali Hasan ibn Ali Tusi, the realm conquered by Alp Arslan's grandfather is now balanced between his nomadic Turks and sedentary Persians allowing him to pursue his raiding and conquests against the numerous ennemies to the west, Rome and the Ismā'īli. \n\n#bold Finish what your ancestor started and submit the world to the domination of the Sword !"
+ 
+
+ 
  
 
  

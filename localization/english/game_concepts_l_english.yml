@@ -27,6 +27,8 @@
  game_concept_de_jure:0 "De Jure"
  game_concept_de_jure_desc:1 "Most [titles|E] of are considered part of a higher-Tier Title $game_concept_de_jure$ ('by law').\n\nFor example, a [ruler|E] may be [king|E] of England, but their [realm|E] does not yet contain all the lands that are legally considered to be part of England.\n\nThe [holder|E] of a [duchy|E], [kingdom|E], or [empire|E] always has a [casus_belli|E] to seize control of its $game_concept_de_jure$ constituent titles.\n\n[vassals|E] will also decide who their [rightful_liege|E] is based on what Title their [primary_title|E] is De Jure a part of."
  game_concept_de_jure_drift:0 "De Jure Drift"
+ game_concept_de_jure_drift_drifted:0 "Drifted"
+ game_concept_de_jure_drift_drift:0 "Drift"
  game_concept_de_jure_drift_desc:1 "$game_concept_de_jure_drift_desc_part_1$\n\n$game_concept_de_jure_drift_desc_part_2$"
  game_concept_de_jure_drift_desc_part_1:0 "A slow process by which a [title|E]'s [de_jure|E] [liege|E] can change. It occurs naturally when a [duchy|E] or [kingdom|E] is completely controlled by a [ruler|E] who does not hold the territory's de jure liege title.\n\nThis process can be sped up by assigning your [chancellor|E] to the appropriate [councillor_task|E] #weak ($task_integrate_title$)#!. Duchies can only $game_concept_de_jure_drift$ into Kingdoms, and Kingdoms can only Drift into [empires|E].\n\nLetting titles De Jure Drift into your [primary_title|E] is a good way to get rid of the [rightful_liege|E] penalty."
  game_concept_de_jure_drift_desc_part_2:0 "#weak Example: The Duchy of $d_northumberland$ is de jure part of $k_england$, but the territory of the duchy is entirely within $k_scotland$. Since the King of $k_scotland$ does not also hold $k_england$, the duchy will start to $game_concept_de_jure_drift$ toward becoming a part of $k_scotland$.#!"
@@ -362,7 +364,7 @@
  game_concept_piety_experience_desc:0 "Each point of Devotion a character gets increases their progress towards the next [piety_level|E]. When a character gains [piety|E] they also gain an equal amount of Devotion."
  game_concept_piety_level:0 "Level of Devotion"
  game_concept_piety_levels:1 "Level(s) of Devotion"
- game_concept_piety_level_desc:2 "A Character's $game_concept_piety_level$ is a measure how virtuous and devout they are, as well as their standing with other members of their [faith|E].\n\nEvery time a Character gains [piety|E], they also progress toward the next Level of Devotion.\n\nThe Levels are:\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_1' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_2' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_3' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_4' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_5' ).GetNameWithTooltip|L]"
+ game_concept_piety_level_desc:3 "A Character's $game_concept_piety_level$ is a measure how virtuous and devout they are, as well as their standing with other members of their [faith|E].\n\nEvery time a Character gains [piety|E], they also progress toward the next Level of Devotion.\n\nThe Levels are:\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_0' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_1' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_2' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_3' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_4' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'piety_level_5' ).GetNameWithTooltip|L]"
  game_concept_prestige:0 "Prestige"
  game_concept_prestige_i:0 "@prestige_icon!"
  game_concept_prestige_desc:0 "$game_concept_prestige$ represents a Character's fame and social standing.\n\nPrestige can be spent on various worldly matters depending on [government_form|E], [doctrines|E], et cetera.\n\nEvery time a Character gains Prestige, they also progress toward the next [prestige_level|E]."
@@ -370,7 +372,7 @@
  game_concept_prestige_experience_desc:0 "Each point of Fame a character gets increases their progress towards the next [prestige_level|E]. When a character gains [prestige|E] they also gain an equal amount of Fame."
  game_concept_prestige_level:0 "Level of Fame"
  game_concept_prestige_levels:0 "Levels of Fame"
- game_concept_prestige_level_desc:1 "A Character's $game_concept_prestige_level$ measures their general reputation, and how well perceived they are by everyone.\n\nEach time a Character gains [prestige|E], they also progress towards the next $game_concept_prestige_level$.\n\nThe Levels are:\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_1' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_2' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_3' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_4' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_5' ).GetNameWithTooltip|L]"
+ game_concept_prestige_level_desc:2 "A Character's $game_concept_prestige_level$ measures their general reputation, and how well perceived they are by everyone.\n\nEach time a Character gains [prestige|E], they also progress towards the next $game_concept_prestige_level$.\n\nThe Levels are:\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_0' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_1' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_2' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_3' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_4' ).GetNameWithTooltip|L]\n$EFFECT_LIST_BULLET$[GetModifier( 'prestige_level_5' ).GetNameWithTooltip|L]"
  game_concept_dynast:1 "Dynasty Head"
  game_concept_dynast_desc:2 "A $game_concept_dynast$ is the head of an entire [dynasty|E] and all of its [houses|E]. The Dynasty Head wields certain unique powers over the members of the Dynasty, known as [dynast_interactions|E]."
  game_concept_dynasty:0 "Dynasty"
@@ -621,7 +623,7 @@
  game_concept_prowess:0 "Prowess"
  game_concept_prowess_i:0 "@skill_prowess_icon!"
  game_concept_prowess_skill:0 "Prowess Skill"
- game_concept_prowess_skill_desc:2 "$game_concept_prowess$ is a secondary [skill|E] that reflects the Character's aptitude in personal combat.\n\nA high Prowess Skill means they are more likely to survive and perform well both as [knights|E] in [battles|E] and in duels.\n\nEach point of Prowess gives a Knight:\n$BULLET_WITH_TAB$[damage|E]: #V [GetDefine('NCombat', 'KNIGHT_DAMAGE_PER_PROWESS')]#!\n$BULLET_WITH_TAB$[toughness|E]: #V [GetDefine('NCombat', 'KNIGHT_TOUGHNESS_PER_PROWESS')]#!\n\n$PROWESS_MUSCLE_INFO$"
+ game_concept_prowess_skill_desc:3 "$game_concept_prowess$ is a secondary [skill|E] that reflects the Character's aptitude in personal combat.\n\nA high Prowess Skill means they are more likely to survive and perform well both as [knights|E] in [battles|E] and in [single_combat_duel_plural|E].\n\nEach point of Prowess gives a Knight:\n$BULLET_WITH_TAB$[damage|E]: #V [GetDefine('NCombat', 'KNIGHT_DAMAGE_PER_PROWESS')]#!\n$BULLET_WITH_TAB$[toughness|E]: #V [GetDefine('NCombat', 'KNIGHT_TOUGHNESS_PER_PROWESS')]#!\n\n$PROWESS_MUSCLE_INFO$"
  game_concept_lifestyle:0 "Lifestyle"
  game_concept_lifestyles:0 "Lifestyles"
  game_concept_lifestyle_desc:2 "[adult|E] [rulers|E] may choose a $game_concept_lifestyle$, which will in turn allow them to select a [focus|E] and start gaining [perks|E].\n\nEach $game_concept_lifestyle$ has its own type of [experience|E], which is used to purchase $game_concept_perks$. For example, Experience in the [intrigue_lifestyle|E] is necessary to gain $game_concept_perks$ such as [GetPerk( 'dreadful_perk' ).GetName( GetPlayer )] or [GetPerk( 'like_weed_in_a_garden_perk' ).GetName( GetPlayer )].\n\nThe $game_concept_lifestyles$ are:\n$BULLET_WITH_TAB$ [diplomacy_lifestyle|E]\n$BULLET_WITH_TAB$ [stewardship_lifestyle|E]\n$BULLET_WITH_TAB$ [martial_lifestyle|E]\n$BULLET_WITH_TAB$ [intrigue_lifestyle|E]\n$BULLET_WITH_TAB$ [learning_lifestyle|E]"
@@ -1113,7 +1115,7 @@
  game_concept_breeding_desc:2 "By arranging [marriages|E] between characters with good [congenital|E] [traits|E], it is possible to breed children with the same Traits. Lucky offspring might even get a reinforced version of such Traits.\n\nHowever, the same is true of bad Congenital Traits like [GetTrait('beauty_bad_2').GetName( GetNullCharacter )].\n\nIt might be tempting to arrange marriages between closely related characters in order to produce better Traits in your children, but this also carries the risk of [inbreeding|E] defects."
  game_concept_inbreeding:0 "Inbreeding"
  game_concept_inbred:0 "Inbred"
- game_concept_inbreeding_desc:0 "The children of two closely related characters risk being born with a [congenital|E] defect, the most serious of which is the [GetTrait('inbred').GetName( GetNullCharacter )] [trait|E].\n\nThis is rare in the first generation, but successive Inbreeding increases the risk.\n\nGenerations of inbreeding can, however, also result in the beneficial [GetTrait('pure_blooded').GetName( GetNullCharacter )] Trait, which makes offspring immune to birth defects due to all flaws having been [bred|E] out of the bloodline."
+ game_concept_inbreeding_desc:1 "The [children|E] of two closely related [characters|E] risk being born with a [congenital|E] defect, the most serious of which is the [GetTrait('inbred').GetName( GetNullCharacter )] [trait|E].\n\nThis is rare in the first generation, but successive $game_concept_inbreeding$ increases the risk.\n\nGenerations of $game_concept_inbreeding$ can, however, also result in the beneficial [GetTrait('pure_blooded').GetName( GetNullCharacter )] $game_concept_trait$, which (if both parents share it) makes offspring immune to birth defects due to all flaws having been [bred|E] out of the bloodline."
  game_concept_cadet_branching:0 "Cadet Branching"
  game_concept_cadet_branch:0 "Cadet Branch"
  game_concept_cadet_branches:0 "Cadet Branches"
@@ -1444,9 +1446,11 @@
 
  game_concept_liberty_faction:0 "$liberty_faction$"
  game_concept_faction_liberty:0 "Liberty"
+ game_concept_liberty_factions:0 "Liberty Factions"
  game_concept_liberty_faction_desc:1 "The $game_concept_liberty_faction$ seeks to lower the [crown_authority|E] and, if applicable, their own [feudal_contracts|E]. If successful, their [liege|E] will be unable to change the Crown Authority of the [realm|E] for some time."
 
  game_concept_claimant_faction:0 "$claimant_faction$"
+ game_concept_claimant_factions:0 "Claimant Factions"
  game_concept_claimant_faction_desc:1 "The $game_concept_claimant_faction$ seeks to install a particular [claimant|E] on the throne of a [title|E] held by their [liege|E]. If successful, the Liege will have to relinquish the Title to the Claimant and the [vassal|E] structure will be updated accordingly. All [faction|E] members will gain a [hook|E] on the Claimant."
 
  game_concept_peasant_faction:0 "$peasant_faction$"
@@ -1552,6 +1556,7 @@
  game_concept_titular_title_desc:0 "A $game_concept_titular_title$ is a [title|E] that has no [de_jure|E] land on the map. Non-Titular Titles can become Titular through [de_jure_drift|E].\n\n[mercenary|E], [head_of_faith|E] and [holy_order|E] Titles are often Titular."
 
  game_concept_pilgrimage:0 "Pilgrimage"
+ game_concept_pilgrimages:0 "Pilgrimages"
  game_concept_pilgrimage_desc:0 "Characters of most [faiths|E] can [decide|E] to go on a $game_concept_pilgrimage$ to a [holy_site|E].\n\nSuch a journey may be filled with both opportunity and peril, but upon reaching their destination characters will earn [piety|E] and may receive other rewards."
 
  game_concept_faith_righteous:0 "Righteous"
@@ -1625,6 +1630,7 @@
  game_concept_personality_desc:0 "Characters will act against you and others according to their Personality, which is primarily determined by their Personality [traits|E]."
  
  game_concept_gift:0 "Gift"
+ game_concept_send_gift:0 "Send Gift"
  game_concept_gift_desc:0 "Sending a Gift to another character will increase their [opinion|E] of you in exchange for [gold|E][gold_i].\n\nThe greedier the recipient, the more Gold you will have to send, and the more Opinion you will get.\n\nThe higher your [diplomacy|E], the more Opinion you will get."
 
  game_concept_vote_strength:0 "Vote Strength"
@@ -1635,7 +1641,34 @@
  game_concept_prisoner_of_war:0 "Prisoner of War"
  game_concept_prisoners_of_war:0 "Prisoners of War"
  game_concept_prisoner_of_war_desc:0 "A $game_concept_prisoner_of_war$ is a [prisoner|E] who's captured during a [war|E], but not of importance to provide the captors with [war_score|E].\n\n[hostages|E] are released when the war ends, unlike prisoners of war, but can still be ransomed for release."
- 
+
+  game_concept_single_combat_fight:0 "Single Combat"
+ game_concept_single_combat_duel:0 "Duel"
+ game_concept_single_combat_fight_plural:0 "Single Combats"
+ game_concept_single_combat_duel_plural:0 "Duels"
+ game_concept_single_combat_fight_sudden_death:0 "Sudden Death"
+ game_concept_single_combat_fight_desc:0 "In a $game_concept_single_combat_fight$, two [characters|E] fight, either to the [character_death_death|E] or to first blood. Each round, both $game_concept_characters$ select one randomly rolled option from a list, trading blows until one $game_concept_character$ gets a solid strike in, with the options available depending on your [prowess|E] and [traits|E].\n\nSome options may give special effects, and most will increase your [single_combat_success_chance|E] and [single_combat_injury_chance|E]. As $game_concept_single_combat_duel_plural$ go on, they grow more dangerous and uncertain, and it becomes easier to win or hurt yourself. After several rounds, $game_concept_single_combat_duel_plural$ enter sudden death, ending immediately with the higher $game_concept_prowess$ combatant winning.\n\nWhen fighting $game_concept_single_combat_duel_plural$, you may gain temporary [single_combat_prowess_bonus|E] or [single_combat_prowess_malus|E] [character_modifiers|E], increasing or reducing your $game_concept_prowess$ until the $game_concept_single_combat_duel$ ends."
+ game_concept_single_combat_success_chance:0 "Likelihood of Success"
+ game_concept_single_combat_success_chance_skill:0 "Duel Success"
+ game_concept_single_combat_success_chance_desc:0 "When fighting a $game_concept_single_combat_fight$, your $game_concept_single_combat_success_chance$ is how well you are doing in the $game_concept_single_combat_duel$. To win, you must get your $game_concept_single_combat_success_chance$ far above your opponent's.\n\nAs rounds go on, it becomes easier to win, meaning you need less lead over your opponent.\n\nThe counterpart to $game_concept_single_combat_success_chance$ is [single_combat_injury_chance|E]."
+ game_concept_single_combat_injury_chance:0 "Risk of Injury"
+ game_concept_single_combat_injury_chance_injure:0 "Injure"
+ game_concept_single_combat_injury_chance_injury_risk:0 "Injury Risk"
+ game_concept_single_combat_injury_chance_desc:0 "[characters|E] in $game_concept_single_combat_fight_plural$ run the risk of hurting themselves, either by accidentally opening their guard to their opponent, or simply injuring themselves with their own weapon. As they fight, they also build $game_concept_single_combat_injury_chance$.\n\n$game_concept_single_combat_duel_plural$ that go on longer make it easier to hurt yourself.\n\nThe counterpart to $game_concept_single_combat_injury_chance$ is [single_combat_success_chance|E]."
+ game_concept_single_combat_prowess_bonus:0 "Duel Edge Bonus"
+ game_concept_single_combat_prowess_bonus_desc:0 "As [characters|E] $game_concept_single_combat_duel$, they may gain temporary advantage, such as by leveraging [terrain|E] or special [traits|E]. This increases their [prowess|E] for the duration of the current bout, and is lost immediately after.\n\nThe opposite of $game_concept_single_combat_prowess_bonus$ is [single_combat_prowess_malus|E]."
+ game_concept_single_combat_prowess_malus:0 "Duel Edge Malus"
+ game_concept_single_combat_prowess_malus_desc:1 "As [characters|E] $game_concept_single_combat_duel$, they may be afflicted with temporary disadvantage, often due to their opponent severely hurting or intimidating them. This decreases their [prowess|E] for the duration of the current bout, but is regained immediately after.\n\nThe opposite of $game_concept_single_combat_prowess_malus$ is [single_combat_prowess_bonus|E]."
+
+ game_concept_elope_scheme:0 "$elope$"
+ game_concept_elope_schemes:0 "Elope Schemes"
+ game_concept_elope:0 "Elope"
+ game_concept_elope_scheme_desc:0 "The $elope$ is a [personal_scheme|E] where the [scheme_target|E] moves to the [scheme_owner|E]'s court to marry them.\nA multitude of factors determines the [success_chance|E] of the Scheme, including [rank|E] and opinion.\nOnly [lovers|E] can elope."
+
+ game_concept_de_jure_partition:0 "De Jure Partition"
+ game_concept_de_jure_partitioned:0 "De Jure Partitioned"
+ game_concept_de_jure_partition_desc:0 "[realms|E] that have been $game_concept_de_jure_partitioned$ have been split into two same-[title_tier|E] [titles|E], but can still be reunited easily.\n\nEither $game_concept_title$ can [de_jure_drift_drift|E] [completely_controlled|E] [duchies|E] from the other $game_concept_title$ into its [de_jure|E] instantly via [decision|E].\n\nIf either $game_concept_title$ is ever destroyed or loses the last of its $game_concept_de_jure$ [counties|E], then the remaining $game_concept_title$ absorbs all of its $game_concept_de_jure$."
+
  ### AVE MARIA ADDITION
  administrative_title:0 "Administrative Title"
  administrative_titles:0 "Administrative Titles"

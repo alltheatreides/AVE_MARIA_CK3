@@ -45,8 +45,6 @@ my_interaction = {
 	notification_text = loc_key							# Request text
 	prompt = loc_key 									# What text should be shown under the portrait? (For example: "Pick a Guardian")
 	
-	show_effects_in_notification = yes/no 				# Should the effects be shown in the notification?
-
 	cooldown = { years = x } 							# How long until the decision can be taken again?
 	cooldown_against_recipient = { years = x } 			# How long until the decision can be taken against recipient again?
 
@@ -58,10 +56,8 @@ my_interaction = {
 	can_be_picked = trigger 							# TODO
 	can_be_picked_title = trigger 						# TODO
 	auto_accept = yes/no/trigger						# Is the interaction automatically accepted, or can recipient decide
-	can_send = trigger									# Can the interaction be sent
+	can_send = trigger									# Can the interaction be sent?
 	can_be_blocked = trigger 							# Can the interaction be blocked by the recipient (i.e. by a hook on the actor)
-	is_highlighted = trigger							# Should the interaction be highlighted in the menu
-	can_send = trigger 									# Can the interaction be sent?
 	
 	redirect = {}										# This changes the redirection of characters using the scopes actor, recipient, secondary_actor and secondary_recipient
 	populate_actor_list = {}							# Everyone sorted into the list 'characters' has the potential of being shown to be selected. Uses the scopes actor, recipient, secondary_actor and secondary_recipient.

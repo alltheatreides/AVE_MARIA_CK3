@@ -16,7 +16,7 @@
 # FATIMID							      #
 ###########################################
 
-# Misr
+# Misr - used as an Empire title to allow for super governors (king tier title governors) if the universal pretention of the Shia Imamate are realized
 e_egypt = {
 	color = { 200 255 200 }
 	color2 = { 255 255 255 }
@@ -34,3 +34,36 @@ e_egypt = {
 	
 
 }
+
+## Fatimid Chancellery
+d_fatimid_diwan_al_insha = {
+	capital = c_cairo
+	ai_primary_priority = {
+		add = @always_primary_score
+	}
+	landless = yes
+	de_jure_drift_disabled = yes	
+}
+
+## Fatimid Chamberlain 
+d_fatimid_hajib = {
+	capital = c_cairo
+	ai_primary_priority = {
+		add = @always_primary_score
+	}
+	landless = yes
+	de_jure_drift_disabled = yes	
+}
+
+## "Church" hierarchy of the Shia 
+k_fatimid_dawa = {
+	capital = c_cairo
+	ai_primary_priority = {
+		add = @always_primary_score
+	}
+	landless = yes
+	de_jure_drift_disabled = yes
+}
+
+
+

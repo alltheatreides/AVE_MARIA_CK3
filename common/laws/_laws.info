@@ -36,6 +36,11 @@ law_group_name = {
 		}
 		flag = some_arbitrary_flag	# See below for flags treated specially. Also can be checked in script with has_realm_law_flag = some_arbitrary_flag
 
+		triggered_flag = { # Checks and adds flag only if the trigger's condition is met. Both trigger and flag *must* be specified within this block
+			trigger = { <trigger> } # Some trigger (has character scope)
+			flag = some_arbitrary_flag # See below for flags treated specially. Also can be checked in script with has_realm_law_flag = some_arbitrary_flag
+		}
+
 		on_pass = {		# Effect run on ruler when the law is added. Does *NOT* get run when default laws are initialized, nor when inheriting a law from someone else. If this is done on a title, the title is accessible as scope:title
 		}
 		on_revoke = {	# Effect run on ruler when the law is removed. Does *NOT* get run when law is removed due to inheriting a law from someone else. If this is done on a title, the title is accessible as scope:title

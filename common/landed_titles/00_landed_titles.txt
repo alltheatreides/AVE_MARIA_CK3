@@ -149,7 +149,25 @@ d_conversos = {
 
 
 k_danelaw = {
-	color = { 247 93 42 }
+	color = { 255 60 15 }
+	color2 = { 220 220 0 }
+	de_jure_drift_disabled = yes
+
+	capital = c_north_riding
+	
+	ai_primary_priority = {
+		if = {
+			limit = {
+				culture_group = culture_group:north_germanic_group
+			}
+			add = @correct_culture_primary_score
+			add = @better_than_the_alternatives_score
+		}
+	}
+}
+
+k_daneland = {
+	color = { 200 40 15 }
 	color2 = { 220 220 0 }
 
 	capital = c_north_riding
@@ -761,6 +779,13 @@ e_armenia = {
 	color = { 198 29 29 }
 	
 	capital = c_hayk # Ani
+}
+
+e_north_sea = {
+	color = { 0 0 60 }
+	definite_form = yes
+	
+	capital = c_sjaelland	#Roskilde
 }
 
 # TITULAR KINGDOMS
@@ -62185,6 +62210,12 @@ e_arabia = {
 		d_damascus = {
 			color = { 122 255 3 }
 			color2 = { 255 255 255 }
+
+			cultural_names = {
+				nubian = cn_islam_damascus
+				egyptian = cn_islam_damascus
+				levantine = cn_islam_damascus
+			}
 			
 			capital = c_damascus
 			

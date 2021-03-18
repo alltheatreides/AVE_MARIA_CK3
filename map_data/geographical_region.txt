@@ -107,7 +107,7 @@ world_europe_north = {
 		#Denmark
 		d_skane d_sjaelland d_jylland d_slesvig
 		#Sapmi
-		d_aarjetje d_duortnoseatnu d_giemajohka d_guoldat
+		d_aarjetje d_duortnoseatnu d_giemajohka d_guoldat d_vuovdisamieana
 	}
 }
 world_europe_south_east = { 
@@ -115,7 +115,7 @@ world_europe_south_east = {
 		#West ERE
 		d_thrace d_strymon d_thessalonika d_thessaly d_dyrrachion d_cephalonia d_epirus d_athens d_achaia d_krete d_cyprus d_vidin d_turnovo d_dobrudja d_bulgaria d_philippopolis d_rashka d_macva d_slavonia d_croatia d_dalmatia d_usora
 		#d_adrianopolis d_karvuna d_dioclea 
-		d_bosna d_krain d_istria d_ragusa d_duklja
+		d_bosna d_lower_bosna d_krain d_istria d_ragusa d_duklja
 	}
 }
 world_europe_south_italy = { 
@@ -843,7 +843,7 @@ custom_slavia = {
 		#Croatia
 		d_dalmatia d_croatia d_slavonia d_ragusa
 		#Bosnia
-		d_bosna d_usora
+		d_bosna d_lower_bosna d_usora
 		#Serbia		
 		d_rashka d_macva d_duklja
 		#Bulgaria
@@ -894,6 +894,8 @@ custom_south_slavia = {
 		d_transylvanian_alps d_muntenia d_oltenia
 		#Moldavia
 		d_bukovina d_moldova d_bugeac
+		#Bosnia
+		d_bosna d_lower_bosna d_usora
 	}
 }
 
@@ -1068,6 +1070,26 @@ custom_stretch_austria = {
 		d_carinthia d_krain d_istria
 	}
 }
+
+#Used in global.0011
+custom_fennoscandia = {
+	duchies = {
+		#Sweden
+		d_ostergotland d_gotland d_vastergotland d_svealand d_norrland d_smaland d_bergslagen
+		# d_uppland d_bergslagen
+		#Norway
+		d_viken d_agder d_vestlandi d_trandalog d_dalir d_halogaland d_jamtland d_northern_isles
+		# d_orkney d_vestlandet d_ostlandet d_trondelag
+		#Finland
+		d_karelia d_finland d_savo d_pohjanmaa
+		# d_kola
+		#Denmark
+		d_skane d_sjaelland d_jylland d_slesvig
+		#Sapmi
+		d_aarjetje d_duortnoseatnu d_giemajohka d_guoldat
+	}
+}
+
 
 ###########################################################################
 # Graphical Regions
@@ -1394,6 +1416,7 @@ special_cagot_region = {
 		d_navarra d_gascogne d_armagnac d_aragon d_viscaya d_cantabria d_asturias d_castilla d_leon
 	}
 }
+
 #####################
 # GHW Targeting Regions
 #####################
@@ -1820,6 +1843,7 @@ ghw_region_scandinavia = {
 		d_aarjetje d_duortnoseatnu
 	}
 }
+
 ghw_region_britannia = {
 	duchies = {
 		#England
@@ -2219,6 +2243,286 @@ ghw_region_north_eastern_india = {
 }
 
 ### END GHW Regions
+
+#####################
+# The Northern Lords Regions
+#####################
+
+dlc_fp1_region_core_north_sea = {
+	duchies = {
+		#k_norway
+		d_viken d_agder d_vestlandi d_trandalog
+		#k_england
+		d_york d_norfolk d_bedford d_canterbury
+		#k_denmark
+		d_sjaelland d_slesvig d_jylland
+	}
+	counties = {
+		#k_england
+		c_huntingdonshire c_northamptonshire c_leicestershire c_nottinghamshire
+	}
+}
+
+dlc_fp1_region_mysterious_stranger_locations = {
+	regions = {
+		world_europe_north
+	}
+	duchies = {
+		#k_pomerania
+		d_nordmark d_ostmark d_pommerania d_pomerelia
+		#k_poland
+		d_mazovia d_upper_silesia d_lower_silesia d_lesser_poland d_wielkopolska d_kuyavia
+		#k_galicia_volhynia
+		d_volhynia d_halych d_cherven_cities
+		#k_lithuania
+		d_lithuanians d_courland d_latgalians d_samogitia d_prussia d_masuria
+		#k_estonia
+		d_esthonia d_livonia
+		#k_ruthenia
+		d_kiev d_turov d_pereyaslavl d_chernigov d_karachev d_novosil
+		#k_white_rus
+		d_grodno d_pinsk d_minsk d_polotsk d_smolensk
+		#k_novgorod
+		d_novgorod d_vepsia d_luki
+		#k_vladimir
+		d_opolye d_ryazan d_nizhny_novgorod
+		#k_bjarmaland
+		d_biarmia d_vologda d_chudia d_ustyug
+	}
+}
+
+dlc_fp1_region_western_adventure_targets_iceland_isles = {
+	duchies = {
+		#k_norway
+		d_iceland d_northern_isles
+	}
+}
+
+dlc_fp1_region_western_adventure_targets_scotland_isles = {
+	duchies = {
+		#k_scotland
+		d_the_isles d_galloway d_western_isles d_moray
+	}
+}
+dlc_fp1_region_western_adventure_targets_ireland = {
+	duchies = {
+		#k_ireland
+		d_meath d_ulster d_connacht d_leinster d_munster
+	}
+}
+dlc_fp1_region_western_adventure_targets_northern_england = {
+	duchies = {
+		#k_england
+		d_northumberland d_lancaster d_york d_norfolk d_hereford
+	}
+}
+dlc_fp1_region_western_adventure_targets_northern_france_brittany = {
+	duchies = {
+		#k_west_francia
+		d_normandy d_flanders
+		#k_brittany
+		d_brittany
+	}
+}
+dlc_fp1_region_western_adventure_targets_pomerania_prussia = {
+	duchies = {
+		#k_pomerania
+		d_pomerelia d_pommerania
+		#k_lithuania
+		d_prussia
+	}
+}
+dlc_fp1_region_western_adventure_targets_frisia = {
+	duchies = {
+		#k_frisia
+		d_holland d_gelre d_utrecht d_frisia d_flanders
+	}
+}
+
+dlc_fp1_region_eastern_adventure_targets_novgorod = {
+	duchies = {
+		#k_novgorod
+		d_novgorod d_vepsia d_luki
+	}
+}
+dlc_fp1_region_eastern_adventure_targets_white_rus = {
+	duchies = {
+		#k_white_rus
+		d_grodno d_pinsk d_minsk d_polotsk d_smolensk
+	}
+}
+dlc_fp1_region_eastern_adventure_targets_vladimir = {
+	duchies = {
+		#k_vladimir
+		d_opolye d_ryazan d_nizhny_novgorod
+	}
+}
+dlc_fp1_region_eastern_adventure_targets_ruthenia = {
+	duchies = {
+		#k_ruthenia
+		d_kiev d_turov d_pereyaslavl d_chernigov d_ryazan d_karachev d_novosil
+	}
+}
+dlc_fp1_region_eastern_adventure_targets_estonia = {
+	duchies = {
+		#k_estonia
+		d_esthonia d_livonia
+	}
+}
+dlc_fp1_region_eastern_adventure_targets_zaporizhia = {
+	duchies = {
+		#k_zaporizhia
+		d_yedisan d_levedia d_don_valley d_crimea
+	}
+}
+
+dlc_fp1_region_western_scandinavia_pool = {
+	duchies = {
+		#k_norway
+		d_viken d_agder d_vestlandi d_trandalog d_dalir d_halogaland d_iceland d_northern_isles d_jamtland
+		#k_denmark
+		d_skane d_sjaelland d_jylland d_slesvig
+	}
+}
+
+dlc_fp1_region_eastern_scandinavia_pool = {
+	duchies = {
+		#k_sweden
+		d_ostergotland d_gotland d_vastergotland d_svealand d_norrland d_smaland d_bergslagen
+	}
+}
+
+dlc_fp1_region_russian_steppe = {
+	regions = {
+		world_steppe_west world_steppe_east
+	}
+	duchies = {
+		#k_vladimir
+		d_opolye d_ryazan d_nizhny_novgorod
+		#k_novgorod
+		d_novgorod d_vepsia d_luki
+		#k_white_rus
+		d_grodno d_pinsk d_minsk d_polotsk d_smolensk
+		#k_ruthenia
+		d_kiev d_turov d_pereyaslavl d_chernigov d_karachev d_novosil
+	}
+}
+
+dlc_fp1_region_core_mainland_scandinavia = {
+	duchies = {
+		#k_norway
+		d_viken d_agder d_vestlandi d_trandalog d_dalir d_halogaland d_jamtland
+		#k_denmark
+		d_skane d_sjaelland d_jylland d_slesvig
+		#k_sweden
+		d_ostergotland d_gotland d_vastergotland d_svealand d_norrland d_smaland d_bergslagen
+	}
+}
+
+dlc_fp1_region_non_scandinavian_southern_baltic = {
+	counties = {
+		#k_pomerania
+		c_mecklenburg c_rostock c_rugen c_wolgast c_stettin c_kolobrzeg c_cammin c_slupsk c_danzig
+		#k_lithuania
+		c_malbork c_wormditt c_natangia c_konigsberg c_scalovia c_memel c_palanga c_grobin c_vanemane c_zemigalians
+		#k_estonia
+		c_vidzeme c_livs c_wiek c_osel c_reval c_narva
+		#k_novgorod
+		c_vodi
+		#k_finland
+		c_viipuri c_kakisalmi c_nyland c_finland c_satakunta c_mustasaari c_pedersore c_oulu
+	}
+}
+
+dlc_fp1_region_colonial_eastern_europe = {
+	duchies = {
+		# Wendish Lands
+		d_mazovia d_upper_silesia d_lower_silesia d_lesser_poland d_wielkopolska d_kuyavia d_livonia d_prussia d_masuria d_grodno d_pinsk d_minsk d_polotsk d_smolensk d_lithuanians d_courland d_latgalians d_samogitia d_pommerania d_nordmark d_pomerelia d_ostmark 
+		#Russia
+		d_novgorod d_vepsia d_luki d_kiev d_karachev d_novosil d_opolye d_nizhny_novgorod d_turov d_chernigov d_ryazan d_pereyaslavl
+		#Bjarmaland
+		d_biarmia d_vologda d_chudia d_ustyug
+		#Galicia-Volhynia
+		d_volhynia d_halych d_cherven_cities
+	}
+}
+
+dlc_fp1_achievement_far_from_home = {
+	duchies = {
+		# k_lanka
+		d_dakhina_desa d_ruhunu d_sinhala
+		# k_yemen
+		d_socotra
+	}
+	counties = {
+		# k_tamilakam
+		c_maldives
+		# k_gujarat
+		c_kutch
+	}
+}
+
+dlc_fp1_achievement_king_of_all_the_isles = {
+	duchies = {
+		# k_norway
+		d_iceland d_northern_isles
+		# k_denmark
+		d_sjaelland
+		# k_sweden
+		d_gotland
+		# k_scotland
+		d_western_isles d_the_isles
+		# k_maghreb
+		d_canarias
+		# k_valencia
+		d_mallorca
+		# k_sardinia
+		d_sardinia d_corsica
+		# k_sicily
+		d_sicily
+		# k_venice
+		d_venice
+		# k_epirus
+		d_cephalonia
+		# k_krete
+		d_krete
+		# k_cyprus
+		d_cyprus
+	}
+	counties = {
+		# k_denmark
+		c_bornholm
+		# k_sweden
+		c_aland c_oland
+		# k_estonia
+		c_osel
+		# k_wales
+		c_anglesey
+		# k_england
+		c_isle_of_wight
+		# k_thessalonika
+		c_chios c_lesbos c_naxos c_rhodos
+	}
+}
+
+dlc_fp1_achievement_vladimirs_second_choice = {
+	duchies = {
+		#k_galicia_volhynia
+		d_volhynia d_halych d_cherven_cities
+		#k_ruthenia
+		d_kiev d_turov d_pereyaslavl d_chernigov d_karachev d_novosil
+		#k_white_rus
+		d_grodno d_pinsk d_minsk d_polotsk d_smolensk
+		#k_novgorod
+		d_novgorod d_vepsia d_luki
+		#k_vladimir
+		d_opolye d_ryazan d_nizhny_novgorod
+		#k_bjarmaland
+		d_biarmia d_vologda d_chudia d_ustyug
+	}
+}
+
+### END TNL Regions
 
 ###########################################################################
 # AVE MARIA CUSTOM Regions

@@ -61,8 +61,21 @@ pool_repopulate_prowess = {
 		athletic = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				95 = {}
+				5 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -96,10 +109,24 @@ pool_repopulate_diplomacy = {
 		compassionate = {}
 		fickle = {}
 		forgiving = {}
+		poet = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				85 = {}
+				15 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -128,8 +155,27 @@ pool_repopulate_martial = {
 		impatient = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				65 = {}
+				15 = {
+					add_trait = varangian
+				}
+				15 = {
+					add_trait = berserker
+				}
+				5 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -161,8 +207,21 @@ pool_repopulate_stewardship = {
 		ambitious = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				95 = {}
+				5 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -198,8 +257,21 @@ pool_repopulate_intrigue = {
 		craven = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				95 = {}
+				5 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -251,6 +323,20 @@ pool_repopulate_learning = {
 				75 = {}
 				25 = {
 					add_trait = devoted
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				95 = {}
+				5 = {
+					add_trait = poet
 				}
 			}
 		}
@@ -357,8 +443,21 @@ pool_repopulate_spouse = {
 		beauty_good_1 = {}
 	}
 	dynasty = none
-
 	after_creation = {
+		if = {
+			limit = {
+				OR = {
+					culture_group = culture_group:north_germanic_group
+					religion = religion:germanic_religion
+				}
+			}
+			random_list = {
+				95 = {}
+				5 = {
+					add_trait = poet
+				}
+			}
+		}
 		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }
@@ -857,6 +956,9 @@ pool_repopulate_local_flavor = {
 				10 = {
 					add_trait = giant
 				}
+				10 = {
+					add_trait = poet
+				}
 				450 = {
 					trigger = {
 						NOT = {
@@ -869,6 +971,10 @@ pool_repopulate_local_flavor = {
 					trigger = {
 						faith = {
 							has_doctrine = tenet_warmonger
+						}
+						OR = {
+							culture_group = culture_group:north_germanic_group
+							religion = religion:germanic_religion
 						}
 						NOR = {
 							has_trait = craven

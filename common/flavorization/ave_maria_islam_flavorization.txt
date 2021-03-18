@@ -1,8 +1,12 @@
-﻿kingdom_shia_fatimid = {
+﻿#############################################
+# FATIMIDS									#
+#############################################
+
+kingdom_shia_fatimid = {
 	type = title
 	tier = kingdom
 	priority = 1000
-	top_liege = no
+	# top_liege = no
 	faiths = { ismaili }
 	titles = { k_egypt }
 }
@@ -16,14 +20,14 @@ shia_fatimid_leader = {
 	priority = 1000
 	# titles = { k_egypt }
 	faiths = { ismaili }
-	top_liege = no
+	# top_liege = no
 }
 
 empire_shia_fatimid = {
 	type = title
 	tier = empire
 	priority = 1000
-	top_liege = no
+	# top_liege = no
 	faiths = { ismaili }
 	titles = { e_egypt }
 }
@@ -37,5 +41,223 @@ shia_fatimid_leader = {
 	priority = 1000
 	# titles = { k_egypt }
 	faiths = { ismaili }
+	# top_liege = no
+}
+
+#############################################
+# ISLAMIC EMPIRE GOVERNMENT					#
+#############################################
+
+## TITLES
+## Replace vanilla "Duchy of XX" by "Imarah of XX"
+
+barony_islamic_empire = {
+	type = title
+	tier = barony
+	priority = 300
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government islamic_empire_diwan_government }
+	# top_liege = no
+}
+county_islamic_empire = {
+	type = title
+	tier = county
+	priority = 300
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government islamic_empire_diwan_government }
+	# top_liege = no
+}
+
+## For Islamic Empire government specifically
+duchy_islamic_empire = {
+	type = title
+	tier = duchy
+	priority = 300
+	governments = { islamic_empire_government }
+	# top_liege = no
+}
+kingdom_islamic_empire = {
+	type = title
+	tier = kingdom
+	priority = 300
+	governments = { islamic_empire_government }
+	# top_liege = no
+}
+empire_islamic_empire = {
+	type = title
+	tier = kingdom
+	priority = 300
+	governments = { islamic_empire_government }
+	# top_liege = no
+}
+
+## For Imarat government
+duchy_islamic_empire_amir_government = {
+	type = title
+	tier = duchy
+	priority = 300
+	governments = { islamic_empire_amir_government islamic_empire_thugur_government }
+	# top_liege = no
+}
+kingdom_islamic_empire_amir_government = {
+	type = title
+	tier = kingdom
+	priority = 300
+	governments = { islamic_empire_amir_government islamic_empire_thugur_government }
+	# top_liege = no
+}
+
+## For Diwan government
+duchy_islamic_empire_diwan_government = {
+	type = title
+	tier = duchy
+	priority = 300
+	governments = { islamic_empire_diwan_government }
+	# top_liege = no
+}
+kingdom_islamic_empire_diwan_government = {
+	type = title
+	tier = kingdom
+	priority = 300
+	governments = { islamic_empire_diwan_government }
+	# top_liege = no
+}
+
+## TITLES HOLDER
+## Replace vanilla "count of XX" by "Amir of XX"
+
+baron_islamic_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+baron_islamic_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+count_islamic_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+count_islamic_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+duke_islamic_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+duke_islamic_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+king_islamic_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+king_islamic_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+empire_islamic_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+empire_islamic_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 300
+	# top_liege = no
+	governments = { islamic_empire_government islamic_empire_amir_government islamic_empire_thugur_government }
+}
+
+duke_islamic_empire_diwan_government_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 300
 	top_liege = no
+	governments = { islamic_empire_diwan_government }
+}
+duke_islamic_empire_diwan_government_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 300
+	top_liege = no
+	governments = { islamic_empire_diwan_government }
+}
+king_islamic_empire_diwan_government_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 300
+	top_liege = no
+	governments = { islamic_empire_diwan_government }
+}
+king_islamic_empire_diwan_government_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 300
+	top_liege = no
+	governments = { islamic_empire_diwan_government }
+}
+
+k_fatimid_dawa_holder_name = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 300
+	top_liege = no
+	titles = { k_fatimid_dawa }
 }

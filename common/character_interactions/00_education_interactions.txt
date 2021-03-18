@@ -435,6 +435,17 @@ educate_child_interaction = {
 		}
 	}
 	send_option = {
+		is_shown = {
+			scope:recipient = {
+				any_realm_province = {
+					has_university_building_trigger = yes
+				}
+			}
+		}
+		flag = send_to_university
+		localization = EDUCATION_UNIVERSITY
+	}
+	send_option = {
 		is_valid = {
 			scope:actor = {
 				has_usable_hook = scope:recipient
@@ -456,7 +467,7 @@ educate_child_interaction = {
 	ai_target_quick_trigger = {
 		adult = no
 	}
-	ai_frequency = 12
+	ai_frequency = 24
 	
 	ai_potential = {
 		always = yes
@@ -1299,7 +1310,7 @@ offer_ward_interaction = {
 		}
 		
 		modifier = {
-			add = 50
+			add = intimidated_reason_value
 			scope:recipient = {
 				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
@@ -1310,7 +1321,7 @@ offer_ward_interaction = {
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
-			add = 100
+			add = cowed_reason_value
 			scope:recipient = {
 				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
@@ -1322,7 +1333,7 @@ offer_ward_interaction = {
 		}
 		
 		modifier = {
-			add = 10
+			add = intimidated_external_reason_value
 			scope:recipient = {
 				NOT = { target_is_liege_or_above = scope:actor }
 				has_dread_level_towards = {
@@ -1333,7 +1344,7 @@ offer_ward_interaction = {
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
-			add = 20
+			add = cowed_external_reason_value
 			scope:recipient = {
 				NOT = { target_is_liege_or_above = scope:actor }
 				has_dread_level_towards = {
@@ -1398,6 +1409,26 @@ offer_ward_interaction = {
 				}
 			}
 		}
+	}
+	send_option = {
+		is_shown = {
+			OR = {
+				scope:recipient = {
+					any_realm_province = {
+						has_university_building_trigger = yes
+					}
+				}
+				scope:actor = {
+					this = scope:secondary_actor
+					any_realm_province = {
+						has_university_building_trigger = yes
+					}
+				}
+			}
+		}
+		starts_enabled = { always = yes	}
+		flag = send_to_university
+		localization = EDUCATION_UNIVERSITY
 	}
 	send_option = {
 		is_valid = {
@@ -1723,8 +1754,33 @@ offer_guardianship_interaction = {
 				}
 			}
 			scope:secondary_recipient = { is_child_of = scope:recipient }
-			NOT = { scope:recipient = { target_is_liege_or_above = scope:actor } }
+			NOR = {
+				scope:recipient = { target_is_liege_or_above = scope:actor }
+				scope:recipient = { target_is_vassal_or_below = scope:actor}
+			}
 			desc = AI_CHILD_TO_FOREIGN_COURT
+		}
+
+		modifier = {
+			add = -50
+			scope:secondary_actor.court_owner = {
+				NOR = {
+					this = scope:recipient.court_owner
+					this = scope:secondary_recipient.court_owner
+				}
+			}
+			scope:secondary_recipient = { is_child_of = scope:recipient }
+			scope:recipient = { target_is_vassal_or_below = scope:actor}
+			desc = AI_CHILD_TO_VASSAL_COURT
+		}
+
+		modifier = {
+			add = 25
+			scope:secondary_recipient = {
+				is_close_or_extended_family_of = scope:secondary_actor
+			}
+
+			desc = AI_CHILD_EDUCATED_BY_FAMILY
 		}
 
 		modifier = {
@@ -2126,6 +2182,18 @@ offer_guardianship_interaction = {
 				}
 			}
 		}
+	}
+	send_option = {
+		is_shown = {
+			scope:recipient = {
+				any_realm_province = {
+					has_university_building_trigger = yes
+				}
+			}
+		}
+		starts_enabled = { always = yes	}
+		flag = send_to_university
+		localization = EDUCATION_UNIVERSITY
 	}
 	send_option = {
 		is_valid = {

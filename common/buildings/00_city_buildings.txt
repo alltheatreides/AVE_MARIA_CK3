@@ -2,6 +2,7 @@
 @holding_illustration_india = "gfx/interface/illustrations/holding_types/city_india.dds"
 @holding_illustration_mediterranean = "gfx/interface/illustrations/holding_types/city_mediterranean.dds"
 @holding_illustration_mena = "gfx/interface/illustrations/holding_types/city_mena.dds"
+@holding_illustration_norse = "gfx/interface/illustrations/holding_types/fp1_city_norse.dds"
 
 city_01 = {
 	construction_time = slow_construction_time
@@ -170,6 +171,54 @@ city_01 = {
 		graphical_regions = { graphical_mediterranean }
 	}
 
+	### FP1 Norse ###
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_01_a_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }			
+	}
+	
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_01_mena_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_mena }		
+	}
+
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_01_mediterranean_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_mediterranean }		
+	}
+
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_01_indian_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_india }	
+	}
+	
 	## AVE MARIA
 	## VENICE
 	asset = {
@@ -402,6 +451,54 @@ city_02 = {
 		graphical_cultures = { mediterranean_building_gfx }		
 	}
 
+	### FP1 Norse ###
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_a_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }			
+	}	
+
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_mena_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_mena }		
+	}
+
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_mediterranean_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_mediterranean }		
+	}
+
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_indian_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_01" }
+		graphical_cultures = { norse_building_gfx }
+		graphical_regions = { graphical_india }	
+	}
+	
 	## AVE MARIA
 	## VENICE
 	asset = {
@@ -597,6 +694,19 @@ city_03 = {
 		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/mediterranean_city" soundparameter = { "Tier" = 2 } }
 		graphical_cultures = { mediterranean_building_gfx }		
 	}
+
+	### FP1 Norse ###
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_a_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_02" }
+		graphical_cultures = { norse_building_gfx }			
+	}	
+	
 
 	## AVE MARIA
 	## VENICE
@@ -794,6 +904,17 @@ city_04 = {
 		graphical_cultures = { mediterranean_building_gfx }		
 	}
 
+	### FP1 Norse ###
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_city_02_a_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		illustration = @holding_illustration_norse
+		soundeffect = { soundeffect = "event:/DLC/FP1/SFX/Ambience/Urban/norse_city_tier_02" }
+		graphical_cultures = { norse_building_gfx }			
+	}
 	## AVE MARIA
 	## VENICE
 	asset = {
@@ -843,10 +964,6 @@ city_04 = {
 guild_halls_01 = {
 	construction_time = standard_construction_time
 
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
-
 	can_construct_potential = {
 		has_building_or_higher = city_01
 	}
@@ -881,10 +998,6 @@ guild_halls_01 = {
 
 guild_halls_02 = {
 	construction_time = standard_construction_time
-
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
 
 	can_construct_potential = {
 		has_building_or_higher = city_01
@@ -921,10 +1034,6 @@ guild_halls_02 = {
 guild_halls_03 = {
 	construction_time = standard_construction_time
 
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
-
 	can_construct = {
 		has_building_or_higher = city_02
 		culture = {
@@ -959,10 +1068,6 @@ guild_halls_03 = {
 
 guild_halls_04 = {
 	construction_time = standard_construction_time
-
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
 
 	can_construct = {
 		has_building_or_higher = city_02
@@ -999,10 +1104,6 @@ guild_halls_04 = {
 guild_halls_05 = {
 	construction_time = standard_construction_time
 
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
-
 	can_construct = {
 		has_building_or_higher = city_03
 		culture = {
@@ -1037,10 +1138,6 @@ guild_halls_05 = {
 
 guild_halls_06 = {
 	construction_time = standard_construction_time
-
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
 
 	can_construct = {
 		has_building_or_higher = city_03
@@ -1077,10 +1174,6 @@ guild_halls_06 = {
 guild_halls_07 = {
 	construction_time = standard_construction_time
 
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
-
 	can_construct = {
 		has_building_or_higher = city_04
 		culture = {
@@ -1115,10 +1208,6 @@ guild_halls_07 = {
 
 guild_halls_08 = {
 	construction_time = standard_construction_time
-
-	is_enabled = {
-		building_disable_if_vastly_over_domain_limit_trigger = yes
-	}
 
 	can_construct = {
 		has_building_or_higher = city_04

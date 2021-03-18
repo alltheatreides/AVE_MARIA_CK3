@@ -16,7 +16,7 @@ scheme_name = { # Identifier for the scheme. Also used for localizing the name. 
 
 	allow = {} # When this scheme can be started
 	
-	valid = {} # What conditions have to be fulfilled for the scheme to keep going; if invalid it will end
+	valid = {} # What conditions have to be fulfilled for the scheme to keep going; if invalid it will end. Checked daily.
 	
 	agent_join_threshold = 5 # How much does the AI have to want to join in order to actually join
 	agent_leave_threshold = 1 # If the AI falls below this, it will automatically leave the scheme
@@ -67,9 +67,13 @@ scheme_name = { # Identifier for the scheme. Also used for localizing the name. 
 		}
 	}
 
-	on_invalidated = { # What should happen if the scheme invalidates
+	on_invalidated = { # What should happen if the scheme invalidates. Check on_valid for what conditions invalidate the scheme.
 		
 	}
+
+	on_agent_leave = {} # effect executed for every agent that joins. If not empty, it replacec default feed notifications about joining agents
+
+	on_agent_join = {} # effect executed for every agent that leaves the scheme. If not empty, it replacec default feed notifications about leaving agents. Doesn't get triggered for invalidated scheme
 	
 	# Progress chance each month is scheme power minus scheme resistance. E.G., 50 power, 25 resistance, means 25% chance
 	

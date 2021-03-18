@@ -15,6 +15,11 @@
 ## Each specific contract type has thus its own government to be able to be named differently in game
 ## Functionality wise they are similar, differences lie in the vassal contracts.
 
+
+###########################################
+# ROMAN ADMINISTRATION				      #
+###########################################
+
 ## Government of top liege, roman emperor
 roman_administration_government = {
 	create_cadet_branches = yes
@@ -167,3 +172,94 @@ roman_administration_sekreton_government = {
 	
 	color = hsv{ 0.67 1.00 0.78 }
 }
+
+
+###########################################
+# FATIMID ADMINISTRATION			      #
+###########################################
+
+islamic_empire_government = {
+	primary_holding = castle_holding
+	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
+	primary_culture_groups = { arabic_group iranian_group }
+	
+	fallback = 2
+	
+	preferred_religions = { islam_religion }
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+
+	required_county_holdings = { castle_holding city_holding church_holding }
+	always_use_patronym = yes
+	dynasty_named_realms = yes
+
+	vassal_contract = { 
+		clan_government_obligations 
+		islamic_empire_special_contract
+		islamic_empire_muslim_tax
+	}
+
+	color = hsv{ 0.39 0.93 0.54 }
+}
+
+## Bureaucratic office type of government
+islamic_empire_diwan_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+
+	fallback = 5
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		clan_government_obligations
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+## Military Frontier type of government
+islamic_empire_thugur_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+
+	fallback = 5
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		clan_government_obligations
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+## Regular Provincial type of government
+islamic_empire_amir_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+
+	fallback = 5
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		#clan_government_obligations
+		islamic_empire_muslim_tax
+		islamic_empire_kharaj_right
+		islamic_empire_qadi_right
+		islamic_empire_inheritance_right
+		islamic_empire_war_right
+		islamic_empire_iqta
+		islamic_empire_thugur
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+

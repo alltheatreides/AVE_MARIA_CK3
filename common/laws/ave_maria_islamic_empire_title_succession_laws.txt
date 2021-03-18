@@ -44,5 +44,37 @@ title_succession_laws = {
 		}
 	}
 	
+	## Fatimid Caliphate Successor Designation
+	fatimid_elective_succession_law = {
+		can_have = {
+			any_held_title = {
+				OR = {
+					this = title:e_egypt
+					#this = title:d_shiite
+				}
+			}
+		}
+		can_pass = {
+			can_change_title_law_trigger = yes
+		}
+		can_title_have = {
+			OR = {
+				this = title:e_egypt
+				#this = title:d_shiite
+			}
+		}
+		succession = {
+			order_of_succession = election
+			election_type = fatimid_shia_elective
+		}
+		flag = elective_succession_law
+		#title_allegiance_opinion = 10
+		revoke_cost = {
+			prestige = change_title_succession_law_prestige_cost
+		}
+		pass_cost = {
+			prestige = change_title_succession_law_prestige_cost
+		}
+	}
 	
 }

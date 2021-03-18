@@ -98,10 +98,10 @@ window = {
 					layoutpolicy_vertical = expanding
 
 					background = {
-						texture = "gfx/interface/illustrations/event_scenes/armory.dds"
+						texture = "gfx/interface/skinned/illustrations/faction_bg.dds"
 						margin = { -5 0 }
 						fittype = end
-						alpha = 0.8
+						alpha = 0.7
 						framesize = { 1200 848 }
 
 						modify_texture = {
@@ -620,13 +620,8 @@ types  FactionWindow
 			button_group  = {
 				onclick = "[FactionItem.ShowHideMembersFrame]"
 
-				button_normal = {
+				button_expand = {
 					name = "show_members"
-					size = { 20 20 }
-					alwaystransparent = no
-
-					texture = "gfx/interface/buttons/button_tree_expand.dds"
-					framesize = { 36 36 }
 					frame = "[FactionItem.GetShowMembersFrame]"
 
 					using = tooltip_ws

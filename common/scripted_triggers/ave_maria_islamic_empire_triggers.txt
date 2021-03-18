@@ -1,0 +1,26 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA Scripted Triggers														   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Islamic Empire Scripted Triggers           	        							   #
+#                               													   #
+########################################################################################
+
+## Written by Atreides
+
+
+#############################################
+# GOVERNMENT TYPE TRIGGER					#
+#############################################
+
+## Checks in a character scope
+uses_islamic_empire_govt = {	
+	## Government check 
+	OR = {
+		has_government = islamic_empire_government
+		has_government = islamic_empire_diwan_government
+		has_government = islamic_empire_thugur_government
+		has_government = islamic_empire_amir_government
+	}	
+}

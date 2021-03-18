@@ -2124,10 +2124,10 @@ seduce_ongoing.3001 = {
 					}
 					AND = {
 						scope:owner = {
-							highest_held_title_tier = tier_county
+							highest_held_title_tier <= tier_county
 						}
 						scope:close_character = {
-							highest_held_title_tier = tier_county
+							highest_held_title_tier <= tier_county
 						}
 					}
 					AND = {
@@ -4234,8 +4234,6 @@ seduce_ongoing.7102 = {
 	
 	trigger = { exists = scope:scheme }
 
-	immediate = { select_local_animal_effect = yes }
-
 	option = {
 		name = seduce_ongoing.7102.a
 		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = failure }
@@ -4267,16 +4265,34 @@ seduce_ongoing.7201 = {
 seduce_ongoing.7202 = {
 	type = character_event
 	title = seduce_ongoing.7001.t
+	desc = {
 	desc = seduce_ongoing.7202.desc
+		triggered_desc = {
+		    trigger = {
+				exists = var:local_animal
+		    }
+		    desc = seduce_ongoing.7202.desc_animal
+		}
+	}
 	
 	theme = seduce_scheme
 	left_portrait = scope:target
 	
 	trigger = { exists = scope:scheme }
 
+	immediate = {
+		if = {
+			limit = {
+				exists = location
+			}
+			select_local_animal_effect = yes
+		}
+	}
+
 	option = {
 		name = seduce_ongoing.7102.a
 		seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 1 OUTCOME = failure }
+		remove_variable = local_animal
 	}
 }
 
@@ -4993,7 +5009,7 @@ seduce_ongoing.1601 = {
 		set_random_informative_text_effect = yes
 		save_scope_value_as = { #To avoid unset error scope for the after effect
 			name = book_selection
-			value = flag:religious
+			value = flag:empty
 		}
 	}
 
@@ -5050,7 +5066,15 @@ seduce_ongoing.1601 = {
 
 	after = {
 		scope:target = {
-			hidden_effect = {
+			trigger_event = seduce_ongoing.1602
+		}
+		seduce_ongoing_possible_outcomes_tooltip_effect = { MILESTONE = 2 }
+	}
+}
+
+seduce_ongoing.1602 = {
+	hidden = yes
+	immediate = {
 				#Evaluate, and set what would have been a good choice
 				random_list = {
 					50 = {
@@ -5058,7 +5082,7 @@ seduce_ongoing.1601 = {
 
 						compare_modifier = {
 							value = ai_zeal
-							multiplier = 4
+					multiplier = 6
 						}
 						compare_modifier = {
 							value = ai_honor
@@ -5068,7 +5092,13 @@ seduce_ongoing.1601 = {
 							value = piety_level
 							multiplier = 25
 						}
-
+				modifier = { #Would reasonably mean that they're interested in the subject
+					add = 40
+					OR = {
+						has_trait = education_learning
+						has_lifestyle = learning_lifestyle
+					}
+				}
 						modifier = {
 							add = {
 								value = learning
@@ -5083,17 +5113,38 @@ seduce_ongoing.1601 = {
 						trigger = { scope:book_selection = flag:entertaining }
 						compare_modifier = {
 							value = ai_boldness
-							multiplier = 2
+					multiplier = 4
+					min = 1
 						}
 						compare_modifier = {
 							value = ai_greed
 							multiplier = 2
+					min = 1
 						}
 						compare_modifier = {
 							value = ai_sociability
 							multiplier = 2
+					min = 1
+				}
+				modifier = { #Would reasonably mean that they're interested in the subject
+					add = 40
+					OR = {
+						has_trait = education_diplomacy
+						has_lifestyle = diplomacy_lifestyle
+					}
+				}
+				modifier = { #They're a calm and/or "dry" person
+					add = -30
+					OR = {
+						has_trait = lazy
+						has_trait = content
+						has_trait = calm
+						has_trait = craven
+						has_trait = callous
+						has_trait = shy
+						has_trait = reclusive
+					}
 						}
-
 						modifier = {
 							add = {
 								value = diplomacy
@@ -5110,7 +5161,6 @@ seduce_ongoing.1601 = {
 								min = 0 # Low martial characters may still be interested, but high skill characters value it more.
 							}
 						}
-
 						trigger_event = seduce_ongoing.1603
 					}
 					50 = {
@@ -5121,7 +5171,6 @@ seduce_ongoing.1601 = {
 							multiplier = -2 # Zealous characters would prefer religious texts.
 							max = 0 # Cynical characters don't inherently appreciate these books though.
 						}
-
 						modifier = {
 							add = {
 								value = stewardship
@@ -5138,7 +5187,20 @@ seduce_ongoing.1601 = {
 								# Learning has a massive impact here, both if they're good OR bad at it!
 							}
 						}
-
+				modifier = { #Would reasonably mean that they're interested in the subject
+					add = 20
+					OR = {
+						has_trait = education_stewardship
+						has_lifestyle = stewardship_lifestyle
+					}
+				}
+				modifier = { #Would reasonably mean that they're interested in the subject
+					add = 30
+					OR = {
+						has_trait = education_learning
+						has_lifestyle = learning_lifestyle
+					}
+				}
 						# Negative Traits
 						modifier = {
 							has_trait = arrogant
@@ -5172,7 +5234,6 @@ seduce_ongoing.1601 = {
 								rank >= 1
 							}
 						}
-
 						trigger_event = seduce_ongoing.1603
 					}
 					50 = { #Failure, choose what would have been a "better" choice
@@ -5204,7 +5265,7 @@ seduce_ongoing.1601 = {
 									save_scope_value_as = {
 										name = good_selection
 										value = flag:religious
-									}		
+							}
 								}
 								50 = {
 									save_scope_value_as = {
@@ -5237,9 +5298,6 @@ seduce_ongoing.1601 = {
 					}
 				}
 			}
-		}
-		seduce_ongoing_possible_outcomes_tooltip_effect = { MILESTONE = 2 }
-	}
 }
 
 
@@ -5261,11 +5319,11 @@ seduce_ongoing.1603 = {
 		scope:owner = {
 			trigger_event = seduce_ongoing.1604
 		}
+		hidden_effect = { seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = success } }
 	}
 	
 	option = {
 		name = seduce_ongoing.1603.a
-		hidden_effect = { seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = success } }
 	}
 }
 
@@ -5338,11 +5396,11 @@ seduce_ongoing.1605 = {
 		scope:owner = {
 			trigger_event = seduce_ongoing.1606
 		}
+		hidden_effect = { seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = failure } }
 	}
 	
 	option = {
 		name = seduce_ongoing.1605.a
-		hidden_effect = { seduce_ongoing_add_scheme_modifier_effect = { MILESTONE = 2 OUTCOME = failure } }
 		if = {
 			limit = { exists = scope:other_guest }
 			add_opinion = {

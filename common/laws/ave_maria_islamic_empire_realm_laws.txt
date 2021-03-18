@@ -1,0 +1,31 @@
+﻿##################################################
+### Ave Maria: Roman Administration Realm Laws ###
+##################################################
+
+@crown_authority_cooldown_years = 20
+@tribal_authority_cooldown_years = 10
+
+ave_maria_islamic_empire_realm_law = {
+	default = ave_maria_islamic_imperial
+	flag = realm_law
+	cumulative = yes
+	
+	ave_maria_islamic_imperial = {
+		flag = vassal_all_wars_banned
+		flag = vassal_internal_wars_banned
+		flag = titles_cannot_leave_realm_on_succession
+		flag = vassal_retraction_allowed
+		flag = vassal_refusal_is_treason
+		# flag = can_designate_heirs
+		modifier = {
+		
+		}
+
+		can_keep = { 
+			uses_islamic_empire_govt = yes
+		}
+		can_pass = {
+			uses_islamic_empire_govt = yes
+		}
+	}
+}

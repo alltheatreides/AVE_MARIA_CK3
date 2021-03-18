@@ -1055,6 +1055,9 @@ birth.1002 = {
 		add_character_flag = peasant_affair_already_looking
 		custom_tooltip = search_for_real_father_tt
 	}
+	after = {
+		bastard_real_father_discovery_on_birth_effect = yes
+	}
 }
 
 
@@ -1294,51 +1297,6 @@ birth.1003 = {
 			controller = name_character
 			setup_scope = { scope:child = { save_scope_as = name_character_target } }
 		}
-		# widget = {
-			# gui = "event_window_widget_enter_text"
-			# container = "dynamic_birth_name"
-			# is_shown = {
-				# allow_naming_on_birth_of_child_trigger = { CHILD = scope:child }
-				# any_held_title = {
-					# this = title:k_france
-				# }
-			# }
-			# controller = {
-				# type = text
-				# data = {
-					# key = french_king_regnal_name
-					# default = {
-						# localization_key = french_king_regnal_name_henri
-						# trigger = {
-							# has_character_flag = french_king_regnal_name_henri
-						# }
-					# }
-					# default = {
-						# localization_key = french_king_regnal_name_louis
-						# trigger = {
-							# has_character_flag = french_king_regnal_name_louis
-						# }
-					# }
-					# default = {
-						# localization_key = french_king_regnal_name_phillipe
-						# trigger = {
-							# has_character_flag = french_king_regnal_name_phillipe
-						# }
-					# }
-					# default = {
-						# localization_key = french_king_regnal_name_charles
-						# trigger = {
-							# has_character_flag = french_king_regnal_name_charles
-						# }
-					# }
-				# }
-			# }
-			
-			# setup_scope = {
-				
-				# scope:child = { save_scope_as = text_target } 
-			# }
-		# }
 		widget = {
 			is_shown = {
 				allow_naming_on_birth_of_child_trigger = { CHILD = scope:child_2 }
@@ -1353,16 +1311,6 @@ birth.1003 = {
 	option = {
 		name = birth.1003.a
 		trigger = { scope:child = { NOT = { has_trait = twin } } }
-		# if = {
-			# limit = {
-				
-			# }
-			# scope:child = {
-				# change_first_name = FrenchRegnalName
-			# }
-		# }
-		
-		
 	}
 
 	option = {
@@ -3947,6 +3895,10 @@ birth.9002 = {
 		custom_tooltip = birth.9002.b.tt
 
 		trigger_event = birth.9003
+	}
+	
+	after = {
+		bastard_real_father_discovery_on_birth_effect = yes
 	}
 }
 

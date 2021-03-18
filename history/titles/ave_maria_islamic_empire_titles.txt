@@ -20,7 +20,11 @@
 e_egypt = {
 	# Fatimids rule Egypt
 	969.7.1 = {
+		government = islamic_empire_government
 		holder = 32903
+		succession_laws = {
+			fatimid_elective_succession_law
+		}
 	}
 	975.1.1 = {
 		holder = 3090
@@ -33,5 +37,44 @@ e_egypt = {
 	}
 	1036.6.13 = {
 		holder = 3096
+	}
+}
+
+d_fatimid_diwan_al_insha = {
+	# Fatimids rule Egypt
+	969.7.1 = {
+		liege = "e_egypt"
+		de_jure_liege = "e_egypt"
+		government = islamic_empire_diwan_government
+	}
+	1066.1.1 = {
+		government = islamic_empire_diwan_government
+		holder = 111165
+	}
+}
+
+d_fatimid_hajib = {
+	# Fatimids rule Egypt
+	969.7.1 = {
+		liege = "e_egypt"
+		de_jure_liege = "e_egypt"
+		government = islamic_empire_diwan_government
+	}
+	1066.1.1 = {
+		government = islamic_empire_diwan_government
+		holder = 111166
+	}
+}
+
+k_fatimid_dawa = {
+	# Fatimids rule Egypt
+	969.7.1 = {
+		liege = "e_egypt"
+		de_jure_liege = "e_egypt"
+		government = theocracy_government
+	}
+	1066.1.1 = {
+		government = theocracy_government
+		holder = 111168
 	}
 }
