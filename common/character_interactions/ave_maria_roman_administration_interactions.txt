@@ -1010,7 +1010,7 @@ roman_administration_fire_bureaucrat = {
 			}
 			scope:recipient = {
 				any_held_title = {
-					this = title:d_megas_domestikps
+					this = title:d_megas_domestikos
 				}
 			}
 		}
@@ -1452,7 +1452,7 @@ roman_administration_replace_bureaucrat = {
 			}
 			scope:recipient = {
 				any_held_title = {
-					this = title:d_megas_domestikps
+					this = title:d_megas_domestikos
 				}
 			}
 		}
@@ -1909,6 +1909,7 @@ roman_administration_name_protospatharios = {
 			any_held_title = {
 				this = title:e_byzantium
 			}			
+
 		}
 		scope:recipient = { 
 			roman_administration_character_is_in_the_empire = yes
@@ -1917,7 +1918,10 @@ roman_administration_name_protospatharios = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_protospatharios
-			}			
+			}	
+			NOT = {
+				this = scope:actor
+			}		
 		}
 	}
 
@@ -2080,7 +2084,10 @@ roman_administration_name_patrikios = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_patrikios
-			}			
+			}	
+			NOT = {
+				this = scope:actor
+			}		
 		}
 	}
 
@@ -2233,7 +2240,10 @@ roman_administration_name_anthypatos = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_anthypatos
-			}			
+			}		
+			NOT = {
+				this = scope:actor
+			}	
 		}
 	}
 
@@ -2396,7 +2406,10 @@ roman_administration_name_magistros = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_magistros
-			}			
+			}		
+			NOT = {
+				this = scope:actor
+			}	
 		}
 	}
 
@@ -2559,7 +2572,10 @@ roman_administration_name_proedros = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_proedros
-			}			
+			}		
+			NOT = {
+				this = scope:actor
+			}	
 		}
 	}
 
@@ -2722,7 +2738,10 @@ roman_administration_name_vestarches = {
 			is_female = no			
 			NOT = {
 				has_character_modifier = roman_administration_vestarches
-			}			
+			}	
+			NOT = {
+				this = scope:actor
+			}		
 		}
 	}
 
@@ -2886,6 +2905,9 @@ roman_administration_name_spatharios = {
 			NOT = {
 				has_character_modifier = roman_administration_spatharios
 			}			
+			NOT = {
+				this = scope:actor
+			}
 		}
 	}
 

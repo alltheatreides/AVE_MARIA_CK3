@@ -782,17 +782,19 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 				desc = ave_maria_roman_administration_imperial_expedition_events.0009_desc_B
 			}
 			triggered_desc = {
-				OR = {
-					AND = {
-						has_character_flag = am_racing_emperor
-						has_character_flag = am_morning_race_winner
-						has_character_flag = am_afternoon_race_loser
+				trigger = {
+					OR = {
+						AND = {
+							has_character_flag = am_racing_emperor
+							has_character_flag = am_morning_race_winner
+							has_character_flag = am_afternoon_race_loser
+						}
+						AND = {
+							has_character_flag = am_racing_emperor
+							has_character_flag = am_morning_race_loser
+						}
 					}
-					AND = {
-						has_character_flag = am_racing_emperor
-						has_character_flag = am_morning_race_loser
-					}
-				}
+				}				
 				desc = ave_maria_roman_administration_imperial_expedition_events.0009_desc_C
 			}
 		}

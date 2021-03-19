@@ -22,7 +22,9 @@
 	1066.1.1 = {
 		holding = church_holding
 	}
-
+	1000.1.1 = {
+		religion = catholic
+	}
 	religion = norse_pagan
 	culture = norse
 }
@@ -42,7 +44,9 @@
 	1066.1.1 = {
 		holding = church_holding
 	}
-
+	1000.1.1 = {
+		religion = catholic
+	}
 	religion = norse_pagan
 	culture = norse
 }
@@ -456,13 +460,16 @@
 }
 46 = {
 	#ENNIS
-	holding = sparsly_populated_holding
-	1000.1.1 = {
+	culture = irish
+	religion = insular_celtic
+	holding = tribal_holding
+	988.1.1 = {
 		holding = castle_holding
 	}
+	1200.1.1 = {	#By the beginning of the 13th century, Insular Christianity was effectively fully integrated with Rome.
+		religion = catholic
+	}
 
-	religion = insular_celtic
-	culture = irish
 }
 47 = {
 	#NENAGH
@@ -601,6 +608,13 @@
 		religion = catholic
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+			military_camps_01
+		}
+	}
 
 }
 61 = {
@@ -618,10 +632,21 @@
 	culture = norse
 	religion = norse_pagan
 	holding = tribal_holding
+	special_building_slot = danevirke_01
+	700.1.1 = {
+		special_building = danevirke_01
+	}
 	965.1.1 = {
 		culture = danish
 		religion = catholic
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			ramparts_01
+			military_camps_01	
+		}
 	}
 
 }
@@ -630,12 +655,24 @@
 	culture = norse
 	religion = norse_pagan
 	holding = tribal_holding
+	867.1.1 = {
+		buildings = {
+			longhouses_01
+		}
+	}
 	965.1.1 = {
 		culture = danish
 		religion = catholic
 	}
 	980.1.1 = {
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			barracks_01
+			regimental_grounds_01
+		}
 	}
 
 }
@@ -709,12 +746,20 @@
 	culture = norse
 	religion = norse_pagan
 	holding = tribal_holding
+	special_building_slot = lund_cathedral_01
 	965.1.1 = {
 		culture = danish
 		religion = catholic
 	}
 	1020.1.1 = {
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			cereal_fields_01
+			pastures_01
+		}
 	}
 
 }
@@ -988,6 +1033,12 @@
 	holding = tribal_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			palisades_01
+			market_villages_01
+		}
+	}
 	1279.1.1 = {
 		religion = catholic
 	}
@@ -1050,6 +1101,11 @@
 	holding = tribal_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			palisades_01
+		}
+	}
 	1220.1.1 = {
 		religion = catholic
 	}
@@ -1129,6 +1185,12 @@
 	culture = latgalian
 	religion = baltic_pagan
 	holding = tribal_holding
+	1066.1.1 = {
+		buildings = {
+			market_villages_01
+			longhouses_01
+		}
+	}
 	1199.1.1 = {
 		religion = catholic
 	}
@@ -1470,6 +1532,11 @@
 	holding = tribal_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			longhouses_01
+		}
+	}
 	1224.1.1 = {
 		religion = catholic
 	}
@@ -1556,6 +1623,11 @@
 	culture = lithuanian
 	religion = baltic_pagan
 	holding = tribal_holding
+	1066.1.1 = {
+		buildings = {
+			war_camps_01
+		}
+	}
 
 }
 154 = {
@@ -2525,6 +2597,13 @@
 		culture = norwegian
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			logging_camps_01
+			outposts_01
+		}
+	}
 
 }
 235 = {
@@ -2696,6 +2775,13 @@
 		religion = catholic
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 253 = {
@@ -2857,6 +2943,13 @@
 		culture = norwegian
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			hunting_grounds_01
+			barracks_01
+		}
+	}
 
 }
 271 = {
@@ -2973,6 +3066,7 @@
 	culture = norse
 	religion = norse_pagan
 	holding = tribal_holding
+	special_building_slot = heddal_stave_church_01 #Should probably be in SKIRINGSSAL, but placed here for balance and county holder access
 	1020.1.1 = {
 		culture = norwegian
 		religion = catholic
@@ -3503,11 +3597,24 @@
 	culture = norse
 	religion = norse_pagan
 	holding = tribal_holding
+	special_building = temple_of_uppsala_01 # Yes, Uppsala has its own holding, but we place it here to allow it to be held by the county owner directly.
+	867.1.1 = {
+		buildings = {
+			market_villages_01
+		}
+	}
 	980.1.1 = {
 		holding = castle_holding	#city foundation
 	}
 	1066.1.1 = {
 		culture = swedish
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			hunting_grounds_01
+			barracks_01
+		}
 	}
 	1090.1.1 = {
 		religion = catholic
@@ -3793,6 +3900,13 @@
 		culture = swedish
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			guild_halls_01
+			common_tradeport_01
+			hunting_grounds_01
+		}
+	}
 
 }
 370 = {
@@ -3828,6 +3942,7 @@
 	# Misc
 	culture = sami
 	religion = finnish_pagan
+	holding = tribal_holding
 	terrain = mountain
 
 	religion = finnish_pagan
@@ -3839,6 +3954,7 @@
 	# Misc
 	culture = sami
 	religion = finnish_pagan
+	holding = tribal_holding
 	terrain = forest
 	
 
@@ -3970,6 +4086,97 @@
 	religion = finnish_pagan
 	culture = sami
 }
+373 = {
+	#Jahkamakke = Jåhkåmåhkke = Jokkmokk
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+374 = {
+	#Luokta
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+375 = {
+	#Árviesjávrrie = Arvidsjaur
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+376 = {
+	#Tuorpon
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+377 = {
+	#Semisjaur
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+378 = {
+	#Sjokksjokk
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+379 = {
+	#Sirkas
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+380 = {
+	#Siggevara
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+381 = {
+	#Lais
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+382 = {
+	#Ubmeje = Umeå
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+383 = {
+	#Tingevara
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+384 = {
+	#Suondavara
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+385 = {
+	#Kittal
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
 386 = {
 	#FROSO	aka Frösön
 	culture = norse
@@ -3988,7 +4195,7 @@
 	# Misc
 	culture = sami
 	religion = finnish_pagan
-
+	holding = tribal_holding
 
 	religion = finnish_pagan
 	culture = sami
@@ -3999,7 +4206,7 @@
 	# Misc
 	culture = sami
 	religion = finnish_pagan
-
+	holding = tribal_holding
 
 	religion = finnish_pagan
 	culture = sami
@@ -4538,6 +4745,307 @@
 	religion = finnish_pagan
 	culture = sami
 }
+390 = {
+	#Sombio
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+391 = {
+	#Aanaarjävri = Enare Träsk
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+392 = {
+	#Peldojävri
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+393 = {
+	#Rounala = Trums
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+394 = {
+	#Guovdageaidnu = Oksfjord
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+395 = {
+	#Iešjávri = Rafsbotn
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+396 = {
+	#Kárášjohka
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+397 = {
+	#Aviovara = Kollefjord
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+398 = {
+	#Laggujåkka = Porsanger
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+399 = {
+	#Ohcejohka = Vargo = Vardo
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+400 = {
+	#Peäccam = Petsamo = Pechengsky
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+401 = {
+	#b_suonnjel = Suõ'nnjel = Priretjny
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+402 = {
+	#b_muetkk = Mue´tkk = Motovsky
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+403 = {
+	#b_nuottjaurr = Nuõ´ttjäu´rr = Notozero
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+404 = {
+	#Kiilt
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+405 = {
+	#Koardegk = Voronye
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+406 = {
+	#b_maselk = Masel'k = Pulozero = Maaselka
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+407 = {
+	#b_cukksual = Cu´kksuâl = Ekostrovsky
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+408 = {
+	#b_saarvesjaurr = Sââ´rvesjäu´rr = Girvasozero
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+409 = {
+	#Akkel = Babinsky
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+410 = {
+	#b_lujavvr = Lujavv'r = Lovozero
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+411 = {
+	#b_lejjavvr = Lejjavv'r = Lyavozero
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+412 = {
+	#Arsjogk = Varzino
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+413 = {
+	#b_guoddemjavvr = Guoddemjavv'r = Kuroptevsky
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+414 = {
+	#Kintuš = Kamensky
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+415 = {
+	#Jovvkuj = Yokanga
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+416 = {
+	#b_penne = P'enne = Ponoy
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+417 = {
+	#Sosnevke = Sosnovka
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+418 = {
+	#Koulajävri
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+419 = {
+	#Kitka
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+420 = {
+	#Maanselkä
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+421 = {
+	#Julevu = Luleå
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+422 = {
+	#Biton = Piteå
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+423 = {
+	#Gáláseatnu = Kalix
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+424 = {
+	#Duortnus = Torneå = Tornio
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+425 = {
+	#Giempa = Kemi
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+426 = {
+	#Iijoki
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+427 = {
+	#Árjepluovve
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+428 = {
+	#Uddjaur
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+429 = {
+	#Lusspie / Storuman
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+430 = {
+	#Sjeltie (Åsele)
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+431 = {
+	#Gåaltoe (Kultsjön)
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+432 = {
+	#Vilhelmina = Volgsjo
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
 433 = {
 		#HELSINGORA
 	holding = sparsly_populated_holding
@@ -4797,7 +5305,7 @@
 454 = {
 	# KOUTAJOKI
 	# Misc
-	culture = finnish
+	culture = sami
 	religion = finnish_pagan
 	
 	holding = tribal_holding
@@ -4811,7 +5319,7 @@
 	holding = sparsly_populated_holding
 
 	religion = finnish_pagan
-	culture = finnish
+	culture = sami
 }
 458 = {
 		#Istria / Krapina
@@ -4875,6 +5383,12 @@
 		culture = croatian
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+		}
+	}
 
 }
 466 = {
@@ -4902,9 +5416,16 @@
 		#Ragusa
 	culture = serbian
 	religion = slavic_pagan	
+	holding = castle_holding
 	870.1.1 = {
 		religion = orthodox
 		#Serbs convert in 870
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			pastures_01
+		}
 	}
 
 }
@@ -4923,6 +5444,13 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			barracks_01
+			military_camps_01
+		}
+	}
 
 }
 471 = {
@@ -5077,6 +5605,19 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			hill_forts_01
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			common_tradeport_01
+			hill_farms_01
+		}
+	}
 
 }
 483 = {
@@ -5084,6 +5625,13 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			common_tradeport_01
+			barracks_01
+		}
+	}
 
 }
 484 = {
@@ -5138,6 +5686,19 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			farm_estates_01
+			cereal_fields_01
+			barracks_01
+		}
+	}
 	
 	#1205 - 4th crusade, kingdom of Thessaloniki	
 	#1225 - To the despotate of Epirus, Serbian Empire, Byzantine Empire
@@ -5153,6 +5714,11 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	867.1.1 = {
+		#Placed here to let the county holder control the mine
+		special_building_slot = siderokausia_mines_01
+		special_building = siderokausia_mines_01
+	}
 
 }
 492 = {
@@ -5180,6 +5746,13 @@
 	culture = greek
 	religion = orthodox	
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			pastures_01
+			military_camps_01
+		}
+	}
 	1382.1.1 = {
 		culture = turkish
 		religion = ashari
@@ -5250,6 +5823,13 @@
 	culture = bulgarian
 	religion = orthodox	
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			quarries_01
+			military_camps_01
+		}
+	}
 
 }
 502 = {
@@ -5285,6 +5865,12 @@
 	culture = serbian
 	religion = orthodox
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			military_camps_02
+			barracks_01
+		}
+	}
 
 }
 506 = {
@@ -5303,6 +5889,13 @@
 	culture = bulgarian
 	religion = orthodox
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			pastures_01
+			military_camps_01
+		}
+	}
 
 }
 508 = {
@@ -5324,9 +5917,21 @@
 	culture = bulgarian
 	religion = slavic_pagan
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			curtain_walls_01
+		}
+	}
 	893.1.1 = {
 		religion = orthodox
 		#Defeat of Vladimir's pagan uprising
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			common_tradeport_01
+			peat_quarries_01
+		}
 	}
 
 }
@@ -5348,9 +5953,9 @@
 	culture = vlach
 	religion = slavic_pagan
 	holding = tribal_holding
-	# 935.1.1 = {
-		# holding = castle_holding
-	# }
+	935.1.1 = {
+		holding = castle_holding
+	}
 	1000.1.1 = {
 		religion = orthodox
 	}
@@ -5563,6 +6168,13 @@
 		religion = catholic
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			farm_estates_01
+			pastures_01
+			barracks_01
+		}
+	}
 
 }
 528 = {
@@ -5607,6 +6219,13 @@
 		religion = catholic
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			hill_farms_01
+			pastures_01
+			hunting_grounds_01
+		}
+	}
 
 }
 532 = {
@@ -5645,6 +6264,13 @@
 	}
 	989.9.15 = {
 		religion = orthodox
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			hill_farms_01
+			military_camps_01
+		}
 	}
 
 }
@@ -5816,11 +6442,28 @@
 	culture = russian
 	religion = slavic_pagan
 	holding = tribal_holding
+	special_building_slot = golden_gate_of_kiev_01
+	867.1.1 = {
+		buildings = {
+			palisades_01
+		}
+	}
 	935.1.1 = {
 		holding = castle_holding
 	}
 	989.9.15 = {
 		religion = orthodox
+	}
+	1024.1.1 = {
+		special_building = golden_gate_of_kiev_01
+	}
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			farm_estates_02
+			curtain_walls_01
+			regimental_grounds_01
+		}
 	}
 
 }
@@ -5882,6 +6525,13 @@
 	989.9.15 = {
 		religion = orthodox
 	}
+	1066.1.1 = {
+		buildings = {
+			hunting_grounds_01
+			peat_quarries_01
+			outposts_01
+		}
+	}
 
 }
 553 = {
@@ -5905,6 +6555,13 @@
 	989.9.15 = {
 		religion = orthodox
 	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			peat_quarries_01
+			barracks_01
+		}
+	}
 
 }
 555 = {
@@ -5917,6 +6574,13 @@
 	}
 	989.9.15 = {
 		religion = orthodox
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			barracks_01
+			military_camps_01
+		}
 	}
 
 }
@@ -5979,6 +6643,18 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			pastures_01
+			military_camps_01
+		}
+	}
 
 }
 563 = {
@@ -6170,6 +6846,12 @@
 	}
 	1050.1.1 = {
 		culture = russian
+	}
+	1066.1.1 = {
+		buildings = {
+			longhouses_01
+			market_villages_01
+		}
 	}
 
 }
@@ -6444,6 +7126,12 @@
 	1000.1.2 = {
 		culture = cuman
 	}
+	1066.1.1 = {
+		buildings = {
+			palisades_01
+			market_villages_01
+		}
+	}
 
 }
 608 = {
@@ -6472,9 +7160,21 @@
 	culture = bolghar
 	religion = tengri_pagan
 	holding = tribal_holding
+	867.1.1 = {
+		buildings = {
+			market_villages_01
+		}
+	}
 	922.1.2 = {
 		religion = ashari
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			hunting_grounds_01
+			military_camps_01
+		}
 	}
 
 }
@@ -6582,6 +7282,12 @@
 	holding = castle_holding
 	750.1.2 = {
 		religion = kabarism
+	}
+	867.1.1 = {
+		buildings = {
+			war_camps_01
+			market_villages_01
+		}
 	}
 	1000.1.2 = {
 		culture = cuman
@@ -6820,9 +7526,21 @@
 	750.1.2 = {
 		religion = kabarism
 	}
+	867.1.1 = {
+		buildings = {
+			hill_forts_01
+		}
+	}
 	1066.1.1 = {
 		culture = persian
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_02
+			hill_farms_01
+			barracks_01
+		}
 	}
 
 }
@@ -6869,6 +7587,13 @@
 	holding = castle_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			pastures_01
+		}
+	}
 	1100.1.1 = {
 		culture = turkish
 		religion = ashari
@@ -6916,6 +7641,13 @@
 	holding = castle_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			hill_forts_02
+			hill_farms_01
+			barracks_01
+		}
+	}
 	1084.1.1 = {
 		culture = kurdish
 		religion = ashari
@@ -7203,6 +7935,18 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding	
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			pastures_01
+			military_camps_01
+		}
+	}
 	#1374 - Ottomans
 
 }
@@ -7289,7 +8033,19 @@
 	holding = castle_holding
 	
 	# History
-
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			barracks_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			barracks_01
+			hunting_grounds_01
+		}
+	}
 
 }
 751 = {
@@ -7337,7 +8093,13 @@
 	holding = castle_holding
 	
 	# History
-
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			barracks_01
+			pastures_01
+		}
+	}
 
 }
 754 = {
@@ -7422,6 +8184,13 @@
 	holding = castle_holding
 	
 	# History
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			hill_farms_01
+			military_camps_01
+		}
+	}
 	1100.1.1 = {
 		culture = turkish
 		religion = ashari
@@ -7454,7 +8223,13 @@
 	holding = castle_holding
 	
 	# History
-
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_02
+			common_tradeport_01
+			barracks_01
+		}
+	}
 
 }
 762 = {
@@ -10509,6 +11284,12 @@
 		religion = ashari
 		culture = karluk
 	}
+	1066.1.1 = {
+		buildings = {
+			longhouses_01
+			market_villages_02
+		}
+	}
 	1134.1.1 = {
 		culture = khitan
 	}
@@ -13266,6 +14047,7 @@
 	# Misc
 	culture = sogdian
 	religion = manichean
+	holding = castle_holding
 	
 	# History
 	900.1.1 = {
@@ -13392,6 +14174,13 @@
 		culture = uyghur
 		religion = ashari
 	}
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			military_camps_01
+			camel_farms_01
+		}
+	}
 	1233.1.1 = {
 		religion = nestorian
 	}	#Strong Nestorian presence recorded by Marco Polo
@@ -13413,6 +14202,13 @@
 	# History
 	1066.1.1 = {
 		culture = uyghur
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			plantations_01
+			orchards_01
+		}
 	}
 
 }
@@ -13503,6 +14299,13 @@
 	holding = castle_holding
 	954.2.22 = {
 		religion = vajrayana
+	}
+	1066.1.1 = {
+		buildings = {
+			orchards_01
+			camel_farms_01
+			watchtowers_01
+		}
 	}
 
 }
@@ -13620,6 +14423,11 @@
 	culture = kerait
 	religion = tengri_pagan
 	holding = tribal_holding
+	867.1.1 = {
+		buildings = {
+			longhouses_01
+		}
+	}
 	1020.1.2 = {
 		religion = nestorian
 	}
@@ -13700,6 +14508,12 @@
 	culture = anglo_saxon
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			hunting_grounds_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -13867,6 +14681,13 @@
 	culture = anglo_saxon
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			peat_quarries_01
+			outposts_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -13911,7 +14732,20 @@
 	holding = castle_holding
 	769.1.1 = {
 		special_building_slot = the_tower_of_london_01
-	}	
+	}
+	867.1.1 = {
+		buildings = {
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			farm_estates_01
+			barracks_01
+			pastures_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -14056,6 +14890,18 @@
 	culture = anglo_saxon
 	religion = catholic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_02
+			cereal_fields_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -14387,6 +15233,13 @@
 	culture = anglo_saxon
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			barracks_01
+			hunting_grounds_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -14491,6 +15344,13 @@
 	culture = anglo_saxon
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			hunting_grounds_02
+			military_camps_01
+		}
+	}
 	1100.11.11 = {
 		culture = english
 	}
@@ -16778,6 +17638,13 @@
 	
 	#History
 	945.1.1 = { culture = asturleonese }
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			barracks_01
+			military_camps_01
+		}
+	}
 
 }
 1817 = {
@@ -17188,6 +18055,13 @@
 	# History
 	811.1.1 = { religion = ashari }
 	934.1.1 = { culture = andalusian }
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			hill_farms_01
+			common_tradeport_01
+		}
+	}
 
 }
 1847 = {
@@ -17229,6 +18103,12 @@
 	1280.1.1 = {
 		culture = castilian
 		religion = catholic
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			hill_forts_02
+		}
 	}
 
 }
@@ -17426,6 +18306,13 @@
 	# History
 	952.1.1 = {
 		culture = catalan
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			military_camps_01
+			barracks_01
+		}
 	}
 
 }
@@ -17731,6 +18618,13 @@
 	955.1.1 = {
 		culture = andalusian
 	}
+	1066.1.1 = {
+		buildings = {
+			ramparts_01
+			logging_camps_02
+			military_camps_01
+		}
+	}
 
 }
 1888 = {
@@ -17953,6 +18847,13 @@
 	
 	# History
 	945.1.1 = { culture = castilian }
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 1907 = {
@@ -18090,7 +18991,19 @@
 	holding = castle_holding
 	
 	# History
+	867.1.1 = {
+		buildings = {
+			regimental_grounds_01
+		}
+	}
 	955.1.1 = { culture = castilian }
+	1066.1.1 = {
+		buildings = {
+			regimental_grounds_01
+			curtain_walls_01
+			farm_estates_01
+		}
+	}
 
 }
 1920 = {
@@ -18943,8 +19856,20 @@
 		religion = ashari
 		special_building = alhambra_01
 	}
+	867.1.1 = {
+		buildings = {
+			hill_forts_01
+		}
+	}
 	934.1.1 = {
 		culture = andalusian
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			outposts_01
+			quarries_01
+		}
 	}
 
 }
@@ -18995,8 +19920,22 @@
 	holding = castle_holding
 	
 	# History
+	867.1.1 = {
+		buildings = {
+			farm_estates_01
+			military_camps_01
+		}
+	}
 	929.1.1 = {
 		culture = andalusian
+	}
+	1066.1.1 = {
+		buildings = {
+			farm_estates_01
+			military_camps_01
+			curtain_walls_01
+			cereal_fields_01
+		}
 	}
 	1263.1.1 = {
 		culture = castilian
@@ -19242,7 +20181,22 @@
 		special_building_slot = holy_site_great_mosque_of_cordoba_01
 		special_building = holy_site_great_mosque_of_cordoba_01
 	}
+	867.1.1 = {
+		buildings = {
+			farm_estates_01
+			cereal_fields_01
+		}
+	}
 	934.1.1 = { culture = andalusian }
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			curtain_walls_01
+			farm_estates_02
+			cereal_fields_01
+			regimental_grounds_01
+		}
+	}
 	1245.3.19 = {
 		culture = castilian
 		religion = catholic
@@ -19455,6 +20409,13 @@
 	977.1.1	 = {
 		culture = occitan
 	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			common_tradeport_01
+			hill_farms_01
+		}
+	}
 
 }
 2013 = {
@@ -19497,6 +20458,13 @@
 2018 = {
 	#MARSEILLE
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+			barracks_01
+		}
+	}
 
 	religion = catholic
 	culture = occitan
@@ -19996,6 +20964,13 @@
 	culture = franconian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			pastures_01
+			military_camps_01
+		}
+	}
 
 }
 2084 = {
@@ -20035,6 +21010,19 @@
 	religion = catholic
 	holding = castle_holding
 	special_building_slot = holy_site_cologne_cathedral_01
+	867.1.1 = {
+		buildings = {
+			cereal_fields_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			curtain_walls_01
+			farm_estates_01
+			regimental_grounds_01
+		}
+	}
 
 }
 2089 = {
@@ -20064,6 +21052,19 @@
 	religion = catholic
 	holding = castle_holding
 	special_building = palace_of_aachen_01
+	867.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+			cereal_fields_01
+		}
+	}
 
 }
 2093 = {
@@ -20240,6 +21241,13 @@
 	culture = dutch
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			farm_estates_01
+		}
+	}
 
 }
 2116 = {
@@ -20441,6 +21449,18 @@
 	culture = occitan
 	religion = catholic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			hunting_grounds_01
+		}
+	}	
+	1066.1.1 = {
+		buildings = {
+			hunting_grounds_01
+			ramparts_01
+			outposts_01
+		}
+	}
 
 }
 2143 = {
@@ -20605,6 +21625,13 @@
 	culture = breton
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			ramparts_01
+			outposts_01
+			hunting_grounds_01
+		}
+	}
 
 }
 2166 = {
@@ -20722,6 +21749,15 @@
 	holding = castle_holding
 	960.1.1 = {	culture = norman }
 	1100.11.11 = { culture = french }
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			ramparts_01
+			barracks_01
+			hunting_grounds_01
+			logging_camps_01
+		}
+	}
 
 }
 2180 = {
@@ -20994,6 +22030,13 @@
 	holding = castle_holding
 	1150.1.1 = { religion = cathar }
 	1244.3.16 = { religion = catholic}
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 2215 = {
@@ -21267,6 +22310,13 @@
 	culture = occitan
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 2253 = {
@@ -21448,6 +22498,13 @@
 	culture = french
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 2275 = {
@@ -21880,6 +22937,20 @@
 	769.1.1 = {
 		special_building_slot = notre_dame_01
 	}
+	867.1.1 = {
+		buildings = {
+			farm_estates_01
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			farm_estates_02
+			curtain_walls_01
+			regimental_grounds_01
+		}
+	}
 
 }
 2334 = {
@@ -21924,6 +22995,12 @@
 	culture = french
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			farm_estates_01
+			cereal_fields_02
+		}
+	}
 
 }
 2339 = {
@@ -22058,6 +23135,11 @@
 2357 = {
 	#SAINT DENIS
 	holding = church_holding
+	867.1.1 = {
+		buildings = {
+			temple_02
+		}
+	}
 
 	religion = catholic
 	culture = french
@@ -22102,6 +23184,14 @@
 	culture = french
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			cereal_fields_02
+			curtain_walls_01
+			hunting_grounds_01
+		}
+	}
 
 }
 2364 = {
@@ -22164,6 +23254,12 @@
 	culture = french
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_02
+			curtain_walls_01
+		}
+	}
 
 }
 2372 = {
@@ -22300,6 +23396,17 @@
 	culture = french
 	religion = catholic
 	holding = church_holding
+	867.1.1 = {
+		buildings = {
+			monastic_schools_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			monastic_schools_02
+			hunting_grounds_01
+		}
+	}
 
 }
 2391 = {
@@ -22907,6 +24014,18 @@
 	holding = castle_holding
 	special_building_slot = walls_of_genoa_01
 	special_building = walls_of_genoa_01
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			military_camps_01
+		}
+	}
 	1099.1.1 = {
 		holding = castle_holding
 	}
@@ -23031,9 +24150,21 @@
 	culture = cisalpine
 	religion = catholic
 	holding = castle_holding
-	1259.1.1 = {
-		holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			military_camps_01
+		}
 	}
+	1066.1.1 = {
+		buildings = {
+			military_camps_01
+			hunting_grounds_01
+			curtain_walls_01
+		}
+	}
+	#1259.1.1 = {
+	#	holding = castle_holding
+	#}
 
 }
 2483 = {
@@ -23142,6 +24273,13 @@
 	culture = cisalpine
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			quarries_01
+			pastures_01
+			outposts_01
+		}
+	}
 
 }
 2500 = {
@@ -23274,6 +24412,14 @@
 	#
 	special_building_slot = doges_palace_01
 	special_building = doges_palace_01
+	
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			military_camps_01
+		}
+	}
 
 }
 2518 = {
@@ -23418,6 +24564,13 @@
 	culture = italian
 	religion = catholic
 	holding = city_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			barracks_01
+			guild_halls_01
+		}
+	}
 
 }
 2537 = {
@@ -23453,6 +24606,13 @@
 	culture = cisalpine
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 2543 = {
@@ -23460,6 +24620,12 @@
 	culture = italian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			farm_estates_02
+			regimental_grounds_01
+		}
+	}
 
 }
 2544 = {
@@ -23713,9 +24879,20 @@
 	religion = catholic
 	holding = church_holding
 	#
-	# buildings = { castle_02 }
+	buildings = {
+		castle_02
+		farm_estates_01
+	}
 	special_building = the_colosseum_01
 	duchy_capital_building = aurelian_walls_01
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			farm_estates_02
+			curtain_walls_01
+			cereal_fields_02
+		}
+	}
 
 
 }
@@ -23846,6 +25023,12 @@
 	culture = italian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			barracks_01
+		}
+	}
 
 }
 2595 = {
@@ -23947,6 +25130,20 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			castle_02
+			common_tradeport_02
+			curtain_walls_01
+			farm_estates_01
+		}
+	}
 	1139.4.1 = {
 		culture = sicilian
 		religion = catholic
@@ -23979,6 +25176,12 @@
 2611 = {
 	#AMALFI
 	holding = city_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			guild_halls_01
+		}
+	}
 
 	religion = orthodox
 	culture = greek
@@ -23988,6 +25191,19 @@
 	culture = lombard
 	religion = catholic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			barracks_01
+		}
+	}
 	1091.1.1 = { culture = sicilian	}
 
 }
@@ -24043,6 +25259,12 @@
 	religion = catholic
 	holding = castle_holding
 	1057.1.1 = { culture = sicilian }
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			military_camps_01
+		}
+	}
 
 }
 2620 = {
@@ -24186,6 +25408,19 @@
 		culture = baranis
 		religion = ashari
 	}
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			curtain_walls_01
+			farm_estates_01
+		}
+	}
 	1071.1.1 = {
 		culture = sicilian
 		religion = catholic
@@ -24222,6 +25457,13 @@
 	904.1.1 = {
 		culture = baranis
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+			barracks_01
+		}
 	}
 	1116.1.1 = {
 		culture = sicilian
@@ -24343,8 +25585,20 @@
 	#CAGLIARI
 	culture = sardinian
 	religion = orthodox
+	holding = castle_holding
+	special_building_slot = argentiera_mines_01
+	1000.1.1 = {
+		special_building = argentiera_mines_01
+	}
 	1060.1.1 = {
 		religion = catholic
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			pastures_01
+			curtain_walls_01
+		}
 	}
 
 }
@@ -24660,6 +25914,14 @@
 	culture = franconian
 	religion = catholic
 	holding = church_holding
+	1066.1.1 = {
+		buildings = {
+			temple_02
+			monastic_schools_01
+			pastures_01
+			hunting_grounds_01
+		}
+	}
 
 }
 2695 = {
@@ -25252,6 +26514,13 @@
 	culture = swabian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			military_camps_01
+			pastures_01
+		}
+	}
 
 }
 2779 = {
@@ -25454,6 +26723,13 @@
 		culture = saxon
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			barracks_01
+			military_camps_01
+		}
+	}
 
 }
 2805 = {
@@ -25602,6 +26878,13 @@
 	965.1.1 = {
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+			cereal_fields_01
+		}
+	}
 	1128.1.1 = {
 		religion = catholic
 	}
@@ -25726,6 +27009,13 @@
 	holding = tribal_holding
 	985.1.1 = {
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			curtain_walls_01
+			cereal_fields_01
+		}
 	}
 	1150.1.1 = {
 		religion = catholic
@@ -25924,6 +27214,13 @@
 	culture = franconian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			farm_estates_01
+			cereal_fields_02
+			military_camps_01
+		}
+	}
 
 }
 2856 = {
@@ -26087,6 +27384,13 @@
 	culture = franconian
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+			barracks_01
+		}
+	}
 
 }
 2878 = {
@@ -26309,6 +27613,13 @@
 		culture = saxon
 		religion = catholic
 	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			cereal_fields_01
+			military_camps_01
+		}
+	}
 
 }
 2907 = {
@@ -26504,6 +27815,13 @@
 	1120.1.1 = {
 		culture = saxon
 		religion = catholic
+	}
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			barracks_01
+			hunting_grounds_01
+		}
 	}
 
 }
@@ -26719,6 +28037,20 @@
 	culture = bavarian
 	religion = catholic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			farm_estates_01
+			barracks_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			farm_estates_01
+			barracks_01
+			curtain_walls_01
+			pastures_01
+		}
+	}
 
 }
 2965 = {
@@ -27355,6 +28687,13 @@
 	966.4.14 = {
 		religion = catholic
 		holding = castle_holding
+	}
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			pastures_01
+			military_camps_01
+		}
 	}
 
 }
@@ -28090,6 +29429,19 @@
 	culture = bavarian
 	religion = catholic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			curtain_walls_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			cereal_fields_01
+			military_camps_01
+			hunting_grounds_01
+		}
+	}
 
 }
 3132 = {
@@ -28829,6 +30181,17 @@
 	culture = prussian
 	religion = baltic_pagan
 	holding = tribal_holding
+	867.1.1 = {
+		buildings = {
+			market_villages_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			market_villages_01
+			palisades_01
+		}
+	}
 	1255.1.1 = {
 		religion = catholic
 		holding = castle_holding
@@ -28873,6 +30236,12 @@
 	
 	#History
 	940.1.1 = { culture = aragonese }
+	1066.1.1 = {
+		buildings = {
+			hill_forts_02
+			military_camps_01
+		}
+	}
 
 }
 3258 = {
@@ -32267,6 +33636,10 @@
 
 	religion = slavic_pagan
 	culture = serbian
+	870.1.1 = {
+		religion = orthodox
+		#Serbs convert in 870
+	}
 }
 3561 = {
 	#Nevesinje
@@ -32468,6 +33841,9 @@
 
 	religion = slavic_pagan
 	culture = serbian
+	870.1.1 = {
+		religion = orthodox
+	}
 }
 3585 = {
 	#Brežnica
@@ -32522,6 +33898,9 @@
 
 	religion = slavic_pagan
 	culture = serbian
+	870.1.1 = {
+		religion = orthodox
+	}
 }
 3592 = {
 	#Budlimlje
@@ -32815,6 +34194,13 @@
 	culture = greek
 	religion = orthodox
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			common_tradeport_01
+			barracks_01
+		}
+	}
 
 }
 3629 = {
@@ -33954,10 +35340,6 @@
 3776 = {
 	#Ierrisos / Ierissos
 	holding = church_holding
-	867.1.1 = {
-		special_building_slot = siderokausia_mines_01
-		special_building = siderokausia_mines_01
-	}
 
 	religion = orthodox
 	culture = greek
@@ -34238,6 +35620,12 @@
 	1000.1.1 = {
 		culture = hungarian
 	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_02
+			pastures_01
+		}
+	}
 
 }
 3809 = {
@@ -34311,6 +35699,13 @@
 	culture = slovien
 	religion = catholic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			hunting_grounds_01
+			military_camps_01
+		}
+	}
 
 }
 3816 = {
@@ -38870,8 +40265,21 @@
 	culture = czech
 	religion = slavic_pagan
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			hill_forts_01
+		}
+	}
 	883.1.1 = {
 		religion = catholic
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			hill_farms_01
+			hunting_grounds_01
+			pastures_01
+		}
 	}
 
 }
@@ -46837,6 +48245,13 @@
 	culture = baranis
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			watchtowers_01
+			pastures_01
+		}
+	}
 
 }
 4638 = {
@@ -47116,8 +48531,20 @@
 	culture = butr
 	religion = ibadi
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			pastures_01
+		}
+	}
 	955.1.1 = {
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			military_camps_01
+			plantations_01
+		}
 	}
 
 }
@@ -47190,6 +48617,13 @@
 	culture = baranis
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			watchtowers_01
+			pastures_01
+			common_tradeport_01
+		}
+	}
 
 }
 4683 = {
@@ -47197,6 +48631,18 @@
 	culture = baranis
 	religion = ashari
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			plantations_01
+			military_camps_01
+		}
+	}
 
 }
 4684 = {
@@ -47274,6 +48720,20 @@
 	culture = baranis
 	religion = ashari
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			pastures_01
+			plantations_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			plantations_01
+			watchtowers_01
+			hunting_grounds_01
+		}
+	}
 
 }
 4695 = {
@@ -47462,6 +48922,13 @@
 	culture = baranis
 	religion = najdat
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			camel_farms_01
+			pastures_01
+		}
+	}
 	1070.1.1 = {
 		religion = ashari
 	}
@@ -47598,6 +49065,12 @@
 	holding = castle_holding
 	1055.1.1 = {
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			plantations_02
+			camel_farms_01
+		}
 	}
 
 }
@@ -49704,6 +51177,13 @@
 		religion = catholic
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			farm_estates_01
+			military_camps_01
+		}
+	}
 
 }
 4901 = {
@@ -49748,6 +51228,11 @@
 	culture = polish
 	religion = slavic_pagan
 	holding = tribal_holding
+	867.1.1 = {
+		buildings = {
+			longhouses_01
+		}
+	}
 	966.4.14 = {
 		religion = catholic
 		holding = church_holding
@@ -58612,7 +60097,13 @@
 	holding = castle_holding
 	
 	# History
-
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			hill_farms_01
+			common_tradeport_01
+		}
+	}
 
 }
 5747 = {
@@ -58803,6 +60294,13 @@
 	867.1.1 = {
 		culture = armenian
 		religion = armenian_apostolic
+	}
+	1066.1.1 = {
+		buildings = {
+			curtain_walls_01
+			cereal_fields_01
+			military_camps_01
+		}
 	}
 	1084.1.1 = {
 		culture = kurdish
@@ -59029,6 +60527,13 @@
 	900.1.1 = {
 		religion = ashari
 	}
+	1066.1.1 = {
+		buildings = {
+			guild_halls_01
+			common_tradeport_01
+			pastures_01
+		}
+	}
 
 
 	religion = mazdayasna
@@ -59136,6 +60641,13 @@
 	# History
 	917.1.1 = {
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			hunting_grounds_01
+			military_camps_01
+		}
 	}
 
 
@@ -59487,6 +60999,11 @@
 	culture = samoyed
 	religion = finnish_pagan
 	holding = tribal_holding
+	1066.1.1 = {
+		buildings = {
+			market_villages_01
+		}
+	}
 
 }
 5799 = {
@@ -60320,6 +61837,18 @@
 	
 	holding = castle_holding
 	# History
+	867.1.1 = {
+		buildings = {
+			watchtowers_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			watchtowers_01
+			military_camps_01
+			hunting_grounds_01
+		}
+	}
 	1268.1.1 = { culture = levantine }
 	1268.1.1 = { religion = ashari }
 
@@ -60415,8 +61944,21 @@
 	# Misc
 	culture = levantine
 	religion = orthodox
-	
+	holding = castle_holding
 	# History
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			military_camps_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			military_camps_01
+			watchtowers_01
+		}
+	}
 	1295.1.1 = { religion = ashari }
 
 
@@ -60451,8 +61993,14 @@
 	# Misc
 	culture = levantine
 	religion = orthodox
-	
+	holding = city_holding
 	# History
+	1066.1.1 = {
+		buildings = {
+			guild_halls_02
+			common_tradeport_02
+		}
+	}
 	1295.1.1 = { religion = ashari }
 
 
@@ -60558,10 +62106,16 @@
 	# Misc
 	culture = levantine
 	religion = orthodox
-	
+	holding = castle_holding
 	# History
 	867.1.1 = { religion = ashari }
-
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_01
+			plantations_01
+			watchtowers_01
+		}
+	}
 
 }
 5930 = {
@@ -60627,6 +62181,13 @@
 	769.1.1 = {
 		holding = castle_holding
 		special_building = citadel_of_aleppo_01
+	}
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			plantations_02
+			military_camps_01
+		}
 	}
 
 }
@@ -60953,8 +62514,22 @@
 	# Misc
 	culture = levantine
 	religion = orthodox
-	
+	holding = castle_holding
 	# History
+	867.1.1 = {
+		buildings = {
+			common_tradeport_01
+			watchtowers_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			watchtowers_01
+			plantations_01
+			military_camps_01
+		}
+	}
 	1295.1.1 = { religion = ashari }
 
 
@@ -61023,6 +62598,16 @@
 		holding = castle_holding
 		special_building_slot = dome_of_the_rock_01
 		special_building = dome_of_the_rock_01
+		buildings = {
+			plantations_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			cereal_fields_01
+			military_camps_01
+		}
 	}
 
 
@@ -61299,9 +62884,14 @@
 	# Misc
 	culture = bedouin
 	religion = ashari
-	
+	holding = church_holding
 	# History
 	850.1.1 = { religion = ismaili}
+	867.1.1 = {
+		buildings = {
+			plantations_01
+		}
+	}
 
 
 	religion = ashari
@@ -61321,7 +62911,13 @@
 		special_building_slot = holy_site_imam_ali_mosque_01
 		special_building = holy_site_imam_ali_mosque_01
 	}
-
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			pastures_01
+			cereal_fields_01
+		}
+	}
 
 }
 5994 = {
@@ -61652,10 +63248,16 @@
 	# Misc
 	culture = bedouin
 	religion = ashari
-	
+	holding = castle_holding
 	# History
 	850.1.1 = { religion = ismaili }
-
+	1066.1.1 = {
+		buildings = {
+			orchards_01
+			common_tradeport_01
+			camel_farms_01
+		}
+	}
 
 }
 6020 = {
@@ -61690,9 +63292,14 @@
 	# Misc
 	culture = bedouin
 	religion = ashari
-	
+	holding = city_holding
 	# History
 	850.1.1 = { religion = ismaili }
+	867.1.1 = {
+		buildings = {
+			orchards_01
+		}
+	}
 
 
 	religion = ashari
@@ -61848,6 +63455,14 @@
 	#	capital = b_cairo
 	#	b_fustat = city
 	#}
+	1066.1.1 = {
+		buildings = {
+			cereal_fields_02
+			orchards_01
+			regimental_grounds_01
+			camel_farms_01
+		}
+	}
 
 }
 6043 = {
@@ -61934,6 +63549,18 @@
 	culture = egyptian
 	religion = coptic
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			common_tradeport_02
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			orchards_01
+			military_camps_01
+		}
+	}
 
 }
 6054 = {
@@ -62513,6 +64140,13 @@
 	culture = bedouin
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			common_tradeport_02
+			quarries_01
+		}
+	}
 
 }
 6135 = {
@@ -62580,6 +64214,13 @@
 	culture = bedouin
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			plantations_01
+			pastures_01
+		}
+	}
 
 }
 6145 = {
@@ -62670,6 +64311,13 @@
 	1066.1.1 = {
 		holding = castle_holding
 	}
+	1066.1.1 = {
+		buildings = {
+			watchtowers_01
+			common_tradeport_01
+			military_camps_01
+		}
+	}
 
 }
 6156 = {
@@ -62693,6 +64341,13 @@
 	culture = bedouin
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_02
+			watchtowers_01
+			camel_farms_01
+		}
+	}
 
 }
 6159 = {
@@ -62902,6 +64557,12 @@
 	culture = bedouin
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			watchtowers_02
+			outposts_01
+		}
+	}
 
 }
 6189 = {
@@ -63159,6 +64820,16 @@
 		holding = castle_holding
 		special_building_slot = holy_site_great_mosque_of_mecca_01
 		special_building = holy_site_great_mosque_of_mecca_01
+		buildings = {
+			plantations_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			cereal_fields_01
+			watchtowers_01
+		}
 	}
 
 }
@@ -63531,6 +65202,18 @@
 	culture = yemeni
 	religion = zayidi
 	holding = castle_holding
+	867.1.1 = {
+		buildings = {
+			hill_forts_01
+		}
+	}
+	1066.1.1 = {
+		buildings = {
+			hill_forts_01
+			pastures_02
+			quarries_01
+		}
+	}
 
 }
 6278 = {
@@ -63580,6 +65263,13 @@
 	culture = yemeni
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			pastures_01
+			camel_farms_01
+			outposts_01
+		}
+	}
 
 }
 6285 = {
@@ -63955,6 +65645,13 @@
 	culture = nubian
 	religion = coptic
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			watchtowers_01
+			cereal_fields_01
+			orchards_01
+		}
+	}
 
 }
 6345 = {
@@ -64229,6 +65926,12 @@
 	holding = tribal_holding
 	1030.1.1 = {
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			market_villages_01
+			palisades_01
+		}
 	}
 
 }
@@ -66489,13 +68192,20 @@
 	# Misc
 	culture = soninke
 	religion = west_african_bidu_pagan
-	
+	holding = tribal_holding
 	# History
 	960.1.1 = { religion = ibadi }
 	960.1.1 = { culture = butr }
 	#960.1.1 = { culture = tagelmust }
 	1050.1.1 = { religion = ashari }
-
+	1066.1.1 = {
+		holding = castle_holding
+		buildings = {
+			orchards_01
+			plantations_01
+			pastures_01
+		}
+	}
 
 }
 6626 = {
@@ -67539,10 +69249,23 @@
 	# Misc
 	culture = bozo
 	religion = west_african_bidu_pagan
-	
+	holding = tribal_holding
 	# History
 	867.1.1 = {
 		special_building_slot = holy_site_great_mosque_of_djenne_01
+		buildings = {
+			palisades_01
+			market_villages_01
+		}
+	}
+	1062.1.1 = {
+		holding = castle_holding
+		buildings = {
+			cereal_fields_01
+			orchards_01
+			regimental_grounds_01
+			camel_farms_01
+		}
 	}
 	1176.1.1 = { religion = ashari }
 
@@ -68286,11 +70009,18 @@
 	# Misc
 	culture = soninke
 	religion = west_african_bidu_pagan
-	
+	holding = tribal_holding
 	# History
+	867.1.1 = {
+		buildings = {
+			market_villages_01
+		}
+	}
 	895.1.1 = { culture = butr }
 	960.1.1 = { religion = ashari }
-
+	1066.1.1 = {
+		holding = castle_holding
+	}
 
 }
 6765 = {
@@ -68535,10 +70265,17 @@
 	# Misc
 	culture = pulaar
 	religion = west_african_roog_pagan
-	
+	holding = tribal_holding
 	# History
 	1035.1.1 = { religion = ashari }
-
+	1066.1.1 = {
+		holding = castle_holding
+		buildings = {
+			cereal_fields_01
+			plantations_01
+			hunting_grounds_01
+		}
+	}
 
 }
 6783 = {
@@ -71466,6 +73203,16 @@
 	culture = kipchak
 }
 1435 = {
+	#Astana	AKA Nur-Sultan
+	culture = kipchak
+	religion = tengri_pagan
+	holding = tribal_holding
+	1000.1.2 = {
+		culture = cuman
+	}
+
+}
+7041 = {
 	#Astana	AKA Nur-Sultan
 	culture = kipchak
 	religion = tengri_pagan
@@ -81449,6 +83196,42 @@
 
 
 }
+7961 = {
+	#Kashgar
+	culture = saka
+	religion = mahayana
+	holding = castle_holding
+	1006.1.1 = {
+		culture = uyghur
+		religion = ashari
+	}
+	1233.1.1 = {
+		religion = nestorian
+	}	#Strong Nestorian presence recorded by Marco Polo
+	1360.1.1 = {
+		religion = ashari
+	}	#Tughlugh Timur Khan reinforces Islam in Chagatai
+
+
+}
+7962 = {
+	#Kashgar
+	culture = saka
+	religion = mahayana
+	holding = castle_holding
+	1006.1.1 = {
+		culture = uyghur
+		religion = ashari
+	}
+	1233.1.1 = {
+		religion = nestorian
+	}	#Strong Nestorian presence recorded by Marco Polo
+	1360.1.1 = {
+		religion = ashari
+	}	#Tughlugh Timur Khan reinforces Islam in Chagatai
+
+
+}
 1439 = {
 	#Kashgar
 	culture = saka
@@ -81457,6 +83240,13 @@
 	1006.1.1 = {
 		culture = uyghur
 		religion = ashari
+	}
+	1066.1.1 = {
+		buildings = {
+			plantations_01
+			military_camps_01
+			camel_farms_01
+		}
 	}
 	1233.1.1 = {
 		religion = nestorian
@@ -81496,7 +83286,7 @@
 	
 	# History
 
-	religion = zurvanism
+	religion = mahayana
 	culture = tajik
 }
 7965 = {
@@ -81510,7 +83300,7 @@
 	
 	# History
 
-	religion = zurvanism
+	religion = mahayana
 	culture = tajik
 }
 7966 = {
@@ -81726,6 +83516,21 @@
 	culture = tocharian
 }
 1444 = {
+	# 1444 - Kucha
+	
+	# Misc
+	culture = tocharian
+	religion = vajrayana
+	
+	holding = castle_holding
+	
+	# History
+	900.1.1 = {		#Qocho Kingdom
+		culture = uyghur
+	}
+
+}
+7976 = {
 	# 1444 - Kucha
 	
 	# Misc
@@ -82133,7 +83938,7 @@
 	religion = west_african_pagan
 	culture = gur
 }
-8009 = {
+8001 = {
 
 	# Misc
 	culture = akan
@@ -82143,7 +83948,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8002 = {
 
 	# Misc
 	culture = akan
@@ -82153,7 +83958,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8003 = {
 
 	# Misc
 	culture = akan
@@ -82163,7 +83968,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8000 = {
+8004 = {
 
 	# Misc
 	culture = guan
@@ -82173,7 +83978,7 @@
 	religion = west_african_pagan
 	culture = gur
 }
-8000 = {
+8005 = {
 
 	# Misc
 	culture = guan
@@ -82183,7 +83988,7 @@
 	religion = west_african_pagan
 	culture = gur
 }
-8000 = {
+8006 = {
 
 	# Misc
 	culture = guan
@@ -82193,7 +83998,7 @@
 	religion = west_african_pagan
 	culture = gur
 }
-8000 = {
+8007 = {
 
 	# Misc
 	culture = guan
@@ -82203,7 +84008,7 @@
 	religion = west_african_pagan
 	culture = gur
 }
-8009 = {
+8008 = {
 
 	# Misc
 	culture = akan
@@ -82223,7 +84028,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8010 = {
 
 	# Misc
 	culture = akan
@@ -82233,7 +84038,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8011 = {
 
 	# Misc
 	culture = akan
@@ -82243,7 +84048,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8012 = {
 
 	# Misc
 	culture = akan
@@ -82253,7 +84058,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8013 = {
 
 	# Misc
 	culture = akan
@@ -82263,7 +84068,7 @@
 	religion = akom_pagan
 	culture = akan
 }
-8009 = {
+8014 = {
 
 	# Misc
 	culture = akan
@@ -86306,6 +88111,13 @@
 	culture = somali
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			military_camps_01
+			plantations_01
+		}
+	}
 
 }
 8401 = {
@@ -86704,6 +88516,13 @@
 	culture = somali
 	religion = ashari
 	holding = castle_holding
+	1066.1.1 = {
+		buildings = {
+			common_tradeport_01
+			hunting_grounds_01
+			cereal_fields_01
+		}
+	}
 
 }
 8464 = {
@@ -87336,6 +89155,417 @@
 
 	religion = norse_pagan
 	culture = norse
+}
+8741 = {
+	#BANGOR
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8742 = {
+	#CLOGHER
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8743 = {
+	#DUNGANNON
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8744 = {
+	#ADRAGH
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8745 = {
+	#CRUACHU
+	culture = irish
+	religion = insular_celtic
+	holding = tribal_holding
+	988.1.1 = {
+		holding = castle_holding
+	}
+	1200.1.1 = {	#By the beginning of the 13th century, Insular Christianity was effectively fully integrated with Rome.
+		religion = catholic
+	}
+
+}
+8746 = {
+	#TUAM
+	holding = sparsly_populated_holding
+	988.1.1 = {
+		holding = city_holding
+		#Settlement is very old
+	}
+
+	religion = insular_celtic
+	culture = irish
+}
+8747 = {
+	#DA CHAINOC
+	#Fortress that can be found on old maps of the region in medieval times
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8748 = {
+	#KILLALA
+	holding = church_holding
+	#Church founded here in the Vth century
+
+	religion = insular_celtic
+	culture = irish
+}
+8749 = {
+	#KINCORA
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8750 = {
+	#KILMALLOCK
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = irish
+}
+8751 = {
+	#TROPEA
+	holding = church_holding
+	#set as church_holding to have all 3 holding types
+
+	religion = orthodox
+	culture = greek
+}
+8752 = {
+	#BELVEDERE
+	holding = sparsly_populated_holding
+
+	religion = orthodox
+	culture = greek
+}
+8753 = {
+	#CATANZARO
+	holding = city_holding
+
+	religion = orthodox
+	culture = greek
+}
+8754 = {
+	#POLICASTRO	AKA Petilia Policastro
+	holding = sparsly_populated_holding
+
+	religion = catholic
+	culture = lombard
+}
+8755 = {
+	#LECCE
+	culture = greek
+	religion = orthodox
+	holding = castle_holding
+	1074.1.1 = {
+		culture = sicilian
+		religion = catholic
+	}
+
+}
+8756 = {
+	#AVERSA
+	holding = sparsly_populated_holding
+	1030.1.1 = {
+		holding = city_holding
+		#Founded in 1030
+		#Bishopric since 1053
+	}
+
+	religion = orthodox
+	culture = greek
+}
+8757 = {
+	#ARIANO
+	holding = city_holding
+	#Ancient city
+
+	religion = catholic
+	culture = lombard
+}
+8758 = {
+	#VIESTE
+	holding = city_holding
+
+	religion = catholic
+	culture = lombard
+}
+8759 = {
+	#AGNONE
+	holding = city_holding
+
+	religion = catholic
+	culture = lombard
+}
+8760 = {
+	#ASCIANO
+	holding = sparsly_populated_holding
+
+	religion = catholic
+	culture = italian
+}
+8761 = {
+	#TIRANO
+	holding = sparsly_populated_holding
+
+	religion = catholic
+	culture = cisalpine
+}
+8762 = {
+	#CHIARI
+	holding = sparsly_populated_holding
+	#Foundation in 1125
+
+	religion = catholic
+	culture = cisalpine
+}
+8763 = {
+	#MONDOVI
+	holding = sparsly_populated_holding
+	#Founded in 1198
+
+	religion = catholic
+	culture = cisalpine
+}
+8764 = {
+	#SANTHIA
+	holding = sparsly_populated_holding
+
+	religion = catholic
+	culture = cisalpine
+}
+8765 = {
+	#ESTE
+	holding = city_holding
+
+	religion = catholic
+	culture = cisalpine
+}
+8766 = {
+	#PORTOGRUARO
+	holding = sparsly_populated_holding
+	#Founded in 1140
+
+	religion = catholic
+	culture = cisalpine
+}
+8767 = {
+	#MALAMCCO
+	holding = sparsly_populated_holding
+
+	religion = catholic
+	culture = cisalpine
+}
+8768 = {
+ #Ski
+	holding = sparsly_populated_holding
+	1150.1.1 = {
+		holding = church_holding
+		#Churches from the XIIth century found
+	}
+
+	religion = norse_pagan
+	culture = norse
+}
+8769 = {
+ #Stange
+	holding = sparsly_populated_holding
+
+	religion = norse_pagan
+	culture = norse
+}
+8770 = {
+ #Uddevalla
+	holding = sparsly_populated_holding
+	#Town charter in late XVth century
+
+	religion = norse_pagan
+	culture = norse
+}
+8771 = {
+	#OLAFSVIK
+	holding = sparsly_populated_holding
+	1066.1.1 = {
+		holding = church_holding
+	}
+
+	religion = norse_pagan
+	culture = norse
+}
+8772 = {
+	#HOFN
+	holding = sparsly_populated_holding
+
+	religion = norse_pagan
+	culture = norse
+}
+8773 = {
+	#VOPNAFJORDUR
+	holding = sparsly_populated_holding
+	1066.1.1 = {
+		holding = church_holding
+	}
+
+	religion = norse_pagan
+	culture = norse
+}
+8774 = {
+	#KLAUSTUR
+	holding = sparsly_populated_holding
+
+	religion = norse_pagan
+	culture = norse
+}
+8775 = {
+	#Urquhart
+	holding = sparsly_populated_holding
+	#Castle built in the XIIIth century
+
+	religion = insular_celtic
+	culture = gaelic
+}
+8776 = {
+	#Glenelg
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = gaelic
+}
+8777 = {
+	#Tain
+	holding = sparsly_populated_holding
+	1066.1.1 = {
+		holding = city_holding
+		#Town charters in 1066
+	}
+
+	religion = insular_celtic
+	culture = gaelic
+}
+8778 = {
+	#Applecross
+	holding = church_holding
+	#Very old monastery in the area
+
+	religion = insular_celtic
+	culture = gaelic
+}
+8779 = {
+	#Assynt
+	holding = sparsly_populated_holding
+
+	religion = insular_celtic
+	culture = gaelic
+}
+8780 = {
+	#Wigton
+	holding = church_holding
+	122.1.1 = {
+		special_building = hadrians_wall_01
+	}
+	#Pre-medieval settlement, has a church to have all holding types.
+
+	religion = catholic
+	culture = cumbrian
+}
+8781 = {
+	#Ume
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8782 = {
+	#Vettänen = Ängesån
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+8783 = {
+	#Ylikainuu = Överkalix
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8784 = {
+	#Kangos
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8785 = {
+	#Roavvenjarga = Rovaniemi
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8786 = {
+	#Kuusama
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8787 = {
+	#Kaddlhutt = Kandalaksha
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8788 = {
+	#Suenekele
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8789 = {
+	#Skolt
+	culture = sami
+	religion = finnish_pagan
+	holding = tribal_holding
+
+}
+8790 = {
+	#Peliza (named after local river)
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8791 = {
+	#Varsiga = Varzuga
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
+}
+8792 = {
+	#Cascarena
+	holding = sparsly_populated_holding
+
+	religion = finnish_pagan
+	culture = sami
 }
 8993 = {
 	# 8993 - Zarmatarey
@@ -95689,6 +97919,21 @@
 	culture = saka
 }
 1440 = {
+	#1440 - Khotan
+	
+	# Misc
+	culture = saka
+	religion = mahayana
+	
+	holding = castle_holding
+	
+	# History
+	1066.1.1 = {
+		culture = uyghur
+	}
+
+}
+9608 = {
 	#1440 - Khotan
 	
 	# Misc
