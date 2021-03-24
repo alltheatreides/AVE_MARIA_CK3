@@ -1,0 +1,73 @@
+amghar_elective = {
+	elector_vote_strength = {
+		base = 1
+		modifier = { #Each voter is able to flex their wealth and power to sway the election
+			desc = tooltip_scandinavian_elective_development
+			is_landed = yes
+			domain_size >= 1
+			any_held_title = {
+				tier = tier_county
+				development_level > 0
+				target_is_de_jure_liege_or_above = scope:title
+			}
+			add = {
+				every_held_title = {
+					limit = {
+						tier = tier_county
+						development_level > 0
+						target_is_de_jure_liege_or_above = scope:title
+					}
+					add = {
+						value = this.development_level
+						if = {
+							limit = {
+								NOT = { this.faith = root.faith }
+							}
+							divide = 2
+						}
+						if = {
+							limit = {
+								NOT = { this.culture_group = root.culture_group }
+							}
+							divide = 2
+						}
+						min = 1
+					}
+				}
+			}
+		}
+	}
+	electors = {
+		add = holder
+		add = {
+			type = holder_direct_vassals
+			limit = { highest_held_title_tier = tier_duchy }
+		}
+	}
+	candidate_score = {
+		base = 0
+		# SELF-VOTING MODIFIER
+		elector_self_voting_pattern_feudal_elective_modifier = yes
+		# HOLDER VOTING MODIFIER
+		holder_voting_pattern_feudal_elective_modifier = yes
+		# PRESTIGE AND PIETY MODIFIERS
+		elector_voting_pattern_prestige_piety_feudal_elective_modifier = yes
+		# TRAITS MODIFIERS
+		elector_voting_pattern_traits_feudal_elective_modifier = yes
+		# OPINION MODIFIER
+		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+	}
+	candidates = { #nephews of the ruler ONLY by the ruler's sisters
+		add = { 
+			type = holder_close_or_extended_family
+			limit {
+				is_alive = yes
+				is_nibling_of = scope:holder
+				is_male = yes
+				mother = {
+					is_sibling_of = scope:holder
+				}
+			}
+		}
+	}
+}
