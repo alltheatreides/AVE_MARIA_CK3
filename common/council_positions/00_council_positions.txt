@@ -294,7 +294,7 @@ councillor_spymaster = {
 councillor_court_chaplain = {
 	skill = learning
 
-	#auto_fill = yes
+	auto_fill = no
 	valid_position = {
 		# NOR = {
 		# 	has_title = title:e_byzantium
@@ -328,7 +328,7 @@ councillor_court_chaplain = {
 	}
 	
 	inherit = no
-	#fill_from_pool = yes
+	fill_from_pool = no
 	
 	councillor_cooldown_days = {
 		value = 0
@@ -339,6 +339,10 @@ councillor_court_chaplain = {
 						has_doctrine_parameter = clerical_appointment_fixed
 					}
 				}
+				NOR = {
+					has_religion = religion:christianity_religion 
+					has_religion = religion:islam_religion 
+				}				
 			}
 			add = 3650
 		}

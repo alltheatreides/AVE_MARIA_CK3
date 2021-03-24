@@ -1157,97 +1157,97 @@ synkellos_task_intellectual_activity = {
 	}
 }
 
-sakellarios_task_collect_taxes = {
-	default_task = yes
-	position = councillor_steward
+# sakellarios_task_collect_taxes = {
+# 	default_task = yes
+# 	position = councillor_steward
 
-	is_shown = {
-		# scope:councillor_liege = {
-		# 	any_held_title = {
-		# 		this = title:e_byzantium
-		# 	}
-		# }
-		always = no
-	}
+# 	is_shown = {
+# 		# scope:councillor_liege = {
+# 		# 	any_held_title = {
+# 		# 		this = title:e_byzantium
+# 		# 	}
+# 		# }
+# 		always = no
+# 	}
 
-	task_type = task_type_general
-	task_progress = task_progress_infinite
+# 	task_type = task_type_general
+# 	task_progress = task_progress_infinite
 
-	effect_desc = {
-		desc = task_collect_taxes_effect_desc
-		triggered_desc = {
-			trigger = { liege = { has_perk = tax_man_perk } }
-			desc = task_collect_taxes_tax_man_bonus_desc
-		}
-		triggered_desc = {
-			trigger = {
-				exists = liege.dynasty
-				liege.dynasty = { has_dynasty_perk = erudition_legacy_5 }
-				}
-			desc = task_collect_taxes_erudition_bonus_desc
-		}
-		desc = {
-			desc = council_task_possible_side_effects
-			triggered_desc = {
-				trigger = {
-					stewardship > mediocre_skill_rating
-				}
-				desc = task_collect_taxes_extra_taxes
-			}
-			triggered_desc = {
-				trigger = {
-					stewardship < high_skill_rating
-					any_sub_realm_county = {
-						steward_task_county_corruption_county_trigger = yes
-					}
-				}
-				desc = task_collect_taxes_county_corruption
-			}
-		}
-	}
+# 	effect_desc = {
+# 		desc = task_collect_taxes_effect_desc
+# 		triggered_desc = {
+# 			trigger = { liege = { has_perk = tax_man_perk } }
+# 			desc = task_collect_taxes_tax_man_bonus_desc
+# 		}
+# 		triggered_desc = {
+# 			trigger = {
+# 				exists = liege.dynasty
+# 				liege.dynasty = { has_dynasty_perk = erudition_legacy_5 }
+# 				}
+# 			desc = task_collect_taxes_erudition_bonus_desc
+# 		}
+# 		desc = {
+# 			desc = council_task_possible_side_effects
+# 			triggered_desc = {
+# 				trigger = {
+# 					stewardship > mediocre_skill_rating
+# 				}
+# 				desc = task_collect_taxes_extra_taxes
+# 			}
+# 			triggered_desc = {
+# 				trigger = {
+# 					stewardship < high_skill_rating
+# 					any_sub_realm_county = {
+# 						steward_task_county_corruption_county_trigger = yes
+# 					}
+# 				}
+# 				desc = task_collect_taxes_county_corruption
+# 			}
+# 		}
+# 	}
 
-	council_owner_modifier = {
-		name = task_collect_taxes_modifier
-		domain_tax_mult = 1
-		scale = steward_collect_taxes_total_scale
-	}
+# 	council_owner_modifier = {
+# 		name = task_collect_taxes_modifier
+# 		domain_tax_mult = 1
+# 		scale = steward_collect_taxes_total_scale
+# 	}
 
-	on_start_task = {
-		liege = {
-			add_character_flag = {
-				flag = no_steward_side_effects_first_month
-				days = 30
-			}
-		}
-	}
+# 	on_start_task = {
+# 		liege = {
+# 			add_character_flag = {
+# 				flag = no_steward_side_effects_first_month
+# 				days = 30
+# 			}
+# 		}
+# 	}
 
-	on_monthly = {
-		liege = {
-			if = {
-				limit = {
-					has_character_flag = no_steward_side_effects_first_month
-				}
-				remove_character_flag = no_steward_side_effects_first_month
-			}
-			else = {
-				trigger_event = {
-					on_action = task_collect_taxes_side_effects
-					days = { 1 30 }
-				}
-			}
-		}
-	}
+# 	on_monthly = {
+# 		liege = {
+# 			if = {
+# 				limit = {
+# 					has_character_flag = no_steward_side_effects_first_month
+# 				}
+# 				remove_character_flag = no_steward_side_effects_first_month
+# 			}
+# 			else = {
+# 				trigger_event = {
+# 					on_action = task_collect_taxes_side_effects
+# 					days = { 1 30 }
+# 				}
+# 			}
+# 		}
+# 	}
 
-	ai_will_do = {
-		value = 1 # Always a good backup
-		if = {
-			limit = {
-				scope:councillor_liege.gold < 100
-			}
-			add = 100
-		}
-	}
-}
+# 	ai_will_do = {
+# 		value = 1 # Always a good backup
+# 		if = {
+# 			limit = {
+# 				scope:councillor_liege.gold < 100
+# 			}
+# 			add = 100
+# 		}
+# 	}
+# }
 sakellarios_task_manage_treasury = {
 	position = councillor_steward
 

@@ -66,8 +66,16 @@ roman_administration_get_claim = {
 				remove_short_term_gold = 25
 			}
 			## Add the stress impact
-			introverted = minor_stress_impact_gain
-			shy = minor_stress_impact_gain
+			if = {
+				limit = {
+					OR = {
+						has_trait = introverted
+						has_trait = shy
+					}
+				}
+				## minor_stress_impact_gain
+				add_stress = 10
+			}
 		}
 	}
 
@@ -853,15 +861,30 @@ roman_administration_fire_bureaucrat = {
 			}			
 
 			## Add the stress impact
-			introverted = minor_stress_impact_gain
-			shy = minor_stress_impact_gain
-			sentimental = minor_stress_impact_gain
-			craven = minor_stress_impact_gain
-			faithful = minor_stress_impact_gain
-			just = minor_stress_impact_gain
-
-			zealous = minor_stress_impact_loss
-			arbitrary = minor_stress_impact_loss
+			if = {
+				limit = {
+					OR = {
+						has_trait = introverted
+						has_trait = shy
+						has_trait = sentimental
+						has_trait = craven
+						has_trait = faithful
+						has_trait = just
+					}
+				}
+				## minor_stress_impact_gain
+				add_stress = 10
+			}
+			if = {
+				limit = {
+					OR = {
+						has_trait = zealous
+						has_trait = arbitrary
+					}
+				}
+				## minor_stress_impact_loss
+				add_stress = -10
+			}
 		}
 	}
 
@@ -1303,15 +1326,30 @@ roman_administration_replace_bureaucrat = {
 			}
 
 			## Add the stress impact
-			introverted = minor_stress_impact_gain
-			shy = minor_stress_impact_gain
-			sentimental = minor_stress_impact_gain
-			craven = minor_stress_impact_gain
-			faithful = minor_stress_impact_gain
-			just = minor_stress_impact_gain
-
-			zealous = minor_stress_impact_loss
-			arbitrary = minor_stress_impact_loss
+			if = {
+				limit = {
+					OR = {
+						has_trait = introverted
+						has_trait = shy
+						has_trait = sentimental
+						has_trait = craven
+						has_trait = faithful
+						has_trait = just
+					}
+				}
+				## minor_stress_impact_gain
+				add_stress = 10
+			}
+			if = {
+				limit = {
+					OR = {
+						has_trait = zealous
+						has_trait = arbitrary
+					}
+				}
+				## minor_stress_impact_loss
+				add_stress = -10
+			}
 		}
 	}
 
