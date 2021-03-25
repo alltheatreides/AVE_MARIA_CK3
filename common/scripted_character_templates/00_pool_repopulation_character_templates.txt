@@ -579,7 +579,28 @@ pool_repopulate_local_flavor = {
 				}
 			}
 		}
-		culture:butr = {
+		culture:masmuda = {
+			trigger = {
+				root.capital_province = {
+					geographical_region = world_africa
+				}
+			}
+		}
+		culture:iznagen = {
+			trigger = {
+				root.capital_province = {
+					geographical_region = world_africa
+				}
+			}
+		}
+		culture:iznaten = {
+			trigger = {
+				root.capital_province = {
+					geographical_region = world_africa
+				}
+			}
+		}
+		culture:imuhay = {
 			trigger = {
 				root.capital_province = {
 					geographical_region = world_africa
@@ -819,7 +840,10 @@ pool_repopulate_local_flavor = {
 		else_if = {
 			limit = {
 				OR = {
-					culture = culture:butr
+					culture = culture:iznagen
+					culture = culture:iznaten
+					culture = culture:masmuda
+					culture = culture:imuhay
 					culture = culture:zaghawa
 				}
 			}
@@ -991,7 +1015,10 @@ pool_repopulate_local_flavor = {
 		if = { # Guaranteed warriors
 			limit = {
 				OR = {
-					culture = culture:butr
+					culture = culture:iznagen
+					culture = culture:iznaten
+					culture = culture:imuhay
+					culture = culture:masmuda
 					culture = culture:zaghawa
 					culture = culture:khitan
 					culture = culture:somali
