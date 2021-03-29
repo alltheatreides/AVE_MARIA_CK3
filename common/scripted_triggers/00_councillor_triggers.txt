@@ -64,6 +64,19 @@ can_be_steward_trigger = {
 			this = title:d_sakellion
 		}
 	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = {
+				has_religion = religion:islam_religion 
+				OR = {
+					has_government = islamic_empire_amir_government
+					has_government = islamic_empire_thugur_government
+				}
+				vassal_contract_has_flag = islamic_empire_kharaj_right_none
+			}
+		}
+		has_character_modifier = islamic_empire_appointed_sahib_al_maks		
+	}
 }
 
 can_be_marshal_trigger = {
@@ -114,21 +127,42 @@ can_be_court_chaplain_trigger = {
 	can_be_councillor_basics_trigger = yes
 	NOT = { has_council_position = councillor_spouse }
 	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
-	faith = $COURT_OWNER$.faith
+
+	## Change for the Ismaili, Qadi can be non ismaili
 	trigger_if = {
 		limit = {
-			faith = { has_doctrine = doctrine_theocracy_temporal }
+			$COURT_OWNER$.faith = faith:ismaili
+		}
+		faith = { religion_tag = islam_religion }
+	}
+	trigger_if = {
+		limit = {
+			NOT = {
+				$COURT_OWNER$.faith = faith:ismaili
+			}			
+		}
+		faith = $COURT_OWNER$.faith
+	}
+
+	# Vanilla trigger
+	trigger_if = {
+		limit = {
+			faith = { 
+				has_doctrine = doctrine_theocracy_temporal
+			}
 		}
 		OR = {
 			is_ruler = no
 			has_government = theocracy_government
 		}
 	}
+
+	## AVE MARIA Christian Triggers
 	trigger_if = {
 		limit = {
 			faith = { 
 				has_doctrine = doctrine_clerical_succession_temporal_appointment
-				religion = religion:christianity_religion 
+				religion_tag = christianity_religion
 			}
 		}
 		trigger_if = {
@@ -154,6 +188,55 @@ can_be_court_chaplain_trigger = {
 				rank >= 3
 			}
 		}
+	}
+
+	## AVE MARIA MUSLIM TRIGGERS
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = {
+				has_religion = religion:islam_religion 
+				NOR = {
+					has_government = islamic_empire_amir_government
+					has_government = islamic_empire_thugur_government
+				}
+			}			
+		}
+		scope:court_chaplain_check = {
+			trigger_if = {
+				limit = {
+					is_landed = yes
+				}
+				NOR = {
+					has_government = islamic_empire_amir_government
+					has_government = islamic_empire_thugur_government
+				}
+				NOT = {
+					any_held_title = {
+						OR = {
+							this = title:d_fatimid_diwan_al_insha
+							this = title:d_fatimid_hajib
+						}				
+					}
+				}
+			}		
+			
+			learning >= 12
+		}		
+	}
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = {
+				has_religion = religion:islam_religion 
+				OR = {
+					has_government = islamic_empire_amir_government
+					has_government = islamic_empire_thugur_government
+				}
+				vassal_contract_has_flag = islamic_empire_qadi_right_none
+			}
+		}
+		scope:court_chaplain_check = {
+			has_character_modifier = islamic_empire_appointed_qadi
+		}			
 	}
 	
 	trigger_if = {

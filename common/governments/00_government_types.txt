@@ -28,6 +28,8 @@
 		war_declaration_rights
 		council_rights
 		title_revocation_rights
+
+		islamic_empire_non_muslim_tax
 	}
 	
 	color = hsv{ 0.67 1.00 0.78 }
@@ -45,7 +47,7 @@ republic_government = {
 		perform_religious_reformation = no
 	}
 
-	vassal_contract = { republic_government_obligations }
+	vassal_contract = { republic_government_obligations islamic_empire_non_muslim_tax }
 	color = hsv{ 0.00 1.00 0.98 }
 }
 
@@ -89,7 +91,7 @@ theocracy_government = {
 		}	
 	}
 
-	vassal_contract = { theocracy_government_obligations }
+	vassal_contract = { theocracy_government_obligations islamic_empire_non_muslim_tax }
 	color = hsv{ 0.00 0.00 0.78 }
 }
 
@@ -175,7 +177,7 @@ tribal_government = {
 	prestige_opinion_override = { -10 0 3 5 10 20 }
 	always_use_patronym = yes	
 
-	vassal_contract = { tribal_government_obligations }
+	vassal_contract = { tribal_government_obligations islamic_empire_non_muslim_tax }
 	
 	character_modifier = {
 		title_creation_cost_mult = -0.5

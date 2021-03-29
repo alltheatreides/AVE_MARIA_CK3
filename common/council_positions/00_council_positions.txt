@@ -16,15 +16,6 @@
 			triggered_desc = {
 				trigger = {
 					scope:councillor_liege = {
-						uses_islamic_empire_govt = yes
-						highest_held_title_tier < tier_empire
-					}					
-				}
-				desc = councillor_chancellor_islam_qadi
-			}
-			triggered_desc = {
-				trigger = {
-					scope:councillor_liege = {
 						NOT = {
 							any_held_title = {
 								this = title:e_byzantium
@@ -106,6 +97,14 @@ councillor_steward = {
 			triggered_desc = {
 				trigger = {
 					scope:councillor_liege = {
+						uses_islamic_empire_govt = yes
+					}					
+				}
+				desc = councillor_steward_islam_sahib_al_maks
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
 						NOT = {
 							any_held_title = {
 								this = title:e_byzantium
@@ -154,6 +153,12 @@ councillor_steward = {
 	}
 
 	portrait_animation = steward
+
+	can_fire = {
+		NOT = {
+			vassal_contract_has_flag = islamic_empire_kharaj_right_none
+		}
+	}
 }
 
 councillor_marshal = {
@@ -305,12 +310,12 @@ councillor_court_chaplain = {
 
 	auto_fill = no
 	valid_position = {
-		# NOR = {
-		# 	has_title = title:e_byzantium
-		# 	has_title = title:e_roman_empire			
-		# }
+		
 	}
 	can_fire = {
+		NOT = {
+			vassal_contract_has_flag = islamic_empire_qadi_right_none
+		}
 		custom_description = {
 			text = "court_chaplain_cant_fire_doctrines"
 			faith = {
@@ -369,6 +374,31 @@ councillor_court_chaplain = {
 				}
 				desc = councillor_court_chaplain_basileus
 			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
+						uses_islamic_empire_govt = yes
+						# NOT = {
+						# 	any_held_title = {
+						# 		this = title:e_egypt
+						# 	}
+						# }
+					}					
+				}
+				desc = councillor_chancellor_islam_qadi
+			}
+			## Removed in the end, every muslim has a qadi at this spot, the da'i head for the fatimids will go in the "Pen" institutions
+			# triggered_desc = {
+			# 	trigger = {
+			# 		scope:councillor_liege = {
+			# 			uses_islamic_empire_govt = yes
+			# 			any_held_title = {
+			# 				this = title:e_egypt
+			# 			}
+			# 		}					
+			# 	}
+			# 	desc = councillor_chancellor_islam_dai_al_mutlaq
+			# }
 			triggered_desc = {
 				trigger = {
 					scope:councillor_liege.faith = { has_doctrine = doctrine_theocracy_temporal }
@@ -468,28 +498,7 @@ councillor_court_chaplain = {
 	
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
-		# trigger_if = {
-		# 	limit = {
-		# 		root.liege_or_court_owner = {
-		# 			any_held_title = {
-		# 				this = title:e_byzantium
-		# 			}
-		# 		}
-		# 	}
-		# 	NOR = {
-		# 		any_held_title = {
-		# 			this = title:k_orthodox
-		# 		}
-		# 	}
-		# 	OR = {
-		# 		has_trait = devoted
-		# 		# has_trait = priest
-		# 		has_trait = rhetorician_3
-		# 		has_trait = rhetorician_4
-		# 	}
-		# }
-			
+		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }			
 	}
 
 	on_get_position = {
