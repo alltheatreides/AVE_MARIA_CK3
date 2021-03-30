@@ -13,8 +13,15 @@ crown_authority = {
 			#vassal_levy_contribution_mult = -0.1
 		}
 
-		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no }
-		can_pass = { uses_roman_govt = no }
+		can_keep = { 
+			realm_law_use_crown_authority = yes 
+			uses_roman_govt = no 
+			uses_islamic_empire_govt = no
+		}
+		can_pass = { 
+			uses_roman_govt = no 
+			uses_islamic_empire_govt = no
+		}
 	}
 	
 	crown_authority_1 = {
@@ -27,7 +34,7 @@ crown_authority = {
 		flag = vassal_retraction_allowed
 		flag = can_change_partition_succession_laws
 
-		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no  }
+		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no uses_islamic_empire_govt = no }
 
 		can_pass = {
 			trigger_if = {
@@ -46,6 +53,7 @@ crown_authority = {
 			root.culture = { has_innovation = innovation_plenary_assemblies }
 
 			uses_roman_govt = no
+			uses_islamic_empire_govt = no
 		}
 		
 		pass_cost = {
@@ -91,7 +99,7 @@ crown_authority = {
 		flag = can_change_succession_laws
 		flag = titles_cannot_leave_realm_on_succession # Hardcoded flag
 		
-		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no }
+		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no uses_islamic_empire_govt = no }
 
 		can_pass = {
 			trigger_if = {
@@ -113,6 +121,7 @@ crown_authority = {
 			root.culture = { has_innovation = innovation_royal_prerogative }
 
 			uses_roman_govt = no
+			uses_islamic_empire_govt = no
 		}
 
 		pass_cost = {
@@ -153,7 +162,7 @@ crown_authority = {
 		flag = vassal_all_wars_banned
 		flag = can_designate_heirs
 		
-		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no }
+		can_keep = { realm_law_use_crown_authority = yes uses_roman_govt = no uses_islamic_empire_govt = no }
 
 		can_pass = {
 			has_realm_law = crown_authority_2
@@ -170,6 +179,7 @@ crown_authority = {
 			root.culture = { has_innovation = innovation_royal_prerogative }
 
 			uses_roman_govt = no
+			uses_islamic_empire_govt = no
 		}
 		
 		pass_cost = {

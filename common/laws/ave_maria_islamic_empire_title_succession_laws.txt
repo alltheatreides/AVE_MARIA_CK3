@@ -76,5 +76,70 @@ title_succession_laws = {
 			prestige = change_title_succession_law_prestige_cost
 		}
 	}
+
+	## Nepotism law used for military titles
+	islamic_empire_amir_succession_law = {
+		can_have = {
+			uses_islamic_empire_govt = yes
+			OR = {
+				has_government = islamic_empire_amir_government
+				has_government = islamic_empire_thugur_government
+			}			
+			highest_held_title_tier >= tier_duchy
+		}
+		can_pass = {
+			can_change_title_law_trigger = yes
+			highest_held_title_tier >= tier_county
+		}
+		can_title_have = {
+			can_title_have_law_general_trigger = yes
+		}
+		succession = {
+			order_of_succession = election
+			election_type = islamic_empire_amir_elective
+		}
+		flag = islamic_empire_amir_succession_law
+		modifier = {
+			
+		}
+		revoke_cost = {
+			prestige = 100000
+		}
+		pass_cost = {
+			prestige = 0
+		}
+	}
+
+	islamic_empire_amir_succession_law_2 = {
+		can_have = {
+			uses_islamic_empire_govt = yes
+			OR = {
+				has_government = islamic_empire_amir_government
+				has_government = islamic_empire_thugur_government
+			}			
+			highest_held_title_tier >= tier_duchy
+		}
+		can_pass = {
+			can_change_title_law_trigger = yes
+			highest_held_title_tier >= tier_county
+		}
+		can_title_have = {
+			can_title_have_law_general_trigger = yes
+		}
+		succession = {
+			order_of_succession = election
+			election_type = roman_administration_family_elective
+		}
+		flag = islamic_empire_amir_succession_law
+		modifier = {
+			
+		}
+		revoke_cost = {
+			prestige = 100000
+		}
+		pass_cost = {
+			prestige = 0
+		}
+	}
 	
 }

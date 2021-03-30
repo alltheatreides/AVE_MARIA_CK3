@@ -10,8 +10,8 @@
 ## Written by Atreides
 
 islamic_empire_name_qadi = {
-	category = interaction_category_vassal
-
+	category = interaction_category_islamic_empire
+	common_interaction = yes
 	use_diplomatic_range = yes
 
 	is_shown = {
@@ -28,6 +28,7 @@ islamic_empire_name_qadi = {
 				has_government = tribal_government
 			}		
 			uses_islamic_empire_govt = yes		
+			vassal_contract_has_flag = islamic_empire_qadi_right_none
 		}
 	}
 
@@ -44,7 +45,7 @@ islamic_empire_name_qadi = {
 					is_female = no
 					age >= 18
 					learning >= 12
-					faith = faith:ismaili
+					has_religion = religion:islam_religion 
 				}
 				add_to_list = characters
 			}
@@ -52,16 +53,51 @@ islamic_empire_name_qadi = {
 	}
 
 	on_accept = {
+		
 		scope:recipient = {
 			if = {
 				limit = {
-					exists = cp:councillor_chancellor
+					exists = cp:councillor_court_chaplain
 				}
-				fire_councillor = cp:councillor_chancellor
+				cp:councillor_court_chaplain = {
+					save_scope_as = ancient_qadi
+				}
+				scope:ancient_qadi = {
+					remove_character_modifier = islamic_empire_appointed_qadi
+					add_trait = qadi
+					add_opinion = {
+						target = scope:actor
+						modifier = roman_administration_fired_me
+						opinion = -25
+					}
+				}
+				fire_councillor = cp:councillor_court_chaplain
+				scope:secondary_recipient = {
+					add_character_modifier = islamic_empire_appointed_qadi
+					set_employer = scope:recipient 
+				}
 				assign_councillor_type = {
-					type = councillor_chancellor
+					type = councillor_court_chaplain
 					target = scope:secondary_recipient
 				}
+			}
+			else = {
+				scope:secondary_recipient = {
+					add_character_modifier = islamic_empire_appointed_qadi
+					set_employer = scope:recipient 
+				}
+				assign_councillor_type = {
+					type = councillor_court_chaplain
+					target = scope:secondary_recipient
+				}
+			}
+
+			## cleaning flags
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_qadi_request
+				}
+				remove_character_flag = islamic_empire_qadi_request
 			}
 		}
 		scope:secondary_recipient = {
@@ -73,6 +109,448 @@ islamic_empire_name_qadi = {
 		}
 	}
 
+
+	ai_targets = {
+		ai_recipients = vassals
+		max = 20
+	}
+
+	ai_frequency = 24
+
+	ai_will_do = {
+		base = 100
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+	}
+}
+
+islamic_empire_name_sahib_al_maks = {
+	category = interaction_category_islamic_empire
+	common_interaction = yes
+	use_diplomatic_range = yes
+
+	is_shown = {
+		scope:actor = {
+			uses_islamic_empire_govt = yes
+			highest_held_title_tier >= tier_empire 
+		}
+		scope:recipient = { 
+			highest_held_title_tier >= tier_duchy 
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}		
+			uses_islamic_empire_govt = yes		
+			vassal_contract_has_flag = islamic_empire_kharaj_right_none
+		}
+	}
+
+	auto_accept = yes
+	
+	ai_potential = {
+		always = yes
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 18
+					stewardship >= 12
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	on_accept = {
+		
+		scope:recipient = {
+			if = {
+				limit = {
+					exists = cp:councillor_steward
+				}
+				cp:councillor_steward = {
+					save_scope_as = ancient_sahib_al_maks
+				}
+				scope:ancient_sahib_al_maks = {
+					remove_character_modifier = islamic_empire_appointed_sahib_al_maks
+					add_opinion = {
+						target = scope:actor
+						modifier = roman_administration_fired_me
+						opinion = -25
+					}
+				}
+				fire_councillor = cp:councillor_steward
+				scope:secondary_recipient = {
+					add_character_modifier = islamic_empire_appointed_sahib_al_maks
+					set_employer = scope:recipient 
+				}
+				assign_councillor_type = {
+					type = councillor_steward
+					target = scope:secondary_recipient
+				}
+			}
+			else = {
+				scope:secondary_recipient = {
+					add_character_modifier = islamic_empire_appointed_sahib_al_maks
+					set_employer = scope:recipient 
+				}
+				assign_councillor_type = {
+					type = councillor_steward
+					target = scope:secondary_recipient
+				}
+			}
+
+			## cleaning flags
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_appointed_sahib_al_maks_request
+				}
+				remove_character_flag = islamic_empire_appointed_sahib_al_maks_request
+			}
+		}
+		scope:secondary_recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+	}
+
+
+	ai_targets = {
+		ai_recipients = vassals
+		max = 20
+	}
+
+	ai_frequency = 24
+
+	ai_will_do = {
+		base = 100
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+	}
+}
+
+## Emperor interaction to favour a successor to a title
+islamic_empire_favour_successor = {
+	category = interaction_category_islamic_empire
+	
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			highest_held_title_tier = tier_empire
+			uses_islamic_empire_govt = yes			
+		}
+		scope:recipient = { 
+			is_vassal_of = scope:actor
+			highest_held_title_tier >= tier_duchy 
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}					
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 18
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+						has_trait = qadi
+					}
+				}
+				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					highest_held_title_tier < tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+						has_trait = qadi
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						is_female = no
+						age >= 18
+						highest_held_title_tier < tier_duchy
+						NOR = {
+							has_trait = devoted
+							# has_trait = priest
+							has_trait = qadi
+						}
+					}
+					add_to_list = characters
+				}
+			}
+		}
+	}
+	
+	on_accept = {
+		scope:secondary_recipient = {
+			add_unpressed_claim = scope:recipient.primary_title
+			## Add some flag so it has a better score in the election
+			add_character_modifier = islamic_empire_caliph_favourite
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = vassals
+	}
+	ai_frequency = 6
+	
+	ai_will_do = {
+		base = 100
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+
+		modifier = {
+			factor = 100
+			scope:secondary_recipient = {
+				OR = {
+					AND = {
+						scope:actor = {
+							ai_greed <= high_positive_ai_value
+						}
+						has_relation_friend = scope:actor
+					}
+					has_relation_best_friend = scope:actor
+					has_relation_soulmate = scope:actor
+				}
+			}
+		}
+	}
+}
+
+## Emperor interaction to fire an official
+islamic_empire_fire_bureaucrat = {
+	category = interaction_category_islamic_empire
+
+	use_diplomatic_range = yes
+
+	is_shown = {
+		scope:actor = {
+			highest_held_title_tier = tier_empire
+			uses_islamic_empire_govt = yes			
+		}
+		scope:recipient = { 
+			is_vassal_of = scope:actor
+			highest_held_title_tier >= tier_duchy 
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}				
+		}
+	}
+
+	auto_accept = yes
+	
+	ai_potential = {
+		is_at_war = no
+		NOR = {
+			has_trait = forgiving
+			has_trait = compassionate
+			has_trait = patient
+			has_trait = trusting
+			has_trait = calm
+		}
+	}
+
+	on_accept = {
+		scope:recipient = {
+			every_held_title = {
+				limit = {
+					tier >= tier_duchy
+				}
+				current_heir = {
+					save_scope_as = new_holder
+				}
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_county
+						NOT = { this = scope:actor.capital_county }
+						holder = {
+							any_liege_or_above = {
+								this = scope:actor
+							}
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+			every_held_title = {
+				limit = {
+					tier >= tier_duchy
+				}
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = change
+					add_claim_on_loss = yes
+				}
+				change_title_holder = {
+					holder = scope:new_holder
+					change = scope:change
+				}
+				resolve_title_and_vassal_change = scope:change
+			}
+			
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_fired_me
+				opinion = -25
+			}
+
+			scope:new_holder = {
+				remove_character_modifier = islamic_empire_caliph_favourite
+			}
+		}
+
+		scope:actor = {
+			## Add the stress impact
+			if = {
+				limit = {
+					OR = {
+						has_trait = introverted
+						has_trait = shy
+						has_trait = sentimental
+						has_trait = craven
+						has_trait = faithful
+						has_trait = just
+					}
+				}
+				## minor_stress_impact_gain
+				add_stress = 10
+			}
+			if = {
+				limit = {
+					OR = {
+						has_trait = zealous
+						has_trait = arbitrary
+					}
+				}
+				## minor_stress_impact_loss
+				add_stress = -10
+			}
+		}
+	}
 
 	ai_targets = {
 		ai_recipients = vassals
@@ -224,12 +702,624 @@ islamic_empire_name_qadi = {
 			}
 		}
 
+		## Popularity
 		modifier = {
 			add = -100
 			scope:actor = {
-				has_variable = roman_administration_popularity
-				var:roman_administration_popularity <= 70
+				has_variable = islamic_empire_popularity
+				var:islamic_empire_popularity <= 70
 			}
 		}
 	}
 }
+
+## Emperor interaction to replace an official
+islamic_empire_replace_bureaucrat = {
+	category = interaction_category_islamic_empire
+
+	use_diplomatic_range = yes
+	auto_accept = yes
+
+	is_shown = {
+		scope:actor = {
+			highest_held_title_tier = tier_empire
+			uses_islamic_empire_govt = yes			
+		}
+		scope:recipient = { 
+			is_vassal_of = scope:actor
+			highest_held_title_tier >= tier_duchy 
+			NOR = {
+				has_government = theocracy_government
+				has_government = feudal_government
+				has_government = clan_government
+				has_government = tribal_government
+			}				
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_female = no
+					age >= 18
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+						has_trait = qadi
+					}
+				}
+				add_to_list = characters
+			}
+			every_vassal = {
+				limit = {
+					top_liege = scope:actor
+					is_female = no
+					age >= 18
+					highest_held_title_tier <= tier_duchy
+					NOT = {
+						has_government = theocracy_government
+					}
+					NOR = {
+						has_trait = devoted
+						# has_trait = priest
+						has_trait = qadi
+					}
+				}
+				add_to_list = characters
+
+				every_courtier = {
+					limit = {
+						is_female = no
+						age >= 18
+						highest_held_title_tier < tier_duchy
+						NOR = {
+							has_trait = devoted
+							# has_trait = priest
+							has_trait = qadi
+						}
+					}
+					add_to_list = characters
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		scope:recipient = {
+			random_held_title = {
+				limit = {
+					tier >= tier_duchy
+				}
+
+				if = {
+					limit = {
+						scope:secondary_recipient = {
+							is_landed = no
+						}
+					}
+					save_temporary_scope_as = recipient_ducal_title
+					scope:recipient_ducal_title = { 
+						every_in_de_jure_hierarchy = {
+							limit = {
+								tier = tier_county
+								NOT = { this = scope:actor.capital_county }
+								holder = {
+									any_liege_or_above = {
+										this = scope:actor
+									}
+								}
+							}
+							create_title_and_vassal_change = {
+								type = granted
+								save_scope_as = change
+								add_claim_on_loss = yes
+							}
+							change_title_holder = {
+								holder = scope:secondary_recipient
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+					scope:recipient_ducal_title = {
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = scope:secondary_recipient
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+
+				if = {
+					limit = {
+						scope:secondary_recipient = {
+							is_landed = yes
+						}
+					}
+					save_temporary_scope_as = recipient_ducal_title
+					scope:recipient_ducal_title = {
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = scope:secondary_recipient
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+
+					scope:recipient_ducal_title = { 
+						every_in_de_jure_hierarchy = {
+							limit = {
+								tier = tier_county
+								NOT = { this = scope:actor.capital_county }
+								holder = {
+									any_liege_or_above = {
+										this = scope:actor
+									}
+								}
+							}
+							create_title_and_vassal_change = {
+								type = granted
+								save_scope_as = change
+								add_claim_on_loss = yes
+							}
+							change_title_holder = {
+								holder = scope:secondary_recipient
+								change = scope:change
+							}
+							resolve_title_and_vassal_change = scope:change
+						}
+					}
+				}
+				
+			}
+
+			## Clear variable and modifiers			
+
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_fired_me
+				opinion = -25
+			}					
+		}
+
+		## Give secondary recipient the ducal de jure titles
+		scope:secondary_recipient = {
+			add_opinion = {
+				target = scope:actor
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+			remove_character_modifier = islamic_empire_caliph_favourite
+
+			## Give secondary recipient the ducal de jure titles
+			if = {
+				limit = {
+					highest_held_title_tier >= tier_duchy
+					uses_islamic_empire_govt = yes
+				}
+				every_held_title = {
+					limit = {
+						tier >= tier_duchy
+						NOT = {
+							this = scope:recipient_ducal_title
+						}
+					}
+					current_heir = {
+						save_scope_as = new_holder
+					}
+					save_temporary_scope_as = ducal_title
+
+					
+
+					every_in_de_jure_hierarchy = {
+						limit = {
+							tier = tier_county
+							NOT = { this = scope:actor.capital_county }
+							holder = {
+								any_liege_or_above = {
+									this = scope:actor
+								}
+							}
+						}
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = scope:new_holder
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
+					}
+				}
+				scope:ducal_title = {
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+				
+			}
+
+			
+		}	
+
+		scope:actor = {
+			## Add the stress impact
+			if = {
+				limit = {
+					OR = {
+						has_trait = introverted
+						has_trait = shy
+						has_trait = sentimental
+						has_trait = craven
+						has_trait = faithful
+						has_trait = just
+					}
+				}
+				## minor_stress_impact_gain
+				add_stress = 10
+			}
+			if = {
+				limit = {
+					OR = {
+						has_trait = zealous
+						has_trait = arbitrary
+					}
+				}
+				## minor_stress_impact_loss
+				add_stress = -10
+			}
+		}
+	}
+
+	ai_potential = {
+		#is_at_war = no
+	}
+	
+	ai_targets = {
+		ai_recipients = vassals
+	}
+	ai_frequency = 12
+	
+	ai_will_do = {
+		base = 0
+		
+		modifier = {
+			add = 100
+			scope:recipient = {
+				OR = {
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
+		
+		modifier = {
+			add = 100
+			scope:recipient = {
+				is_primary_heir_of = scope:actor
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+		
+		modifier = {
+			add = 5
+			ai_vengefulness >= medium_positive_ai_value
+			scope:recipient = {
+				is_heir_of = scope:actor
+			}
+			OR = {
+				AND = {
+					scope:recipient = {
+						has_trait = incestuous
+					}
+					NOT = { is_incestuous_trigger = yes }
+					trait_is_criminal_in_faith_trigger = { TRAIT = incestuous FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = kinslayer
+					}
+					NOT = { has_trait = kinslayer }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = adulterer
+					}
+					NOR = {
+						has_trait = adulterer
+						has_trait = fornicator
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = adulterer FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = fornicator
+					}
+					NOR = {
+						has_trait = adulterer
+						has_trait = fornicator
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = fornicator FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = deviant
+					}
+					NOT = {
+						is_deviant_trigger = yes
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = deviant FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = witch
+					}
+					NOT = {
+						is_witch_trigger = yes
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = witch FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = sodomite
+					}
+					NOR = {
+						has_trait = sodomite
+						any_secret = {
+							secret_type = secret_homosexual
+						}
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = sodomite FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+				AND = {
+					scope:recipient = {
+						has_trait = cannibal
+					}
+					NOT = {
+						is_cannibal_trigger = yes
+					}
+					trait_is_criminal_in_faith_trigger = { TRAIT = cannibal FAITH = scope:actor.faith GENDER_CHARACTER = scope:recipient }
+				}
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:actor = {
+				has_variable = islamic_empire_popularity
+				var:islamic_empire_popularity <= 70
+			}
+		}
+
+		modifier = {
+			add = 25
+			scope:actor = {
+				dynasty = {
+					any_dynasty_member = {
+						NOT = {
+							this = scope:recipient
+						}
+					}
+				}				
+			}
+			scope:recipient = {
+				any_held_title = {
+					this = title:d_megas_domestikos
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				OR = {
+					has_relation_friend = scope:actor
+					has_relation_best_friend = scope:actor
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0
+			scope:recipient = {
+				is_ai = no
+			}
+		}
+	}
+}
+
+## Modify Vassal Contract
+islamic_empire_change_vassal_contract = {
+	special_interaction = modify_vassal_contract
+	interface = modify_vassal_contract
+	category = interaction_category_vassal
+	common_interaction = yes
+
+	send_name = "modify_vassal_contract_interaction_SEND"
+	desc = liege_modify_vassal_contract_interaction_desc
+
+	force_notification = yes
+	notification_text = MODIFY_VASSAL_CONTRACT_NOTIFICATION_TO_VASSAL
+	
+	is_shown = {
+		scope:recipient = {
+			NOT = { this = scope:actor }
+			uses_islamic_empire_govt = yes
+			exists = liege
+			liege = scope:actor
+			is_ruler = yes
+			vassal_contract_has_modifiable_obligations = yes
+		}
+		scope:actor = {
+			uses_islamic_empire_govt = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { 
+			is_diplomatically_available = yes
+		} 
+		NOT = { scope:actor = { is_at_war_with = scope:recipient } } 
+	}
+
+	can_send = {
+		custom_description = {
+			text = "islamic_empire_change_contract_timer"
+			scope:recipient = {			
+				NOT = {
+					has_variable = islamic_empire_cannot_change_contract
+				}
+			}
+		}
+				
+			
+		## Cannot change more than three things at once
+		custom_description = {
+			text = "vassal_modify_vassal_contract_obligation_change_limit"
+			value = scope:recipient.count_total_obligation_changes
+			scope:recipient.count_total_obligation_changes <= max_contract_changes
+		}
+	}
+
+	auto_accept = yes
+
+	on_accept = {
+		scope:actor = {
+			
+			send_interface_message = {
+				type = msg_vassal_contract_change
+				title = modify_vassal_contract_interaction_notification
+				right_icon = scope:recipient
+
+				if = {
+					limit = { 
+						always = scope:hook 
+						scope:recipient = { count_obligation_improvements_for_vassal < 0 }
+					}
+					use_hook = scope:recipient
+				}
+
+				if = {
+					limit = {
+						NOT = { always = scope:hook }
+						scope:recipient = { count_obligation_improvements_for_vassal < 0 }
+					}
+					# custom_tooltip = islamic_empire_change_vassal_contract_popularity_loss
+					# scope:actor = {
+					# 	change_variable = {
+					# 		name = islamic_empire_popularity
+					# 		subtract = 20
+					# 	}
+					# }
+					
+				}
+
+				if = {
+					limit = {
+						NOT = { always = scope:hook }
+						scope:recipient = { count_obligation_improvements_for_vassal_include_hook > 0 }
+					}
+					# custom_tooltip = islamic_empire_change_vassal_contract_popularity_gain
+					# scope:actor = {
+					# 	change_variable = {
+					# 		name = islamic_empire_popularity
+					# 		add = 20
+					# 	}
+					# }					
+				}
+				
+				scope:recipient = {
+					hidden_effect = { 
+						set_variable = {
+							name = islamic_empire_cannot_change_contract
+							value = yes
+							days = 1000
+						}
+					}
+
+					roman_administration_set_tax_level = { TAX_OBLIGATION_TYPE = islamic_empire_muslim_tax }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_kharaj_right }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_qadi_right }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_inheritance_right }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_war_right }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_iqta }
+					roman_administration_set_district_type = { DISTRICT_OBLIGATION_TYPE = islamic_empire_thugur }	
+					
+					hidden_effect = {
+						if = {
+							limit = {
+								vassal_contract_has_flag = islamic_empire_inheritance_right_allowed
+							}
+							every_held_title = {
+								if = {
+									limit = {
+										has_title_law = islamic_empire_amir_succession_law
+									}
+									add_title_law = islamic_empire_amir_succession_law_2
+								}
+							}
+						}
+						if = {
+							limit = {
+								vassal_contract_has_flag = islamic_empire_inheritance_right_none
+							}
+							every_held_title = {
+								if = {
+									limit = {
+										has_title_law = islamic_empire_amir_succession_law_2
+									}
+									add_title_law = islamic_empire_amir_succession_law
+								}
+							}
+						}
+					}
+					
+				}
+			}
+		}
+	}
+
+	send_option = {
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+	
+	ai_will_do = {
+		base = 0
+	}
+}
+

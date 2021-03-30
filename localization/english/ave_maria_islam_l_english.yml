@@ -81,6 +81,21 @@
  invite_claimants_decision_muslim_tooltip:0 "[claimants|E] are summoned to visit your court"
  invite_claimants_decision_muslim_confirm:0 "Send the herald"
 
+ ave_maria_islamic_empire_hire_learned_man_decision:0 "Search for an Ulamā"
+ ave_maria_islamic_empire_hire_learned_man_decision_tooltip:0 "You will be presented with a learned man candidate and may hire him for a fee"
+ ave_maria_islamic_empire_hire_learned_man_decision_confirm:0 "Ālim, learned men, are summoned to your court"
+ ave_maria_islamic_empire_hire_learned_man_decision_desc:0 "By longstanding tradition, ālim, learned men, are educated in religious institutions and may be called upon to assist the prince in his rule, it might be time to recruit one in my service."
+
+ ave_maria_islamic_empire_request_new_qadi_decision:0 "Request a new Qādī"
+ ave_maria_islamic_empire_request_new_qadi_decision_desc:0 "With the recent death of the previous Qāḍī and according to the laws of my province, I must send a request to my prince for the appointment of a new Qāḍī. I pray to Allah the Merciful that he will be a good man."
+ ave_maria_islamic_empire_request_new_qadi_decision_tooltip:0 "Will ask for a new Qāḍī"
+ ave_maria_islamic_empire_request_new_qadi_decision_confirm:0 "Send the request."
+
+ ave_maria_islamic_empire_request_new_sahib_al_maks_decision:0 "Request a new Sāhib al-Kharaj"
+ ave_maria_islamic_empire_request_new_sahib_al_maks_decision_desc:0 "With the recent death of the previous Sāhib al-Kharaj and according to the laws of my province, I must send a request to my prince for the appointment of a new Sāhib al-Kharaj. I pray to Allah the Merciful that he will be a honest man."
+ ave_maria_islamic_empire_request_new_sahib_al_maks_decision_tooltip:0 "Will ask for a new Sāhib al-Kharaj"
+ ave_maria_islamic_empire_request_new_sahib_al_maks_decision_confirm:0 "Send the request."
+
  ## LAWS
  seljuk_elective_succession_law:0 "Seljuk Tanistry"
  fatimid_elective_succession_law:0 "Ismā'īli Succession"
@@ -91,15 +106,32 @@
 
  ave_maria_islamic_empire_realm_law:0 "Fiqh"
  ave_maria_islamic_imperial:0 "Fiqh"
+ ave_maria_islamic_empire_realm_law_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
+ ave_maria_islamic_imperial_effects:0 "$EFFECT_LIST_BULLET$[vassals|E] cannot wage any [war|E] unless they use a [hook|E] on their [liege|E]\n$EFFECT_LIST_BULLET$Vassals' [titles|E] cannot be inherited by Characters outside the [realm|E]\n$EFFECT_LIST_BULLET$All Vassals who refuse Title revocation or Vassal retraction are considered [criminals|E]"
+
+ tooltip_islamic_empire_caliph_favourite_vote_opinion_positive:0 "Favoured by the Caliph"
 
  ### GOVERNMENT
  islamic_empire_government:0 "Dawla"
+
  islamic_empire_diwan_government:0 "Dīwān"
+
  islamic_empire_amir_government:0 "Imārah"
+ islamic_empire_amir_government_desc:0 "\nA form of Islamic [administrative_title|E], the [imarah|E] are administrative territories led by an Amīr, military officials, technically overseeing both military and civilian affairs of the territories they are responsible with.\n\nIn practice, in order to limit the power of Amīrs, Caliphs and Sultan would separate some of the administrative functions of justice and taxation to separate offices.\n\nIt is represented in game through [feudal_contracts|E] allowing you to name yourself [qadi|e] and [sahib_al_maks|E] councillors."
+
+ islamic_empire_thugur_government:0 "Thughūr"
+
  islamic_empire_civilian_government:0 "Wilāya"
 
+ 
+
  ### COUNCILLORS
- councillor_chancellor_islam_qadi:0 "Qadi"
+ councillor_chancellor_islam_qadi:0 "Qāḍī"
+ councillor_chancellor_islam_dai_al_mutlaq:0 "Dā'i al-Mutlaq"
+
+ ave_maria_islamic_empire_cant_fire_qadi:0 "Due to [feudal_contracts|E], the naming of the Qāḍī is the prerogative of your prince and you cannot change your Qāḍī."
+
+ councillor_steward_islam_sahib_al_maks:0 "Sāhib al-Kharaj"
 
  ## CHARACTERS
  al_jamali:0 "Abū'l-Najm Badr al-Jamali"
@@ -110,10 +142,43 @@
 
 
  ## CHARACTER INTERACTION
- islamic_empire_name_qadi:0 "Name Qadi"
+ interaction_category_islamic_empire:0 "Administration"
+
+ islamic_empire_name_qadi:0 "Name Qādī"
  recipient_secondary_islamic_empire_name_qadi:0 "Candidate"
 
+ islamic_empire_name_sahib_al_maks:0 "Name Sāhib al-Kharaj"
+ recipient_secondary_islamic_empire_name_sahib_al_maks:0 "Candidate"
 
+ islamic_empire_favour_successor:0 "Favour Successor"
+ islamic_empire_favour_successor_desc:0 "Will favour a successor to the title."
+ recipient_secondary_islamic_empire_favour_successor:0 "Candidate"
+
+ islamic_empire_fire_bureaucrat:0 "Fire Official"
+ islamic_empire_fire_bureaucrat_desc:0 "Fire the official."
+
+ islamic_empire_replace_bureaucrat:0 "Replace Official"
+ islamic_empire_replace_bureaucrat_desc:0 "Will replace this official."
+ recipient_secondary_islamic_empire_replace_bureaucrat:0 "Candidate"
+
+ islamic_empire_change_vassal_contract:0 "Change Administration"
+ islamic_empire_change_vassal_contract_extra_icon:0 "@weak_hook_icon! [hook|E] available"
+
+
+ ## MODIFIERS
+ islamic_empire_appointed_qadi:0 "Appointed Qāḍī"
+ islamic_empire_appointed_qadi_desc:0 "This character has been appointed as the Qāḍī of the local province to manage legal matters."
+
+ islamic_empire_appointed_sahib_al_maks:0 "Appointed Ṣāḥib al-Maks"
+ islamic_empire_appointed_sahib_al_maks_desc:0 "This character has been appointed as the Ṣāḥib al-Mak of the local province to ensure proper tax collection."
+
+ islamic_empire_caliph_favourite:0 "Khalīfah's Favourite"
+ islamic_empire_caliph_favourite_desc:0 "This character has been favoured by the Khalīfah who watches his career with interest."
+
+ ## GAME CONCEPTS
+ game_concept_imarah:0 "Imārah"
+ game_concept_qadi:0 "Qāḍī"
+ game_concept_sahib_al_maks:0 "Sāhib al-Kharaj"
 
  ### CONTRACTS
  islamic_empire_kharaj_right:0 "Kharaj Right"
@@ -177,6 +242,16 @@
  trait_ghulam_desc:0 "This character has been enslaved as a young boy and trained thoroughly in the art of war to serve his master as a professional soldier."
  trait_ghulam_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has been enslaved as a young boy and trained thoroughly in the art of war to serve his master as a professional soldier."
 
+ trait_qadi:0 "Qāḍī"
+ trait_qadi_desc:0 "This character has a long experience as a qāḍī, a judge responsible for the application of fiqh, Islamic positive law, but exercises also extrajudicial functions, such as mediation, guardianship over orphans and minors, and supervision and auditing of public works."
+ trait_qadi_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has a long experience a qāḍī, a judge responsible for the application of fiqh, Islamic positive law, but exercises also extrajudicial functions, such as mediation, guardianship over orphans and minors, and supervision and auditing of public works."
+
+ ## LAW
+ islamic_empire_amir_succession_law:0 "Clientelism"
+ islamic_empire_amir_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
+ islamic_empire_amir_succession_law_2:0 "Hereditary Clientelism"
+ islamic_empire_amir_succession_law_2_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It permits direct familial inheritance of titles."
+
  ## BOOKMARK
  bm_1066_islamic_empire:0 "The Time of the Sword"
  bm_1066_islamic_empire_desc:0 "#bold The Dâr al-Islâm is divided.#!\n\nDivided by the Ismā'īli Fatimid ambition to reunite the muslim world under their guidance that saw them emerge from their humble beginnings in Ifrīqya to their current situation as masters of Egypt and Syria.\n\nDivided by the competition between the Sword and the Pen, with the Sword currently ascendant as attested by the take-over of Baghdad by the latest Turkic conquerors emerged from the ever turbulent steppe, the Seljuks.\n\n#bold Who will emerge victorious in this fratricide struggle ?\nWill the Dâr al-Islâm ever be united and the Khalīfah free himself from the shackles of the Sword ?#!"
@@ -186,7 +261,25 @@
  bookmark_islamic_empire_alp_arslan:0 "Muhammad bin Da'ud Chaghri"
  bookmark_islamic_empire_alp_arslan_desc:0 "Sole ruler of the Seljuks and Persia since the battle of Damghan where he defeated his uncle, Muhammad bin Da'ud Chaghri, nicknamed Alp Arslan, the Heroic Lion, is a powerful force to be reckoned with.\nThanks to the administrative help of Abu Ali Hasan ibn Ali Tusi, the realm conquered by Alp Arslan's grandfather is now balanced between his nomadic Turks and sedentary Persians allowing him to pursue his raiding and conquests against the numerous ennemies to the west, Rome and the Ismā'īli. \n\n#bold Finish what your ancestor started and submit the world to the domination of the Sword !"
  
+ ### EVENTS
+ ave_maria_alim_events.0002.title:0 "Searching for Ālim"
+ ave_maria_alim_events.0002.desc:0 "The world needs the Pen, especially rulers, especially for a [ROOT.Char.GetTitleTierName] and [ROOT.Char.GetHerHis] court. As per my request, my servants have inquired after recommendations for an ulamā. Now they have presented [target.GetFullName] as a candidate."
+ ave_maria_alim_events.0002.a:0 "Hire him."
+ ave_maria_alim_events.0002.b:0 "Dismiss him from my sight."
 
+ ave_maria_qadi_events.0002.title:0 "Naming a new Qādī"
+ ave_maria_qadi_events.0002.desc:0 "[islamic_empire_qadi_requester.GetName] has requested for the appointment of a new chief Qāḍī for his province with the unfortunate disappearance of the previous one.\n\nI need to name someone competent rapidly for the benefit of the administration both of the province and the realm."
+ ave_maria_qadi_events.0002.a:0 "My kātib will surely find me someone competent."
+ ave_maria_qadi_events.0002.b:0 "I will choose him with care."
+ custom_tooltip = ave_maria_qadi_events.0002.b.tt:0 "You will use the #b Name Qādī Interaction#! and select a candidate yourself"
+
+ ave_maria_qadi_events.0003.title:0 "Naming a new Sāhib al-Kharaj"
+ ave_maria_qadi_events.0003.desc:0 "[islamic_empire_sahib_al_maks_requester.GetName] has requested for the appointment of a new Sāhib al-Kharaj for the tax collection in his province following the unfortunate disappearance of the previous one.\n\nI need to name someone competent rapidly for the benefit of both the tax collection of the province and the realm."
+ ave_maria_qadi_events.0003.a:0 "My kātib will surely find me someone competent."
+ ave_maria_qadi_events.0003.b:0 "I will choose him with care."
+ custom_tooltip = ave_maria_qadi_events.0003.b.tt:0 "You will use the #b Name Sāhib al-Kharaj Interaction#! and select a candidate yourself"
+
+ 
  
  
 

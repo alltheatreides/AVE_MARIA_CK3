@@ -43,6 +43,15 @@ islamic_empire_muslim_tax = {
 	display_mode = tree
 	icon = gold_icon
 
+	is_shown = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
+
 	## Waqf ? ultra limited tax or almost nothing limited to county tier ?
 
 	## zakat 10% of revenues
@@ -120,6 +129,17 @@ islamic_empire_non_muslim_tax = {
 	display_mode = tree
 	icon = gold_icon
 	
+	is_shown = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			OR = {
+				this = religion:christianity_religion
+				this = religion:judaism_religion
+			}
+		}
+	}
 	
 	obligation_levels = {
 		jizya_tax_gentle = {
@@ -155,6 +175,12 @@ islamic_empire_kharaj_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 	}
 	obligation_levels = {
 		islamic_empire_kharaj_right_none = {
@@ -165,6 +191,8 @@ islamic_empire_kharaj_right = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_kharaj_right_none
 		}
 		islamic_empire_kharaj_right_allowed = {
 			is_valid = {
@@ -192,6 +220,12 @@ islamic_empire_qadi_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 	}
 	obligation_levels = {
 		islamic_empire_qadi_right_none = {
@@ -200,6 +234,8 @@ islamic_empire_qadi_right = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_qadi_right_none
 		}
 		islamic_empire_qadi_right_allowed = {
 			is_valid = {
@@ -227,6 +263,12 @@ islamic_empire_inheritance_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 	}
 	obligation_levels = {
 		islamic_empire_inheritance_right_none = {
@@ -235,6 +277,8 @@ islamic_empire_inheritance_right = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_inheritance_right_none
 		}
 		islamic_empire_inheritance_right_allowed = {
 			is_valid = {
@@ -258,6 +302,12 @@ islamic_empire_war_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 	}
 	obligation_levels = {
 		islamic_empire_war_right_none = {
@@ -266,6 +316,8 @@ islamic_empire_war_right = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_war_right_none
 		}
 		islamic_empire_war_right_allowed = {
 			is_valid = {
@@ -289,6 +341,12 @@ islamic_empire_iqta = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 	}
 	obligation_levels = {
 		islamic_empire_iqta_none = {
@@ -297,6 +355,8 @@ islamic_empire_iqta = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_iqta_none
 		}
 		islamic_empire_iqta_allowed = {
 			is_valid = {
@@ -322,6 +382,12 @@ islamic_empire_thugur = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
 		scope:vassal.primary_title = {
 			any_in_de_jure_hierarchy = {
 				tier = tier_county
@@ -349,6 +415,8 @@ islamic_empire_thugur = {
 			
 			ai_liege_desire = @ai_standard_liege_desire
 			ai_vassal_desire = 0
+
+			flag = islamic_empire_thugur_none
 		}
 		islamic_empire_thugur_allowed = {
 			is_valid = {

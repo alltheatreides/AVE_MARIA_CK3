@@ -1,0 +1,253 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ULAMA EVENTS																		   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_qadi_events
+
+# ave_maria_qadi_events
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_qadi_events.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		create_character = {
+			employer = root
+			template = christian_monk_character
+			save_scope_as = new_guy
+			gender_female_chance = 0
+		}
+		scope:new_guy = {
+			add_random_hexaco_personality_trait = { WHO = this }
+		}
+		# create_character = {
+		# 	employer = root
+		# 	template = christian_cleric_character
+		# 	save_scope_as = new_guy
+		# }
+		# scope:new_guy = {
+		# 	add_random_hexaco_personality_trait = { WHO = this }
+		# }
+	}
+}
+
+## For liege - qadi
+ave_maria_qadi_events.0002 = {
+	type = character_event
+	title = ave_maria_qadi_events.0002.title
+	desc = ave_maria_qadi_events.0002.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	immediate = {
+		
+	}
+
+	## Don't bother too much
+	option = {
+		name = ave_maria_qadi_events.0002.a
+		remove_short_term_gold = tiny_gold_value 
+		# Create random ulama
+		create_character = {
+			employer = root
+			template = islamic_empire_ulama_character
+			save_scope_as = target
+			gender_female_chance = 0
+		}
+		scope:target = {
+			add_random_hexaco_personality_trait = { WHO = this }
+
+		}
+		random_vassal = {
+			limit = {
+				has_character_flag = islamic_empire_qadi_request
+			}
+			if = {
+				limit = {
+					exists = cp:councillor_court_chaplain
+				}
+				cp:councillor_court_chaplain = {
+					save_scope_as = ancient_qadi
+				}
+				scope:ancient_qadi = {
+					remove_character_modifier = islamic_empire_appointed_qadi
+					add_trait = qadi
+					add_opinion = {
+						target = scope:actor
+						modifier = roman_administration_fired_me
+						opinion = -25
+					}
+				}
+				fire_councillor = cp:councillor_court_chaplain
+				scope:target = {
+					add_character_modifier = islamic_empire_appointed_qadi
+					set_employer = prev
+				}
+				assign_councillor_type = {
+					type = councillor_court_chaplain
+					target = scope:target
+				}
+			}
+			else = {
+				scope:target = {
+					add_character_modifier = islamic_empire_appointed_qadi
+					set_employer = prev
+				}
+				assign_councillor_type = {
+					type = councillor_court_chaplain
+					target = scope:target
+				}
+			}
+
+			remove_character_flag = islamic_empire_qadi_request
+		}
+
+		scope:target = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			
+		}
+	}
+
+	## manually choose
+	option = {
+		name = ave_maria_qadi_events.0002.b
+		custom_tooltip = ave_maria_qadi_events.0002.b.tt
+
+		ai_chance = {
+			base = 0			
+		}
+	}
+
+}
+
+## For liege - Sahib al maks
+ave_maria_qadi_events.0003 = {
+	type = character_event
+	title = ave_maria_qadi_events.0003.title
+	desc = ave_maria_qadi_events.0003.desc
+	
+	theme = realm
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	immediate = {
+		
+	}
+
+	## Don't bother too much
+	option = {
+		name = ave_maria_qadi_events.0003.a
+		remove_short_term_gold = tiny_gold_value 
+		# Create random tax collector
+		create_character = {
+			employer = root
+			template = tax_collector_character
+			save_scope_as = target
+			gender_female_chance = 0
+		}
+		scope:target = {
+			add_random_hexaco_personality_trait = { WHO = this }
+
+		}
+		random_vassal = {
+			limit = {
+				has_character_flag = islamic_empire_sahib_al_maks_request
+			}
+			if = {
+				limit = {
+					exists = cp:councillor_steward
+				}
+				cp:councillor_steward = {
+					save_scope_as = ancient_sahib_al_maks
+				}
+				scope:ancient_sahib_al_maks = {
+					remove_character_modifier = islamic_empire_appointed_sahib_al_maks
+					add_opinion = {
+						target = root
+						modifier = roman_administration_fired_me
+						opinion = -25
+					}
+				}
+				fire_councillor = cp:councillor_steward
+				scope:target = {
+					add_character_modifier = islamic_empire_appointed_sahib_al_maks
+					set_employer = prev
+				}
+				assign_councillor_type = {
+					type = councillor_steward
+					target = scope:target
+				}
+			}
+			else = {
+				scope:target = {
+					add_character_modifier = islamic_empire_appointed_sahib_al_maks
+					set_employer = prev
+				}
+				assign_councillor_type = {
+					type = councillor_steward
+					target = scope:target
+				}
+			}
+
+			remove_character_flag = islamic_empire_sahib_al_maks_request
+		}
+
+		scope:target = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			
+		}
+	}
+
+	## manually choose
+	option = {
+		name = ave_maria_qadi_events.0003.b
+		custom_tooltip = ave_maria_qadi_events.0002.b.tt
+
+		ai_chance = {
+			base = 0
+			
+		}
+	}
+
+}
+
+

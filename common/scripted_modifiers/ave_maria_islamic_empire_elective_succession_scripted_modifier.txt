@@ -1,0 +1,178 @@
+﻿elector_voting_pattern_opinion_islamic_empire_amir_elective_modifier = {
+	
+	##########################	Raw Opinion bonus towards Candidate	##########################
+	## Junior Emperor
+	modifier = { #Raw Opinion bonus (positive)
+		desc = tooltip_roman_administration_coemperor_vote_opinion_positive
+		NOT = {
+			has_relation_rival = scope:candidate #Completely removed for rivals.
+		}
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = {
+			has_trait = junior_emperor
+		}
+		add = {
+			value = 50
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= medium_positive_opinion
+					}
+				}
+				add = 15 #30 total
+			}
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= high_positive_opinion
+					}
+				}
+				add = 20 #50 total
+			}
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= very_high_positive_opinion
+					}
+				}
+				add = 20 #70 total
+			}
+			if = { #Even more so if friend/lover.
+				limit = {
+					OR = {
+						has_relation_friend = scope:candidate
+						has_relation_lover = scope:candidate
+					}
+				}
+				add = 30 #100 total
+			}
+			if = { #Further increased for Tanistry.
+				limit = {
+					scope:title = { has_title_law = gaelic_elective_succession_law }
+				}
+				multiply = 1.5
+			}
+		}
+	}
+
+	## Emperor Favorite
+	modifier = { #Raw Opinion bonus (positive)
+		desc = tooltip_islamic_empire_caliph_favourite_vote_opinion_positive
+		NOT = {
+			has_relation_rival = scope:candidate #Completely removed for rivals.
+		}
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = {
+			has_character_modifier = islamic_empire_caliph_favourite
+		}
+		add = {
+			value = 50
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= medium_positive_opinion
+					}
+				}
+				add = 15 #30 total
+			}
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= high_positive_opinion
+					}
+				}
+				add = 20 #50 total
+			}
+			if = { #Even more so if higher opinion.
+				limit = {
+					opinion = {
+						target = scope:candidate
+						value >= very_high_positive_opinion
+					}
+				}
+				add = 20 #70 total
+			}
+			if = { #Even more so if friend/lover.
+				limit = {
+					OR = {
+						has_relation_friend = scope:candidate
+						has_relation_lover = scope:candidate
+					}
+				}
+				add = 30 #100 total
+			}
+			if = { #Further increased for Tanistry.
+				limit = {
+					scope:title = { has_title_law = gaelic_elective_succession_law }
+				}
+				multiply = 1.5
+			}
+		}
+	}
+	
+	## Not another heir
+	modifier = {
+		desc = tooltip_roman_administration_already_heir_to_administrative_title_vote_opinion_negative
+		add = -500
+		scope:candidate = {
+			any_heir_to_title = {
+				NOT = { this = scope:title }
+				NOT = {
+					holder = scope:holder
+				}
+				tier = tier_duchy
+			}
+		}
+	}
+
+	## Martial qualities
+	modifier = {	# Candidate's martial
+		desc = tooltip_imperial_vote_strength_commander_martial
+		NOT = { this = scope:candidate } #Not on yourself.
+		scope:candidate = { martial >= 10 }
+		add = {
+			value = 5
+			if = {
+				limit = {
+					scope:candidate = { martial > 12 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 16 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 18 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 20 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 25 }
+				}
+				add = 5
+			}
+			if = {
+				limit = {
+					scope:candidate = { martial > 30 }
+				}
+				add = 5
+			}
+		}
+	}
+}

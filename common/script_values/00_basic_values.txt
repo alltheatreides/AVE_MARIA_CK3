@@ -1158,7 +1158,10 @@ count_obligation_improvements_for_vassal = {
 	value = 0
 	if = {
 		limit = {
-			uses_roman_govt = no
+			OR = {
+				uses_roman_govt = no
+				uses_islamic_empire_govt = no
+			}
 		}
 		# Levies and taxes are a linear scale, moving up adds and moving down subtracts
 		if = {
@@ -1265,10 +1268,23 @@ count_obligation_improvements_for_vassal = {
 				subtract = 1
 			}
 		}
+
+		## AVE MARIA
+		# ## Dhimmi tax
+		# if = {
+		# 	limit = {
+		# 		local_var:islamic_empire_non_muslim_tax != vassal_contract_obligation_level:islamic_empire_non_muslim_tax
+		# 	}
+		# 	add = {
+		# 		value = vassal_contract_obligation_level:islamic_empire_non_muslim_tax
+		# 		subtract = local_var:islamic_empire_non_muslim_tax
+		# 	}
+		# }
 	}
 	
 
 	### AVE MARIA	
+	## Romans
 	if = {
 		limit = {
 			uses_roman_govt = yes
@@ -1354,6 +1370,108 @@ count_obligation_improvements_for_vassal = {
 			}
 		}
 	}
+
+	## Islamic empires
+	if = {
+		limit = {
+			uses_islamic_empire_govt = yes
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_muslim_tax != vassal_contract_obligation_level:islamic_empire_muslim_tax
+			}
+			add = {
+				value = vassal_contract_obligation_level:islamic_empire_muslim_tax
+				subtract = local_var:islamic_empire_muslim_tax
+			}
+		}
+
+
+		if = {
+			limit = {
+				local_var:islamic_empire_kharaj_right != vassal_contract_obligation_level:islamic_empire_kharaj_right
+			}
+			if = {
+				limit = { local_var:islamic_empire_kharaj_right != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_qadi_right != vassal_contract_obligation_level:islamic_empire_qadi_right
+			}
+			if = {
+				limit = { local_var:islamic_empire_qadi_right != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_inheritance_right != vassal_contract_obligation_level:islamic_empire_inheritance_right
+			}
+			if = {
+				limit = { local_var:islamic_empire_inheritance_right != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_war_right != vassal_contract_obligation_level:islamic_empire_war_right
+			}
+			if = {
+				limit = { local_var:islamic_empire_war_right != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:war_declaration_rights != vassal_contract_obligation_level:war_declaration_rights
+			}
+			if = {
+				limit = { local_var:war_declaration_rights != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_iqta != vassal_contract_obligation_level:islamic_empire_iqta
+			}
+			if = {
+				limit = { local_var:islamic_empire_iqta != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_thugur != vassal_contract_obligation_level:islamic_empire_thugur
+			}
+			if = {
+				limit = { local_var:islamic_empire_thugur != 0 }
+				add = 1
+			}
+			else = {
+				subtract = 1
+			}
+		}
+	}
 	
 }
 
@@ -1361,7 +1479,11 @@ count_total_obligation_changes = {
 	value = 0
 	if = {
 		limit = {
-			uses_roman_govt = no
+			OR = {
+				uses_roman_govt = no
+				uses_islamic_empire_govt = no
+			}
+			
 		}
 		if = {
 			limit = {
@@ -1423,8 +1545,16 @@ count_total_obligation_changes = {
 			}
 			add = 1
 		}
+
+		# if = {
+		# 	limit = {
+		# 		local_var:islamic_empire_non_muslim_tax != vassal_contract_obligation_level:islamic_empire_non_muslim_tax
+		# 	}
+		# 	add = 1
+		# }
 	}
 	
+	## AVE MARIA
 	if = {
 		limit = {
 			uses_roman_govt = yes
@@ -1490,6 +1620,54 @@ count_total_obligation_changes = {
 			}
 		}
 	}	
+
+	if = {
+		limit = {
+			uses_islamic_empire_govt = yes
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_muslim_tax != vassal_contract_obligation_level:islamic_empire_muslim_tax
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_kharaj_right != vassal_contract_obligation_level:islamic_empire_kharaj_right
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_qadi_right != vassal_contract_obligation_level:islamic_empire_qadi_right
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_inheritance_right != vassal_contract_obligation_level:islamic_empire_inheritance_right
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_war_right != vassal_contract_obligation_level:islamic_empire_war_right
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_iqta != vassal_contract_obligation_level:islamic_empire_iqta
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				local_var:islamic_empire_thugur != vassal_contract_obligation_level:islamic_empire_thugur
+			}
+			add = 1
+		}
+	}
 }
 
 # Requires local_var:<obligation_type> to be set for feudal obligations
