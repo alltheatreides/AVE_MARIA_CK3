@@ -1,0 +1,130 @@
+
+namespace = thermal_cure
+
+
+thermal_cure.1 = {
+	type = character_event
+	title = thermal_cure.1.t
+	desc = thermal_cure.1.desc
+	background = bedchamber
+	theme = medicine
+	
+	left_portrait = {
+		character = ROOT 
+		animation = sick
+	}
+
+#Go to Pythia	
+		option = {
+			name = thermal_cure.1.a
+			trigger_event = {
+				days = { 3 5 }
+				id = thermal_cure.2
+			}
+			ai_chance = { 
+				base = 50
+			}
+			
+		}
+
+#Go to Prusa			
+		option = {
+			name = thermal_cure.1.b
+			trigger_event = {
+				days = { 3 5 }
+				id = thermal_cure.3
+			}			
+		
+			ai_chance = { 
+				base = 50
+			}
+		
+		}		
+
+#ded
+		option = {
+			name = thermal_cure.1.c
+				
+			
+		ai_chance = { 
+			base = 1
+				ai_value_modifier = {
+					ai_rationality = -1
+					}
+				}
+		}		
+}
+
+thermal_cure.2 = {
+		type = character_event
+		title = thermal_cure.2.t
+		theme = medicine	
+		
+		override_background = { 
+				event_background = ave_maria_hot_baths
+					}
+					
+		desc = thermal_cure.2.desc
+		left_portrait = root 
+	
+		option = {
+			trigger = {
+				OR = {
+				has_trait = pneumonic
+				has_trait = consumption
+				}
+			}
+			
+				add_character_modifier = thermal_cure_modifier_lungs
+				name = thermal_cure_modifier_lungs_name
+				}
+			
+		option = {
+			trigger = {
+				NOR = {
+				has_trait = pneumonic
+				has_trait = consumption
+				}
+			}		
+				add_character_modifier = thermal_cure_modifier
+				name = thermal_cure_modifier_name
+			}
+}
+
+thermal_cure.3 = {
+		type = character_event
+		title = thermal_cure.2.t
+		theme = medicine	
+		
+		override_background = { 
+				event_background = ave_maria_hot_baths
+					}
+					
+		desc = thermal_cure.3.desc
+		left_portrait = root 
+	
+		option = {
+			trigger = {
+				OR = {
+				has_trait = pneumonic
+				has_trait = consumption
+				}
+			}
+			
+				add_character_modifier = thermal_cure_modifier_lungs
+				name = thermal_cure_modifier_lungs_name
+				}
+			
+		option = {
+			trigger = {
+				NOR = {
+				has_trait = pneumonic
+				has_trait = consumption
+				}
+			}		
+				add_character_modifier = thermal_cure_modifier
+				name = thermal_cure_modifier_name
+			}
+}
+
+
