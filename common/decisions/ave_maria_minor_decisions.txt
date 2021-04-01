@@ -97,6 +97,7 @@ stress_loss_obsessive_hunter_decision = {
 	}
 }
 
+## Written by Conchodebar
 health_roman_thermal_cure_decision = {
 	picture = "gfx/interface/illustrations/decisions/z_avemaria_hotbaths.dds"
 	desc = health_roman_thermal_cure_decision_desc
@@ -109,31 +110,44 @@ health_roman_thermal_cure_decision = {
 	
 	cooldown = { days = 365 }
 	
-#is shown if health is poor or has respiritory problem while being basileus or holding relevant title	
+	#is shown if health is poor or has respiritory problem while being basileus or holding relevant title	
 
 	is_shown = {
-		AND = {
-			OR = {
-				has_trait = pneumonic
-				has_trait = consumption
-				health <= poor_health
-
-				}
-			OR = {
-				has_title = title:e_byzantium
-				has_title = title:c_crius
-				has_title = title:d_thrace
-				has_title = title:d_optimatoi
-				has_title = title:d_opsikion
-				}
-			}
+		# OR = {
+		# 	has_trait = pneumonic
+		# 	has_trait = consumption
+		# 	health <= fine_health
+		# }
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:c_crius
+			has_title = title:d_thrace
+			has_title = title:d_optimatoi
+			has_title = title:d_opsikion
 		}
+	}
+
+	is_valid = {
+		is_at_war = no
+		# OR = {
+		# 	has_trait = pneumonic
+		# 	has_trait = consumption
+		# 	health <= fine_health
+		# }
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:c_crius
+			has_title = title:d_thrace
+			has_title = title:d_optimatoi
+			has_title = title:d_opsikion
+		}
+	}
 		
 	effect = {	
 		trigger_event = {
 			id = thermal_cure.1
-			}
 		}
+	}
 		
 	ai_will_do = {
 		base = 100

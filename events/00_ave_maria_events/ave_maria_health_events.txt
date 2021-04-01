@@ -1,3 +1,14 @@
+########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# ROMAN THERMAL CURE EVENTS															   #
+#                               													   #
+########################################################################################
+
+# Written by Conchodebar
+
 
 namespace = thermal_cure
 
@@ -14,117 +25,128 @@ thermal_cure.1 = {
 		animation = sick
 	}
 
-#Go to Pythia	
-		option = {
-			name = thermal_cure.1.a
-			trigger_event = {
-				days = { 3 5 }
-				id = thermal_cure.2
-			}
-			ai_chance = { 
-				base = 50
-			}
-			
+	#Go to Pythia	
+	option = {
+		name = thermal_cure.1.a
+		custom_tooltip = thermal_cure.1.a.tt
+		trigger_event = {
+			days = { 3 5 }
+			id = thermal_cure.2
 		}
-
-#Go to Prusa			
-		option = {
-			name = thermal_cure.1.b
-			trigger_event = {
-				days = { 3 5 }
-				id = thermal_cure.3
-			}			
+		ai_chance = { 
+			base = 50
+		}
 		
-			ai_chance = { 
-				base = 50
-			}
-		
-		}		
+	}
 
-#ded
-		option = {
-			name = thermal_cure.1.c
-				
-			
+	#Go to Prusa			
+	option = {
+		name = thermal_cure.1.b
+		custom_tooltip = thermal_cure.1.b.tt
+		trigger_event = {
+			days = { 3 5 }
+			id = thermal_cure.3
+		}	
+		ai_chance = { 
+			base = 50
+		}	
+	}		
+
+	#ded
+	option = {
+		name = thermal_cure.1.c
+		custom_tooltip = thermal_cure.1.c.tt	
 		ai_chance = { 
 			base = 1
-				ai_value_modifier = {
-					ai_rationality = -1
-					}
-				}
-		}		
+			ai_value_modifier = {
+				ai_rationality = -1
+			}
+		}
+	}		
 }
 
 thermal_cure.2 = {
-		type = character_event
-		title = thermal_cure.2.t
-		theme = medicine	
-		
-		override_background = { 
-				event_background = ave_maria_hot_baths
-					}
-					
-		desc = thermal_cure.2.desc
-		left_portrait = root 
+	type = character_event
+	title = thermal_cure.2.t
+	theme = medicine	
 	
-		option = {
-			trigger = {
-				OR = {
+	override_background = { 
+		event_background = ave_maria_hot_baths
+	}
+				
+	desc = thermal_cure.2.desc
+	left_portrait = root 
+
+	option = {
+		name = thermal_cure.2.a
+		trigger = {
+			OR = {
 				has_trait = pneumonic
 				has_trait = consumption
-				}
 			}
-			
-				add_character_modifier = thermal_cure_modifier_lungs
-				name = thermal_cure_modifier_lungs_name
-				}
-			
-		option = {
-			trigger = {
-				NOR = {
+		}
+		
+		add_character_modifier = { 
+			modifier = thermal_cure_modifier_lungs
+			days = 730
+		}
+	}
+		
+	option = {
+		name = thermal_cure.2.b
+		trigger = {
+			NOR = {
 				has_trait = pneumonic
 				has_trait = consumption
-				}
-			}		
-				add_character_modifier = thermal_cure_modifier
-				name = thermal_cure_modifier_name
 			}
+		}		
+		add_character_modifier = { 
+			modifier = thermal_cure_modifier
+			days = 730
+		}
+	}
 }
 
 thermal_cure.3 = {
-		type = character_event
-		title = thermal_cure.2.t
-		theme = medicine	
-		
-		override_background = { 
-				event_background = ave_maria_hot_baths
-					}
-					
-		desc = thermal_cure.3.desc
-		left_portrait = root 
+	type = character_event
+	title = thermal_cure.2.t
+	theme = medicine	
 	
-		option = {
-			trigger = {
-				OR = {
+	override_background = {
+		event_background = ave_maria_hot_baths
+	}
+				
+	desc = thermal_cure.3.desc
+	left_portrait = root 
+
+	option = {
+		name = thermal_cure.2.a
+		trigger = {
+			OR = {
 				has_trait = pneumonic
 				has_trait = consumption
-				}
 			}
-			
-				add_character_modifier = thermal_cure_modifier_lungs
-				name = thermal_cure_modifier_lungs_name
-				}
-			
-		option = {
-			trigger = {
-				NOR = {
+		}
+		
+		add_character_modifier = { 
+			modifier = thermal_cure_modifier_lungs
+			days = 730
+		}
+	}
+		
+	option = {
+		name = thermal_cure.2.b
+		trigger = {
+			NOR = {
 				has_trait = pneumonic
 				has_trait = consumption
-				}
-			}		
-				add_character_modifier = thermal_cure_modifier
-				name = thermal_cure_modifier_name
 			}
+		}
+		add_character_modifier = { 
+			modifier = thermal_cure_modifier
+			days = 730
+		}
+	}
 }
 
 
