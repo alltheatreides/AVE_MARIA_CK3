@@ -450,6 +450,114 @@ on_title_gain = {
 			}
 		}
 
+
+		### ISLAMIC EMPIRE EFFECTS
+		## Getting the capital of the new duchy+
+		if = {
+			limit = {
+				root = {
+					uses_islamic_empire_govt = yes
+				}		
+				scope:title = {
+					tier >= tier_duchy
+				}		
+			}
+			root = {
+				liege = {
+					save_scope_as = current_liege
+				}
+			}
+			scope:title = {
+				title_capital_county = {
+					limit = {
+						NOT = { 
+							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+							has_title_law = ave_maria_roman_administration_family_succession_law							
+						}
+						holder = {
+							any_liege_or_above = {
+								this = scope:current_liege
+							}
+						}
+					}
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = root
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+				}
+			}
+		}
+		##
+		# if = {
+		# 	limit = {
+		# 		scope:title = {
+		# 			has_variable = islamic_empire_amir_title
+		# 		}
+		# 		root = {
+		# 			liege = {
+		# 				has_government = islamic_empire_government
+		# 				highest_held_title_tier = tier_empire
+		# 			}
+		# 		}
+		# 	}
+		# 	root = {
+		# 		change_government = islamic_empire_amir_government
+		# 	}
+		# }
+
+		## Assigning asabiyya variable to titles when they are inherited
+		if = {
+			limit = {
+				scope:title = {
+					NOT = {
+						has_variable = islamic_empire_asabiyya
+					}					
+					holder = {
+						primary_title = {
+							this = scope:title
+						}
+					}
+				}
+			}
+			scope:title = {
+				set_variable = {
+					name = islamic_empire_asabiyya
+					value = 100
+				}
+			}
+		}
+		## Changing government when asabiyya is too low
+		if = {
+			limit = {
+				scope:title = {
+					has_variable = islamic_empire_asabiyya 
+					var:islamic_empire_asabiyya <= 0
+					holder = {
+						primary_title = {
+							this = scope:title
+						}
+					}
+				}
+			}
+			change_government = islamic_empire_government
+			every_vassal = {
+				limit = {
+					primary_title = {
+						has_variable = islamic_empire_asabiyya 
+						var:islamic_empire_asabiyya <= 0
+					}
+				}
+				change_government = islamic_empire_government
+			}
+		}
+		
+
 		### AVE MARIA CHRISTIAN FLAVOUR EFFECTS
 		## Giving the pope the pope trait
 		if = {

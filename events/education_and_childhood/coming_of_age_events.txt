@@ -698,7 +698,7 @@ coming_of_age.0002 = {
 #Martial - notification event for child
 #by Linnéa Thimrén and Petter Vilberg
 coming_of_age.0003 = {
-		title = coming_of_age.0001.t
+	title = coming_of_age.0001.t
 	desc = {
 		triggered_desc = {
 			trigger = {
@@ -1161,6 +1161,39 @@ coming_of_age.0003 = {
 			remove_variable = education_prowess_variable
 		}
 		
+		if = {
+			limit = {
+				has_trait = slave
+				scope:educator = {
+					OR = {
+						has_trait = ghulam
+						AND = {
+							has_trait = slave
+							martial >= 12
+						}
+					}
+					
+				}
+			}
+			remove_trait = slave
+			add_trait = ghulam
+			if = {
+				limit = {
+					NOT = { religion = religion:islam_religion }
+				}
+				if = {
+					limit = {
+						scope:educator = {
+							faith = faith:ismaili
+						}
+					}
+					set_character_faith = faith:ismaili
+				}
+				else = {
+					set_character_faith = faith:ashari
+				}
+			}
+		}
 		
 		#Other martial education things.
 		# hidden_effect = { #To assign a commander trait

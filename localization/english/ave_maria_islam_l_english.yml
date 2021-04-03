@@ -40,6 +40,8 @@
  d_fatimid_hajib:0 "Hajib"
  k_fatimid_dawa:0 "Ismā'īli Da'Wa"
 
+ d_regiment_abid:0 "Abīd"
+
  ## INNOVATIONS
  innovation_north_african_piracy:0 "North African Piracy"
  innovation_north_african_piracy_desc:0 "Yaaaar"
@@ -55,7 +57,7 @@
  ## REGIMENTS
  ghilman_nubians:0 "Zanj Ghilman"
  ghilman_nubians_desc:0 "Using soldiers coming from Sudan and the south has been a long practice in Egypt, all the more since the Tulunids. These soldiers serve as infantry and are the mainstay of the ruler's army."
- ghilman_nubians_flavor:0 "Slave Soldiers from Sudan or other slave sources used a hold the line as heavy infantry."
+ ghilman_nubians_flavor:0 "Slave Soldiers from Sudan or further sourth, they are used to hold the line as infantry while the cavalry has all the glory."
  mamluk_cavalry:0 "Mamluk Cavalry"
  mamluk_cavalry_desc:0 "Mamluk were military slave soldiers, purchased, trained and equipped to fight on the behalf of the ruler as expert cavalrymen."
  mamluk_cavalry_flavor:0 "Slave Soldiers trained and equipped to fight as both shock cavalry and horse archers."
@@ -96,6 +98,11 @@
  ave_maria_islamic_empire_request_new_sahib_al_maks_decision_tooltip:0 "Will ask for a new Sāhib al-Kharaj"
  ave_maria_islamic_empire_request_new_sahib_al_maks_decision_confirm:0 "Send the request."
 
+ ave_maria_islamic_empire_buy_slaves_for_military_training:0 "Buy Ghulam slaves"
+ ave_maria_islamic_empire_buy_slaves_for_military_training_desc:0 "You will have the possibility of buying non-muslim slave boys drawn from the outskirts of the Dâr-al-Islam to be trained as loyal warriors."
+ ave_maria_islamic_empire_buy_slaves_for_military_training_tooltip:0 "Your servants will present you with a choice of slave boys to be recruited and trained as ghulam in your service."
+ ave_maria_islamic_empire_buy_slaves_for_military_training_confirm:0 "The best must be bought"
+
  ## LAWS
  seljuk_elective_succession_law:0 "Seljuk Tanistry"
  fatimid_elective_succession_law:0 "Ismā'īli Succession"
@@ -123,6 +130,9 @@
 
  islamic_empire_civilian_government:0 "Wilāya"
 
+ islamic_empire_regiment_government:0 "Jawwāla"
+ islamic_empire_regiment_government_desc:0 "\nA form of Islamic [administrative_title|E], the Jawwāla are military regiments led by an Amīr, a military leader in charge of his troops."
+
  
 
  ### COUNCILLORS
@@ -133,12 +143,20 @@
 
  councillor_steward_islam_sahib_al_maks:0 "Sāhib al-Kharaj"
 
+ ### COUNCILLORS TASKS
+ qadi_render_justice:0 "Render Justice"
+ qadi_render_justice_activity_desc:0 "[county_opinion|E]: #P +#![SCOPE.ScriptValue('court_chaplain_qadi_county_opinion_add')|0P]#!.\n$TAB$[councillor.GetCouncilTitle] [councillor.GetFirstNamePossessive] [learning_skill|E]:\n$TAB$ #P +#![SCOPE.ScriptValue('court_chaplain_qadi_county_opinion_add')|0P]#! [county_opinion|E]"
+
+ qadi_render_justice_learning_modifier:0 "Qāḍī overseeing judicial matters."
+ 
+
  ## CHARACTERS
  al_jamali:0 "Abū'l-Najm Badr al-Jamali"
  al_shirazi:0 "Al-Mu'ayyad fi'l-Din al-Shirazi"
  time_traveller:0 "Ahmad al-Qalqashandi"
  islam_fictional_2:0 "Ali al-Maghribi"
  islam_fictional_1:0 "Abu al-Durayhim"
+ invention_abid:0 "al-Hādim al-Aswad Mi'ḍad"
 
 
  ## CHARACTER INTERACTION
@@ -154,11 +172,11 @@
  islamic_empire_favour_successor_desc:0 "Will favour a successor to the title."
  recipient_secondary_islamic_empire_favour_successor:0 "Candidate"
 
- islamic_empire_fire_bureaucrat:0 "Fire Official"
- islamic_empire_fire_bureaucrat_desc:0 "Fire the official."
+ islamic_empire_fire_bureaucrat:0 "Recall Amīr"
+ islamic_empire_fire_bureaucrat_desc:0 "Recall the Amīr."
 
- islamic_empire_replace_bureaucrat:0 "Replace Official"
- islamic_empire_replace_bureaucrat_desc:0 "Will replace this official."
+ islamic_empire_replace_bureaucrat:0 "Replace Amīr"
+ islamic_empire_replace_bureaucrat_desc:0 "Will replace this Amīr."
  recipient_secondary_islamic_empire_replace_bureaucrat:0 "Candidate"
 
  islamic_empire_change_vassal_contract:0 "Change Administration"
@@ -179,6 +197,13 @@
  game_concept_imarah:0 "Imārah"
  game_concept_qadi:0 "Qāḍī"
  game_concept_sahib_al_maks:0 "Sāhib al-Kharaj"
+ game_concept_asabiyya:0 "Asabiyya"
+ game_concept_asabiyya_level:0 "Level of Asabiyya"
+ game_concept_asabiyya_very_weak:0 "Very Weak"
+ game_concept_asabiyya_weak:0 "Weak"
+ game_concept_asabiyya_medium:0 "Medium"
+ game_concept_asabiyya_strong:0 "Strong"
+ game_concept_asabiyya_exceptional:0 "Exceptional"
 
  ### CONTRACTS
  islamic_empire_kharaj_right:0 "Kharaj Right"
@@ -246,6 +271,21 @@
  trait_qadi_desc:0 "This character has a long experience as a qāḍī, a judge responsible for the application of fiqh, Islamic positive law, but exercises also extrajudicial functions, such as mediation, guardianship over orphans and minors, and supervision and auditing of public works."
  trait_qadi_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has a long experience a qāḍī, a judge responsible for the application of fiqh, Islamic positive law, but exercises also extrajudicial functions, such as mediation, guardianship over orphans and minors, and supervision and auditing of public works."
 
+ ### GUI
+ asabiyya_tooltip:0 "#T [asabiyya|E]: #V [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Var('islamic_empire_asabiyya').GetValue|0]#!#!\n#V [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Var('islamic_empire_asabiyya_monthly_display').GetValue|1]#!/month \n\n#T [asabiyya_level|E]: #!@asabiyya_icon! #V #L [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Title.Custom( 'AsabiyyaLevelDisplay' )]"
+
+ asabiyya_level_very_weak_desc:0 "Very Weak"
+ asabiyya_level_weak_desc:0 "Weak"
+ asabiyya_level_medium_desc:0 "Medium"
+ asabiyya_level_strong_desc:0 "Strong"
+ asabiyya_level_exceptional_desc:0 "Exceptional"
+
+ ## HOLDINGS
+ pastoral_holding:0 "Nomad Controlled"
+ building_pastoral_holding_building_1:0 "Pastoral"
+ building_pastoral_holding_building_1_desc:0 "This province is controlled by nomadic pastoral herders."
+ building_type_pastoral_holding_building_1:0 "Nomad"
+
  ## LAW
  islamic_empire_amir_succession_law:0 "Clientelism"
  islamic_empire_amir_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
@@ -271,16 +311,19 @@
  ave_maria_qadi_events.0002.desc:0 "[islamic_empire_qadi_requester.GetName] has requested for the appointment of a new chief Qāḍī for his province with the unfortunate disappearance of the previous one.\n\nI need to name someone competent rapidly for the benefit of the administration both of the province and the realm."
  ave_maria_qadi_events.0002.a:0 "My kātib will surely find me someone competent."
  ave_maria_qadi_events.0002.b:0 "I will choose him with care."
- custom_tooltip = ave_maria_qadi_events.0002.b.tt:0 "You will use the #b Name Qādī Interaction#! and select a candidate yourself"
+ ave_maria_qadi_events.0002.b.tt:0 "You will use the #P Name Qādī Interaction#! and select a candidate yourself"
 
  ave_maria_qadi_events.0003.title:0 "Naming a new Sāhib al-Kharaj"
  ave_maria_qadi_events.0003.desc:0 "[islamic_empire_sahib_al_maks_requester.GetName] has requested for the appointment of a new Sāhib al-Kharaj for the tax collection in his province following the unfortunate disappearance of the previous one.\n\nI need to name someone competent rapidly for the benefit of both the tax collection of the province and the realm."
  ave_maria_qadi_events.0003.a:0 "My kātib will surely find me someone competent."
  ave_maria_qadi_events.0003.b:0 "I will choose him with care."
- custom_tooltip = ave_maria_qadi_events.0003.b.tt:0 "You will use the #b Name Sāhib al-Kharaj Interaction#! and select a candidate yourself"
+ ave_maria_qadi_events.0003.b.tt:0 "You will use the #P Name Sāhib al-Kharaj Interaction#! and select a candidate yourself"
 
- 
- 
+ ave_maria_ghulam_events.0001.title:0 "Buying Slaves"
+ ave_maria_ghulam_events.0001.desc:0 "The use of slave soldiers is an old practice in our lands ever since Al-Mu'tasim started the practice as they are efficient and loyal to their masters contrary to others fickle combattants.\n\nI have already many ghilman in my employ, but one must always resplenish the stock and my courtiers have presented me new young boys to be educated in the arts of war at my expense.\n\nIn time, properly trained, they will serve me faithfully as [knights|E] and [commanders|E]."
+ ave_maria_ghulam_events.0001.a:0 "I will buy the Turkish boy, everyone know they are the best"
+ ave_maria_ghulam_events.0001.b:0 "Zanj are cheaper." 
+ ave_maria_ghulam_events.0001.c:0 "On second thought, I will not buy anything"
  
 
  

@@ -100,3 +100,38 @@ PopularityLevelDisplay = {
 		# localization_key = councillor_chancellor_greek_male
 	# }
 # }
+
+
+#############################################
+# ISLAMIC EMPIRE CUSTOM LOC					#
+#############################################
+
+
+## Popularity Custom Loc to allow the showing of the various tiers of Popularity
+AsabiyyaLevelDisplay = {
+	type = landed_title
+	text = {
+		trigger = { var:asabiyya_level = flag:custom }
+		localization_key = asabiyya_level
+	}
+	text = {
+		trigger = { var:asabiyya_level = flag:asabiyya_level_very_weak_desc }
+		localization_key = asabiyya_level_very_weak_desc
+	}
+	text = {
+		trigger = { var:asabiyya_level = flag:asabiyya_level_weak_desc }
+		localization_key = asabiyya_level_weak_desc
+	}
+	text = {
+		trigger = { var:asabiyya_level = flag:asabiyya_level_medium_desc }
+		localization_key = asabiyya_level_medium_desc
+	}
+	text = {
+		trigger = { var:asabiyya_level = flag:asabiyya_level_strong_desc }
+		localization_key = asabiyya_level_strong_desc
+	}
+	text = {
+		trigger = { var:asabiyya_level = flag:asabiyya_level_exceptional_desc }
+		localization_key = asabiyya_level_exceptional_desc
+	}
+}

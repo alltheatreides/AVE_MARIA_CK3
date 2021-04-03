@@ -180,7 +180,7 @@ roman_administration_sekreton_government = {
 
 islamic_empire_government = {
 	primary_holding = castle_holding
-	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	primary_culture_groups = { arabic_group iranian_group }
 	
 	fallback = 2
@@ -211,7 +211,7 @@ islamic_empire_diwan_government = {
 	fallback = 5
 	
 	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	required_county_holdings = { }
 	
 	vassal_contract = {
@@ -229,7 +229,7 @@ islamic_empire_thugur_government = {
 	fallback = 5
 	
 	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	required_county_holdings = { }
 	
 	vassal_contract = {
@@ -247,7 +247,7 @@ islamic_empire_amir_government = {
 	fallback = 5
 	
 	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	required_county_holdings = { }
 	
 	vassal_contract = {
@@ -259,6 +259,24 @@ islamic_empire_amir_government = {
 		islamic_empire_war_right
 		islamic_empire_iqta
 		islamic_empire_thugur
+	}
+	
+	color = hsv{ 0.67 1.00 0.78 }
+}
+
+## Regiment type government
+islamic_empire_regiment_government = {
+	create_cadet_branches = yes
+	rulers_should_have_dynasty = yes
+
+	fallback = 5
+	
+	primary_holding = castle_holding
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
+	required_county_holdings = { }
+	
+	vassal_contract = {
+		
 	}
 	
 	color = hsv{ 0.67 1.00 0.78 }

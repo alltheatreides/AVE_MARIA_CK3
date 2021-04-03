@@ -2230,7 +2230,20 @@ seduce_interaction_stress_effect = {
 
 retract_vassal_interaction_effect = {
 	scope:actor = {
-		vassal_revocation_tyranny_effect = yes
+		## AVE MARIA MODIF: only add tyrrany if not imperial style
+		if = {
+			limit = {
+				scope:actor = {
+					OR = {
+						has_government = feudal_government
+						has_government = clan_government
+						has_government = tribal_government
+					}
+				}
+				vassal_revocation_tyranny_effect = yes
+			}
+		}
+		
 		if = {
 			limit = {
 				vassal_revocation_is_tyrannical_trigger = yes

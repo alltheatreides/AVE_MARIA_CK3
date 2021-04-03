@@ -13,3 +13,59 @@
 # VASSAL CONTRACT EFFECT	 				#
 #############################################
 
+
+#############################################
+# ASABIYYA EFFECT			 				#
+#############################################
+
+islamic_empire_asabiyya_level_calc = {
+	## Putting variables/flags for asabiyya levels
+	if = {
+		limit = {
+			var:islamic_empire_asabiyya < 25
+		}
+		set_variable = {
+			name = asabiyya_level
+			value = flag:asabiyya_level_very_weak_desc
+		}
+	}
+	if = {
+		limit = {
+			var:islamic_empire_asabiyya >= 25
+			var:islamic_empire_asabiyya < 50
+		}
+		set_variable = {
+			name = asabiyya_level
+			value = flag:asabiyya_level_weak_desc
+		}
+	}
+	if = {
+		limit = {
+			var:islamic_empire_asabiyya >= 50
+			var:islamic_empire_asabiyya < 75
+		}
+		set_variable = {
+			name = asabiyya_level
+			value = flag:asabiyya_level_medium_desc
+		}
+	}
+	if = {
+		limit = {
+			var:islamic_empire_asabiyya >= 75
+			var:islamic_empire_asabiyya < 150
+		}
+		set_variable = {
+			name = asabiyya_level
+			value = flag:asabiyya_level_strong_desc
+		}
+	}
+	if = {
+		limit = {
+			var:islamic_empire_asabiyya >= 150
+		}
+		set_variable = {
+			name = asabiyya_level
+			value = flag:asabiyya_level_exceptional_desc
+		}
+	}
+}

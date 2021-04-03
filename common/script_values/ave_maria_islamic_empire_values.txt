@@ -1,0 +1,35 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA SCRIPTED VALUES															   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA ISLAMIC EMPIRE VALUES													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+# Base modifier value
+court_chaplain_qadi_county_opinion_add = {
+	add = learning
+	divide = 4
+}
+
+islamic_empire_asabiyya_monthly = {
+	value = 0
+
+	## Reducing it if you do not live the nomadic lifestyle
+	if = {
+		limit = {
+			holder = {
+				has_primary_title = prev
+				capital_province = {
+					NOT = {
+						has_holding_type = pastoral_holding
+					}
+				}
+			}
+		}
+		subtract = 0.5
+	}
+}

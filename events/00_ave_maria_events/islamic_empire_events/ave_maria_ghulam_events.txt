@@ -1,0 +1,135 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# GHULAM EVENTS																		   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_ghulam_events
+
+# ave_maria_ghulam_events
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_ghulam_events.0001 = {
+	type = character_event
+	title = ave_maria_ghulam_events.0001.title
+	desc = ave_maria_ghulam_events.0001.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = scope:target_1
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:target_2
+		animation = idle
+	}
+
+	lower_left_portrait = {
+		character = root
+		#animation = war_over_win
+	}
+
+	trigger = {
+		any_held_title = {
+			title_province = {
+				OR = {
+					has_building = slave_market_1
+					has_building = slave_market_2
+					# has_building = slave_market_3
+					# has_building = slave_market_4
+				}				
+			}
+		}
+	}
+
+	immediate = {
+		## turkish
+		create_character = {
+			location = root.capital_province
+			employer = root
+			template = islamic_empire_turkish_boy_character
+			save_scope_as = target_1
+			gender_female_chance = 0
+		}
+		scope:target = {
+			add_character_flag = {
+				flag = use_sickness_clothes
+				days = 1
+			}
+			set_default_education = education_martial
+		}
+
+		## zanj
+		create_character = {
+			location = root.capital_province
+			employer = root
+			template = islamic_empire_nubian_boy_character
+			save_scope_as = target_2
+			gender_female_chance = 0
+		}
+		scope:target = {
+			add_character_flag = {
+				flag = use_sickness_clothes
+				days = 1
+			}
+			set_default_education = education_martial
+		}
+
+	}
+
+	## Turkish/Caucasian
+	option = {
+		name = ave_maria_ghulam_events.0001.a
+		remove_short_term_gold = 250
+		
+		random_vassal = {
+			limit = {
+				is_female = no
+				OR = {
+					has_trait = ghulam
+					AND = {
+						has_trait = slave
+						martial >= 12
+					}					
+				}
+			}
+			scope:target_1 = { set_relation_guardian = prev }
+		}
+	}
+
+	## Nubian
+	option = {
+		name = ave_maria_ghulam_events.0001.b
+		remove_short_term_gold = 100 
+		
+		random_vassal = {
+			limit = {
+				is_female = no
+				OR = {
+					has_trait = ghulam
+					AND = {
+						has_trait = slave
+						martial >= 12
+					}	
+				}
+			}
+			scope:target_2 = { set_relation_guardian = prev }
+		}
+	}
+
+	##Nothing
+	option = {
+		name = ave_maria_ghulam_events.0001.c
+	}
+}
+

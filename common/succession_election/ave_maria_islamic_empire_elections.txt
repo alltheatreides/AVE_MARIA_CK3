@@ -176,6 +176,9 @@ islamic_empire_amir_elective = {
 				}
 				NOT = { has_government = theocracy_government }
 				highest_held_title_tier < tier_empire
+				NOT = {
+					is_close_or_extended_family_of = scope:holder
+				}
 			}
 		} 
 		add = {
@@ -191,23 +194,9 @@ islamic_empire_amir_elective = {
 					# has_trait = priest
 				}
 				NOT = { has_government = theocracy_government }
-			}
-		}
-		add = {
-			type = holder_close_or_extended_family
-			limit = {
-				roman_administration_character_is_in_the_empire = yes
-				# is_courtier_of = scope:holder
-				is_ruler = no
-				age >= 20
-				age < 55
-				is_female = no
-				NOR = {
-					has_trait = devoted
-					# has_trait = priest
+				NOT = {
+					is_close_or_extended_family_of = scope:holder
 				}
-				dynasty = scope:holder.dynasty
-				NOT = { has_government = theocracy_government }
 			}
 		}
 	}

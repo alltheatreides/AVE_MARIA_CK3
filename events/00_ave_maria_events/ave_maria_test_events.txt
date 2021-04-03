@@ -329,20 +329,14 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		# if = {
-			# limit = {
-				# vassal_contract_has_flag = islamic_empire_inheritance_right_allowed
-			# }
-			# every_held_title = {
-				# limit = {
-					# has_title_law = islamic_empire_amir_succession_law
-				# }
-				# remove_title_law = islamic_empire_amir_succession_law
-			# }
+		# province:4599 = {
+			# set_holding_type = pastoral_holding
 		# }
+		# change_government = clan_government
 		every_held_title = {
-			# remove_title_law = islamic_empire_amir_succession_law
-			add_title_law = islamic_empire_amir_succession_law_2
+			title_province = {
+				set_holding_type = pastoral_holding
+			}
 		}
 	}
 	

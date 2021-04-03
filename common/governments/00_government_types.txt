@@ -14,7 +14,7 @@
 	}
 
 	primary_holding = castle_holding
-	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { city_holding church_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	required_county_holdings = { castle_holding city_holding church_holding metropolis_constantinople_holding }
 
 	vassal_contract = {
@@ -37,7 +37,7 @@
 
 republic_government = {
 	primary_holding = city_holding
-	valid_holdings = { castle_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { castle_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	required_county_holdings = { city_holding castle_holding church_holding }
 
 	ai = {
@@ -54,7 +54,7 @@ republic_government = {
 # Head of faith will always get this if possible
 theocracy_government = {
 	primary_holding = church_holding
-	valid_holdings = { castle_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { castle_holding city_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	religious = yes
 	required_county_holdings = { church_holding castle_holding city_holding }
 
@@ -97,7 +97,7 @@ theocracy_government = {
 
 clan_government = {
 	primary_holding = castle_holding
-	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	primary_culture_groups = { arabic_group iranian_group }
 	primary_cultures = { turkish }
 	
@@ -112,7 +112,11 @@ clan_government = {
 	always_use_patronym = yes
 	dynasty_named_realms = yes
 
-	vassal_contract = { clan_government_obligations }
+	vassal_contract = { 
+		#clan_government_obligations 
+		islamic_empire_muslim_tax 
+		islamic_empire_iqta
+	}
 	
 	opinion_of_liege = {
 		scope:vassal = {
@@ -171,7 +175,7 @@ tribal_government = {
 	primary_holding = tribal_holding
 	required_county_holdings = { tribal_holding }
 
-	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding }
+	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 
 
 	prestige_opinion_override = { -10 0 3 5 10 20 }

@@ -444,6 +444,7 @@ roman_administration_name_junior_emperor = {
 			}		
 		}
 		scope:recipient = { 
+			NOT = { this = scope:actor }
 			roman_administration_character_is_in_the_empire = yes
 			age >= 6
 			is_female = no
@@ -625,6 +626,7 @@ roman_administration_favour_successor = {
 			}			
 		}
 		scope:recipient = { 
+			NOT = { this = scope:actor }
 			roman_administration_character_is_in_the_empire = yes
 			highest_held_title_tier >= tier_duchy 
 			NOT = { has_government = theocracy_government }					
@@ -748,6 +750,7 @@ roman_administration_fire_bureaucrat = {
 			}			
 		}
 		scope:recipient = { 
+			NOT = { this = scope:actor }
 			roman_administration_character_is_in_the_empire = yes
 			highest_held_title_tier >= tier_duchy 
 			NOR = {
@@ -1062,6 +1065,7 @@ roman_administration_replace_bureaucrat = {
 			}			
 		}
 		scope:recipient = { 
+			NOT = { this = scope:actor }
 			roman_administration_character_is_in_the_empire = yes
 			highest_held_title_tier >= tier_duchy 
 			NOR = {

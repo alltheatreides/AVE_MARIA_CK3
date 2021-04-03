@@ -56,6 +56,7 @@ ave_maria_islamic_empire_request_new_qadi_decision = {
 	is_shown = {
 		faith.religion = religion:islam_religion
 		OR = {
+			has_government = islamic_empire_government
 			has_government = islamic_empire_amir_government
 			has_government = islamic_empire_thugur_government
 		}
@@ -70,6 +71,7 @@ ave_maria_islamic_empire_request_new_qadi_decision = {
 	is_valid = {
 		faith.religion = religion:islam_religion
 		OR = {
+			has_government = islamic_empire_government
 			has_government = islamic_empire_amir_government
 			has_government = islamic_empire_thugur_government
 		}
@@ -118,6 +120,7 @@ ave_maria_islamic_empire_request_new_sahib_al_maks_decision = {
 	is_shown = {
 		faith.religion = religion:islam_religion
 		OR = {
+			has_government = islamic_empire_government
 			has_government = islamic_empire_amir_government
 			has_government = islamic_empire_thugur_government
 		}
@@ -132,6 +135,7 @@ ave_maria_islamic_empire_request_new_sahib_al_maks_decision = {
 	is_valid = {
 		faith.religion = religion:islam_religion
 		OR = {
+			has_government = islamic_empire_government
 			has_government = islamic_empire_amir_government
 			has_government = islamic_empire_thugur_government
 		}
@@ -175,3 +179,46 @@ ave_maria_islamic_empire_request_new_sahib_al_maks_decision = {
 
 ## Recruit civil servants, "pen" guys, drawn from the locals regardless of their religion
 # ave_maria_islamic_empire_recruit_civil_servants
+
+
+ave_maria_islamic_empire_buy_slaves_for_military_training = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_request.dds"
+	desc = ave_maria_islamic_empire_buy_slaves_for_military_training_desc
+
+	is_shown = {
+		faith.religion = religion:islam_religion
+		uses_islamic_empire_govt = yes
+		
+	}
+
+	is_valid = {
+		faith.religion = religion:islam_religion
+		uses_islamic_empire_govt = yes
+		gold >= 250
+	}
+
+	cost = {
+
+	}
+
+	cooldown = { days = 730 }
+
+	effect = {
+		custom_tooltip = ave_maria_islamic_empire_buy_slaves_for_military_training_tooltip
+		trigger_event = {
+			id = ave_maria_ghulam_events.0001
+			delayed = yes
+		}
+	}
+
+	ai_check_interval = 72
+
+	ai_potential = {
+		
+	}
+
+	ai_will_do = {
+		base = 100
+		
+	}
+}
