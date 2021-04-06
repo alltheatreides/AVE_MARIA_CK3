@@ -1,0 +1,2369 @@
+﻿PrinceGoidelic = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_goidelic
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_goidelic
+	}
+}
+PrincessGoidelic = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_goidelic
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_goidelic
+	}
+}
+QueenMGoidelic = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_goidelic
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_goidelic
+	}
+}
+QueenMEnglish = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_english
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_english
+	}
+}
+QueenMAngloSaxon = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_anglo_saxon
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_anglo_saxon
+	}
+}
+QueenMScottish = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_scottish
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_scottish
+	}
+}
+PrincePictish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = piccum_heir_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_piccum
+	}
+}
+PrincessPictish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = piccum_heir_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_piccum
+	}
+}
+PrinceWelsh = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = welsh_heir_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_welsh
+	}
+}
+PrincessWelsh = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = welsh_heir_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_welsh
+	}
+}
+QueenMWelsh = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_welsh
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_welsh
+	}
+}
+PrinceCornish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = welsh_heir_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_cornish
+	}
+}
+PrincessCornish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = welsh_heir_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_cornish
+	}
+}
+PrinceFrench = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				has_primary_title = title:c_viennois
+				has_primary_title = title:d_dauphine
+			}
+		}
+		localization_key = dolphin_male_french
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_french
+	}
+}
+PrincessFrench = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				has_primary_title = title:c_viennois
+				has_primary_title = title:d_dauphine
+			}
+		}
+		localization_key = dolphin_female_french
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_french
+	}
+}
+QueenMBasque = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_basque
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_basque
+	}
+}
+QueenMCastillian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_m_castillian
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_m_castillian
+	}
+}
+QueenMCatalan = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_catalan
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_catalan
+	}
+}
+QueenMPort = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_m_portugese
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_m_portugese
+	}
+}
+QueenMVisigothic = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_visigothic
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_visigothic
+	}
+}
+QueenMAsturleonese = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_asturleonese
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_asturleonese
+	}
+}
+QueenMAragonese = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_aragonese
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_aragonese
+	}
+}
+PrinceFinnish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = finnish_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_male_finnish_default
+	}
+}
+PrincessFinnish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = finnish_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_female_finnish_default
+	}
+}
+PrinceEFinnish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = finnish_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_e_male_finnish_default
+	}
+}
+PrincessEFinnish = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = finnish_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_e_female_finnish_default
+	}
+}
+PrinceEstonian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = estonian_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_male_estonian_default
+	}
+}
+PrincessEstonian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = estonian_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_female_estonian_default
+	}
+}
+QueenMSaxon = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_saxon
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_saxon
+	}
+}
+QueenMMHG = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_middle_high_german
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_middle_high_german
+	}
+}
+QueenMDutch = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_dutch
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_dutch
+	}
+}
+QueenMEstonian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_estonian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_estonian
+	}
+}
+PrinceArabic = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = arabic_primary_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_arabic
+	}
+}
+PrincessArabic = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = arabic_primary_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_arabic
+	}
+}
+QueenMArabic = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_arabic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:andalusian
+			has_religion = religion:christianity_religion
+		}
+		localization_key = king_female_christian_andalusian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_arabic
+	}
+}
+EmpressMArabic = {
+	type = character
+	text = {
+		trigger = {
+			has_culture = culture:andalusian
+			has_religion = religion:christianity_religion
+		}
+		localization_key = emperor_feudalclan_female_andalusian_christian
+	}
+	text = {
+		fallback = yes
+		localization_key =  emperor_feudalclan_female_arabic_group
+	}
+}
+PrinceArmenian = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_armenian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_armenian
+	}
+}
+PrincessArmenian = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_armenian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_armenian
+	}
+}
+PrinceBArmenian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_armenian_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  title_prince_male_armenian_empire
+	}
+}
+PrincessBArmenian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_armenian_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  title_prince_female_armenian_empire
+	}
+}
+QueenMArmenian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_armenian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_armenian
+	}
+}
+PrinceGreek = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = primary_heir_greek_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_male_greek_default
+	}
+}
+PrincessGreek = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = primary_heir_greek_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_female_greek_default
+	}
+}
+PrinceBGreek = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_greek_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_male_greek_default
+	}
+}
+PrincessBGreek = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_greek_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_female_greek_default
+	}
+}
+QueenMGreek = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_greek
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_greek
+	}
+}
+EmpressMGreek = {
+	type = character
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = byzantine_emperor_female_greek
+	}
+	text = {
+		fallback = yes
+		localization_key =  emperor_female_greek
+	}
+}
+PrinceAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_assyrian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_assyrian
+	}
+}
+PrincessAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_assyrian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_assyrian
+	}
+}
+QueenMAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_assyrian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_assyrian
+	}
+}
+EmpressMAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  emperor_female_assyrian
+	}
+}
+QueenMItalian = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_italian
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_italian
+	}
+}
+QueenMCisalpine = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_italian
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_cisalpine
+	}
+}
+QueenMSardinian = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_sardinian
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_sardinian
+	}
+}
+QueenMSicilian = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_sardinian
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_sicilian
+	}
+}
+QueenMLombard = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_lombard
+	}
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_lombard
+	}
+}
+QueenMCroatian = {
+	type = character
+	text = {
+		trigger = {
+			any_child = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_croatian
+	}
+}
+QueenMSerbian = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_serbian
+	}
+	text = {
+		trigger = {
+			top_liege = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_serbian
+	}
+}
+QueenMVlach = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_vlach
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_vlach
+	}
+}
+QueenMMogyer = {
+	type = character
+	text = {
+		trigger = {
+			top_liege = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		trigger = {
+			any_child = {
+				has_faith = faith:orthodox
+				is_landed = yes
+			} 
+		}
+		localization_key = despot_mother_mogyer
+	}
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_mother_mogyer
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_mother_mogyer
+	}
+}
+QueenMHung = {
+	type = character
+	text = {
+		trigger = {
+			top_liege = {
+				OR = {
+					has_primary_title = title:e_byzantium
+					has_primary_title = title:e_roman_empire
+				}
+			}
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		trigger = {
+			any_child = {
+				has_faith = faith:orthodox
+				is_landed = yes
+			} 
+		}
+		localization_key = byzantine_king_hung
+	}
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_hung
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_holder_hung
+	}
+}
+PrincePom = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_pom
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_pom
+	}
+}
+PrincessPom = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_pom
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_pom
+	}
+}
+QueenMPom = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_pom
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_pom
+	}
+}
+QueenMCzech = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_czech
+	}
+	text = {
+		fallback = yes
+		localization_key =  kingdom_default_czech
+	}
+}
+PrincePolish = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_polish
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_polish
+	}
+}
+PrincessPolish = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_polish
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_polish
+	}
+}
+QueenMPolish = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_polish
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_polish
+	}
+}
+PrinceLithuanian = {
+  type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = lithuanian_primary_heir_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_lithuanian
+	}
+}
+PrincessLithuanian = {
+  type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = lithuanian_primary_heir_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_lithuanian
+	}
+}
+PrincePrussian = {
+  type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = prussian_primary_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_prussian
+	}
+}
+PrinceRussian = {
+  type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+    localization_key = sultan_prince_male_russian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_russian
+	}
+}
+PrincessRussian = {
+  type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+    localization_key = sultan_prince_female_russian
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_russian
+	}
+}
+QueenMRussian = {
+  type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_qm_russian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_faith = faith:catholic
+				has_faith = faith:cathar
+				has_faith = faith:waldensian
+				has_faith = faith:lollard
+				has_faith = faith:insular_celtic
+			}
+		}
+		localization_key = karl_qm_rus
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_russian
+	}
+}
+PrinceBurman = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = burman_primary_heir
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_burman
+	}
+}
+PrinceTamil= {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_tamil
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_tamil
+	}
+}
+PrincessTamil = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_tamil
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_tamil
+	}
+}
+QueenMTamil = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_tamil
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_tamil
+	}
+}
+PrinceTelugu = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_telugu
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_telugu
+	}
+}
+PrincessTelugu = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_telugu
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_telugu
+	}
+}
+QueenMTelugu = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_telugu
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_telugu
+	}
+}
+PrinceKannada = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_kannada
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_kannada
+	}
+}
+PrincessKannada = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_kannada
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_kannada
+	}
+}
+QueenMKannada = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_kannada
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_kannada
+	}
+}
+PrinceBengali = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_bengali
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_bengali
+	}
+}
+PrincessBengali = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_bengali
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_bengali
+	}
+}
+QueenMBengali = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_bengali
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_bengali
+	}
+}
+PrinceOriya = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_oriya
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_oriya
+	}
+}
+PrincessOriya = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_oriya
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_oriya
+	}
+}
+QueenMOriya = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_oriya
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_oriya
+	}
+}
+PrinceAssamese = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_assamese
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_assamese
+	}
+}
+PrincessAssamese = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_assamese
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_assamese
+	}
+}
+QueenMAssamese = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_assamese
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_assamese
+	}
+}
+PrinceHindustani = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_hindustani
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_hindustani
+	}
+}
+PrincessHindustani = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_hindustani
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_hindustani
+	}
+}
+QueenMHindustani = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_hindustani
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_hindustani
+	}
+}
+PrinceGujarati = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_gujarati
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_gujarati
+	}
+}
+PrincessGujarati = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_gujarati
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_gujarati
+	}
+}
+QueenMGujarati = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_gujarati
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_gujarati
+	}
+}
+PrincePunjabi = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_punjabi
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_punjabi
+	}
+}
+PrincessPunjabi = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_punjabi
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_punjabi
+	}
+}
+QueenMPunjabi = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_punjabi
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_punjabi
+	}
+}
+PrinceRajput = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_rajput
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_rajput
+	}
+}
+PrincessRajput = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_rajput
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_rajput
+	}
+}
+QueenMRajput = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_rajput
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_rajput
+	}
+}
+QueenMSindhi = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_sindhi
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_sindhi
+	}
+}
+PrinceMarathi = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_marathi
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_marathi
+	}
+}
+PrincessMarathi = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_marathi
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_marathi
+	}
+}
+QueenMMarathi = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_marathi
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_marathi
+	}
+}
+PrinceKashmiri = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_kashmiri
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_kashmiri
+	}
+}
+PrincessKashmiri = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_kashmiri
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_kashmiri
+	}
+}
+QueenMKashmiri = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_kashmiri
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_kashmiri
+	}
+}
+PrinceSinhala = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_sinhala
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_sinhala
+	}
+}
+PrincessSinhala = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_sinhala
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_sinhala
+	}
+}
+QueenMSinhala = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_sinhala
+	}
+	text = {
+		fallback = yes
+		localization_key =  empress_mother_sinhala
+	}
+}
+PrinceNepali = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_male_nepali
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_nepali
+	}
+}
+PrincessNepali = {
+	type = character
+	text = {
+		trigger = {
+			any_parent = {
+				is_independent_ruler = yes
+				faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+			}
+		}
+		localization_key = sultan_prince_female_nepali
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_nepali
+	}
+}
+QueenMNepali = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_nepali
+	}
+	text = {
+		fallback = yes
+		localization_key =  queen_mother_default_nepali
+	}
+}
+QueenMSomali = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_somali
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_somali
+	}
+}
+QueenMBeja = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_beja
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_beja
+	}
+}
+QueenMTurkishTwo = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_turkish_group_two
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_turkish_group_two
+	}
+}
+QueenMKimek = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_turkish_group_two
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_female_khazar
+	}
+}
+QueenMPersian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_persian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_female_persian
+	}
+}
+QueenMSogdian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_sogdian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_sogdian
+	}
+}
+QueenMKurdish = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_kurdish
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_kurdish
+	}
+}
+QueenMAfghan = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_afghan
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_afghan
+	}
+}
+QueenMBaloch = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_baloch
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_baloch
+	}
+}
+QueenMKhwarezmian = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_khwarezmian
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_khwarezmian
+	}
+}
+QueenMTajik = {
+	type = character
+	text = {
+		trigger = {
+			faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_tajik
+	}
+	text = {
+		fallback = yes
+		localization_key =  king_default_female_tajik
+	}
+}

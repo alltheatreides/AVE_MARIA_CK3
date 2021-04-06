@@ -1,0 +1,4100 @@
+﻿##########################################
+##	 Community Title Project Mod		##
+##	   Knight Customisation 			##
+##########################################
+
+KnightCulture = {
+	type = character
+	
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_old_high_german ##Franconians, Swabians and Bavarians all spoke Old High German (c) Urkaun
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_assyrian
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_sicilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lombard
+		}
+		localization_key = knight_lombard
+	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian ##For consistency
+			}
+		}
+		localization_key = knight_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_beja
+	}
+	
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_chuvash
+	}
+	
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_malinke
+	}
+	
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_default
+		fallback = yes
+	}
+}
+
+KnightCultureNoTooltip = {
+	type = character
+	
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_no_tooltip_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_no_tooltip_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_no_tooltip_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_no_tooltip_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_no_tooltip_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_no_tooltip_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_no_tooltip_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_no_tooltip_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_no_tooltip_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_no_tooltip_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_no_tooltip_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_no_tooltip_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_no_tooltip_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_no_tooltip_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_no_tooltip_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_no_tooltip_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_no_tooltip_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_no_tooltip_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_no_tooltip_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_no_tooltip_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_no_tooltip_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_no_tooltip_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_no_tooltip_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_no_tooltip_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_no_tooltip_old_high_german
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_no_tooltip_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_no_tooltip_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_no_tooltip_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_no_tooltip_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_no_tooltip_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_no_tooltip_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_no_tooltip_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_no_tooltip_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_no_tooltip_assyrian
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_no_tooltip_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_no_tooltip_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_no_tooltip_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_no_tooltip_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_no_tooltip_sicilian
+	}
+#	text = {
+#		trigger = {
+#			has_culture = culture:lombard
+#		}
+#		localization_key = knight_no_tooltip_lombard
+#	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian ##For consistency
+			}
+		}
+		localization_key = knight_no_tooltip_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_no_tooltip_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_no_tooltip_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_no_tooltip_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_no_tooltip_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_no_tooltip_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_no_tooltip_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_no_tooltip_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_no_tooltip_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_no_tooltip_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_no_tooltip_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_no_tooltip_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_no_tooltip_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_no_tooltip_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_no_tooltip_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_no_tooltip_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_no_tooltip_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_no_tooltip_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_no_tooltip_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_no_tooltip_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_no_tooltip_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_no_tooltip_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_no_tooltip_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_no_tooltip_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_no_tooltip_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_no_tooltip_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_no_tooltip_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_no_tooltip_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_no_tooltip_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_no_tooltip_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_no_tooltip_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_no_tooltip_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_no_tooltip_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_no_tooltip_beja
+	}
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_no_tooltip_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_no_tooltip_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_no_tooltip_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_no_tooltip_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_no_tooltip_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_no_tooltip_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_no_tooltip_chuvash
+	}
+	
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_no_tooltip_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_no_tooltip_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_no_tooltip_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_no_tooltip_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_no_tooltip_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_no_tooltip_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_no_tooltip_malinke
+	}
+	
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_no_tooltip_default
+		fallback = yes
+	}
+}
+
+KnightCultureNoTooltipLowercase = {
+	type = character
+	
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_lower_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_lower_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_lower_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_lower_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_lower_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_lower_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_lower_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_lower_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_lower_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_lower_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_lower_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_lower_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_lower_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_lower_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_lower_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_lower_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_lower_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_lower_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_lower_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_lower_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_lower_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_lower_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_lower_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_lower_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_lower_old_high_german
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_lower_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_lower_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_lower_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_lower_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_lower_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_lower_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_lower_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_lower_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_lower_assyrian
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_lower_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_lower_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_lower_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_lower_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_lower_sicilian
+	}
+#	text = {
+#		trigger = {
+#			has_culture = culture:lombard
+#		}
+#		localization_key = knight_lower_lombard
+#	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian ##For consistency
+			}
+		}
+		localization_key = knight_lower_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_lower_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_lower_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_lower_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_lower_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_lower_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_lower_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_lower_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_lower_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_lower_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_lower_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_lower_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_lower_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_lower_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_lower_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_lower_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_lower_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_lower_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_lower_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_lower_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_lower_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_lower_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_lower_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_lower_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_lower_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_lower_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_lower_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_lower_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_lower_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_lower_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_lower_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_lower_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_lower_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_lower_beja
+	}
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_lower_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_lower_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_lower_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_lower_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_lower_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_lower_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_lower_chuvash
+	}
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_lower_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_lower_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_lower_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_lower_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_lower_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_lower_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_lower_malinke
+	}
+	
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_lower_default
+		fallback = yes
+	}
+}
+
+KnightCulturePlural = {
+	type = character
+
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_plural_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_plural_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_plural_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_plural_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_plural_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_plural_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_plural_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_plural_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_plural_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_plural_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_plural_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_plural_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_plural_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_plural_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_plural_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_plural_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_plural_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_plural_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_plural_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_plural_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_plural_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_plural_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_plural_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_plural_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_plural_old_high_german
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_plural_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_plural_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_plural_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_plural_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_plural_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_plural_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_plural_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_plural_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_plural_assyrian
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_plural_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_plural_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_plural_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_plural_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_plural_sicilian
+	}
+#	text = {
+#		trigger = {
+#			has_culture = culture:lombard
+#		}
+#		localization_key = knight_plural_lombard
+#	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian
+			}
+		}
+		localization_key = knight_plural_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_plural_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_plural_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_plural_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_plural_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_plural_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_plural_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_plural_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_plural_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_plural_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_plural_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_plural_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_plural_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_plural_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_plural_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_plural_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_plural_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_plural_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_plural_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_plural_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_plural_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_plural_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_plural_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_plural_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_plural_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_plural_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_plural_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_plural_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_plural_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_plural_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_plural_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_plural_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_plural_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_plural_beja
+	}
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_plural_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_plural_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_plural_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_plural_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_plural_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_plural_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_plural_chuvash
+	}
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_plural_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_plural_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_plural_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_plural_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_plural_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_plural_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_plural_malinke
+	}
+	
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_plural_default
+		fallback = yes
+	}
+}
+
+KnightCulturePluralNoTooltip = {
+	type = character
+
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_plural_no_tooltip_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_plural_no_tooltip_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_plural_no_tooltip_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_plural_no_tooltip_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_plural_no_tooltip_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_plural_no_tooltip_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_plural_no_tooltip_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_plural_no_tooltip_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_plural_no_tooltip_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_plural_no_tooltip_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_plural_no_tooltip_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_plural_no_tooltip_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_plural_no_tooltip_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_plural_no_tooltip_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_plural_no_tooltip_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_plural_no_tooltip_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_plural_no_tooltip_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_plural_no_tooltip_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_plural_no_tooltip_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_plural_no_tooltip_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_plural_no_tooltip_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_plural_no_tooltip_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_plural_no_tooltip_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_plural_no_tooltip_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_plural_no_tooltip_old_high_german
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_plural_no_tooltip_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_plural_no_tooltip_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_plural_no_tooltip_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_plural_no_tooltip_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_plural_no_tooltip_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_plural_no_tooltip_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_plural_no_tooltip_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_plural_no_tooltip_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_plural_no_tooltip_assyrian
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_plural_no_tooltip_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_plural_no_tooltip_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_plural_no_tooltip_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_plural_no_tooltip_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_plural_no_tooltip_sicilian
+	}
+#	text = {
+#		trigger = {
+#			has_culture = culture:lombard
+#		}
+#		localization_key = knight_plural_no_tooltip_lombard
+#	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian
+			}
+		}
+		localization_key = knight_plural_no_tooltip_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_plural_no_tooltip_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_plural_no_tooltip_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_plural_no_tooltip_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_plural_no_tooltip_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_plural_no_tooltip_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_plural_no_tooltip_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_plural_no_tooltip_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_plural_no_tooltip_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_plural_no_tooltip_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_plural_no_tooltip_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_plural_no_tooltip_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_plural_no_tooltip_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_plural_no_tooltip_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_plural_no_tooltip_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_plural_no_tooltip_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_plural_no_tooltip_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_plural_no_tooltip_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_plural_no_tooltip_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_plural_no_tooltip_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_plural_no_tooltip_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_plural_no_tooltip_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_plural_no_tooltip_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_plural_no_tooltip_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_plural_no_tooltip_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_plural_no_tooltip_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_plural_no_tooltip_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_plural_no_tooltip_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_plural_no_tooltip_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_plural_no_tooltip_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_plural_no_tooltip_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_plural_no_tooltip_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_plural_no_tooltip_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_plural_no_tooltip_beja
+	}
+	
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_plural_no_tooltip_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_plural_no_tooltip_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_plural_no_tooltip_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_plural_no_tooltip_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_plural_no_tooltip_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_plural_no_tooltip_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_plural_no_tooltip_chuvash
+	}
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_plural_no_tooltip_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_plural_no_tooltip_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_plural_no_tooltip_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_plural_no_tooltip_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_plural_no_tooltip_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_plural_no_tooltip_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_plural_no_tooltip_malinke
+	}
+	
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_plural_no_tooltip_default
+		fallback = yes
+	}
+}
+
+KnightCulturePluralNoTooltipLowercase = {
+	type = character
+
+#####################################
+## Goidelic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:goidelic_group
+		}
+		localization_key = knight_plural_lower_irish_gaelic
+	}
+#####################################
+## West Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:english
+		}
+		localization_key = knight_plural_lower_english
+	}
+	text = {
+		trigger = {
+			has_culture = culture:anglo_saxon
+		}
+		localization_key = knight_plural_lower_anglo_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:old_saxon
+		}
+		localization_key = knight_plural_lower_old_saxon
+	}
+	text = {
+		trigger = {
+			has_culture = culture:scottish
+		}
+		localization_key = knight_plural_lower_scottish
+	}
+#####################################
+## Brythonic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:welsh
+		}
+		localization_key = knight_plural_lower_welsh
+	}
+	text = {
+		trigger = {
+			has_culture = culture:breton
+		}
+		localization_key = knight_plural_lower_breton
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:cumbrian
+				has_culture = culture:pictish	
+			}
+		}
+		localization_key = knight_plural_lower_cumbrian_pictish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cornish
+		}
+		localization_key = knight_plural_lower_cornish
+	}
+#####################################
+## Frankish group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:frankish
+		}
+		localization_key = knight_plural_lower_frankish
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:french
+				has_culture = culture:norman
+			}
+		}
+		localization_key = knight_plural_lower_french_norman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:occitan
+		}
+		localization_key = knight_plural_lower_occitan
+	}
+#####################################
+## Iberian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:basque
+		}
+		localization_key = knight_plural_lower_basque
+	}
+	text = {
+		trigger = {
+			has_culture = culture:castilian
+		}
+		localization_key = knight_plural_lower_castilian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:catalan
+		}
+		localization_key = knight_plural_lower_catalan
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:portuguese
+				has_culture = culture:galician
+			}
+		}
+		localization_key = knight_plural_lower_portuguese_galician
+	}
+	text = {
+		trigger = {
+			has_culture = culture:visigothic
+		}
+		localization_key = knight_plural_lower_visigothic
+	}
+	text = {
+		trigger = {
+			has_culture = culture:asturleonese
+		}
+		localization_key = knight_plural_lower_asturleonese
+	}
+	text = {
+		trigger = {
+			has_culture = culture:aragonese
+		}
+		localization_key = knight_plural_lower_aragonese
+	}
+#####################################
+## North Germanic group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:norse
+				has_culture = culture:norwegian
+			}
+		}
+		localization_key = knight_plural_lower_norse_norwegian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:swedish
+				has_culture = culture:danish
+			}
+		}
+		localization_key = knight_plural_lower_swedish_danish
+	}
+#####################################
+## Balto-Finnic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:finnish
+		}
+		localization_key = knight_plural_lower_finnish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:estonian
+		}
+		localization_key = knight_plural_lower_estonian
+	}
+#####################################
+## Central Germanic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:saxon
+		}
+		localization_key = knight_plural_lower_saxon
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:franconian
+				has_culture = culture:swabian
+				has_culture = culture:bavarian
+			}
+		}
+		localization_key = knight_plural_lower_old_high_german
+	}
+	text = {
+		trigger = {
+			has_culture = culture:frisian
+		}
+		localization_key = knight_plural_lower_frisian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:dutch
+		}
+		localization_key = knight_plural_lower_dutch
+	}
+#####################################
+## Berber group - to be added here
+#####################################
+#####################################
+## Arabic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:arabic_group
+			NAND = {
+				has_culture = culture:egyptian
+				has_faith = faith:coptic
+			}
+		}
+		localization_key = knight_plural_lower_arabic_group
+	}
+	text = {
+		trigger = {
+			has_culture = culture:egyptian
+			has_faith = faith:coptic
+		}
+		localization_key = knight_plural_lower_egyptian_coptic
+	}
+#####################################
+## Byzantine group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:armenian
+		}
+		localization_key = knight_plural_lower_armenian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:greek
+		}
+		localization_key = knight_plural_lower_greek
+	}
+	text = {
+		trigger = {
+			has_culture = culture:georgian
+		}
+		localization_key = knight_plural_lower_georgian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:alan
+		}
+		localization_key = knight_plural_lower_alan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:assyrian
+		}
+		localization_key = knight_plural_lower_alan
+	}
+#####################################
+## Latin group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:italian
+		}
+		localization_key = knight_plural_lower_italian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:roman
+		}
+		localization_key = knight_plural_lower_roman
+	}
+	text = {
+		trigger = {
+			has_culture = culture:cisalpine
+		}
+		localization_key = knight_plural_lower_cisalpine
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sardinian
+		}
+		localization_key = knight_plural_lower_sardinian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sicilian
+		}
+		localization_key = knight_plural_lower_sicilian
+	}
+#	text = {
+#		trigger = {
+#			has_culture = culture:lombard
+#		}
+#		localization_key = knight_plural_lower_lombard
+#	}
+#####################################
+## South Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:south_slavic_group
+			NOR = {
+				has_culture = culture:vlach
+				has_culture = culture:bulgarian
+			}
+		}
+		localization_key = knight_plural_lower_south_slavic_group
+	}
+
+	text = {
+		trigger = {
+			has_culture = culture:vlach
+		}
+		localization_key = knight_plural_lower_vlach
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bulgarian
+		}
+		localization_key = knight_plural_lower_bulgarian
+	}
+#####################################
+## West Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:pommeranian
+		}
+		localization_key = knight_plural_lower_pommeranian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:czech
+		}
+		localization_key = knight_plural_lower_czech
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polish
+		}
+		localization_key = knight_plural_lower_polish
+	}
+	text = {
+		trigger = {
+			has_culture = culture:polabian
+		}
+		localization_key = knight_plural_lower_polabian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:slovien
+		}
+		localization_key = knight_plural_lower_slovien
+	}
+#####################################
+## Magyar group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:mogyer
+		}
+		localization_key = knight_plural_lower_mogyer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hungarian
+		}
+		localization_key = knight_plural_lower_hungarian
+	}
+#####################################
+## Baltic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:latgalian
+		}
+		localization_key = knight_plural_lower_latgalian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:lithuanian
+		}
+		localization_key = knight_plural_lower_lithuanian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:prussian
+		}
+		localization_key = knight_plural_lower_prussian
+	}
+#####################################
+## East Slavic group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:russian
+		}
+		localization_key = knight_plural_lower_russian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:ilmenian
+		}
+		localization_key = knight_plural_lower_ilmenian
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:severian
+				has_culture = culture:volhynian
+			}
+		}
+		localization_key = knight_plural_lower_severian_volhynian
+	}
+#####################################
+## Akan group - to be added
+#####################################
+#####################################
+## Burman group - to be added
+#####################################
+#####################################
+## Central African group - to be added
+#####################################
+#####################################
+## Chinese group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:chinese_group ##Sic, in case someone adds a second culture
+		}
+		localization_key = knight_plural_lower_chinese_group
+	}
+#####################################
+## Dravidian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:tamil
+		}
+		localization_key = knight_plural_lower_tamil
+	}
+	text = {
+		trigger = {
+			has_culture = culture:telugu
+		}
+		localization_key = knight_plural_lower_telugu
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kannada
+		}
+		localization_key = knight_plural_lower_kannada
+	}
+#####################################
+## East African group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:ethiopian
+		}
+		localization_key = knight_plural_lower_ethiopian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nubian
+		}
+		localization_key = knight_plural_lower_nubian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:daju
+		}
+		localization_key = knight_plural_lower_daju
+	}
+#####################################
+## Indo-Aryan group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:bengali
+				has_culture = culture:oriya
+				has_culture = culture:assamese
+				has_culture = culture:gujarati
+				has_culture = culture:rajput
+				has_culture = culture:sindhi
+				has_culture = culture:marathi
+			}
+		}
+		localization_key = knight_plural_lower_indoaryan
+	}
+	text = {
+		trigger = {
+			has_culture = culture:hindustani
+		}
+		localization_key = knight_plural_lower_hindustani
+	}
+	text = {
+		trigger = {
+			has_culture = culture:punjabi
+		}
+		localization_key = knight_plural_lower_punjabi
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kashmiri
+		}
+		localization_key = knight_plural_lower_kashmiri
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sinhala
+		}
+		localization_key = knight_plural_lower_sinhala
+	}
+	text = {
+		trigger = {
+			has_culture = culture:nepali
+		}
+		localization_key = knight_plural_lower_nepali
+	}
+#####################################
+## Mongolic group
+#####################################
+	text = {
+		trigger = {
+			has_culture_group = culture_group:mongolic_group
+		}
+		localization_key = knight_plural_lower_mongolic_group
+	}
+#####################################
+## Sahelian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:songhai
+		}
+		localization_key = knight_plural_lower_songhai
+	}
+#####################################
+## Gaambi group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:serer
+		}
+		localization_key = knight_plural_lower_serer
+	}
+	text = {
+		trigger = {
+			has_culture = culture:wolof
+		}
+		localization_key = knight_plural_lower_wolof
+	}
+#####################################
+## Somalian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:beja
+		}
+		localization_key = knight_plural_lower_beja
+	}
+#####################################
+## Turkish group
+#####################################
+	text = {
+		trigger = {
+			OR = {
+				has_culture = culture:turkish
+				has_culture = culture:cuman
+				has_culture = culture:khazar
+				has_culture = culture:karluk
+				has_culture = culture:uyghur
+				has_culture = culture:yughur
+			}
+		}
+		localization_key = knight_plural_lower_turkish_one
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bolghar
+		}
+		localization_key = knight_plural_lower_bolghar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:bashkir
+		}
+		localization_key = knight_plural_lower_bashkir
+	}
+	text = {
+		trigger = {
+			has_culture = culture:avar
+		}
+		localization_key = knight_plural_lower_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kipchak
+		}
+		localization_key = knight_plural_lower_avar
+	}
+	text = {
+		trigger = {
+			has_culture = culture:kirghiz
+		}
+		localization_key = knight_plural_lower_kirghiz
+	}
+	text = {
+		trigger = {
+			has_culture = culture:chuvash
+		}
+		localization_key = knight_plural_lower_chuvash
+	}
+#####################################
+## Persian group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:persian
+		}
+		localization_key = knight_plural_lower_persian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:sogdian
+		}
+		localization_key = knight_plural_lower_sogdian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tocharian
+		}
+		localization_key = knight_plural_lower_tocharian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:saka
+		}
+		localization_key = knight_plural_lower_saka
+	}
+	text = {
+		trigger = {
+			has_culture = culture:khwarezmian
+		}
+		localization_key = knight_plural_lower_khwarezmian
+	}
+	text = {
+		trigger = {
+			has_culture = culture:tajik
+		}
+		localization_key = knight_plural_lower_tajik
+	}
+	
+#####################################
+## Guinean group
+#####################################
+	text = {
+		trigger = {
+			has_culture = culture:malinke
+		}
+		localization_key = knight_plural_lower_malinke
+	}
+
+#####################################
+## Default Fallback
+#####################################
+	text = {
+		localization_key = knight_plural_lower_default
+		fallback = yes
+	}
+}

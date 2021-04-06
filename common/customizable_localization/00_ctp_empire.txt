@@ -1,0 +1,127 @@
+﻿EmperorMaleArabic = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				root.faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+				AND = {
+					exists = primary_spouse
+					root.primary_spouse.faith = {
+						has_doctrine = tenet_struggle_submission
+					}
+				}
+			}
+		}
+		localization_key = sultan_arabic
+	}
+	text = {
+		fallback = yes
+		localization_key = emperor_default_male_arabic
+	}
+}
+EmperorFemaleArabic = {
+	type = character
+	text = {
+		trigger = {
+			is_landed = yes
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_arabic
+	}
+	text = {
+		trigger = {
+			exists = primary_spouse
+			root.primary_spouse.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultan_female_arabic
+	}
+	text = {
+		fallback = yes
+		localization_key = emperor_default_female_arabic
+	}
+}
+EmpireArabic = {
+	type = character
+	text = {
+		trigger = {
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultanate_arabic
+	}
+	text = {
+		fallback = yes
+		localization_key = empire_default_arabic
+	}
+}
+EmperorMaleTurkish = {
+	type = character
+	text = {
+		trigger = {
+			has_culture = culture:turkish
+			OR = {
+				root.faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+				AND = {
+					exists = primary_spouse
+					root.primary_spouse.faith = {
+						has_doctrine = tenet_struggle_submission
+					}
+				}
+			}
+		}
+		localization_key = sultan_male_turkish_e
+	}
+	text = {
+		fallback = yes
+		localization_key = emperor_default_male_turkish_group_one
+	}
+}
+EmperorFemaleTurkish = {
+	type = character
+	text = {
+		trigger = {
+			has_culture = culture:turkish
+			OR = {
+				root.faith = {
+					has_doctrine = tenet_struggle_submission
+				}
+				AND = {
+					exists = primary_spouse
+					root.primary_spouse.faith = {
+						has_doctrine = tenet_struggle_submission
+					}
+				}
+			}
+		}
+		localization_key = sultan_female_turkish_e
+	}
+	text = {
+		fallback = yes
+		localization_key = emperor_default_female_turkish_group_one
+	}
+}
+EmpireTurkish = {
+	type = character
+	text = {
+		trigger = {
+			has_culture = culture:turkish
+			root.faith = {
+				has_doctrine = tenet_struggle_submission
+			}
+		}
+		localization_key = sultanate_turkish_e
+	}
+	text = {
+		fallback = yes
+		localization_key = empire_default_turkish_group_one
+	}
+}

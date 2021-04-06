@@ -1,0 +1,637 @@
+window = {
+	name = "hired_troop_detail_view"
+	datacontext = "[HiredTroopDetailView.GetHiredTroop]"
+	parentanchor = top|right
+	position = { -610 90 }
+
+	movable = no
+	layer = middle
+
+	using = Window_Background
+	using = Window_Decoration
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		position_x = -610
+		on_start = "[GetVariableSystem.Set( 'hired_troop_detail_view_open', 'true'  )]"
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+		position_x = -580
+		on_start = "[GetVariableSystem.Clear( 'hired_troop_detail_view_open' )]"
+	}
+
+	vbox = {
+		using = Window_Margins
+		set_parent_size_to_minimum = yes
+
+		state = {
+			name = "mercenary_details_refresh"
+			alpha = 0
+			duration = 0.2
+			next = "b"
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = "b"
+			alpha = 1
+			duration = 0.2
+			using = Animation_Curve_Default
+		}
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+			blockoverride "header_text"
+			{
+				text = "[HiredTroop.GetName]"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[HiredTroopDetailView.Close]"
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			margin = { 5 0 }
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 15 15 }
+				margin_bottom = 0
+				spacing = 10
+
+				coa_realm_medium = {
+					datacontext = "[HiredTroop.GetTitle.GetHolder]"
+				}
+
+				vbox = {
+					visible = "[HiredTroop.IsHolyOrder]"
+					layoutpolicy_horizontal = expanding
+
+					text_single = {
+						text = "HIRED_TROOPS_VIEW_HO_NUM_HOLDINGS"
+						layoutpolicy_horizontal = expanding
+					}
+
+					text_single = {
+						text = "HIRED_TROOPS_VIEW_HO_CAPITAL"
+						layoutpolicy_horizontal = expanding
+					}
+
+					text_multi = {
+						text = "HIRED_TROOPS_VIEW_HO_PATRON"
+						layoutpolicy_horizontal = expanding
+						autoresize = yes
+						max_width = 280
+					}
+				}
+
+				vbox = {
+					visible = "[HiredTroop.IsMercenaryCompany]"
+					layoutpolicy_horizontal = expanding
+
+					text_single = {
+						name = "culture_text"
+						layoutpolicy_horizontal = expanding
+						text = "HIRED_TROOPS_VIEW_MC_CULTURE"
+						default_format = "#high"
+						using = Font_Size_Medium
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "HIRED_TROOPS_VIEW_MC_CAPITAL"
+						default_format = "#low"
+					}
+				}
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				margin = { 10 20 }
+				spacing = 0
+
+				using = Background_Inset_Bottom
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					spacing = 5
+					margin_bottom = 5
+
+					background = {
+						using = Background_Area
+						margin = { 10 10 }
+					}
+
+					text_label_left = {
+						name = "strength"
+						layoutpolicy_horizontal = expanding
+						text = "HIRED_TROOPS_STRENGTH"
+						default_format = "#low"
+					}
+
+					hbox = {
+						margin = { 5 5 }
+						spacing = 20
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							spacing = 3
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								icon = {
+									size = { 30 30 }
+									texture = "gfx/interface/icons/icon_soldier.dds"
+								}
+
+								text_single = {
+									name = "soldiers_count"
+									layoutpolicy_horizontal = expanding
+									text = "HIRED_TROOPS_VIEW_LIST_NUMBER_OF_SOLDIERS"
+									default_format = "#high"
+									using = Font_Size_Big
+									align = nobaseline
+								}
+							}
+
+							progressbar_standard = {
+								name = "strength_bar"
+								size = { 200 15 }
+								value = "[HiredTroop.GetSoldiersProgressBarRatio]"
+							}
+						}
+
+						hbox = {
+							spacing = 5
+
+							icon = {
+								texture = "gfx/interface/icons/icon_knight_small.dds"
+								size = { 35 35 }
+							}
+
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+								name = "knights_count"
+								text = "HIRED_TROOPS_VIEW_LIST_NUMBER_OF_KNIGHTS"
+								fontsize_min = 14
+								max_width = 95
+								default_format = "#high"
+								using = Font_Size_Big
+								tooltip = "[HiredTroop.GetKnightsTooltip]"
+								align = nobaseline
+							}
+						}
+					}
+				}
+
+				spacer = {
+					size = { 10 15 }
+				}
+
+				text_label_left = {
+					name = "strength"
+					layoutpolicy_horizontal = expanding
+					text = "HIRED_TROOPS_REGIMENTS"
+					default_format = "#low"
+				}
+
+				spacer = {
+					size = { 10 10 }
+				}
+
+				vbox = {
+					margin = { -10 0 }
+
+					vbox = {
+						margin = { 10 0 }
+
+						fixedgridbox = {
+							visible = "[LessThanOrEqualTo_int32(GetDataModelSize(HiredTroop.GetRegiments), '(int32)4')]"
+							name = "regiments"
+							addcolumn = 185
+							addrow = 115
+							datamodel = "[HiredTroop.GetRegiments]"
+							flipdirection = yes
+							datamodel_wrap = 2
+
+							item = {
+								widget = {
+									size = { 180 100 }
+
+									datacontext = "[HiredTroopRegiment.GetRegiment]"
+
+									widget = {
+										size = { 100% 100% }
+										visible = "[Not(HiredTroopRegiment.IsLevies)]"
+										tooltipwidget = regiment_container_tooltip
+									}
+
+									background = {
+										using = Background_Area
+									}
+
+									background = {
+										name = "image"
+										visible = "[HiredTroopRegiment.IsLevies]"
+										texture = "gfx/interface/illustrations/men_at_arms_big/levies.dds"
+
+										modify_texture = {
+											texture = "gfx/interface/component_tiles/tile_frame_thin_02.dds"
+											spriteType = Corneredtiled
+											spriteborder = { 50 50 }
+											blend_mode = alphamultiply
+											texture_density = 2
+										}
+									}
+
+									background = {
+										name = "image"
+										visible = "[Not(HiredTroopRegiment.IsLevies)]"
+										texture = "[HiredTroopRegiment.GetMenAtArmsType.GetHorizontalImage]"
+
+										modify_texture = {
+											texture = "gfx/interface/component_tiles/tile_frame_thin_02.dds"
+											spriteType = Corneredtiled
+											spriteborder = { 50 50 }
+											blend_mode = alphamultiply
+											texture_density = 2
+										}
+									}
+
+									flowcontainer = {
+										parentanchor = bottom|left
+										direction = vertical
+										margin = { 10 5 }
+										ignoreinvisible = yes
+										spacing = 3
+
+										text_label_left = {
+											visible = "[Not(HiredTroopRegiment.IsLevies)]"
+											text = "[Localize(Concatenate(HiredTroop.GetTitle.GetHolder.Custom('ctpCulture'),HiredTroopRegiment.GetMenAtArmsType.GetNameNoTooltip))]"
+											#text = "[HiredTroopRegiment.GetMenAtArmsType.GetNameNoTooltip]"
+										}
+
+										text_label_left = {
+											visible = "[HiredTroopRegiment.IsLevies]"
+											text = "HIRED_TROOPS_VIEW_LEVY_REGIMENT"
+										}
+
+										flowcontainer = {
+											visible = "[HiredTroopRegiment.IsLevies]"
+											spacing = 3
+
+											icon = {
+												parentanchor = vcenter
+												size = { 25 25 }
+												texture = "gfx/interface/icons/icon_soldier.dds"
+											}
+
+											text_single = {
+												name = "soldiers_label"
+												text = HIRED_TROOPS_VIEW_SOLDIER_COUNT
+												default_format = "#high"
+												using = Font_Size_Medium
+												align = nobaseline
+											}
+										}
+
+										flowcontainer = {
+											visible = "[Not(HiredTroopRegiment.IsLevies)]"
+											spacing = 3
+
+											icon = {
+												size = { 25 25 }
+												texture = "[HiredTroopRegiment.GetMenAtArmsType.GetIcon]"
+											}
+
+											text_single = {
+												name = "soldiers_label"
+												text = HIRED_TROOPS_VIEW_SOLDIER_COUNT
+												default_format = "#high"
+												using = Font_Size_Medium
+												align = nobaseline
+											}
+										}
+
+										progressbar_standard = {
+											name = "strength_bar"
+											size = { 160 10 }
+											value = "[HiredTroopRegiment.GetProgressBarRatio]"
+										}
+									}
+								}
+							}
+						}
+					}
+
+					#### REGIMENTS ####
+					scrollarea = {
+						visible = "[GreaterThan_int32(GetDataModelSize(HiredTroop.GetRegiments), '(int32)4')]"
+						layoutpolicy_horizontal = expanding
+						maximumsize = { -1 310 }
+						autoresizescrollarea = yes
+						scrollbarpolicy_horizontal = always_off
+
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+
+						scrollwidget = {
+							vbox = {
+								name = "regiments_area"
+								layoutpolicy_horizontal = expanding
+								margin = { 10 0 }
+
+								fixedgridbox = {
+									name = "regiments"
+									addcolumn = 185
+									addrow = 115
+									datamodel = "[HiredTroop.GetRegiments]"
+									flipdirection = yes
+									datamodel_wrap = 2
+
+									item = {
+										widget = {
+											size = { 180 100 }
+
+											datacontext = "[HiredTroopRegiment.GetRegiment]"
+
+											widget = {
+												size = { 100% 100% }
+												visible = "[Not(HiredTroopRegiment.IsLevies)]"
+												tooltipwidget = regiment_container_tooltip
+											}
+
+											background = {
+												using = Background_Area
+											}
+
+											background = {
+												name = "image"
+												visible = "[HiredTroopRegiment.IsLevies]"
+												texture = "gfx/interface/illustrations/men_at_arms_big/levies.dds"
+
+												modify_texture = {
+													texture = "gfx/interface/component_tiles/tile_frame_thin_02.dds"
+													spriteType = Corneredtiled
+													spriteborder = { 50 50 }
+													blend_mode = alphamultiply
+													texture_density = 2
+												}
+											}
+
+											background = {
+												name = "image"
+												visible = "[Not(HiredTroopRegiment.IsLevies)]"
+												texture = "[HiredTroopRegiment.GetMenAtArmsType.GetHorizontalImage]"
+
+												modify_texture = {
+													texture = "gfx/interface/component_tiles/tile_frame_thin_02.dds"
+													spriteType = Corneredtiled
+													spriteborder = { 50 50 }
+													blend_mode = alphamultiply
+													texture_density = 2
+												}
+											}
+
+											flowcontainer = {
+												parentanchor = bottom|left
+												direction = vertical
+												margin = { 10 5 }
+												ignoreinvisible = yes
+												spacing = 3
+
+												text_label_left = {
+													visible = "[Not(HiredTroopRegiment.IsLevies)]"
+													text = "[Localize(Concatenate(HiredTroop.GetTitle.GetHolder.Custom('ctpCulture'),HiredTroopRegiment.GetMenAtArmsType.GetNameNoTooltip))]"
+													#text = "[HiredTroopRegiment.GetMenAtArmsType.GetNameNoTooltip]"
+												}
+
+												text_label_left = {
+													visible = "[HiredTroopRegiment.IsLevies]"
+													text = "HIRED_TROOPS_VIEW_LEVY_REGIMENT"
+												}
+
+												flowcontainer = {
+													visible = "[HiredTroopRegiment.IsLevies]"
+													spacing = 3
+
+													icon = {
+														parentanchor = vcenter
+														size = { 25 25 }
+														texture = "gfx/interface/icons/icon_soldier.dds"
+													}
+
+													text_single = {
+														name = "soldiers_label"
+														text = HIRED_TROOPS_VIEW_SOLDIER_COUNT
+														default_format = "#high"
+														using = Font_Size_Medium
+														align = nobaseline
+													}
+												}
+
+												flowcontainer = {
+													visible = "[Not(HiredTroopRegiment.IsLevies)]"
+													spacing = 3
+
+													icon = {
+														size = { 25 25 }
+														texture = "[HiredTroopRegiment.GetMenAtArmsType.GetIcon]"
+													}
+
+													text_single = {
+														name = "soldiers_label"
+														text = HIRED_TROOPS_VIEW_SOLDIER_COUNT
+														default_format = "#high"
+														using = Font_Size_Medium
+														align = nobaseline
+													}
+												}
+
+												progressbar_standard = {
+													name = "strength_bar"
+													size = { 160 10 }
+													value = "[HiredTroopRegiment.GetProgressBarRatio]"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+
+					background = {
+						using = Background_Area
+						margin = { 10 0 }
+					}
+
+					text_label_left = {
+						name = "leader_label"
+						layoutpolicy_horizontal = expanding
+						text = "[SelectLocalization( HiredTroop.IsMercenaryCompany, 'HIRED_TROOPS_VIEW_MC_CAPTAIN_LABEL', 'HIRED_TROOPS_VIEW_HO_GRANDMASTER_LABEL' )]"
+						default_format = "#low"
+					}
+
+					hbox = {
+						name = "leader_area"
+						layoutpolicy_horizontal = expanding
+						margin = { 0 10 }
+
+						portrait_head = {
+							datacontext = "[HiredTroop.GetTitle.GetHolder]"
+						}
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							margin_left = 10
+							margin_right = 5
+
+							text_multi = {
+								name = "leader_name"
+								layoutpolicy_horizontal = expanding
+								autoresize = yes
+								min_width = 230
+								max_width = 230
+								text = "[HiredTroop.GetTitle.GetHolder.GetUIName]"
+								default_format = "#high"
+							}
+
+							spacer = {
+								size = { 5 5 }
+							}
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								skill_icon_label = {
+									name = "martial_skill"
+									datacontext = "[HiredTroop.GetMartialSkillItem]"
+								}
+
+								hbox = {
+									name = "commander_traits"
+									datacontext = "[HiredTroop.GetTitle.GetHolder]"
+									datamodel = "[HiredTroop.GetCommanderTraits]"
+
+									item = {
+										icon_trait = {
+											blockoverride "icon_size"
+											{
+												size = { 40 40 }
+											}
+
+											blockoverride "glow_radius"
+											{
+												glow_radius = 4
+											}
+										}
+									}
+								}
+
+								expand = {}
+							}
+						}
+					}
+				}
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 15 10 }
+				margin_top = 5
+				spacing = 10
+
+				vbox = {
+					name = "hire_area"
+					visible = "[Not(HiredTroop.IsHiredByPlayer)]"
+					spacing = 15
+
+					text_single = {
+						name = "mercenary_hire_info"
+						visible = "[HiredTroop.IsMercenaryCompany]"
+						text = "HIRED_TROOPS_VIEW_MC_HIRE_INFO"
+					}
+
+					text_single = {
+						visible = "[HiredTroop.IsHolyOrder]"
+						name = "holy_order_hire_info"
+						text = "HIRED_TROOPS_VIEW_HO_HIRE_INFO"
+					}
+
+					text_multi = {
+						visible = "[And( HiredTroop.IsHired, HiredTroop.GetHolyOrder.IsPlayerPatron )]"
+						text = "HIRED_TROOPS_HIRED_BY"
+						autoresize = yes
+						max_width = 280
+					}
+
+					button_primary = {
+						name = "hire_button"
+						onclick = "[HiredTroop.Hire]"
+						enabled = "[HiredTroop.CanBeHired]"
+						text = "HIRED_TROOPS_VIEW_HIRE"
+
+						using = tooltip_ne
+						tooltip = "[HiredTroop.GetHireTooltip]"
+					}
+				}
+
+				vbox = {
+					name = "extend_area"
+					visible = "[And(HiredTroop.IsMercenaryCompany, HiredTroop.IsHiredByPlayer)]"
+					spacing = 10
+
+					text_single = {
+						name = "time_left"
+						datacontext = "[HiredTroop.GetMercenaryCompany]"
+						text = "HIRED_TROOPS_VIEW_HIRED_BY_ME"
+					}
+
+					text_single = {
+						name = "hire_info"
+						text = "HIRED_TROOPS_VIEW_MC_HIRE_INFO"
+					}
+
+					button_standard = {
+						datacontext = "[HiredTroop.GetMercenaryCompany]"
+						visible = "[And(MercenaryCompany.IsHiredByLocalPlayer, MercenaryCompany.CanBeRaised)]"
+						tooltip = "RAISE_HIRED_TROOP"
+						onclick = "[RaiseMercenaryCompany(MercenaryCompany.Self)]"
+						text = "RAISE_HIRED_TROOP"
+						enabled = "[And(MercenaryCompany.IsHiredByLocalPlayer, MercenaryCompany.CanBeRaised)]"
+					}
+
+					button_standard = {
+						name = "extend_button"
+						onclick = "[HiredTroop.Extend]"
+						enabled = "[HiredTroop.CanBeExtended]"
+						text = "HIRED_TROOPS_VIEW_MC_EXTEND"
+
+						using = tooltip_ne
+						tooltip = "[HiredTroop.GetExtendTooltip]"
+					}
+				}
+			}
+		}
+	}
+}

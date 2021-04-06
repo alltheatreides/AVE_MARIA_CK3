@@ -1,0 +1,353 @@
+######################################################
+################# MEN-AT-ARMS VIEW ###################
+######################################################
+
+window = {
+	name = "menatarms_view"
+	datacontext = "[MenAtArmsView.GetMaaGuiItem]"
+	datacontext = "[MenAtArmsView.GetMaaGuiItem.GetRegiment]"
+	datacontext = "[Regiment.GetMAAType]"
+
+	size = { 400 200 }
+	parentanchor = top|right
+	position = { -630 170 }
+	movable = no
+	layer = middle
+
+	using = Window_Background_Subwindow
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		position = { -630 170 }
+		on_start = "[GetVariableSystem.Set( 'menatarms_open', 'true'  )]"
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+		position_x = -580
+		on_start = "[GetVariableSystem.Clear( 'menatarms_open' )]"
+	}
+
+	vbox = {
+		set_parent_size_to_minimum = yes
+		margin = { 4 4 }
+
+		state = {
+			name = "menatarms_refresh"
+			alpha = 0.5
+			duration = 0.2
+			next = "b"
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = "b"
+			alpha = 1
+			duration = 0.2
+			using = Animation_Curve_Default
+		}
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "[Localize(Concatenate( Regiment.GetOwner.Custom('ctpCulture'), Regiment.GetNameNoTooltip ))]"
+				#text = "[Regiment.GetNameNoTooltip]"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[MenAtArmsView.Close]"
+
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 0 0 }
+			min_width = 380
+
+			widget = {
+				layoutpolicy_horizontal = expanding
+				size = { 340 200 }
+
+				vbox = {
+					background = {
+						name = "image"
+						datacontext = "[Regiment.GetMAAType]"
+						texture = "[MenAtArmsType.GetHorizontalImage]"
+						fittype = centercrop
+
+						using = Mask_Rough_Edges
+					}
+
+					expand = {}
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						margin_bottom = 5
+						margin_left = 15
+						spacing = 6
+
+						icon = {
+							size = { 40 40 }
+							texture = "[MenAtArmsType.GetIcon]"
+						}
+
+						text_label_left = {
+							text = "[Regiment.BuildCurrentRegimentCountString]"
+							default_format = "#high"
+							using = Font_Size_Big
+							align = nobaseline
+						}
+
+						expand = {}
+
+						text_label_right = {
+							text = "MAA_CURRENT_SIZE"
+							default_format = "#high"
+							using = Font_Size_Big
+							align = nobaseline
+						}
+
+						spacer = {
+							size = {8 0}
+						}
+					}
+				}
+			}
+
+			### Soldiers
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 15 10 }
+				spacing = 3
+
+				background = {
+					using = Background_Area
+					margin = { 5 5 }
+				}
+
+				vbox = {
+					name = "soldiers"
+					layoutpolicy_horizontal = expanding
+					margin = { 5 5 }
+					spacing = 3
+
+					button_primary = {
+						layoutpolicy_horizontal = expanding
+
+						onclick = "[MenAtArmsView.BuyMaa]"
+						enabled = "[MenAtArmsView.CanBuyMaa]"
+						visible = "[NotEqualTo_int32( MAAItem.GetCurrentSize, MAAItem.GetMaxSize )]"
+
+						using = tooltip_ne
+						tooltip = "MAA_INCREASE_SIZE_TOOLTIP"
+
+						hbox = {
+							margin = { 10 0 }
+							spacing = 5
+
+							icon = {
+								texture = "gfx/interface/icons/icon_trend_arrow.dds"
+								framesize = { 22 22 }
+							}
+
+							text_single = {
+								text = "MAA_INCREASE_SIZE"
+								align = nobaseline
+								default_format = "#high"
+							}
+
+							expand = {}
+
+							text_single = {
+								text = "MAA_SIZE_CHANGE"
+								align = nobaseline
+								default_format = "#high"
+							}
+						}
+					}
+
+					text_single = {
+						name = "max_size_text"
+						layoutpolicy_horizontal = expanding
+						visible = "[EqualTo_int32( MAAItem.GetCurrentSize, MAAItem.GetMaxSize )]"
+						margin = { 10 6 }
+
+						using = Background_Area
+
+						text = "MAA_AT_MAX_SIZE"
+					}
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						spacing = 2
+
+						button_standard = {
+							visible = "[GreaterThan_int32(MAAItem.GetCurrentSize, '(int32)1')]"
+							layoutpolicy_horizontal = expanding
+							enabled = "[MenAtArmsView.CanSellMaa]"
+							onclick = "[MenAtArmsView.SellMaa]"
+
+							using = tooltip_ne
+							tooltip = "MAA_DECREASE_SIZE_TOOLTIP"
+
+							hbox = {
+								margin = { 10 0 }
+								spacing = 5
+
+								icon = {
+									texture = "gfx/interface/icons/icon_trend_arrow.dds"
+									framesize = { 22 22 }
+									frame = 2
+								}
+
+								text_single = {
+									text = "MAA_DECREASE_SIZE"
+									align = nobaseline
+								}
+
+								expand = {}
+							}
+						}
+					}
+				}
+
+				button_round  = {
+					enabled = "[MenAtArmsView.CanDestroyMaa]"
+					onclick = "[MenAtArmsView.DestroyMAARegiment]"
+					tooltip = "MAA_DESTROY_TOOLTIP"
+
+					button_cancel = {
+						parentanchor = center
+						alwaystransparent = yes
+					}
+				}
+
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 20 10 }
+				spacing = 2
+
+				### INFO TEXT
+				hbox = {
+					layoutpolicy_horizontal = expanding
+
+					text_single = {
+						visible = "[Not(Regiment.IsAtFullStength)]"
+						text = "MAA_REINFORCING"
+						align = left
+					}
+
+					text_single = {
+						visible = "[And(Regiment.IsAtFullStength, Regiment.IsRaised)]"
+						text = "MAA_RAISED"
+						align = left
+					}
+
+					text_single = {
+						visible = "[And(Regiment.IsAtFullStength, Not( Regiment.IsRaised ) )]"
+						text = "MAA_UNRAISED"
+						align = left
+					}
+
+					expand = {}
+				}
+
+				spacer = {
+					size = { 10 2 }
+				}
+
+				hbox = {
+					spacing = 10
+					layoutpolicy_horizontal = expanding
+
+					divider_light = {
+						layoutpolicy_vertical = expanding
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						visible = "[Not(Regiment.IsAtFullStength)]"
+						text = "MAA_REINFORCEMENT"
+						align = left|nobaseline
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						visible = "[And(Regiment.IsAtFullStength, Regiment.IsRaised)]"
+						text = "MAA_RAISED_MAINTENTANCE"
+						align = left|nobaseline
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						visible = "[And(Regiment.IsAtFullStength, Not( Regiment.IsRaised ) )]"
+						text = "MAA_UNRAISED_MAINTENANCE"
+						align = left|nobaseline
+					}
+				}
+
+				spacer = {
+					size = { 10 2 }
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "MAA_REINFORCEMENT_COST_ENTRY"
+					}
+
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "MAA_MAINTENANCE"
+					}
+				}
+			}
+
+			divider_light = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				spacing = 10
+
+				vbox_maa_stats_numbers = {
+					layoutpolicy_horizontal = expanding
+				}
+
+				hbox_maa_type_text = {
+					layoutpolicy_horizontal = expanding
+				}
+
+				vbox_maa_info = {
+					layoutpolicy_horizontal = expanding
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+
+					text_multi = {
+						margin = { 15 5 }
+						margin_bottom = 10
+						max_width = 390
+						text = "[MenAtArmsType.GetFlavorString]"
+						autoresize = yes
+					}
+
+					expand = {}
+				}
+			}
+		}
+	}
+}
+
