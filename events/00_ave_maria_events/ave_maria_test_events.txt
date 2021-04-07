@@ -329,15 +329,584 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		# province:4599 = {
-			# set_holding_type = pastoral_holding
-		# }
-		# change_government = clan_government
-		every_held_title = {
-			title_province = {
-				set_holding_type = pastoral_holding
-			}
+		#remove_character_modifier = islamic_empire_salary_cost_modifier_10
+		save_scope_as = caliph
+
+		set_variable = {
+			name = islamic_empire_regiment_cost
+			value = 0
 		}
+
+		every_vassal = {
+			limit = {
+				primary_title = {
+					has_variable = islamic_empire_regiment_salary
+				}
+			}
+			primary_title = {
+				save_scope_as = regiment_title
+				scope:caliph = {
+					change_variable = {
+						name = islamic_empire_regiment_cost
+						add = prev.var:islamic_empire_regiment_salary
+					}
+				}
+			}
+			
+		}
+
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 1	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_1		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 2	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_2		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 3	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_3		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 4	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_4		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 5	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_5		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 6	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_6		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 7	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_7		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 8	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_8		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 9	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_9		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 10	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_10		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 11	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_11		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 12	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_12		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 13	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_13		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 14	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_14		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 15	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_15		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 16	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_16		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 17	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_17		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 18	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_18		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 19	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_19		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 20	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_20		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 21	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_21		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 22	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_22		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 23	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_23		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 24	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_24		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 25	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_25		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 26	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_26		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 27	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_27		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 28	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_28		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 29	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_29		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 30	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_30		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 31	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_31		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 32	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_32		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 33	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_33		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 34	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_34		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 35	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_35		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 36	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_36		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 37	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_37		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 38	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_38		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 39	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_39		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 40	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_40		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 41	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_41		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 42	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_42		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 43	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_43		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 44	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_44		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 45	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_45		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 46	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_46		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 47	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_47		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 48	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_48		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 49	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_49		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 50	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_50		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 51	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_51		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 52	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_52		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 53	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_53		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 54	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_54		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 55	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_55		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 56	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_56		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 57	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_57		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 58	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_58		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 59	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_59		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 60	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_60		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 61	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_61		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 62	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_62		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 63	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_63		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 64	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_64		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 65	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_65		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 66	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_66		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 67	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_67		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 68	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_68		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 69	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_69		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 70	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_70		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 71	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_71		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 72	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_72		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 73	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_73		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 74	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_74		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 75	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_75		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 76	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_76		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 77	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_77		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 78	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_78		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 79	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_79		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 80	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_80		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 81	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_81		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 82	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_82		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 83	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_83		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 84	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_84		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 85	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_85		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 86	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_86		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 87	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_87		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 88	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_88		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 89	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_89		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 90	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_90		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 91	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_91		
+		}			
+		if = {			
+			limit = {		
+				var:islamic_empire_regiment_cost = 92	
+			}		
+			add_character_modifier = islamic_empire_salary_cost_modifier_92		
+		}			
 	}
 	
 }

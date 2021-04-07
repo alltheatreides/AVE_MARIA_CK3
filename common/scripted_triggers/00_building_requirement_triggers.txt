@@ -4,14 +4,18 @@
 
 building_requirement_tribal = {
 	scope:holder = {
-		has_government = tribal_government
+		#has_government = tribal_government
+		always = yes
 	}
 }
 
 building_requirement_tribal_holding_in_county = {
 	county = {
 		any_county_province = {
-			has_holding_type = tribal_holding
+			OR = {
+				has_holding_type = tribal_holding
+				has_holding_type = pastoral_holding
+			}			
 		}
 	}
 }

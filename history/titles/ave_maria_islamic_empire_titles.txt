@@ -92,5 +92,94 @@ d_regiment_abid = {
 	1066.1.1 = {
 		government = islamic_empire_regiment_government
 		holder = 111169
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_regiment_size
+				value = 10
+			}
+			set_variable = {
+				name = islamic_empire_regiment_salary
+				value = 1
+			}
+			set_variable = {
+				name = islamic_empire_regiment_honors
+				value = 1
+			}
+			set_variable = {
+				name = abid_regiment
+				value = yes
+			}
+		}
+	}
+}
+
+d_kutama = {
+	# Fatimids rule Egypt
+	969.7.1 = {
+		liege = "e_egypt"
+		de_jure_liege = "e_egypt"
+		government = clan_government
+		# succession_laws = {
+		# 	islamic_empire_amir_succession_law
+		# }
+	}
+	1066.1.1 = {
+		government = clan_government
+		holder = 111170
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_regiment_size
+				value = 2
+			}			
+			set_variable = {
+				name = islamic_empire_regiment_salary
+				value = 5
+			}
+			set_variable = {
+				name = islamic_empire_regiment_honors
+				value = 5
+			}
+			set_variable = {
+				name = berber_regiment
+				value = yes
+			}
+		}
+	}
+}
+
+d_regiment_ghilman_turks = {
+	# Fatimids rule Egypt
+	969.7.1 = {
+		liege = "e_egypt"
+		de_jure_liege = "e_egypt"
+		government = islamic_empire_regiment_government
+		succession_laws = {
+			islamic_empire_amir_succession_law
+		}
+	}
+	1066.1.1 = {
+		government = islamic_empire_regiment_government
+		holder = 111171
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_regiment_size
+				value = 5
+			}
+			set_variable = {
+				name = islamic_empire_regiment_salary
+				value = 4
+			}
+			set_variable = {
+				name = islamic_empire_regiment_honors
+				value = 3
+			}
+			set_variable = {
+				name = turkish_ghulam_regiment
+				value = yes
+			}
+		}
 	}
 }

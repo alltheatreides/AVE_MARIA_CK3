@@ -30,6 +30,17 @@ islamic_empire_asabiyya_monthly = {
 				}
 			}
 		}
-		subtract = 0.5
+		if = {
+			limit = {
+				var:islamic_empire_asabiyya > 0
+			}
+			subtract = 0.5
+		}
+		if = {
+			limit = {
+				var:islamic_empire_asabiyya <= 0
+			}
+			
+		}
 	}
 }

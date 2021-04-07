@@ -96,7 +96,9 @@ theocracy_government = {
 }
 
 clan_government = {
-	primary_holding = castle_holding
+	regiments_prestige_as_gold = yes
+	supply_limit_mult_for_others = -0.5
+	primary_holding = pastoral_holding
 	valid_holdings = { church_holding city_holding metropolis_constantinople_holding sparsly_populated_holding pastoral_holding }
 	primary_culture_groups = { arabic_group iranian_group }
 	primary_cultures = { turkish }
@@ -112,10 +114,20 @@ clan_government = {
 	always_use_patronym = yes
 	dynasty_named_realms = yes
 
+	character_modifier = {
+		title_creation_cost_mult = -0.5
+		army_maintenance_mult = -0.5
+
+		ai_war_chance = 0.25
+	}
+	
+	flag = government_can_raid_rule
+
 	vassal_contract = { 
 		#clan_government_obligations 
 		islamic_empire_muslim_tax 
 		islamic_empire_iqta
+		islamic_empire_non_muslim_tax
 	}
 	
 	opinion_of_liege = {

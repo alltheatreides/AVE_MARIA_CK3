@@ -1609,6 +1609,124 @@ am_islamic_empire_has_asabiyya = {
 	}
 }
 
+am_institutions_islamic_empire_can_see_fatimid_army_factions = {
+	scope = character
+
+	is_shown = {
+		exists = this
+		OR = {
+			primary_title = {
+				this = title:e_egypt
+			}
+			any_liege_or_above = {
+				primary_title = {
+					this = title:e_egypt
+				}
+			}
+		}
+	}
+}
+
+am_institutions_islamic_empire_fatimid_get_army_leaders = {
+	scope = character
+
+	effect = {
+		if = {
+			limit = {
+				root = {
+					primary_title = {
+						this = title:e_egypt
+					}
+				}				
+			}
+			title:e_egypt.holder = {
+				## Clear variable always before
+				clear_variable_list = list_fatimid_army_leaders
+
+				every_vassal = {
+					limit = {
+						OR = {
+							has_government = clan_government
+							has_government = islamic_empire_regiment_government
+						}
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_fatimid_army_leaders
+							target = prev
+						}
+					}					
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				root = {
+					NOT = {
+						primary_title = {
+							this = title:e_egypt
+						}
+					}	
+					any_liege_or_above = {
+						primary_title = {
+							this = title:e_egypt
+						}
+					}				
+				}
+			}
+			title:e_egypt.holder = {
+				## Clear variable always before
+				clear_variable_list = list_fatimid_army_leaders
+
+				every_vassal = {
+					limit = {
+						OR = {
+							has_government = clan_government
+							has_government = islamic_empire_regiment_government
+						}
+					}
+					root = {
+						add_to_variable_list = {
+							name = list_fatimid_army_leaders
+							target = prev
+						}
+					}					
+				}
+			}	
+		}
+	}
+}
+
+am_institutions_islamic_empire_fatimid_faction_increase_size = {
+	scope = character
+
+	effect = {
+		primary_title = {
+			if = {
+				limit = {
+					NOT = {
+						has_variable = var:islamic_empire_regiment_size
+					}
+				}
+				set_variable = {
+					name = islamic_empire_regiment_size
+					value = 100
+				}
+			}
+			if = {
+				limit = {
+					has_variable = var:islamic_empire_regiment_size
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size
+					add = 100
+				}
+			}
+		}
+	}
+}
+
 
 
 #############################################

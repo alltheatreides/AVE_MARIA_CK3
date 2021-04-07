@@ -936,6 +936,18 @@
 			culture:egyptian = {
 				add_innovation = innovation_egyptian_mamluk
 			}
+
+			create_alliance = {
+				target = character:111170
+				allied_through_owner = character:111170
+				allied_through_target = character:111170
+			}
+			character:111170 = { # This opinion modifier controls the interaction, and is removed when breaking the alliance in any way (though on_actions)
+				add_opinion = {
+					modifier = perk_negotiated_alliance_opinion
+					target = character:3096
+				}
+			}
 			
 			## AVE MARIA
 			spawn_army = {

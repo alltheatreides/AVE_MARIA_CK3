@@ -1066,6 +1066,15 @@
 	1066.1.1 = {
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 15 }
+
+			add_character_modifier = {
+				modifier = islamic_empire_newly_appointed_amir
+				days = 730
+			}
+			trigger_event = {
+				id = ave_maria_amir_events.0001
+				days = 731
+			}
 		}
 	}
 }
@@ -1156,7 +1165,56 @@
 	trait = "ambitious"
 	trait = "brave"
 	trait = "veteran_2"
-	trait = "slave"
+	trait = "ghulam"
+	1032.1.1 = {
+		birth = "1032.1.1"
+	}	
+
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
+}
+
+## Invention - berber time traveller again
+111170 = {
+	## 
+	name = "invention_berber"
+	martial = 9
+	diplomacy = 6
+	intrigue = 7
+	stewardship = 6
+	religion = "ismaili"
+	culture  = "butr"
+	trait = "education_martial_3"
+	trait = "brave"
+	trait = "veteran_2"
+	1032.1.1 = {
+		birth = "1032.1.1"
+	}	
+
+	1066.1.1 = {
+		effect = {
+			set_variable = { name = de_re_militari_combat_experience value = 15 }
+		}
+	}
+}
+
+## Invention -Yet another time traveller
+111171 = {
+	## 
+	name = "invention_turkish_ghulam"
+	martial = 9
+	diplomacy = 6
+	intrigue = 7
+	stewardship = 6
+	religion = "ismaili"
+	culture  = "turkish"
+	trait = "education_martial_3"
+	trait = "brave"
+	trait = "veteran_2"
+	trait = "ghulam"
 	1032.1.1 = {
 		birth = "1032.1.1"
 	}	
