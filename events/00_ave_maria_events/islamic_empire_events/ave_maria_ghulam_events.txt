@@ -16,7 +16,7 @@ namespace = ave_maria_ghulam_events
 
 # TABLE OF CONTENT:
 
-
+## Recruit boys
 ave_maria_ghulam_events.0001 = {
 	type = character_event
 	title = ave_maria_ghulam_events.0001.title
@@ -133,3 +133,135 @@ ave_maria_ghulam_events.0001 = {
 	}
 }
 
+## Army Interface - Increase Salary
+ave_maria_ghulam_events.0002 = {
+	type = character_event
+	title = ave_maria_ghulam_events.0002.title
+	desc = ave_maria_ghulam_events.0002.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader
+		animation = idle
+	}
+
+	immediate = {
+
+	}
+
+
+	option = {
+		name = ave_maria_ghulam_events.0002.a
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_title = {
+			clear_saved_scope = regiment_title
+		}
+		
+		
+	}
+
+	option = {
+		name = ave_maria_ghulam_events.0002.b
+		scope:regiment_leader = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					subtract = 1
+				}
+			}
+			clear_saved_scope = regiment_leader
+		}		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_title = {
+			clear_saved_scope = regiment_title
+		}
+	}
+}
+
+## Army Interface - Decrease Salary
+ave_maria_ghulam_events.0003 = {
+	type = character_event
+	title = ave_maria_ghulam_events.0003.title
+	desc = ave_maria_ghulam_events.0003.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader
+		animation = idle
+	}
+
+	immediate = {
+
+	}
+
+	option = {
+		name = ave_maria_ghulam_events.0003.a
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_title = {
+			clear_saved_scope = regiment_title
+		}
+		
+	}
+
+	option = {
+		name = ave_maria_ghulam_events.0003.b
+		scope:regiment_leader = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					add = 1
+				}
+			}
+			clear_saved_scope = regiment_leader
+		}		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_title = {
+			clear_saved_scope = regiment_title
+		}
+	}
+}
+
+ave_maria_ghulam_events.0004 = {
+	hidden = yes
+	
+	immediate = {
+		scope:regiment_leader = {
+			clear_saved_scope = regiment_leader
+		}
+		scope:regiment_title = {
+			clear_saved_scope = regiment_title
+		}
+	}
+
+}
