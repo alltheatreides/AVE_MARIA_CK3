@@ -329,9 +329,47 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		title:d_regiment_ghilman_turks.holder = {
-			add_character_modifier = islamic_empire_salary
-		}	
+		create_character = {
+							age = 25
+							gender_female_chance = 0
+							#location = this.capital_province
+							faith = faith:ismaili
+							employer = this
+							culture = this.culture
+							random_traits_list = {
+								count = 2
+								calm = {}
+								brave = {}
+								gregarious = {}
+								ambitious = {}
+								stubborn = {}
+								arrogant = {}
+							}
+							random_traits_list = {
+								count = 1
+								education_martial_3 = {}
+								education_martial_4 = {}
+							}
+							random_traits_list = {
+								count = 2
+								brave = {}
+								thorough = {}
+							}
+							martial = {
+								min_template_decent_skill
+								max_template_decent_skill
+							}
+							prowess = { 8 12 }
+							after_creation = {
+								add_random_hexaco_personality_trait = { WHO = this }
+							
+								#Chance of receiving an extra commander trait
+								random = {
+									chance = 25
+									give_random_commander_trait_effect = yes
+								}
+							}
+						}
 	}
 	
 }

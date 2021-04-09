@@ -43,4 +43,31 @@ islamic_empire_asabiyya_monthly = {
 			
 		}
 	}
+
+	## If you directly control holy city, high asabiyya
+	if = {
+		limit = {
+			OR = {
+				this = c_mecca
+				this = c_medina
+			}
+			
+			holder = {
+				religion = religion:islam_religion
+				has_primary_title = prev
+			}
+		}
+		if = {
+			limit = {
+				var:islamic_empire_asabiyya <= 100
+			}
+			add = 0.5
+		}
+		if = {
+			limit = {
+				var:islamic_empire_asabiyya > 100
+			}
+
+		}
+	}
 }

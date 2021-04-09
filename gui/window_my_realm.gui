@@ -747,18 +747,13 @@ window = {
 					hbox = {
 						name = "government_filters_container"
 						margin = { 0 7 }
-
-						hbox = {
-							name = "government_filters"
-							datamodel = "[MyRealmWindow.GetGovernmentTypeHeaders]"
-							visible = "[LessThan_int32(GetDataModelSize(MyRealmWindow.GetGovernmentTypeHeaders), '(int32)3')]"
 							spacing = 5
-							layoutpolicy_horizontal = expanding
 
 							button_standard_clean = {
 								name = "all_governments"
 								size = { 60 33 }
 								default_format = "#low"
+							layoutpolicy_vertical = expanding
 
 								text = "MRW_GOVERNMENT_FILTER_ALL"
 								tooltip = "MRW_GOVERNMENT_FILTER_ALL_TT"
@@ -766,6 +761,13 @@ window = {
 								down = "[Not(MyRealmWindow.HasGovernmentTypeFilter)]"
 								onclick = "[MyRealmWindow.ResetGovernmentTypeFilter]"
 							}
+
+						hbox = {
+							name = "government_filters"
+							datamodel = "[MyRealmWindow.GetGovernmentTypeHeaders]"
+							visible = "[LessThan_int32(GetDataModelSize(MyRealmWindow.GetGovernmentTypeHeaders), '(int32)3')]"
+							spacing = 5
+							layoutpolicy_horizontal = expanding
 
 							item = {
 								button_standard_clean = {
@@ -783,24 +785,13 @@ window = {
 							}
 						}
 
-						hbox = {
+						dynamicgridbox = {
 							name = "small_government_filters"
 							datamodel = "[MyRealmWindow.GetGovernmentTypeHeaders]"
 							visible = "[GreaterThanOrEqualTo_int32(GetDataModelSize(MyRealmWindow.GetGovernmentTypeHeaders), '(int32)3')]"
-							spacing = 5
+							flipdirection = yes
+							datamodel_wrap = 4
 							layoutpolicy_horizontal = expanding
-
-							button_standard_clean = {
-								name = "all_governments"
-								size = { 60 33 }
-								default_format = "#low"
-
-								text = "MRW_GOVERNMENT_FILTER_ALL"
-								tooltip = "MRW_GOVERNMENT_FILTER_ALL_TT"
-								using = tooltip_above
-								down = "[Not(MyRealmWindow.HasGovernmentTypeFilter)]"
-								onclick = "[MyRealmWindow.ResetGovernmentTypeFilter]"
-							}
 
 							item = {
 								button_standard_clean = {
