@@ -9,12 +9,12 @@
 
 # Written by Conchodebar
 
-namespace = purple_born
-namespace = ave_maria_roman_administration_imperial_expedition_events
+namespace = ave_maria_roman_administration_purple_born_events
 
-porphyrogennetos = {
+## Initial event triggered from on_birth on_action
+ave_maria_roman_administration_purple_born_events.1 = {
 	type = character_event
-	title = purple_born.1.title
+	title = ave_maria_roman_administration_purple_born_events.1.title
 	background = bedchamber
 	theme = pregnancy
 
@@ -26,18 +26,34 @@ porphyrogennetos = {
 	right_portrait = {
 		character = scope:child
 	}
+
+	desc = {
+		first_valid = {
 	
-	option = {
-		name = purple_born.1.a
-		custom_tooltip = purple_born.1.a.tt
-		trigger_event = {
-			days = 7
-			id = purple_born.2
+			triggered_desc = { #male
+				trigger = { scope:child = { is_male = yes } }
+				desc = ave_maria_roman_administration_purple_born_events.1.desc.1
+			}
+		
+			triggered_desc = { #Female
+				trigger = { scope:child = { is_female = yes } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.1.desc.2
+			}
 		}
 	}
 	
 	option = {
-		name = purple_born.1.b
+		name = ave_maria_roman_administration_purple_born_events.1.a
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.1.a.tt
+		trigger_event = {
+			days = 7
+			id = ave_maria_roman_administration_purple_born_events.2
+		}
+	}
+	
+	option = {
+		name = ave_maria_roman_administration_purple_born_events.1.b
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
 		
 		add_prestige = major_prestige_loss
@@ -63,24 +79,11 @@ porphyrogennetos = {
 		
 	}
 
-	desc = {
-		first_valid = {
 	
-			triggered_desc = { #male
-				trigger = { scope:child = { is_male = yes } }
-				desc = purple_born.1.desc.1
-			}
-		
-			triggered_desc = { #Female
-				trigger = { scope:child = { is_female = yes } }
-				
-				desc = purple_born.1.desc.2
-			}
-		}
-	}
 }
-	
-purple_born.2 = {
+
+## Hidden event to assign flags
+ave_maria_roman_administration_purple_born_events.2 = {
 	type = character_event
 	hidden = yes
 	
@@ -88,35 +91,37 @@ purple_born.2 = {
 		if = {
 			limit = {
 				scope:child = { is_female = yes } 
-				}
+			}
 			
 			random_list = { #Insult female child, chance higher if primary heir is female
-				10 = { scope:child = { add_character_flag = child_gender_insulted }
-						trigger_event = { id = purple_born.3 }
-						modifier = {
-							add = 30
-							scope:child = { is_primary_heir_of = yes }
-						}	
+
+				10 = {
+					scope:child = { add_character_flag = child_gender_insulted days = 75 }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					modifier = {
+						add = 30
+						scope:child = { is_primary_heir_of = root }
+					}	
 				}
 				
 				45 = { #nothing
-					trigger_event = { id = purple_born.3 }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
 				}
 				
 				60 = { #Basileus has low popularity or legitimacy
-					trigger_event = { id = purple_born.3 }
-					scope:child = { add_character_flag = low_popularity_or_legitimacy }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					scope:child = { add_character_flag = low_popularity_or_legitimacy days = 75 }
 					trigger = {
-							OR = {
-								var:roman_administration_popularity <= 30
-								var:roman_administration_legitimacy <= 50
-							}
+						OR = {
+							var:roman_administration_popularity <= 30
+							var:roman_administration_legitimacy <= 50
+						}
 					}
 				}
 			
 				40 = { #Ugly kid
-					trigger_event = { id = purple_born.3 } 
-					scope:child = { add_character_flag = child_appearence_insulted }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
 					trigger = { 
 						scope:child = {
 							OR = {
@@ -138,18 +143,18 @@ purple_born.2 = {
 			
 		else_if = {
 			limit = { 
-				scope:child = { is_male = yes } 
-				}
+				scope:child = { is_male = yes }
+			}
 	
 			random_list = {
 
 				60 = { #Normal outcome
-					trigger_event = { id = purple_born.4 } 
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 }
 				}
 					
 				70 = { #Basileus has low popularity or legitimacy
-					trigger_event = { id = purple_born.4 }
-					scope:child = { add_character_flag = low_popularity_or_legitimacy }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 }
+					scope:child = { add_character_flag = low_popularity_or_legitimacy days = 75 }
 					trigger = {
 						OR = {
 							var:roman_administration_popularity <= 30
@@ -159,9 +164,9 @@ purple_born.2 = {
 				}
 				
 				40 = { #Ugly kid
-					trigger_event = { id = purple_born.4 } 
-					scope:child = { add_character_flag = child_appearence_insulted }
-					trigger = { 
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 } 
+					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
+					trigger = {
 						scope:child = {
 							OR = {
 								has_trait = dwarf
@@ -176,18 +181,17 @@ purple_born.2 = {
 							}
 						}
 					}
-				}
-
-				
+				}				
 			}
+
 		}
 	}
 }
 
-
-purple_born.3 = {
+## Female child event
+ave_maria_roman_administration_purple_born_events.3 = {
 	type = character_event
-	title = purple_born.3.title
+	title = ave_maria_roman_administration_purple_born_events.3.title
 	theme = crown
 	
 	override_background = {
@@ -202,10 +206,44 @@ purple_born.3 = {
 	right_portrait = {
 		character = scope:child
 	}
+
+	desc = {
+		first_valid = {
+	
+			triggered_desc = { #Normal outcome
+				trigger = {
+					NOR = {
+						scope:child = { has_character_flag = child_gender_insulted }
+						scope:child = { has_character_flag = child_appearence_insulted }
+						scope:child = { has_character_flag = low_popularity_or_legitimacy }
+					}
+				}
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.1
+			}
+		
+			triggered_desc = { #Female
+				trigger = { scope:child = { has_character_flag = child_gender_insulted } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.2
+			}
+
+			triggered_desc = { #Ugly kid
+				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
+			
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.3
+			}
+			
+			triggered_desc = { #Insults if ruler has low popularity or legitimacy
+				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.2
+			}
+		}
+	}
 	
 	option = {	#Basic response, As is customary
-		name = purple_born.3.a
-		custom_tooltip = purple_born.3.a.tt
+		name = ave_maria_roman_administration_purple_born_events.3.a
+		#custom_tooltip = ave_maria_roman_administration_purple_born_events.3.a.tt
 		
 		trigger = {
 			NOR = {
@@ -222,15 +260,16 @@ purple_born.3 = {
 			}	
 		}
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted
-						remove_character_flag = child_gender_insulted
-					}	
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}	
 	}
 	
 	option = {	#Heard obscenities, doesnt react
-		name = purple_born.3.b
-		custom_tooltip = purple_born.3.b.tt
+		name = ave_maria_roman_administration_purple_born_events.3.b
+		#custom_tooltip = ave_maria_roman_administration_purple_born_events.3.b.tt
 		
 		trigger = {
 			OR = {
@@ -242,7 +281,9 @@ purple_born.3 = {
 				scope:child = { has_character_flag = low_popularity_or_legitimacy }
 			}
 		}
+
 		add_prestige = minor_prestige_loss		
+
 		stress_impact = {
 			wrathful = major_stress_impact_gain
 			reckless = medium_stress_impact_gain
@@ -251,14 +292,15 @@ purple_born.3 = {
 			vengeful = major_stress_impact_gain
 		}
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted
-						remove_character_flag = child_gender_insulted
-					}	
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}	
 	}
 	
 	option = {	#Heard obscenities, reacts
-		name = purple_born.3.c
+		name = ave_maria_roman_administration_purple_born_events.3.c
 		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
 
 		trigger = {
@@ -301,15 +343,16 @@ purple_born.3 = {
 	
 		}	
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted
-						remove_character_flag = child_gender_insulted
-					}			
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}			
 	}
 	
 	option = {	#Heard obscenities due to low popularity, time to leave quietly
-		name = purple_born.4.e
-		custom_tooltip = purple_born.4.e.tt
+		name = ave_maria_roman_administration_purple_born_events.4.e
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.e.tt
 		
 		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy }}
 		
@@ -323,17 +366,18 @@ purple_born.3 = {
 
 		add_prestige = minor_prestige_loss		
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted
-						remove_character_flag = child_gender_insulted
-					}		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}		
 	}
 	
 	option = {	#Heard obscenities due to low popularity, reacts harshly. nika style
-		name = purple_born.4.f
+		name = ave_maria_roman_administration_purple_born_events.4.f
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
 
-		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy }}	
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }	
 		
 		stress_impact = {
 			craven = major_stress_impact_gain
@@ -370,53 +414,21 @@ purple_born.3 = {
 			}
 		}
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted
-						remove_character_flag = child_gender_insulted
-					}
-		
-	}
-	
-	desc = {
-		first_valid = {
-	
-			triggered_desc = { #Normal outcome
-				trigger = {
-					NOR = {
-						scope:child = { has_character_flag = child_gender_insulted }
-						scope:child = { has_character_flag = child_appearence_insulted }
-						scope:child = { has_character_flag = low_popularity_or_legitimacy }
-					}
-				}
-				desc = purple_born.3.desc.1
-			}
-		
-			triggered_desc = { #Female
-				trigger = { scope:child = { has_character_flag = child_gender_insulted } }
-				
-				desc = purple_born.3.desc.2
-			}
-
-			triggered_desc = { #Ugly kid
-				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
-			
-				desc = purple_born.3.desc.3
-			}
-			
-			triggered_desc = { #Insults if ruler has low popularity or legitimacy
-				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
-				
-				desc = purple_born.4.desc.2
-			}
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
 		}
+		
 	}
+	
+	
 }
 
-
-
-purple_born.4 = {
+## Male child event
+ave_maria_roman_administration_purple_born_events.4 = {
 	type = character_event
-	title = purple_born.4.title
+	title = ave_maria_roman_administration_purple_born_events.4.title
 	theme = crown
 	
 	override_background = {
@@ -431,15 +443,42 @@ purple_born.4 = {
 	right_portrait = {
 		character = scope:child
 	}
+
+	desc = {
+		first_valid = {
+	
+			triggered_desc = { #Normal outcome
+				trigger = {
+					NOR = {
+						scope:child = { has_character_flag = child_appearence_insulted }
+						scope:child = { has_character_flag = low_popularity_or_legitimacy }
+					}
+				}
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.1
+			}
+		
+			triggered_desc = { #Insults if ruler has low popularity or legitimacy
+				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.2
+			}
+
+			triggered_desc = { #Ugly kid
+				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
+			
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.3
+			}
+		}
+	}
 	
 	option = {	# We must host a race in his honour
-		name = purple_born.4.a
-		custom_tooltip = purple_born.4.a.tt
+		name = ave_maria_roman_administration_purple_born_events.4.a
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.a.tt
 		
 		trigger_event = { 
-				days = 1
-				id = ave_maria_roman_administration_imperial_expedition_events.0007 
-			}
+			days = 1
+			id = ave_maria_roman_administration_imperial_expedition_events.0007 
+		}
 		
 		trigger = {
 			NOR = {
@@ -463,13 +502,14 @@ purple_born.4 = {
 			}
 		}
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-					}	
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}	
 	}
 	
 	option = {	#Can the treasury bear such an expense? 
-		name = purple_born.4.b
+		name = ave_maria_roman_administration_purple_born_events.4.b
 		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
 		
 		trigger = {
@@ -490,15 +530,16 @@ purple_born.4 = {
 			add = -20
 		}
 		add_prestige = major_prestige_loss
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-					}		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}		
 		
 	}
 
 	option = {	#Heard obscenities, doesnt react
-		name = purple_born.4.c
-		custom_tooltip = purple_born.4.c.tt
+		name = ave_maria_roman_administration_purple_born_events.4.c
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.c.tt
 		
 		trigger = { scope:child = { has_character_flag = child_appearence_insulted }
 				NOT = {
@@ -516,19 +557,19 @@ purple_born.4 = {
 		
 		add_prestige = minor_prestige_loss
 		
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-						}
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
 	}
 	
 	option = {	#Heard obscenities, reacts
-		name = purple_born.4.d
-		custom_tooltip = purple_born.4.d.tt
+		name = ave_maria_roman_administration_purple_born_events.4.d
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.d.tt
 
-		trigger = { scope:child = { has_character_flag = child_appearence_insulted }
-				NOT = {
-					scope:child = { has_character_flag = low_popularity_or_legitimacy }
-			}
+		trigger = {
+			scope:child = { has_character_flag = child_appearence_insulted }
+			NOT = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
 		}
 		
 		stress_impact = {
@@ -561,17 +602,18 @@ purple_born.4 = {
 		add_prestige = major_prestige_loss
 
 
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-					}
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
 		
 	}
 	
 	option = {	#Heard obscenities due to low popularity, time to leave quietly
-		name = purple_born.4.e
-		custom_tooltip = purple_born.4.e.tt
+		name = ave_maria_roman_administration_purple_born_events.4.e
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.e.tt
 		
-		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy }}
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
 		
 		stress_impact = {
 			wrathful = major_stress_impact_gain
@@ -582,16 +624,17 @@ purple_born.4 = {
 		}
 		
 		add_prestige = minor_prestige_loss
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-					}
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
 	}
 	
 	option = {	#Heard obscenities due to low popularity, reacts harshly. nika style
-		name = purple_born.4.f
-		custom_tooltip = purple_born.4.f.tt
+		name = ave_maria_roman_administration_purple_born_events.4.f
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.f.tt
 
-		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy }}	
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }	
 		
 		stress_impact = {
 			craven = major_stress_impact_gain
@@ -628,38 +671,14 @@ purple_born.4 = {
 				years = 2
 			}
 		}
-		scope:child = { remove_character_flag = low_popularity_or_legitimacy
-						remove_character_flag = child_appearence_insulted	
-					}
-		
-	}
-	
-	desc = {
-		first_valid = {
-	
-			triggered_desc = { #Normal outcome
-				trigger = {
-					NOR = {
-						scope:child = { has_character_flag = child_appearence_insulted }
-						scope:child = { has_character_flag = low_popularity_or_legitimacy }
-					}
-				}
-				desc = purple_born.4.desc.1
-			}
-		
-			triggered_desc = { #Insults if ruler has low popularity or legitimacy
-				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
-				
-				desc = purple_born.4.desc.2
-			}
-
-			triggered_desc = { #Ugly kid
-				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
-			
-				desc = purple_born.4.desc.3
-			}
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
 		}
+		
 	}
+	
+	
 }	
 	
 	
