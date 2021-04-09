@@ -1,6 +1,6 @@
 ﻿#Events for birth on actions
 
-namespace = birth
+namespace = birth 
 
 #All events marked with "BIRTH" are events announcing the birth
 
@@ -2769,7 +2769,32 @@ birth.8011 = {
 		}
 	}
 
-	immediate = { add_trait = born_in_the_purple }
+	immediate = { 
+		add_trait = born_in_the_purple
+		scope:father = { 
+			if = {
+				OR = {
+					has_title = title:e_byzantium	#Must be the current emperor.
+					has_title = title:e_roman_empire	#Or the other emperor.
+				}
+				capital_county = title:c_byzantion	#Must rule from the Bucoleon Palace.
+			}
+			trigger_event = ave_maria_roman_administration_purple_born_events.1  
+		}
+		scope:mother = { 
+			if = {
+				OR = {
+					has_title = title:e_byzantium	#Must be the current emperor.
+					has_title = title:e_roman_empire	#Or the other emperor.
+				}
+				capital_county = title:c_byzantion	#Must rule from the Bucoleon Palace.
+			}
+			trigger_event = ave_maria_roman_administration_purple_born_events.1 
+
+		}
+				
+	}
+
 }
 
 

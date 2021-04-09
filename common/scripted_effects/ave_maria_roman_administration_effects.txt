@@ -1202,7 +1202,7 @@ roman_administration_accession_to_basileus_effect = {
 		resolve_title_and_vassal_change = scope:change	
 	}
 	
-	## Removing ducal claim to avoid AI usurpation
+	## Removing ducal claim to avoid AI usurpation ## deprecated 06/04/21 removed ability to revoke titles for roman emperors
 	every_claim = {
 		limit = {
 			tier = tier_duchy
@@ -1211,6 +1211,23 @@ roman_administration_accession_to_basileus_effect = {
 			remove_claim = prev
 		}		
 	}
+
+	## Add claim in the high offices so you can vote in them
+	add_unpressed_claim = title:d_megas_domestikos
+	add_unpressed_claim = title:d_logothetetes_tou_dromou
+	add_unpressed_claim = title:d_sakellion
+
+	every_vassal = {
+		limit = {
+			has_government = roman_administration_doukaton_government
+		}
+		primary_title = {
+			scope:roman_emperor = {
+				add_unpressed_claim = prev
+			}
+		}
+	}
+	
 
 	set_variable = {
 		name = roman_administration_legitimacy_monthly_display

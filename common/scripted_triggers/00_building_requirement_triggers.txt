@@ -4,14 +4,36 @@
 
 building_requirement_tribal = {
 	scope:holder = {
-		has_government = tribal_government
+		
+		OR = {
+			has_government = tribal_government
+			AND = {
+				has_government = clan_government
+				religion = religion:islam_religion
+			}
+			AND = {
+				has_government = clan_government
+				capital_county = {
+					title_province = {
+						OR = {
+							has_holding_type = tribal_holding
+							has_holding_type = pastoral_holding
+						}
+					}
+				}
+			}
+		}
+		#always = yes
 	}
 }
 
 building_requirement_tribal_holding_in_county = {
 	county = {
 		any_county_province = {
-			has_holding_type = tribal_holding
+			OR = {
+				has_holding_type = tribal_holding
+				has_holding_type = pastoral_holding
+			}			
 		}
 	}
 }

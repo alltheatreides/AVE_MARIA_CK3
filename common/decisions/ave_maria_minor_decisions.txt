@@ -1,6 +1,15 @@
-﻿#DECISIONS TO "USE" YOUR STRESS COPING TRAITS TO LOSE STRESS
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA DECISIONS																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# VARIOUS MINOR DECISIONS UNCLASSIFIED					                        	   #
+#                               													   #
+########################################################################################
 
+#DECISIONS TO "USE" YOUR STRESS COPING TRAITS TO LOSE STRESS
 
+## Written by Atreides
 stress_loss_obsessive_hunter_decision = {
 	picture = "gfx/interface/illustrations/decisions/z_ave_maria_hunting_scene.dds"
 	desc = stress_loss_obsessed_hunter_decision_desc
@@ -113,11 +122,11 @@ health_roman_thermal_cure_decision = {
 	#is shown if health is poor or has respiritory problem while being basileus or holding relevant title	
 
 	is_shown = {
-		# OR = {
-		# 	has_trait = pneumonic
-		# 	has_trait = consumption
-		# 	health <= fine_health
-		# }
+		OR = {
+			has_trait = pneumonic
+			has_trait = consumption
+			health <= fine_health
+		}
 		OR = {
 			has_title = title:e_byzantium
 			has_title = title:c_crius
@@ -129,11 +138,11 @@ health_roman_thermal_cure_decision = {
 
 	is_valid = {
 		is_at_war = no
-		# OR = {
-		# 	has_trait = pneumonic
-		# 	has_trait = consumption
-		# 	health <= fine_health
-		# }
+		OR = {
+			has_trait = pneumonic
+			has_trait = consumption
+			health <= fine_health
+		}
 		OR = {
 			has_title = title:e_byzantium
 			has_title = title:c_crius

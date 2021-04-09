@@ -1,0 +1,691 @@
+########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# BORN IN THE PURPLE EVENTS															   #
+#                               													   #
+########################################################################################
+
+# Written by Conchodebar
+
+namespace = ave_maria_roman_administration_purple_born_events
+
+## Initial event triggered from on_birth on_action
+ave_maria_roman_administration_purple_born_events.1 = {
+	type = character_event
+	title = ave_maria_roman_administration_purple_born_events.1.title
+	background = bedchamber
+	theme = pregnancy
+
+	left_portrait = {
+		character = ROOT 
+		animation = happiness
+	}
+	
+	right_portrait = {
+		character = scope:child
+	}
+
+	desc = {
+		first_valid = {
+	
+			triggered_desc = { #male
+				trigger = { scope:child = { is_male = yes } }
+				desc = ave_maria_roman_administration_purple_born_events.1.desc.1
+			}
+		
+			triggered_desc = { #Female
+				trigger = { scope:child = { is_female = yes } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.1.desc.2
+			}
+		}
+	}
+	
+	option = {
+		name = ave_maria_roman_administration_purple_born_events.1.a
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.1.a.tt
+		trigger_event = {
+			days = 7
+			id = ave_maria_roman_administration_purple_born_events.2
+		}
+	}
+	
+	option = {
+		name = ave_maria_roman_administration_purple_born_events.1.b
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
+		
+		add_prestige = major_prestige_loss
+		
+		change_variable = {
+			name = roman_administration_popularity
+			add = -20
+		}
+		roman_administration_update_popularity_level_display = yes
+
+		stress_impact = {
+			reckless = medium_stress_impact_gain
+			pretentious = medium_stress_impact_gain
+			selfassured = medium_stress_impact_gain
+			tough = medium_stress_impact_gain
+			brave = medium_stress_impact_gain
+			outgoing = medium_stress_impact_gain
+			lively = medium_stress_impact_gain
+			sociable = medium_stress_impact_gain
+			stubborn = medium_stress_impact_gain
+
+		}
+		
+	}
+
+	
+}
+
+## Hidden event to assign flags
+ave_maria_roman_administration_purple_born_events.2 = {
+	type = character_event
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				scope:child = { is_female = yes } 
+			}
+			
+			random_list = { #Insult female child, chance higher if primary heir is female
+
+				10 = {
+					scope:child = { add_character_flag = child_gender_insulted days = 75 }
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					modifier = {
+						add = 30
+						scope:child = { is_primary_heir_of = root }
+					}	
+				}
+				
+				45 = { #nothing
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+				}
+				
+				60 = { #Basileus has low popularity or legitimacy
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					scope:child = { add_character_flag = low_popularity_or_legitimacy days = 75 }
+					trigger = {
+						OR = {
+							var:roman_administration_popularity <= 30
+							var:roman_administration_legitimacy <= 50
+						}
+					}
+				}
+			
+				40 = { #Ugly kid
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
+					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
+					trigger = { 
+						scope:child = {
+							OR = {
+								has_trait = dwarf
+								has_trait = hunchbacked
+								has_trait = spindly
+								has_trait = beauty_bad_1
+								has_trait = beauty_bad_2
+								has_trait = beauty_bad_3
+								has_trait = physique_bad_1
+								has_trait = physique_bad_2
+								has_trait = physique_bad_3
+							}
+						}
+					}
+				}
+			}
+		}
+			
+		else_if = {
+			limit = { 
+				scope:child = { is_male = yes }
+			}
+	
+			random_list = {
+
+				60 = { #Normal outcome
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 }
+				}
+					
+				70 = { #Basileus has low popularity or legitimacy
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 }
+					scope:child = { add_character_flag = low_popularity_or_legitimacy days = 75 }
+					trigger = {
+						OR = {
+							var:roman_administration_popularity <= 30
+							var:roman_administration_legitimacy <= 50
+						}
+					}
+				}
+				
+				40 = { #Ugly kid
+					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 } 
+					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
+					trigger = {
+						scope:child = {
+							OR = {
+								has_trait = dwarf
+								has_trait = hunchbacked
+								has_trait = spindly
+								has_trait = beauty_bad_1
+								has_trait = beauty_bad_2
+								has_trait = beauty_bad_3
+								has_trait = physique_bad_1
+								has_trait = physique_bad_2
+								has_trait = physique_bad_3
+							}
+						}
+					}
+				}				
+			}
+
+		}
+	}
+}
+
+## Female child event
+ave_maria_roman_administration_purple_born_events.3 = {
+	type = character_event
+	title = ave_maria_roman_administration_purple_born_events.3.title
+	theme = crown
+	
+	override_background = {
+		event_background = ave_maria_hippodrome_1
+	}
+	
+	left_portrait = {
+		character = ROOT 
+		animation = happiness
+	}
+	
+	right_portrait = {
+		character = scope:child
+	}
+
+	desc = {
+		first_valid = {
+	
+			triggered_desc = { #Normal outcome
+				trigger = {
+					NOR = {
+						scope:child = { has_character_flag = child_gender_insulted }
+						scope:child = { has_character_flag = child_appearence_insulted }
+						scope:child = { has_character_flag = low_popularity_or_legitimacy }
+					}
+				}
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.1
+			}
+		
+			triggered_desc = { #Female
+				trigger = { scope:child = { has_character_flag = child_gender_insulted } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.2
+			}
+
+			triggered_desc = { #Ugly kid
+				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
+			
+				desc = ave_maria_roman_administration_purple_born_events.3.desc.3
+			}
+			
+			triggered_desc = { #Insults if ruler has low popularity or legitimacy
+				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.2
+			}
+		}
+	}
+	
+	option = {	#Basic response, As is customary
+		name = ave_maria_roman_administration_purple_born_events.3.a
+		#custom_tooltip = ave_maria_roman_administration_purple_born_events.3.a.tt
+		
+		trigger = {
+			NOR = {
+				scope:child = { has_character_flag = child_gender_insulted }
+				scope:child = { has_character_flag = child_appearence_insulted }
+				scope:child = { has_character_flag = low_popularity_or_legitimacy }
+			}
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = 10
+			}	
+		}
+		
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}	
+	}
+	
+	option = {	#Heard obscenities, doesnt react
+		name = ave_maria_roman_administration_purple_born_events.3.b
+		#custom_tooltip = ave_maria_roman_administration_purple_born_events.3.b.tt
+		
+		trigger = {
+			OR = {
+				scope:child = { has_character_flag = child_gender_insulted }
+				scope:child = { has_character_flag = child_appearence_insulted }
+			}
+			
+			NOT = {
+				scope:child = { has_character_flag = low_popularity_or_legitimacy }
+			}
+		}
+
+		add_prestige = minor_prestige_loss		
+
+		stress_impact = {
+			wrathful = major_stress_impact_gain
+			reckless = medium_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+		}
+		
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}	
+	}
+	
+	option = {	#Heard obscenities, reacts
+		name = ave_maria_roman_administration_purple_born_events.3.c
+		custom_tooltip = ave_maria_roman_administration_medium_popularity_loss.tt
+
+		trigger = {
+			OR = {
+				scope:child = { has_character_flag = child_gender_insulted }
+				scope:child = { has_character_flag = child_appearence_insulted }
+			}
+			
+			NOT = {
+				scope:child = { has_character_flag = low_popularity_or_legitimacy }
+			}
+		}
+		
+		change_variable = {
+			name = roman_administration_popularity
+			add = -10
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = -10
+			}
+		}
+		
+		roman_administration_update_popularity_level_display = yes
+		add_prestige = minor_prestige_loss		
+		stress_impact = {
+			craven = major_stress_impact_gain
+			passive = major_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = major_stress_impact_gain
+			shy = major_stress_impact_gain
+			introverted = major_stress_impact_gain
+			quiet = major_stress_impact_gain
+			reserved = major_stress_impact_gain
+			calm = major_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			forgiving = major_stress_impact_gain 
+	
+		}	
+		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}			
+	}
+	
+	option = {	#Heard obscenities due to low popularity, time to leave quietly
+		name = ave_maria_roman_administration_purple_born_events.4.e
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.e.tt
+		
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy }}
+		
+		stress_impact = {
+			wrathful = major_stress_impact_gain
+			reckless = medium_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+		}
+
+		add_prestige = minor_prestige_loss		
+		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}		
+	}
+	
+	option = {	#Heard obscenities due to low popularity, reacts harshly. nika style
+		name = ave_maria_roman_administration_purple_born_events.4.f
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
+
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }	
+		
+		stress_impact = {
+			craven = major_stress_impact_gain
+			passive = major_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = major_stress_impact_gain
+			shy = major_stress_impact_gain
+			introverted = major_stress_impact_gain
+			quiet = major_stress_impact_gain
+			reserved = major_stress_impact_gain
+			calm = major_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			forgiving = major_stress_impact_gain 
+	
+		}
+		
+		change_variable = {
+			name = roman_administration_popularity
+			add = -20
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = -10
+			}	
+		}
+		add_prestige = major_prestige_loss
+		roman_administration_update_popularity_level_display = yes
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 2
+			}
+		}
+		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted
+			remove_character_flag = child_gender_insulted
+		}
+		
+	}
+	
+	
+}
+
+## Male child event
+ave_maria_roman_administration_purple_born_events.4 = {
+	type = character_event
+	title = ave_maria_roman_administration_purple_born_events.4.title
+	theme = crown
+	
+	override_background = {
+		event_background = ave_maria_hippodrome_1
+	}
+	
+	left_portrait = {
+		character = ROOT 
+		animation = happiness
+	}
+	
+	right_portrait = {
+		character = scope:child
+	}
+
+	desc = {
+		first_valid = {
+	
+			triggered_desc = { #Normal outcome
+				trigger = {
+					NOR = {
+						scope:child = { has_character_flag = child_appearence_insulted }
+						scope:child = { has_character_flag = low_popularity_or_legitimacy }
+					}
+				}
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.1
+			}
+		
+			triggered_desc = { #Insults if ruler has low popularity or legitimacy
+				trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+				
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.2
+			}
+
+			triggered_desc = { #Ugly kid
+				trigger = { scope:child = { has_character_flag = child_appearence_insulted } }
+			
+				desc = ave_maria_roman_administration_purple_born_events.4.desc.3
+			}
+		}
+	}
+	
+	option = {	# We must host a race in his honour
+		name = ave_maria_roman_administration_purple_born_events.4.a
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.a.tt
+		
+		trigger_event = { 
+			days = 1
+			id = ave_maria_roman_administration_imperial_expedition_events.0007 
+		}
+		
+		trigger = {
+			NOR = {
+				scope:child = { has_character_flag = child_appearence_insulted }
+				scope:child = { has_character_flag = low_popularity_or_legitimacy }
+			}
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = 10
+			}
+		}
+		
+		remove_short_term_gold = 200
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				years = 2
+			}
+		}
+		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}	
+	}
+	
+	option = {	#Can the treasury bear such an expense? 
+		name = ave_maria_roman_administration_purple_born_events.4.b
+		custom_tooltip = ave_maria_roman_administration_massive_popularity_loss.tt
+		
+		trigger = {
+			NOR = {
+				scope:child = { has_character_flag = child_appearence_insulted }
+				scope:child = { has_character_flag = low_popularity_or_legitimacy }
+			}
+		}
+
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 2
+			}
+		}
+		change_variable = {
+			name = roman_administration_popularity
+			add = -20
+		}
+		add_prestige = major_prestige_loss
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}		
+		
+	}
+
+	option = {	#Heard obscenities, doesnt react
+		name = ave_maria_roman_administration_purple_born_events.4.c
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.c.tt
+		
+		trigger = { scope:child = { has_character_flag = child_appearence_insulted }
+				NOT = {
+					scope:child = { has_character_flag = low_popularity_or_legitimacy }
+				}
+		}
+		
+		stress_impact = {
+			wrathful = major_stress_impact_gain
+			reckless = medium_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+		}
+		
+		add_prestige = minor_prestige_loss
+		
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
+	}
+	
+	option = {	#Heard obscenities, reacts
+		name = ave_maria_roman_administration_purple_born_events.4.d
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.d.tt
+
+		trigger = {
+			scope:child = { has_character_flag = child_appearence_insulted }
+			NOT = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+		}
+		
+		stress_impact = {
+			craven = major_stress_impact_gain
+			passive = major_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = major_stress_impact_gain
+			shy = major_stress_impact_gain
+			introverted = major_stress_impact_gain
+			quiet = major_stress_impact_gain
+			reserved = major_stress_impact_gain
+			calm = major_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			forgiving = major_stress_impact_gain 
+	
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = -10
+			}	
+		}
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 1
+			}
+		}
+		add_prestige = major_prestige_loss
+
+
+		scope:child = { 
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
+		
+	}
+	
+	option = {	#Heard obscenities due to low popularity, time to leave quietly
+		name = ave_maria_roman_administration_purple_born_events.4.e
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.e.tt
+		
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }
+		
+		stress_impact = {
+			wrathful = major_stress_impact_gain
+			reckless = medium_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+		}
+		
+		add_prestige = minor_prestige_loss
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
+	}
+	
+	option = {	#Heard obscenities due to low popularity, reacts harshly. nika style
+		name = ave_maria_roman_administration_purple_born_events.4.f
+		custom_tooltip = ave_maria_roman_administration_purple_born_events.4.f.tt
+
+		trigger = { scope:child = { has_character_flag = low_popularity_or_legitimacy } }	
+		
+		stress_impact = {
+			craven = major_stress_impact_gain
+			passive = major_stress_impact_gain
+			vulnerable = major_stress_impact_gain
+			anxious = major_stress_impact_gain
+			shy = major_stress_impact_gain
+			introverted = major_stress_impact_gain
+			quiet = major_stress_impact_gain
+			reserved = major_stress_impact_gain
+			calm = major_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			forgiving = major_stress_impact_gain 
+	
+		}
+		
+		add_prestige = major_prestige_loss	
+		change_variable = {
+			name = roman_administration_popularity
+			add = -20
+		}
+		
+		scope:child = {
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = -10
+			}	
+		}
+		
+		roman_administration_update_popularity_level_display = yes
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				years = 2
+			}
+		}
+		scope:child = {
+			remove_character_flag = low_popularity_or_legitimacy
+			remove_character_flag = child_appearence_insulted	
+		}
+		
+	}
+	
+	
+}	
+	
+	
+	
+
+
+
+
+
+

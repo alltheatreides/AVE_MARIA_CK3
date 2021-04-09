@@ -859,14 +859,53 @@ on_game_start_after_lobby = {
 			}
 		}
 
+		## ISLAMIC EMPIRES
 		## FATIMIDS
 		title:e_egypt = {
 			set_variable = {
 				name = islamic_empire_title
 				value = yes
 			}
+			holder = {
+				add_pressed_claim = d_damascus
+				add_pressed_claim = d_palestine
+
+				islamic_empire_calculate_regiment_cost = yes
+
+				every_vassal = {
+					islamic_empire_apply_salary_opinion = yes
+				}
+			}
+		}
+		title:d_damascus = {
+			set_variable = {
+				name = islamic_empire_amir_title
+				value = yes
+			}
+		}
+		title:d_palestine = {
+			set_variable = {
+				name = islamic_empire_amir_title
+				value = yes
+			}
 		}
 
+		every_ruler = {
+			limit = {
+				OR = {
+					has_government = clan_government
+					has_government = tribal_government
+				}
+				religion = religion:islam_religion
+			}
+			primary_title = {
+				set_variable = {
+					name = islamic_empire_asabiyya
+					value = 100
+				}
+				islamic_empire_asabiyya_level_calc = yes
+			}
+		}
 
 		## CHRISTIAN
 		title:k_papal_state.holder = {

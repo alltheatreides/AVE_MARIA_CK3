@@ -1,0 +1,69 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AMIR EVENTS																		   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_amir_events
+
+# ave_maria_amir_events
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_amir_events.0001 = {
+	type = character_event
+	
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_newly_appointed_amir
+			}
+			remove_character_modifier = islamic_empire_newly_appointed_amir
+		}
+		add_character_modifier = {
+			modifier = islamic_empire_settled_amir
+			days = 730
+		}
+		trigger_event = {
+			id = ave_maria_amir_events.0002
+			days = 731
+		}
+	}
+}
+
+ave_maria_amir_events.0002 = {
+	type = character_event
+	
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_settled_amir
+			}
+			remove_character_modifier = islamic_empire_settled_amir
+		}
+		add_character_modifier = {
+			modifier = islamic_empire_entrenched_amir
+		}
+
+	}
+}
+

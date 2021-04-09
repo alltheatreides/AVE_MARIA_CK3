@@ -1,0 +1,103 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# HONOURS EVENTS																		   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_honours_events
+
+# ave_maria_honours_events
+
+
+# TABLE OF CONTENT:
+
+## GUI triggered event
+ave_maria_honours_events.0001 = {
+	type = character_event
+	title = ave_maria_honours_events.0001.title
+	desc = ave_maria_honours_events.0001.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader
+		animation = idle
+	}
+
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		
+
+	}
+
+	
+	## 
+	option = {
+		name = ave_maria_honours_events.0001.a
+		add_prestige = -150 
+		scope:regiment_leader = {
+			add_prestige = 75
+			add_opinion = {
+				modifier = islamic_empire_court_precedence
+				target = root
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_honors
+					add = 1
+				}
+			}
+		}
+		
+	}
+
+	## 
+	option = {
+		name = ave_maria_honours_events.0001.b
+		scope:regiment_leader = {
+			add_hook = {
+				type = favor_hook
+				target = root
+			}
+		}
+
+	}
+
+	##Nothing
+	option = {
+		name = ave_maria_honours_events.0001.c
+	}
+
+	##Remove
+	option = {
+		name = ave_maria_honours_events.0001.d
+		scope:regiment_leader = {
+			add_prestige = -75
+			add_opinion = {
+				modifier = islamic_empire_court_precedence_removed
+				target = root
+			}
+
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_honors
+					subtract = 1
+				}
+			}
+		}
+	}
+}

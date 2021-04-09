@@ -329,21 +329,9 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		# if = {
-			# limit = {
-				# vassal_contract_has_flag = islamic_empire_inheritance_right_allowed
-			# }
-			# every_held_title = {
-				# limit = {
-					# has_title_law = islamic_empire_amir_succession_law
-				# }
-				# remove_title_law = islamic_empire_amir_succession_law
-			# }
-		# }
-		every_held_title = {
-			# remove_title_law = islamic_empire_amir_succession_law
-			add_title_law = islamic_empire_amir_succession_law_2
-		}
+		title:d_regiment_ghilman_turks.holder = {
+			add_character_modifier = islamic_empire_salary
+		}	
 	}
 	
 }

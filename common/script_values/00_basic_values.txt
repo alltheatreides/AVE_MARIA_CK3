@@ -1158,10 +1158,8 @@ count_obligation_improvements_for_vassal = {
 	value = 0
 	if = {
 		limit = {
-			OR = {
-				uses_roman_govt = no
-				uses_islamic_empire_govt = no
-			}
+			uses_roman_govt = no
+			uses_islamic_empire_govt = no
 		}
 		# Levies and taxes are a linear scale, moving up adds and moving down subtracts
 		if = {
@@ -1437,10 +1435,10 @@ count_obligation_improvements_for_vassal = {
 		}
 		if = {
 			limit = {
-				local_var:war_declaration_rights != vassal_contract_obligation_level:war_declaration_rights
+				local_var:islamic_empire_war_right != vassal_contract_obligation_level:islamic_empire_war_right
 			}
 			if = {
-				limit = { local_var:war_declaration_rights != 0 }
+				limit = { local_var:islamic_empire_war_right != 0 }
 				add = 1
 			}
 			else = {
@@ -1479,11 +1477,8 @@ count_total_obligation_changes = {
 	value = 0
 	if = {
 		limit = {
-			OR = {
-				uses_roman_govt = no
-				uses_islamic_empire_govt = no
-			}
-			
+			uses_roman_govt = no
+			uses_islamic_empire_govt = no		
 		}
 		if = {
 			limit = {
@@ -1621,6 +1616,7 @@ count_total_obligation_changes = {
 		}
 	}	
 
+	## Islamic empires
 	if = {
 		limit = {
 			uses_islamic_empire_govt = yes

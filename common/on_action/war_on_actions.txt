@@ -240,8 +240,7 @@ on_war_started = {
 					}
 				}
 			}
-		}
-		
+		}		
 
 		## Local Military Commanders and Central Tagma automatically join Offensive the war of the emperor
 		scope:attacker = {
@@ -352,13 +351,341 @@ on_war_started = {
 								origin = 496
 								save_scope_as = tagma_army
 								inheritable = no
-								war = scope:war_to_join
+								war = scope:war
 							}
 						}
 					}
 				}
 			}
 		}
+
+		### AVE MARIA ISLAM
+		## Regiments automatically join a defensive war
+		scope:defender = {
+			if = {
+				limit = {
+					uses_islamic_empire_govt = yes
+					highest_held_title_tier = tier_empire
+				}
+				## Abid
+				every_vassal = {				
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = abid_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					primary_title = {
+						save_scope_as = primary_regiment_title
+					}
+					scope:war = {
+						add_defender = prev
+					}
+					add_character_flag = mustered
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}					
+					
+					
+				}
+				## Ghulam Turks
+				every_vassal = {				
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = turkish_ghulam_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					primary_title = {
+						save_scope_as = primary_regiment_title
+					}
+					scope:war = {
+						add_defender = prev
+					}
+					add_character_flag = mustered
+
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:defender.capital_province
+							origin = scope:defender.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					
+				}
+			}
+		}
+		## Regiments automatically join an offensive war
+		scope:attacker = {
+			if = {
+				limit = {
+					uses_islamic_empire_govt = yes
+					highest_held_title_tier = tier_empire
+				}
+				## Abid
+				every_vassal = {				
+					limit = {
+						any_held_title = {
+							#has_variable = islamic_empire_regiment_size
+							has_variable = abid_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					primary_title = {
+						save_scope_as = primary_regiment_title
+					}
+					scope:war = {
+						add_attacker = prev
+					}
+					add_character_flag = mustered
+
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+				}
+				## Ghulam Turks
+				every_vassal = {				
+					limit = {
+						any_held_title = {
+							has_variable = turkish_ghulam_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					primary_title = {
+						save_scope_as = primary_regiment_title
+					}
+					scope:war = {
+						add_attacker = prev
+					}
+					add_character_flag = mustered
+
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = heavy_infantry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:attacker.capital_province
+							origin = scope:attacker.capital_province
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					
+				}
+			}
+		}
+		
 	}
 }
 

@@ -162,6 +162,8 @@ widget = {
 							onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 							onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 							onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+							onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_administration_gui_toggle')]"
 						}
 
 						## Image of the Title (not working 05/11/20 - need a GetPlayer to work)
@@ -239,6 +241,7 @@ widget = {
 									}
 								}	
 
+								## AVE MARIA INSTITUTIONS BOXES
 								vbox = {
 									layoutpolicy_horizontal = expanding
 									#layoutpolicy_vertical = expanding
@@ -252,7 +255,7 @@ widget = {
 										layoutpolicy_horizontal = expanding
 									}
 
-									## Administration Box
+									## Roman Administration Box
 									vbox = {
 										name = "institution_administration"
 										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_roman_administration')]"
@@ -305,7 +308,7 @@ widget = {
 										layoutpolicy_horizontal = expanding
 									}
 									
-									## Army Box
+									## Roman  Army Box
 									vbox = {
 										name = "institution_army"
 										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_roman_army')]"
@@ -359,7 +362,7 @@ widget = {
 										layoutpolicy_horizontal = expanding
 									}
 									
-									## Senate box
+									## Roman Senate box
 									vbox = {
 										name = "institution_senate"
 										datacontext = "[GetScriptedGui('am_institutions_roman_administration_can_see_senate')]"
@@ -412,6 +415,161 @@ widget = {
 										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 										
 										layoutpolicy_horizontal = expanding
+									}
+
+									## Fatimid Army Box
+									vbox = {
+										name = "institution_fatimid_army"
+										datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_see_fatimid_army_factions')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										layoutpolicy_horizontal = expanding
+										margin = { 5 5 }
+										spacing = 2
+	
+										background = {
+											using = Background_Area_Light
+											spriteType = Corneredtiled
+										}
+	
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											parentanchor = left
+											size = { 0 80 }	
+					
+											#onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_fatimid_army_factions_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_dawa_mission_gui_toggle' )]"
+
+											background = {
+												fittype = centercrop
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_fatimid_army.dds"
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+	
+											text_single = {
+												margin_top = 10
+												margin_left = 20
+												layoutpolicy_horizontal = expanding
+												text = "The Army"
+												using = Font_Size_Medium
+												#default_format = "#low"
+											}
+										}	
+										
+									}
+
+									## Divider for visuals
+									divider = {
+										datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_see_fatimid_army_factions')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										
+										layoutpolicy_horizontal = expanding
+									}
+
+									## Fatimid Administration Box
+									vbox = {
+										name = "institution_fatimid_administration"
+										datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_see_fatimid_army_factions')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										layoutpolicy_horizontal = expanding
+										margin = { 5 5 }
+										spacing = 2
+	
+										background = {
+											using = Background_Area_Light
+											spriteType = Corneredtiled
+										}
+	
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											parentanchor = left
+											size = { 0 80 }	
+					
+											#onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_fatimid_administration_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_army_factions_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_dawa_mission_gui_toggle')]"
+											# onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
+											# onclick = "[GetVariableSystem.Clear( 'am_institutions_army_gui_toggle' )]"
+
+											background = {
+												fittype = centercrop
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_quran_recitation.dds"
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+	
+											text_single = {
+												margin_top = 10
+												margin_left = 20
+												layoutpolicy_horizontal = expanding
+												text = "The Administration"
+												using = Font_Size_Medium
+												#default_format = "#low"
+											}
+										}	
+										
+									}
+
+									## Divider for visuals
+									divider = {
+										datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_see_fatimid_army_factions')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										
+										layoutpolicy_horizontal = expanding
+									}
+
+									## Fatimid Dawa Box
+									vbox = {
+										name = "institution_fatimid_dawa_mission"
+										datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_see_fatimid_army_factions')]"
+										visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+										layoutpolicy_horizontal = expanding
+										margin = { 5 5 }
+										spacing = 2
+	
+										background = {
+											using = Background_Area_Light
+											spriteType = Corneredtiled
+										}
+	
+										button_standard = {
+											layoutpolicy_horizontal = expanding
+											parentanchor = left
+											size = { 0 80 }	
+					
+											#onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetVariableSystem.Toggle( 'am_institutions_fatimid_dawa_mission_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_army_factions_gui_toggle' )]"
+											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
+											# onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
+											# onclick = "[GetVariableSystem.Clear( 'am_institutions_army_gui_toggle' )]"
+
+											background = {
+												fittype = centercrop
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_quran_recitation.dds"
+												modify_texture = {
+													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+													blend_mode = alphamultiply
+												}
+											}
+	
+											text_single = {
+												margin_top = 10
+												margin_left = 20
+												layoutpolicy_horizontal = expanding
+												text = "Dawa Mission"
+												using = Font_Size_Medium
+												#default_format = "#low"
+											}
+										}	
+										
 									}
 								}
 							}					
@@ -1766,6 +1924,472 @@ widget = {
 		}
 	}
 
+	### AVE MARIA - Fatimid Army Factions WINDOW
+	window = {
+		name = "fatimid_army_factions_window"
+		parentanchor = center
+		size = { 1000 650 }
+		position = { -150 0 }
+		layer = windows_layer
+		
+		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_army_factions_gui_toggle' )]"
+
+		using = Window_Background
+		using = Window_Decoration
+
+		## Main box
+		vbox = {
+			using = Window_Margins
+			
+			## Header
+			header_pattern = {
+				layoutpolicy_horizontal = expanding
+				blockoverride "header_text"
+				{
+					text = "fatimid_army_factions_tab_header"
+				}
+				blockoverride "button_close"
+				{
+					onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+				}
+			}
+
+			## Main Box where army things are
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				
+				widget = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					vbox = {
+						spacing = 10
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							spacing = 10
+
+							background = {
+								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+								fittype = centercrop
+								alpha = 0.8
+
+								using = Mask_Rough_Edges
+							}
+
+							## new experiment
+							scrollbox = {
+								name = "character_military_officials_grid"
+								parentanchor = top
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+
+								blockoverride "scrollbox_margins" { }
+
+								blockoverride "scrollbox_content"
+								{
+									spacing = 20
+									margin = { 0 20 }
+
+									dynamicgridbox = {
+										datamodel = "[GetPlayer.MakeScope.GetList('list_fatimid_army_leaders')]"
+										datamodel_wrap = 1
+										flipdirection = yes
+										
+										state = {
+											name = get_list
+											trigger_on_create = yes
+											duration = 2
+											on_start = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_get_army_leaders').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											next = get_list
+										}
+
+										item = {
+											## Gros bouton
+											button_standard = {
+												layoutpolicy_horizontal = expanding
+												size = { 850 160 }	
+
+												background = {
+													fittype = centercrop
+													#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+													texture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_courtyard_cleaned.dds"
+													
+													modify_texture = {
+														texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+														blend_mode = alphamultiply
+													}
+												}
+
+												## Boite principale horizontale ou tout est mis
+												hbox = {
+													#layoutpolicy_horizontal = expanding
+													layoutpolicy_vertical = expanding
+
+													## Boite verticale gauche, portrait
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top|left
+														portrait_shoulders = {
+															datacontext = "[Scope.GetCharacter]"
+			
+															blockoverride "description_relation_text" {
+																text = "[Character.GetPlayerGuestDescription]"
+															}
+			
+															background = {
+																using = Background_Area
+															}
+														}
+													}
+
+													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top
+
+														## Titre/nom du régiment
+														hbox = {
+															text_single = {
+																datacontext = "[Scope.GetCharacter]"
+																text = "[Character.GetPrimaryTitle.GetBaseNameNoTier]"
+																using = Font_Size_Medium
+																default_format = "#bold"
+															}
+														}
+														
+														## Infos
+														hbox = {
+															spacing = 25
+
+															## Text info : Salary, honors
+															vbox = {
+																align = left
+																layoutpolicy_vertical = expanding
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('salary_regiment')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_salary').GetValue|0] [gold_i]"
+																}
+																
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('total_cost_regiment')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_salary_cost').GetValue|0] [gold_i]"
+																}
+																expand = {}
+																expand = {}
+																expand = {}
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('honors_regiment')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_honors').GetValue|0] @honors_icon"
+																}
+																expand = {}
+															}
+
+															## Buttons to increase salary / honors
+															vbox = {
+																layoutpolicy_vertical = expanding
+																## Regiment Salary
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|right
+																		text = "Increase Salary"
+																		size = { 150 32 }
+																		tooltip = "increase_regiment_salary_tt"
+																		datacontext = "[Scope.GetCharacter]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_salary').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	
+																	}
+																}
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|right
+																		text = "Decrease Salary"
+																		size = { 150 32 }
+																		tooltip = "decrease_regiment_salary_tt"
+																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_salary').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																		
+																	}
+																}
+
+																## Regiment Honors manage buttons
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|right
+																		text = "Favour"
+																		size = { 150 32 }
+																		tooltip = "increase_regiment_honors_tt"
+																		datacontext = "[Scope.GetCharacter]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_bestow_honors').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																}
+																
+															}
+															## Regiment comp INFO
+															vbox = {
+																align = left
+																layoutpolicy_vertical = expanding
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('type_regiment_1')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_size_infantry_display').GetValue|0]"
+																}
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('type_regiment_2')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_size_light_cavalry_display').GetValue|0]"
+																}
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 33 }
+																	parentanchor = left
+																	align = left
+																	using = Font_Size_Medium
+																	#default_format = "#positive_value;bold"
+																	datacontext = "[Scope.GetCharacter]"
+																	text = "[Localize('type_regiment_3')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_size_heavy_cavalry_display').GetValue|0]"
+																}
+															}
+
+															## Buttons increase regiment size
+															vbox = {
+																layoutpolicy_vertical = expanding
+																## Regiment Size
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|left
+																		text = "Recruit"
+																		size = { 75 32 }
+																		tooltip = "increase_infantry_size_tt"
+																		datacontext = "[Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_infantry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																	
+																	button_standard = {
+																		text = "Fire"
+																		size = { 75 32 }
+																		tooltip = "decrease_infantry_size_tt"
+																		datacontext = "[Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_infantry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																}
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|left
+																		text = "Recruit"
+																		size = { 75 32 }
+																		tooltip = "increase_light_cavalry_size_tt"
+																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																	button_standard = {
+																		text = "Fire"
+																		size = { 75 32 }
+																		tooltip = "decrease_light_cavalry_size_tt"
+																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																}
+																hbox = {
+																	align = left
+																	button_standard = {
+																		parentanchor = top|left
+																		text = "Recruit"
+																		size = { 75 32 }
+																		tooltip = "increase_heavy_cavalry_size_tt"
+																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																	button_standard = {
+																		text = "Fire"
+																		size = { 75 32 }
+																		tooltip = "decrease_heavy_cavalry_size_tt"
+																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
+																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+																	}
+																}
+															}
+														}
+														
+														
+													}	
+													
+												}
+
+											}
+											
+										}
+									}						
+									
+								}
+							}
+						}
+					}
+					
+										
+				}
+			
+			}
+
+			## Divider for visuals
+			divider = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			## Footer area
+			hbox = {
+				name = "footer_army"
+				layoutpolicy_horizontal = expanding
+				
+				
+			}
+		}
+	}
+
+	### AVE MARIA - Fatimid Administration WINDOW
+	window = {
+		name = "fatimid_administration_window"
+		parentanchor = center
+		size = { 1000 650 }
+		position = { -150 0 }
+		layer = windows_layer
+		
+		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_administration_gui_toggle' )]"
+
+		using = Window_Background
+		using = Window_Decoration
+
+		vbox = {
+			using = Window_Margins
+			
+			## Header
+			header_pattern = {
+				layoutpolicy_horizontal = expanding
+				blockoverride "header_text"
+				{
+					text = "fatimid_administration_tab_header"
+				}
+				blockoverride "button_close"
+				{
+					onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_administration_gui_toggle')]"
+				}
+			}
+
+			## Divider for visuals
+			divider = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			## Footer area
+			hbox = {
+				name = "footer_army"
+				layoutpolicy_horizontal = expanding
+				
+				
+			}
+		}
+	}
+
+	### AVE MARIA - Fatimid Dawa WINDOW
+	window = {
+		name = "fatimid_dawa_mission_window"
+		parentanchor = center
+		size = { 1000 650 }
+		position = { -150 0 }
+		layer = windows_layer
+		
+		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_dawa_mission_gui_toggle' )]"
+
+		using = Window_Background
+		using = Window_Decoration
+
+		vbox = {
+			using = Window_Margins
+			
+			## Header
+			header_pattern = {
+				layoutpolicy_horizontal = expanding
+				blockoverride "header_text"
+				{
+					text = "fatimid_dawa_mission_tab_header"
+				}
+				blockoverride "button_close"
+				{
+					onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_dawa_mission_gui_toggle')]"
+				}
+			}
+
+			## Divider for visuals
+			divider = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			## Footer area
+			hbox = {
+				name = "footer_army"
+				layoutpolicy_horizontal = expanding
+				
+				
+			}
+		}
+	}
+
 	######################################################
 	#################### TOP RIGHT #######################
 	######################################################
@@ -2568,6 +3192,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2599,6 +3225,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2630,6 +3258,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2678,6 +3308,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2709,6 +3341,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2740,6 +3374,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 						
 					}
 
@@ -2772,6 +3408,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 					}
 
 					state = {
@@ -2808,6 +3446,8 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_army_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_senate_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
+						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 						## Stuff to make it work ?
 						datacontext = "[GetVariableSystem]"
 						# datacontext = "[GetPlayer.GetID]"	

@@ -2008,6 +2008,30 @@ window = {
 								}
 							}
 
+							# Asabiyya addition
+							vbox = {
+								## Add here a scripted gui visible
+								datacontext = "[GetScriptedGui('am_islamic_empire_has_asabiyya')]"
+								visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
+								spacing = -2
+								min_width = 40
+
+								tooltip = "asabiyya_tooltip"
+
+								icon = {
+									name = "asabiyya_icon"
+									size = { 30 30 }
+									texture = "gfx/interface/icons/icon_asabiyya.dds"
+								}
+
+								text_single = {
+									name = "total_asabiyya"
+									text = "[Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_asabiyya').GetValue|0]"
+									default_format = "#high"
+									align = center|nobaseline
+								}
+							}
+
 							spacer = {
 								size = { 0 3 }
 							}

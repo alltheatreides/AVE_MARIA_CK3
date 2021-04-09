@@ -137,6 +137,7 @@
 		  	}
 		}
 
+		## AVE MARIA
 		## AVE MARIA ROMAN ADMIN ADDITION
 		modifier = {
 			add = -1000
@@ -149,6 +150,25 @@
 			culture = culture:greek
 			uses_roman_govt = yes
 		}
+
+		## ISLAMIC EMPIRE MODIF - Newly appointed amir don't join independence factions
+		modifier = {
+			add = -300
+			scope:target = {
+				uses_islamic_empire_govt = yes
+			}
+			uses_islamic_empire_govt = yes
+			has_character_modifier = islamic_empire_newly_appointed_amir
+		}
+		modifier = {
+			add = -300
+			scope:target = {
+				uses_islamic_empire_govt = yes
+			}
+			uses_islamic_empire_govt = yes
+			highest_held_title_tier < tier_duchy
+		}
+
 
 		#######################
 		# Standard AI Weights #
@@ -463,6 +483,26 @@
 			scope:faction.faction_power >= scope:faction.faction_power_threshold
 			factor = faction_weight_factor_power_exceeds_threshold
 		}
+
+
+		## ISLAMIC EMPIRE MODIF - Newly appointed amir don't join independence factions
+		modifier = {
+			add = -300
+			scope:faction.faction_target = {
+				uses_islamic_empire_govt = yes
+			}
+			uses_islamic_empire_govt = yes
+			has_character_modifier = islamic_empire_newly_appointed_amir
+		}
+		modifier = {
+			add = -300
+			scope:faction.faction_target = {
+				uses_islamic_empire_govt = yes
+			}
+			uses_islamic_empire_govt = yes
+			highest_held_title_tier < tier_duchy
+		}
+
 	}
 
 	ai_demand_chance = {

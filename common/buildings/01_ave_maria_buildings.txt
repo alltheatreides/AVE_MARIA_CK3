@@ -120,3 +120,151 @@ sparsly_populated_holding_building_1 = {
 	flag = castle
 }
 
+pastoral_holding_building_1 = {
+	asset = {
+		type = pdxmesh
+		names = {
+			building_western_tribal_01_a_mesh
+		}
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_mena_tribal_01_a_mesh"
+		}
+		graphical_cultures = { arabic_group_building_gfx berber_group_building_gfx }
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_steppe_tribal_01_a_mesh"
+		}
+		graphical_cultures = { steppe_building_gfx }
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_india_tribal_01_a_mesh"
+		}
+		graphical_cultures = { indian_building_gfx }
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_african_tribal_01_a_mesh"
+		}
+		graphical_cultures = { african_building_gfx }
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_tribal_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		graphical_cultures = { norse_building_gfx }
+		illustration = "gfx/interface/illustrations/holding_types/pastoral.dds"
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}	
+
+	is_enabled = {
+		#building_requirement_tribal = yes
+	}
+	can_construct_potential = {
+		always = no	#Tribes are set at game start.
+	}
+	
+	cost_prestige = expensive_building_tier_3_cost
+	cost_gold = expensive_building_tier_1_cost
+	#next_building = tribe_02
+	
+	levy = normal_building_levy_tier_3
+	garrison = good_building_garrison_tier_1
+	province_modifier = {
+		monthly_income = poor_building_tax_tier_1
+		#fort_level = 1
+	}
+	
+	#next_building = tribe_02
+
+	type_icon = "sparsly_populated_holding.dds"
+
+	ai_value = {
+		base = 1
+	}
+}
+
+slave_market_1 = {
+	construction_time = quick_construction_time
+	# asset = {
+	# 	illustration = "gfx/interface/illustrations/icons/building_types/slave_market.dds"
+	# }	
+
+	is_enabled = {
+		OR = {
+			building_requirement_castle_city_church = { LEVEL = 01 }
+			building_requirement_tribal = yes
+		}		
+	}
+	can_construct_potential = {
+		#has_building_or_higher = tribe_01
+	}	
+	
+	cost_prestige = expensive_building_tier_1_cost
+	cost_gold = tribal_building_tier_1_cost
+	
+	province_modifier = {
+		monthly_income = poor_building_tax_tier_2
+	}
+	
+	next_building = slave_market_2
+	
+	ai_value = {
+		base = 1
+	}
+
+	type_icon = "slave_market.dds"
+}
+
+slave_market_2 = {
+	construction_time = quick_construction_time
+	# asset = {
+	# 	illustration = "gfx/interface/illustrations/icons/building_types/slave_market.dds"
+	# }
+
+	is_enabled = {
+		OR = {
+			building_requirement_castle_city_church = { LEVEL = 01 }
+			building_requirement_tribal = yes
+		}		
+	}
+	can_construct_potential = {
+		#has_building_or_higher = tribe_01
+	}	
+	
+	cost_prestige = expensive_building_tier_2_cost
+	cost_gold = tribal_building_tier_2_cost
+	
+	province_modifier = {
+		monthly_income = poor_building_tax_tier_4
+	}
+	
+	#next_building = slave_market_3
+	
+	ai_value = {
+		base = 1
+	}
+
+	type_icon = "slave_market.dds"
+}
+
+

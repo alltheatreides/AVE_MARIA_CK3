@@ -151,7 +151,7 @@ islamic_empire_non_muslim_tax = {
 
 		jizya_tax_normal = {
 			position = { 1 0 }
-			
+			default = yes
 			tax = 0.4
 			flag = jizya_tax_normal_flag
 		}
@@ -175,12 +175,12 @@ islamic_empire_kharaj_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 	}
 	obligation_levels = {
 		islamic_empire_kharaj_right_none = {
@@ -195,9 +195,9 @@ islamic_empire_kharaj_right = {
 			flag = islamic_empire_kharaj_right_none
 		}
 		islamic_empire_kharaj_right_allowed = {
-			is_valid = {
-				scope:vassal.primary_title.tier >= tier_duchy
-			}
+			# is_valid = {
+			# 	scope:vassal.primary_title.tier >= tier_duchy
+			# }
 			parent = islamic_empire_kharaj_right_none
 			position = { 1 0 }
 			
@@ -220,12 +220,12 @@ islamic_empire_qadi_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 	}
 	obligation_levels = {
 		islamic_empire_qadi_right_none = {
@@ -239,7 +239,7 @@ islamic_empire_qadi_right = {
 		}
 		islamic_empire_qadi_right_allowed = {
 			is_valid = {
-				scope:vassal.primary_title.tier >= tier_duchy
+				#scope:vassal.primary_title.tier >= tier_duchy
 			}
 			parent = islamic_empire_qadi_right_none
 			position = { 1 0 }
@@ -263,12 +263,12 @@ islamic_empire_inheritance_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 	}
 	obligation_levels = {
 		islamic_empire_inheritance_right_none = {
@@ -281,9 +281,9 @@ islamic_empire_inheritance_right = {
 			flag = islamic_empire_inheritance_right_none
 		}
 		islamic_empire_inheritance_right_allowed = {
-			is_valid = {
-				scope:vassal.primary_title.tier >= tier_duchy
-			}
+			# is_valid = {
+			# 	scope:vassal.primary_title.tier >= tier_duchy
+			# }
 			parent = islamic_empire_inheritance_right_none
 			position = { 1 0 }
 			
@@ -302,12 +302,12 @@ islamic_empire_war_right = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 	}
 	obligation_levels = {
 		islamic_empire_war_right_none = {
@@ -320,9 +320,9 @@ islamic_empire_war_right = {
 			flag = islamic_empire_war_right_none
 		}
 		islamic_empire_war_right_allowed = {
-			is_valid = {
-				scope:vassal.primary_title.tier >= tier_duchy
-			}
+			# is_valid = {
+			# 	scope:vassal.primary_title.tier >= tier_duchy
+			# }
 			parent = islamic_empire_war_right_none
 			position = { 1 0 }
 			
@@ -341,12 +341,12 @@ islamic_empire_iqta = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 	}
 	obligation_levels = {
 		islamic_empire_iqta_none = {
@@ -359,9 +359,9 @@ islamic_empire_iqta = {
 			flag = islamic_empire_iqta_none
 		}
 		islamic_empire_iqta_allowed = {
-			is_valid = {
-				scope:vassal.primary_title.tier >= tier_duchy
-			}
+			# is_valid = {
+			# 	scope:vassal.primary_title.tier >= tier_duchy
+			# }
 			parent = islamic_empire_iqta_none
 			position = { 1 0 }
 			
@@ -382,12 +382,12 @@ islamic_empire_thugur = {
 	display_mode = checkbox
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
+		# scope:liege.religion = {
+		# 	this = religion:islam_religion
+		# }
+		# scope:vassal.religion = {
+		# 	this = religion:islam_religion
+		# }
 		scope:vassal.primary_title = {
 			any_in_de_jure_hierarchy = {
 				tier = tier_county
