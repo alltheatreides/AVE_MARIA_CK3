@@ -168,11 +168,16 @@ can_potentially_call_ally_trigger = {
 	custom_description = {
 		text = cannot_call_vassal_to_war
 		$JOINER$ = {
-			uses_roman_govt = no
-			uses_islamic_empire_govt = no
-			NOT = {
-				target_is_liege_or_above = $WARRIOR$
-			}
+			always = yes
+			#OR = {
+				#uses_roman_govt = yes
+				#uses_islamic_empire_govt = yes
+				#uses_feudal_govt = yes
+				#uses_tribal_govt = yes
+				#NOT = {
+				#	target_is_liege_or_above = $WARRIOR$
+				#}
+			#}
 		}
 	}
 
@@ -180,9 +185,10 @@ can_potentially_call_ally_trigger = {
 	custom_description = {
 		text = cannot_call_liege_to_war
 		$JOINER$ = {
-			NOT = {
-				target_is_vassal_or_below = $WARRIOR$
-			}
+			always = yes
+			#NOT = {
+			#	target_is_vassal_or_below = $WARRIOR$
+			#}
 		}
 	}
 }
