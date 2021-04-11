@@ -873,7 +873,110 @@ on_game_start_after_lobby = {
 				islamic_empire_calculate_regiment_cost = yes
 
 				every_vassal = {
+					primary_title = {
+						islamic_empire_apply_salary_income = yes
+					}
+					
 					islamic_empire_apply_salary_opinion = yes
+
+					if = {
+						limit = {
+							highest_held_title_tier = tier_duchy
+							uses_islamic_empire_govt = yes
+							
+						}
+						create_character = {
+							age = 25
+							gender_female_chance = 0
+							employer = this
+							faith = faith:ismaili
+							culture = this.culture
+							random_traits_list = {
+								count = 2
+								calm = {}
+								brave = {}
+								gregarious = {}
+								ambitious = {}
+								stubborn = {}
+								arrogant = {}
+							}
+							random_traits_list = {
+								count = 1
+								education_martial_3 = {}
+								education_martial_4 = {}
+							}
+							random_traits_list = {
+								count = 2
+								brave = {}
+								thorough = {}
+							}
+							martial = {
+								min_template_decent_skill
+								max_template_decent_skill
+							}
+							prowess = { 8 12 }
+							after_creation = {
+								add_random_hexaco_personality_trait = { WHO = this }
+							
+								#Chance of receiving an extra commander trait
+								random = {
+									chance = 25
+									give_random_commander_trait_effect = yes
+								}
+							}
+						}
+						create_character = {
+							age = 25
+							gender_female_chance = 0
+							employer = this
+							faith = faith:ismaili
+							culture = this.culture
+							random_traits_list = {
+								count = 2
+								calm = {}
+								brave = {}
+								gregarious = {}
+								ambitious = {}
+								stubborn = {}
+								arrogant = {}
+							}
+							random_traits_list = {
+								count = 1
+								education_martial_3 = {}
+								education_martial_4 = {}
+							}
+							random_traits_list = {
+								count = 2
+								brave = {}
+								thorough = {}
+							}
+							martial = {
+								min_template_decent_skill
+								max_template_decent_skill
+							}
+							prowess = { 8 12 }
+							after_creation = {
+								add_random_hexaco_personality_trait = { WHO = this }
+							
+								#Chance of receiving an extra commander trait
+								random = {
+									chance = 25
+									give_random_commander_trait_effect = yes
+								}
+							}
+						}
+					}
+					every_courtier = {
+						limit = {
+							is_female = no
+							age >= 20
+							OR = {
+								has_trait = ghulam
+								martial >= 12
+							}						
+						}
+						add_unpressed_claim = scope:title
+					}
 				}
 			}
 		}

@@ -498,7 +498,7 @@ widget = {
 
 											background = {
 												fittype = centercrop
-												texture = "gfx/interface/illustrations/decisions/z_ave_maria_quran_recitation.dds"
+												texture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_reception_courtyard.dds"
 												modify_texture = {
 													texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
 													blend_mode = alphamultiply
@@ -2105,10 +2105,11 @@ widget = {
 																}
 																expand = {}
 															}
-
 															## Buttons to increase salary / honors
 															vbox = {
 																layoutpolicy_vertical = expanding
+																
+
 																## Regiment Salary
 																hbox = {
 																	align = left
@@ -2117,11 +2118,13 @@ widget = {
 																		text = "Increase Salary"
 																		size = { 150 32 }
 																		tooltip = "increase_regiment_salary_tt"
-																		datacontext = "[Scope.GetCharacter]"
+																		datacontext = "[Scope.GetCharacter]"																		
 																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_salary').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
-																	
+																		
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 																hbox = {
@@ -2136,6 +2139,8 @@ widget = {
 																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_salary').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
 																		
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 
@@ -2151,10 +2156,14 @@ widget = {
 																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_bestow_honors').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 																
 															}
+
 															## Regiment comp INFO
 															vbox = {
 																align = left
@@ -2192,7 +2201,6 @@ widget = {
 																	text = "[Localize('type_regiment_3')]: [Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_regiment_size_heavy_cavalry_display').GetValue|0]"
 																}
 															}
-
 															## Buttons increase regiment size
 															vbox = {
 																layoutpolicy_vertical = expanding
@@ -2208,6 +2216,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_infantry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																	
 																	button_standard = {
@@ -2218,6 +2229,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_infantry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 																hbox = {
@@ -2231,6 +2245,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																	button_standard = {
 																		text = "Fire"
@@ -2240,6 +2257,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 																hbox = {
@@ -2253,6 +2273,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																	button_standard = {
 																		text = "Fire"
@@ -2262,6 +2285,9 @@ widget = {
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
+
+																		datacontext = "[GetScriptedGui('am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons')]"
+																		visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 																	}
 																}
 															}

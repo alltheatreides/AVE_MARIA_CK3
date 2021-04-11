@@ -3,6 +3,28 @@ can_raid_trigger = {
 	OR = {
 		government_has_flag = government_can_raid_rule
 		faith = { has_doctrine = unreformed_faith_doctrine }
+
+		AND = {
+            religion = religion:islam_religion
+			any_neighboring_and_across_water_top_liege_realm_owner = {
+				NOT = {
+					religion = religion:islam_religion
+				}
+			}
+			# any_held_title = {
+			# 	tier = tier_county
+			# 	any_neighboring_county = {
+			# 		holder = {
+			# 			NOT = {
+			# 				religion = religion:islam_religion
+			# 			}
+			# 		}
+			# 	}
+			# }
+        }
+
+		culture = { has_innovation = innovation_barbary_corsairs }
+
 		AND = {
 			exists = dynasty
 			dynasty = { has_dynasty_modifier = fp1_legacy_of_piracy_modifier }
