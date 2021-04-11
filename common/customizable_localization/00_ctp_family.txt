@@ -847,8 +847,11 @@ QueenMGreek = {
 		trigger = {
 			any_child = {
 				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
+					has_government = roman_administration_government
+					has_government = roman_administration_military_government
+					has_government = roman_administration_theme_government
+					has_government = roman_administration_doukaton_government
+					has_government = roman_administration_kouratoreia_government
 				}
 			}
 		}
@@ -865,12 +868,15 @@ EmpressMGreek = {
 		trigger = {
 			any_child = {
 				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
+					has_government = roman_administration_government
+					has_government = roman_administration_military_government
+					has_government = roman_administration_theme_government
+					has_government = roman_administration_doukaton_government
+					has_government = roman_administration_kouratoreia_government
 				}
 			}
 		}
-		localization_key = byzantine_emperor_female_greek
+		localization_key = ctp_blank
 	}
 	text = {
 		fallback = yes
@@ -913,6 +919,50 @@ PrincessAssyrian = {
 		localization_key =  prince_default_female_assyrian
 	}
 }
+PrinceBAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_assyrian_male
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_male_assyrian
+	}
+}
+PrincessBAssyrian = {
+	type = character
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					exists = father.primary_heir
+					root.father.primary_heir = root
+				}
+				AND = {
+					exists = mother.primary_heir
+					root.mother.primary_heir = root
+				}
+			}
+		}
+		localization_key = caeser_assyrian_female
+	}
+	text = {
+		fallback = yes
+		localization_key =  prince_default_female_assyrian
+	}
+}
 QueenMAssyrian = {
 	type = character
 	text = {
@@ -934,8 +984,11 @@ EmpressMAssyrian = {
 		trigger = {
 			any_child = {
 				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
+					has_government = roman_administration_government
+					has_government = roman_administration_military_government
+					has_government = roman_administration_theme_government
+					has_government = roman_administration_doukaton_government
+					has_government = roman_administration_kouratoreia_government
 				}
 			}
 		}

@@ -325,7 +325,7 @@ count_feudalclan_male_greek = {
 	tier = county
 	priority = 113
 	cultures = { greek }
-	governments = { feudal_government clan_government }
+	governments = { feudal_government clan_government roman_administration_government }
 	top_liege = no
 }
 count_feudalclan_female_greek = {
@@ -335,7 +335,7 @@ count_feudalclan_female_greek = {
 	tier = county
 	priority = 113
 	cultures = { greek }
-	governments = { feudal_government clan_government }
+	governments = { feudal_government clan_government roman_administration_government }
 	top_liege = no
 }
 county_feudalclan_greek = {
@@ -343,7 +343,7 @@ county_feudalclan_greek = {
 	tier = county
 	priority = 113
 	cultures = { greek }
-	governments = { feudal_government clan_government }
+	governments = { feudal_government clan_government roman_administration_government }
 	top_liege = no
 }
 duke_feudalclan_male_greek = {
@@ -372,6 +372,66 @@ duchy_feudalclan_greek = {
 	priority = 123
 	cultures = { greek }
 	governments = { feudal_government clan_government }
+	top_liege = no
+}
+byzantine_duke_male_greek = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_duke_female_greek = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_duchy_greek = {
+	type = title
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+}
+douk_feudalclan_male_greek = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
+	top_liege = no
+	only_holder = yes
+}
+douk_feudalclan_female_greek = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
+	top_liege = no
+	only_holder = yes
+}
+doukaton_feudalclan_greek = {
+	type = title
+	tier = duchy
+	priority = 123
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
 	top_liege = no
 }
 duke_feudalclan_male_greek_independent = {
@@ -433,6 +493,66 @@ kingdom_greek = {
 	governments = { feudal_government clan_government tribal_government }
 	top_liege = no
 }
+byzantine_king_male_greek = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_king_female_greek = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_kingdom_greek = {
+	type = title
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+}
+kate_king_male_greek = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
+	top_liege = no
+	only_holder = yes
+}
+kate_king_female_greek = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
+	top_liege = no
+	only_holder = yes
+}
+kate_kingdom_greek = {
+	type = title
+	tier = kingdom
+	priority = 143
+	cultures = { greek }
+	governments = { roman_administration_doukaton_government }
+	top_liege = no
+}
 emperor_male_greek = {
 	type = character
 	gender = male
@@ -460,8 +580,7 @@ byzantine_emperor_male_greek = {
 	tier = empire
 	priority = 154
 	cultures = { greek }
-	titles = { e_byzantium }
-	governments = { feudal_government clan_government tribal_government republic_government }
+	governments = { roman_administration_government }
 	top_liege = no
 }
 byzantine_emperor_female_greek = {
@@ -471,8 +590,7 @@ byzantine_emperor_female_greek = {
 	tier = empire
 	priority = 154
 	cultures = { greek }
-	titles = { e_byzantium }
-	governments = { feudal_government clan_government tribal_government republic_government }
+	governments = { roman_administration_government }
 	top_liege = no
 }
 empire_greek = {
@@ -530,8 +648,7 @@ title_prince_male_greek_byzantine_empire = {
 	tier = empire
 	priority = 150
 	cultures = { greek }
-	titles = { e_byzantium }
-	governments = { feudal_government clan_government tribal_government republic_government }
+	governments = { roman_administration_government }
 }
 title_prince_female_greek_byzantine_empire = {
 	type = character
@@ -540,8 +657,7 @@ title_prince_female_greek_byzantine_empire = {
 	tier = empire
 	priority = 150
 	cultures = { greek }
-	titles = { e_byzantium }
-	governments = { feudal_government clan_government tribal_government republic_government }
+	governments = { roman_administration_government }
 }
 queen_mother_greek = {
 	type = character
@@ -1451,6 +1567,36 @@ duchy_assyrian = {
 	governments = { feudal_government clan_government }
 	top_liege = no
 }
+byzantine_duke_male_assyrian = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_duke_female_assyrian = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 123
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_duchy_assyrian = {
+	type = title
+	tier = duchy
+	priority = 123
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+}
 duke_male_assyrian_independent = {
 	type = character
 	gender = male
@@ -1510,6 +1656,36 @@ kingdom_assyrian = {
 	governments = { feudal_government clan_government tribal_government }
 	top_liege = no
 }
+byzantine_king_male_assyrian = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_king_female_assyrian = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 143
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+	only_holder = yes
+}
+byzantine_kingdom_assyrian = {
+	type = title
+	tier = kingdom
+	priority = 143
+	cultures = { assyrian }
+	governments = { roman_administration_theme_government }
+	top_liege = no
+}
 emperor_male_assyrian = {
 	type = character
 	gender = male
@@ -1528,7 +1704,7 @@ byzantine_emperor_male_assyrian = {
 	priority = 154
 	cultures = { assyrian }
 	titles = { e_byzantium }
-	governments = { republic_government feudal_government clan_government tribal_government }
+	governments = { roman_administration_government }
 	top_liege = no
 }
 byzantine_emperor_female_assyrian = {
@@ -1539,7 +1715,7 @@ byzantine_emperor_female_assyrian = {
 	priority = 154
 	cultures = { assyrian }
 	titles = { e_byzantium }
-	governments = { republic_government feudal_government clan_government tribal_government }
+	governments = { roman_administration_government }
 	top_liege = no
 }
 emperor_female_assyrian = {

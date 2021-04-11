@@ -5072,11 +5072,15 @@ CountMaleGreek = {
 	type = character
 	text = {
 		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
+			is_landed = no
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		trigger = {
+			exists = liege
+			liege = {
+				has_government = roman_administration_doukaton_government
 			}
 		}
 		localization_key = byzantine_count_male_greek
@@ -5090,11 +5094,15 @@ CountFemaleGreek = {
 	type = character
 	text = {
 		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
+			is_landed = no
+		}
+		localization_key = ctp_blank
+	}
+	text = {
+		trigger = {
+			exists = liege
+			liege = {
+				has_government = roman_administration_doukaton_government
 			}
 		}
 		localization_key = byzantine_count_female_greek
@@ -5108,11 +5116,9 @@ CountyGreek = {
 	type = character
 	text = {
 		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
+			exists = liege
+			liege = {
+				has_government = roman_administration_doukaton_government
 			}
 		}
 		localization_key = byzantine_county_greek

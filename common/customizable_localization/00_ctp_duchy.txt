@@ -6955,26 +6955,6 @@ DukeMaleGreek = {
 	type = character
 	text = {
 		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-			OR = {
-				vassal_contract_has_flag = has_march_contract
-				AND = {
-					exists = primary_spouse
-					root.primary_spouse = {
-						vassal_contract_has_flag = has_march_contract
-					}
-				}
-			}
-		}
-		localization_key = byzantine_marquess_male_greek
-	}
-	text = {
-		trigger = {
 			OR = {
 				vassal_contract_has_flag = has_march_contract
 				AND = {
@@ -7002,43 +6982,12 @@ DukeMaleGreek = {
 		localization_key = palatine_male_greek
 	}
 	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-		}
-		localization_key = byzantine_duke_male_greek
-	}
-	text = {
 		localization_key = duke_default_male_greek
 		fallback = yes
 	}
 }
 DukeFemaleGreek = {
 	type = character
-	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-			OR = {
-				vassal_contract_has_flag = has_march_contract
-				AND = {
-					exists = primary_spouse
-					root.primary_spouse = {
-						vassal_contract_has_flag = has_march_contract
-					}
-				}
-			}
-		}
-		localization_key = byzantine_marquess_female_greek
-	}
 	text = {
 		trigger = {
 			OR = {
@@ -7068,35 +7017,12 @@ DukeFemaleGreek = {
 		localization_key = palatine_female_greek
 	}
 	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-		}
-		localization_key = byzantine_duke_female_greek
-	}
-	text = {
 		localization_key = duke_default_female_greek
 		fallback = yes
 	}
 }
 DuchyGreek = {
 	type = character
-	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-			vassal_contract_has_flag = has_march_contract
-		}
-		localization_key = byzantine_march_greek
-	}
 	text = {
 		trigger = {
 			vassal_contract_has_flag = has_march_contract
@@ -7108,17 +7034,6 @@ DuchyGreek = {
 			vassal_contract_has_flag = has_palatinate_contract
 		}
 		localization_key = palatinate_greek
-	}
-	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-		}
-		localization_key = byzantine_duchy_greek
 	}
 	text = {
 		localization_key = duchy_default_greek
@@ -7279,17 +7194,6 @@ DukeMaleAssyrian = {
 		localization_key = palatine_male_assyrian
 	}
 	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-		}
-		localization_key = byzantine_duke_male_assyrian
-	}
-	text = {
 		localization_key = duke_default_male_assyrian
 		fallback = yes
 	}
@@ -7323,17 +7227,6 @@ DukeFemaleAssyrian = {
 			}
 		}
 		localization_key = palatine_female_assyrian
-	}
-	text = {
-		trigger = {
-			root.top_liege = {
-				OR = {
-					has_primary_title = title:e_byzantium
-					has_primary_title = title:e_roman_empire
-				}
-			}
-		}
-		localization_key = byzantine_duke_female_assyrian
 	}
 	text = {
 		localization_key = duke_default_female_assyrian
