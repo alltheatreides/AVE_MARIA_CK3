@@ -1181,6 +1181,7 @@
 111170 = {
 	## 
 	name = "invention_berber"
+	dynasty = kutama_berbers
 	martial = 9
 	diplomacy = 6
 	intrigue = 7
@@ -1197,7 +1198,13 @@
 	1066.1.1 = {
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 15 }
+
+			vassal_contract_set_obligation_level = {
+				type = islamic_empire_iqta
+				level = 1
+			}
 		}
+		
 	}
 }
 

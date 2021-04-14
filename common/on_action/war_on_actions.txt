@@ -402,8 +402,7 @@ on_war_started = {
 							inheritable = no
 							war = scope:war
 						}
-					}
-					
+					}					
 					if = {
 						limit = {
 							primary_title = {
@@ -721,6 +720,312 @@ on_war_started = {
 					}
 					scope:war = {
 						add_attacker = prev
+					}
+				}
+			}
+		}
+
+		## Regiment civil war - troop spawning
+		scope:attacker = {
+			if = {
+				limit = {
+					has_government = islamic_empire_regiment_government					
+				}
+				primary_title = {
+					save_scope_as = primary_regiment_title
+				}
+				liege = {
+					capital_province = {
+						save_scope_as = liege_capital
+					}
+				}
+				## Abid
+				if = {
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = abid_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					## Troop spawning
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}					
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}	
+				}
+				## turks
+				if = {
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = turkish_ghulam_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+				}
+			}
+		}
+		scope:defender = {
+			if = {
+				limit = {
+					has_government = islamic_empire_regiment_government					
+				}
+				primary_title = {
+					save_scope_as = primary_regiment_title
+				}
+				liege = {
+					capital_province = {
+						save_scope_as = liege_capital
+					}
+				}
+				## Abid
+				if = {
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = abid_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					## Troop spawning
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:liege_capital
+							#origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}					
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:liege_capital
+							#origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "nubian_ghilman"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:liege_capital
+							#origin = scope:liege_capital
+							save_scope_as = ghulam_army_abid
+							inheritable = no
+							war = scope:war
+						}
+					}	
+				}
+				## turks
+				if = {
+					limit = {
+						any_held_title = {
+							has_variable = islamic_empire_regiment_size
+							has_variable = turkish_ghulam_regiment
+						}
+						has_government = islamic_empire_regiment_government
+						NOT = { has_character_flag = mustered }
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_infantry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = ghilman_nubians
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_infantry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_light_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = sahel_horsemen
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_light_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
+					}
+					if = {
+						limit = {
+							primary_title = {
+								var:islamic_empire_regiment_size_heavy_cavalry > 0
+							}
+						}
+						spawn_army = {
+							name = "mamluks"
+							men_at_arms = {
+								type = mamluk_cavalry
+								stacks = scope:primary_regiment_title.var:islamic_empire_regiment_size_heavy_cavalry
+							}
+							location = scope:liege_capital
+							origin = scope:liege_capital
+							save_scope_as = ghulam_army
+							inheritable = no
+							war = scope:war
+						}
 					}
 				}
 			}

@@ -176,6 +176,10 @@ ave_maria_ghulam_events.0002 = {
 					name = islamic_empire_regiment_salary
 					subtract = 1
 				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+				
 			}
 			clear_saved_scope = regiment_leader
 		}		
@@ -236,11 +240,15 @@ ave_maria_ghulam_events.0003 = {
 					name = islamic_empire_regiment_salary
 					add = 1
 				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
 			}
 			clear_saved_scope = regiment_leader
 		}		
 		hidden_effect = {
 			islamic_empire_calculate_regiment_cost = yes
+			
 		}
 
 		scope:regiment_leader = {

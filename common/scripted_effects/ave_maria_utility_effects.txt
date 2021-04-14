@@ -1,0 +1,22 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Scripted Effects																	   #
+#                               													   #
+########################################################################################
+
+# 
+
+
+## Written by Tobbzn
+variable_duel = { #Call as: variable_duel = { TARGET = character VARIABLE = variable }
+    save_scope_value_as = {
+        name = duel_value
+        value = {
+            value = $VARIABLE$
+            subtract = $TARGET$.$VARIABLE$
+        }
+    }
+}

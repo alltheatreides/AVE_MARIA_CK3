@@ -33,7 +33,8 @@ islamic_empire_asabiyya_level_calc = {
 			remove_character_modifier = islamic_empire_asabiyya_level_strong
 			remove_character_modifier = islamic_empire_asabiyya_level_exceptional
 			remove_character_modifier = islamic_empire_asabiyya_level_weak
-			add_character_modifier = islamic_empire_asabiyya_level_very_weak
+			add_character_modifier = { modifier = islamic_empire_asabiyya_level_very_weak }
+			
 		}
 	}
 	if = {
@@ -50,7 +51,7 @@ islamic_empire_asabiyya_level_calc = {
 			remove_character_modifier = islamic_empire_asabiyya_level_strong
 			remove_character_modifier = islamic_empire_asabiyya_level_exceptional
 			remove_character_modifier = islamic_empire_asabiyya_level_very_weak
-			add_character_modifier = islamic_empire_asabiyya_level_weak
+			add_character_modifier = { modifier = islamic_empire_asabiyya_level_weak }
 		}
 	}
 	if = {
@@ -67,7 +68,7 @@ islamic_empire_asabiyya_level_calc = {
 			remove_character_modifier = islamic_empire_asabiyya_level_strong
 			remove_character_modifier = islamic_empire_asabiyya_level_exceptional
 			remove_character_modifier = islamic_empire_asabiyya_level_weak
-			add_character_modifier = islamic_empire_asabiyya_level_medium
+			add_character_modifier = { modifier = islamic_empire_asabiyya_level_medium }
 		}
 	}
 	if = {
@@ -84,7 +85,7 @@ islamic_empire_asabiyya_level_calc = {
 			remove_character_modifier = islamic_empire_asabiyya_level_very_weak
 			remove_character_modifier = islamic_empire_asabiyya_level_exceptional
 			remove_character_modifier = islamic_empire_asabiyya_level_weak
-			add_character_modifier = islamic_empire_asabiyya_level_strong
+			add_character_modifier = { modifier = islamic_empire_asabiyya_level_strong }
 		}
 	}
 	if = {
@@ -100,7 +101,7 @@ islamic_empire_asabiyya_level_calc = {
 			remove_character_modifier = islamic_empire_asabiyya_level_very_weak
 			remove_character_modifier = islamic_empire_asabiyya_level_strong
 			remove_character_modifier = islamic_empire_asabiyya_level_weak
-			add_character_modifier = islamic_empire_asabiyya_level_exceptional
+			add_character_modifier = { modifier = islamic_empire_asabiyya_level_exceptional }
 		}
 	}
 }
@@ -110,302 +111,355 @@ islamic_empire_asabiyya_level_calc = {
 #############################################
 
 islamic_empire_apply_salary_income = {
+	holder = { 
+		islamic_empire_remove_salary_income = yes 
+	}	
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 1	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_1 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 2	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_2 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 3	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_3 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 4	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_4 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 5	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_5 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 6	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_6 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 7	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_7 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 8	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_8 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 9	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_9 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 10	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_10 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 11	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_11 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 12	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_12 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 13	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_13 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 14	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_14 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 15	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_15 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 16	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_16 }		
 	}			
 	if = {			
-		limit = {		
+		limit = {	
+			has_variable = islamic_empire_regiment_salary	
 			var:islamic_empire_regiment_salary = 17	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_17 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 18	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_18 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 19	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_19 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 20	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_20 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 21	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_21 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 22	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_22 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 23	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_23 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 24	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_24 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 25	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_25 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 26	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_26 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 27	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_27 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 28	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_28 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 29	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_29 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 30	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_30 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 31	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_31 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 32	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_32 }		
 	}			
 	if = {			
-		limit = {		
+		limit = {	
+			has_variable = islamic_empire_regiment_salary	
 			var:islamic_empire_regiment_salary = 33	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_33 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 34	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_34 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 35	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_35 }		
 	}			
 	if = {			
-		limit = {		
+		limit = {	
+			has_variable = islamic_empire_regiment_salary	
 			var:islamic_empire_regiment_salary = 36	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_36 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 37	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_37 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 38	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_38 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 39	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_39 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 40	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_40 }		
 	}			
 	if = {			
-		limit = {		
+		limit = {	
+			has_variable = islamic_empire_regiment_salary	
 			var:islamic_empire_regiment_salary = 41	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_41 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 42	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_42 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 43	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_43 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 44	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_44 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 45	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_45 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 46	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_46 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 47	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_47 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 48	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_48 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 49	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_49 }		
 	}			
 	if = {			
 		limit = {		
+			has_variable = islamic_empire_regiment_salary
 			var:islamic_empire_regiment_salary = 50	
 		}		
 		holder = { add_character_modifier = islamic_empire_salary_50 }		
@@ -3970,6 +4024,59 @@ islamic_empire_remove_salary_cost = {
 
 }
 
+islamic_empire_remove_salary_income = {
+	remove_character_modifier = islamic_empire_salary_1
+	remove_character_modifier = islamic_empire_salary_2
+	remove_character_modifier = islamic_empire_salary_3
+	remove_character_modifier = islamic_empire_salary_4
+	remove_character_modifier = islamic_empire_salary_5
+	remove_character_modifier = islamic_empire_salary_6
+	remove_character_modifier = islamic_empire_salary_7
+	remove_character_modifier = islamic_empire_salary_8
+	remove_character_modifier = islamic_empire_salary_9
+	remove_character_modifier = islamic_empire_salary_10
+	remove_character_modifier = islamic_empire_salary_11
+	remove_character_modifier = islamic_empire_salary_12
+	remove_character_modifier = islamic_empire_salary_13
+	remove_character_modifier = islamic_empire_salary_14
+	remove_character_modifier = islamic_empire_salary_15
+	remove_character_modifier = islamic_empire_salary_16
+	remove_character_modifier = islamic_empire_salary_17
+	remove_character_modifier = islamic_empire_salary_18
+	remove_character_modifier = islamic_empire_salary_19
+	remove_character_modifier = islamic_empire_salary_20
+	remove_character_modifier = islamic_empire_salary_21
+	remove_character_modifier = islamic_empire_salary_22
+	remove_character_modifier = islamic_empire_salary_23
+	remove_character_modifier = islamic_empire_salary_24
+	remove_character_modifier = islamic_empire_salary_25
+	remove_character_modifier = islamic_empire_salary_26
+	remove_character_modifier = islamic_empire_salary_27
+	remove_character_modifier = islamic_empire_salary_28
+	remove_character_modifier = islamic_empire_salary_29
+	remove_character_modifier = islamic_empire_salary_30
+	remove_character_modifier = islamic_empire_salary_31
+	remove_character_modifier = islamic_empire_salary_32
+	remove_character_modifier = islamic_empire_salary_33
+	remove_character_modifier = islamic_empire_salary_34
+	remove_character_modifier = islamic_empire_salary_35
+	remove_character_modifier = islamic_empire_salary_36
+	remove_character_modifier = islamic_empire_salary_37
+	remove_character_modifier = islamic_empire_salary_38
+	remove_character_modifier = islamic_empire_salary_39
+	remove_character_modifier = islamic_empire_salary_40
+	remove_character_modifier = islamic_empire_salary_41
+	remove_character_modifier = islamic_empire_salary_42
+	remove_character_modifier = islamic_empire_salary_43
+	remove_character_modifier = islamic_empire_salary_44
+	remove_character_modifier = islamic_empire_salary_45
+	remove_character_modifier = islamic_empire_salary_46
+	remove_character_modifier = islamic_empire_salary_47
+	remove_character_modifier = islamic_empire_salary_48
+	remove_character_modifier = islamic_empire_salary_49
+	remove_character_modifier = islamic_empire_salary_50
+}
+
 #############################################
 # SALARY OPINION EFFECT						#
 #############################################
@@ -4047,6 +4154,84 @@ islamic_empire_apply_salary_opinion = {
 		}
 		add_opinion = {
 			modifier = islamic_empire_high_salary
+			target = liege
+		}
+	}
+}
+
+islamic_empire_apply_court_precedence_opinion = {
+	## Low
+	if = {
+		limit = {
+			primary_title = {
+				has_variable = turkish_ghulam_regiment
+				var:islamic_empire_regiment_honors < 4
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_low_court_precedence
+			target = liege
+		}
+	}
+	if = {
+		limit = {
+			primary_title = {
+				this = title:d_kutama
+				var:islamic_empire_regiment_honors < 5
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_low_court_precedence
+			target = liege
+		}
+	}
+	if = {
+		limit = {
+			primary_title = {
+				has_variable = abid_regiment
+				var:islamic_empire_regiment_honors < 3
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_low_court_precedence
+			target = liege
+		}
+	}
+
+	## High
+	if = {
+		limit = {
+			primary_title = {
+				has_variable = turkish_ghulam_regiment
+				var:islamic_empire_regiment_honors >= 5
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_high_court_precedence
+			target = liege
+		}
+	}
+	if = {
+		limit = {
+			primary_title = {
+				this = title:d_kutama
+				var:islamic_empire_regiment_honors >= 6
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_high_court_precedence
+			target = liege
+		}
+	}
+	if = {
+		limit = {
+			primary_title = {
+				has_variable = abid_regiment
+				var:islamic_empire_regiment_honors >= 4
+			}
+		}
+		add_opinion = {
+			modifier = islamic_empire_high_court_precedence
 			target = liege
 		}
 	}

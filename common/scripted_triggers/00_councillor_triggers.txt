@@ -106,6 +106,19 @@ can_be_marshal_trigger = {
 			this = title:d_megas_domestikos
 		}
 	}
+	## AVE MARIA FATIMID triggers
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { 
+				has_government = islamic_empire_government
+				highest_held_title_tier = tier_empire
+			}
+		}
+		NOR = {
+			has_government = islamic_empire_diwan_government
+			has_government = theocracy_government
+		}
+	}
 }
 
 can_be_spymaster_trigger = {

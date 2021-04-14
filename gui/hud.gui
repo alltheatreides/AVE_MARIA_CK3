@@ -489,7 +489,7 @@ widget = {
 											parentanchor = left
 											size = { 0 80 }	
 					
-											#onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_get_diwan_leaders').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
 											onclick = "[GetVariableSystem.Toggle( 'am_institutions_fatimid_administration_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_army_factions_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_dawa_mission_gui_toggle')]"
@@ -2362,6 +2362,138 @@ widget = {
 				layoutpolicy_horizontal = expanding
 			}
 
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				
+				widget = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					vbox = {
+						spacing = 10
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							spacing = 10
+
+							background = {
+								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+								fittype = centercrop
+								alpha = 0.8
+
+								using = Mask_Rough_Edges
+							}
+
+							## new experiment
+							scrollbox = {
+								name = "character_diwan_officials_grid"
+								parentanchor = top
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+
+								blockoverride "scrollbox_margins" { }
+
+								blockoverride "scrollbox_content"
+								{
+									spacing = 20
+									margin = { 0 20 }
+
+									dynamicgridbox = {
+										datamodel = "[GetPlayer.MakeScope.GetList('list_fatimid_diwan_leaders')]"
+										datamodel_wrap = 1
+										flipdirection = yes
+										
+										state = {
+											name = get_list
+											trigger_on_create = yes
+											duration = 2
+											on_start = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_get_diwan_leaders').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											next = get_list
+										}
+
+										item = {
+											## Gros bouton
+											button_standard = {
+												layoutpolicy_horizontal = expanding
+												size = { 850 160 }	
+
+												background = {
+													fittype = centercrop
+													#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+													texture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_reception_courtyard.dds"
+													
+													modify_texture = {
+														texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+														blend_mode = alphamultiply
+													}
+												}
+
+												## Boite principale horizontale ou tout est mis
+												hbox = {
+													#layoutpolicy_horizontal = expanding
+													layoutpolicy_vertical = expanding
+
+													## Boite verticale gauche, portrait
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top|left
+														portrait_shoulders = {
+															datacontext = "[Scope.GetCharacter]"
+			
+															blockoverride "description_relation_text" {
+																text = "[Character.GetPlayerGuestDescription]"
+															}
+			
+															background = {
+																using = Background_Area
+															}
+														}
+													}
+
+													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top
+
+														## Titre/nom du régiment
+														hbox = {
+															text_single = {
+																datacontext = "[Scope.GetCharacter]"
+																text = "[Character.GetPrimaryTitle.GetBaseNameNoTier]"
+																using = Font_Size_Medium
+																default_format = "#bold"
+															}
+														}
+														
+														## Infos
+														hbox = {
+															spacing = 25
+
+															
+														}
+														
+														
+													}	
+													
+												}
+
+											}
+											
+										}
+									}						
+									
+								}
+							}
+						}
+					}
+					
+										
+				}
+			
+			}
+
 			## Footer area
 			hbox = {
 				name = "footer_army"
@@ -2404,6 +2536,138 @@ widget = {
 			## Divider for visuals
 			divider = {
 				layoutpolicy_horizontal = expanding
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				
+				widget = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					vbox = {
+						spacing = 10
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							layoutpolicy_vertical = expanding
+							spacing = 10
+
+							background = {
+								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
+								fittype = centercrop
+								alpha = 0.8
+
+								using = Mask_Rough_Edges
+							}
+
+							## new experiment
+							scrollbox = {
+								name = "character_diwan_officials_grid"
+								parentanchor = top
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+
+								blockoverride "scrollbox_margins" { }
+
+								blockoverride "scrollbox_content"
+								{
+									spacing = 20
+									margin = { 0 20 }
+
+									dynamicgridbox = {
+										datamodel = "[GetPlayer.MakeScope.GetList('list_fatimid_dawa_leaders')]"
+										datamodel_wrap = 1
+										flipdirection = yes
+										
+										state = {
+											name = get_list
+											trigger_on_create = yes
+											duration = 2
+											on_start = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_get_dawa_leaders').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											next = get_list
+										}
+
+										item = {
+											## Gros bouton
+											button_standard = {
+												layoutpolicy_horizontal = expanding
+												size = { 850 160 }	
+
+												background = {
+													fittype = centercrop
+													#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
+													texture = "gfx/interface/illustrations/decisions/z_ave_maria_quran_recitation.dds"
+													
+													modify_texture = {
+														texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+														blend_mode = alphamultiply
+													}
+												}
+
+												## Boite principale horizontale ou tout est mis
+												hbox = {
+													#layoutpolicy_horizontal = expanding
+													layoutpolicy_vertical = expanding
+
+													## Boite verticale gauche, portrait
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top|left
+														portrait_shoulders = {
+															datacontext = "[Scope.GetCharacter]"
+			
+															blockoverride "description_relation_text" {
+																text = "[Character.GetPlayerGuestDescription]"
+															}
+			
+															background = {
+																using = Background_Area
+															}
+														}
+													}
+
+													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
+													vbox = {
+														layoutpolicy_vertical = expanding
+														parentanchor = top
+
+														## Titre/nom du régiment
+														hbox = {
+															text_single = {
+																datacontext = "[Scope.GetCharacter]"
+																text = "[Character.GetPrimaryTitle.GetBaseNameNoTier]"
+																using = Font_Size_Medium
+																default_format = "#bold"
+															}
+														}
+														
+														## Infos
+														hbox = {
+															spacing = 25
+
+															
+														}
+														
+														
+													}	
+													
+												}
+
+											}
+											
+										}
+									}						
+									
+								}
+							}
+						}
+					}
+					
+										
+				}
+			
 			}
 
 			## Footer area

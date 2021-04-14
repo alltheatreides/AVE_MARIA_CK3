@@ -1,0 +1,195 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# Banquet Scripted Effects															   #
+#                               													   #
+########################################################################################
+
+# Copied from vanilla banquet effect
+
+
+#Effects used in banquets
+
+#banquet_end_guest_effect - Effect run for all guests when they leave banquets
+
+banquet_concluded_my_events_effect = {
+	save_temporary_scope_as = finished_participant
+	scope:activity = {
+		add_to_variable_list = {
+			name = finished_participants
+			target = scope:finished_participant
+		}
+	}
+}
+
+banquet_fire_correct_default_event_effect = {
+	if = {
+		limit = {
+			this = scope:activity.activity_owner
+		}
+		trigger_event = {
+			on_action = banquet_default_host_event_selection
+			days = { min_banquet_event_spacing max_banquet_event_spacing }
+		}
+	}
+	else = {
+		trigger_event = {
+			on_action = banquet_default_event_selection
+			days = { min_banquet_event_spacing max_banquet_event_spacing }
+		}
+	}
+}
+
+banquet_wrap_up_or_fire_random_event_effect = {
+	if = {
+		limit = {
+			NOT = { exists = local_var:num_of_banquet_events }
+		}
+		set_local_variable = {
+			name = num_of_banquet_events
+			value = 1
+		}
+		banquet_fire_correct_default_event_effect = yes
+	}
+	else = {
+		change_local_variable = {
+			name = num_of_banquet_events
+			add = 1
+		}
+		if = {
+			limit = { # Check the number of events fired
+				local_var:num_of_banquet_events < max_default_banquet_events
+			}
+			# If below the max number check whether to fire more
+			if = {
+				limit = {
+					local_var:num_of_banquet_events >= min_default_banquet_events
+				}
+				random_list = {
+					0 = {
+						modifier = { add = chance_of_extra_banquet_events }
+						banquet_fire_correct_default_event_effect = yes
+					}
+					100 = {
+						modifier = {
+							add = {
+								subtract = chance_of_extra_banquet_events
+							}
+						}
+						banquet_concluded_my_events_effect = yes
+					}
+				}
+			}
+			else = {
+				banquet_fire_correct_default_event_effect = yes
+			}
+		}
+		else = {
+			banquet_concluded_my_events_effect = yes
+		}
+	}
+}
+
+banquet_end_guest_effect = {
+	# Only called on the end of a *successful* banquet. banquets which are interrupted due to death, imprisonment, etc., don't get this, so put critical clean-up stuff in the activity itself.
+	reveler_lifestyle_rank_up_check_effect = yes
+	stress_impact = {
+		base = medium_stress_loss
+		gluttonous = medium_stress_impact_loss
+		gregarious = medium_stress_impact_loss
+		shy = medium_stress_impact_gain
+	}
+}
+
+hosted_successful_banquet_effect = {
+	add_prestige = medium_prestige_gain
+	scope:activity = {
+		every_participant = {
+			limit = { NOT = { this = root } }
+			custom = every_guest_scope_tt
+			add_opinion = {
+				target = root
+				modifier = banquet_hosted_successful_banquet
+			}
+		}
+	}
+	reveler_lifestyle_rank_up_check_effect = yes
+	hidden_effect = {
+		if = {
+			limit = { exists = scope:spouse }
+			add_opinion = { #Your opinion of your Spouse increases, considering they did most of the work
+				target = scope:spouse
+				modifier = banquet_spouse_hosted_successful_banquet_opinion
+			}
+		}
+	}
+}
+
+hosted_successful_banquet_interrupted_effect = {
+	add_prestige = medium_prestige_gain
+	every_in_list = {
+		list = banquet_participants
+		custom = every_guest_scope_tt
+		add_opinion = {
+			target = scope:host
+			modifier = banquet_hosted_successful_banquet
+		}
+	}
+	reveler_lifestyle_rank_up_check_effect = yes
+	hidden_effect = {
+		if = {
+			limit = { exists = scope:spouse }
+			add_opinion = { #Your opinion of your Spouse increases, considering they did most of the work
+				target = scope:spouse
+				modifier = banquet_spouse_hosted_successful_banquet_opinion
+			}
+		}
+	}
+}
+
+banquet_default_setup_effect = {
+	scope:activity = { #The banquet
+
+		#Add any special setups here (multiple player characters, etc.), BEFORE the every_participant effect
+
+		activity_owner = {
+			if = { #Is this a murder banquet?
+				limit = {
+					exists = var:murder_banquet
+				}
+				trigger_event = {
+					id = banquet_default.8000
+					days = 3
+				}
+			}
+			else = {
+				trigger_event = {
+					on_action = banquet_default_host_event_selection
+					days = banquet_initial_event_delay
+				}
+			}
+		}
+
+		every_participant = { #Effect for remaining (most) guests
+			limit = {
+				NOT = { this = scope:activity.activity_owner }
+			}
+			if = { #Is this a murder banquet?
+				limit = {
+					scope:activity.activity_owner = {
+						exists = var:murder_banquet
+					}
+				}
+				#The event for the participants is triggered through the host's banquet_default.8000
+			}
+			else = {
+				trigger_event = {
+					on_action = banquet_default_event_selection
+					days = banquet_initial_event_delay
+				}
+			}
+		}
+	}
+}

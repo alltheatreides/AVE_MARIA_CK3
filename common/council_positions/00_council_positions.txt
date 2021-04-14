@@ -65,6 +65,20 @@
 		got_council_position_effect = yes
 	}
 
+	can_fire = {
+		trigger_if = {
+			limit = {
+				liege = {
+					has_goverment = islamic_empire_government
+					highest_held_title_tier = tier_empire
+				}				
+			}
+			NOT = {
+				has_character_modifier = islamic_empire_military_wazir
+			}
+		}
+	}
+
 	on_fired_from_position = {
 		fired_from_council_position_effect = yes
 	}
