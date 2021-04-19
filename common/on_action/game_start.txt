@@ -724,6 +724,14 @@ on_game_start_after_lobby = {
 		### KJH Distance Calculator
 		init_main = yes
 
+		### OPUS RURALIUM COMMODORUM
+		every_ruler = {
+			limit = {
+				is_landed = yes
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
+
 		## HEXACO
 		hexaco_game_start_setup = yes
 
@@ -784,6 +792,7 @@ on_game_start_after_lobby = {
 							target = this
 						}
 					}
+					roman_administration_update_popularity_variable = yes
 				}
 				if = {
 					limit = {
@@ -795,6 +804,7 @@ on_game_start_after_lobby = {
 							target = this
 						}
 					}
+					roman_administration_update_popularity_variable = yes
 				}
 				if = {
 					limit = {
@@ -810,6 +820,7 @@ on_game_start_after_lobby = {
 							}
 						}
 					}
+					roman_administration_update_popularity_variable = yes
 					primary_title = {
 						add_to_global_variable_list = {
 							name = roman_administration_doukaton_list
@@ -993,6 +1004,7 @@ on_game_start_after_lobby = {
 			}
 		}
 
+		## Assigning asabiyya
 		every_ruler = {
 			limit = {
 				OR = {
@@ -1007,6 +1019,29 @@ on_game_start_after_lobby = {
 					value = 100
 				}
 				islamic_empire_asabiyya_level_calc = yes
+			}
+		}
+
+		## Vassal contracts for dhimmi
+		every_ruler = {
+			limit = {
+				highest_held_title_tier >= tier_duchy
+				
+			}
+			every_vassal = {
+				limit = {
+					religion = religion:islam_religion
+				}
+				vassal_contract_set_obligation_level = { type = islamic_empire_muslim_tax level = 3 }
+			}
+			every_vassal = {
+				limit = {
+					OR = {
+						religion = religion:christianity_religion
+						religion = religion:judaism_religion
+					}
+				}
+				vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
 			}
 		}
 

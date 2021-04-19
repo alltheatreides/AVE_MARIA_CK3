@@ -3,15 +3,17 @@
 
 	desc = hire_physician_decision_desc
 	selection_tooltip = hire_physician_decision_tooltip
+	
+	major = yes
 
-	ai_check_interval = 0
+	ai_check_interval = 12
 
 	is_shown = {
 		is_ruler = yes
 		NOT = { faith = { religion_tag = islam_religion } }
 	}
 
-	cooldown = { days = 365 }
+	cooldown = { days = 90 }
 
 	is_valid_showing_failures_only = {
 		is_imprisoned = no
@@ -34,11 +36,13 @@
 	}
 	
 	ai_potential = {
-		always = no
+		is_ruler = yes
+		highest_held_title_tier >= tier_county
+		court_physician_available_trigger = no
 	}
 
 	ai_will_do = {
-		base = 0
+		base = 100
 	}
 }
 
@@ -48,14 +52,16 @@ hire_physician_decision_muslim = {
 	desc = hire_physician_decision_desc
 	selection_tooltip = hire_physician_decision_tooltip
 
-	ai_check_interval = 0
+	major = yes
+
+	ai_check_interval = 12
 
 	is_shown = {
 		is_ruler = yes
 		faith = { religion_tag = islam_religion }
 	}
 
-	cooldown = { days = 365 }
+	cooldown = { days = 90 }
 
 	is_valid_showing_failures_only = {
 		is_available_adult_or_is_commanding = yes #Don't be fooled - there's no adult check in this trigger
@@ -78,11 +84,13 @@ hire_physician_decision_muslim = {
 	}
 	
 	ai_potential = {
-		always = no
+		is_ruler = yes
+		highest_held_title_tier >= tier_county
+		court_physician_available_trigger = no
 	}
 
 	ai_will_do = {
-		base = 0
+		base = 100
 	}
 }
 

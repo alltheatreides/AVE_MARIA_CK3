@@ -421,6 +421,27 @@ monthly_pulse.13 = {
 				}
 			}
 		}
+
+		# ## Vassal contracts for dhimmi
+		# every_ruler = {
+		# 	limit = {
+		# 		highest_held_title_tier >= tier_duchy
+		# 		religion = religion:islam_religion
+		# 	}
+		# 	every_vassal = {
+		# 		limit = {
+		# 			OR = {
+		# 				religion = religion:christianity_religion
+		# 				religion = religion:judaism_religion
+		# 			}
+		# 			NOR = {
+		# 				vassal_contract_has_flag = jizya_tax_gentle_flag
+		# 				vassal_contract_has_flag = jizya_tax_extortionate
+		# 			}
+		# 		}
+		# 		vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
+		# 	}
+		# }
 	}
 	
 	option = {

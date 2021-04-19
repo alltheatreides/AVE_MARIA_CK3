@@ -43,6 +43,8 @@ islamic_empire_muslim_tax = {
 	display_mode = tree
 	icon = gold_icon
 
+	
+
 	is_shown = {
 		scope:liege.religion = {
 			this = religion:islam_religion
@@ -70,56 +72,112 @@ islamic_empire_muslim_tax = {
 
 	obligation_levels = {
 		## 0 
-		waqf_tax = {
+		no_tax = {
 			position = { 0 0 }
 			
 			tax = 0.00 
-			flag = waqf_tax_flag # Flag for calculating the Popularity effect
+			flag = no_tax_flag # Flag for calculating the Popularity effect
+			
 		}	
-		## 1 		
+		## 1
+		waqf_tax = {
+			position = { 1 0 }
+			
+			tax = 0.00 
+			flag = waqf_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
+		}	
+		## 2
 		zakat_tax = {
 			parent = waqf_tax
-			position = { 1 0 }
+			position = { 2 0 }
 			
 			tax = 0.10
 			flag = zakat_tax_flag # Flag for calculating the Popularity effect
-		
-		}
-		## 2 
-		kharaj_tax = {
-			parent = zakat_tax
-			position = { 2 0 }
-			default = yes
-			tax = 0.20
-			flag = kharaj_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 		
 		}
 		## 3 
+		kharaj_tax = {
+			parent = zakat_tax
+			position = { 3 0 }
+			#default = yes
+			tax = 0.20
+			flag = kharaj_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
+		
+		}
+		## 4
 		ushr_tax = {
 			parent = kharaj_tax
-			position = { 3 0 }
+			position = { 4 0 }
 			
 			tax = 0.30
 			flag = ushr_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			
 		}
-		## 4 
+		## 5 
 		baratil_tax = {
 			parent = ushr_tax
-			position = { 4 0 }
+			position = { 5 0 }
 			
 			
 			tax = 0.40
 			flag = baratil_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			
 		}
-		## 5 
+		## 6
 		mukus_tax = {
 			parent = baratil_tax
-			position = { 5 0 }
+			position = { 6 0 }
 			
 			tax = 0.50
 			flag = mukus_tax_flag # Flag for calculating the Popularity effect
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 		}
 	}
 }
@@ -142,25 +200,78 @@ islamic_empire_non_muslim_tax = {
 	}
 	
 	obligation_levels = {
-		jizya_tax_gentle = {
+		jizya_tax_none = {
 			position = { 0 0 }
+			default = yes
+			flag = jizya_tax_none_flag
+
+			is_valid = {
+				# scope:liege.religion = {
+				# 	this = religion:islam_religion
+				# }
+				# scope:vassal.religion = {
+				# 	this = religion:islam_religion
+				# }
+			}
+		}
+
+		jizya_tax_gentle = {
+			position = { 1 0 }
 			
+			vassal_opinion = 10
 			tax = 0.2
 			flag = jizya_tax_gentle_flag
+
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					OR = {
+						this = religion:christianity_religion
+						this = religion:judaism_religion
+					}
+				}
+			}
 		}
 
 		jizya_tax_normal = {
-			position = { 1 0 }
-			default = yes
+			position = { 2 0 }
+			
 			tax = 0.4
 			flag = jizya_tax_normal_flag
+
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					OR = {
+						this = religion:christianity_religion
+						this = religion:judaism_religion
+					}
+				}
+			}
 		}
 
 		jizya_tax_extortionate = {
-			position = { 2 0 }
+			position = { 3 0 }
 			
 			tax = 0.6
 			flag = jizya_tax_extortionate_flag
+			vassal_opinion = -10
+
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					OR = {
+						this = religion:christianity_religion
+						this = religion:judaism_religion
+					}
+				}
+			}
 		}
 	}
 }
@@ -173,6 +284,14 @@ islamic_empire_non_muslim_tax = {
 ## Right to name the steward councillor
 islamic_empire_kharaj_right = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -218,6 +337,14 @@ islamic_empire_kharaj_right = {
 ## Right to name the Court chaplain / Qadi councillor
 islamic_empire_qadi_right = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -261,6 +388,14 @@ islamic_empire_qadi_right = {
 ## 
 islamic_empire_inheritance_right = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -300,6 +435,14 @@ islamic_empire_inheritance_right = {
 ## 
 islamic_empire_war_right = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -339,6 +482,14 @@ islamic_empire_war_right = {
 ## Zero taxes - Triggers automatic call to war alliance
 islamic_empire_iqta = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -380,6 +531,14 @@ islamic_empire_iqta = {
 ## Equivalent of marches - attracts ghazi - Triggers automatic call to war alliance
 islamic_empire_thugur = {
 	display_mode = checkbox
+	is_valid = {
+		scope:liege.religion = {
+			this = religion:islam_religion
+		}
+		scope:vassal.religion = {
+			this = religion:islam_religion
+		}
+	}
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {

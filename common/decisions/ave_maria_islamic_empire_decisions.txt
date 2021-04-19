@@ -222,3 +222,72 @@ ave_maria_islamic_empire_buy_slaves_for_military_training = {
 		
 	}
 }
+
+# ave_maria_islamic_empire_fatimid_dawa_mission = {
+# 	picture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_request.dds"
+# 	desc = ave_maria_islamic_empire_fatimid_dawa_mission_desc
+# 	major = yes
+# 	is_shown = {
+# 		faith = faith:ismaili
+# 		uses_islamic_empire_govt = yes
+# 		any_held_title = {
+# 			this = title:d_shiite
+# 		}
+# 	}
+
+# 	is_valid = {
+# 		is_capable_adult = yes
+# 		prestige_level >= 1
+# 		faith = faith:ismaili
+# 		uses_islamic_empire_govt = yes
+# 		any_held_title = {
+# 			this = title:d_shiite
+# 		}
+# 		gold >= 250
+# 	}
+
+# 	cost = {
+
+# 	}
+
+# 	cooldown = { days = 730 }
+
+# 	effect = {
+		
+# 	}
+
+# 	widget = {
+# 		controller = create_holy_order
+# 		barony_valid = {
+# 			trigger_if = {
+# 				limit = { exists = this }
+# 				NOT = { holder = scope:ruler }
+# 				NOT = { faith = scope:ruler.faith }
+# 				de_jure_liege = {
+# 					de_jure_liege = {
+# 						de_jure_liege = {
+							
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+
+# 	effect = {
+# 		trigger_event = {
+# 			id = ave_maria_test_events.0007
+# 		}
+# 	}
+
+# 	ai_check_interval = 72
+
+# 	ai_potential = {
+		
+# 	}
+
+# 	ai_will_do = {
+# 		base = 100
+		
+# 	}
+# }

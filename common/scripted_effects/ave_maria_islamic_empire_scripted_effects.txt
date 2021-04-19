@@ -22,6 +22,23 @@ islamic_empire_asabiyya_level_calc = {
 	## Putting variables/flags for asabiyya levels
 	if = {
 		limit = {
+			var:islamic_empire_asabiyya <=0
+		}
+		remove_variable = islamic_empire_asabiyya
+		remove_variable = asabiyya_level
+		holder = {
+			remove_character_modifier = islamic_empire_asabiyya_level_medium
+			remove_character_modifier = islamic_empire_asabiyya_level_strong
+			remove_character_modifier = islamic_empire_asabiyya_level_exceptional
+			remove_character_modifier = islamic_empire_asabiyya_level_weak
+			remove_character_modifier = islamic_empire_asabiyya_level_very_weak
+			
+			change_government = islamic_empire_government
+			
+		}
+	}
+	if = {
+		limit = {
 			var:islamic_empire_asabiyya < 25
 		}
 		set_variable = {

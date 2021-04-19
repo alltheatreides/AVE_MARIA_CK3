@@ -1,7 +1,23 @@
-﻿@ave_maria_constantinople_holding_illustration_western = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# BUILDINGS																			   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+@ave_maria_constantinople_holding_illustration_western = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_mena = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_india = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_mediterranean = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+
+
+#############################################
+# HOLDINGS					 				#
+#############################################
 
 metropolis_constantinople_01 = {
 	construction_time = slow_construction_time
@@ -203,6 +219,12 @@ pastoral_holding_building_1 = {
 	}
 }
 
+
+#############################################
+# BUILDINGS					 				#
+#############################################
+
+## 
 slave_market_1 = {
 	construction_time = quick_construction_time
 	# asset = {
@@ -232,9 +254,8 @@ slave_market_1 = {
 		base = 1
 	}
 
-	type_icon = "slave_market.dds"
+	type_icon = "am_icon_slave_market.dds"
 }
-
 slave_market_2 = {
 	construction_time = quick_construction_time
 	# asset = {
@@ -264,7 +285,95 @@ slave_market_2 = {
 		base = 1
 	}
 
-	type_icon = "slave_market.dds"
+	type_icon = "am_icon_slave_market.dds"
+}
+
+##
+roads_1 = {
+	construction_time = slow_construction_time
+
+	can_construct_potential = {
+		#building_requirement_castle_city_church = { LEVEL = 01 }
+	}
+
+	can_construct_showing_failures_only = {
+		#building_requirement_tribal = no
+	}
+
+	cost_gold = normal_building_tier_1_cost
+	
+	province_modifier = {
+		#
+	}
+	county_modifier = {
+		development_growth_factor = 0.05
+	}
+	
+	next_building = roads_2
+
+	type_icon = "am_icon_roads_1.dds"
+	
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+roads_2 = {
+	construction_time = slow_construction_time
+
+	can_construct_potential = {
+		#building_requirement_castle_city_church = { LEVEL = 01 }
+	}
+
+	can_construct_showing_failures_only = {
+		#building_requirement_tribal = no
+	}
+
+	cost_gold = expensive_building_tier_1_cost
+	
+	province_modifier = {
+		#
+	}
+	county_modifier = {
+		development_growth_factor = 0.1
+	}
+	
+	next_building = roads_2
+
+	type_icon = "am_icon_roads_2.dds"
+	
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
+}
+roads_3 = {
+	construction_time = slow_construction_time
+
+	can_construct_potential = {
+		#building_requirement_castle_city_church = { LEVEL = 01 }
+	}
+
+	can_construct_showing_failures_only = {
+		#building_requirement_tribal = no
+	}
+
+	cost_gold = expensive_building_tier_1_cost
+	
+	province_modifier = {
+		#
+	}
+	county_modifier = {
+		development_growth_factor = 0.15
+	}
+	
+
+	type_icon = "am_icon_roads_3.dds"
+	
+	ai_value = {
+		base = 10
+		ai_general_building_modifier = yes
+	}
 }
 
 

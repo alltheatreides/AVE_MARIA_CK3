@@ -169,6 +169,17 @@
 			highest_held_title_tier < tier_duchy
 		}
 
+		## Islamic Empires
+		## Riots in the capital
+		modifier = {
+			add = 500
+			scope:target = {
+				capital_province = {
+					has_province_modifier = islamic_empire_military_riots
+				}
+			}
+		}
+
 
 		#######################
 		# Standard AI Weights #
@@ -501,6 +512,17 @@
 			}
 			uses_islamic_empire_govt = yes
 			highest_held_title_tier < tier_duchy
+		}
+
+		## Islamic Empires
+		## Riots in the capital
+		modifier = {
+			add = 500
+			scope:faction.faction_target = {
+				capital_province = {
+					has_province_modifier = islamic_empire_military_riots
+				}
+			}
 		}
 
 	}
@@ -1593,6 +1615,7 @@ claimant_faction = {
 
 
 		### AVE MARIA
+		## Romans
 		modifier = {
 			add = -1000
 			scope:target = {
@@ -1719,6 +1742,17 @@ claimant_faction = {
 			scope:target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 0
+			}
+		}
+
+		## Islamic Empires
+		## Riots in the capital
+		modifier = {
+			add = 500
+			scope:target = {
+				capital_province = {
+					has_province_modifier = islamic_empire_military_riots
+				}
 			}
 		}
 	}
@@ -2022,6 +2056,17 @@ claimant_faction = {
 			scope:faction.faction_target = {
 				has_variable = roman_administration_popularity
 				var:roman_administration_popularity < 0
+			}
+		}
+
+		## Islamic Empires
+		## Riots in the capital
+		modifier = {
+			add = 500
+			scope:faction.faction_target = {
+				capital_province = {
+					has_province_modifier = islamic_empire_military_riots
+				}
 			}
 		}
 	}

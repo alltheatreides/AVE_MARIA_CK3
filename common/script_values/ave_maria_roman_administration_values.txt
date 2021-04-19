@@ -132,6 +132,14 @@ roman_administration_legitimacy_monthly = {
 		}
 		add = -0.5
 	}
+
+	if = {
+		limit = {
+			has_variable = roman_administration_legitimacy
+			var:roman_administration_legitimacy >= 250
+		}
+		
+	}
 }
 
 ###########################################

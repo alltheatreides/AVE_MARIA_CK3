@@ -2152,7 +2152,29 @@ am_orc_comm_malus_capital_update = {
 				limit = {
 					is_landed = yes
 				}
-				orc_apply_demesne_provinces_distance_malus = yes
+				trigger_event = {
+					id = ave_maria_opus_ruralium_commodorum.0001 
+					delayed = yes 
+				}
+			}
+		}
+		
+	}
+	
+}
+
+
+am_orc_comm_malus_capital_update_2 = {
+	scope = title
+
+	effect = {
+		holder = {
+			if = {
+				limit = {
+					is_landed = yes
+				}
+				set_realm_capital = root
+				trigger_event = { id = ave_maria_opus_ruralium_commodorum.0001 delayed = yes}
 			}
 		}
 		

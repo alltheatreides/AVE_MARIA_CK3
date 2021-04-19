@@ -329,12 +329,11 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		capital_province = {
-				spawn_activity = {
-				owner = root
-				type = activity_roman_administration_banquet
-			}
+		capital_county = {
+			change_county_control = 100		
+			remove_county_modifier = orc_comm_malus_modifier
 		}
+		orc_apply_demesne_provinces_distance_malus = yes
 		
 	}
 	
@@ -342,8 +341,8 @@ ave_maria_test_events.0006 = {
 
 ave_maria_test_events.0007 = {
 	type = character_event
-	title = ave_maria_story_cycle_fatimids.14.title
-	desc = ave_maria_story_cycle_fatimids.14.desc
+	title = ave_maria_test_events.0007.title
+	desc = ave_maria_test_events.0007.desc
 
 	theme = realm
 
@@ -359,6 +358,13 @@ ave_maria_test_events.0007 = {
 
 	option = {
 		name = ave_maria_test_events.0007.OPT.A
+		scope:barony.county = {
+            change_development_progress_with_overflow = 300
+			add_county_modifier = {
+                modifier = islamic_empire_ismailai_dawa_mission
+                years = 10
+            }
+        }
 	}
 }
 

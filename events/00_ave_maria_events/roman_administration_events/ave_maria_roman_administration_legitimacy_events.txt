@@ -46,6 +46,7 @@ ave_maria_roman_administration_legitimacy_events.0001 = {
 
 	}
 
+	## Imprison
 	option = {
 		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.A
 
@@ -83,9 +84,17 @@ ave_maria_roman_administration_legitimacy_events.0001 = {
 					}
 				}
 			}
+
+			modifier = {
+				add = 1000
+				scope:previous_holder = {
+					is_close_family_of = root
+				}
+			}
 		}
 	}
 
+	## Blind
 	option = {
 		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.B
 		scope:previous_holder = {
@@ -171,6 +180,7 @@ ave_maria_roman_administration_legitimacy_events.0001 = {
 		}
 	}
 
+	## Castrate
 	option = {
 		name = ave_maria_roman_administration_legitimacy_events.0001.OPT.C
 		scope:previous_holder = {
