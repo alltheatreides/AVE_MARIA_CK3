@@ -396,6 +396,29 @@ window = {
 				margin_right = 15
 				min_width = 260
 
+				## CE info, 19/04/21 need to show the proper number, right now it's just the comm malus + fix the various vbox, supply limit is hidden with this added hbox 
+				# hbox = {
+				# 	layoutpolicy_horizontal = expanding
+				# 	datacontext = "[HoldingView.GetProvince.GetCounty]";
+
+				# 	text_single = {
+				# 		layoutpolicy_horizontal = expanding
+				# 		text = "[communication_efficiency|E]:"
+				# 	}
+
+				# 	text_single = {
+				# 		text = "[County.GetCapital.MakeScope.Var('am_comm_malus_to_capital').GetValue|0]"
+				# 		default_format = "#high"
+				# 		tooltip = "COUNTY_CONTROL_TOOLTIP"
+
+				# 		background = {
+				# 			visible = "[LessThan_CFixedPoint(County.GetControl, '(CFixedPoint)100')]"
+				# 			margin = { 5 0 }
+				# 			using = Status_Bad
+				# 		}
+				# 	}
+				# }
+
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					datacontext = "[HoldingView.GetProvince.GetCounty]";

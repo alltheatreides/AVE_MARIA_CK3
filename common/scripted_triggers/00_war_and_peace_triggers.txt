@@ -289,6 +289,31 @@ can_be_knight_trigger = {
 			is_courtier = yes
 		}	
 	}
+	## For Islamic empires
+	trigger_if = {
+		limit = {
+			$ARMY_OWNER$ = {
+				any_held_title = {
+					has_variable = islamic_empire_title
+				}
+			}			
+		}
+		trigger_if = {
+			limit = {
+				is_landed = yes
+			}
+			NOR = {
+				has_government = islamic_empire_diwan_government
+				has_government = theocracy_government
+			}
+		}	
+		trigger_if = {
+			limit = {
+				is_landed = no
+			}
+			is_courtier = yes
+		}	
+	}
 	trigger_if = {
 		limit = {
 			$ARMY_OWNER$ = {

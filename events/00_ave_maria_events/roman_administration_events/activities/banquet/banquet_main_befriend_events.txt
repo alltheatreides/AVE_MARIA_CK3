@@ -33,7 +33,7 @@ banquet_main_befriend.0001 = {
 			}
 			scope:activity = {
 				any_participant = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:activity.activity_owner }
 					NOT = { has_relation_friend = root }
 					opinion = {
@@ -85,7 +85,7 @@ banquet_main_befriend.0001 = {
 			scope:activity = {
 				random_participant = {
 					limit = {
-						banquet_default_participant_trigger = yes
+						feast_default_participant_trigger = yes
 						NOT = { this = scope:activity.activity_owner }
 						NOT = { has_relation_friend = root }
 						opinion = {
@@ -100,7 +100,7 @@ banquet_main_befriend.0001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:activity.activity_owner }
 					NOT = { this = scope:potential_friend }
 					highest_held_title_tier > 1
@@ -113,7 +113,7 @@ banquet_main_befriend.0001 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:activity.activity_owner }
 					NOT = { this = scope:potential_friend }
 					trigger_if = {
@@ -140,7 +140,7 @@ banquet_main_befriend.0001 = {
 				}
 				random_participant = {
 					limit = {
-						banquet_default_participant_trigger = yes
+						feast_default_participant_trigger = yes
 						NOT = { this = scope:activity.activity_owner }
 						NOT = { this = scope:potential_friend }
 						trigger_if = {
@@ -191,7 +191,7 @@ banquet_main_befriend.0001 = {
 			}
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:activity.activity_owner }
 					NOT = { this = scope:potential_friend }
 					trigger_if = {
@@ -219,17 +219,17 @@ banquet_main_befriend.0001 = {
 # Main event for Host
 ##########################
 banquet_main_befriend.1001 = {
-	title = banquet_main_befriend.1001.t
+	title = feast_main_befriend.1001.t
 	desc = {
-		desc = banquet_main_befriend.1001.opening
-		desc = banquet_main_befriend.1001.getting_close
+		desc = feast_main_befriend.1001.opening
+		desc = feast_main_befriend.1001.getting_close
 		triggered_desc = {
 			trigger = { exists = scope:arrogant_guest }
 			desc = {
-				desc = banquet_main_befriend.1001.arrogant_guest
+				desc = feast_main_befriend.1001.arrogant_guest
 				triggered_desc = {
 					trigger = { exists = scope:kind_to_lower_nobility }
-					desc = banquet_main_befriend.1001.arrogant_kind_link
+					desc = feast_main_befriend.1001.arrogant_kind_link
 				}
 			}
 		}
@@ -237,20 +237,20 @@ banquet_main_befriend.1001 = {
 			triggered_desc = {
 				trigger = { exists = scope:kind_to_lower_nobility }
 				desc = {
-					desc = banquet_main_befriend.1001.kind_to_lower_nobility
+					desc = feast_main_befriend.1001.kind_to_lower_nobility
 					triggered_desc = {
 						trigger = {
 							scope:kind_to_lower_nobility = {
 								any_secret = { secret_type = secret_cannibal }
 							}
 						}
-						desc = banquet_main_befriend.1001.really_hungry
+						desc = feast_main_befriend.1001.really_hungry
 					}
 				}
 			}
-			desc = banquet_main_befriend.1001.no_kind_target
+			desc = feast_main_befriend.1001.no_kind_target
 		}
-		desc = banquet_main_befriend.1001.friendship
+		desc = feast_main_befriend.1001.friendship
 	}
 	theme = banquet_activity
 	override_background = {
@@ -274,7 +274,7 @@ banquet_main_befriend.1001 = {
 	}
 
 	option = {
-		name = banquet_main_befriend.1001.a
+		name = feast_main_befriend.1001.a
 		set_relation_friend = scope:potential_friend
 		if = {
 			limit = {
@@ -309,17 +309,17 @@ banquet_main_befriend.1001 = {
 # Main Event for Potential Friend
 ##########################
 banquet_main_befriend.2001 = {
-	title = banquet_main_befriend.2001.t
+	title = feast_main_befriend.2001.t
 	desc = {
-		desc = banquet_main_befriend.1001.opening
-		desc = banquet_main_befriend.2001.getting_close
+		desc = feast_main_befriend.1001.opening
+		desc = feast_main_befriend.2001.getting_close
 		triggered_desc = {
 			trigger = { exists = scope:arrogant_guest }
 			desc = {
-				desc = banquet_main_befriend.2001.arrogant_guest
+				desc = feast_main_befriend.2001.arrogant_guest
 				triggered_desc = {
 					trigger = { exists = scope:kind_to_lower_nobility }
-					desc = banquet_main_befriend.2001.arrogant_kind_link
+					desc = feast_main_befriend.2001.arrogant_kind_link
 				}
 			}
 		}
@@ -327,20 +327,19 @@ banquet_main_befriend.2001 = {
 			triggered_desc = {
 				trigger = { exists = scope:kind_to_lower_nobility }
 				desc = {
-					desc = banquet_main_befriend.2001.kind_to_lower_nobility
+					desc = feast_main_befriend.2001.kind_to_lower_nobility
 					triggered_desc = {
 						trigger = {
 							scope:kind_to_lower_nobility = {
 								any_secret = { secret_type = secret_cannibal }
 							}
 						}
-						desc = banquet_main_befriend.2001.really_hungry
-					}
+						desc = feast_main_befriend.2001.really_hungry
 				}
 			}
-			desc = banquet_main_befriend.2001.no_kind_target
+			desc = feast_main_befriend.2001.no_kind_target
 		}
-		desc = banquet_main_befriend.2001.friendship
+		desc = feast_main_befriend.2001.friendship
 	}
 	theme = banquet_activity
 	override_background = {
@@ -355,14 +354,14 @@ banquet_main_befriend.2001 = {
 	lower_right_portrait = scope:arrogant_guest
 	
 	option = {
-		name = banquet_main_befriend.2001.a
+		name = feast_main_befriend.2001.a
 		add_prestige = medium_prestige_gain
 		show_as_tooltip = {
 			set_relation_friend = scope:activity.activity_owner
 			hidden_effect = {
 				add_opinion = {
 					target = scope:activity.activity_owner
-					modifier = bonded_at_banquet_opinion
+					modifier = bonded_at_feast_opinion
 				}
 			}
 		}
@@ -374,15 +373,15 @@ banquet_main_befriend.2001 = {
 # Main Event for Arrogant Guest
 ##########################
 banquet_main_befriend.2002 = {
-	title = banquet_main_befriend.2002.t
+	title = feast_main_befriend.2002.t
 	desc = {
-		desc = banquet_main_befriend.1001.opening
-		desc = banquet_main_befriend.2002.arrogant_guest
+		desc = feast_main_befriend.1001.opening
+		desc = feast_main_befriend.2002.arrogant_guest
 		triggered_desc = {
 			trigger = {
 				exists = scope:kind_to_lower_nobility
 			}
-			desc = banquet_main_befriend.2002.disgusted_by_kindness
+			desc = feast_main_befriend.2002.disgusted_by_kindness
 		}
 	}
 	theme = banquet_activity
@@ -399,7 +398,7 @@ banquet_main_befriend.2002 = {
 	}
 
 	option = {
-		name = banquet_main_befriend.2002.a
+		name = feast_main_befriend.2002.a
 		add_prestige = medium_prestige_loss
 		if = {
 			limit = {
@@ -419,7 +418,7 @@ banquet_main_befriend.2002 = {
 				faith = { has_doctrine_parameter = host_honored_guests_active }
 			}
 			custom_description_no_bullet = {
-				text = banquet_main_befriend.2002.because_of_hospitality_tenet
+				text = feast_main_befriend.2002.because_of_hospitality_tenet
 			}
 			add_piety = medium_piety_loss
 		}
@@ -431,12 +430,12 @@ banquet_main_befriend.2002 = {
 # Main Event for Kind to Nobility
 ##########################
 banquet_main_befriend.2003 = {
-	title = banquet_main_befriend.2003.t
+	title = feast_main_befriend.2003.t
 	desc = {
-		desc = banquet_main_befriend.2003.opening
+		desc = feast_main_befriend.2003.opening
 		triggered_desc = {
 			trigger = { exists = scope:arrogant_guest }
-			desc = banquet_main_befriend.2003.arrogant_guest	
+			desc = feast_main_befriend.2003.arrogant_guest	
 		}
 		first_valid = {
 			triggered_desc = {
@@ -444,17 +443,17 @@ banquet_main_befriend.2003 = {
 					any_secret = { secret_type = secret_cannibal }
 					exists = scope:glutton_target
 				}
-				desc = banquet_main_befriend.2003.kind_to_glutton
+				desc = feast_main_befriend.2003.kind_to_glutton
 			}
 			triggered_desc = {
 				trigger = {
 					any_secret = { secret_type = secret_cannibal }
 				}
-				desc = banquet_main_befriend.2003.cannibal_kindness
+				desc = feast_main_befriend.2003.cannibal_kindness
 			}
-			desc = banquet_main_befriend.2003.kind_to_lower_nobility
+			desc = feast_main_befriend.2003.kind_to_lower_nobility
 		}
-		desc = banquet_main_befriend.2003.ending
+		desc = feast_main_befriend.2003.ending
 	}
 	theme = banquet_activity
 	override_background = {
@@ -467,11 +466,11 @@ banquet_main_befriend.2003 = {
 	lower_left_portrait = scope:arrogant_guest
 	
 	option = {
-		name = banquet_main_befriend.2003.a
+		name = feast_main_befriend.2003.a
 		scope:activity = {
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					trigger_if = {
 						limit = { exists = scope:arrogant_guest }
 						NOT = { this = scope:arrogant_guest }
@@ -501,14 +500,14 @@ banquet_main_befriend.2003 = {
 # Main Event for Glutton Target
 ##########################
 banquet_main_befriend.2004 = {
-	title = banquet_main_befriend.2004.t
+	title = feast_main_befriend.2004.t
 	desc = {
-		desc = banquet_main_befriend.2003.opening
+		desc = feast_main_befriend.2003.opening
 		triggered_desc = {
 			trigger = { exists = scope:arrogant_guest }
-			desc = banquet_main_befriend.2004.arrogant_guest	
+			desc = feast_main_befriend.2004.arrogant_guest	
 		}
-		desc = banquet_main_befriend.2004.kindness_from_other
+		desc = feast_main_befriend.2004.kindness_from_other
 	}
 	theme = banquet_activity
 	override_background = {
@@ -525,7 +524,7 @@ banquet_main_befriend.2004 = {
 	lower_right_portrait = scope:arrogant_guest
 
 	option = {
-		name = banquet_main_befriend.2004.a
+		name = feast_main_befriend.2004.a
 		stress_impact = {
 			base = medium_stress_loss
 		}
@@ -553,16 +552,16 @@ banquet_main_befriend.2004 = {
 # Generic Main Event for Guests
 ##########################
 banquet_main_befriend.3001 = {
-	title = banquet_main_befriend.3001.t
+	title = feast_main_befriend.3001.t
 	desc = {
-		desc = banquet_main_befriend.2003.opening
+		desc = feast_main_befriend.2003.opening
 		triggered_desc = {
 			trigger = { exists = scope:arrogant_guest }
 			desc = {
-				desc = banquet_main_befriend.3001.arrogant_guest
+				desc = feast_main_befriend.3001.arrogant_guest
 				triggered_desc = {
 					trigger = { exists = scope:kind_to_lower_nobility }
-					desc = banquet_main_befriend.1001.arrogant_kind_link
+					desc = feast_main_befriend.1001.arrogant_kind_link
 				}
 			}
 		}
@@ -570,19 +569,19 @@ banquet_main_befriend.3001 = {
 			triggered_desc = {
 				trigger = { exists = scope:kind_to_lower_nobility }
 				desc = {
-					desc = banquet_main_befriend.3001.kind_to_lower_nobility
+					desc = feast_main_befriend.3001.kind_to_lower_nobility
 					triggered_desc = {
 						trigger = {
 							scope:kind_to_lower_nobility = {
 								any_secret = { secret_type = secret_cannibal }
 							}
 						}
-						desc = banquet_main_befriend.3001.really_hungry
+						desc = feast_main_befriend.3001.really_hungry
 					}
 				}
 			}
 		}
-		desc = banquet_main_befriend.3001.ending
+		desc = feast_main_befriend.3001.ending
 	}
 	theme = banquet_activity
 	override_background = {
@@ -595,7 +594,7 @@ banquet_main_befriend.3001 = {
 	lower_left_portrait = scope:arrogant_guest
 	
 	option = {
-		name = banquet_main_befriend.3001.a
+		name = feast_main_befriend.3001.a
 		if = {
 			limit = {
 				exists = scope:kind_to_lower_nobility
@@ -647,7 +646,7 @@ banquet_main_befriend.5001 = {
 
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:activity.activity_owner }
 					NOT = { this = scope:potential_friend }
 				}
@@ -667,8 +666,8 @@ banquet_main_befriend.5001 = {
 #################
 banquet_main_befriend.5002 = {
 	type = character_event
-	title = banquet_main_befriend.5002.t
-	desc = banquet_main_befriend.5002.desc
+	title = feast_main_befriend.5002.t
+	desc = feast_main_befriend.5002.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -679,10 +678,10 @@ banquet_main_befriend.5002 = {
 	}
 
 	option = {
-		name = banquet_main_befriend.5002.a
+		name = feast_main_befriend.5002.a
 		scope:potential_friend = {
 			add_opinion = {
-				modifier = bonded_at_banquet_opinion
+				modifier = bonded_at_feast_opinion
 				target = root
 			}
 		}
@@ -702,8 +701,8 @@ banquet_main_befriend.5002 = {
 #################
 banquet_main_befriend.5003 = {
 	type = character_event
-	title = banquet_main_befriend.5003.t
-	desc = banquet_main_befriend.5003.desc
+	title = feast_main_befriend.5003.t
+	desc = feast_main_befriend.5003.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -715,10 +714,10 @@ banquet_main_befriend.5003 = {
 	lower_left_portrait = scope:spouse
 
 	option = {
-		name = banquet_main_befriend.5003.a
+		name = feast_main_befriend.5003.a
 		scope:host_saying_goodbye = {
 			add_opinion = {
-				modifier = bonded_at_banquet_opinion
+				modifier = bonded_at_feast_opinion
 				target = scope:potential_friend
 			}
 		}
@@ -732,8 +731,8 @@ banquet_main_befriend.5003 = {
 ###################
 banquet_main_befriend.5004 = {
 	type = character_event
-	title = banquet_main_befriend.5004.t
-	desc = banquet_main_befriend.5004.desc
+	title = feast_main_befriend.5004.t
+	desc = feast_main_befriend.5004.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -748,9 +747,9 @@ banquet_main_befriend.5004 = {
 	}
 
 	option = {
-		name = banquet_main_befriend.5004.a
+		name = feast_main_befriend.5004.a
 		add_opinion = {
-			modifier = banquet_hosted_successful_banquet
+			modifier = feast_hosted_successful_feast
 			target = scope:host_saying_goodbye
 		}
 		banquet_end_guest_effect = yes

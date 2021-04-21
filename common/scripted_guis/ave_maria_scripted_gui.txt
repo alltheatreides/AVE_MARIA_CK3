@@ -1649,6 +1649,7 @@ am_institutions_islamic_empire_can_click_fatimid_army_factions_buttons = {
 	}
 }
 
+
 ## Generate lists of character
 am_institutions_islamic_empire_fatimid_get_army_leaders = {
 	scope = character
@@ -1964,57 +1965,62 @@ am_institutions_islamic_empire_fatimid_faction_bestow_honors = {
 am_institutions_islamic_empire_fatimid_faction_increase_infantry = {
 	scope = character
 	effect = {
-		primary_title = {
-			change_variable = {
-				name = islamic_empire_regiment_size_infantry
-				add = 1
+		root = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry
+					add = 1
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry_display
+					add = 100
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = 100
+				}
+			}	
+			liege = {
+				islamic_empire_calculate_regiment_cost = yes
+				remove_short_term_gold = 90
 			}
-			change_variable = {
-				name = islamic_empire_regiment_size_infantry_display
-				add = 100
-			}
-			change_variable = {
-				name = islamic_empire_regiment_size_total_display
-				add = 100
-			}
-		}	
-		liege = {
-			islamic_empire_calculate_regiment_cost = yes
-			remove_short_term_gold = 90
 		}
+		
 	}
 }
 
 am_institutions_islamic_empire_fatimid_faction_decrease_infantry = {
 	scope = character
 	effect = {
-		primary_title = {
-			if = {
-				limit = {
-					var:islamic_empire_regiment_size_infantry >= 0
+		root = {
+			primary_title = {
+				if = {
+					limit = {
+						var:islamic_empire_regiment_size_infantry >= 0
+					}
 				}
-			}
-			else = {
-				primary_title = {
-					change_variable = {
-						name = islamic_empire_regiment_size_infantry
-						subtract = 1
+				else = {
+					primary_title = {
+						change_variable = {
+							name = islamic_empire_regiment_size_infantry
+							subtract = 1
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_infantry_display
+							subtract = 100
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_total_display
+							subtract = 100
+						}
+					}	
+					liege = {
+						islamic_empire_calculate_regiment_cost = yes
+						add_gold = 40
 					}
-					change_variable = {
-						name = islamic_empire_regiment_size_infantry_display
-						subtract = 100
-					}
-					change_variable = {
-						name = islamic_empire_regiment_size_total_display
-						subtract = 100
-					}
-				}	
-				liege = {
-					islamic_empire_calculate_regiment_cost = yes
-					add_gold = 40
 				}
-			}
-		}		
+			}	
+		}			
 		
 	}
 }
@@ -2022,57 +2028,62 @@ am_institutions_islamic_empire_fatimid_faction_decrease_infantry = {
 am_institutions_islamic_empire_fatimid_faction_increase_light_cavalry = {
 	scope = character
 	effect = {
-		primary_title = {
-			change_variable = {
-				name = islamic_empire_regiment_size_light_cavalry
-				add = 1
+		root = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_size_light_cavalry
+					add = 1
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_light_cavalry_display
+					add = 100
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = 100
+				}
+			}	
+			liege = {
+				islamic_empire_calculate_regiment_cost = yes
+				remove_short_term_gold = 85
 			}
-			change_variable = {
-				name = islamic_empire_regiment_size_light_cavalry_display
-				add = 100
-			}
-			change_variable = {
-				name = islamic_empire_regiment_size_total_display
-				add = 100
-			}
-		}	
-		liege = {
-			islamic_empire_calculate_regiment_cost = yes
-			remove_short_term_gold = 85
-		}
+		}		
 	}
 }
 
 am_institutions_islamic_empire_fatimid_faction_decrease_light_cavalry = {
 	scope = character
 	effect = {
-		primary_title = {
-			if = {
-				limit = {
-					var:islamic_empire_regiment_size_light_cavalry >= 0
+		root = {
+			primary_title = {
+				if = {
+					limit = {
+						var:islamic_empire_regiment_size_light_cavalry >= 0
+					}
 				}
-			}
-			else = {
-				primary_title = {
-					change_variable = {
-						name = islamic_empire_regiment_size_light_cavalry
-						subtract = 1
+				else = {
+					primary_title = {
+						change_variable = {
+							name = islamic_empire_regiment_size_light_cavalry
+							subtract = 1
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_light_cavalry_display
+							subtract = 100
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_total_display
+							subtract = 100
+						}
+					}	
+					liege = {
+						islamic_empire_calculate_regiment_cost = yes
+						add_gold = 40
 					}
-					change_variable = {
-						name = islamic_empire_regiment_size_light_cavalry_display
-						subtract = 100
-					}
-					change_variable = {
-						name = islamic_empire_regiment_size_total_display
-						subtract = 100
-					}
-				}	
-				liege = {
-					islamic_empire_calculate_regiment_cost = yes
-					add_gold = 40
 				}
-			}
-		}		
+			}	
+		}
+			
 		
 	}
 }
@@ -2080,57 +2091,63 @@ am_institutions_islamic_empire_fatimid_faction_decrease_light_cavalry = {
 am_institutions_islamic_empire_fatimid_faction_increase_heavy_cavalry = {
 	scope = character
 	effect = {
-		primary_title = {
-			change_variable = {
-				name = islamic_empire_regiment_size_heavy_cavalry
-				add = 1
+		root = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_size_heavy_cavalry
+					add = 1
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_heavy_cavalry_display
+					add = 50
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = 50
+				}
+			}	
+			liege = {
+				islamic_empire_calculate_regiment_cost = yes
+				remove_short_term_gold = 260
 			}
-			change_variable = {
-				name = islamic_empire_regiment_size_heavy_cavalry_display
-				add = 50
-			}
-			change_variable = {
-				name = islamic_empire_regiment_size_total_display
-				add = 50
-			}
-		}	
-		liege = {
-			islamic_empire_calculate_regiment_cost = yes
-			remove_short_term_gold = 260
 		}
+		
 	}
 }
 
 am_institutions_islamic_empire_fatimid_faction_decrease_heavy_cavalry = {
 	scope = character
 	effect = {
-		primary_title = {
-			if = {
-				limit = {
-					var:islamic_empire_regiment_size_heavy_cavalry >= 0
+		root = {
+			primary_title = {
+				if = {
+					limit = {
+						var:islamic_empire_regiment_size_heavy_cavalry >= 0
+					}
 				}
-			}
-			else = {
-				primary_title = {
-					change_variable = {
-						name = islamic_empire_regiment_size_heavy_cavalry
-						subtract = 1
+				else = {
+					primary_title = {
+						change_variable = {
+							name = islamic_empire_regiment_size_heavy_cavalry
+							subtract = 1
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_heavy_cavalry_display
+							subtract = 50
+						}
+						change_variable = {
+							name = islamic_empire_regiment_size_total_display
+							subtract = 50
+						}
+					}	
+					liege = {
+						islamic_empire_calculate_regiment_cost = yes
+						add_gold = 75
 					}
-					change_variable = {
-						name = islamic_empire_regiment_size_heavy_cavalry_display
-						subtract = 50
-					}
-					change_variable = {
-						name = islamic_empire_regiment_size_total_display
-						subtract = 50
-					}
-				}	
-				liege = {
-					islamic_empire_calculate_regiment_cost = yes
-					add_gold = 75
 				}
-			}
-		}	
+			}	
+		}
+		
 	}
 }
 
@@ -2154,7 +2171,8 @@ am_orc_comm_malus_capital_update = {
 				}
 				trigger_event = {
 					id = ave_maria_opus_ruralium_commodorum.0001 
-					delayed = yes 
+					#delayed = yes 
+					days = 1
 				}
 			}
 		}

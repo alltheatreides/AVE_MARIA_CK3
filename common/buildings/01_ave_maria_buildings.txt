@@ -292,88 +292,130 @@ slave_market_2 = {
 roads_1 = {
 	construction_time = slow_construction_time
 
+	is_enabled = {
+		always = yes
+	}
 	can_construct_potential = {
-		#building_requirement_castle_city_church = { LEVEL = 01 }
-	}
-
-	can_construct_showing_failures_only = {
-		#building_requirement_tribal = no
-	}
-
-	cost_gold = normal_building_tier_1_cost
+		# always = yes
+		trigger_if = {
+			limit = {
+				orc_is_province_with_historical_building = no
+			}
+			current_date > 1066.9.15
+		}
+	}	
 	
-	province_modifier = {
-		#
-	}
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
 	county_modifier = {
 		development_growth_factor = 0.05
+		supply_limit = 2000
+	}
+
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
 	}
 	
 	next_building = roads_2
-
-	type_icon = "am_icon_roads_1.dds"
 	
 	ai_value = {
-		base = 10
-		ai_general_building_modifier = yes
+		base = 1
 	}
+
+	type_icon = "am_icon_roads_1.dds"
 }
 roads_2 = {
 	construction_time = slow_construction_time
 
+	is_enabled = {
+		always = yes
+	}
 	can_construct_potential = {
-		#building_requirement_castle_city_church = { LEVEL = 01 }
-	}
-
-	can_construct_showing_failures_only = {
-		#building_requirement_tribal = no
-	}
-
-	cost_gold = expensive_building_tier_1_cost
+		always = yes
+	}	
 	
-	province_modifier = {
-		#
-	}
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
 	county_modifier = {
 		development_growth_factor = 0.1
+		supply_limit = 4000
+	}
+
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
 	}
 	
-	next_building = roads_2
-
-	type_icon = "am_icon_roads_2.dds"
+	next_building = roads_3
 	
 	ai_value = {
-		base = 10
-		ai_general_building_modifier = yes
+		base = 1
 	}
+
+	type_icon = "am_icon_roads_2.dds"
 }
 roads_3 = {
 	construction_time = slow_construction_time
 
+	is_enabled = {
+		always = yes
+	}
 	can_construct_potential = {
-		#building_requirement_castle_city_church = { LEVEL = 01 }
-	}
-
-	can_construct_showing_failures_only = {
-		#building_requirement_tribal = no
-	}
-
-	cost_gold = expensive_building_tier_1_cost
+		always = yes
+	}	
 	
-	province_modifier = {
-		#
-	}
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
 	county_modifier = {
 		development_growth_factor = 0.15
+		supply_limit = 8000
 	}
-	
 
-	type_icon = "am_icon_roads_3.dds"
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
+	}
 	
 	ai_value = {
-		base = 10
-		ai_general_building_modifier = yes
+		base = 1
 	}
+
+	type_icon = "am_icon_roads_3.dds"
 }
-
-

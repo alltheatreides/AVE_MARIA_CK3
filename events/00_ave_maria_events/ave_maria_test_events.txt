@@ -329,12 +329,21 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		capital_county = {
-			change_county_control = 100		
-			remove_county_modifier = orc_comm_malus_modifier
+		# random_held_title = {
+			# limit = {
+				# tier = tier_county
+				# NOT = {
+					# this = capital_county
+				# }
+			# }
+			# title_province = {
+				# add_building = roads_1
+			# }
+		# }
+		province:2163 = {
+			add_building = roads_1
 		}
-		orc_apply_demesne_provinces_distance_malus = yes
-		
+
 	}
 	
 }

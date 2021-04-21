@@ -201,3 +201,112 @@ islamic_empire_amir_elective = {
 		}
 	}
 }
+
+islamic_empire_diwan_elective = {
+	elector_vote_strength = {
+		base = 1
+		modifier = { #Imperial Dignity
+			desc = tooltip_feudal_vote_strength_emperor_tier
+			add = 3
+			highest_held_title_tier = 5
+		}
+		modifier = { #Royal Dignity
+			desc = tooltip_feudal_vote_strength_king_tier
+			add = 2
+			highest_held_title_tier = 4
+		}
+		modifier = { #Princely Dignity
+			desc = tooltip_feudal_vote_strength_duke_tier
+			add = 1
+			highest_held_title_tier = 3
+		}
+		## If you are favoured by the emperor, higher vote power
+		modifier = {
+			desc = tooltip_faction_vote_strength_caliph_favourite
+			add = 1
+			has_character_modifier = islamic_empire_caliph_favourite
+		}
+	}
+	
+	electors = {
+		add = holder
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				highest_held_title_tier < tier_empire
+			}
+		}
+		add = {
+			type = title_claimants
+			limit = {
+				is_female = no
+				age >= 20
+				#ighest_held_title_tier < tier_empire				
+			}
+		}
+	}
+
+	candidate_score = {
+		base = 0
+		######################	Elector self-voting pattern	##########################
+		elector_self_voting_pattern_feudal_elective_modifier = yes
+
+		##########################	Holder voting pattern	##########################
+		#holder_voting_pattern_feudal_elective_modifier = yes
+
+		##########################	Elector voting patterns (prestige/piety)	##########################
+		elector_voting_pattern_prestige_piety_feudal_elective_modifier = yes
+
+		##########################	Elector voting patterns (traits)	##########################
+		elector_voting_pattern_traits_feudal_elective_modifier = yes
+
+		##########################	Elector voting patterns (opinion)	##########################
+		elector_voting_pattern_opinion_feudal_elective_modifier = yes
+
+		## Roman Administration voting patterns (co emperor, favoured by emperor and not already heir to another title)
+		elector_voting_pattern_opinion_roman_administration_civilian_administration_elective_modifier = yes
+
+		## Vanilla Byzantine voting pattern
+		#elector_voting_strength_byzantine_elective_modifier = yes
+	}
+	
+	#scope:candidate = Candidate, scope:title = Title, scope:holder_candidate = Candidate currently selected by ruler.
+	candidates = {
+		#add = holder
+		add = {
+			type = holder_direct_vassals
+			limit = {
+				age >= 20
+				age < 55
+				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
+				NOT = { has_government = theocracy_government }
+				highest_held_title_tier < tier_empire
+				# NOT = {
+				# 	is_close_or_extended_family_of = scope:holder
+				# }
+			}
+		} 
+		add = {
+			type = title_claimants
+			limit = {
+				# is_courtier_of = scope:holder
+				is_ruler = no
+				age >= 20
+				age < 55
+				is_female = no
+				NOR = {
+					has_trait = devoted
+					# has_trait = priest
+				}
+				NOT = { has_government = theocracy_government }
+				# NOT = {
+				# 	is_close_or_extended_family_of = scope:holder
+				# }
+			}
+		}
+	}
+}

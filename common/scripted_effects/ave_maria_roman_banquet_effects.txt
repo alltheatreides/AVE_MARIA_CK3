@@ -31,13 +31,13 @@ banquet_fire_correct_default_event_effect = {
 		}
 		trigger_event = {
 			on_action = banquet_default_host_event_selection
-			days = { min_banquet_event_spacing max_banquet_event_spacing }
+			days = { min_feast_event_spacing max_feast_event_spacing }
 		}
 	}
 	else = {
 		trigger_event = {
 			on_action = banquet_default_event_selection
-			days = { min_banquet_event_spacing max_banquet_event_spacing }
+			days = { min_feast_event_spacing max_feast_event_spacing }
 		}
 	}
 }
@@ -60,22 +60,22 @@ banquet_wrap_up_or_fire_random_event_effect = {
 		}
 		if = {
 			limit = { # Check the number of events fired
-				local_var:num_of_banquet_events < max_default_banquet_events
+				local_var:num_of_banquet_events < max_default_feast_events
 			}
 			# If below the max number check whether to fire more
 			if = {
 				limit = {
-					local_var:num_of_banquet_events >= min_default_banquet_events
+					local_var:num_of_banquet_events >= min_default_feast_events
 				}
 				random_list = {
 					0 = {
-						modifier = { add = chance_of_extra_banquet_events }
+						modifier = { add = chance_of_extra_feast_events }
 						banquet_fire_correct_default_event_effect = yes
 					}
 					100 = {
 						modifier = {
 							add = {
-								subtract = chance_of_extra_banquet_events
+								subtract = chance_of_extra_feast_events
 							}
 						}
 						banquet_concluded_my_events_effect = yes
@@ -111,7 +111,7 @@ hosted_successful_banquet_effect = {
 			custom = every_guest_scope_tt
 			add_opinion = {
 				target = root
-				modifier = banquet_hosted_successful_banquet
+				modifier = feast_hosted_successful_feast
 			}
 		}
 	}
@@ -121,7 +121,7 @@ hosted_successful_banquet_effect = {
 			limit = { exists = scope:spouse }
 			add_opinion = { #Your opinion of your Spouse increases, considering they did most of the work
 				target = scope:spouse
-				modifier = banquet_spouse_hosted_successful_banquet_opinion
+				modifier = feast_spouse_hosted_successful_feast_opinion
 			}
 		}
 	}
@@ -134,7 +134,7 @@ hosted_successful_banquet_interrupted_effect = {
 		custom = every_guest_scope_tt
 		add_opinion = {
 			target = scope:host
-			modifier = banquet_hosted_successful_banquet
+			modifier = feast_hosted_successful_feast
 		}
 	}
 	reveler_lifestyle_rank_up_check_effect = yes
@@ -143,7 +143,7 @@ hosted_successful_banquet_interrupted_effect = {
 			limit = { exists = scope:spouse }
 			add_opinion = { #Your opinion of your Spouse increases, considering they did most of the work
 				target = scope:spouse
-				modifier = banquet_spouse_hosted_successful_banquet_opinion
+				modifier = feast_spouse_hosted_successful_feast_opinion
 			}
 		}
 	}
@@ -167,7 +167,7 @@ banquet_default_setup_effect = {
 			else = {
 				trigger_event = {
 					on_action = banquet_default_host_event_selection
-					days = banquet_initial_event_delay
+					days = feast_initial_event_delay
 				}
 			}
 		}
@@ -187,7 +187,7 @@ banquet_default_setup_effect = {
 			else = {
 				trigger_event = {
 					on_action = banquet_default_event_selection
-					days = banquet_initial_event_delay
+					days = feast_initial_event_delay
 				}
 			}
 		}

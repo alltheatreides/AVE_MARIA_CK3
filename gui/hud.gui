@@ -564,7 +564,7 @@ widget = {
 												margin_top = 10
 												margin_left = 20
 												layoutpolicy_horizontal = expanding
-												text = "Dawa Mission"
+												text = "Da'Wa Mission"
 												using = Font_Size_Medium
 												#default_format = "#low"
 											}
@@ -2332,8 +2332,9 @@ widget = {
 	window = {
 		name = "fatimid_administration_window"
 		parentanchor = center
-		size = { 1000 650 }
-		position = { -150 0 }
+		size = { 750 650 }
+		position = { -25 0 }
+		margin = { 20 20 }
 		layer = windows_layer
 		
 		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_administration_gui_toggle' )]"
@@ -2343,7 +2344,7 @@ widget = {
 
 		vbox = {
 			using = Window_Margins
-			
+			layoutpolicy_horizontal = expanding
 			## Header
 			header_pattern = {
 				layoutpolicy_horizontal = expanding
@@ -2372,14 +2373,13 @@ widget = {
 
 					vbox = {
 						spacing = 10
-
+						
 						vbox = {
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
 							spacing = 10
 
 							background = {
-								#texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_akkubita_dining_hall.dds"
 								fittype = centercrop
 								alpha = 0.8
 
@@ -2417,11 +2417,10 @@ widget = {
 											## Gros bouton
 											button_standard = {
 												layoutpolicy_horizontal = expanding
-												size = { 850 160 }	
+												size = { 625 160 }	
 
 												background = {
 													fittype = centercrop
-													#texture = "gfx/interface/illustrations/decisions/z_ave_maria_roman_victory_arch.dds"
 													texture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_reception_courtyard.dds"
 													
 													modify_texture = {
@@ -2432,7 +2431,7 @@ widget = {
 
 												## Boite principale horizontale ou tout est mis
 												hbox = {
-													#layoutpolicy_horizontal = expanding
+													layoutpolicy_horizontal = expanding
 													layoutpolicy_vertical = expanding
 
 													## Boite verticale gauche, portrait
@@ -2454,12 +2453,14 @@ widget = {
 
 													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
 													vbox = {
-														layoutpolicy_vertical = expanding
 														parentanchor = top
-
+														layoutpolicy_horizontal = expanding
+														layoutpolicy_vertical = expanding
+														expand = {}
 														## Titre/nom du régiment
 														hbox = {
 															text_single = {
+																align = left
 																datacontext = "[Scope.GetCharacter]"
 																text = "[Character.GetPrimaryTitle.GetBaseNameNoTier]"
 																using = Font_Size_Medium
@@ -2469,13 +2470,24 @@ widget = {
 														
 														## Infos
 														hbox = {
-															spacing = 25
-
+															#spacing = 25
+															text_multi = {
+																align = left
+																max_width = 450
+																autoresize = yes
+																layoutpolicy_horizontal = expanding
+																datacontext = "[Scope.GetCharacter]"
+																text = "[Character.GetPrimaryTitle.MakeScope.Title.Custom( 'DiwanDescDisplay' )]"
+																using = Font_Size_Small
+																#default_format = "#bold"
+															}
 															
 														}
-														
+														expand = {}
 														
 													}	
+
+													expand = { }
 													
 												}
 
@@ -2508,8 +2520,8 @@ widget = {
 	window = {
 		name = "fatimid_dawa_mission_window"
 		parentanchor = center
-		size = { 1000 650 }
-		position = { -150 0 }
+		size = { 750 650 }
+		position = { -25 0 }
 		layer = windows_layer
 		
 		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_dawa_mission_gui_toggle' )]"
@@ -2593,7 +2605,7 @@ widget = {
 											## Gros bouton
 											button_standard = {
 												layoutpolicy_horizontal = expanding
-												size = { 850 160 }	
+												size = { 625 160 }	
 
 												background = {
 													fittype = centercrop
@@ -3738,6 +3750,7 @@ widget = {
 						onclick = "[GetVariableSystem.Clear('am_institutions_administration_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
+						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_dawa_mission_gui_toggle')]"
 						## Stuff to make it work ?
 						datacontext = "[GetVariableSystem]"
 						# datacontext = "[GetPlayer.GetID]"	

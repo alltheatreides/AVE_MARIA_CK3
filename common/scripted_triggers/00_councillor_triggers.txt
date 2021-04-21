@@ -39,6 +39,21 @@ can_be_chancellor_trigger = {
 			this = title:d_logothetetes_tou_dromou
 		}
 	}
+	## AVE MARIA FATIMID triggers
+	trigger_if = {
+		limit = {
+			$COURT_OWNER$ = { 
+				has_government = islamic_empire_government
+				highest_held_title_tier = tier_empire
+				any_held_title = {
+					has_variable = islamic_empire_title
+				}
+			}
+		}
+		NOR = {
+			has_government = theocracy_government
+		}
+	}
 }
 
 can_be_steward_trigger = {
@@ -112,6 +127,9 @@ can_be_marshal_trigger = {
 			$COURT_OWNER$ = { 
 				has_government = islamic_empire_government
 				highest_held_title_tier = tier_empire
+				any_held_title = {
+					has_variable = islamic_empire_title
+				}
 			}
 		}
 		NOR = {
@@ -222,14 +240,7 @@ can_be_court_chaplain_trigger = {
 				NOR = {
 					has_government = islamic_empire_amir_government
 					has_government = islamic_empire_thugur_government
-				}
-				NOT = {
-					any_held_title = {
-						OR = {
-							this = title:d_fatimid_diwan_al_insha
-							this = title:d_fatimid_hajib
-						}				
-					}
+					has_government = islamic_empire_diwan_government
 				}
 			}		
 			

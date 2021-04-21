@@ -36,8 +36,12 @@
 
  ## TITLES
  e_egypt:0 "Misr"
- d_fatimid_diwan_al_insha:0 "Dīwān al-Insha"
- d_fatimid_hajib:0 "Hajib"
+ d_fatimid_diwan_al_insha:0 "Dīwān al-'Inšā'"
+ d_fatimid_diwan_al_barid:0 "Dīwān al-Bārid"
+ d_fatimid_diwan_al_jays:0 "Dīwān al-Jayš"
+ d_fatimid_diwan_al_iqta:0 "Dīwān al-'Iqta'"
+ d_fatimid_diwan_al_karaj:0 "Dīwān al-Karāj"
+ d_fatimid_diwan_al_rawatib:0 "Dīwān al-Rawātib"
  k_fatimid_dawa:0 "Ismā'īli Da'Wa"
  d_kutama:0 "Kutâma Berbers"
  d_regiment_ghilman_turks:0 "Turkish Ghilman"
@@ -163,6 +167,10 @@
  time_traveller:0 "Ahmad al-Qalqashandi"
  islam_fictional_2:0 "Ali al-Maghribi"
  islam_fictional_1:0 "Abu al-Durayhim"
+ islam_fictional_3:0 "Muḥammad ibn Salmān ibn Amīn al-Farsī"
+ islam_fictional_4:0 "Saleh ibn Tariq ibn Khalid al-Fulan"
+ islam_fictional_5:0 "Ismail"
+ islam_fictional_6:0 "Yūsuf"
  invention_abid:0 "al-Hādim al-Aswad Mi'ḍad"
  invention_berber:0 "Ja'far ibn Fallah"
  invention_turkish_ghulam:0 "Abu'l-hārith Arslān al-Muzaffar al-Basāsīrī"
@@ -344,7 +352,7 @@
 
  fatimid_army_factions_tab_header:0 "[jawalla|E]"
  fatimid_administration_tab_header:0 "[diwan|E]"
- fatimid_dawa_mission_tab_header:0 "Fatimid Dawa"
+ fatimid_dawa_mission_tab_header:0 "Ismā'īli Da'Wa"
 
  size_regiment:0 "#T Size:#! #V"
  salary_regiment:0 "#T Salary:#! #V"
@@ -367,12 +375,25 @@
  increase_heavy_cavalry_size_tt:0 "$EFFECT_LIST_BULLET$Increase Size by #P 1#!\n$EFFECT_LIST_BULLET$[soldier_i] +#V 50 [heavy_cavalry|E]#!\n$EFFECT_LIST_BULLET$Cost: [gold_i] #N 260"
  decrease_heavy_cavalry_size_tt:0 "$EFFECT_LIST_BULLET$Decreases Size by #N 1#!\n$EFFECT_LIST_BULLET$[soldier_i] -#V 50 [heavy_cavalry|E]#!\n$EFFECT_LIST_BULLET$Gain: [gold_i] #P 75"
 
+ diwan_gui_desc:0 "[Character.GetPrimaryTitle.MakeScope.Title.Custom( 'DiwanDescDisplay' )]"
+ d_fatimid_diwan_al_insha_gui_desc:0 "The Dīwān al-inshā', the chancery bureau is responsible for official correspondence with foreign rulers, provincial amirs as well as the production and conservation of various official documents (governors investiture, amirs pledges of allegiance etc.)"
+ d_fatimid_diwan_al_barid_gui_desc:0 "The task of the Dīwān al-Barīd, that is of the post is to carry messages across the realm as well as inform the official authorities of suspicious actions that might be plotted against the State as well as the behaviors of senior officials."
+ d_fatimid_diwan_al_jays_gui_desc:0 "The Dīwān al-Jayš, or bureau of the army, is responsible for the state soldier's registry, the distribution of pay to the Army regiments and units as well as army reviews."
+ d_fatimid_diwan_al_iqta_gui_desc:0 "The Dīwān al-'Iqta' is the bureau in charge of allocating and distributing the iqta allowances, a non inheritable right given to officers or select individuals to the tax revenues of some lands."
+ d_fatimid_diwan_al_karaj_gui_desc:0 "The Dīwān al-Karāj is tasked with the taxation for the state, assessing and updating land registry, and collecting revenues from taxpayers."
+ d_fatimid_diwan_al_rawatib_gui_desc:0 "The Dīwān al-Rawātib function is to manage and pay the salary of state officials."
+
+ 
+
+
+
  ## HOLDINGS
  pastoral_holding:0 "Nomad Controlled"
  pastoral_holding_concept_key:0 "Nomad Controlled"
  building_pastoral_holding_building_1:0 "Pastoral"
  building_pastoral_holding_building_1_desc:0 "This province is controlled by nomadic pastoral herders."
  building_type_pastoral_holding_building_1:0 "Nomad"
+
 
  ## BUILDINGS
  building_slave_market_1:0 "Slave Market"
@@ -381,6 +402,7 @@
  building_slave_market_2:0 "Important Slave Market"
  building_slave_market_2_desc:0 "This city demand for slave is high enough that a whole district market has been created with slaves coming from all around the world to be bought and sold by an ever growing clientele."
  building_type_slave_market_2:0 "[building|E]"
+
 
  ## OPINIONS
  islamic_empire_salary_opinion_modifier:0 "Salary"
@@ -397,8 +419,16 @@
  ## LAW
  islamic_empire_amir_succession_law:0 "Clientelism"
  islamic_empire_amir_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
+ islamic_empire_amir_succession_law_electors:0 "Magnates"
+ islamic_empire_amir_succession_law_candidates:0 "Candidates"
  islamic_empire_amir_succession_law_2:0 "Hereditary Clientelism"
  islamic_empire_amir_succession_law_2_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It permits direct familial inheritance of titles."
+ islamic_empire_amir_succession_law_2_electors:0 "Amir"
+ islamic_empire_amir_succession_law_2_candidates:0 "Candidates"
+ islamic_empire_diwan_succession_law:0 "Clientelism"
+ islamic_empire_diwan_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
+ islamic_empire_diwan_succession_law_electors:0 "Katib"
+ islamic_empire_diwan_succession_law_candidates:0 "Candidates"
 
  ## BOOKMARK
  bm_1066_islamic_empire:0 "The Time of the Sword"

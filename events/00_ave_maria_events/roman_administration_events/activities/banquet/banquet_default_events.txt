@@ -128,7 +128,7 @@ banquet_default.0001 = {
 		banquet_default_setup_effect = yes
 		trigger_event = {
 			id = banquet_default.9000
-			days = max_banquet_duration
+			days = max_feast_duration
 		}
 	}
 }
@@ -179,7 +179,7 @@ banquet_default.1001 = {
 		NOT = { exists = local_var:had_1001}
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				learning < root.learning
 			}
 		}
@@ -193,7 +193,7 @@ banquet_default.1001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					learning < root.learning
 				}
 				save_scope_as = impressed_guest
@@ -207,7 +207,7 @@ banquet_default.1001 = {
 		scope:impressed_guest = {
 			add_opinion = {
 				target = root
-				modifier = learned_at_banquet_opinion
+				modifier = learned_at_feast_opinion
 			}
 		}
 	}
@@ -225,13 +225,13 @@ banquet_default.1001 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_1002_annoyed_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { has_trait = gluttonous }
 	NOT = { has_trait = impatient }
 	NOT = {
 		has_opinion_modifier = {
 			target = root
-			modifier = annoying_glutton_at_banquet_opinion
+			modifier = annoying_glutton_at_feast_opinion
 		}
 	}
 }
@@ -300,7 +300,7 @@ banquet_default.1002 = {
 			every_participant = {
 				custom = banquet_default.1002.gluttons_and_impatients
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:other_guest }
 					OR = {
 						has_trait = gluttonous
@@ -316,7 +316,7 @@ banquet_default.1002 = {
 		scope:other_guest = {
 			add_opinion = {
 				target = root
-				modifier = annoying_glutton_at_banquet_opinion
+				modifier = annoying_glutton_at_feast_opinion
 			}
 		}
 	}
@@ -334,7 +334,7 @@ banquet_default.1002 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_1003_learned_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	learning >= 15
 	OR = {
 		has_relation_rival = root
@@ -412,7 +412,7 @@ banquet_default.1003 = {
 		}
 		reverse_add_opinion = {
 			target = scope:other_guest
-			modifier = was_unimpressed_at_banquet_opinion
+			modifier = was_unimpressed_at_feast_opinion
 		}
 		hidden_effect = {
 			if = {
@@ -445,7 +445,7 @@ banquet_default.1003 = {
 		}
 		reverse_add_opinion = {
 			target = scope:other_guest
-			modifier = was_unimpressed_at_banquet_opinion
+			modifier = was_unimpressed_at_feast_opinion
 		}
 	}
 
@@ -583,7 +583,7 @@ banquet_default.1005 = {
 		NOT = { has_trait = lifestyle_reveler }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				has_friendly_relationship_trigger = {
 					CHARACTER = root
 				}
@@ -603,7 +603,7 @@ banquet_default.1005 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_friendly_relationship_trigger = {
 						CHARACTER = root
 					}
@@ -688,7 +688,7 @@ banquet_default.1005 = {
 
 #Trigger for suitable compatriots
 scripted_trigger banquet_default_1006_potentially_entertained_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	NOT = { has_relation_rival = root }
 }
@@ -874,7 +874,7 @@ banquet_default.1006 = {
 #####################
 
 scripted_trigger banquet_default_1007_glutton_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	has_trait = gluttonous
 }
 
@@ -989,7 +989,7 @@ banquet_default.1007 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_1008_secret_recipient_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	save_temporary_scope_as = secret_recipient_check
 	root = {
@@ -1080,7 +1080,7 @@ banquet_default.1008 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_1009_secret_recipient_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	save_temporary_scope_as = secret_recipient_check
 	root = {
@@ -1178,7 +1178,7 @@ banquet_default.1009 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_1010_favor_recipient_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_landed = yes
 	can_add_hook = {
 		target = root
@@ -1283,7 +1283,7 @@ banquet_default.1010 = {
 		scope:activity = {
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:favor_recipient }
 					opinion = {
 						target = scope:favor_recipient
@@ -1326,7 +1326,7 @@ banquet_default.1010 = {
 #####################
 
 scripted_trigger banquet_default_1011_find_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	OR = {
 		is_of_major_interest_trigger = {
 			CHARACTER = root
@@ -1339,7 +1339,7 @@ scripted_trigger banquet_default_1011_find_guest_trigger = {
 }
 
 scripted_trigger banquet_default_1011_disliked_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	reverse_opinion = {
 		target = root
 		value <= -10
@@ -1581,7 +1581,7 @@ banquet_default.1011 = {
 # by Linnéa Thimrén
 #####################
 scripted_trigger banquet_default_1012_guest_to_murder_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	reverse_opinion = {
 		target = root
 		value <= -20
@@ -1679,7 +1679,7 @@ banquet_default.1012 = {
 # by Linnéa Thimrén
 #####################
 scripted_trigger banquet_default_1013_liked_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	OR = {
 		has_relation_friend = root
 		has_relation_lover = root
@@ -1694,7 +1694,7 @@ scripted_trigger banquet_default_1013_liked_guest_trigger = {
 }
 
 scripted_trigger banquet_default_1013_murder_guest_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	OR = {
 		has_relation_rival = scope:guest_check
 		has_relation_potential_rival = scope:guest_check
@@ -1764,7 +1764,7 @@ banquet_default.1013 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { is_in_list = guest_to_save_list }
 					OR = {
 						any_relation = {
@@ -1793,7 +1793,7 @@ banquet_default.1013 = {
 			random_in_list = {
 				list = guest_to_save_list
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					OR = {
 						has_relation_rival = scope:guest_to_kill
 						has_relation_potential_rival = scope:guest_to_kill
@@ -1970,7 +1970,7 @@ banquet_default.1013 = {
 #####################
 
 scripted_trigger banquet_default_1014_participant_basic_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { this = scope:activity.activity_owner }
 }
 
@@ -2156,12 +2156,12 @@ banquet_default.1014 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2001_annoying_glutton_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	has_trait = gluttonous
 	NOT = {
 		reverse_has_opinion_modifier = {
 			target = root
-			modifier = annoying_glutton_at_banquet_opinion
+			modifier = annoying_glutton_at_feast_opinion
 		}
 	}
 }
@@ -2203,7 +2203,7 @@ banquet_default.2001 = {
 					NOT = {
 						reverse_has_opinion_modifier = {
 							target = root
-							modifier = annoying_glutton_at_banquet_opinion
+							modifier = annoying_glutton_at_feast_opinion
 						}
 					}
 				}
@@ -2252,7 +2252,7 @@ banquet_default.2001 = {
 		hidden_effect = {
 			add_opinion = {
 				target = scope:glutton
-				modifier = annoying_glutton_at_banquet_opinion
+				modifier = annoying_glutton_at_feast_opinion
 			}
 		}
 	}
@@ -2268,7 +2268,7 @@ banquet_default.2001 = {
 		hidden_effect = {
 			add_opinion = {
 				target = scope:activity.activity_owner
-				modifier = disorganized_banquet_opinion
+				modifier = disorganized_feast_opinion
 			}
 		}
 		ai_chance = {
@@ -2297,7 +2297,7 @@ banquet_default.2001 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2002_letter_author_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	OR = {
 		any_scheme = {
@@ -2426,13 +2426,13 @@ banquet_default.2002 = {
 		name = feast_default.2002.a
 		reverse_add_opinion = {
 			target = scope:crush_1
-			modifier = offered_attention_at_banquet_opinion
+			modifier = offered_attention_at_feast_opinion
 		}
-		custom_tooltip = banquet_default.2002.potential_lover_tt
+		custom_tooltip = feast_default.2002.potential_lover_tt
 		hidden_effect = {
 			add_opinion = {
 				target = scope:crush_1
-				modifier = wrote_love_letter_at_banquet_opinion
+				modifier = wrote_love_letter_at_feast_opinion
 			}
 			if = {
 				limit = { scope:crush_1 = scope:letterAuthor }
@@ -2449,13 +2449,13 @@ banquet_default.2002 = {
 		name = feast_default.2002.a
 		reverse_add_opinion = {
 			target = scope:crush_2
-			modifier = offered_attention_at_banquet_opinion
+			modifier = offered_attention_at_feast_opinion
 		}
-		custom_tooltip = banquet_default.2002.potential_lover_tt
+		custom_tooltip = feast_default.2002.potential_lover_tt
 		hidden_effect = {
 			add_opinion = {
 				target = scope:crush_2
-				modifier = wrote_love_letter_at_banquet_opinion
+				modifier = wrote_love_letter_at_feast_opinion
 			}
 			if = {
 				limit = { scope:crush_2 = scope:letterAuthor }
@@ -2472,13 +2472,13 @@ banquet_default.2002 = {
 		name = feast_default.2002.a
 		reverse_add_opinion = {
 			target = scope:crush_3
-			modifier = offered_attention_at_banquet_opinion
+			modifier = offered_attention_at_feast_opinion
 		}
-		custom_tooltip = banquet_default.2002.potential_lover_tt
+		custom_tooltip = feast_default.2002.potential_lover_tt
 		hidden_effect = {
 			add_opinion = {
 				target = scope:crush_3
-				modifier = wrote_love_letter_at_banquet_opinion
+				modifier = wrote_love_letter_at_feast_opinion
 			}
 			if = {
 				limit = { scope:crush_3 = scope:letterAuthor }
@@ -2503,7 +2503,7 @@ banquet_default.2002 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2003_potential_friend_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = {
 		is_close_family_trigger = {
 			CHARACTER = root
@@ -2679,7 +2679,7 @@ banquet_default.2003 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2005_drunk_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { has_trait = temperate }
 }
 
@@ -2829,7 +2829,7 @@ banquet_default.2005 = {
 #####################
 
 scripted_trigger banquet_default_2006_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { has_trait = gregarious }
 	OR = {
 		any_scheme = {
@@ -3036,7 +3036,7 @@ banquet_default.2006 = {
 #####################
 
 scripted_trigger banquet_default_2007_lover_basic_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { is_spouse_of = root	}
 	NOR = {
 		has_trait = celibate
@@ -3292,7 +3292,7 @@ banquet_default.2007 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2008_homosexual_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	has_trait = lustful
 	is_adult = yes
 	any_secret = {
@@ -3436,7 +3436,7 @@ banquet_default.2008 = {
 			}
 		}
 		add_internal_flag = special
-		custom_tooltip = banquet_default.2008.d.unlock_text
+		custom_tooltip = feast_default.2008.d.unlock_text
 		if = {
 			limit = {
 				any_secret = {
@@ -3511,7 +3511,7 @@ banquet_default.2008 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2009_secret_holder_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	any_secret = {
 		NOT = { is_known_by = root }
@@ -3579,7 +3579,7 @@ banquet_default.2009 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2010_secret_knower_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	any_known_secret = {
 		NOT = { secret_owner = prev }
@@ -3657,7 +3657,7 @@ banquet_default.2010 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_2011_favor_character_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	NOT = { has_trait = temperate }
 	NOT = { has_trait = shy }
@@ -3778,7 +3778,7 @@ banquet_default.2011 = {
 #####################
 
 scripted_trigger banquet_default_2012_victim_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	save_temporary_scope_as = murdered_guest
 	scope:activity = {
 		any_participant = {
@@ -3788,7 +3788,7 @@ scripted_trigger banquet_default_2012_victim_trigger = {
 }
 
 scripted_trigger banquet_default_2012_murderer_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { this = scope:murdered_guest }
 	opinion = {
 		target = scope:murdered_guest
@@ -3971,7 +3971,7 @@ banquet_default.3001 = {
 		NOT = { has_character_flag = had_banquet_default_3001 }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				has_relation_friend = root
 			}
 		}	
@@ -3985,7 +3985,7 @@ banquet_default.3001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_friend = root
 				}
 				save_scope_as = friend
@@ -4002,12 +4002,12 @@ banquet_default.3001 = {
 		}
 		reverse_add_opinion = {
 			target = scope:friend
-			modifier = friend_had_good_time_at_banquet_opinion	
+			modifier = friend_had_good_time_at_feast_opinion	
 		}
 		hidden_effect = {
 			add_opinion = {
 				target = scope:friend
-				modifier = friend_had_good_time_at_banquet_opinion
+				modifier = friend_had_good_time_at_feast_opinion
 			}
 		}
 	}
@@ -4025,7 +4025,7 @@ banquet_default.3001 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_3002_lover_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	lover_is_secret_trigger = {
 		CHARACTER = root
 	}
@@ -4073,7 +4073,7 @@ banquet_default.3002 = {
 		hidden_effect = {
 			add_opinion = {
 				target = scope:lover
-				modifier = lover_banquet_secret_dalliance_opinion
+				modifier = lover_feast_secret_dalliance_opinion
 			}
 		}
 		add_stress = major_stress_loss
@@ -4083,7 +4083,7 @@ banquet_default.3002 = {
 		}
 		reverse_add_opinion = {
 			target = scope:lover
-			modifier = lover_banquet_secret_dalliance_opinion	
+			modifier = lover_feast_secret_dalliance_opinion	
 		}
 		if = { #There is a chance of the activity owner discovering the secret
 			limit = {
@@ -4093,7 +4093,7 @@ banquet_default.3002 = {
 					NOT = { this = scope:lover }
 				}
 			}
-			custom_tooltip = banquet_default.3002.discovery_tt
+			custom_tooltip = feast_default.3002.discovery_tt
 			random = {
 				chance = 5
 				random_secret = {
@@ -4152,7 +4152,7 @@ banquet_default.3002 = {
 # by Petter Vilberg
 #####################
 scripted_trigger banquet_default_3003_rival_trigger = {	
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	has_relation_rival = root
 }
 
@@ -4201,12 +4201,12 @@ banquet_default.3003 = {
 		}
 		reverse_add_opinion = {
 			target = scope:rival
-			modifier = rival_banquet_altercation_opinion	
+			modifier = rival_feast_altercation_opinion	
 		}
 		hidden_effect = {
 			add_opinion = {
 				target = scope:rival
-				modifier = rival_banquet_altercation_opinion
+				modifier = rival_feast_altercation_opinion
 			}
 		}
 	}
@@ -4244,7 +4244,7 @@ banquet_default.3004 = {
 		NOT = { exists = local_var:had_3004 }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				has_relation_rival = root
 			}
 		}
@@ -4258,7 +4258,7 @@ banquet_default.3004 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_rival = root
 				}
 				save_scope_as = rival_guest
@@ -4405,7 +4405,7 @@ banquet_default.3005 = {
 		NOT = { exists = local_var:had_3005 }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				has_relation_rival = root
 			}
 		}
@@ -4417,7 +4417,7 @@ banquet_default.3005 = {
 			add = 0.5
 			scope:activity = {
 				any_participant = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_rival = root
 					has_trait_rank = {
 						trait = wounded
@@ -4430,7 +4430,7 @@ banquet_default.3005 = {
 			add = 0.3
 			scope:activity = {
 				any_participant = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_rival = root
 					has_trait = wrathful
 				}
@@ -4446,7 +4446,7 @@ banquet_default.3005 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_rival = root
 				}
 				save_scope_as = rival_to_duel
@@ -4631,7 +4631,7 @@ banquet_default.3005 = {
 # by Petter Vilberg and Linnéa Thimrén
 #####################
 scripted_trigger banquet_default_3006_adultery_target_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	NOT = {
 		any_consort = {
@@ -5039,7 +5039,7 @@ banquet_default.3006 = {
 
 	option = { #Let us not speak of this again
 		name = feast_default.3006.c
-		custom_tooltip = banquet_default.3006.c.tt
+		custom_tooltip = feast_default.3006.c.tt
 		stress_impact = {
 			lustful = minor_stress_impact_gain
 		}
@@ -5071,7 +5071,7 @@ banquet_default.3006 = {
 #
 #Trigger for making sure a suitable secret lover is present
 scripted_trigger banquet_default_3007_lover_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	is_adult = yes
 	has_relation_lover = root
 	NOT = {
@@ -5680,7 +5680,7 @@ banquet_default.5003 = {
 				has_trait = sadistic
 			}
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				NOT = { this = root }
 				NOT = {	this = scope:activity.activity_owner }
 				is_ai = yes
@@ -5704,7 +5704,7 @@ banquet_default.5003 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					NOT = {	this = scope:sadistic_host }
 					is_ai = yes
@@ -6219,11 +6219,11 @@ banquet_default.6002 = {
 			activity_owner = {
 				is_married = yes
 				primary_partner = { 
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 				}
 			}
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				NOT = { this = scope:activity.activity_owner.primary_partner }
 				opinion = {
 					target = scope:activity.activity_owner
@@ -6245,7 +6245,7 @@ banquet_default.6002 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:spouse } # Spouse should not compliment themselves
 					opinion = {
 						target = scope:activity.activity_owner
@@ -6319,7 +6319,7 @@ banquet_default.6002 = {
 #####################
 
 scripted_trigger banquet_default_6003_fighter_2_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { this = scope:fighter_1 }
 	OR = {
 		has_relation_rival = scope:fighter_1
@@ -6347,7 +6347,7 @@ scripted_trigger banquet_default_6003_fighter_2_trigger = {
 }
 
 scripted_trigger banquet_default_6003_fighter_1_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	save_temporary_scope_as = fighter_1
 	scope:activity = {
 		any_participant = {
@@ -6526,7 +6526,7 @@ banquet_default.6101 = {
 		NOT = { exists = local_var:had_6101 }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				has_trait = shy
 				save_temporary_scope_as = guest_check
 			}
@@ -6545,7 +6545,7 @@ banquet_default.6101 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_trait = shy
 				}
 				weight = {
@@ -6651,7 +6651,7 @@ banquet_default.6101 = {
 		scope:activity = {
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = {	this = scope:troubled_guest	}
 				}
 				custom = every_guest_scope_tt
@@ -6734,7 +6734,7 @@ banquet_default.6101 = {
 # by Linnéa Thimrén
 #####################
 scripted_trigger banquet_default_6111_character_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 }
 
 banquet_default.6111 = {
@@ -6874,7 +6874,7 @@ banquet_default.6111 = {
 		scope:activity = {
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = scope:guest_to_talk_to }
 					ai_compassion <= medium_negative_compassion
 				}
@@ -6946,7 +6946,7 @@ banquet_default.6121 = {
 		NOT = { exists = local_var:had_6121 }
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				opinion = {
 					target = scope:activity.activity_owner
 					value <= -10
@@ -6967,7 +6967,7 @@ banquet_default.6121 = {
 		modifier = { #More likely if there's someone you actually dislike
 			scope:activity = {
 				any_participant = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					OR = {
 						opinion = {
 							target = scope:activity.activity_owner
@@ -6996,7 +6996,7 @@ banquet_default.6121 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_rival = scope:activity.activity_owner
 					save_temporary_scope_as = guest_check
 					root = {
@@ -7008,7 +7008,7 @@ banquet_default.6121 = {
 
 				}
 				alternative_limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					has_relation_potential_rival = scope:activity.activity_owner
 					save_temporary_scope_as = guest_check
 					root = {
@@ -7019,7 +7019,7 @@ banquet_default.6121 = {
 					}
 				}
 				alternative_limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					opinion = {
 						target = scope:activity.activity_owner
 						value <= -20
@@ -7033,7 +7033,7 @@ banquet_default.6121 = {
 					}
 				}
 				alternative_limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					opinion = {
 						target = scope:activity.activity_owner
 						value <= -10
@@ -7179,7 +7179,7 @@ banquet_default.6231 = {
 		scope:activity = {
 			every_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 				}
 				custom = every_guest_scope_tt
 				add_opinion = {
@@ -7196,7 +7196,7 @@ banquet_default.6231 = {
 				}
 				every_participant = {
 					limit = {
-						banquet_default_participant_trigger = yes
+						feast_default_participant_trigger = yes
 						has_trait = drunkard
 					}
 					custom = every_drunkard_guest_scope_tt
@@ -7277,7 +7277,7 @@ banquet_default.6231 = {
 # by Linnéa Thimrén
 #####################
 scripted_trigger banquet_default_participant_requirements_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOR = {
 		has_relation_friend = root
 		has_relation_rival = root
@@ -7529,7 +7529,7 @@ banquet_default.6261 = {
 		is_cannibal_trigger = yes
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_cannibal_trigger = no
 			}
 		}
@@ -7541,7 +7541,7 @@ banquet_default.6261 = {
 			add = 0.5
 			scope:activity = {
 				any_participant = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_cannibal_trigger = yes
 				}
 			}
@@ -7556,7 +7556,7 @@ banquet_default.6261 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_cannibal_trigger = yes
 				}
 				save_scope_as = cannibal_guest
@@ -7567,12 +7567,12 @@ banquet_default.6261 = {
 				}
 				random_participant = {
 					limit = {
-						banquet_default_participant_trigger = yes
+						feast_default_participant_trigger = yes
 						is_cannibal_trigger = no
 						probably_intelligent_trigger = yes
 					}
 					alternative_limit = {
-						banquet_default_participant_trigger = yes
+						feast_default_participant_trigger = yes
 						is_cannibal_trigger = no
 					}
 					weight = {
@@ -7754,7 +7754,7 @@ banquet_default.6261 = {
 # 8000-8999
 #################################
 
-scripted_trigger murder_banquet_default_participant_trigger = {
+scripted_trigger murder_feast_default_participant_trigger = {
 	is_alive = yes
 	NOT = { this = root }
 	is_imprisoned = no
@@ -7776,7 +7776,7 @@ banquet_default.8000 = {
 					limit = {
 						scope:activity = {
 							any_participant = {
-								murder_banquet_default_participant_trigger = yes
+								murder_feast_default_participant_trigger = yes
 								has_character_flag = murder_banquet_to_spare
 							}
 						}
@@ -7785,14 +7785,14 @@ banquet_default.8000 = {
 					scope:activity = {
 						every_participant = { #To trigger the events for the participants
 							limit = {
-								murder_banquet_default_participant_trigger = yes
+								murder_feast_default_participant_trigger = yes
 								has_character_flag = murder_banquet_to_spare
 							}
 							trigger_event = banquet_default.8051
 						}
 						every_participant = {
 							limit = {
-								murder_banquet_default_participant_trigger = yes
+								murder_feast_default_participant_trigger = yes
 								NOT = { has_character_flag = murder_banquet_to_spare }
 							}
 							trigger_event = banquet_default.8052
@@ -7804,7 +7804,7 @@ banquet_default.8000 = {
 					scope:activity = {
 						every_participant = {
 							limit = {
-								murder_banquet_default_participant_trigger = yes
+								murder_feast_default_participant_trigger = yes
 							}
 							trigger_event = banquet_default.8052
 						}
@@ -7833,7 +7833,7 @@ banquet_default.8000 = {
 				scope:activity = {
 					every_participant = {
 						limit = {	
-							murder_banquet_default_participant_trigger = yes
+							murder_feast_default_participant_trigger = yes
 						}
 						trigger_event = banquet_default.8061
 					}
@@ -7881,7 +7881,7 @@ banquet_default.8001 = {
 			}
 			every_participant = {
 				limit = {
-					murder_banquet_default_participant_trigger = yes
+					murder_feast_default_participant_trigger = yes
 					NOT = { has_character_flag = murder_banquet_to_spare }
 				}
 				#add_character_flag = {
@@ -7895,7 +7895,7 @@ banquet_default.8001 = {
 			}
 			every_participant = {
 				limit = {
-					murder_banquet_default_participant_trigger = yes
+					murder_feast_default_participant_trigger = yes
 					has_character_flag = murder_banquet_to_spare
 					NOR = {
 						has_trait = sadistic
@@ -7933,7 +7933,7 @@ banquet_default.8002 = {
 		scope:activity = {
 			every_participant = {
 				limit = {
-					murder_banquet_default_participant_trigger = yes
+					murder_feast_default_participant_trigger = yes
 				}
 				custom = banquet_default.8002_death
 				save_scope_as = dead
@@ -7973,7 +7973,7 @@ banquet_default.8003 = {
 			scope:activity = {
 				every_participant = {
 					limit = {
-						murder_banquet_default_participant_trigger = yes
+						murder_feast_default_participant_trigger = yes
 					}
 					custom = every_guest_scope_tt
 					add_opinion = {
@@ -8013,7 +8013,7 @@ banquet_default.8051 = {
 			scope:activity = {
 				every_participant = {
 					limit = {
-						murder_banquet_default_participant_trigger = yes
+						murder_feast_default_participant_trigger = yes
 						NOT = { has_character_flag = murder_banquet_to_spare }
 					}
 					custom = banquet_default.8051.a_death
@@ -8102,7 +8102,7 @@ banquet_default.8061 = {
 			scope:activity = {
 				every_participant = {
 					limit = {
-						murder_banquet_default_participant_trigger = yes
+						murder_feast_default_participant_trigger = yes
 					}
 					custom = every_guest_scope_tt
 					add_opinion = {
@@ -8361,7 +8361,7 @@ banquet_default.9002 = {
 		banquet_end_guest_effect = yes
 		reverse_add_opinion = {
 			target = scope:host
-			modifier = feast_attended_my_banquet_opinion
+			modifier = feast_attended_my_feast_opinion
 		}
 	}
 }

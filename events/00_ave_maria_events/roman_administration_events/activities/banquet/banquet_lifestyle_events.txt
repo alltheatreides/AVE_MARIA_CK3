@@ -16,8 +16,8 @@ namespace = banquet_lifestyle
 #Have a heated argument over the best strategies
 banquet_lifestyle.1001 = {
 	type = character_event
-	title = banquet_lifestyle.1001.t
-	desc = banquet_lifestyle.1001.desc
+	title = feast_lifestyle.1001.t
+	desc = feast_lifestyle.1001.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -32,7 +32,7 @@ banquet_lifestyle.1001 = {
 		has_lifestyle = martial_lifestyle
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				NOT = { this = root }
 				is_ai = yes
 				number_of_commander_traits > 0
@@ -68,7 +68,7 @@ banquet_lifestyle.1001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					is_ai = yes
 					number_of_commander_traits > 0
@@ -86,24 +86,24 @@ banquet_lifestyle.1001 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.1001.a
+		name = feast_lifestyle.1001.a
 		add_character_modifier = {
-			modifier = banquet_strategy_discussions_modifier
+			modifier = feast_strategy_discussions_modifier
 			days = 1825
 		}
 		scope:strategy_opponent = {
 			add_opinion = {
-				modifier = banquet_strategic_disagreement_opinion
+				modifier = feast_strategic_disagreement_opinion
 				target = root
 			}
 			hidden_effect = {
 				reverse_add_opinion = {
-					modifier = banquet_strategic_disagreement_opinion
+					modifier = feast_strategic_disagreement_opinion
 					target = root
 				}
 			}
 		}
-		custom_tooltip = banquet_lifestyle.1001.a.tt
+		custom_tooltip = feast_lifestyle.1001.a.tt
 	}
 
 	after = {
@@ -118,30 +118,29 @@ banquet_lifestyle.1001 = {
 #Not limited to being Shy, just a lot less likely to occur if you are not
 banquet_lifestyle.1002 = {
 	type = character_event
-	title = banquet_lifestyle.1002.t
+	title = feast_lifestyle.1002.t
 	desc = {
-		desc = banquet_lifestyle.1002.opening
+		desc = feast_lifestyle.1002.opening
 		first_valid = {
 			triggered_desc = {
 				trigger = { has_character_flag = cavalry_modifier }
-				desc = banquet_lifestyle.1002.cavalry
+				desc = feast_lifestyle.1002.cavalry
 			}
 			triggered_desc = {
 				trigger = { has_character_flag = heavy_infantry_modifier }
-				desc = banquet_lifestyle.1002.heavy_infantry
+				desc = feast_lifestyle.1002.heavy_infantry
 			}
 			triggered_desc = {
 				trigger = { has_character_flag = archers_modifier }
-				desc = banquet_lifestyle.1002.archers
+				desc = feast_lifestyle.1002.archers
 			}
 			triggered_desc = {
 				trigger = { has_character_flag = skirmishers_modifier }
-				desc = banquet_lifestyle.1002.skirmishers
+				desc = feast_lifestyle.1002.skirmishers
 			}
 			triggered_desc = {
 				trigger = { has_character_flag = pikemen_modifier }
-				desc = banquet_lifestyle.1002.pikemen
-			}
+				desc = feast_lifestyle.1002.pikemen
 		}
 	}
 	theme = banquet_activity
@@ -196,53 +195,53 @@ banquet_lifestyle.1002 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.1002.a
+		name = feast_lifestyle.1002.a
 		trigger = { has_character_flag = cavalry_modifier }
 		add_character_modifier = {
-			modifier = banquet_cavalry_insight_modifier
+			modifier = feast_cavalry_insight_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1002.a.tt
+		custom_tooltip = feast_lifestyle.1002.a.tt
 	}
 
 	option = {
-		name = banquet_lifestyle.1002.a
+		name = feast_lifestyle.1002.a
 		trigger = { has_character_flag = heavy_infantry_modifier }
 		add_character_modifier = {
-			modifier = banquet_heavy_infantry_insight_modifier
+			modifier = feast_heavy_infantry_insight_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1002.a.tt
+		custom_tooltip = feast_lifestyle.1002.a.tt
 	}
 
 	option = {
-		name = banquet_lifestyle.1002.a
+		name = feast_lifestyle.1002.a
 		trigger = { has_character_flag = skirmishers_modifier }
 		add_character_modifier = {
-			modifier = banquet_skirmishers_insight_modifier
+			modifier = feast_skirmishers_insight_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1002.a.tt
+		custom_tooltip = feast_lifestyle.1002.a.tt
 	}
 
 	option = {
-		name = banquet_lifestyle.1002.a
+		name = feast_lifestyle.1002.a
 		trigger = { has_character_flag = archers_modifier }
 		add_character_modifier = {
-			modifier = banquet_archers_insight_modifier
+			modifier = feast_archers_insight_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1002.a.tt
+		custom_tooltip = feast_lifestyle.1002.a.tt
 	}
 
 	option = {
-		name = banquet_lifestyle.1002.a
+		name = feast_lifestyle.1002.a
 		trigger = { has_character_flag = pikemen_modifier }
 		add_character_modifier = {
-			modifier = banquet_pikemen_insight_modifier
+			modifier = feast_pikemen_insight_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1002.a.tt
+		custom_tooltip = feast_lifestyle.1002.a.tt
 	}
 
 	after = {
@@ -261,8 +260,8 @@ banquet_lifestyle.1002 = {
 #Strategise for a theoretical attack on the banquet hall
 banquet_lifestyle.1003 = {
 	type = character_event
-	title = banquet_lifestyle.1003.t
-	desc = banquet_lifestyle.1003.desc
+	title = feast_lifestyle.1003.t
+	desc = feast_lifestyle.1003.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -300,24 +299,24 @@ banquet_lifestyle.1003 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.1003.a
+		name = feast_lifestyle.1003.a
 		add_character_modifier = {
-			modifier = banquet_better_safe_than_sorry_modifier
+			modifier = feast_better_safe_than_sorry_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1003.a.tt
+		custom_tooltip = feast_lifestyle.1003.a.tt
 	}
 
 	option = {
-		name = banquet_lifestyle.1003.b
+		name = feast_lifestyle.1003.b
 		trigger = { has_trait = paranoid }
 		trait = paranoid
 		exclusive = yes
 		add_character_modifier = {
-			modifier = banquet_overly_safe_rather_than_sorry_modifier
+			modifier = feast_overly_safe_rather_than_sorry_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1003.b.tt
+		custom_tooltip = feast_lifestyle.1003.b.tt
 	}
 
 	after = {
@@ -331,8 +330,8 @@ banquet_lifestyle.1003 = {
 #Ask others about their preferred strategies
 banquet_lifestyle.1004 = {
 	type = character_event
-	title = banquet_lifestyle.1004.t
-	desc = banquet_lifestyle.1004.desc
+	title = feast_lifestyle.1004.t
+	desc = feast_lifestyle.1004.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -356,7 +355,7 @@ banquet_lifestyle.1004 = {
 		}
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				number_of_commander_traits > 0
 				count > 3
 			}
@@ -379,7 +378,7 @@ banquet_lifestyle.1004 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					number_of_commander_traits > 0
 				}
@@ -387,7 +386,7 @@ banquet_lifestyle.1004 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					NOT = { this = scope:consultant_1 }
 					number_of_commander_traits > 0
@@ -396,7 +395,7 @@ banquet_lifestyle.1004 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					NOT = { this = scope:consultant_1 }
 					NOT = { this = scope:consultant_2 }
@@ -411,12 +410,12 @@ banquet_lifestyle.1004 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.1004.a
+		name = feast_lifestyle.1004.a
 		add_character_modifier = {
-			modifier = banquet_strategy_discussions_modifier
+			modifier = feast_strategy_discussions_modifier
 			days = 1825
 		}
-		custom_tooltip = banquet_lifestyle.1004.a.tt
+		custom_tooltip = feast_lifestyle.1004.a.tt
 	}
 
 	after = {
@@ -439,7 +438,7 @@ banquet_lifestyle.1004 = {
 #A guest is getting on your nerves and being disruptive
 banquet_lifestyle.2001 = {
 	type = character_event
-	title = banquet_lifestyle.2001.t
+	title = feast_lifestyle.2001.t
 	desc = {
 		random_valid = {
 			triggered_desc = {
@@ -451,7 +450,7 @@ banquet_lifestyle.2001 = {
 						}
 					}
 				}
-				desc = banquet_lifestyle.2001.mean
+				desc = feast_lifestyle.2001.mean
 			}
 			triggered_desc = {
 				trigger = {
@@ -462,7 +461,7 @@ banquet_lifestyle.2001 = {
 						}
 					}
 				}
-				desc = banquet_lifestyle.2001.loud
+				desc = feast_lifestyle.2001.loud
 			}
 			triggered_desc = {
 				trigger = {
@@ -475,10 +474,10 @@ banquet_lifestyle.2001 = {
 						}
 					}
 				}
-				desc = banquet_lifestyle.2001.quiet
+				desc = feast_lifestyle.2001.quiet
 			}
 		}
-		desc = banquet_lifestyle.2001.desc_ending
+		desc = feast_lifestyle.2001.desc_ending
 	}
 	theme = banquet_activity
 	override_background = {
@@ -494,7 +493,7 @@ banquet_lifestyle.2001 = {
 		has_lifestyle = intrigue_lifestyle
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_available_healthy_ai_adult = yes
 				OR = {
 					has_relation_rival = root
@@ -515,13 +514,13 @@ banquet_lifestyle.2001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					is_available_healthy_ai_adult = yes
 					has_relation_rival = root
 				}
 				alternative_limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					is_available_healthy_ai_adult = yes
 					reverse_opinion = {
@@ -530,7 +529,7 @@ banquet_lifestyle.2001 = {
 					}
 				}
 				alternative_limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					NOT = { this = root }
 					is_available_healthy_ai_adult = yes
 					reverse_opinion = {
@@ -544,10 +543,10 @@ banquet_lifestyle.2001 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.2001.a
+		name = feast_lifestyle.2001.a
 		scope:guest_victim = {
 			add_opinion = {
-				modifier = banquet_got_taught_a_lesson
+				modifier = feast_got_taught_a_lesson
 				target = root
 			}
 		}
@@ -580,7 +579,7 @@ scripted_trigger banquet_lifestyle_2002_secret_trigger = {
 }
 
 scripted_trigger banquet_lifestyle_2002_secret_holder_trigger = {
-	banquet_default_participant_trigger = yes
+	feast_default_participant_trigger = yes
 	NOT = { this = root }
 	is_available_healthy_ai_adult = yes
 	is_close_family_or_spouse_of_root_trigger = no
@@ -590,7 +589,7 @@ scripted_trigger banquet_lifestyle_2002_secret_holder_trigger = {
 
 banquet_lifestyle.2002 = {
 	type = character_event
-	title = banquet_lifestyle.2002.t
+	title = feast_lifestyle.2002.t
 	desc = {
 		random_valid = {
 			triggered_desc = {
@@ -599,7 +598,7 @@ banquet_lifestyle.2002 = {
 						secret_type = secret_lover
 					}
 				}
-				desc = banquet_lifestyle.2002.desc_lover
+				desc = feast_lifestyle.2002.desc_lover
 			}
 			triggered_desc = {
 				trigger = {
@@ -607,7 +606,7 @@ banquet_lifestyle.2002 = {
 						secret_type = secret_cannibal
 					}
 				}
-				desc = banquet_lifestyle.2002.desc_cannibal
+				desc = feast_lifestyle.2002.desc_cannibal
 			}
 			triggered_desc = {
 				trigger = {
@@ -618,7 +617,7 @@ banquet_lifestyle.2002 = {
 						secret_type = secret_homosexual
 					}
 				}
-				desc = banquet_lifestyle.2002.desc_homosexual_male
+				desc = feast_lifestyle.2002.desc_homosexual_male
 			}
 			triggered_desc = {
 				trigger = {
@@ -629,10 +628,10 @@ banquet_lifestyle.2002 = {
 						secret_type = secret_homosexual
 					}
 				}
-				desc = banquet_lifestyle.2002.desc_homosexual_female
+				desc = feast_lifestyle.2002.desc_homosexual_female
 			}
 		}
-		desc = banquet_lifestyle.2002.desc_ending
+		desc = feast_lifestyle.2002.desc_ending
 	}
 	theme = banquet_activity
 	override_background = {
@@ -685,7 +684,7 @@ banquet_lifestyle.2002 = {
 	}
 
 	option = { #reveal their secret
-		name = banquet_lifestyle.2002.a
+		name = feast_lifestyle.2002.a
 		scope:secret_to_discover = {
 			expose_secret = root
 		}
@@ -704,7 +703,7 @@ banquet_lifestyle.2002 = {
 	}
 
 	option = { #add_hook
-		name = banquet_lifestyle.2002.b
+		name = feast_lifestyle.2002.b
 		
 		blackmail_target_with_secret_effect = {
 			SECRET = scope:secret_to_discover
@@ -726,7 +725,7 @@ banquet_lifestyle.2002 = {
 	}
 
 	option = { #demand money for silence
-		name = banquet_lifestyle.2002.c
+		name = feast_lifestyle.2002.c
 		trigger = {
 			has_trait = greedy
 		}
@@ -743,7 +742,7 @@ banquet_lifestyle.2002 = {
 	}
 
 	option = { #Don't expose their secret
-		name = banquet_lifestyle.2002.d
+		name = feast_lifestyle.2002.d
 		scope:guest_with_secret = {
 			add_opinion = {
 				modifier = did_not_tell_my_secret
@@ -785,8 +784,8 @@ banquet_lifestyle.2002 = {
 #Practice getting information out of people -> Scheme power
 banquet_lifestyle.2003 = {
 	type = character_event
-	title = banquet_lifestyle.2003.t
-	desc = banquet_lifestyle.2003.desc
+	title = feast_lifestyle.2003.t
+	desc = feast_lifestyle.2003.desc
 	theme = banquet_activity
 	override_background = {
 		event_background = ave_maria_constantinople_akkubita_dining_hall
@@ -801,7 +800,7 @@ banquet_lifestyle.2003 = {
 		has_lifestyle = intrigue_lifestyle
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_available_healthy_ai_adult = yes
 				has_important_relationship_with_root_trigger = no
 				is_close_family_or_spouse_of_root_trigger = no
@@ -825,7 +824,7 @@ banquet_lifestyle.2003 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_available_healthy_ai_adult = yes
 					has_important_relationship_with_root_trigger = no
 					is_close_family_or_spouse_of_root_trigger = no
@@ -836,7 +835,7 @@ banquet_lifestyle.2003 = {
 	}
 
 	option = { #Manipulate the people you talk to
-		name = banquet_lifestyle.2003.a
+		name = feast_lifestyle.2003.a
 		custom_tooltip = banquet_lifestyle.2003.a.tt
 		add_character_modifier = {
 			modifier = manipulate_people_modifier
@@ -856,7 +855,7 @@ banquet_lifestyle.2003 = {
 	}
 
 	option = { #Just enjoy the conversation
-		name = banquet_lifestyle.2003.b
+		name = feast_lifestyle.2003.b
 		add_prestige = minor_prestige_gain
 		stress_impact = {
 			deceitful = medium_stress_impact_gain
@@ -886,17 +885,17 @@ banquet_lifestyle.2003 = {
 #Practice seeing details -> Scheme resistance
 banquet_lifestyle.2004 = {
 	type = character_event
-	title = banquet_lifestyle.2004.t
+	title = feast_lifestyle.2004.t
 	desc = {
 		random_valid = {
-			desc = banquet_lifestyle.2004.desc1_a
-			desc = banquet_lifestyle.2004.desc1_b
+			desc = feast_lifestyle.2004.desc1_a
+			desc = feast_lifestyle.2004.desc1_b
 		}
 		random_valid = {
-			desc = banquet_lifestyle.2004.desc2_a
-			desc = banquet_lifestyle.2004.desc2_b
+			desc = feast_lifestyle.2004.desc2_a
+			desc = feast_lifestyle.2004.desc2_b
 		}
-		desc = banquet_lifestyle.2004.desc_ending
+		desc = feast_lifestyle.2004.desc_ending
 	}
 	theme = banquet_activity
 	override_background = {
@@ -920,7 +919,7 @@ banquet_lifestyle.2004 = {
 	}
 
 	option = {
-		name = banquet_lifestyle.2004.a
+		name = feast_lifestyle.2004.a
 		trigger = {
 			NOT = { has_trait = paranoid }
 		}
@@ -938,7 +937,7 @@ banquet_lifestyle.2004 = {
 	}
 	
 	option = { #If you're paranoid you get a better bonus
-		name = banquet_lifestyle.2004.b
+		name = feast_lifestyle.2004.b
 		trigger = {
 			has_trait = paranoid
 		}
@@ -973,8 +972,8 @@ banquet_lifestyle.2004 = {
 # Seat important people beside each other
 banquet_lifestyle.3001 = {
 	type = character_event
-	title = banquet_lifestyle.3001.t
-	desc = banquet_lifestyle.3001.desc
+	title = feast_lifestyle.3001.t
+	desc = feast_lifestyle.3001.desc
 	theme = diplomacy
 	soundeffect = banquet_event
 	left_portrait = {
@@ -992,7 +991,7 @@ banquet_lifestyle.3001 = {
 		has_lifestyle = diplomacy_lifestyle
 		scope:activity = {
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_ai = yes
 				AND = {
 					exists = root.player_heir
@@ -1001,7 +1000,7 @@ banquet_lifestyle.3001 = {
 				save_temporary_scope_as = guest_check
 			}
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_ai = yes
 				is_powerful_vassal_of = root
 				opinion = {
@@ -1017,7 +1016,7 @@ banquet_lifestyle.3001 = {
 				save_temporary_scope_as = guest_check_2
 			}
 			any_participant = {
-				banquet_default_participant_trigger = yes
+				feast_default_participant_trigger = yes
 				is_ai = yes
 				is_powerful_vassal_of = root
 				opinion = {
@@ -1045,7 +1044,7 @@ banquet_lifestyle.3001 = {
 		scope:activity = {
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_ai = yes
 					AND = {
 						exists = root.player_heir
@@ -1056,7 +1055,7 @@ banquet_lifestyle.3001 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_ai = yes
 					is_powerful_vassal_of = root
 					opinion = {
@@ -1074,7 +1073,7 @@ banquet_lifestyle.3001 = {
 			}
 			random_participant = {
 				limit = {
-					banquet_default_participant_trigger = yes
+					feast_default_participant_trigger = yes
 					is_ai = yes
 					is_powerful_vassal_of = root
 					opinion = {
@@ -1097,7 +1096,7 @@ banquet_lifestyle.3001 = {
 	}
 
 	option = { #Heir should sit with important_guest_2
-		name = banquet_lifestyle.3001.a
+		name = feast_lifestyle.3001.a
 		scope:important_guest_2 = {
 			add_opinion = {
 				target = scope:important_guest_1
@@ -1116,7 +1115,7 @@ banquet_lifestyle.3001 = {
 	}
 
 	option = { #Heir should sit with important_guest_3
-		name = banquet_lifestyle.3001.b
+		name = feast_lifestyle.3001.b
 		scope:important_guest_3 = {
 			add_opinion = {
 				target = scope:important_guest_1
@@ -1135,7 +1134,7 @@ banquet_lifestyle.3001 = {
 	}
 
 	option = { #They will dine with me!
-		name = banquet_lifestyle.3001.c
+		name = feast_lifestyle.3001.c
 		scope:important_guest_2 = {
 			add_opinion = {
 				target = root

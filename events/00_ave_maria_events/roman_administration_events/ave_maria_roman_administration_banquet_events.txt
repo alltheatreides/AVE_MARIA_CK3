@@ -259,7 +259,7 @@ banquet.1501 = {
 		if = {
 			limit = {
 				faith = {
-					has_doctrine_parameter = mandatory_banquet_attendance
+					has_doctrine_parameter = mandatory_feast_attendance
 				}
 			}
 			add_piety = medium_piety_loss
@@ -272,7 +272,7 @@ banquet.1501 = {
 			modifier = {
 				add = -50
 				faith = {
-					has_doctrine_parameter = mandatory_banquet_attendance
+					has_doctrine_parameter = mandatory_feast_attendance
 				}
 			}
 		}
@@ -296,7 +296,7 @@ banquet.1501 = {
 		if = {
 			limit = {
 				faith = {
-					has_doctrine_parameter = mandatory_banquet_attendance
+					has_doctrine_parameter = mandatory_feast_attendance
 				}
 			}
 			add_piety = medium_piety_loss
@@ -310,7 +310,7 @@ banquet.1501 = {
 			modifier = {
 				add = -50
 				faith = {
-					has_doctrine_parameter = mandatory_banquet_attendance
+					has_doctrine_parameter = mandatory_feast_attendance
 				}
 			}
 		}
@@ -539,7 +539,7 @@ banquet.2001 = {
 				trigger = {
 					exists = scope:murder_banquet
 				}
-				desc = feast.2001.desc_murder_banquet
+				desc = feast.2001.desc_murder_feast
 			}
 			desc = banquet.2001.desc
 		}
@@ -793,7 +793,7 @@ banquet.2002 = {
 				every_participant = {
 					custom = every_guest_scope_tt
 					add_opinion = {
-						modifier = banquet_host_failed_to_appear
+						modifier = feast_host_failed_to_appear
 						target = scope:activity.activity_owner
 					}
 				}
@@ -896,22 +896,22 @@ banquet.2501 = {
 	option = {
 		name = {
 			trigger = { has_trait = gluttonous }
-			text = banquet.2501.a.gluttonous
+			text = feast.2501.a.gluttonous
 		}
 		name = {
 			trigger = { has_trait = drunkard }
-			text = banquet.2501.a.drunkard
+			text = feast.2501.a.drunkard
 		}
 		name = {
 			trigger = { has_trait = gregarious }
-			text = banquet.2501.a.gregarious
+			text = feast.2501.a.gregarious
 		}
 		name = {
 			trigger = { has_trait = shy }
-			text = banquet.2501.a.shy
+			text = feast.2501.a.shy
 		}
 		name = {
-			text = banquet.2501.a
+			text = feast.2501.a
 		}
 	}
 
@@ -944,7 +944,7 @@ banquet.2502 = {
 
 	immediate = {
 		add_opinion = {
-			modifier = banquet_host_failed_to_appear
+			modifier = feast_host_failed_to_appear
 			target = scope:activity.activity_owner
 		}
 	}

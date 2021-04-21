@@ -284,14 +284,7 @@ islamic_empire_non_muslim_tax = {
 ## Right to name the steward councillor
 islamic_empire_kharaj_right = {
 	display_mode = checkbox
-	is_valid = {
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
-	}
+	
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -304,6 +297,14 @@ islamic_empire_kharaj_right = {
 	obligation_levels = {
 		islamic_empire_kharaj_right_none = {
 			default = yes
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			position = { 0 0 }
 
 			tax_factor = 0.2
@@ -314,9 +315,14 @@ islamic_empire_kharaj_right = {
 			flag = islamic_empire_kharaj_right_none
 		}
 		islamic_empire_kharaj_right_allowed = {
-			# is_valid = {
-			# 	scope:vassal.primary_title.tier >= tier_duchy
-			# }
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			parent = islamic_empire_kharaj_right_none
 			position = { 1 0 }
 			
@@ -337,14 +343,7 @@ islamic_empire_kharaj_right = {
 ## Right to name the Court chaplain / Qadi councillor
 islamic_empire_qadi_right = {
 	display_mode = checkbox
-	is_valid = {
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
-	}
+	
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -357,6 +356,14 @@ islamic_empire_qadi_right = {
 	obligation_levels = {
 		islamic_empire_qadi_right_none = {
 			default = yes
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			position = { 0 0 }
 			
 			ai_liege_desire = @ai_standard_liege_desire
@@ -366,7 +373,12 @@ islamic_empire_qadi_right = {
 		}
 		islamic_empire_qadi_right_allowed = {
 			is_valid = {
-				#scope:vassal.primary_title.tier >= tier_duchy
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
 			}
 			parent = islamic_empire_qadi_right_none
 			position = { 1 0 }
@@ -388,14 +400,7 @@ islamic_empire_qadi_right = {
 ## 
 islamic_empire_inheritance_right = {
 	display_mode = checkbox
-	is_valid = {
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
-	}
+	
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -408,6 +413,14 @@ islamic_empire_inheritance_right = {
 	obligation_levels = {
 		islamic_empire_inheritance_right_none = {
 			default = yes
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			position = { 0 0 }
 			
 			ai_liege_desire = @ai_standard_liege_desire
@@ -416,9 +429,14 @@ islamic_empire_inheritance_right = {
 			flag = islamic_empire_inheritance_right_none
 		}
 		islamic_empire_inheritance_right_allowed = {
-			# is_valid = {
-			# 	scope:vassal.primary_title.tier >= tier_duchy
-			# }
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			parent = islamic_empire_inheritance_right_none
 			position = { 1 0 }
 			
@@ -435,14 +453,7 @@ islamic_empire_inheritance_right = {
 ## 
 islamic_empire_war_right = {
 	display_mode = checkbox
-	is_valid = {
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
-	}
+	
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -455,6 +466,14 @@ islamic_empire_war_right = {
 	obligation_levels = {
 		islamic_empire_war_right_none = {
 			default = yes
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			position = { 0 0 }
 			
 			ai_liege_desire = @ai_standard_liege_desire
@@ -463,9 +482,14 @@ islamic_empire_war_right = {
 			flag = islamic_empire_war_right_none
 		}
 		islamic_empire_war_right_allowed = {
-			# is_valid = {
-			# 	scope:vassal.primary_title.tier >= tier_duchy
-			# }
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			parent = islamic_empire_war_right_none
 			position = { 1 0 }
 			
@@ -482,14 +506,7 @@ islamic_empire_war_right = {
 ## Zero taxes - Triggers automatic call to war alliance
 islamic_empire_iqta = {
 	display_mode = checkbox
-	is_valid = {
-		scope:liege.religion = {
-			this = religion:islam_religion
-		}
-		scope:vassal.religion = {
-			this = religion:islam_religion
-		}
-	}
+	
 	is_shown = {		
 		scope:vassal.primary_title.tier >= tier_duchy
 		# scope:liege.religion = {
@@ -502,6 +519,14 @@ islamic_empire_iqta = {
 	obligation_levels = {
 		islamic_empire_iqta_none = {
 			default = yes
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			position = { 0 0 }
 			
 			ai_liege_desire = @ai_standard_liege_desire
@@ -510,9 +535,14 @@ islamic_empire_iqta = {
 			flag = islamic_empire_iqta_none
 		}
 		islamic_empire_iqta_allowed = {
-			# is_valid = {
-			# 	scope:vassal.primary_title.tier >= tier_duchy
-			# }
+			is_valid = {
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
+			}
 			parent = islamic_empire_iqta_none
 			position = { 1 0 }
 			
@@ -531,22 +561,15 @@ islamic_empire_iqta = {
 ## Equivalent of marches - attracts ghazi - Triggers automatic call to war alliance
 islamic_empire_thugur = {
 	display_mode = checkbox
-	is_valid = {
+	
+	is_shown = {		
+		scope:vassal.primary_title.tier >= tier_duchy
 		scope:liege.religion = {
 			this = religion:islam_religion
 		}
 		scope:vassal.religion = {
 			this = religion:islam_religion
 		}
-	}
-	is_shown = {		
-		scope:vassal.primary_title.tier >= tier_duchy
-		# scope:liege.religion = {
-		# 	this = religion:islam_religion
-		# }
-		# scope:vassal.religion = {
-		# 	this = religion:islam_religion
-		# }
 		scope:vassal.primary_title = {
 			any_in_de_jure_hierarchy = {
 				tier = tier_county
@@ -580,6 +603,12 @@ islamic_empire_thugur = {
 		islamic_empire_thugur_allowed = {
 			is_valid = {
 				scope:vassal.primary_title.tier >= tier_duchy
+				scope:liege.religion = {
+					this = religion:islam_religion
+				}
+				scope:vassal.religion = {
+					this = religion:islam_religion
+				}
 				custom_description = {
 					text = ave_maria_roman_administration_doukaton_contract_tooltip
 					scope:vassal.primary_title = {
