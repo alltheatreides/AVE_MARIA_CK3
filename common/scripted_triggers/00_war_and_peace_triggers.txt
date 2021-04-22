@@ -551,13 +551,21 @@ can_join_war_liege_vassal_check_trigger = {
 		trigger_if = {
 			limit = { $WARRIOR$ = { is_defender_in_war = scope:target } }
 			$JOINER$ = {
-				NOR = {
-					any_liege_or_above = {
-						is_attacker_in_war = scope:target
+				OR = {
+					NOR = {
+						any_liege_or_above = {
+							is_attacker_in_war = scope:target
+						}
+						any_vassal_or_below = {
+							is_attacker_in_war = scope:target
+						}
 					}
-					any_vassal_or_below = {
-						is_attacker_in_war = scope:target
-					}
+					AND = {
+						any_liege_or_above = {
+							is_attacker_in_war = scope:target
+						}
+						$JOINER$.liege = $WARRIOR$.liege
+					}	
 				}
 			}
 		}
@@ -566,13 +574,21 @@ can_join_war_liege_vassal_check_trigger = {
 		trigger_else_if = {
 			limit = { $WARRIOR$ = { is_attacker_in_war = scope:target } }
 			$JOINER$ = {
-				NOR = {
-					any_liege_or_above = {
-						is_defender_in_war = scope:target
+				OR = {
+					NOR = {
+						any_liege_or_above = {
+							is_defender_in_war = scope:target
+						}
+						any_vassal_or_below = {
+							is_defender_in_war = scope:target
+						}
 					}
-					any_vassal_or_below = {
-						is_defender_in_war = scope:target
-					}
+					AND = {
+						any_liege_or_above = {
+							is_defender_in_war = scope:target
+						}
+						$JOINER$.liege = $WARRIOR$.liege
+					}	
 				}
 			}
 		}
