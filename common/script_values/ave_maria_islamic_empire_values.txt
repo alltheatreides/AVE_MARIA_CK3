@@ -24,8 +24,9 @@ islamic_empire_asabiyya_monthly = {
 			holder = {
 				has_primary_title = prev
 				capital_province = {
-					NOT = {
+					NOR = {
 						has_holding_type = pastoral_holding
+						has_holding_type = tribal_holding
 					}
 				}
 			}
@@ -35,7 +36,7 @@ islamic_empire_asabiyya_monthly = {
 				var:islamic_empire_asabiyya > 0
 				var:islamic_empire_asabiyya <= 100
 			}
-			subtract = 0.5
+			subtract = 0.125
 		}
 		if = {
 			limit = {
@@ -68,7 +69,7 @@ islamic_empire_asabiyya_monthly = {
 			limit = {
 				var:islamic_empire_asabiyya <= 100
 			}
-			add = 0.5
+			add = 0.125
 		}
 		if = {
 			limit = {
