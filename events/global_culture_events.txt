@@ -1,0 +1,1173 @@
+﻿namespace = global_culture
+
+# Automatically triggered culture shifts
+#	0001 - 0009: Visigothic into Asturleonese, Occitan, Catalan, and Andalusian.
+#	0011 - 0019: Norse into Danish, Swedish, and Norewgian
+#	0021 - 0029: Converting Suebi into Portugese
+#	0031 - 0039: Converting Anglo-Saxon into Scottish
+
+# Character triggered culture shifts
+#	3001 - 3009: Norse/French into Norman
+#	3011 - 3012: Spread of Sicilian
+
+#########################################################################################
+# Splitting Visigothic into Asturleonese, Occitan, Catalan, Galician, and Andalusian.	#
+# by Sean Hughes																		#
+# global_culture.0001-0009																#
+#########################################################################################
+global_culture.0001 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_county = {
+			limit = {
+				# All visigothic countie in Iberia will convert to the appropraite culture.
+				culture = culture:visigothic
+				title_province = {	
+					OR = {					
+						geographical_region = world_europe_west_iberia
+						geographical_region = custom_occitan
+					}		
+				}
+			}
+			add_to_list = visigothic_counties
+		}
+
+		# Convert the visigothic counties to the new culture.
+		every_in_list = {
+			list = visigothic_counties
+			limit = {
+				# Same-culture players get an event informing them of their county's conversion *before* it happens (for their provinces only).
+				NOT = {
+					holder = {
+						OR = {
+							AND = {
+								is_ai = no
+								culture = culture:visigothic
+							}
+							any_liege_or_above = {
+								is_ai = no
+								culture = culture:visigothic
+							}
+						}
+					}
+				}
+			}
+
+			# Muslim-ruled counties become Andalusian.
+			if = {
+				limit = {
+					religion = religion:islam_religion
+				}
+				set_county_culture = culture:andalusian
+
+				# If their holder is based in Hispania (and not, say, Arabia or Maghreb), they flip along with their counties (even if not Visigothic!).
+				holder = {
+					if = {
+						limit = {
+							religion = religion:islam_religion
+							capital_province = {
+								geographical_region = world_europe_west_iberia
+							}
+						}
+						set_culture = culture:andalusian
+					}
+				}
+			}
+			else = { # Convert non-muslim counties/rulers to the appropriate culture.
+				
+				# All visigothic counties/rulers in Catalonia become Catalan
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:catalan
+					REGION = custom_catalan
+				}
+
+				# Any visigothic counties/rulers in souther France become Occitan
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:occitan
+					REGION = custom_occitan
+				}
+
+				# All visigothic counties/rulers in Asturia/Leon become Asturleonese
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:asturleonese
+					REGION = custom_asturleonese
+				}
+
+				# All visigothic counties/rulers in Aragon become Aragonese
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:aragonese
+					REGION = custom_aragonese
+				}
+
+				# All visigothic counties/rulers in Navarra become Basque
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:basque
+					REGION = custom_navarra
+				}
+
+				# All visigothic counties/rulers in Galicia/Portugal become Galician
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:galician
+					REGION = custom_portuguese
+				}
+
+				# Finally, all remaining visigothic counties/rulers in Iberia become Castilian
+				convert_county_and_holder_if_in_region_effect = {
+					OLD_CULTURE = culture:visigothic
+					NEW_CULTURE = culture:castilian
+					REGION = world_europe_west_iberia
+				}
+			}
+		}
+
+		# Save scopes for player notification events.
+		culture:visigothic = { save_scope_as = visigothic }
+		culture:catalan = {
+			get_all_innovations_from = scope:visigothic
+			save_scope_as = catalan
+		}
+		culture:castilian = {
+			get_all_innovations_from = scope:visigothic
+			save_scope_as = castilian
+		}
+		culture:occitan = {
+			get_all_innovations_from = scope:visigothic
+			save_scope_as = occitan
+		}
+		culture:andalusian = {
+			get_all_innovations_from = scope:visigothic
+			save_scope_as = andalusian
+		}
+
+		# Send the appropraite notification event to each player.
+		every_player = {
+			if = {
+				limit = {
+					culture = culture:visigothic
+					any_sub_realm_county = {
+						culture = culture:visigothic
+						title_province = {
+							OR = {
+								geographical_region = world_europe_west_iberia
+								geographical_region = custom_occitan
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_liege_or_above = {
+								is_ai = no
+							}
+						}
+					}
+					trigger_event = global_culture.0002
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						is_ai = no
+						save_temporary_scope_as = player
+						any_in_list = {
+							list = suebi_counties
+							holder = {
+								is_within_diplo_range = { CHARACTER = scope:player }
+							}
+						}
+					}
+					trigger_event = global_culture.0005
+				}
+			}
+		}
+	}
+}
+
+# If a player is strong enough, they can resist the culture flip for their sub-realm only.
+global_culture.0002 = {
+	type = character_event
+	title = global_culture.0002.t
+	desc = global_culture.0002.desc
+	theme = culture_change
+	left_portrait = root
+
+	immediate = {
+		# Determine what the player's target culture is (based off of religion and capital region)
+		if = {
+			limit = {
+				religion = religion:islam_religion
+			}
+			culture:andalusian = { save_scope_as = my_new_culture }
+		}
+		else_if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_catalan
+				}
+			}
+			culture:catalan = { save_scope_as = my_new_culture }
+		}
+		else_if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_occitan
+				}
+			}
+			culture:occitan = { save_scope_as = my_new_culture }
+		}
+		else_if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_aragonese
+				}
+			}
+			culture:aragonese = { save_scope_as = my_new_culture }
+		}
+		else_if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_asturleonese
+				}
+			}
+			culture:asturleonese = { save_scope_as = my_new_culture }
+		}
+		else = {
+			culture:castilian = { save_scope_as = my_new_culture }
+		}
+
+		culture = { save_scope_as = old_culture }
+	}
+
+	# Option 1 (Almost always the only option): Accept the culture conversion.
+	option = {
+		name = global_culture.0002.a
+		convert_player_realm_from_old_culture_to_new_effect = {
+			OLD_CULTURE = culture:visigothic
+			NEW_CULTURE = scope:my_new_culture
+		}
+	}
+
+	# Option 2: I am strong enough to keep our old culture intact!
+	option = {
+		name = global_culture.0002.b
+
+		trigger = {
+			custom_description = {
+				text = controls_enough_culture_counties
+				any_in_list = {
+					list = visigothic_counties
+					percent >= 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		show_as_unavailable = {
+			custom_description = {
+				text = controls_enough_culture_counties	
+				any_in_list = {
+					list = visigothic_counties
+					percent < 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		custom_tooltip = global_culture.custom.keep_culture
+	}
+}
+
+# As this is purely an informative event for players, it doesn't actually have any gameplay effects.
+global_culture.0005 = {
+	type = character_event
+	title = global_culture.0005.t
+	desc = global_culture.0005.desc
+	theme = culture_change
+
+	option = {
+		name = global_culture.0005.a
+	}
+}
+
+
+#########################################################################
+# Splitting Norse into Danish, Swedish, and Norwegian					#
+# by Sean Hughes														#
+# global_culture.0011-0019												#
+#########################################################################
+
+global_culture.0011 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_county = {
+			limit = {
+				# All visigothic countie in Scandanavia will convert to the appropriate culture.
+				culture = culture:norse
+				title_province = {
+					geographical_region = custom_fennoscandia
+				}
+			}
+			add_to_list = norse_counties
+		}
+
+		# Convert the visigothic counties to the new culture.
+		every_in_list = {
+			list = norse_counties
+			limit = {
+				# Same-culture players get an event informing them of their county's conversion *before* it happens (for their provinces only).
+				NOT = {
+					holder = {
+						OR = {
+							AND = {
+								is_ai = no
+								culture = culture:norse
+							}
+							any_liege_or_above = {
+								is_ai = no
+								culture = culture:norse
+							}
+						}
+					}
+				}
+			}
+						
+			# First, all Norse counties in Denmark become Danish
+			convert_county_and_holder_if_in_region_effect = {
+				OLD_CULTURE = culture:norse
+				NEW_CULTURE = culture:danish
+				REGION = custom_danish
+			}
+
+			# Second, any Norse counties in Norway become Norwegian
+			convert_county_and_holder_if_in_region_effect = {
+				OLD_CULTURE = culture:norse
+				NEW_CULTURE = culture:norwegian
+				REGION = custom_norwegian
+			}
+
+			# Finally, all remaining Norse counties become Swedish
+			convert_county_and_holder_if_in_region_effect = {
+				OLD_CULTURE = culture:norse
+				NEW_CULTURE = culture:swedish
+				REGION = custom_fennoscandia
+			}
+		}
+
+		# Save scopes for player notification events.
+		culture:norse = { save_scope_as = norse }
+		culture:swedish = {
+			get_all_innovations_from = scope:norse
+			save_scope_as = swedish
+		}
+		culture:norwegian = {
+			get_all_innovations_from = scope:norse
+			save_scope_as = norwegian
+		}
+		culture:danish = {
+			get_all_innovations_from = scope:norse
+			save_scope_as = danish
+		}
+
+		# Send the appropraite notification event to each player.
+		every_player = {
+			if = {
+				limit = {
+					culture = culture:norse
+					any_sub_realm_county = {
+						culture = culture:norse
+						title_province = {
+							geographical_region = custom_fennoscandia
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_liege_or_above = {
+								is_ai = no
+							}
+						}
+					}
+					trigger_event = global_culture.0012
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						is_ai = no
+						save_temporary_scope_as = player
+						any_in_list = {
+							list = suebi_counties
+							holder = {
+								is_within_diplo_range = { CHARACTER = scope:player }
+							}
+						}
+					}
+					trigger_event = global_culture.0015
+				}
+			}
+		}
+	}
+}
+
+# If a player is strong enough, they can resist the culture flip for their sub-realm only.
+global_culture.0012 = {
+	type = character_event
+	title = global_culture.0012.t
+	desc = global_culture.0012.desc
+	theme = culture_change
+	left_portrait = root
+
+	immediate = {
+		# Determine what the player's target culture is (based off of religion and capital region)
+		if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_danish
+				}
+			}
+			culture:danish = { save_scope_as = my_new_culture }
+		}
+		else_if = {
+			limit = {
+				capital_province = {
+					geographical_region = custom_norwegian
+				}
+			}
+			culture:norwegian = { save_scope_as = my_new_culture }
+		}
+		else = {
+			culture:swedish = { save_scope_as = my_new_culture }
+		}
+
+		culture = { save_scope_as = old_culture }
+	}
+
+	# Option 1 (Almost always the only option): Accept the culture conversion.
+	option = {
+		name = global_culture.0012.a
+		convert_player_realm_from_old_culture_to_new_effect = {
+			OLD_CULTURE = culture:norse
+			NEW_CULTURE = scope:my_new_culture
+		}
+	}
+
+	# Option 2: I am strong enough to keep our old culture intact!
+	option = {
+		name = global_culture.0012.b
+
+		trigger = {
+			custom_description = {
+				text = controls_enough_culture_counties
+				any_in_list = {
+					list = norse_counties
+					percent >= 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		show_as_unavailable = {
+			custom_description = {
+				text = controls_enough_culture_counties	
+				any_in_list = {
+					list = norse_counties
+					percent < 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		custom_tooltip = global_culture.custom.keep_culture
+	}
+}
+
+# As this is purely an informative event for players, it doesn't actually have any gameplay effects.
+global_culture.0015 = {
+	type = character_event
+	title = global_culture.0015.t
+	desc = global_culture.0015.desc
+	theme = culture_change
+
+	option = {
+		name = global_culture.0015.a
+	}
+}
+
+#########################################################################
+# Converting Suebi into Galician										#
+# by Sean Hughes														#
+# global_culture.0021-0029												#
+#########################################################################
+
+global_culture.0021 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_county = {
+			limit = {
+				# All visigothic countie in Iberia will convert to the appropriate culture.
+				culture = culture:suebi
+				title_province = {
+					geographical_region = world_europe_west_iberia
+				}
+			}
+			add_to_list = suebi_counties
+		}
+
+		# Convert the visigothic counties to the new culture.
+		every_in_list = {
+			list = suebi_counties
+			limit = {
+				# Same-culture players get an event informing them of their county's conversion *before* it happens (for their provinces only).
+				NOT = {
+					holder = {
+						OR = {
+							AND = {
+								is_ai = no
+								culture = culture:suebi
+							}
+							any_liege_or_above = {
+								is_ai = no
+								culture = culture:suebi
+							}
+						}
+					}
+				}
+			}
+						
+			# All Suebi counties in Hispania become Portugese
+			convert_county_and_holder_if_in_region_effect = {
+				OLD_CULTURE = culture:suebi
+				NEW_CULTURE = culture:galician
+				REGION = world_europe_west_iberia
+			}
+		}
+
+		# Save scopes for player notification events.
+		culture:suebi = { save_scope_as = suebi }
+		culture:galician = {
+			get_all_innovations_from = scope:suebi
+			save_scope_as = portuguese
+		}
+
+		# Send the appropraite notification event to each player.
+		every_player = {
+			if = {
+				limit = {
+					culture = culture:suebi
+					any_sub_realm_county = {
+						culture = culture:suebi
+						title_province = {
+							geographical_region = world_europe_west_iberia
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_liege_or_above = {
+								is_ai = no
+							}
+						}
+					}
+					trigger_event = global_culture.0022
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						is_ai = no
+						save_temporary_scope_as = player
+						any_in_list = {
+							list = suebi_counties
+							holder = {
+								is_within_diplo_range = { CHARACTER = scope:player }
+							}
+						}
+					}
+					trigger_event = global_culture.0025
+				}
+			}
+		}
+	}
+}
+
+# If a player is strong enough, they can resist the culture flip for their sub-realm only.
+global_culture.0022 = {
+	type = character_event
+	title = global_culture.0022.t
+	desc = global_culture.0022.desc
+	theme = culture_change
+	left_portrait = root
+
+	immediate = {
+		# All of Suebi turns Portugese, there is no 'splitting'.
+		culture = { save_scope_as = old_culture }
+		culture:galician = { save_scope_as = my_new_culture }
+	}
+
+	# Option 1 (Almost always the only option): Accept the culture conversion.
+	option = {
+		name = global_culture.0022.a
+		convert_player_realm_from_old_culture_to_new_effect = {
+			OLD_CULTURE = culture:suebi
+			NEW_CULTURE = scope:my_new_culture
+		}
+	}
+
+	# Option 2: I am strong enough to keep our old culture intact!
+	option = {
+		name = global_culture.0022.b
+
+		trigger = {
+			custom_description = {
+				text = controls_enough_culture_counties
+				any_in_list = {
+					list = suebi_counties
+					percent >= 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		show_as_unavailable = {
+			custom_description = {
+				text = controls_enough_culture_counties	
+				any_in_list = {
+					list = suebi_counties
+					percent < 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		custom_tooltip = global_culture.custom.keep_culture
+	}
+}
+
+# As this is purely an informative event for players, it doesn't actually have any gameplay effects.
+global_culture.0025 = {
+	type = character_event
+	title = global_culture.0025.t
+	desc = global_culture.0025.desc
+	theme = culture_change
+
+	option = {
+		name = global_culture.0025.a
+	}
+}
+
+#########################################################################
+# Converting Anglo-Saxon into Scottish									#
+# by Sean Hughes														#
+# global_culture.0031-0039												#
+#########################################################################
+
+global_culture.0031 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_county = {
+			limit = {
+				# All Anglo-Saxon counties in Scotland will convert to Scots
+				culture = culture:anglo_saxon
+				title_province = {
+					geographical_region = custom_scotland
+				}
+			}
+			add_to_list = anglo_saxon_counties
+		}
+
+		# Convert the Anglo-Saxon counties to Scots
+		every_in_list = {
+			list = anglo_saxon_counties
+			limit = {
+				# Same-culture players get an event informing them of their county's conversion *before* it happens (for their provinces only).
+				NOT = {
+					holder = {
+						OR = {
+							AND = {
+								is_ai = no
+								culture = culture:anglo_saxon
+							}
+							any_liege_or_above = {
+								is_ai = no
+								culture = culture:anglo_saxon
+							}
+						}
+					}
+				}
+			}
+						
+			# All Anglo-Saxon counties in Scotland become Scots
+			convert_county_and_holder_if_in_region_effect = {
+				OLD_CULTURE = culture:anglo_saxon
+				NEW_CULTURE = culture:scottish
+				REGION = custom_scotland
+			}
+		}
+
+		# Save scopes for player notification events.
+		culture:anglo_saxon = { save_scope_as = anglo_saxon }
+		culture:scottish = {
+			get_all_innovations_from = scope:anglo_saxon
+			save_scope_as = scottish
+		}
+
+		# Send the appropraite notification event to each player.
+		every_player = {
+			if = {
+				limit = {
+					culture = culture:anglo_saxon
+					any_sub_realm_county = {
+						culture = culture:anglo_saxon
+						title_province = {
+							geographical_region = custom_scotland
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_liege_or_above = {
+								is_ai = no
+							}
+						}
+					}
+					trigger_event = global_culture.0032
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						is_ai = no
+						save_temporary_scope_as = player
+						any_in_list = {
+							list = anglo_saxon_counties
+							holder = {
+								is_within_diplo_range = { CHARACTER = scope:player }
+							}
+						}
+					}
+					trigger_event = global_culture.0035
+				}
+			}
+		}
+	}
+}
+
+# If a player is strong enough, they can resist the culture flip for their sub-realm only.
+global_culture.0032 = {
+	type = character_event
+	title = global_culture.0032.t
+	desc = global_culture.0032.desc
+	theme = culture_change
+	left_portrait = root
+
+	immediate = {
+		# All of anglo_saxon turns scottish, there is no 'splitting'.
+		culture = { save_scope_as = old_culture }
+		culture:scottish = { save_scope_as = my_new_culture }
+	}
+
+	# Option 1 (Almost always the only option): Accept the culture conversion.
+	option = {
+		name = global_culture.0032.a
+		convert_player_realm_from_old_culture_to_new_effect = {
+			OLD_CULTURE = culture:anglo_saxon
+			NEW_CULTURE = scope:my_new_culture
+		}
+	}
+
+	# Option 2: I am strong enough to keep our old culture intact!
+	option = {
+		name = global_culture.0032.b
+
+		trigger = {
+			custom_description = {
+				text = controls_enough_culture_counties
+				any_in_list = {
+					list = anglo_saxon_counties
+					percent >= 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		show_as_unavailable = {
+			custom_description = {
+				text = controls_enough_culture_counties	
+				any_in_list = {
+					list = anglo_saxon_counties
+					percent < 0.8
+
+					OR = {
+						holder = root
+						holder = {
+							any_liege_or_above = {
+								this = root
+							}
+						}
+					}
+				}
+			}
+		}
+
+		custom_tooltip = global_culture.custom.keep_culture
+	}
+}
+
+# As this is purely an informative event for players, it doesn't actually have any gameplay effects.
+global_culture.0035 = {
+	type = character_event
+	title = global_culture.0035.t
+	desc = global_culture.0035.desc
+	theme = culture_change
+
+	left_portrait = {
+		character = root
+		animation = personality_rational
+	}
+
+	option = {
+		name = global_culture.0035.a
+	}
+}
+
+
+#########################################################################
+# Converting Norse/French into Norman									#
+# by Sean Hughes & Bianca Savazzi										#
+# global_culture.3001-3009												#
+#########################################################################
+
+global_culture.3002 = {
+	type = character_event
+	title = global_culture.3002.t
+	desc = global_culture.3002.desc
+	theme = culture_change
+	left_portrait = scope:norman_founder
+
+	immediate = {
+		show_as_tooltip = {
+			custom_tooltip = global_culture.custom.merge_culture
+			culture:norman = {
+				get_all_innovations_from = culture:french
+			}
+		}
+	}
+
+	option = {
+		name = global_culture.3002.a
+	}
+}
+
+global_culture.3003 = {
+	type = character_event
+	title = global_culture.3003.t
+	desc = global_culture.3003.desc
+	theme = culture_change
+	left_portrait = scope:norman_founder
+
+	immediate = {
+		show_as_tooltip = {
+			custom_tooltip = global_culture.custom.merge_culture
+			culture:norman = {
+				get_all_innovations_from = culture:french
+			}
+		}
+	}
+
+	option = {
+		name = global_culture.3003.a
+	}
+}
+
+global_culture.3005 = {
+	type = character_event
+	title = global_culture.3005.t
+	desc = global_culture.3005.desc
+	theme = culture_change
+	left_portrait = scope:norman_founder
+
+	immediate = {
+		show_as_tooltip = {
+			culture:norman = {
+				get_all_innovations_from = culture:french
+			}
+		}
+	}
+
+	option = {
+		name = global_culture.3005.a
+	}
+}
+
+
+#########################################################################
+# Converting Greek, Baranis, Lombard and Italian to Sicilian 			#
+# by Petter Vilberg														#
+# global_culture.3011-3012												#
+#########################################################################
+################################
+# Sicilian Spreads in Southern Italy
+# by Petter Vilberg
+################################
+scripted_trigger global_culture_3011_valid_for_sicilian_culture_trigger = {
+	tier = tier_county
+	exists = holder
+	NOT = { exists = var:had_sicilian_county_conversion }
+	title_province = {
+		geographical_region = special_sicilian_culture_region
+	}
+	holder = {
+		has_title = k_sicily
+	}
+	OR = {
+		AND = {
+			holder.culture = culture:norman
+			OR = {
+				culture = culture:baranis
+				culture = culture:greek
+				culture = culture:lombard
+				culture = culture:italian
+			}
+		}
+		AND = {
+			holder.culture = culture:baranis
+			OR = {
+				culture = culture:norman
+				culture = culture:greek
+				culture = culture:lombard
+				culture = culture:italian
+			}
+		}
+		AND = {
+			holder.culture = culture:greek
+			OR = {
+				culture = culture:norman
+				culture = culture:baranis
+				culture = culture:lombard
+				culture = culture:italian
+			}
+		}
+		AND = {
+			holder.culture = culture:italian
+			OR = {
+				culture = culture:norman
+				culture = culture:baranis
+				culture = culture:lombard
+				culture = culture:greek
+			}
+		}
+		AND = {
+			holder.culture = culture:lombard
+			OR = {
+				culture = culture:norman
+				culture = culture:baranis
+				culture = culture:italian
+				culture = culture:greek
+			}
+		}
+	}
+}
+
+global_culture.3011 = {
+	type = character_event
+	title = global_culture.3011.t
+	desc = global_culture.3011.desc
+	theme = culture_change
+	left_portrait = root
+	
+	trigger = {
+		OR = {
+			culture = culture:norman
+			culture = culture:baranis
+			culture = culture:italian
+			culture = culture:lombard
+			culture = culture:greek
+		}
+		any_held_title = {
+			global_culture_3011_valid_for_sicilian_culture_trigger = yes
+		}		
+	}
+
+	weight_multiplier = {
+		base = 1
+		modifier = {
+			add = 2
+			culture = culture:norman
+		}
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = {
+				global_culture_3011_valid_for_sicilian_culture_trigger = yes
+			}
+			weight = { # Try to approximate organic spread
+				base = 1
+				modifier = {
+					add = 4
+					any_neighboring_county = {
+						culture = culture:sicilian
+					}
+				}
+			}
+			save_scope_as = county_to_change
+			culture = {
+				save_scope_as = old_culture
+			}
+			set_variable = {
+				name = had_sicilian_county_conversion
+				value = yes
+			}
+		}
+		culture:sicilian = {
+			save_scope_as = sicilian # For loc
+		}
+		debug_log = "Converted a province to Sicilian from global_culture.3011"
+	}
+
+	option = {
+		name = global_culture.3011.a
+		scope:county_to_change = {
+			set_county_culture = culture:sicilian
+		}
+	}
+}
+
+
+################################
+# Organic Spread of Sicilian for Sicilian Rulers
+# by Petter Vilberg
+################################
+scripted_trigger global_culture_3012_valid_for_sicilian_culture_trigger = {
+	tier = tier_county
+	exists = holder
+	title_province = {
+		geographical_region = special_sicilian_culture_region
+	}
+	NOT = { exists = var:had_sicilian_county_conversion }
+	NOT = { culture = holder.culture } # No conversion for counties who match their holder's culture
+	OR = {
+		culture = culture:greek
+		culture = culture:norman
+		culture = culture:baranis
+		culture = culture:italian
+		culture = culture:lombard
+	}
+	any_neighboring_county = {
+		culture = culture:sicilian
+	}
+}
+
+global_culture.3012 = {
+	type = character_event
+	title = global_culture.3011.t
+	desc = global_culture.3011.desc
+	theme = culture_change
+	left_portrait = root
+	
+	trigger = {
+		culture = culture:sicilian
+		any_held_title = {
+			global_culture_3012_valid_for_sicilian_culture_trigger = yes
+		}
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = { global_culture_3012_valid_for_sicilian_culture_trigger = yes }
+			save_scope_as = county_to_change
+			culture = {
+				save_scope_as = old_culture
+			}
+			set_variable = {
+				name = had_sicilian_county_conversion
+				value = yes
+			}
+		}
+		culture:sicilian = {
+			save_scope_as = sicilian # For loc
+		}
+		debug_log = "Converted a province to Sicilian from global_culture.3012"
+	}
+
+	option = {
+		name = global_culture.3012.a
+		scope:county_to_change = {
+			set_county_culture = culture:sicilian
+		}
+	}
+}
