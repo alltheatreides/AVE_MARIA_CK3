@@ -1,0 +1,1741 @@
+﻿################
+# SAHARA-RELEVANT EVENTS
+################
+
+###############
+# yearly_saharan.0001 — [Faith] Traders in [County]: settlement requested.
+# yearly_saharan.0002 — [Faith] Traders in [County]: maintenance event.
+# yearly_saharan.0003 — [Faith] Traders in [County]: traders have integrated without issue.
+# yearly_saharan.0004 — [Faith] Traders in [County]: traders caused local economic boom.
+# yearly_saharan.0005 — [Faith] Traders in [County]: traders have converted the county.
+#
+# yearly_saharan.0021 — [Culture] Nomads Flock to [County]: nomads from the Sahara move in to border regions in greater and greater numbers.
+#
+# yearly_saharan.0031 — Slave Raids against [Realm] Escalate
+# yearly_saharan.0032 — Marauding Slavers from [Realm]
+
+namespace = yearly_saharan
+
+##################################################
+# [Faith] Traders in [County]
+# by Ewan Cowhig Croft
+# 0001-0005
+##################################################
+
+scripted_trigger valid_faiths_scripted_trigger = {
+	faith = {
+		has_doctrine_parameter = unreformed
+		OR = {
+			religion_tag = west_african_religion
+			religion_tag = west_african_bori_religion
+			religion_tag = west_african_roog_religion
+			religion_tag = akom_religion
+			religion_tag = kushitism_religion
+			religion_tag = waaqism_religion
+		}
+	}
+}
+
+scripted_trigger suitable_for_faith_traders_scripted_trigger = {
+	tier = tier_county
+	title_province = {
+		OR = {
+			geographical_region = custom_sahel_proper
+			geographical_region = custom_sub_saharan_africa_immediate
+		}
+	}
+	valid_faiths_scripted_trigger = yes
+	any_neighboring_county = { neighbouring_proselytising_trader_province_scripted_trigger = yes }
+}
+
+scripted_trigger neighbouring_proselytising_trader_province_scripted_trigger = {
+	title_province = {
+		OR = {
+			geographical_region = custom_sahara_proper
+			geographical_region = custom_sahel_proper
+		}
+	}
+	faith = {
+		NOR = {
+			religion = { is_in_family = rf_pagan }
+			has_doctrine_parameter = unreformed
+		}
+	}
+}
+
+#	Traders turn up initially.
+#		by Ewan Cowhig Croft
+yearly_saharan.0001 = {
+	type = character_event
+	title = yearly_saharan.0001.t
+	desc = yearly_saharan.0001.desc
+	theme = stewardship
+	left_portrait = {
+		character = root
+		animation = personality_honorable
+	}
+  	override_background = { event_background = market }
+
+	trigger = {
+		is_available_at_peace_adult = yes
+
+		#Mustn't have recently had this event, or else have other enclaves currently maturing in their territory.
+		NOR = {
+			has_character_flag = yearly_saharan_0001
+			any_held_title = {
+				tier = tier_county
+				county = { has_county_modifier = foreign_trader_enclaves_saharan_modifier }
+			}
+		}
+
+		#Must be a native faith who has not yet reformed.
+		valid_faiths_scripted_trigger = yes
+
+		#Must exists in the proper region, and have a valid affectable county.
+		capital_province = {
+			OR = {
+				geographical_region = custom_sahel_proper
+				geographical_region = custom_sub_saharan_africa_immediate
+			}
+		}
+		any_held_title = { suitable_for_faith_traders_scripted_trigger = yes }
+	}
+
+	weight_multiplier = {
+		base = 1
+	}
+
+	immediate = {
+		add_character_flag = {
+			flag = yearly_saharan_0001
+			days = 7300
+		}
+		save_scope_as = initial_holder
+		random_held_title = {
+			limit = { suitable_for_faith_traders_scripted_trigger = yes }
+			save_scope_as = target_county
+			random_neighboring_county = {
+				limit = { neighbouring_proselytising_trader_province_scripted_trigger = yes }
+				save_scope_as = source_county
+			}
+		}
+	}
+
+	#Allow them to pay you to stay.
+	option = {
+		name = yearly_saharan.0001.a
+		
+		#Take a noice bribe.
+		add_gold = major_gold_value
+		
+		#Added a beneficial enclave modifier.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = foreign_trader_enclaves_saharan_modifier
+				years = 20
+			}
+		}
+
+		#Warn the user that this may have repercussions, or at least imply such.
+		custom_tooltip = yearly_saharan.0001.a.tt
+		hidden_effect = {
+			trigger_event = {
+				id = yearly_saharan.0002
+				years = { 10 20 }
+			}
+		}
+
+		stress_impact = {
+			just = minor_stress_impact_gain
+			greedy = minor_stress_impact_loss
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_greed = 0.25
+				ai_zeal = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = just
+			}
+			modifier = {	#Weight down for stress.
+				add = 10
+				has_trait = greedy
+			}
+		}
+	}
+	
+	#Dismiss them, but they can keep moving through.
+	option = {
+		name = yearly_saharan.0001.b
+		
+		#Well, aren't you mighty Mr. Kicks-Downwards?
+		add_prestige = minor_prestige_gain
+
+		#If you and the province have the same culture, people approve of you sticking up for your limited protectionism.
+		if = {
+			limit = { root.culture = scope:target_county.culture }
+			add_character_modifier = {
+				modifier = respects_local_traditions_saharan_modifier
+				years = 15
+			}
+		}
+
+		#The county suffers a little for the clarified restrictions on foreign merchants.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = foreign_traders_unable_to_root_saharan_modifier
+				years = 20
+			}
+		}
+
+		stress_impact = {
+			greedy = minor_stress_impact_gain
+			zealous = minor_stress_impact_loss
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.25
+				ai_greed = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = greedy
+			}
+			modifier = {	#Weight down for stress.
+				add = 10
+				has_trait = zealous
+			}
+		}
+	}
+	
+	#Dismiss them and forbid their future trade!
+	option = {
+		name = yearly_saharan.0001.c
+
+		#Confiscate goods, property, livestock, the lot!
+		add_gold = massive_gold_value
+
+		#If you share the same faith as the province, this act is a pious protection of the spirituality of your people. Unless you're pluralist.
+		if = {
+			limit = {
+				root.faith = scope:target_county.faith
+				NOR = {
+					root.faith = { has_doctrine = doctrine_pluralism_pluralistic }
+					#Not syncretised with Eastern Family.
+					AND = {
+						root.faith = { has_doctrine = tenet_eastern_syncretism }
+						scope:source_county.faith.religion = { is_in_family = rf_eastern }
+					}
+					#Not syncretised with Christianity.
+					AND = {
+						root.faith = { has_doctrine_parameter = christian_syncretic_actor_opinion_active }
+						scope:source_county.faith = { religion_tag = christianity_religion }
+					}
+					#Not syncretised with Islam.
+					AND = {
+						root.faith = { has_doctrine_parameter = islamic_syncretic_actor_opinion_active }
+						scope:source_county.faith = { religion_tag = islam_religion }
+					}
+					#Not syncretised with Judaism.
+					AND = {
+						root.faith = { has_doctrine_parameter = jewish_syncretic_actor_opinion_active }
+						scope:source_county.faith = { religion_tag = judaism_religion }
+					}
+				}
+			}
+			#Piety scales depending on how monistic you are.
+			if = {
+				limit = {
+					root.faith = { has_doctrine = doctrine_pluralism_righteous }
+				}
+				add_piety = minor_piety_value
+			}
+			if = {
+				limit = {
+					root.faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+				}
+				add_piety = medium_piety_value
+			}
+		}
+
+		#The county, and any others in the duchy not held by a different player, get a significant malus.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = local_recession_epicentre_saharan_modifier
+				years = 20
+			}
+			every_neighboring_county = {
+				limit = {
+					holder.top_liege = root.top_liege
+					OR = {
+						#If done by a player, let them screw everyone. Funnier that way.
+						root = { is_ai = no }
+						#Otherwise, exempt players for agency-raisins.
+						AND = {
+							root = { is_ai = yes }
+							holder = root
+						}
+					}
+				}
+				add_to_list = localised_recession_list
+			}
+			every_in_list = {
+				list = localised_recession_list
+				custom = yearly_saharan.0001.c.list
+				add_county_modifier = {
+					modifier = local_recession_ripple_saharan_modifier
+					years = 20
+				}
+			}
+		}
+
+		stress_impact = {
+			greedy = medium_stress_impact_gain
+			zealous = medium_stress_impact_loss
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_zeal = 0.2
+				ai_vengefulness = 0.1
+				ai_greed = -0.2
+				ai_compassion = -0.1
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = greedy
+			}
+			modifier = {	#Weight down for stress.
+				add = 20
+				has_trait = zealous
+			}
+		}
+	}
+}
+
+#	Check to see which event to fire next, if any.
+yearly_saharan.0002 = {
+	hidden = yes
+
+	trigger = {
+		scope:source_county = {
+			faith = {
+				NOR = {
+					religion = { is_in_family = rf_pagan }
+					has_doctrine_parameter = unreformed
+				}
+			}
+		}
+		scope:target_county = { valid_faiths_scripted_trigger = yes }
+	}
+
+	immediate = {
+		#Check to see if we're still using the original permit granter, or some new lad.
+		if = {
+			limit = { scope:target_county.holder = scope:initial_holder }
+			scope:initial_holder = { save_scope_as = current_holder }
+		}
+		else = {
+			scope:target_county.holder = { save_scope_as = current_holder }
+		}
+
+		#Pop an event, weighted by fervour.
+		scope:current_holder = {
+			random_list = {
+				#The community integrates totally.
+				20 = {
+					trigger_event = yearly_saharan.0003
+					modifier = {
+						add = 10
+						scope:target_county.faith = { fervor >= 50 }
+					}
+					modifier = {
+						add = 10
+						scope:target_county.faith = { fervor >= 70 }
+					}
+					modifier = {
+						add = 10
+						scope:target_county.faith = { fervor >= 90}
+					}
+				}
+				#The community has become extremely successful.
+				30 = { trigger_event = yearly_saharan.0004 }
+				#The county converts to the faith of the merchants.
+				50 = {
+					trigger_event = yearly_saharan.0005
+					modifier = {
+						add = 10
+						scope:source_county.faith = { fervor >= 50 }
+					}
+					modifier = {
+						add = 10
+						scope:source_county.faith = { fervor >= 70 }
+					}
+					modifier = {
+						add = 10
+						scope:source_county.faith = { fervor >= 90 }
+					}
+				}
+			}
+		}
+	}
+}
+
+#	The merchant community has integrated seamlessly.
+#		by Ewan Cowhig Croft
+yearly_saharan.0003 = {
+	type = character_event
+	title = yearly_saharan.0003.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:initial_holder = scope:current_holder }
+				desc = yearly_saharan.0003.desc_initial
+			}
+			desc = yearly_saharan.0003.desc_current
+		}
+		desc = yearly_saharan.0003.desc
+	}
+	theme = stewardship
+	left_portrait = {
+		character = scope:current_holder
+		animation = personality_rational
+	}
+  	override_background = { event_background = market }
+
+	trigger = {
+		is_available = yes
+	}
+
+	immediate = {
+		scope:target_county = { remove_county_modifier = foreign_trader_enclaves_saharan_modifier }
+	}
+
+	#What a lovely windfall.
+	option = {
+		name = yearly_saharan.0003.a
+
+		#Reap some minor additional benefits.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = integrated_foreign_trader_enclaves_saharan_modifier
+				years = 10
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = { ai_compassion = 0.25 }
+		}
+	}
+	
+	#Tax the smeggers into oblivion.
+	option = {
+		name = yearly_saharan.0003.b
+
+		#Gain gold.
+		add_gold = minor_gold_value
+
+		#This annoys locals.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = overtaxed_merchant_enclaves_saharan_modifier
+				years = 10
+			}
+		}
+
+		stress_impact = { generous = medium_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_greed = 0.25
+				ai_compassion = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = generous
+			}
+		}
+	}
+}
+
+#	The merchant community is separate, but lucrative and successful.
+#		by Ewan Cowhig Croft
+yearly_saharan.0004 = {
+	type = character_event
+	title = yearly_saharan.0004.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:initial_holder = scope:current_holder }
+				desc = yearly_saharan.0004.desc_initial
+			}
+			desc = yearly_saharan.0004.desc_current
+		}
+		desc = yearly_saharan.0004.desc
+	}
+	theme = stewardship
+	left_portrait = {
+		character = scope:current_holder
+		animation = personality_rational
+	}
+  	override_background = { event_background = market }
+
+	trigger = {
+		is_available = yes
+	}
+
+	immediate = {
+		scope:target_county = { remove_county_modifier = foreign_trader_enclaves_saharan_modifier }
+	}
+
+	#Study their ways to gain stewardship.
+	option = {
+		name = yearly_saharan.0004.a
+
+		#Flat chance to gain additional stewardship.
+		custom_tooltip = yearly_saharan.0004.a.tt
+		hidden_effect = {
+			random_list = {
+				33 = {
+					send_interface_toast = {
+						title = yearly_saharan.0004.a.tt.outcome_1
+						left_icon = scope:current_holder
+						add_stewardship_skill = 1
+					}
+				}
+				33 = {
+					send_interface_toast = {
+						title = yearly_saharan.0004.a.tt.outcome_2
+						left_icon = scope:current_holder
+						add_stewardship_skill = 2
+					}
+				}
+				34 = {
+					send_interface_toast = {
+						title = yearly_saharan.0004.a.tt.outcome_3
+						left_icon = scope:current_holder
+						add_stewardship_skill = 3
+					}
+				}
+			}
+		}
+
+		stress_impact = { lazy = minor_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 0.25
+				ai_energy = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = lazy
+			}
+		}
+	}
+	
+	#Collect well-earnt dues.
+	option = {
+		name = yearly_saharan.0004.b
+		trigger = { stewardship < high_skill_rating }
+
+		#Gold please!
+		add_gold = medium_gold_value
+
+		stress_impact = { generous = miniscule_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = { ai_greed = 0.50 }
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = lustful
+			}
+		}
+	}
+	
+	#High stewardship: collect _higher_ well-earnt dues.
+	option = {
+		name = yearly_saharan.0004.c
+		trigger = { stewardship >= high_skill_rating }
+		skill = stewardship
+
+		#Stonks of gold please!
+		add_gold = major_gold_value
+
+		stress_impact = { generous = miniscule_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = { ai_greed = 0.75	}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = lustful
+			}
+		}
+	}
+}
+
+#	The merchant community has converted your populace.
+#		by Ewan Cowhig Croft
+yearly_saharan.0005 = {
+	type = character_event
+	title = yearly_saharan.0005.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:initial_holder = scope:current_holder }
+				desc = yearly_saharan.0005.desc_initial
+			}
+			desc = yearly_saharan.0005.desc_current
+		}
+		desc = yearly_saharan.0005.desc
+	}
+	theme = stewardship
+	left_portrait = {
+		character = scope:current_holder
+		animation = personality_rational
+	}
+  	override_background = { event_background = market }
+
+	trigger = {
+		is_available = yes
+	}
+
+	immediate = {
+		scope:target_county = {
+			remove_county_modifier = foreign_trader_enclaves_saharan_modifier
+			faith = { save_scope_as = target_county_old_faith }
+			set_county_faith = scope:source_county.faith
+		}
+	}
+
+	#Wait, this is my faith, isn't it?
+	option = {
+		name = yearly_saharan.0005.a
+		trigger = { scope:current_holder.faith = scope:target_county.faith }
+
+		#An objectively good thing! Piety, yay!
+		add_piety = medium_piety_value
+
+		#And the people are still pretty damned happy!
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = ecstatic_converts_saharan_modifier
+				years = 30
+			}
+		}
+
+		stress_impact = { cynical = miniscule_stress_impact_gain }
+		ai_chance = {
+			#The AI should always take this option, if it's available.
+			base = 100
+		}
+	}
+	
+	#At least they're happy about their new faith.
+	option = {
+		name = yearly_saharan.0005.b
+		trigger = {
+			NOT = { scope:current_holder.faith = scope:target_county.faith }
+		}
+
+		#Better than a kick in the teeth, right?
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = ecstatic_converts_saharan_modifier
+				years = 30
+			}
+		}
+
+		ai_chance = {
+			#The AI should always take this option, if it's available.
+			base = 100
+		}
+	}
+	
+	#Not on my watch you don't!
+	option = {
+		name = yearly_saharan.0005.c
+		trigger = {
+			NOT = { scope:current_holder.faith = scope:target_county.faith }
+		}
+
+		#Torch half the county to flip them back.
+		scope:target_county = {
+			change_county_control = massive_county_control_loss
+			change_development_progress = major_development_progress_loss
+			add_county_modifier = {
+				modifier = persecuted_converts_saharan_modifier
+				years = 25
+			}
+			set_county_faith = scope:target_county_old_faith
+		}
+
+		stress_impact = {
+			forgiving = minor_stress_impact_gain
+			cynical = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+		}
+		ai_chance = {
+			#The AI should never take this option.
+			base = 0
+		}
+	}
+}
+
+
+
+##################################################
+# [Culture] Nomads Flock to [County]
+# by Ewan Cowhig Croft
+# 0021
+##################################################
+
+scripted_trigger appropriate_nomad_adjacent_county_trigger = {
+	#Located in an appropriate region.
+	title_province = { geographical_region = custom_sahara_proper }
+
+	#Does not already have an appropriate nomad culture.
+	NOR = {
+		culture = culture:iznagen
+		culture = culture:zaghawa
+	}
+}
+
+scripted_effect pick_nomad-appropriate_county_effect = {
+	random_in_list = {
+		list = $LIST$
+		save_scope_as = target_county
+
+		weight = {
+			base = 100
+			#Nomads like to control strategic oases.
+			modifier = {
+				add = 50
+				title_province = { terrain = oasis }
+			}
+			#This event is chiefly for nomad tribes moving into desert territory that they specialise in controlling, not more fertile drylands.
+			modifier = {
+				add = -50
+				title_province = { terrain = drylands }
+			}
+			#Provinces that grant more levies are preferred.
+			modifier = {
+				add = {
+					value = building_levies
+					multiply = 0.1
+				}
+			}
+			#Weight down higher development counties proportionally: both not the focus of the event, and less likely to be accepted by the player.
+			modifier = {
+				add = {
+					value = development_level
+					multiply = -1
+				}
+				development_level >= bad_development_level
+			}
+		}
+	}
+}
+
+#	#An appropriate local Saharan culture's nomads are flocking to one of your counties.
+#		by Ewan Cowhig Croft
+yearly_saharan.0021 = {
+	type = character_event
+	title = yearly_saharan.0021.t
+	desc = yearly_saharan.0021.desc
+	theme = stewardship
+	left_portrait = {
+		character = scope:nomad_leader
+		animation = personality_honorable
+	}
+	override_background = { event_background = wilderness_desert }
+
+	trigger = {
+		is_available_at_peace_adult = yes
+		NOT = { has_character_flag = had_event_yearly_saharan_0021 }
+		any_held_title = {
+			tier = tier_county
+			appropriate_nomad_adjacent_county_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+	}
+
+	immediate = {
+		add_character_flag = {
+			flag = had_event_yearly_saharan_0021
+			days = 3650
+		}
+
+		#Determine which county to use.
+		##Gather all potential counties, first up.
+		every_held_title = {
+			limit = {
+				tier = tier_county
+				appropriate_nomad_adjacent_county_trigger = yes
+			}
+			add_to_list = saharan_nomad_counties
+		}
+		##Then add any that already border a suitably-cultured county to a list.
+		every_in_list = {
+			list = saharan_nomad_counties
+			limit = {
+				OR = {
+					any_neighboring_county = { culture = culture:zaghawa }
+					any_neighboring_county = { culture = culture:iznagen }
+				}
+			}
+			add_to_list = prettified_saharan_nomad_county_spread
+		}
+		##If that list contains anything, sort the county that could use the most buff from it.
+		if = {
+			limit = {
+				any_in_list = {
+					list = prettified_saharan_nomad_county_spread
+					count >= 1
+				}
+			}
+			pick_nomad-appropriate_county_effect = { LIST = prettified_saharan_nomad_county_spread }
+		}
+		##If that list was empty, sort the county that could use the most buff from the original list.
+		else = {
+			pick_nomad-appropriate_county_effect = { LIST = saharan_nomad_counties }
+		}
+
+		#Flag which nomads we're dealing with.
+		##If in eastern Chad, the nomads are Zaghawa.
+		if = {
+			limit = {
+				scope:target_county = {
+					any_this_title_or_de_jure_above = {
+						OR = {
+							this = title:d_kawar
+							this = title:d_tibesti
+						}
+					}
+				}
+			}
+			save_scope_value_as = {
+				name = nomad_type
+				value = flag:zaghawa
+			}
+		}
+		##Otherwise, the nomads are Berbers.
+		else = {
+			save_scope_value_as = {
+				name = nomad_type
+				value = flag:butr
+			}
+		}
+
+		#Create a suitable nomad to be the face of the event.
+		if = {
+			limit = { scope:nomad_type = flag:zaghawa }
+			create_character = {
+				location = scope:target_county.title_province
+				template = saharan_clan_leader_character
+				faith = scope:target_county.faith
+				culture = culture:zaghawa
+				save_scope_as = nomad_leader
+			}
+		}
+		##This could technically be an ELSE, but having an ELSE_IF suppresses an error that would otherwise have to be fixed by making the script more fragile.
+		else_if = {
+			limit = { scope:nomad_type = flag:butr}
+			create_character = {
+				location = scope:target_county.title_province
+				template = saharan_clan_leader_character
+				faith = scope:target_county.faith
+				culture = culture:iznagen
+				save_scope_as = nomad_leader
+			}
+		}
+	}
+
+	#I'll even let you govern it!
+	option = {
+		name = yearly_saharan.0021.a
+		trigger = {
+			#Just make sure you can actually give it away.
+			any_held_title = {
+				tier = tier_county
+				count >= 2
+			}
+			#And that the nomads will be suitably vassalised to you.
+			highest_held_title_tier >= tier_duchy
+		}
+
+		#Give the leader the title.
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = change
+			add_claim_on_loss = no
+		}
+		scope:target_county = {
+			change_title_holder = {
+				holder = scope:nomad_leader
+				change = scope:change
+			}
+		}
+		resolve_title_and_vassal_change = scope:change
+		#And he likes you for it!
+		add_hook = {
+			type = loyalty_hook
+			target = scope:nomad_leader
+		}
+		scope:nomad_leader = {
+			add_opinion = {
+				target = root
+				modifier = loyal_servant
+			}
+		}
+
+		#Put that hook on cooldown to stop immediate revokes.
+		hidden_effect = {
+			use_hook = scope:nomad_leader
+		}
+
+		#Finally, the county gets a turbocharged nomad bonus & culture shift.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = enthusiastic_nomad_settlement_saharan_modifier
+				years = 30
+			}
+			if = {
+				limit = { scope:nomad_type = flag:zaghawa }
+				set_county_culture = culture:zaghawa
+			}
+			else = { set_county_culture = culture:iznagen }
+		}
+
+		stress_impact = { arrogant = minor_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 0.25
+				ai_energy = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = arrogant
+			}
+		}
+	}
+
+	#Graciously accept!
+	option = {
+		name = yearly_saharan.0021.b
+
+		#The county gets a nomad bonus & culture shift.
+		scope:target_county = {
+			add_county_modifier = {
+				modifier = nomad_settlement_saharan_modifier
+				years = 30
+			}
+			if = {
+				limit = { scope:nomad_type = flag:zaghawa }
+				set_county_culture = culture:zaghawa
+			}
+			else = { set_county_culture = culture:iznagen }
+		}
+
+		stress_impact = { arrogant = miniscule_stress_impact_gain }
+		ai_chance = {
+			#The AI should never take this option: if they're small enough not to get Option A, they shouldn't wipe themselves out, and if they're large enough to receive it, they should pick that instead.
+			base = 0
+		}
+	}
+	
+	#Perhaps you would like to join me as a retainer instead?
+	option = {
+		name = yearly_saharan.0021.c
+		trigger = { short_term_gold >= minor_gold_value }
+
+		#Pay the laddo.
+		pay_short_term_gold = {
+			target = scope:nomad_leader
+			gold = minor_gold_value
+		}
+
+		#Move the guy to your court & setup a favourable relationship.
+		add_courtier = scope:nomad_leader
+		add_hook = {
+			type = favor_hook
+			target = scope:nomad_leader
+		}
+		reverse_add_opinion = {
+			target = scope:nomad_leader
+			modifier = grateful_opinion
+			opinion = 30
+		}
+		hidden_effect = { set_relation_potential_friend = scope:nomad_leader }
+
+		stress_impact = { shy = medium_stress_impact_gain }
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 0.5
+				ai_sociability = -0.25
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = shy
+			}
+		}
+	}
+	
+	#Preposterous! Be gone!
+	option = {
+		name = yearly_saharan.0021.d
+
+		#The nomads are unhappy with your response.
+		scope:target_county = {
+			change_county_control = massive_county_control_loss
+			add_county_modifier = {
+				modifier = upset_local_nomads_saharan_modifier
+				years = 10
+			}
+		}
+
+		#... Aaaaaand one in particular.
+		hidden_effect = {
+			scope:nomad_leader = {
+				set_relation_potential_rival = root
+				move_to_pool = yes
+			}
+		}
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = -0.25
+				ai_compassion = -0.25
+			}
+		}
+	}
+}
+
+
+
+##################################################
+# Slave Raids against [Realm] Escalate
+# by Ewan Cowhig Croft
+# 0031-0032
+##################################################
+
+scripted_trigger able_to_raid_sahel_for_slaves_trigger = {
+	#Located in an appropriate region.
+	title_province = { geographical_region = custom_sahel_proper }
+}
+
+scripted_trigger able_to_be_raided_from_sahel_for_slaves_trigger = {
+	#Target is located in an appropriate region & has suitable terrain.
+	title_province = {
+		OR = {
+			geographical_region = custom_sahel_proper
+			geographical_region = custom_sub_saharan_africa_immediate
+		}
+		NOR = {
+			terrain = desert
+			terrain = desert_mountains
+			terrain = mountains
+		}
+	}
+}
+
+scripted_trigger npc_component_criteria_trigger = {
+	#Partner county isn't held by you (or a liege of yours), isn't at war, isn't a player, and has a marshal to duel.
+	holder = {
+		NOR = {
+			this = root
+			primary_title = { is_de_facto_liege_or_above_target = root.primary_title }
+			is_at_war = yes
+			is_ai = no
+			any_martial_councillor = { count = 0 }
+			#^Technically, a martial is not required for yearly_saharan.0032, but it shouldn't filter out many candidates and it's more of a pain on everything to script around it than it is to just leave it in.
+			}
+	}
+}
+
+scripted_trigger suitable_for_sahelian_slave_raids_trigger = {
+	#Target is located in an appropriate region & has suitable terrain.
+	able_to_be_raided_from_sahel_for_slaves_trigger = yes
+
+	#Target isn't held by you (or a liege of yours), isn't at war, isn't a player, and has a marshal to duel.
+	npc_component_criteria_trigger = yes
+
+	#And just make sure that they're not your vassal either.
+	holder = {
+		save_temporary_scope_as = potential_partner
+		root = {
+			any_vassal_or_below = {
+				NOT = { this = scope:potential_partner }
+			}
+		}
+	}
+
+	#Target can take the hit.
+	county_control >= massive_county_control_loss
+}
+
+#	#Local slave raids against a neighbour (aggressor).
+#		by Ewan Cowhig Croft
+yearly_saharan.0031 = {
+	type = character_event
+	title = yearly_saharan.0031.t
+	desc = yearly_saharan.0031.desc
+	theme = martial
+	left_portrait = {
+		character = scope:raided_character_marshal
+		animation = anger
+	}
+	right_portrait = {
+		character = scope:raided_county.holder
+		animation = shock
+	}
+	override_background = { event_background = burning_building }
+
+	trigger = {
+		is_available_at_peace_adult = yes
+		NOT = { has_character_flag = had_event_yearly_saharan_0031 }
+
+		#Has a state faith that allows for this.
+		faith = {
+			NOT = { has_doctrine_parameter = pacifist_opinion_active }
+		}
+
+		#Has at least one domain county in the Sahel.
+		any_held_title = {
+			tier = tier_county
+			able_to_raid_sahel_for_slaves_trigger = yes
+			#And has an eligible target (both county and holder).
+			any_neighboring_county = { suitable_for_sahelian_slave_raids_trigger = yes }
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+		
+		#Utter bastards are more likely to get this event.
+		modifier = {
+			add = 0.5
+			has_trait = callous
+		}
+		modifier = {
+			add = 1
+			has_trait = sadistic
+		}
+		#As are people who might clamp down on it.
+		modifier = {
+			add = 1
+			has_trait = compassionate
+		}
+		modifier = {
+			add = 1
+			has_trait = just
+		}
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_combat_2"
+		add_character_flag = {
+			flag = had_event_yearly_saharan_0031
+			days = 1825
+		}
+		#Grab a suitable Sahel domain.
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				able_to_raid_sahel_for_slaves_trigger = yes
+				#Ensure it has a suitable target that can be raided.
+				any_neighboring_county = { suitable_for_sahelian_slave_raids_trigger = yes }
+			}
+			#Save the raiding county for ease of reference.
+			save_scope_as = slave_raider_county
+			#Find the neighbouring county that qualifies them.
+			random_neighboring_county = {
+				limit = { suitable_for_sahelian_slave_raids_trigger = yes }
+				#And the raided county.
+				save_scope_as = raided_county
+				holder = {
+					#And nab the appropriate martial for dueling & loc.
+					random_martial_councillor = { save_scope_as = raided_character_marshal }
+				}
+			}
+		}
+
+		#Grab the sub-realm name of the raided county, for loc.
+		scope:raided_county.holder.primary_title = { save_scope_as = affected_sub_realm }
+	}
+
+	#Mmm, delicious money.
+	option = {
+		name = yearly_saharan.0031.a
+
+		duel = {
+			skill = martial
+			target = scope:raided_character_marshal
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = yearly_saharan.0031.a.tt_success
+				send_interface_toast = {
+					title = yearly_saharan.0031.a.tt_success
+					left_icon = scope:raided_character_marshal
+					scope:raided_county.holder = {
+						#You take some severe assets from them.
+						pay_short_term_gold = {
+							target = root
+							gold = scope:raided_county.title_province.local_slave_gold_value
+						}
+						#You're a monster!
+						add_opinion = {
+							modifier = slaver_opinion
+							target = root
+							opinion = -50
+						}
+					}
+					#Local society is disrupted.
+					scope:raided_county = { change_county_control = massive_county_control_loss }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = yearly_saharan.0031.a.tt_fail
+				send_interface_toast = {	
+					title = yearly_saharan.0031.a.tt_fail
+					left_icon = scope:raided_character_marshal
+					#You lose assets in the raid.
+					pay_short_term_gold = {
+						target = scope:raided_county.holder
+						gold = root.slaver_reparations_value
+					}
+					#You're a wannabe-monster!
+					scope:raided_county.holder = {
+						add_opinion = {
+							modifier = attempted_slaver_opinion
+							target = root
+							opinion = -30
+						}
+					}
+				}
+			}
+		}
+
+		stress_impact = {
+			sadistic = medium_stress_impact_loss
+			generous = medium_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			just = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_greed = 0.25
+				ai_compassion = -0.75
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = sadistic
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = generous
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = compassionate
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = just
+			}
+		}
+	}
+	
+	#Halt this barbarism!
+	option = {
+		name = yearly_saharan.0031.b
+
+		#Definitely the better thing to do.
+		scope:raided_county.holder = {
+			add_opinion = {
+				modifier = clamped_down_on_slavers_opinion
+				target = root
+				opinion = 30
+			}
+		}
+		#The clamp down negatively affects your realm.
+		scope:slave_raider_county = { change_county_control = medium_county_control_loss }
+
+		stress_impact = {
+			generous = minor_stress_impact_loss
+			compassionate = major_stress_impact_loss
+			just = major_stress_impact_loss
+			callous = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			sadistic = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 0.75
+				ai_greed = -0.25
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = generous
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = compassionate
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = just
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = callous
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = greedy
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = sadistic
+			}
+		}
+	}
+	
+	#This doesn't concern me.
+	option = {
+		name = yearly_saharan.0031.c
+
+		#It very obviously does concern you, and they judge you for that.
+		scope:raided_county.holder = {
+			add_opinion = {
+				modifier = respect_opinion
+				target = root
+				opinion = -20
+			}
+		}
+		#At least it's less dramatic without interference from you.
+		random_list = {
+			60 = {
+				desc = yearly_saharan.0031.c.raided_hurt
+				scope:raided_county = { change_county_control = minor_county_control_loss }
+				#Reduce chance neatly with rival marshal skill.
+				modifier = {
+					add = -10
+					scope:raided_character_marshal.martial >= average_skill_level
+				}
+				modifier = {
+					add = -10
+					scope:raided_character_marshal.martial >= good_skill_level
+				}
+				modifier = {
+					add = -10
+					scope:raided_character_marshal.martial >= excellent_skill_level
+				}
+			}
+			40 = {
+				desc = yearly_saharan.0031.c.raiders_hurt
+				scope:slave_raider_county = { change_county_control = minor_county_control_loss }
+				#Increase chance neatly with rival marshal skill.
+				modifier = {
+					add = 10
+					scope:raided_character_marshal.martial >= average_skill_level
+				}
+				modifier = {
+					add = 10
+					scope:raided_character_marshal.martial >= good_skill_level
+				}
+				modifier = {
+					add = 10
+					scope:raided_character_marshal.martial >= excellent_skill_level
+				}
+			}
+		}
+
+		stress_impact = {
+			lazy = minor_stress_impact_loss
+			sadistic = minor_stress_impact_gain
+			generous = minor_stress_impact_gain
+			compassionate = minor_stress_impact_gain
+			just = minor_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = -0.25
+				ai_energy = -0.5
+				ai_greed = -0.25
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = lazy
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = sadistic
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = generous
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = compassionate
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = just
+			}
+		}
+	}
+}
+
+#	#Local slave raids from a neighbour (defender).
+#		by Ewan Cowhig Croft
+yearly_saharan.0032 = {
+	type = character_event
+	title = yearly_saharan.0032.t
+	desc = yearly_saharan.0032.desc
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = rage
+	}
+	override_background = { event_background = burning_building }
+
+	trigger = {
+		is_available_at_peace_adult = yes
+		NOT = { has_character_flag = had_event_yearly_saharan_0032 }
+		
+		#Has at least one domain county in either the Sahel or the immediate sub-Sahara.
+		any_held_title = {
+			tier = tier_county
+			able_to_be_raided_from_sahel_for_slaves_trigger = yes
+
+			#Has a neighbour who might raid for slaves.
+			any_neighboring_county = {
+				tier = tier_county
+				#Geographical requirements.
+				able_to_raid_sahel_for_slaves_trigger = yes
+				#Targeting requirements.
+				npc_component_criteria_trigger = yes
+				#Personality requirements.
+				holder = {
+					NOR = {
+						has_trait = just
+						has_trait = compassionate
+						has_trait = forgiving
+						has_trait = generous
+					}
+				}
+			}
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+		
+		#Utter bastards are more likely to get this event.
+		modifier = {
+			add = 0.5
+			has_trait = callous
+		}
+		modifier = {
+			add = 1
+			has_trait = sadistic
+		}
+		#As are people who might clamp down on it.
+		modifier = {
+			add = 1
+			has_trait = compassionate
+		}
+		modifier = {
+			add = 1
+			has_trait = just
+		}
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_combat_2"
+		add_character_flag = {
+			flag = had_event_yearly_saharan_0032
+			days = 1825
+		}
+		
+		#Grab a suitable domain county in either the Sahel or the immediate sub-Sahara.
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				able_to_be_raided_from_sahel_for_slaves_trigger = yes
+
+				#Ensuring that they have a neighbour who might raid for slaves.
+				any_neighboring_county = {
+					tier = tier_county
+					#Geographical requirements.
+					able_to_raid_sahel_for_slaves_trigger = yes
+					#Targeting requirements.
+					npc_component_criteria_trigger = yes
+					#Personality requirements.
+					holder = {
+						NOR = {
+							has_trait = just
+							has_trait = compassionate
+							has_trait = forgiving
+							has_trait = generous
+						}
+					}
+				}
+			}
+			#Save the raided county for ease of reference.
+			save_scope_as = raided_county
+			#Find the neighbouring county that qualifies them.
+			random_neighboring_county = {
+				limit = {
+					tier = tier_county
+					#Geographical requirements.
+					able_to_raid_sahel_for_slaves_trigger = yes
+					#Targeting requirements.
+					npc_component_criteria_trigger = yes
+					#Personality requirements.
+					holder = {
+						NOR = {
+							has_trait = just
+							has_trait = compassionate
+							has_trait = forgiving
+							has_trait = generous
+						}
+					}
+				}
+				#And save the raiders for ease of reference too.
+				save_scope_as = slave_raider_county
+			}
+		}
+
+		#Grab the sub-realm name of the raiding county, for loc.
+		scope:slave_raider_county.holder.primary_title = { save_scope_as = hostile_sub_realm }
+	}
+
+	#Not on my watch!
+	option = {
+		name = yearly_saharan.0032.a
+		
+		#You attempt to force back the slavers.
+		duel = {
+			skill = martial
+			target = scope:slave_raider_county.holder
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = yearly_saharan.0032.a.tt_success
+				send_interface_toast = {
+					title = yearly_saharan.0032.a.tt_success
+					left_icon = scope:slave_raider_county.holder
+					scope:slave_raider_county.holder = {
+						#You take reparations.
+						pay_short_term_gold = {
+							target = scope:raided_county.holder
+							gold = root.slaver_reparations_value
+						}
+						#They're a sore loser.
+						add_opinion = {
+							modifier = savaged_my_slavers_opinion
+							target = root
+							opinion = -20
+						}
+					}
+
+					#Obviously, this makes you a bit of a local hero.
+					add_prestige = minor_prestige_gain
+					scope:raided_county = {
+						add_county_modifier = {
+							modifier = lord_defeated_slavers_modifier
+							years = 10
+						}
+					}
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = yearly_saharan.0032.a.tt_fail
+				send_interface_toast = {	
+					title = yearly_saharan.0032.a.tt_fail
+					left_icon = scope:slave_raider_county.holder
+					#The opposing lord profits by the acquired slaves.
+					scope:slave_raider_county.holder = { add_gold = scope:raided_county.title_province.local_slave_gold_value }
+					#And it's rather ignominious.
+					add_prestige = minor_prestige_loss
+					#Plus the county suffers damage.
+					scope:raided_county = { change_county_control = massive_county_control_loss }
+				}
+			}
+		}
+
+		stress_impact = {
+			vengeful = medium_stress_impact_loss
+			compassionate = major_stress_impact_loss
+			just = major_stress_impact_loss
+			lazy = minor_stress_impact_gain
+			callous = minor_stress_impact_gain
+			sadistic = medium_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 0.75
+				ai_energy = -0.1
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = vengeful
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = compassionate
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = just
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = lazy
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = callous
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = sadistic
+			}
+		}
+	}
+	
+	#Demand a cut of the proceeds.
+	option = {
+		name = yearly_saharan.0032.b
+
+		#You get a bit of cash out of your complicitude.
+		add_gold = scope:raided_county.title_province.selfish_liege_slave_gold_value
+
+		#Local society is disrupted, and you are not popular in the affected area.
+		scope:raided_county = {
+			change_county_control = massive_county_control_loss
+			add_county_modifier = {
+				modifier = lord_complicit_with_slavers_modifier
+				years = 10
+			}
+		}
+
+		stress_impact = {
+			callous = minor_stress_impact_loss
+			greedy = minor_stress_impact_loss
+			sadistic = major_stress_impact_loss
+			vengeful = minor_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			just = major_stress_impact_gain
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = -0.5
+				ai_vengefulness = -0.1
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = callous
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = greedy
+			}
+			modifier = {	#Weight up for stress.
+				add = 30
+				has_trait = sadistic
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = vengeful
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = compassionate
+			}
+			modifier = {	#Weight down for stress.
+				add = -30
+				has_trait = just
+			}
+		}
+	}
+	
+	#Leave them to it.
+	option = {
+		name = yearly_saharan.0032.c
+
+		#You take the most monstrous of things in stride.
+		add_character_modifier = {
+			modifier = utterly_unphased_modifier
+			years = 10
+		}
+
+		#And the county suffers damage.
+		scope:raided_county = { change_county_control = massive_county_control_loss }
+
+		stress_impact = {
+		}
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_compassion = 0.5
+				ai_vengefulness = -0.5
+			}
+			modifier = {	#Weight up for stress.
+				add = 10
+				has_trait = lazy
+			}
+			modifier = {	#Weight up for stress.
+				add = 20
+				has_trait = fickle
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = vengeful
+			}
+			modifier = {	#Weight down for stress.
+				add = -10
+				has_trait = compassionate
+			}
+			modifier = {	#Weight down for stress.
+				add = -20
+				has_trait = just
+			}
+		}
+	}
+}

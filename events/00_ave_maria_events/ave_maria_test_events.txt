@@ -329,12 +329,28 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		capital_province = {
-			set_variable = {
-				name = test_test_test
-				value = 0
+		# capital_province = {
+			# set_variable = {
+				# name = test_test_test
+				# value = 0
+			# }
+			# add_to_variable_list = { name = total target = scope:test_test_test }
+		# }
+		every_ruler = {
+			limit = {
+				primary_title = {
+					has_variable = islamic_empire_asabiyya
+				}
 			}
-			add_to_variable_list = { name = total target = scope:test_test_test }
+			add_to_global_variable_list = {
+				name = islamic_empire_asabiyya_rulers
+				target = this
+			}
+		}
+		every_in_global_list = {
+			variable = islamic_empire_asabiyya_rulers
+			remove_trait = pope
+			# add_trait = pope
 		}
 	}
 	
