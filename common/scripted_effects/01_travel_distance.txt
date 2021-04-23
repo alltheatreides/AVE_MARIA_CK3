@@ -512,12 +512,55 @@ get_distance_port = {
 	}
 	
 	change_variable = { name = $return$ add = var:get_distance_port_cost }
-	if = {
-		limit = {
-			has_building_or_higher = common_tradeport_01
-		}
-		change_variable = { name = $return$ divide = 1.5 }
-	}
+	if = {		
+		limit = {	
+			has_building = common_tradeport_01
+		}	
+		change_variable = { name = $return$ divide = 1.1 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_02
+		}	
+		change_variable = { name = $return$ divide = 1.2 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_03
+		}	
+		change_variable = { name = $return$ divide = 1.3 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_04
+		}	
+		change_variable = { name = $return$ divide = 1.4 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_05
+		}	
+		change_variable = { name = $return$ divide = 1.5 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_06
+		}	
+		change_variable = { name = $return$ divide = 1.6 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_07
+		}	
+		change_variable = { name = $return$ divide = 1.7 }	
+	}		
+	if = {		
+		limit = {	
+			has_building = common_tradeport_08
+		}	
+		change_variable = { name = $return$ divide = 1.8 }	
+	}		
+	
 	
 	
 	remove_variable = get_distance_port_cost

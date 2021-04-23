@@ -32,7 +32,11 @@ building_requirement_tribal_holding_in_county = {
 		any_county_province = {
 			OR = {
 				has_holding_type = tribal_holding
-				has_holding_type = pastoral_holding
+				AND = {
+					province_owner = { has_government = tribal_government }
+					has_holding_type = pastoral_holding
+				}
+				
 			}			
 		}
 	}
@@ -58,6 +62,10 @@ building_requirement_castle_city_church = {
 	trigger_else_if = {
 		limit = { has_holding_type = metropolis_constantinople_holding }
 		has_building = metropolis_constantinople_01
+	}
+	trigger_else_if = {
+		limit = { has_holding_type = pastoral_holding }
+		province_owner = { NOT = { has_government = tribal_government } }
 	}
 	trigger_else = {
 		custom_description = {
