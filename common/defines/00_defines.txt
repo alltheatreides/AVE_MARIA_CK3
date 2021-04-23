@@ -97,7 +97,7 @@ NCharacter = {
 	RANDOM_CHARACTER_PROWESS_MIN = 0
 	RANDOM_CHARACTER_PROWESS_MAX = 10
 	RANDOM_CHARACTER_MIN_FERTILITY = 0.5
-	RANDOM_CHARACTER_MAX_FERTILITY = 0.6
+	RANDOM_CHARACTER_MAX_FERTILITY = 0.7
 
 	RANDOM_CHARACTER_MIN_HEALTH = 4.0
 	RANDOM_CHARACTER_MAX_HEALTH = 5.0
@@ -116,7 +116,7 @@ NCharacter = {
 	MAX_TYRANNY = 1000				# maximum tyranny value a character can have
 	TYRANNY_MONTHLY_CHANGE = -0.25	# tyranny is changing by this value each month
 	
-	BASE_FERTILITY = 0.5
+	BASE_FERTILITY = 0.7
 	BASE_HEALTH = 5.0
 	
 	# experience needed for piety/prestige levels - first/negative level requires 1000, then 350 etc.
@@ -141,8 +141,8 @@ NCharacter = {
 	MALE_ADULT_AGE = 16
 	FEMALE_ADULT_AGE = 16
 	BETROTHAL_TIMEOUT_AGE = 17
-	MALE_ATTRACTION_CUTOFF_AGE = 65		# After this age, the attraction of traits no longer have any effect
-	FEMALE_ATTRACTION_CUTOFF_AGE = 50	# After this age, the attraction of traits no longer have any effect
+	MALE_ATTRACTION_CUTOFF_AGE = 50		# After this age, the attraction of traits no longer have any effect
+	FEMALE_ATTRACTION_CUTOFF_AGE = 40	# After this age, the attraction of traits no longer have any effect
 
 	#Health levels and descriptions for every level
 	HEALTH_STATE_LEVELS_VALUES = {
@@ -239,9 +239,9 @@ NCharacter = {
 }
 
 NOldAge = {
-	LOWER_HEALTH_START_AGE = 25 # At this age characters start getting the chance to lose health each year
+	LOWER_HEALTH_START_AGE = 30 # At this age characters start getting the chance to lose health each year
 	LOWER_HEALTH_BASE_CHANCE = 0.075 # This is the base chance of losing health at the START_AGE
-	LOWER_HEALTH_YEARLY_INCREASE = 0.022 # This is the yearly increase of the chance to lose health
+	LOWER_HEALTH_YEARLY_INCREASE = 0.025 # This is the yearly increase of the chance to lose health
 	LOWER_HEALTH_AMOUNT = -0.125 # This is the health change on each failed yearly health roll
 	HEALTH_PENALTY_PER_YEAR_IN_POOL = 0.1 # For each year in the pool, your effective health is this much lower. This disappears entirely when you leave the pool
 	
@@ -264,16 +264,16 @@ NOldAge = {
 NChildbirth = {
 	MIN_REPRODUCTION_AGE_IN_HISTORY_DB = 12 # If a historical parent is younger than this when their child is born, we log an error
 	MIN_FEMALE_REPRODUCTION_AGE = 16
-	MAX_FEMALE_REPRODUCTION_AGE = 45
+	MAX_FEMALE_REPRODUCTION_AGE = 42
 	MIN_MALE_REPRODUCTION_AGE = 16
-	BASE_NR_OF_CHILDREN_PER_COUPLE = { 1 1 2 3 5 5 } # Based on tier of character or parents; whichever is higher Unlanded, Baron, Count, ..., Emperor
-	CHANCE_OF_LOWERED_CHILD_LIMIT = 0.5	# Chance that the child limit is lowered by 1
+	BASE_NR_OF_CHILDREN_PER_COUPLE = { 2 2 3 4 5 5 } # Based on tier of character or parents; whichever is higher Unlanded, Baron, Count, ..., Emperor
+	CHANCE_OF_LOWERED_CHILD_LIMIT = 0.3	# Chance that the child limit is lowered by 1
 	EXTRA_CHILDREN_FOR_RULERS = 2 # If either character is a ruler, they get extra children
-	CHARACTER_IN_POOL_CHILD_LIMIT = -1	# If in the pool, child limit is modified by this
+	CHARACTER_IN_POOL_CHILD_LIMIT = -2	# If in the pool, child limit is modified by this
 	CHILD_BIRTH_TO_PREGNANCY_WAIT = 3
 	MALE_FERTILITY_MULTIPLIER_LIMITS = { 70 60 50 40 35 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
 	MALE_FERTILITY_MULTIPLIER = { 0.5 0.6 0.7 0.8 0.9 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
-	FEMALE_FERTILITY_MULTIPLIER_LIMITS = { 45 40 35 30 25 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
+	FEMALE_FERTILITY_MULTIPLIER_LIMITS = { 40 34 32 28 24 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
 	FEMALE_FERTILITY_MULTIPLIER = { 0.1 0.33 0.5 0.7 0.9 1.0 } # Multiplier values based on age limits from FERTILITY_MULTIPLIER_LIMITS should have an extra value at the beginning for characters older than first limit
 	MOTHER_FERTILITY_REDUCTION_PER_PREVIOUS_CHILD = 0.05
 	LOW_FERTILITY = 0.1
@@ -283,11 +283,11 @@ NChildbirth = {
 	NOT_SPOUSE_FERTILITY_MULTIPLIER = 1
 	NON_RULER_FERTILITY_MULTIPLIER = 1	# If neither parent is a ruler, resulting fertility gets multiplied by this
 	FERTILITY_CHANCE_MULTIPLIER = 4.75 # Fertility is an average between the father and the mother (if the mother has 0.3 and the father 0.5, the average is 0.4), this number is then multiplied by this multiplier to produce the percentage chance of impregnation. Impregnation is checked every month.
-	MIN_FERTILITY_CHANCE = 1
-	MAX_FERTILITY_CHANCE = 25
+	MIN_FERTILITY_CHANCE = 2
+	MAX_FERTILITY_CHANCE = 30
 	TWIN_BASE_CHANCE = 0.02
 	TWIN_BONUS_MAX_AGE = 35
-	TWIN_BONUS_MIN_AGE = 25
+	TWIN_BONUS_MIN_AGE = 20
 	TWIN_BONUS_CHANCE = 0.02
 	TWIN_MOTHER_HAD_TWINS_BONUS = 0.05
 	TWIN_GRANDMOTHER_HAD_TWINS_BONUS = 0.03
@@ -295,9 +295,9 @@ NChildbirth = {
 	PREGNANCY_DAYS = 280
 	DAYS_TO_PREGNANCY_REVEAL = 60
 	FEMALE_CHANCE = 49
-	NEWBORN_HEALTH_BASE = 4.5
-	NEWBORN_HEALTH_SPAN = 0.5
-	NEWBORN_HEALTH_FEMALE_BONUS = 0.5
+	NEWBORN_HEALTH_BASE = 3.2
+	NEWBORN_HEALTH_SPAN = 1.8
+	NEWBORN_HEALTH_FEMALE_BONUS = 0.1
 	INHERIT_RECESSIVE_GENE_CHANCE = 0.25	# Probability of a recessive gene being picked as a child's dominant/recessive gene. Only used for portraits
 
 	# Note that the recessive chance is checked only if inheriting it outright fails
@@ -334,9 +334,9 @@ NChildbirth = {
 	PUREBLOODED_CHANCE_FACTOR_LEVELS = { 0 0.15 0.3 }		# Same as INBRED_CHANCE_FACTOR_LEVELS, but for the "pure-blooded" trait.
 	TRAIT_REINFORCEMENT_CHANCE = 0.5						# The chance that a trait that gets inherited from both parents will get reinforced to a higher level.
 
-	EXTRA_CHILDREN_FOR_PLAYERS = 2 # Num of extra children players can have before reaching living child limit
-	EXTRA_CHILDREN_PER_EXTRA_SPOUSE = 2 # Num of extra children per spouse above one before reaching living child limit
-	EXTRA_CHILDREN_PER_EXTRA_CONCUBINE = 2 # Num of extra children per concubine above one before reaching living child limit
+	EXTRA_CHILDREN_FOR_PLAYERS = 1 # Num of extra children players can have before reaching living child limit
+	EXTRA_CHILDREN_PER_EXTRA_SPOUSE = 0 # Num of extra children per spouse above one before reaching living child limit
+	EXTRA_CHILDREN_PER_EXTRA_CONCUBINE = 0 # Num of extra children per concubine above one before reaching living child limit
 	EXTRA_FERTILITY_FOR_FIRST_CHILD = 0.0 # Extra fertility if the couple are primary spouses and have no children together
 	EXTRA_FERTILITY_FOR_FIRST_RULER_CHILD = 0.3 # Extra fertility if the couple are primary spouses and have no children together, and at least one of them is a ruler
 	DIVINE_MARRIAGE_FERTILITY_MULTIPLIER = 1 # Multiplier if the couple is close or extended family and their faith allows divine marriage
@@ -459,10 +459,10 @@ NCombat = {
 	COMBAT_EVENT_DAYS = 5							# How many days are there between knight events?
 	
 	DEVIATION_FALLOFF = 0.1							# If the mean was clamped to ACTION_LEVELS, the standard deviation is decreased using this factor (the higher the value the faster the decrease)
-	WAR_ATTACKER_COMBAT_SCORE_SCALE = 50			# Scale factor for how much war score battles give to the war attacker. Can be overriden by CB
-	WAR_DEFENDER_COMBAT_SCORE_SCALE = 50			# Scale factor for how much war score battles give to the war defender. Can be overriden by CB
-	WAR_ATTACKER_COMBAT_MAX_SCORE = 50				# The maximum amount of warscore gained from a single battle by the war attacker
-	WAR_DEFENDER_COMBAT_MAX_SCORE = 50				# The maximum amount of warscore gained from a single battle by the war attacker
+	WAR_ATTACKER_COMBAT_SCORE_SCALE = 80			# Scale factor for how much war score battles give to the war attacker. Can be overriden by CB
+	WAR_DEFENDER_COMBAT_SCORE_SCALE = 80			# Scale factor for how much war score battles give to the war defender. Can be overriden by CB
+	WAR_ATTACKER_COMBAT_MAX_SCORE = 80				# The maximum amount of warscore gained from a single battle by the war attacker
+	WAR_DEFENDER_COMBAT_MAX_SCORE = 80				# The maximum amount of warscore gained from a single battle by the war attacker
 	MANEUVER_PHASE_DAYS = 3							# How many days should the maneuver phase last
 	LEVY_TOUGHNESS = 10								# How much toughness does each levy soldier have
 	LEVY_ATTACK = 10								# How much attack does each levy soldier have
@@ -737,7 +737,7 @@ NSiege = {
 	DAILY_MORALE_LOSS_FROM_RELATIVE_ATTACKER_MEN = 0.01	# How much morale is lost every day of the siege for extra stack of men defined in RELATIVE_ATTACKER_MEN_STACK_SIZE
 	RELATIVE_ATTACKER_MEN_STACK_SIZE = 200				# Extra stack size of men to start getting daily morale loss
 	MONTHLY_ATTRITION = 0.01							# Monthly attrition during siege
-	BASE_SIEGE_PHASE_LENGTH = 20						# Base length of a siege phase (time between picking new actions) in days
+	BASE_SIEGE_PHASE_LENGTH = 5						# Base length of a siege phase (time between picking new actions) in days
 	BREACH_PHASE_TIMER_LEVELS = {						# How many levels of breach are there and how much (as percentage) is the phase timer reduced by these levels.
 		-0.1
 		-0.3

@@ -276,7 +276,7 @@ get_land_cost = {
             limit = {
                 has_variable_list = prov_port
             }
-            set_variable = { name = $return$ value = 0.5 }
+            set_variable = { name = $return$ value = 0.25 }
         }
         else = {
             set_variable = { name = $return$ value = 2 }
@@ -288,6 +288,81 @@ get_land_cost = {
         }
         set_variable = { name = $return$ value = 0.5 }
     }
+	# else_if = {
+	# 	limit = {
+	# 		has_building = roads_1
+	# 	}
+	# 	set_variable = { name = $return$ value = 4.6 }
+    
+    #     switch = {
+    #         trigger = terrain
+            
+    #         forest = { set_variable = { name = $return$ value = 1.6 } }
+    #         mountains = { set_variable = { name = $return$ value = 3.2 } }
+    #         hills = { set_variable = { name = $return$ value = 1.6 } }
+    #         wetlands = { set_variable = { name = $return$ value = 2.625 } }
+    #         plains = { set_variable = { name = $return$ value = 0.08 } }
+    #         farmlands = { set_variable = { name = $return$ value = 0.08 } }
+    #         taiga = { set_variable = { name = $return$ value = 2.625 } }
+    #         steppe = { set_variable = { name = $return$ value = 0.08 } }
+    #         desert = { set_variable = { name = $return$ value = 2.625 } }
+    #         jungle = { set_variable = { name = $return$ value = 3.2 } }
+    #         drylands = { set_variable = { name = $return$ value = 0.08 } }
+    #         oasis = { set_variable = { name = $return$ value = 0.08 } }
+    #         desert_mountains = { set_variable = { name = $return$ value = 4.6 } }
+    #         floodplains = { set_variable = { name = $return$ value = 0.08 } }
+    #     }
+	# }
+	# else_if = {
+	# 	limit = {
+	# 		has_building = roads_2
+	# 	}
+	# 	set_variable = { name = $return$ value = 3.75 }
+    
+    #     switch = {
+    #         trigger = terrain
+            
+    #         forest = { set_variable = { name = $return$ value = 0.5 } }
+    #         mountains = { set_variable = { name = $return$ value = 1 } }
+    #         hills = { set_variable = { name = $return$ value = 0.5 } }
+    #         wetlands = { set_variable = { name = $return$ value = 0.75 } }
+    #         plains = { set_variable = { name = $return$ value = 0.25 } }
+    #         farmlands = { set_variable = { name = $return$ value = 0.5 } }
+    #         taiga = { set_variable = { name = $return$ value = 0.75 } }
+    #         steppe = { set_variable = { name = $return$ value = 0.5 } }
+    #         desert = { set_variable = { name = $return$ value = 0.75 } }
+    #         jungle = { set_variable = { name = $return$ value = 1 } }
+    #         drylands = { set_variable = { name = $return$ value = 0.25 } }
+    #         oasis = { set_variable = { name = $return$ value = 0.25 } }
+    #         desert_mountains = { set_variable = { name = $return$ value = 3.75 } }
+    #         floodplains = { set_variable = { name = $return$ value = 0.5 } }
+    #     }
+	# }
+	# else_if = {
+	# 	limit = {
+	# 		has_building = roads_3
+	# 	}
+	# 	set_variable = { name = $return$ value = 2.5 }
+    
+    #     switch = {
+    #         trigger = terrain
+            
+    #         forest = { set_variable = { name = $return$ value = 1 } }
+    #         mountains = { set_variable = { name = $return$ value = 2 } }
+    #         hills = { set_variable = { name = $return$ value = 1 } }
+    #         wetlands = { set_variable = { name = $return$ value = 1.5 } }
+    #         plains = { set_variable = { name = $return$ value = 0.5 } }
+    #         farmlands = { set_variable = { name = $return$ value = 0.5 } }
+    #         taiga = { set_variable = { name = $return$ value = 1.5 } }
+    #         steppe = { set_variable = { name = $return$ value = 0.5 } }
+    #         desert = { set_variable = { name = $return$ value = 1.5 } }
+    #         jungle = { set_variable = { name = $return$ value = 2 } }
+    #         drylands = { set_variable = { name = $return$ value = 0.5 } }
+    #         oasis = { set_variable = { name = $return$ value = 0.5 } }
+    #         desert_mountains = { set_variable = { name = $return$ value = 2.5 } }
+    #         floodplains = { set_variable = { name = $return$ value = 0.5 } }
+    #     }
+	# }
     else = {
         set_variable = { name = $return$ value = 5 }
     
@@ -307,7 +382,7 @@ get_land_cost = {
             drylands = { set_variable = { name = $return$ value = 1 } }
             oasis = { set_variable = { name = $return$ value = 1 } }
             desert_mountains = { set_variable = { name = $return$ value = 5 } }
-            floodplains = { set_variable = { name = $return$ value = 2 } }
+            floodplains = { set_variable = { name = $return$ value = 1 } }
         }
     }
 }
@@ -394,6 +469,31 @@ get_distance_neighb = {
 	set_variable = { name = $return$ value = var:get_distance_neighb_diff }
 	change_variable = { name = $return$ multiply = var:get_distance_neighb_cost }
 	change_variable = { name = $return$ add = $base$ }
+
+	if = {
+		limit = {
+			has_building = roads_1
+		}
+		change_variable = { name = $return$ divide = 1.5 }
+	}
+	if = {
+		limit = {
+			has_building = roads_2
+		}
+		change_variable = { name = $return$ divide = 1.75 }
+	}
+	if = {
+		limit = {
+			has_building = roads_3
+		}
+		change_variable = { name = $return$ divide = 2 }
+	}
+	# switch = {
+	# 	trigger = building
+	# 	roads_1 = { change_variable = { name = $return$ divide = 1.5 } }
+	# 	roads_2 = { change_variable = { name = $return$ divide = 1.75 } }
+	# 	roads_3 = { change_variable = { name = $return$ divide = 2 } }
+	# }
 	
 	remove_variable = get_distance_neighb_x_diff
 	remove_variable = get_distance_neighb_y_diff
@@ -412,6 +512,13 @@ get_distance_port = {
 	}
 	
 	change_variable = { name = $return$ add = var:get_distance_port_cost }
+	if = {
+		limit = {
+			has_building_or_higher = common_tradeport_01
+		}
+		change_variable = { name = $return$ divide = 1.5 }
+	}
+	
 	
 	remove_variable = get_distance_port_cost
 }

@@ -32,6 +32,7 @@ tagma_commander_character = {
 	}
 	prowess = { 8 12 }
 	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
 		#Chance of receiving an extra commander trait
 		random = {
 			chance = 25
@@ -63,12 +64,14 @@ varangian_guard_commander_character = {
 	}
 	prowess = { 8 12 }
 	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
 		#Chance of receiving an extra commander trait
 		random = {
 			chance = 25
 			give_random_commander_trait_effect = yes
 		}
 	}
+
 }
 
 eunuch_character = {
@@ -91,6 +94,10 @@ eunuch_character = {
 		min_template_decent_skill
 		max_template_decent_skill
 	}
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
+	}
 }
 
 bureaucrat_character = {
@@ -112,5 +119,9 @@ bureaucrat_character = {
 	diplomacy = {
 		min_template_decent_skill
 		max_template_decent_skill
+	}
+
+	after_creation = {
+		add_random_hexaco_personality_trait = { WHO = this }
 	}
 }

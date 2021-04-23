@@ -2032,6 +2032,30 @@ window = {
 								}
 							}
 
+							# Authority addition
+							vbox = {
+								## Add here a scripted gui visible
+								datacontext = "[GetScriptedGui('am_islamic_empire_has_authority')]"
+								visible = "[ScriptedGui.IsShown(GuiScope.SetRoot(CharacterWindow.GetCharacter.MakeScope).End)]"
+								spacing = -2
+								min_width = 40
+
+								tooltip = "authority_tooltip"
+
+								icon = {
+									name = "authority_icon"
+									size = { 30 30 }
+									texture = "gfx/interface/icons/icon_authority.dds"
+								}
+
+								text_single = {
+									name = "total_authority"
+									text = "[Character.MakeScope.Var('islamic_empire_authority').GetValue|0]"
+									default_format = "#high"
+									align = center|nobaseline
+								}
+							}
+
 							spacer = {
 								size = { 0 3 }
 							}

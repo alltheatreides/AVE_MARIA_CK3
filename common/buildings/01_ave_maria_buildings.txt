@@ -1,7 +1,23 @@
-﻿@ave_maria_constantinople_holding_illustration_western = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA 																		   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# BUILDINGS																			   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+@ave_maria_constantinople_holding_illustration_western = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_mena = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_india = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
 @ave_maria_constantinople_holding_illustration_mediterranean = "gfx/interface/illustrations/holding_types/metropolis_constantinople.dds"
+
+
+#############################################
+# HOLDINGS					 				#
+#############################################
 
 metropolis_constantinople_01 = {
 	construction_time = slow_construction_time
@@ -203,6 +219,12 @@ pastoral_holding_building_1 = {
 	}
 }
 
+
+#############################################
+# BUILDINGS					 				#
+#############################################
+
+## 
 slave_market_1 = {
 	construction_time = quick_construction_time
 	# asset = {
@@ -232,9 +254,8 @@ slave_market_1 = {
 		base = 1
 	}
 
-	type_icon = "slave_market.dds"
+	type_icon = "am_icon_slave_market.dds"
 }
-
 slave_market_2 = {
 	construction_time = quick_construction_time
 	# asset = {
@@ -264,7 +285,137 @@ slave_market_2 = {
 		base = 1
 	}
 
-	type_icon = "slave_market.dds"
+	type_icon = "am_icon_slave_market.dds"
 }
 
+##
+roads_1 = {
+	construction_time = slow_construction_time
 
+	is_enabled = {
+		always = yes
+	}
+	can_construct_potential = {
+		# always = yes
+		trigger_if = {
+			limit = {
+				orc_is_province_with_historical_building = no
+			}
+			current_date > 1066.9.15
+		}
+	}	
+	
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
+	county_modifier = {
+		development_growth_factor = 0.05
+		supply_limit = 2000
+	}
+
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
+	}
+	
+	next_building = roads_2
+	
+	ai_value = {
+		base = 1
+	}
+
+	type_icon = "am_icon_roads_1.dds"
+}
+roads_2 = {
+	construction_time = slow_construction_time
+
+	is_enabled = {
+		always = yes
+	}
+	can_construct_potential = {
+		always = yes
+	}	
+	
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
+	county_modifier = {
+		development_growth_factor = 0.1
+		supply_limit = 4000
+	}
+
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
+	}
+	
+	next_building = roads_3
+	
+	ai_value = {
+		base = 1
+	}
+
+	type_icon = "am_icon_roads_2.dds"
+}
+roads_3 = {
+	construction_time = slow_construction_time
+
+	is_enabled = {
+		always = yes
+	}
+	can_construct_potential = {
+		always = yes
+	}	
+	
+	cost_prestige = main_building_tier_1_cost
+	cost_gold = main_building_tier_1_cost
+	
+	county_modifier = {
+		development_growth_factor = 0.15
+		supply_limit = 8000
+	}
+
+	on_complete = {
+		province_owner = {
+			capital_county = {
+				change_county_control = 100	
+				if = {
+					limit = {
+						has_county_modifier = orc_comm_malus_modifier
+					}
+					remove_county_modifier = orc_comm_malus_modifier
+				}		
+				change_county_control = 100			
+			}
+			orc_apply_demesne_provinces_distance_malus = yes
+		}
+	}
+	
+	ai_value = {
+		base = 1
+	}
+
+	type_icon = "am_icon_roads_3.dds"
+}

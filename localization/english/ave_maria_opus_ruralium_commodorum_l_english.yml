@@ -8,6 +8,7 @@
  
  orc_total_population_province_display:0 "@orc_population_icon! [HoldingView.GetProvince.MakeScope.Var('total_population').GetValue|0]"
 
+
  orc_total_noble_numbers:0 "#V [orc_class_noble|E]:#! [HoldingView.GetProvince.MakeScope.Var('test').GetValue|0]"
  orc_total_clergy_numbers:0 "#V [orc_class_clergy|E]:#! [HoldingView.GetProvince.MakeScope.Var('test_clergy').GetValue|0]"
  orc_total_merchant_numbers:0 "#V [orc_class_merchant|E]:#! [HoldingView.GetProvince.MakeScope.Var('test_merchant').GetValue|0]"
@@ -18,7 +19,21 @@
  orc_total_herder_numbers:0 "#V [orc_class_herder|E]:#! [HoldingView.GetProvince.MakeScope.Var('test_herder').GetValue|0]"
  orc_total_laborer_numbers:0 "#V [orc_class_laborer|E]:#! [HoldingView.GetProvince.MakeScope.Var('test_laborer').GetValue|0]"
 
+ ## BUILDINGS
+ building_type_roads_1:0 "Road Network"
+ building_type_roads_1_desc:0 "Roads allow for easier communication, travel and commerce."
+ building_roads_1:0 "Dirt Road Network"
+ building_roads_1_desc:0 "This province is dotted with unpaved roads allowing for an easier communication, travel and commerce for the local inhabitants."
+ building_roads_2:0 "Paved Road Network"
+ building_roads_2_desc:0 "This province is dotted with paved roads allowing for fast and easy communication, travel and commerce for the local inhabitants as well as allowing a tighter control by the local lord."
+ building_roads_3:0 "Paved Road Highways"
+ building_roads_3_desc:0 "This province is dotted with sophisticated paved roads highways allowing for fast and easy communication, travel and commerce for the local inhabitants as well as allowing a tighter control by the local lord."
+
  #### GAME CONCEPT
+ game_concept_communication_efficiency:0 "Communication Efficiency"
+ game_concept_communication_efficiency_desc:0 "Communication Efficiency, is the time it takes to reach a province for a polity agent travelling from the capital. It represents how difficult it is for the central authority to exert control over far away provinces. Fast communication ensures that local [control|E] is high and improving communication efficiency is one of the best methods to increase [control|E] in the game.\n\nTravel time is dependent on terrain, roads, special buildings and, for travel across water, trade harbours."
+
+
  game_concept_orc_population:0 "Population"
  game_concept_orc_population_desc:0 "People"
  game_concept_orc_class_noble:0 "Aristocrats"
@@ -7740,8 +7755,8 @@
  sparsly_populated_holding_concept_key:0 "Sparsly Populated"
  
  ### MODIFIERS
- orc_comm_malus_modifier:0 "Communication Efficiency"
- orc_comm_malus_modifier_desc:0 ""
+ orc_comm_malus_modifier:0 "[communication_efficiency|E]"
+ orc_comm_malus_modifier_desc:0 "[communication_efficiency|E], is the time it takes to reach a province for a polity agent travelling from the capital. It represents how difficult it is for the central authority to exert control over far away provinces. Fast communication ensures that local [control|E] is high and improving [communication_efficiency|E] is one of the best methods to increase [control|E] in the game.\n\nTravel time is dependent on terrain, roads, special buildings and, for travel across water, trade harbours.\n\n"
 
  ### Holding rename
  game_concept_holding:0 "Settlement"

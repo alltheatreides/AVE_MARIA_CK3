@@ -332,6 +332,7 @@ monthly_pulse.13 = {
 			
 		}
 		
+		## Asabiyya
 		every_county = {
 			limit = {
 				has_variable = islamic_empire_asabiyya
@@ -389,6 +390,58 @@ monthly_pulse.13 = {
 			}
 			islamic_empire_asabiyya_level_calc = yes
 		}
+
+		## Authority
+		every_empire = {
+			limit = {
+				holder = {
+					has_variable = islamic_empire_authority
+				}
+			}
+			holder = {
+				# set_variable = {
+				# 	name = average_opinion
+				# 	value = 0
+				# }
+				# every_vassal = {
+				# 	set_variable = {
+				# 		name = opinion_of_liege
+				# 		value = opinion_of_liege
+				# 	}
+				# 	liege = {
+				# 		change_variable = {
+				# 			name = average_opinion
+				# 			add = prev.var:opinion_of_liege
+				# 		}
+				# 	}					
+				# }
+				change_variable = {
+					name = islamic_empire_authority
+					add = islamic_empire_authority_monthly
+				}
+			}
+		}
+
+		# ## Vassal contracts for dhimmi
+		# every_ruler = {
+		# 	limit = {
+		# 		highest_held_title_tier >= tier_duchy
+		# 		religion = religion:islam_religion
+		# 	}
+		# 	every_vassal = {
+		# 		limit = {
+		# 			OR = {
+		# 				religion = religion:christianity_religion
+		# 				religion = religion:judaism_religion
+		# 			}
+		# 			NOR = {
+		# 				vassal_contract_has_flag = jizya_tax_gentle_flag
+		# 				vassal_contract_has_flag = jizya_tax_extortionate
+		# 			}
+		# 		}
+		# 		vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
+		# 	}
+		# }
 	}
 	
 	option = {

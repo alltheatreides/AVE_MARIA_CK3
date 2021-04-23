@@ -29,12 +29,36 @@ islamic_empire_caliph_favourite = {
 }
 
 #############################################
+# PROVINCE MODIFIERS						#
+#############################################
+
+islamic_empire_military_riots = {
+	icon = martial_negative
+	monthly_county_control_change_factor = -5
+	county_opinion_add = -50
+}
+
+islamic_empire_aftermath_of_riots = {
+	icon = martial_negative
+	county_opinion_add = -50
+}
+
+islamic_empire_ismailai_dawa_mission = {
+	icon = piety_positive
+	
+}
+
+#############################################
 # FATIMID MODIFIERS							#
 #############################################
 
 islamic_empire_multiethnic_army_system = {
 	icon = martial_negative
-	men_at_arms_maintenance = 0.5
+	men_at_arms_maintenance = 1
+}
+
+islamic_empire_military_wazir = {
+	icon = martial_positive
 }
 
 #############################################
@@ -44,6 +68,7 @@ islamic_empire_multiethnic_army_system = {
 islamic_empire_asabiyya_level_very_weak = {
 	icon = martial_negative
 	monthly_prestige = 0.1
+	clan_government_vassal_opinion = -10
 }
 
 islamic_empire_asabiyya_level_weak = {
@@ -51,6 +76,7 @@ islamic_empire_asabiyya_level_weak = {
 	monthly_prestige = 0.25
 	levy_size = 0.05
 	raid_speed = 0.1
+	clan_government_vassal_opinion = -5
 }
 
 islamic_empire_asabiyya_level_medium = {
@@ -58,12 +84,13 @@ islamic_empire_asabiyya_level_medium = {
 	monthly_prestige = 0.5
 	levy_size = 0.1
 	raid_speed = 0.15
-	light_infantry_damage_add = 0.5
-	light_infantry_pursuit_add = 1
-	light_infantry_screen_add = 0.5
+	skirmishers_damage_add = 0.5
+	skirmishers_pursuit_add = 1
+	skirmishers_screen_add = 0.5
 	light_cavalry_damage_add = 0.5
 	light_cavalry_pursuit_add = 1
 	light_cavalry_screen_add = 0.5
+	clan_government_vassal_opinion = 10
 }
 
 
@@ -73,12 +100,13 @@ islamic_empire_asabiyya_level_strong = {
 	levy_size = 0.15
 	raid_speed = 0.25
 	hostile_county_attrition = -0.1
-	light_infantry_damage_add = 1
-	light_infantry_pursuit_add = 2
-	light_infantry_screen_add = 1
+	skirmishers_damage_add = 1
+	skirmishers_pursuit_add = 2
+	skirmishers_screen_add = 1
 	light_cavalry_damage_add = 1
 	light_cavalry_pursuit_add = 2
 	light_cavalry_screen_add = 1
+	clan_government_vassal_opinion = 15
 }
 
 islamic_empire_asabiyya_level_exceptional = {
@@ -87,13 +115,47 @@ islamic_empire_asabiyya_level_exceptional = {
 	levy_size = 0.2
 	raid_speed = 0.5
 	hostile_county_attrition = -0.1
-	light_infantry_damage_add = 2
-	light_infantry_pursuit_add = 4
-	light_infantry_screen_add = 2
+	skirmishers_damage_add = 2
+	skirmishers_pursuit_add = 4
+	skirmishers_screen_add = 2
 	light_cavalry_damage_add = 2
 	light_cavalry_pursuit_add = 4
 	light_cavalry_screen_add = 2
+	clan_government_vassal_opinion = 20
 }
+
+#############################################
+# AUTHORITY MODIFIERS						#
+#############################################
+
+islamic_empire_authority_figurehead = {
+	hide_effects = yes
+	monthly_prestige = 0.25
+	monthly_piety = 0.25
+	vassal_opinion = 2
+}
+
+islamic_empire_authority_religious_authority = {
+	hide_effects = yes
+	monthly_prestige = 0.5
+	monthly_piety = 0.5
+	vassal_opinion = 5
+}
+
+islamic_empire_authority_weakened = {
+	hide_effects = yes
+	monthly_prestige = 1
+	monthly_piety = 1
+	vassal_opinion = 10
+}
+
+islamic_empire_authority_strong = {
+	hide_effects = yes
+	monthly_prestige = 1.5
+	monthly_piety = 1.5
+	vassal_opinion = 15
+}
+
 
 
 #############################################

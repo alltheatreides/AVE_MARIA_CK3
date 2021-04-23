@@ -33,6 +33,7 @@ islamic_empire_asabiyya_monthly = {
 		if = {
 			limit = {
 				var:islamic_empire_asabiyya > 0
+				var:islamic_empire_asabiyya <= 100
 			}
 			subtract = 0.5
 		}
@@ -42,19 +43,25 @@ islamic_empire_asabiyya_monthly = {
 			}
 			
 		}
+		if = {
+			limit = {
+				var:islamic_empire_asabiyya > 100
+			}
+
+		}
 	}
 
 	## If you directly control holy city, high asabiyya
 	if = {
-		limit = {
-			OR = {
-				this = c_mecca
-				this = c_medina
-			}
-			
+		limit = {		
 			holder = {
+				any_held_title = {
+					OR = {
+						this = title:c_mecca
+						this = title:c_medina
+					}
+				}
 				religion = religion:islam_religion
-				has_primary_title = prev
 			}
 		}
 		if = {
@@ -65,9 +72,96 @@ islamic_empire_asabiyya_monthly = {
 		}
 		if = {
 			limit = {
+				var:islamic_empire_asabiyya <= 0
+			}
+			
+		}
+		if = {
+			limit = {
 				var:islamic_empire_asabiyya > 100
 			}
 
 		}
 	}
+}
+
+islamic_empire_authority_monthly = {
+	value = 0
+
+	if = {
+		limit = {
+			has_variable = islamic_empire_authority
+			var:islamic_empire_authority <= 0
+		}
+
+	}
+
+	if = {
+		limit = {
+			has_variable = islamic_empire_authority
+			var:islamic_empire_authority > 0
+			var:islamic_empire_authority <= 100
+		}
+
+		if = {
+			limit = {
+				faith = faith:ismaili
+			}
+			add = 0.2
+		}
+	
+		every_vassal = {
+			if = {
+				limit = {
+					vassal_contract_has_flag = islamic_empire_war_right_allowed
+				}
+				add = -0.05
+			}
+			if = {
+				limit = {
+					vassal_contract_has_flag = islamic_empire_inheritance_right_allowed
+				}
+				add = -0.05
+			}
+			if = {
+				limit = {
+					vassal_contract_has_flag = islamic_empire_qadi_right_allowed
+				}
+				add = -0.05
+			}
+			if = {
+				limit = {
+					vassal_contract_has_flag = islamic_empire_kharaj_right_allowed
+				}
+				add = -0.05
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			has_variable = islamic_empire_authority
+			var:islamic_empire_authority > 100
+		}
+	}
+
+	
+
+	# try at the average vassal opinion
+	# if = {
+	# 	limit = {
+	# 		has_variable = average_opinion
+	# 		var:average_opinion <= 0
+	# 	}
+	# 	subtract = 0.1
+	# }
+
+	# if = {
+	# 	limit = {
+	# 		has_variable = average_opinion
+	# 		var:average_opinion > 0
+	# 		var:average_opinion <= 50
+	# 	}
+	# 	add = 0.1
+	# }
 }

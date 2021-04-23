@@ -842,9 +842,13 @@ roman_administration_fire_bureaucrat = {
 			}
 
 			scope:new_holder = {
-				remove_character_modifier = roman_administration_emperor_favourite
-				# trigger_event = ave_maria_roman_administration_events.00012
-			}
+				if = {
+					limit = {
+						has_character_modifier = roman_administration_emperor_favourite
+					}
+					remove_character_modifier = roman_administration_emperor_favourite
+				}
+			}			
 		}
 
 		scope:actor = {

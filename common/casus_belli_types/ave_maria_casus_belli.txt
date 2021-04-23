@@ -1,0 +1,109 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA CASUS BELLI																   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# AVE MARIA CASUS BELLI								          		             	   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+# ave_maria_islamic_empire_purge = {
+# 	group = testing
+	
+# 	combine_into_one = yes
+# 	mutually_exclusive_titles = { always = yes }
+	
+# 	allowed_for_character = {
+# 		debug_only = yes
+# 	}
+# 	allowed_against_character = {
+	
+# 	}
+# 	target_titles = all
+# 	target_title_tier = all
+	
+# 	on_declaration = {
+# 		on_declared_war = yes
+		
+# 	}
+	
+# 	cost = {
+# 		#gold = scope:attacker.diplomacy
+# 		#piety = 1
+# 		#prestige = 1
+# 	}
+
+# 	on_victory_desc = {
+# 		desc = ave_maria_islamic_empire_purge_victory_desc
+# 	}
+	
+# 	on_victory = {
+# 		scope:attacker = { show_pow_release_message_effect = yes }
+		
+# 		scope:defender = {
+# 			destroy_title = scope:defender.primary_title
+# 		}
+				
+# 		# Truce
+# 		add_truce_attacker_victory_effect = yes
+# 	}
+
+# 	on_white_peace_desc = {
+# 		desc = ave_maria_islamic_empire_purge_white_peace_desc
+# 	}
+	
+# 	on_white_peace = {
+# 		scope:attacker = { show_pow_release_message_effect = yes }
+# 		# Truce
+# 		add_truce_white_peace_effect = yes
+# 	}
+
+# 	on_defeat_desc = {
+# 		desc = ave_maria_islamic_empire_purge_defeat_desc
+
+# 		scope:attacker = {
+# 			if = {
+# 				limit = {
+# 					has_government = islamic_empire_regiment_government
+# 				}
+# 				destroy_title = scope:attacker.primary_title
+# 			}
+# 		}
+# 	}
+	
+# 	on_defeat = {
+# 		scope:attacker = { show_pow_release_message_effect = yes }
+# 		# Truce
+# 		add_truce_attacker_defeat_effect = yes
+# 	}
+	
+# 	on_invalidated = {
+# 	}
+	
+# 	on_invalidated_desc = {
+# 		desc = ave_maria_islamic_empire_purge_invalidated_desc
+# 	}
+# 	on_primary_attacker_death = inherit
+# 	on_primary_defender_death = inherit
+	
+# 	transfer_behavior = transfer
+	
+# 	attacker_allies_inherit = yes
+# 	defender_allies_inherit = yes
+	
+# 	war_name = "ISLAMIC_EMPIRE_PURGE_WAR_NAME"
+# 	cb_name_no_target = "DEBUG_WAR_NAME_FALLBACK"
+	
+# 	interface_priority = 0
+	
+# 	#attacker_ticking_warscore = NWar::ATTACKER_TICKING_WAR_SCORE
+# 	#attacker_ticking_warscore_delay = NWar::ATTACKER_TICKING_WAR_SCORE_DELAY_DAYS # e.g. { months = 12 }
+# 	#defender_ticking_warscore = NWar::DEFENDER_TICKING_WAR_SCORE
+# 	#defender_ticking_warscore_delay = NWar::DEFENDER_TICKING_WAR_SCORE_DELAY_DAYS # e.g. { months = 12 }
+# 	#ticking_war_score_targets_entire_realm = yes
+# 	attacker_wargoal_percentage = 0.8
+	
+# 	should_show_war_goal_subview = yes
+# }

@@ -1,0 +1,1706 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA STORY CYCLES															   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# FATIMID STORY CYCLE EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+# Events for the Party Baron story cycle
+
+namespace = ave_maria_story_cycle_fatimids
+
+### Triggers and effects
+scripted_trigger potential_regiment_trouble_over_salary = {
+	# primary_title = {
+	# 	this = title:e_egypt
+	# }
+	# any_vassal = {
+	# 	primary_title = {
+	# 		has_variable = islamic_empire_regiment_salary
+	# 	}
+	# 	var:
+	# }
+}
+
+
+#############################################
+# SALARY EVENT CHAIN						#
+#############################################
+
+## Regiment demand salary increase - initial
+ave_maria_story_cycle_fatimids.10 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.10.title
+	desc = ave_maria_story_cycle_fatimids.10.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader
+		animation = idle
+	}
+
+	trigger = {
+		any_vassal = {
+			primary_title = {
+				has_variable = islamic_empire_regiment_salary
+				var:islamic_empire_regiment_salary < 5
+			}
+		}
+	}
+
+	immediate = {
+		capital_province = { save_scope_as = capital }
+		random_vassal = {
+			limit = {
+				primary_title = {
+					has_variable = islamic_empire_regiment_salary
+					var:islamic_empire_regiment_salary < 5
+				}
+			}
+			
+			weight = {
+				modifier = {
+					primary_title = { var:islamic_empire_regiment_salary < 3 }					
+					factor = 10
+				}
+				modifier = {
+					primary_title = { var:islamic_empire_regiment_salary = 1 }					
+					factor = 10
+				}
+				modifier = {
+					primary_title = { var:islamic_empire_regiment_salary >= 5 }
+					factor = -10
+				}
+			}
+
+			save_scope_as = regiment_leader
+		}
+	}
+
+	## Increase Salary
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.a
+		scope:regiment_leader = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					add = 1
+				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+				
+			}
+			add_opinion = {
+				modifier = islamic_empire_increased_salary
+				target = liege
+			}
+			islamic_empire_apply_salary_opinion = yes
+			clear_saved_scope = regiment_leader
+		}		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = minor_stress_impact_gain
+				greedy = minor_stress_impact_gain
+	
+				forgiving = minor_stress_impact_loss
+				compassionate = minor_stress_impact_loss
+				patient = minor_stress_impact_loss
+				trusting = minor_stress_impact_loss
+				calm = minor_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_gain
+				greedy = major_stress_impact_gain
+				arbitrary = major_stress_impact_gain
+				cynical = major_stress_impact_gain
+				deceitful = major_stress_impact_gain
+	
+	
+				forgiving = major_stress_impact_loss
+				compassionate = major_stress_impact_loss
+				patient = major_stress_impact_loss
+				trusting = major_stress_impact_loss
+				calm = major_stress_impact_loss
+			}
+
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_gain
+				greedy = medium_stress_impact_gain
+	
+				forgiving = medium_stress_impact_loss
+				compassionate = medium_stress_impact_loss
+				patient = medium_stress_impact_loss
+				trusting = medium_stress_impact_loss
+				calm = medium_stress_impact_loss
+			}
+
+		}
+	}
+
+	## No
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.b
+		custom_tooltip = ave_maria_story_cycle_fatimids.10.OPT.b.tt
+		scope:regiment_leader = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+			save_scope_as = regiment_leader_rioter
+		}
+		
+		
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}		
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+		hidden_effect = {
+			random_list = {
+				## Just nursing his revenge
+				50 = {
+					modifier = {
+						add = 10
+						scope:regiment_leader = {
+							OR = {
+								has_trait = faithful
+								has_trait = just
+								has_trait = honest
+								has_trait = generous
+								has_trait = humble
+							}
+						}						
+					}
+					modifier = {
+						add = 10
+						scope:regiment_leader = {
+							OR = {
+								has_trait = forgiving
+								has_trait = compassionate
+								has_trait = patient
+								has_trait = trusting
+								has_trait = calm
+							}
+						}						
+					}
+					scope:regiment_leader = {
+						if = {
+							limit = {
+								NOT = {
+									has_variable = denied_pay_increase
+								}
+							}
+							set_variable = {
+								name = denied_pay_increase
+								value = 0
+								days = 730
+							}
+						}
+						if = {
+							limit = {
+								has_variable = denied_pay_increase
+							}
+							change_variable = {
+								name = denied_pay_increase
+								add = 1
+							}
+						}
+						#add_character_flag = denied_pay_increase
+						clear_saved_scope = regiment_leader
+					}
+				}
+				## Shit is about to go down
+				50 = {
+					modifier = {
+						add = 10
+						scope:regiment_leader = {
+							OR = {
+								has_trait = arrogant
+								has_trait = greedy
+								has_trait = arbitrary
+								has_trait = cynical
+								has_trait = deceitful
+	
+							}
+						}						
+					}
+					modifier = {
+						add = 10
+						scope:regiment_leader = {
+							OR = {
+								has_trait = impatient
+								has_trait = vengeful
+								has_trait = stubborn
+								has_trait = zealous
+								has_trait = wrathful
+							}
+						}						
+					}
+					modifier = {
+						add = 10
+						debt_level > 0					
+					}
+					modifier = {
+						add = 20
+						has_trait = ambitious			
+					}
+					modifier = {
+						multiply = scope:regiment_leader.var:denied_pay_increase
+						scope:regiment_leader = {
+							has_variable = denied_pay_increase
+						}
+					}
+					scope:regiment_leader = {
+						save_scope_as = regiment_leader_rioter
+						clear_saved_scope = regiment_leader
+					}
+					trigger_event = { 
+						id = ave_maria_story_cycle_fatimids.12
+						#days = { 10 15 }
+					}
+				}
+			}
+		}
+		
+		
+	}
+
+	## Maybe later
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.c
+		custom_tooltip = ave_maria_story_cycle_fatimids.10.OPT.c.tt
+		scope:regiment_leader = {
+			save_scope_as = regiment_leader_promised
+			root = {
+				trigger_event = { 
+					id = ave_maria_story_cycle_fatimids.11
+					#days = { 20 40 }
+				}
+			}
+		}
+		
+		clear_saved_scope = regiment_leader
+	}
+
+	## How about a decrease
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.d
+		scope:regiment_leader = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					subtract = 1
+				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+			}			
+			add_opinion = {
+				modifier = islamic_empire_decreased_salary
+				target = liege
+			}
+			islamic_empire_apply_salary_opinion = yes
+			save_scope_as = regiment_leader_rioter
+			clear_saved_scope = regiment_leader
+		}		
+		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+	
+			}
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+
+		trigger_event = { 
+			id = ave_maria_story_cycle_fatimids.12
+			days = { 5 10 }
+		}
+	}
+}
+
+## Promised an increase - delayed
+ave_maria_story_cycle_fatimids.11 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.11.title
+	desc = ave_maria_story_cycle_fatimids.11.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader_promised
+		animation = idle
+	}
+
+	trigger = {
+		#has_character_flag = promised_salary_increase
+	}
+
+	immediate = {
+		
+	}
+
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.a
+		scope:regiment_leader_promised = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					add = 1
+				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+			}
+			add_opinion = {
+				modifier = islamic_empire_increased_salary
+				target = liege
+			}
+			islamic_empire_apply_salary_opinion = yes
+			clear_saved_scope = regiment_leader
+		}		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = minor_stress_impact_gain
+				greedy = minor_stress_impact_gain
+	
+				forgiving = minor_stress_impact_loss
+				compassionate = minor_stress_impact_loss
+				patient = minor_stress_impact_loss
+				trusting = minor_stress_impact_loss
+				calm = minor_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_gain
+				greedy = major_stress_impact_gain
+				arbitrary = major_stress_impact_gain
+				cynical = major_stress_impact_gain
+				deceitful = major_stress_impact_gain
+	
+	
+				forgiving = major_stress_impact_loss
+				compassionate = major_stress_impact_loss
+				patient = major_stress_impact_loss
+				trusting = major_stress_impact_loss
+				calm = major_stress_impact_loss
+			}
+
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_gain
+				greedy = medium_stress_impact_gain
+
+				forgiving = medium_stress_impact_loss
+				compassionate = medium_stress_impact_loss
+				patient = medium_stress_impact_loss
+				trusting = medium_stress_impact_loss
+				calm = medium_stress_impact_loss
+			}
+			
+		}
+	}
+
+	## No
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.b
+		scope:regiment_leader_promised = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+			save_scope_as = regiment_leader_rioter
+		}
+		
+		clear_saved_scope = regiment_leader_promised
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}		
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+
+		trigger_event = { 
+			id = ave_maria_story_cycle_fatimids.12
+			days = { 10 15 }
+		}
+	}
+
+	option = {
+		name = ave_maria_story_cycle_fatimids.10.OPT.d
+		scope:regiment_leader_promised = {
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					subtract = 1
+				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+			}			
+			add_opinion = {
+				modifier = islamic_empire_decreased_salary
+				target = liege
+			}
+			islamic_empire_apply_salary_opinion = yes
+			save_scope_as = regiment_leader_rioter
+			clear_saved_scope = regiment_leader_promised
+		}		
+		
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+			
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+			
+
+		}
+		else_if = {
+			limit = {
+				scope:regiment_leader_promised = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+			
+		}
+
+		trigger_event = { 
+			id = ave_maria_story_cycle_fatimids.12
+			days = { 5 10 }
+		}
+	}
+}
+
+## Riot in the capital after refusal of salary increase
+ave_maria_story_cycle_fatimids.12 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.12.title
+	desc = ave_maria_story_cycle_fatimids.12.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = fear
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader_rioter
+		animation = anger
+	}
+
+	immediate = {
+		save_scope_as = liege
+		if = {
+			limit = {
+				capital_province = {
+					NOT = { 
+						has_province_modifier = islamic_empire_military_riots 
+					}
+				}
+			}
+			capital_county = {
+				change_county_control = -100
+			}
+			capital_province = {
+				add_province_modifier = { 
+					modifier = islamic_empire_military_riots 
+					days = 1400 
+				}
+			}
+		}
+		if = {
+			limit = {
+				capital_province = {
+					has_province_modifier = islamic_empire_military_riots 
+				}
+			}
+			random_held_title = {
+				limit = {
+					tier = tier_county
+				}
+				change_county_control = -100
+				title_province = {					
+					add_province_modifier = { 
+						modifier = islamic_empire_military_riots 
+						days = 1400 
+					}
+				}
+			}
+			random_held_title = {
+				limit = {
+					tier = tier_county
+				}
+				change_county_control = -100
+				title_province = {
+					add_province_modifier = { 
+						modifier = islamic_empire_military_riots 
+						days = 1400 
+					}
+				}
+			}
+		}
+		
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOT = {
+					this = scope:regiment_leader_rioter
+				}
+			}
+			save_scope_as = potential_savior_1
+		}
+		random_vassal = {
+			limit = {
+				max_military_strength > 2000
+				NOT = {
+					this = scope:regiment_leader_rioter
+				}				
+			}
+			weight = {
+				base = 1
+				modifier = {
+					add = 50
+					has_trait = ghulam
+				}
+				modifier = {
+					add = -10
+					has_trait = sayyid
+				}
+			}
+			save_scope_as = potential_savior_2
+		}
+	}
+
+	## Oh no - ask for help to another regiment
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.a
+		custom_tooltip = ave_maria_story_cycle_fatimids.12.OPT.a.tt
+		add_opinion = {
+			modifier = islamic_empire_military_riot
+			target = scope:regiment_leader_rioter
+		}
+		scope:regiment_leader_rioter = {
+			add_opinion = {
+				modifier = islamic_empire_military_riot
+				target = root
+			}
+		}
+		scope:potential_savior_1 = {
+			trigger_event = {
+				id = ave_maria_story_cycle_fatimids.13
+				#days = 5
+			}
+		}
+	}
+
+	## Oh no - ask for help to an provincial vassal
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.b
+		custom_tooltip = ave_maria_story_cycle_fatimids.12.OPT.b.tt
+		add_opinion = {
+			modifier = islamic_empire_military_riot
+			target = scope:regiment_leader_rioter
+		}
+		scope:regiment_leader_rioter = {
+			add_opinion = {
+				modifier = islamic_empire_military_riot
+				target = root
+			}
+		}
+		scope:potential_savior_2 = {
+			trigger_event = {
+				id = ave_maria_story_cycle_fatimids.13
+				#days = 5
+			}
+		}
+	}
+
+	## s'fine
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.c
+		add_opinion = {
+			modifier = islamic_empire_military_riot
+			target = scope:regiment_leader_rioter
+		}
+		scope:regiment_leader_rioter = {
+			add_opinion = {
+				modifier = islamic_empire_military_riot
+				target = root
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+	}
+}
+
+## Asking for help to a vassal
+ave_maria_story_cycle_fatimids.13 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.13.title
+	desc = ave_maria_story_cycle_fatimids.13.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:liege
+		animation = beg
+	}
+
+	## Wazir price
+	option = {
+		name = ave_maria_story_cycle_fatimids.1.OPT.A
+		save_scope_as = greedy_savior
+		liege = {
+			trigger_event = { 
+				id = ave_maria_story_cycle_fatimids.14 
+				#days = 3 
+			}
+		}
+
+		ai_chance = {
+			base = 80
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = arrogant
+						has_trait = greedy
+						has_trait = arbitrary
+						has_trait = cynical
+						has_trait = deceitful						
+					}
+				}
+			}
+			modifier = {
+				add = 100
+				root = {
+					has_trait = ambitious
+				}
+			}
+			
+		}
+	}
+
+	## Free
+	option = {
+		name = ave_maria_story_cycle_fatimids.1.OPT.B
+		save_scope_as = loyal_savior
+		liege = {
+			trigger_event = { 
+				id = ave_maria_story_cycle_fatimids.15
+				#days = 3 
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = faithful
+						has_trait = just
+						has_trait = honest
+						has_trait = generous
+						has_trait = humble
+					}
+				}
+			}
+		}
+	}
+
+	## Nope
+	option = {
+		name = ave_maria_story_cycle_fatimids.1.OPT.C
+		save_scope_as = false_savior
+		liege = {
+			trigger_event = { 
+				id = ave_maria_story_cycle_fatimids.16
+				#days = 3 
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = lazy
+					}
+				}
+			}
+		}
+	}	
+
+}
+
+## Liege receives vassal response - Wazir price
+ave_maria_story_cycle_fatimids.14 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.14.title
+	desc = ave_maria_story_cycle_fatimids.14.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+
+	right_portrait = {
+		character = scope:greedy_savior
+		animation = personality_greedy
+	}
+
+	trigger = {
+		capital_province = {
+			has_province_modifier = islamic_empire_military_riots
+		}
+	}
+
+	## Drink the bitter chalice
+	option = {
+		name = ave_maria_story_cycle_fatimids.14.OPT.A
+		fire_councillor = cp:councillor_chancellor
+		root = {
+			assign_councillor_type = {
+				type = councillor_chancellor
+				target = scope:greedy_savior
+			}
+		}		
+		scope:greedy_savior = {
+			add_character_modifier = islamic_empire_military_wazir
+			save_scope_as = savior
+			
+			scope:savior = {
+				if = {
+					limit = {
+						scope:savior = {
+							has_government = islamic_empire_regiment_government
+						}					
+					}
+					variable_duel = { TARGET = scope:regiment_leader_rioter VARIABLE = primary_title.var:islamic_empire_regiment_size_total_display }
+				}
+				if = {
+					limit = {
+						scope:savior = {
+							NOT = { has_government = islamic_empire_regiment_government }
+						}					
+					}
+					scope:savior = {
+						set_variable = {
+							name = troop_strength
+							value = max_military_strength
+						}
+					}				
+					scope:regiment_leader_rioter = {
+						set_variable = {
+							name = troop_strength
+							value = primary_title.var:islamic_empire_regiment_size_total_display
+						}
+					}
+					variable_duel = { TARGET = scope:regiment_leader_rioter VARIABLE = var:troop_strength }
+					
+				}
+				random_list = {
+					## Success
+					50 = {
+						compare_modifier = {
+							value = scope:duel_value
+							multiplier = 1
+						}
+						desc = riot_outcome.success
+						custom_tooltip = riot_outcome.success.14.tt
+						liege = {
+							trigger_event = {
+								id = ave_maria_story_cycle_fatimids.17
+								#days = 5
+							}
+						}					
+					}
+				
+					## Failure
+					50 = {
+						compare_modifier = {
+							value = scope:duel_value
+							multiplier = -1
+						}
+						desc = riot_outcome.failure
+						custom_tooltip = riot_outcome.failure.14.tt
+						liege = {
+							trigger_event = {
+								id = ave_maria_story_cycle_fatimids.18
+								#days = 5
+							}
+						}					
+					}
+				}	
+			}
+				
+
+
+			
+		}
+	}
+
+	## Nevaaaar
+	option = { 	
+		name = ave_maria_story_cycle_fatimids.14.OPT.B
+		custom_tooltip = ave_maria_story_cycle_fatimids.14.OPT.B.tt
+		## Rioting spreads
+		capital_province = {
+			add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+	}
+
+}
+
+## Liege receives vassal response - loyal
+ave_maria_story_cycle_fatimids.15 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.15.title
+	desc = ave_maria_story_cycle_fatimids.15.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+
+	right_portrait = {
+		character = scope:loyal_savior
+		animation = personality_honorable
+	}
+
+
+	option = { 	
+		name = ave_maria_story_cycle_fatimids.15.OPT.A
+		scope:loyal_savior = {
+			variable_duel = { TARGET = scope:regiment_leader_rioter VARIABLE = primary_title.var:islamic_empire_regiment_size_total_display }
+			save_scope_as = savior
+			random_list = {
+				## Success
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = 1
+					}
+					desc = riot_outcome.success
+					custom_tooltip = riot_outcome.success.15.tt
+					liege = {
+						trigger_event = {
+							id = ave_maria_story_cycle_fatimids.17
+							#days = 5
+						}
+					}
+					save_scope_as = victorious_savior
+				}
+			
+				## Failure
+				50 = {
+					compare_modifier = {
+						value = scope:duel_value
+						multiplier = -1
+					}
+					desc = riot_outcome.failure
+					custom_tooltip = riot_outcome.failure.15.tt
+					liege = {
+						trigger_event = {
+							id = ave_maria_story_cycle_fatimids.18
+							#days = 5
+						}
+					}
+					save_scope_as = failure_savior
+				}
+			}
+		}
+	}
+
+}
+
+## Liege receives vassal response - Sit back
+ave_maria_story_cycle_fatimids.16 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.16.title
+	desc = ave_maria_story_cycle_fatimids.16.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:false_savior
+		animation = idle
+	}
+
+	option = { 	
+		name = ave_maria_story_cycle_fatimids.16.OPT.A
+		trigger_event = { 
+			id = ave_maria_story_cycle_fatimids.12
+			days = { 5 7 }
+		}
+	}
+
+}
+
+## Success of urban operations - liege info
+ave_maria_story_cycle_fatimids.17 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.17.title
+	desc = ave_maria_story_cycle_fatimids.17.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+
+	right_portrait = {
+		character = scope:savior
+		animation = idle
+	}
+
+	option = {
+		name = ave_maria_story_cycle_fatimids.17.OPT.A
+		#custom_tooltip = ave_maria_story_cycle_fatimids.17.OPT.A.tt
+		capital_province = {
+			add_province_modifier = { modifier = recently_looted_modifier days = 180 }
+			add_province_modifier = { modifier = islamic_empire_aftermath_of_riots days = 180 }
+		}
+		hidden_effect = {
+			every_held_title = {
+				limit = {
+					tier = tier_county
+				}
+				title_province = {
+					remove_province_modifier = islamic_empire_military_riots
+				}
+			}	
+		}
+		scope:regiment_leader_rioter.primary_title = {
+			destroy_title = this
+		}
+		scope:regiment_leader_rioter = {
+			death = { death_reason = death_fight }
+		}
+		scope:savior = {
+			trigger_event = ave_maria_story_cycle_fatimids.19
+		}
+	}
+
+	## They shall be forgiven
+	option = {
+		name = ave_maria_story_cycle_fatimids.17.OPT.B
+		custom_tooltip = ave_maria_story_cycle_fatimids.17.OPT.A.tt
+		capital_province = {
+			add_province_modifier = { modifier = recently_looted_modifier days = 180 }
+			add_province_modifier = { modifier = islamic_empire_aftermath_of_riots days = 180 }
+		}
+		hidden_effect = {
+			every_held_title = {
+				limit = {
+					tier = tier_county
+				}
+				title_province = {
+					remove_province_modifier = islamic_empire_military_riots
+				}
+			}	
+		}
+		scope:regiment_leader_rioter.primary_title = {
+			set_variable = {
+				name = islamic_empire_regiment_size_total_display
+				value = 0
+			}
+			if = {
+				limit = {
+					has_variable = islamic_empire_regiment_size_infantry
+					var:islamic_empire_regiment_size_infantry > 0
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry
+					divide = 2
+				}
+				set_variable = {
+					name = islamic_empire_regiment_size_infantry_display
+					value = var:islamic_empire_regiment_size_infantry
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry_display
+					multiply = 100
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = var:islamic_empire_regiment_size_infantry_display
+				}
+			}
+			if = {
+				limit = {
+					has_variable = islamic_empire_regiment_size_light_cavalry
+					var:islamic_empire_regiment_size_light_cavalry > 0
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry
+					divide = 2
+				}
+				set_variable = {
+					name = islamic_empire_regiment_size_light_cavalry_display
+					value = var:islamic_empire_regiment_size_infantry
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_light_cavalry_display
+					multiply = 100
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = var:islamic_empire_regiment_size_light_cavalry_display
+				}
+			}
+			if = {
+				limit = {
+					has_variable = islamic_empire_regiment_size_heavy_cavalry
+					var:islamic_empire_regiment_size_heavy_cavalry > 0
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_infantry
+					divide = 2
+				}
+				set_variable = {
+					name = islamic_empire_regiment_size_heavy_cavalry_display
+					value = var:islamic_empire_regiment_size_infantry
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_heavy_cavalry_display
+					multiply = 50
+				}
+				change_variable = {
+					name = islamic_empire_regiment_size_total_display
+					add = var:islamic_empire_regiment_size_heavy_cavalry_display
+				}
+			}
+		}
+		scope:regiment_leader_rioter = {
+			death = { death_reason = death_fight }
+		}
+		scope:savior = {
+			trigger_event = ave_maria_story_cycle_fatimids.19
+		}
+	}
+
+
+}
+
+## Failure of urban operations
+ave_maria_story_cycle_fatimids.18 = {
+	type = character_event
+	title = ave_maria_story_cycle_fatimids.18.title
+	desc = ave_maria_story_cycle_fatimids.18.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+
+	right_portrait = {
+		character = scope:savior
+		animation = worry
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOT = {
+					this = scope:regiment_leader_rioter
+				}
+				NOR = {
+					this = scope:savior
+					this = scope:potential_savior_1
+					this = scope:potential_savior_2
+				}
+			}
+			save_scope_as = potential_savior_3
+		}
+		random_vassal = {
+			limit = {
+				max_military_strength > 2000
+				NOT = {
+					this = scope:regiment_leader_rioter
+				}				
+				NOR = {
+					this = scope:savior
+					this = scope:potential_savior_1
+					this = scope:potential_savior_2
+				}
+			}
+			weight = {
+				base = 1
+				modifier = {
+					add = 50
+					has_trait = ghulam
+				}
+				modifier = {
+					add = -10
+					has_trait = sayyid
+				}
+			}
+			save_scope_as = potential_savior_4
+		}
+	}
+
+	## Oh no - ask for help to another regiment
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.a
+		custom_tooltip = ave_maria_story_cycle_fatimids.12.OPT.a.tt
+		add_opinion = {
+			modifier = islamic_empire_military_riot
+			target = scope:regiment_leader_rioter
+		}
+		scope:regiment_leader_rioter = {
+			add_opinion = {
+				modifier = islamic_empire_military_riot
+				target = root
+			}
+		}
+		scope:potential_savior_1 = {
+			trigger_event = {
+				id = ave_maria_story_cycle_fatimids.13
+				#days = 5
+			}
+		}
+	}
+
+	## Oh no - ask for help to an provincial vassal
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.b
+		custom_tooltip = ave_maria_story_cycle_fatimids.12.OPT.b.tt
+		add_opinion = {
+			modifier = islamic_empire_military_riot
+			target = scope:regiment_leader_rioter
+		}
+		scope:regiment_leader_rioter = {
+			add_opinion = {
+				modifier = islamic_empire_military_riot
+				target = root
+			}
+		}
+		scope:potential_savior_2 = {
+			trigger_event = {
+				id = ave_maria_story_cycle_fatimids.13
+				#days = 5
+			}
+		}
+	}
+
+	## s'fine
+	option = {
+		name = ave_maria_story_cycle_fatimids.12.OPT.c
+		## Rioting spreads
+		capital_province = {
+			add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				NOT = { 
+					title_province = {
+						this = scope:capital
+					}
+				}
+			}
+			change_county_control = -100
+			title_province = {
+				add_province_modifier = { modifier = islamic_empire_military_riots days = 2000 }
+			}
+		}
+	}
+}
+
+# Letter event to inform the vassal
+ave_maria_story_cycle_fatimids.19 = {
+	type = letter_event
+	sender = scope:liege
+
+	opening = {
+		desc = ave_maria_story_cycle_fatimids.19.opening
+	}
+	desc = ave_maria_story_cycle_fatimids.19.desc
+
+	option = {
+		name = ave_maria_story_cycle_fatimids.19.OPT.A
+	}
+
+}

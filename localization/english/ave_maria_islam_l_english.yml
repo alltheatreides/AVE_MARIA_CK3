@@ -8,10 +8,10 @@
  barony_islamic_empire:0 "Kufur"
  county_islamic_empire:0 "Kūra"
  duchy_islamic_empire:0 "Imārah"
- kingdom_islamic_empire:0 "Salṭanah"
- empire_islamic_empire:0 "Salṭanah"
+ kingdom_islamic_empire:0 "Saltanah"
+ empire_islamic_empire:0 "Saltanah"
  duchy_islamic_empire_amir_government:0 "Imārah"
- kingdom_islamic_empire_amir_government:0 "Salṭanah"
+ kingdom_islamic_empire_amir_government:0 "Saltanah"
  duchy_islamic_empire_diwan_government:0 "Dīwān"
  kingdom_islamic_empire_diwan_government:0 "Dīwān"
 
@@ -36,13 +36,20 @@
 
  ## TITLES
  e_egypt:0 "Misr"
- d_fatimid_diwan_al_insha:0 "Dīwān al-Insha"
- d_fatimid_hajib:0 "Hajib"
+ d_fatimid_diwan_al_insha:0 "Dīwān al-'Inšā'"
+ d_fatimid_diwan_al_barid:0 "Dīwān al-Bārid"
+ d_fatimid_diwan_al_jays:0 "Dīwān al-Jayš"
+ d_fatimid_diwan_al_iqta:0 "Dīwān al-'Iqta'"
+ d_fatimid_diwan_al_karaj:0 "Dīwān al-Karāj"
+ d_fatimid_diwan_al_rawatib:0 "Dīwān al-Rawātib"
  k_fatimid_dawa:0 "Ismā'īli Da'Wa"
  d_kutama:0 "Kutâma Berbers"
  d_regiment_ghilman_turks:0 "Turkish Ghilman"
 
  d_regiment_abid:0 "Abīd Ghilman"
+
+ ## Dynasties
+ kutama_berbers:0 "Kutama"
 
  ## INNOVATIONS
  innovation_north_african_piracy:0 "North African Piracy"
@@ -160,6 +167,10 @@
  time_traveller:0 "Ahmad al-Qalqashandi"
  islam_fictional_2:0 "Ali al-Maghribi"
  islam_fictional_1:0 "Abu al-Durayhim"
+ islam_fictional_3:0 "Muḥammad ibn Salmān ibn Amīn al-Farsī"
+ islam_fictional_4:0 "Saleh ibn Tariq ibn Khalid al-Fulan"
+ islam_fictional_5:0 "Ismail"
+ islam_fictional_6:0 "Yūsuf"
  invention_abid:0 "al-Hādim al-Aswad Mi'ḍad"
  invention_berber:0 "Ja'far ibn Fallah"
  invention_turkish_ghulam:0 "Abu'l-hārith Arslān al-Muzaffar al-Basāsīrī"
@@ -220,6 +231,23 @@
  islamic_empire_asabiyya_level_strong:0 "Strong Asabiyya"
  islamic_empire_asabiyya_level_exceptional:0 "Exceptional Asabiyya"
 
+ islamic_empire_asabiyya_level_medium:0 "Medium Asabiyya"
+ islamic_empire_asabiyya_level_strong:0 "Strong Asabiyya"
+ islamic_empire_asabiyya_level_exceptional:0 "Exceptional Asabiyya"
+
+ islamic_empire_authority_strong:0 "Strong Caliphal Authority"
+ islamic_empire_authority_weakened:0 "Weakened Caliphal Authority"
+ islamic_empire_authority_religious_authority:0 "Religious Authority"
+ islamic_empire_authority_figurehead:0 "Figurehead"
+
+ islamic_empire_military_riots:0 "Military Riots"
+ islamic_empire_aftermath_of_riots:0 "Aftermath of Military Riots"
+
+ islamic_empire_military_wazir:0 "Military Wazir"
+
+ ## ACTIVITY
+ activity_riot:0 "Riot"
+
  ## GAME CONCEPTS
  game_concept_imarah:0 "Imārah"
  game_concept_qadi:0 "Qāḍī"
@@ -274,6 +302,8 @@
  islamic_empire_thugur_allowed_short:0 "Thugur"
 
  islamic_empire_muslim_tax:0 "Islamic Taxation"
+ no_tax:0 "No Taxation"
+ no_tax_short:0 "No Taxation"
  waqf_tax:0 "Waqf"
  zakat_tax:0 "Zakat"
  kharaj_tax:0 "Kharaj"
@@ -288,6 +318,8 @@
  mukus_tax_short:0 "Mukus"
 
  islamic_empire_non_muslim_tax:0 "Dimmī Jizyah"
+ jizya_tax_none:0 "None"
+ jizya_tax_none_short:0 "None"
  jizya_tax_gentle:0 "Gentle"
  jizya_tax_normal:0 "Normal"
  jizya_tax_extortionate:0 "Extortionate"
@@ -310,6 +342,8 @@
  ### GUI
  asabiyya_tooltip:0 "#T [asabiyya|E]: #V [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Var('islamic_empire_asabiyya').GetValue|0]#!#!\n#V [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Var('islamic_empire_asabiyya_monthly_display').GetValue|1]#!/month \n\n#T [asabiyya_level|E]: #!@asabiyya_icon! #V #L [CharacterWindow.GetCharacter.GetPrimaryTitle.MakeScope.Title.Custom( 'AsabiyyaLevelDisplay' )]"
 
+ authority_tooltip:0 "#T [asabiyya|E]: #V [CharacterWindow.GetCharacter.MakeScope.Var('islamic_empire_authority').GetValue|0]#!#!\n#V [CharacterWindow.GetCharacter.MakeScope.Var('islamic_empire_asabiyya_authority_display').GetValue|1]#!/month \n\n#T [asabiyya_level|E]: #!@asabiyya_icon! #V #L [CharacterWindow.GetCharacter.MakeScope.Title.Custom( 'AsabiyyaLevelDisplay' )]"
+
  asabiyya_level_very_weak_desc:0 "Very Weak"
  asabiyya_level_weak_desc:0 "Weak"
  asabiyya_level_medium_desc:0 "Medium"
@@ -318,7 +352,7 @@
 
  fatimid_army_factions_tab_header:0 "[jawalla|E]"
  fatimid_administration_tab_header:0 "[diwan|E]"
- fatimid_dawa_mission_tab_header:0 "Fatimid Dawa"
+ fatimid_dawa_mission_tab_header:0 "Ismā'īli Da'Wa"
 
  size_regiment:0 "#T Size:#! #V"
  salary_regiment:0 "#T Salary:#! #V"
@@ -341,12 +375,25 @@
  increase_heavy_cavalry_size_tt:0 "$EFFECT_LIST_BULLET$Increase Size by #P 1#!\n$EFFECT_LIST_BULLET$[soldier_i] +#V 50 [heavy_cavalry|E]#!\n$EFFECT_LIST_BULLET$Cost: [gold_i] #N 260"
  decrease_heavy_cavalry_size_tt:0 "$EFFECT_LIST_BULLET$Decreases Size by #N 1#!\n$EFFECT_LIST_BULLET$[soldier_i] -#V 50 [heavy_cavalry|E]#!\n$EFFECT_LIST_BULLET$Gain: [gold_i] #P 75"
 
+ diwan_gui_desc:0 "[Character.GetPrimaryTitle.MakeScope.Title.Custom( 'DiwanDescDisplay' )]"
+ d_fatimid_diwan_al_insha_gui_desc:0 "The Dīwān al-inshā', the chancery bureau is responsible for official correspondence with foreign rulers, provincial amirs as well as the production and conservation of various official documents (governors investiture, amirs pledges of allegiance etc.)"
+ d_fatimid_diwan_al_barid_gui_desc:0 "The task of the Dīwān al-Barīd, that is of the post is to carry messages across the realm as well as inform the official authorities of suspicious actions that might be plotted against the State as well as the behaviors of senior officials."
+ d_fatimid_diwan_al_jays_gui_desc:0 "The Dīwān al-Jayš, or bureau of the army, is responsible for the state soldier's registry, the distribution of pay to the Army regiments and units as well as army reviews."
+ d_fatimid_diwan_al_iqta_gui_desc:0 "The Dīwān al-'Iqta' is the bureau in charge of allocating and distributing the iqta allowances, a non inheritable right given to officers or select individuals to the tax revenues of some lands."
+ d_fatimid_diwan_al_karaj_gui_desc:0 "The Dīwān al-Karāj is tasked with the taxation for the state, assessing and updating land registry, and collecting revenues from taxpayers."
+ d_fatimid_diwan_al_rawatib_gui_desc:0 "The Dīwān al-Rawātib function is to manage and pay the salary of state officials."
+
+ 
+
+
+
  ## HOLDINGS
  pastoral_holding:0 "Nomad Controlled"
  pastoral_holding_concept_key:0 "Nomad Controlled"
  building_pastoral_holding_building_1:0 "Pastoral"
  building_pastoral_holding_building_1_desc:0 "This province is controlled by nomadic pastoral herders."
  building_type_pastoral_holding_building_1:0 "Nomad"
+
 
  ## BUILDINGS
  building_slave_market_1:0 "Slave Market"
@@ -356,20 +403,32 @@
  building_slave_market_2_desc:0 "This city demand for slave is high enough that a whole district market has been created with slaves coming from all around the world to be bought and sold by an ever growing clientele."
  building_type_slave_market_2:0 "[building|E]"
 
+
  ## OPINIONS
  islamic_empire_salary_opinion_modifier:0 "Salary"
  islamic_empire_increased_salary:0 "Increased Salary"
  islamic_empire_decreased_salary:0 "Decreased Salary"
  islamic_empire_low_salary:0 "Low Salary"
  islamic_empire_high_salary:0 "High Salary"
- islamic_empire_court_precedence:0 "Court Precedence"
+ islamic_empire_court_precedence_granted:0 "Court Precedence Granted"
  islamic_empire_court_precedence_removed:0 "Court Precedence Revoked"
+ islamic_empire_low_court_precedence:0 "Minor Court Precedence"
+ islamic_empire_high_court_precedence:0 "Court Precedence"
+ islamic_empire_military_riot:0 "Rioting"
 
  ## LAW
  islamic_empire_amir_succession_law:0 "Clientelism"
  islamic_empire_amir_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
+ islamic_empire_amir_succession_law_electors:0 "Magnates"
+ islamic_empire_amir_succession_law_candidates:0 "Candidates"
  islamic_empire_amir_succession_law_2:0 "Hereditary Clientelism"
  islamic_empire_amir_succession_law_2_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It permits direct familial inheritance of titles."
+ islamic_empire_amir_succession_law_2_electors:0 "Amir"
+ islamic_empire_amir_succession_law_2_candidates:0 "Candidates"
+ islamic_empire_diwan_succession_law:0 "Clientelism"
+ islamic_empire_diwan_succession_law_effect:0 "A succession type restricted to [administrative_titles], Clientelism [succession_law] favours the powerful but still offers possibility of advancement based on merit. It does not permit direct familial inheritance of titles."
+ islamic_empire_diwan_succession_law_electors:0 "Katib"
+ islamic_empire_diwan_succession_law_candidates:0 "Candidates"
 
  ## BOOKMARK
  bm_1066_islamic_empire:0 "The Time of the Sword"
@@ -380,6 +439,10 @@
  bookmark_islamic_empire_alp_arslan:0 "Muhammad bin Da'ud Chaghri"
  bookmark_islamic_empire_alp_arslan_desc:0 "Sole ruler of the Seljuks and Persia since the battle of Damghan where he defeated his uncle, Muhammad bin Da'ud Chaghri, nicknamed Alp Arslan, the Heroic Lion, is a powerful force to be reckoned with.\nThanks to the administrative help of Abu Ali Hasan ibn Ali Tusi, the realm conquered by Alp Arslan's grandfather is now balanced between his nomadic Turks and sedentary Persians allowing him to pursue his raiding and conquests against the numerous ennemies to the west, Rome and the Ismā'īli. \n\n#bold Finish what your ancestor started and submit the world to the domination of the Sword !"
  
+ ## CASUS BELLI
+ ave_maria_islamic_empire_purge:0 "Purge"
+ ISLAMIC_EMPIRE_PURGE_WAR_NAME:0 "$ORDER$ [ATTACKER.GetPrimaryTitle.GetAdjective] Purge against [DEFENDER.GetPrimaryTitle.GetNameNoTier]"
+
  ### EVENTS
  ave_maria_alim_events.0002.title:0 "Searching for Ālim"
  ave_maria_alim_events.0002.desc:0 "The world needs the Pen, especially rulers, especially for a [ROOT.Char.GetTitleTierName] and [ROOT.Char.GetHerHis] court. As per my request, my servants have inquired after recommendations for an ulamā. Now they have presented [target.GetFullName] as a candidate."
@@ -924,3 +987,54 @@
  islamic_empire_salary_cost_modifier_498:0 "Total Salary Cost"
  islamic_empire_salary_cost_modifier_499:0 "Total Salary Cost"
  islamic_empire_salary_cost_modifier_500:0 "Total Salary Cost"
+
+ islamic_empire_salary_1:0 "Salary"
+ islamic_empire_salary_2:0 "Salary"
+ islamic_empire_salary_3:0 "Salary"
+ islamic_empire_salary_4:0 "Salary"
+ islamic_empire_salary_5:0 "Salary"
+ islamic_empire_salary_6:0 "Salary"
+ islamic_empire_salary_7:0 "Salary"
+ islamic_empire_salary_8:0 "Salary"
+ islamic_empire_salary_9:0 "Salary"
+ islamic_empire_salary_10:0 "Salary"
+ islamic_empire_salary_11:0 "Salary"
+ islamic_empire_salary_12:0 "Salary"
+ islamic_empire_salary_13:0 "Salary"
+ islamic_empire_salary_14:0 "Salary"
+ islamic_empire_salary_15:0 "Salary"
+ islamic_empire_salary_16:0 "Salary"
+ islamic_empire_salary_17:0 "Salary"
+ islamic_empire_salary_18:0 "Salary"
+ islamic_empire_salary_19:0 "Salary"
+ islamic_empire_salary_20:0 "Salary"
+ islamic_empire_salary_21:0 "Salary"
+ islamic_empire_salary_22:0 "Salary"
+ islamic_empire_salary_23:0 "Salary"
+ islamic_empire_salary_24:0 "Salary"
+ islamic_empire_salary_25:0 "Salary"
+ islamic_empire_salary_26:0 "Salary"
+ islamic_empire_salary_27:0 "Salary"
+ islamic_empire_salary_28:0 "Salary"
+ islamic_empire_salary_29:0 "Salary"
+ islamic_empire_salary_30:0 "Salary"
+ islamic_empire_salary_31:0 "Salary"
+ islamic_empire_salary_32:0 "Salary"
+ islamic_empire_salary_33:0 "Salary"
+ islamic_empire_salary_34:0 "Salary"
+ islamic_empire_salary_35:0 "Salary"
+ islamic_empire_salary_36:0 "Salary"
+ islamic_empire_salary_37:0 "Salary"
+ islamic_empire_salary_38:0 "Salary"
+ islamic_empire_salary_39:0 "Salary"
+ islamic_empire_salary_40:0 "Salary"
+ islamic_empire_salary_41:0 "Salary"
+ islamic_empire_salary_42:0 "Salary"
+ islamic_empire_salary_43:0 "Salary"
+ islamic_empire_salary_44:0 "Salary"
+ islamic_empire_salary_45:0 "Salary"
+ islamic_empire_salary_46:0 "Salary"
+ islamic_empire_salary_47:0 "Salary"
+ islamic_empire_salary_48:0 "Salary"
+ islamic_empire_salary_49:0 "Salary"
+ islamic_empire_salary_50:0 "Salary"

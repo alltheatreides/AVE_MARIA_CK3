@@ -329,50 +329,52 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		create_character = {
-							age = 25
-							gender_female_chance = 0
-							#location = this.capital_province
-							faith = faith:ismaili
-							employer = this
-							culture = this.culture
-							random_traits_list = {
-								count = 2
-								calm = {}
-								brave = {}
-								gregarious = {}
-								ambitious = {}
-								stubborn = {}
-								arrogant = {}
-							}
-							random_traits_list = {
-								count = 1
-								education_martial_3 = {}
-								education_martial_4 = {}
-							}
-							random_traits_list = {
-								count = 2
-								brave = {}
-								thorough = {}
-							}
-							martial = {
-								min_template_decent_skill
-								max_template_decent_skill
-							}
-							prowess = { 8 12 }
-							after_creation = {
-								add_random_hexaco_personality_trait = { WHO = this }
-							
-								#Chance of receiving an extra commander trait
-								random = {
-									chance = 25
-									give_random_commander_trait_effect = yes
-								}
-							}
-						}
+		# random_held_title = {
+			# limit = {
+				# tier = tier_county
+				# NOT = {
+					# this = capital_county
+				# }
+			# }
+			# title_province = {
+				# add_building = roads_1
+			# }
+		# }
+		province:2163 = {
+			add_building = roads_1
+		}
+
 	}
 	
 }
 
+ave_maria_test_events.0007 = {
+	type = character_event
+	title = ave_maria_test_events.0007.title
+	desc = ave_maria_test_events.0007.desc
+
+	theme = realm
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:new_holder
+		animation = idle
+	}
+
+	option = {
+		name = ave_maria_test_events.0007.OPT.A
+		scope:barony.county = {
+            change_development_progress_with_overflow = 300
+			add_county_modifier = {
+                modifier = islamic_empire_ismailai_dawa_mission
+                years = 10
+            }
+        }
+	}
+}
 
 

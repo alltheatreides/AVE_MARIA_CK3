@@ -69,6 +69,9 @@ on_title_gain = {
 		#############################################
 		# AVE MARIA EFFECTS							#
 		#############################################
+
+		## OPUS RURALIUM COMMODORUM EFFECCT
+		orc_apply_demesne_provinces_distance_malus = yes
 		
 		# ## ROMAN ADMINISTRATION EFFECTS
 		# ## INHERITING E_BYZANTIUM
@@ -501,27 +504,30 @@ on_title_gain = {
 			}
 			scope:title = {
 				title_capital_county = {
-					limit = {
-						NOT = { 
-							this = { has_title_law = ave_maria_roman_administration_family_succession_law }
-							has_title_law = ave_maria_roman_administration_family_succession_law							
-						}
-						holder = {
-							any_liege_or_above = {
-								this = scope:current_liege
+					if = {
+						limit = {
+							NOT = { 
+								this = { has_title_law = ave_maria_roman_administration_family_succession_law }
+								has_title_law = ave_maria_roman_administration_family_succession_law							
+							}
+							holder = {
+								any_liege_or_above = {
+									this = scope:current_liege
+								}
 							}
 						}
+						create_title_and_vassal_change = {
+							type = granted
+							save_scope_as = change
+							add_claim_on_loss = yes
+						}
+						change_title_holder = {
+							holder = root
+							change = scope:change
+						}
+						resolve_title_and_vassal_change = scope:change
 					}
-					create_title_and_vassal_change = {
-						type = granted
-						save_scope_as = change
-						add_claim_on_loss = yes
-					}
-					change_title_holder = {
-						holder = root
-						change = scope:change
-					}
-					resolve_title_and_vassal_change = scope:change
+					
 				}
 			}
 		}
@@ -562,6 +568,7 @@ on_title_gain = {
 							has_government = clan_government
 							has_government = tribal_government
 						}						
+						religion = religion:islam_religion
 						primary_title = {
 							this = scope:title
 						}

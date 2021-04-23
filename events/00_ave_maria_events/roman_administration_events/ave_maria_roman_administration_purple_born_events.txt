@@ -1,4 +1,4 @@
-########################################################################################
+﻿########################################################################################
 #                                         											   #
 # AVE MARIA events																	   #
 # A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
@@ -66,11 +66,11 @@ ave_maria_roman_administration_purple_born_events.1 = {
 
 		stress_impact = {
 			reckless = medium_stress_impact_gain
-			pretentious = medium_stress_impact_gain
+			arrogant = medium_stress_impact_gain
 			selfassured = medium_stress_impact_gain
 			tough = medium_stress_impact_gain
 			brave = medium_stress_impact_gain
-			outgoing = medium_stress_impact_gain
+			gregarious = medium_stress_impact_gain
 			lively = medium_stress_impact_gain
 			sociable = medium_stress_impact_gain
 			stubborn = medium_stress_impact_gain
@@ -96,7 +96,7 @@ ave_maria_roman_administration_purple_born_events.2 = {
 			random_list = { #Insult female child, chance higher if primary heir is female
 
 				10 = {
-					scope:child = { add_character_flag = child_gender_insulted days = 75 }
+					scope:child = { add_character_flag = { flag = child_gender_insulted days = 75 } }
 					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
 					modifier = {
 						add = 30
@@ -121,7 +121,7 @@ ave_maria_roman_administration_purple_born_events.2 = {
 			
 				40 = { #Ugly kid
 					trigger_event = { id = ave_maria_roman_administration_purple_born_events.3 }
-					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
+					scope:child = { add_character_flag = { flag = child_appearence_insulted days = 75 } }
 					trigger = { 
 						scope:child = {
 							OR = {
@@ -154,7 +154,7 @@ ave_maria_roman_administration_purple_born_events.2 = {
 					
 				70 = { #Basileus has low popularity or legitimacy
 					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 }
-					scope:child = { add_character_flag = low_popularity_or_legitimacy days = 75 }
+					scope:child = { add_character_flag = { flag = low_popularity_or_legitimacy days = 75 } }
 					trigger = {
 						OR = {
 							var:roman_administration_popularity <= 30
@@ -165,7 +165,7 @@ ave_maria_roman_administration_purple_born_events.2 = {
 				
 				40 = { #Ugly kid
 					trigger_event = { id = ave_maria_roman_administration_purple_born_events.4 } 
-					scope:child = { add_character_flag = child_appearence_insulted days = 75 }
+					scope:child = { add_character_flag = { flag = child_appearence_insulted days = 75 } }
 					trigger = {
 						scope:child = {
 							OR = {

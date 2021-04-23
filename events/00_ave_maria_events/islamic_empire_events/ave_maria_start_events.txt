@@ -1,0 +1,138 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# GAME START EVENTS ISLAMIC EMPIRE													   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_islamic_empire_game_start_events
+
+# ave_maria_islamic_empire_game_start_events
+
+
+# TABLE OF CONTENT:
+
+
+ave_maria_islamic_empire_game_start_events.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		create_character = {
+			age = 25
+			gender_female_chance = 0
+			employer = root
+			faith = faith:ismaili
+			culture = root.culture
+			random_traits_list = {
+				count = 2
+				calm = {}
+				brave = {}
+				gregarious = {}
+				ambitious = {}
+				stubborn = {}
+				arrogant = {}
+			}
+			random_traits_list = {
+				count = 1
+				education_martial_3 = {}
+				education_martial_4 = {}
+			}
+			random_traits_list = {
+				count = 2
+				brave = {}
+				thorough = {}
+			}
+			martial = {
+				min_template_decent_skill
+				max_template_decent_skill
+			}
+			prowess = { 8 12 }
+			after_creation = {
+				add_random_hexaco_personality_trait = { WHO = this }
+				add_unpressed_claim = root.primary_title
+				#Chance of receiving an extra commander trait
+				random = {
+					chance = 25
+					give_random_commander_trait_effect = yes
+				}
+			}
+		}
+		create_character = {
+			age = 25
+			gender_female_chance = 0
+			employer = root
+			faith = faith:ismaili
+			culture = root.culture
+			random_traits_list = {
+				count = 2
+				calm = {}
+				brave = {}
+				gregarious = {}
+				ambitious = {}
+				stubborn = {}
+				arrogant = {}
+			}
+			random_traits_list = {
+				count = 1
+				education_martial_3 = {}
+				education_martial_4 = {}
+			}
+			random_traits_list = {
+				count = 2
+				brave = {}
+				thorough = {}
+			}
+			martial = {
+				min_template_decent_skill
+				max_template_decent_skill
+			}
+			prowess = { 8 12 }
+			after_creation = {
+				add_random_hexaco_personality_trait = { WHO = this }
+				add_unpressed_claim = root.primary_title
+				#Chance of receiving an extra commander trait
+				random = {
+					chance = 25
+					give_random_commander_trait_effect = yes
+				}
+			}
+		}
+
+		create_character = {
+			employer = root
+			template = bureaucrat_character
+			gender_female_chance = 0
+			after_creation = {
+				add_unpressed_claim = root.primary_title
+			}
+		}
+		create_character = {
+			employer = root
+			template = bureaucrat_character
+			after_creation = {
+				add_unpressed_claim = root.primary_title
+			}
+			gender_female_chance = 0
+		}
+		create_character = {
+			employer = root
+			template = bureaucrat_character
+			after_creation = {
+				add_unpressed_claim = root.primary_title
+			}
+			gender_female_chance = 0
+		}
+
+
+	}
+}
+

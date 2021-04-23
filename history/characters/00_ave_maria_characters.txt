@@ -1094,6 +1094,16 @@
 	1028.5.2 = {		
 		birth = yes	
 	}		
+	1066.1.1 = {
+		effect = {
+			title:d_fatimid_diwan_al_insha = {
+				set_variable = {
+					name = diwan_desc
+					value = flag:d_fatimid_diwan_al_insha
+				}
+			}
+		}
+	}
 }
 
 ## Invention
@@ -1102,12 +1112,12 @@
 	name = "islam_fictional_1"
 	martial = 5		
 	diplomacy = 4		
-	intrigue = 5		
+	intrigue = 7		
 	stewardship = 7		
 	prowess = 5		
 	religion = "ismaili"	
 	culture = "egyptian"	
-	trait = education_stewardship_3		
+	trait = education_intrigue_3		
 	1028.5.2 = {		
 		birth = yes	
 	}		
@@ -1181,6 +1191,7 @@
 111170 = {
 	## 
 	name = "invention_berber"
+	dynasty = kutama_berbers
 	martial = 9
 	diplomacy = 6
 	intrigue = 7
@@ -1197,7 +1208,13 @@
 	1066.1.1 = {
 		effect = {
 			set_variable = { name = de_re_militari_combat_experience value = 15 }
+
+			vassal_contract_set_obligation_level = {
+				type = islamic_empire_iqta
+				level = 1
+			}
 		}
+		
 	}
 }
 
@@ -1225,3 +1242,72 @@
 		}
 	}
 }
+
+## Invention Diwan holder
+111172 = {
+	# Abu al-Durayhim
+	name = "islam_fictional_3"
+	martial = 5		
+	diplomacy = 4		
+	intrigue = 5		
+	stewardship = 7		
+	prowess = 5		
+	religion = "ismaili"	
+	culture = "egyptian"	
+	trait = education_stewardship_3		
+	1028.5.2 = {		
+		birth = yes	
+	}		
+}
+
+## Invention Diwan holder
+111173 = {
+	#Ali al-Maghribi
+	name = "islam_fictional_4"
+	martial = 5		
+	diplomacy = 4		
+	intrigue = 5		
+	stewardship = 7		
+	prowess = 5		
+	religion = "ismaili"	
+	culture = "egyptian"	
+	trait = education_stewardship_3		
+	1028.5.2 = {		
+		birth = yes	
+	}		
+}
+
+## Invention Diwan holder
+111174 = {
+	# Abu al-Durayhim
+	name = "islam_fictional_5"
+	martial = 5		
+	diplomacy = 4		
+	intrigue = 5		
+	stewardship = 7		
+	prowess = 5		
+	religion = "ismaili"	
+	culture = "egyptian"	
+	trait = education_stewardship_3		
+	1028.5.2 = {		
+		birth = yes	
+	}		
+}
+
+## Invention Diwan holder
+111175 = {
+	#Ali al-Maghribi
+	name = "islam_fictional_6"
+	martial = 5		
+	diplomacy = 4		
+	intrigue = 5		
+	stewardship = 7		
+	prowess = 5		
+	religion = "ismaili"	
+	culture = "egyptian"	
+	trait = education_stewardship_3		
+	1028.5.2 = {		
+		birth = yes	
+	}		
+}
+
