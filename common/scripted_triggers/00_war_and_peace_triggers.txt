@@ -509,7 +509,7 @@ special_invasion_cb_seize_land_in_region_trigger = {
 			tier = tier_duchy
 			OR = {
 				# Title is in the specified region
-				capital_vassal = {
+				title_capital_county = {
 					title_province = {
 						geographical_region = $TARGET_REGION$
 					}
@@ -542,7 +542,7 @@ special_invasion_cb_seize_land_in_region_trigger = {
 					de_jure_liege = {
 						exists = holder
 						OR = {
-							capital_vassal = {
+							title_capital_county = {
 								title_province = {
 									geographical_region = $TARGET_REGION$
 								}

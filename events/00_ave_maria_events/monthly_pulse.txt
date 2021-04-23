@@ -333,94 +333,115 @@ monthly_pulse.13 = {
 		}
 		
 		## Asabiyya
-		every_county = {
-			limit = {
-				has_variable = islamic_empire_asabiyya
-			}
-			set_variable = {
-				name = islamic_empire_asabiyya_monthly_display
-				value = islamic_empire_asabiyya_monthly
-			}
-			change_variable = {
-				name = islamic_empire_asabiyya
-				add = islamic_empire_asabiyya_monthly
-			}
-			islamic_empire_asabiyya_level_calc = yes
+		# every_county = {
+		# 	limit = {
+		# 		has_variable = islamic_empire_asabiyya
+		# 	}
+		# 	set_variable = {
+		# 		name = islamic_empire_asabiyya_monthly_display
+		# 		value = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	change_variable = {
+		# 		name = islamic_empire_asabiyya
+		# 		add = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	islamic_empire_asabiyya_level_calc = yes
 			
-		}
-		every_duchy = {
+		# }
+		# every_duchy = {
+		# 	limit = {
+		# 		has_variable = islamic_empire_asabiyya
+		# 	}
+		# 	set_variable = {
+		# 		name = islamic_empire_asabiyya_monthly_display
+		# 		value = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	change_variable = {
+		# 		name = islamic_empire_asabiyya
+		# 		add = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	islamic_empire_asabiyya_level_calc = yes
+		# }
+		# every_kingdom = {
+		# 	limit = {
+		# 		has_variable = islamic_empire_asabiyya
+		# 	}
+		# 	set_variable = {
+		# 		name = islamic_empire_asabiyya_monthly_display
+		# 		value = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	change_variable = {
+		# 		name = islamic_empire_asabiyya
+		# 		add = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	islamic_empire_asabiyya_level_calc = yes
+		# }
+		# every_empire = {
+		# 	limit = {
+		# 		has_variable = islamic_empire_asabiyya
+		# 	}
+		# 	set_variable = {
+		# 		name = islamic_empire_asabiyya_monthly_display
+		# 		value = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	change_variable = {
+		# 		name = islamic_empire_asabiyya
+		# 		add = islamic_empire_asabiyya_monthly
+		# 	}
+		# 	islamic_empire_asabiyya_level_calc = yes
+		# }
+
+		every_ruler = {
 			limit = {
-				has_variable = islamic_empire_asabiyya
+				is_alive = yes
+				is_landed = yes
+				primary_title = {
+					has_variable = islamic_empire_asabiyya
+				}
 			}
-			set_variable = {
-				name = islamic_empire_asabiyya_monthly_display
-				value = islamic_empire_asabiyya_monthly
+			primary_title = {
+				set_variable = {
+					name = islamic_empire_asabiyya_monthly_display
+					value = islamic_empire_asabiyya_monthly
+				}
+				change_variable = {
+					name = islamic_empire_asabiyya
+					add = islamic_empire_asabiyya_monthly
+				}
+				islamic_empire_asabiyya_level_calc = yes
 			}
-			change_variable = {
-				name = islamic_empire_asabiyya
-				add = islamic_empire_asabiyya_monthly
-			}
-			islamic_empire_asabiyya_level_calc = yes
-		}
-		every_kingdom = {
-			limit = {
-				has_variable = islamic_empire_asabiyya
-			}
-			set_variable = {
-				name = islamic_empire_asabiyya_monthly_display
-				value = islamic_empire_asabiyya_monthly
-			}
-			change_variable = {
-				name = islamic_empire_asabiyya
-				add = islamic_empire_asabiyya_monthly
-			}
-			islamic_empire_asabiyya_level_calc = yes
-		}
-		every_empire = {
-			limit = {
-				has_variable = islamic_empire_asabiyya
-			}
-			set_variable = {
-				name = islamic_empire_asabiyya_monthly_display
-				value = islamic_empire_asabiyya_monthly
-			}
-			change_variable = {
-				name = islamic_empire_asabiyya
-				add = islamic_empire_asabiyya_monthly
-			}
-			islamic_empire_asabiyya_level_calc = yes
 		}
 
 		## Authority
-		every_empire = {
-			limit = {
-				holder = {
-					has_variable = islamic_empire_authority
-				}
-			}
-			holder = {
-				# set_variable = {
-				# 	name = average_opinion
-				# 	value = 0
-				# }
-				# every_vassal = {
-				# 	set_variable = {
-				# 		name = opinion_of_liege
-				# 		value = opinion_of_liege
-				# 	}
-				# 	liege = {
-				# 		change_variable = {
-				# 			name = average_opinion
-				# 			add = prev.var:opinion_of_liege
-				# 		}
-				# 	}					
-				# }
-				change_variable = {
-					name = islamic_empire_authority
-					add = islamic_empire_authority_monthly
-				}
-			}
-		}
+		# every_empire = {
+		# 	limit = {
+		# 		holder = {
+		# 			has_variable = islamic_empire_authority
+		# 		}
+		# 	}
+		# 	holder = {
+		# 		# set_variable = {
+		# 		# 	name = average_opinion
+		# 		# 	value = 0
+		# 		# }
+		# 		# every_vassal = {
+		# 		# 	set_variable = {
+		# 		# 		name = opinion_of_liege
+		# 		# 		value = opinion_of_liege
+		# 		# 	}
+		# 		# 	liege = {
+		# 		# 		change_variable = {
+		# 		# 			name = average_opinion
+		# 		# 			add = prev.var:opinion_of_liege
+		# 		# 		}
+		# 		# 	}					
+		# 		# }
+		# 		change_variable = {
+		# 			name = islamic_empire_authority
+		# 			add = islamic_empire_authority_monthly
+		# 		}
+		# 	}
+		# }
 
 		# ## Vassal contracts for dhimmi
 		# every_ruler = {

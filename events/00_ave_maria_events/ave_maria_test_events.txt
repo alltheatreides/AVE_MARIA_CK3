@@ -329,21 +329,13 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		# random_held_title = {
-			# limit = {
-				# tier = tier_county
-				# NOT = {
-					# this = capital_county
-				# }
-			# }
-			# title_province = {
-				# add_building = roads_1
-			# }
-		# }
-		province:2163 = {
-			add_building = roads_1
+		capital_province = {
+			set_variable = {
+				name = test_test_test
+				value = 0
+			}
+			add_to_variable_list = { name = total target = scope:test_test_test }
 		}
-
 	}
 	
 }

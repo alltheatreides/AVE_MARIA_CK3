@@ -70,8 +70,38 @@ on_title_gain = {
 		# AVE MARIA EFFECTS							#
 		#############################################
 
-		## OPUS RURALIUM COMMODORUM EFFECCT
-		orc_apply_demesne_provinces_distance_malus = yes
+		## OPUS RURALIUM COMMODORUM EFFECT
+		root = {
+			if = {
+				limit = {
+					is_landed = yes
+				}
+				trigger_event = { 
+					id = ave_maria_opus_ruralium_commodorum.0002
+					delayed = yes 
+				}
+			}
+			
+		}		
+		if = {
+			limit = {
+				exists = scope:previous_holder
+			}
+			scope:previous_holder = {
+				if = {
+					limit = {
+						exists = this
+						is_landed = yes
+						is_alive = yes
+					}
+					trigger_event = { 
+						id = ave_maria_opus_ruralium_commodorum.0002
+						delayed = yes 
+					}
+				}
+			}
+		}
+		
 		
 		# ## ROMAN ADMINISTRATION EFFECTS
 		# ## INHERITING E_BYZANTIUM
@@ -316,7 +346,6 @@ on_title_gain = {
 			## Starting the terms of office event chain - removed
 			root = {
 				remove_character_modifier = roman_administration_emperor_favourite
-				#trigger_event = ave_maria_roman_administration_events.00012
 			}
 			
 			scope:previous_holder = {
@@ -464,6 +493,10 @@ on_title_gain = {
 				root = {
 					uses_islamic_empire_govt = yes
 				}		
+				liege = {
+					uses_islamic_empire_govt = yes
+					highest_held_title_tier = tier_empire
+				}
 				scope:title = {
 					tier >= tier_duchy
 					NOR = {
