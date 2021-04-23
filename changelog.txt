@@ -7,6 +7,136 @@
 #                               													   #
 ########################################################################################
 
+## 23/04/2020
+## v0.2-alpha
+# Communication Efficiency
+- Added a communication efficiency mechanic: counties distant from the capital get a malus to county Control based on their distance, terrain and buildings (Roads (new building) and Ports which decrease the malus). Enclaved counties (no path to the capital that does not involve going through someone else territory) have their Control decreased to 20.
+- Added the Via Egnetia road network for the Romans (still more historical roads to be placed!)
+# Roman Administration additions by Conchodebar
+- Added a new Thermal Cure decision and events available to character geographically near Crius province (near Constantinople on the anatolian coast) and in poor health to visit the thermal sources of Pythia or Prusa
+- Added a new Born in the Purple event triggered to children born...to the Basileus.
+# Islamic Empires
+- Added new government, Dawla government to represent the islamic centralized bureaucratic state. Clan government still exists and keeps its vanilla feature and is to be seen as something more akin to vanilla tribals.
+- Added new vassal contracts for empire tier muslims and their duchy tier vassals: Kharaj right, Qadi right, Dynastic Inheritance, War Declaration right, Iqta and Thugur.
+- Added new vassal contracts for islamic rulers in general: Muslim Taxation, Dhimmi Taxation (taxes available only to jewish/christian vassals)
+- Replaced the Court Chaplain Councillor position for muslim into Qadi position. The convert task has been replaced by a new task "Render Local Justice" improving local county opinion
+- Duchy tier vassals of a Dawla government ruler cannot name their own Qadi/Steward without the corresponding vassal contract law, instead a new decision to ask their liege to name a new official is available
+- Added new mechanic for muslim clan and tribal government rulers: Asabiyya. Inspired by Ibn Khaldoun principle, it represents the bond of cohesion among humans in a group-forming community, it is social solidarity with an emphasis on unity, group consciousness, and a sense of shared purpose and social cohesion. Familiar in pre-islamic and islamic era, in game terms it provides various bonuses to rulers maintaining their Asabiyya strong (Skirmishers and light cavalry combat bonus, raid speed increase, vassal opinion and prestige gain). It is reduced when the realm_capital holding of a character is not of the Nomad type and can be increased through various traits or events.
+- Added new Settlement type: Nomad Controlled Settlement, to represent local power by pastoral type of actors.
+- When Asabiyya reaches 0, the character changes to a Dawla government.
+- Added a new Empire title for the Fatimid with a new succession law similar to a vanilla heir designation
+- Added a new decision for muslim ruler to recruit a learned character.
+- Added a new decision for the Fatimid Imam to recruit military slave teenagers to be trained as slave soldiers.
+- Added a new Institution and mechanic with Fatimid Army Regiments where their size and composition can be changed. Similar to Roman Tagma, those regiments should automatically join the Imam wars and spawn with troops according to their size/composition
+# Berber Rework by TheNunnceler
+- Removed vanilla Butr and Baranis culture, replaced by Iznagen (largely nomadic Berbers in Western Sahara), Iznaten (largely nomadic Berbers along the sahara's north edge and the mediterrannean coast), Masmuda (largely settled Berbers in southern Morocco and northern Western Sahara), Imuhaɣ (nomadic berbers of the Sahara and northern Sahel (tuareg) and Guanche (berber-ish people off the coast of morocco)
+- All historical vanilla provinces have been changed to those new cultures
+# Norman Rework by TheNunnceler
+- Robert Guiscard starts at war with the Zirid controlled Sicily
+- Sicilian culture has been removed until the conquest of the island has been completed by the Normans.
+
+## 21/03/2020
+## v0.1.9.2-alpha
+- Updated to vanilla 1.3
+
+## 22/02/2021
+## v0.1.9.2-alpha
+- Added new relationships for the Basileus, Dignities court titles to improve relations with the vassals (replacement to the new councillor slots from previous patch)
+- Added back natural County Control increase (0.1 daily)
+- Added several new game concepts explaining mod features
+- Revamped the Roman Institutions to be cleaner and more explicative.
+- New GFX here and there
+- Performance improvement thanks to the destruction of a diabolical cloning machine created by a terrible unvoluntary mistake.
+- Added a new Election weight modifier for the Roman Emperor Election: People will be more inclined to vote for the candidate of a Highly Popular Basileus
+- Part of a Basileus Popularity is transferred to his successor if he is of the same dynasty (third of Popularity)
+- Restricted the Imprison option to player characters for the decision on what to do with previous emperors having been deposed through faction demand
+- Curbed the Pope secular aggression through his Pope trait
+- Fixed Court Chaplain councillor triggers for Christians ; only Monks and Theocracy governments character (and Rhetorician for the Romans) can become Court Chaplain
+- Added localized Councillor names to the Romans
+- Replaced County Claim Fabrication for the Basileus to Intellectual Activity, increasing Cultural Fascination progress
+
+## 12/02/2021
+## v0.1.9.1-alpha
+- Overhauled how heresies work, they will trigger now on a random Monk/Priest who will convert to the new heresy and spark up popular county conversion in the geographical location of the heresiarch, only the player host of the heretic Monk/Priest can decide to convert to the new heresy
+- Overhauled the Martial education traits: vanilla martial education is now understood as a physical martial arts education when you learn to fight. The education martial trait thus give prowess instead of martial. Upon 16th birthday, children following a martial education can gain the Commander trait (same tier as vanilla martial education and same stats) representing his ability to lead men and armies. Barring exceptional individuals (or proven Commander guardians), 16 year old will not get the highest martial tier but can learn to be better commanders during battles either as commanders or as knights (half of the experience). Positive Openess to Experience and Honesty Humility traits will make them progress and improve their Commander trait faster
+- Removed Martial stat bonus from Berserker
+- Added Martial stat (2,4,6) for the Hunter trait
+- Going below 25 Popularity as the Basileus will give every Doux, Tagma commanders and high administration official a claim on the Empire
+- GUI rewriting to reduce size of error log
+- Going for a run (Stress Reduction Decision from Athletic trait will reduce your target weight now, no more Athletic obese characters regularly going for a run and not seeing any result)
+- Added an event triggered when you become Roman Emperor through a Faction Demand to decide on what to do with your predecessor (snip snip)
+- Reduced to 0 the negative Marriage weighting modifier based on the number of owned alliances
+- Improved Legitimacy calculation weighting for the Emperor election: one Legitimacy point give you one additional vote weight up until 150 where it caps
+- Increased Junior Emperor trait vote weight in Emperor election to 150 (from 100)
+- Blind and Eunuch characters are barred from the Emperor election
+- Born in the Purple and positive Beauty traits increase initial Popularity calculation (+20 ; +10/15/20)
+- Added crutches to the AI when becoming Roman Emperor to choose one of the Basileus Lifestyle focuses
+- Cannot buy land/add Family succession law to a county title under a Kourator duchy title
+- Increased chances for the AI to take the Sponsor Church Renovation decision when Popularity is below 50
+- Automatic government change for roman vassals using roman government when they fall outside of the empire
+- Increased the AI chance to take the Imperial Expedition decision if they have Martial quality traits and inversely if they are do not
+- Increased Ai chance to replace/fire the Domestikos of the Scholai if he is not of your own dynasty
+- Barred +55 years old characters from Strategos elections.
+- Reworked Obsessed Hunter trait gfx to be more in line with vanilla style
+- Reduced weight gain from Feast Activity by half
+- Added a minimum 0.1 income and 100 levies to Sparsely Populated Holdings
+- Changed the 1066 De Jure setup for the Kingdom of France by including all of Aquitaine and Catalonia
+
+## 05/02/2021
+## v0.1.9-alpha
+- Increased Trykanion game decision cooldown
+- Added a Retire decision for ducal tiers and above roman rulers when they reach 50 year old (Weighting for AI depending on their personality and skills)
+- Added a new decision for Roman landed characters: Sponsor a Church Renovation. For the cost of gold, you can order a mosaic construction in a church and get prestige, piety and for the emperor a bit of popularity.
+- Added a titular empire title for the Fatimids
+- New map color for the Seljuk and the Fatimids
+- New dynasty emblem for the Fatimids
+- Added some vanilla events from other lifestyle to the Basileus lifestyle
+- Bugfixes
+
+## 02/02/2021
+## v0.1.8-alpha
+- Reworked the HEXACO trait attribution at 16: instead of being entirely randomly generated, each child has 10% of getting a random HEXACO trait from each category but this base chance is modified by live parents and guardian (+20 for each parents/guardian having the same trait and subsequently +15/10/5/3 for having trait of the same type).
+Example 1 : Both parents and the child's guardian have the Faithful trait: chances of getting the Faithful trait for the child are: 10+20+20+20
+Example 2 : Mother has Faithful, Father has Just: chances of getting the Faithful trait are: 10+20+15
+Example 3 : Mother has Faithful, Father has Humble: chances of getting the Faithful trait are: 10+20+3
+- Added proper tooltip for Popularity/Legitimacy levels and monthly increase (Next should be the breakdown of the monthly increase)
+- Added an income malus modifier to newly appointed Roman Empire officials (-25% taxes for a year)
+- Made Doukaton contract levels into "radiobutton" (meaning you do not have to linearly move between the levels) (will need to revisit them later as some levels are not relevant anymore with this setup)
+- Reduced chances of random sex between strangers during Feasts
+- Reduced chances of Abduction and Murder from target title tier.
+- Added the possibility to swap officials with the Replace Official interaction instead of always naming new landless ones.
+- Reduced base popular revolt chances modifier from different religion
+- Added a new character interaction for the Roman Emperor to convert feudal vassals into Doukaton/Theme (depending on their geographical situation) for a price (500 gold base for duchies and 1000 for Kingdom tier) and a reward (+20 Popularity/Legitimacy) if the title is a de-jure Roman Empire title.
+- Bugfixes
+
+## 25/01/2021
+## v0.1.7-alpha
+- Added a new lifestyle for holders of the Roman Empire: Basileus Lifestyle.
+- Properly added the Popularity reduction tooltip from increasing taxes in the Roman Administration vassal contracts.
+- Added a new MAA type for the Romans: Menaulatoi, an ERE equivalent of Pikemen
+- Added an utility decision for the holder of the Roman Empire to refresh vassal taxes that are not being paid properly (vanilla issue), read the instructions before use.
+- Added a chance to be wounded during the Tzykanion game if you fail your daring manoeuvre to gain more points.
+- Bugfixes
+
+## 19/01/2021
+## v0.1.6-alpha
+- Removed the council changes from 0.1.4 for now as performance was tanked due to the new council positions/triggers. They should come back in another form in a new custom window
+- Added a new decision and related events: Organize a Tzykanion Game
+- Added four new education traits, Amateur Scholar, Scholar, Famous Scholar and Renowned Scholar that can be acquired during any Ward educated at Constantinople increasing Learning and Stewardship
+- Added a bonus similar to university education to characters being tutored in Constantinople to represent the various high learning centers of the capital: you have an interest of sending your child to be educated at the City
+- Bugfixes
+
+## 09/01/2021
+## v0.1.5-alpha
+- Added new council positions specific to the ERE, 5 replacing the vanilla councillors and 6 new positions in a new tab (Thanks to Anão Grande for the help)
+- Added new buildings for sparsely populated settlements that can change them into regular type of settlements for the regular price of building a settlement.
+- Addes a series of new decisions and events related to Imperial Expeditions where the Basileus can lead the army and organize Triumphs on his return with parades and hippodrome races.
+- Changed Tax Nonbelievers islam tenet to incorporate the Adaptative Tenet of the now defunct Muwalladi giving them a better relationship with characdifferent faiths under them
+- Added some text icon GUI that should improve the tooltip effect and explanation of increase of Popularity/Legitimacy
+- Changed the color of the ERE flag from red to purple.
+- Fixed the Co Emperor Decisions
+- (could not fix the Holy order decisions in time sorry :( )
+
 ## 18/12/2020
 ## v0.1.4-alpha
 - Fixed crash issues related to Roman Vassal Contracts (God(s) be praised it has been a month of this issue now)
