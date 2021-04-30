@@ -62,8 +62,10 @@ theocracy_government = {
 		trigger_if = {
 			limit = {
 				NOR = {
-					faith = faith:catholic
-					faith = faith:orthodox 
+					# faith = faith:catholic
+					# faith = faith:orthodox 
+					religion = religion:christianity_religion
+					religion = religion:islam_religion
 				}
 			}
 			NOT = {
@@ -75,8 +77,10 @@ theocracy_government = {
 		trigger_if = {
 			limit = {
 				OR = {
-					faith = faith:catholic
-					faith = faith:orthodox 
+					# faith = faith:catholic
+					# faith = faith:orthodox 
+					religion = religion:christianity_religion
+					religion = religion:islam_religion
 				}
 			}
 			OR = {
@@ -85,7 +89,7 @@ theocracy_government = {
 				}
 				any_held_title = { this = title:k_orthodox }
 				any_held_title = { this = title:k_papal_state }
-				
+				any_held_title = { this = title:k_fatimid_dawa }
 			}
 			
 		}	

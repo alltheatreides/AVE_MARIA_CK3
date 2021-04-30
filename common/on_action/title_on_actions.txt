@@ -344,18 +344,46 @@ on_title_gain = {
 			# }
 			
 			## Starting the terms of office event chain - removed
+			## Triggering the appointment events
 			root = {
-				remove_character_modifier = roman_administration_emperor_favourite
-			}
-			
-			scope:previous_holder = {
 				if = {
 					limit = {
-						is_alive = yes
+						has_character_modifier = roman_administration_emperor_favourite
 					}
-					remove_character_modifier = roman_administration_high_official_salary
+					remove_character_modifier = roman_administration_emperor_favourite
+				}				
+				## Saving root scope as new_holder for the events
+				save_scope_as = new_holder
+				## triggering the event for the liege, the new holder (the event to previous holder is triggered in the liege event for scope saving purposes)
+				liege = {
+					trigger_event = { id = ave_maria_roman_administration_officials_nomination_events.0001 }
+				}
+				if = {
+					limit = {
+						scope:new_holder.primary_title >= tier_duchy
+					}
+					trigger_event = { 
+						id = ave_maria_roman_administration_officials_nomination_events.0005 
+						# days = 1 
+					}
+				}			
+				
+			}
+			
+			if = {
+				limit = {
+					exists = scope:previous_holder
+				}
+				scope:previous_holder = {
+					if = {
+						limit = {
+							is_alive = yes
+						}
+						remove_character_modifier = roman_administration_high_official_salary
+					}
 				}
 			}
+			
 
 			if = {
 				limit = {

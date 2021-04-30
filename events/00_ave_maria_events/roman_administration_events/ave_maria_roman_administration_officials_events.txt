@@ -1,0 +1,416 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# OFFICIAL APPOINTMENT EVENTS														   #
+#                               													   #
+########################################################################################
+
+# Written by Maneege
+
+namespace = ave_maria_roman_administration_officials_nomination_events
+
+## Initial event for the basileus triggered from title_gain on_action
+ave_maria_roman_administration_officials_nomination_events.0001 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0001.title
+	desc = ave_maria_roman_administration_officials_nomination_events.0001.desc.emp
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:new_holder
+		animation = personality_honorable
+	}
+
+	immediate = {
+		# Save the logothetes as scope
+		every_diplomacy_councillor = {
+			save_scope_as = logothetes
+		}
+		## Trigger the event for the previous title holder if he is alive
+		if = {
+			limit = {
+				exists = scope:previous_holder
+				scope:previous_holder = {
+					is_alive = yes
+				}
+			}
+			scope:previous_holder = {
+				trigger_event = { 
+					id = ave_maria_roman_administration_officials_nomination_events.0003 
+					#days = 1 
+				}
+			}					
+		}
+	}
+	
+	## Triggers the event for the rest of the vassals invited to the ceremony
+	option = {
+		name = ave_maria_roman_administration_officials_nomination_events.0001.OPT.EMP
+		every_vassal = {
+			limit = {
+				highest_held_title_tier >= tier_duchy
+				NOT = {
+					this = scope:new_holder
+				}
+			}
+			trigger_event = { 
+				id = ave_maria_roman_administration_officials_nomination_events.0002 
+				#days = 1
+			}
+		}
+	}
+	
+}
+
+## Event for other vassals informing them of the appointement of the new official - triggered from 0001 option
+ave_maria_roman_administration_officials_nomination_events.0002 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0002.title
+	desc = ave_maria_roman_administration_officials_nomination_events.0002.desc.new
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:new_holder
+		animation = personality_honorable
+	}
+
+	immediate = {
+		
+	}
+	
+	option = {
+		name = ave_maria_roman_administration_officials_nomination_events.0002.OPT.VAS.1
+	}
+	
+	option = {
+		trigger = {
+			OR = {
+				scope:new_holder = {
+					has_trait = arrogant
+					has_trait = greedy
+					has_trait = arbitrary
+					has_trait = cynical
+					has_trait = deceitful
+					has_trait = ambitious
+				}
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0002.OPT.VAS.2
+	}
+	
+	option = {
+		trigger = {
+			OR = {
+				scope:new_holder = {
+					has_trait = sloppy
+					has_trait = negligent
+					has_trait = reckless
+					has_trait = lazy
+					has_trait = fickle
+				}
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0002.OPT.VAS.3
+	}
+	
+	option = {
+		trigger = {
+			OR = {
+				scope:new_holder = { 
+					has_trait = forgiving
+					has_trait = compassionate
+					has_trait = patient
+					has_trait = trusting
+					has_trait = calm
+				}
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0002.OPT.VAS.4
+	}
+	
+}
+
+## Event for the fired vassal
+ave_maria_roman_administration_officials_nomination_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0003.title
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					is_independent_ruler = yes
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0003.desc.emp
+			}
+			
+			triggered_desc = {
+				trigger = {
+					is_independent_ruler = no
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0003.desc.vas
+			}
+		}
+	}
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = scope:basileus
+		animation = boredom
+	}
+
+	right_portrait = {
+		character = root
+		animation = rage
+	}
+
+	immediate = {
+		liege = {
+			save_scope_as = basileus
+		}
+	}
+	
+	option = {
+		trigger = {
+			is_independent_ruler = yes
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0003.OPT.EMP
+	}
+	
+	option = {
+		trigger = {
+			is_independent_ruler = no
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0003.OPT.VAS
+	}
+}
+
+#30/04/21 ignored for now
+ave_maria_roman_administration_officials_nomination_events.0004 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0004.title
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					is_independent_ruler = yes
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0004.desc.emp
+			}
+			
+			triggered_desc = {
+				trigger = {
+					is_independent_ruler = no
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0004.desc.vas
+			}
+		}
+	}
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = scope:actor
+		animation = bored
+	}
+
+	right_portrait = {
+		character = scope:recipient
+		animation = rage
+	}
+	
+	option = {
+		trigger = {
+			is_independent_ruler = yes
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0004.OPT.EMP
+		trigger_event = ave_maria_roman_administration_officials_nomination_events.0005
+		scope:secondary_recipient = {
+			trigger_event = ave_maria_roman_administration_officials_nomination_events.0005
+		}
+	}
+	
+	option = {
+		trigger = {
+			is_independent_ruler = no
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0004.OPT.VAS
+	}
+}
+
+## Event for the new official when gaining a new title
+ave_maria_roman_administration_officials_nomination_events.0005 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0005.title
+	desc = ave_maria_roman_administration_officials_nomination_events.0005.desc.vas
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = scope:basileus
+		animation = idle
+	}
+
+	right_portrait = {
+		character = root
+		animation = personality_honorable
+	}
+
+	immediate = {
+		liege = {
+			save_scope_as = basileus
+			every_diplomacy_councillor = {
+				save_scope_as = logothetes
+			}
+		}
+	}
+	
+	option = {
+		name = ave_maria_roman_administration_officials_nomination_events.0001.OPT.VAS
+		#trigger_event = ave_maria_roman_administration_officials_nomination_events.0006
+	}
+}
+
+#30/04/21 ignored for now
+ave_maria_roman_administration_officials_nomination_events.0006 = {
+	type = character_event
+	title = ave_maria_roman_administration_officials_nomination_events.0006.title
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					root = scope:secondary_recipient
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0006.desc.vas
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = {
+						root = scope:secondary_recipient
+					}
+				}
+				desc = ave_maria_roman_administration_officials_nomination_events.0006.desc.new
+			}
+		}	
+	}
+	theme = realm
+	override_background = {
+		event_background = ave_maria_constantinople_akkubita_dining_hall
+	}
+
+	left_portrait = {
+		character = root
+		trigger = {
+			NOT = {
+				root = scope:secondary_recipient
+			}
+		}
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:secondary_recipient
+		animation = admiration
+	}
+	
+	option = {
+		trigger = {
+			NOT = {
+				root = scope:secondary_recipient
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0006.OPT.VAS.1
+	}
+	
+	option = {
+		trigger = {
+			NOT = {
+				root = scope:secondary_recipient
+			}
+			AND= {
+				scope:secondary_recipient = {
+					has_trait = arrogant
+					has_trait = greedy
+					has_trait = arbitrary
+					has_trait = cynical
+					has_trait = deceitful
+					has_trait = ambitious
+				}
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0006.OPT.VAS.2
+	}
+	
+	option = {
+		trigger = {
+			NOT = {
+				root = scope:secondary_recipient
+			}
+			AND= {
+				scope:secondary_recipient = {
+					has_trait = sloppy
+					has_trait = negligent
+					has_trait = reckless
+					has_trait = lazy
+					has_trait = fickle
+				}
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0006.OPT.VAS.3
+	}
+	
+	option = {
+		trigger = {
+			NOT = {
+				root = scope:secondary_recipient
+			}
+			AND= {
+				has_trait = forgiving
+				has_trait = compassionate
+				has_trait = patient
+				has_trait = trusting
+				has_trait = calm
+			}
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0006.OPT.VAS.4
+	}
+	
+	option = {
+		trigger = {
+			root = scope:secondary_recipient
+		}
+		name = ave_maria_roman_administration_officials_nomination_events.0006.OPT.NEW
+	}
+}
+
+
+
+
