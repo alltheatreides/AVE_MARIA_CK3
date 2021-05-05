@@ -329,43 +329,14 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		capital_province = {
-			set_variable = {
-				name = test_test_test
-				value = 0
-			}
-			scope:test_test_test = {
-				save_scope_value_as = {
-					name = transfer
-					value = flag:tttt
-				}
-			}
-			add_to_variable_list = { name = total target = scope:transfer }
+		create_character = {
+			location = root.capital_province
+			template = pool_repopulate_diplomacy
+			culture = root.culture
+			faith = root.faith
+			save_scope_as = traveler
+			trait = pope
 		}
-		every_in_global_list = {
-			variable = total
-			save_scope_as = temp
-			change_variable = {
-				name = scope:temp
-				add = 5
-			}
-		}
-		# every_ruler = {
-			# limit = {
-				# primary_title = {
-					# has_variable = islamic_empire_asabiyya
-				# }
-			# }
-			# add_to_global_variable_list = {
-				# name = islamic_empire_asabiyya_rulers
-				# target = this
-			# }
-		# }
-		# every_in_global_list = {
-			# variable = islamic_empire_asabiyya_rulers
-			# remove_trait = pope
-			# add_trait = pope
-		# }
 	}
 	
 }

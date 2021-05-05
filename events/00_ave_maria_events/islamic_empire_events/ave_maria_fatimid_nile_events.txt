@@ -1,0 +1,880 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+# FATIMID NILE FLOOD EVENTS															   #
+#                               													   #
+########################################################################################
+
+# Written by Atreides
+
+namespace = ave_maria_fatimid_nile_events
+
+# ave_maria_fatimid_nile_events
+
+
+# TABLE OF CONTENT:
+
+## Initial hidden event trigger yearly from monthly_pulse to determine the degree of the nile flood ; triggers the following events
+ave_maria_fatimid_nile_events.0001 = {
+	type = character_event
+	hidden = yes
+
+	trigger = {
+		has_religion = religion:islam_religion 
+	}
+
+	immediate = {
+		random_list = {
+			## Very Bad flood
+			10 = {
+				add_character_flag = {
+					flag = islamic_empire_fatimid_very_bad_flood
+					days = 75
+				}
+			}
+			## Bad flood
+			20 = {		
+				add_character_flag = {
+					flag = islamic_empire_fatimid_bad_flood
+					days = 75
+				}
+			}
+			## Average flood
+			30 = {
+				add_character_flag = {
+					flag = islamic_empire_fatimid_average_flood
+					days = 75
+				}
+			}
+			## Good flood
+			20 = {
+				add_character_flag = {
+					flag = islamic_empire_fatimid_good_flood
+					days = 75
+				}
+			}
+			## Very Good flood
+			20 = {
+				add_character_flag = {
+					flag = islamic_empire_fatimid_very_good_flood
+					days = 75
+				}
+			}
+		}
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0002
+			# days = 3
+		}
+	}
+}
+
+### Event for the caliph
+ave_maria_fatimid_nile_events.0002 = {
+	type = character_event
+	title = ave_maria_fatimid_nile_events.0002.title
+	desc = {
+		desc = ave_maria_fatimid_nile_events.0002.desc
+		first_valid = {
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0002.desc.very_bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0002.desc.bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_average_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0002.desc.average_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0002.desc.good_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0002.desc.very_good_flood
+			}
+			desc = ave_maria_fatimid_nile_events.0002.desc_fallback
+		}
+	}
+	
+	theme = realm
+
+	override_background = {
+		event_background = ave_maria_nile_banks_2
+	}
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	trigger = { 
+
+	}
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_fatimid_very_bad_flood
+				}
+				province:6026 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6027 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6028 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6029 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6125 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_bad
+								days = 150
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_fatimid_bad_flood
+				}
+				province:6026 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6027 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6028 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6029 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_bad
+								days = 150
+							}
+						}
+					}
+				}
+				province:6125 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_bad
+								days = 150
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_fatimid_average_flood
+				}
+				province:6026 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_average
+								days = 150
+							}
+						}
+					}
+				}
+				province:6027 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_average
+								days = 150
+							}
+						}
+					}
+				}
+				province:6028 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_average
+								days = 150
+							}
+						}
+					}
+				}
+				province:6029 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_average
+								days = 150
+							}
+						}
+					}
+				}
+				province:6125 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_average
+								days = 150
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_fatimid_good_flood
+				}
+				province:6026 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6027 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6028 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6029 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6125 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_good
+								days = 150
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = islamic_empire_fatimid_very_good_flood
+				}
+				province:6026 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6027 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6028 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6029 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_good
+								days = 150
+							}
+						}
+					}
+				}
+				province:6125 = {
+					every_in_list = {
+						variable = prov_port
+						county = {
+							add_county_modifier = {
+								modifier = islamic_empire_nile_flood_very_good
+								days = 150
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		
+	}
+
+	## Yes, do the customary procession - average year
+	option = {
+		name = ave_maria_fatimid_nile_events.0002.OPT.A
+		custom_tooltip = ave_maria_fatimid_nile_events.0002.OPT.A.tt
+		trigger = {
+			has_character_flag = islamic_empire_fatimid_average_flood
+		}
+		remove_short_term_gold = 150
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0003
+			days = 3
+		}
+		stress_impact = {
+			gregarious = medium_stress_impact_loss
+			lively = medium_stress_impact_loss
+			sociable = medium_stress_impact_loss
+			talkative = medium_stress_impact_loss
+			cheerful = medium_stress_impact_loss
+			passive = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			reserved = medium_stress_impact_gain
+			quiet = medium_stress_impact_gain
+			introverted = medium_stress_impact_gain
+		}
+	}
+
+	## Yes, do the customary procession - bad year
+	option = {
+		name = ave_maria_fatimid_nile_events.0002.OPT.B
+		custom_tooltip = ave_maria_fatimid_nile_events.0002.OPT.A.tt
+		trigger = {
+			OR = {
+				has_character_flag = islamic_empire_fatimid_very_bad_flood
+				has_character_flag = islamic_empire_fatimid_bad_flood
+
+			}
+		}
+		remove_short_term_gold = 150
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0003
+			days = 3
+		}
+		stress_impact = {
+			gregarious = medium_stress_impact_loss
+			lively = medium_stress_impact_loss
+			sociable = medium_stress_impact_loss
+			talkative = medium_stress_impact_loss
+			cheerful = medium_stress_impact_loss
+			passive = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			reserved = medium_stress_impact_gain
+			quiet = medium_stress_impact_gain
+			introverted = medium_stress_impact_gain
+		}
+	}
+
+	## Yes, do the customary procession - good year
+	option = {
+		name = ave_maria_fatimid_nile_events.0002.OPT.C
+		custom_tooltip = ave_maria_fatimid_nile_events.0002.OPT.A.tt
+		trigger = {
+			OR = {
+				has_character_flag = islamic_empire_fatimid_good_flood
+				has_character_flag = islamic_empire_fatimid_very_good_flood
+
+			}
+		}
+		remove_short_term_gold = 150
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0003
+			days = 3
+		}
+		stress_impact = {
+			gregarious = medium_stress_impact_loss
+			lively = medium_stress_impact_loss
+			sociable = medium_stress_impact_loss
+			talkative = medium_stress_impact_loss
+			cheerful = medium_stress_impact_loss
+			passive = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			reserved = medium_stress_impact_gain
+			quiet = medium_stress_impact_gain
+			introverted = medium_stress_impact_gain
+		}
+	}
+
+	## No, don't do the customary procession
+	option = {
+		name = ave_maria_fatimid_nile_events.0002.OPT.D
+		custom_tooltip = ave_maria_fatimid_nile_events.0002.OPT.D.tt
+		add_prestige = -150
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				days = 150
+			}
+		}
+		stress_impact = {
+			gregarious = medium_stress_impact_gain
+			lively = medium_stress_impact_gain
+			sociable = medium_stress_impact_gain
+			talkative = medium_stress_impact_gain
+			cheerful = medium_stress_impact_gain
+			passive = medium_stress_impact_loss
+			shy = medium_stress_impact_loss
+			reserved = medium_stress_impact_loss
+			quiet = medium_stress_impact_loss
+			introverted = medium_stress_impact_loss
+		}
+	}
+
+	## Just zone it out
+	option = {
+		name = ave_maria_fatimid_nile_events.0002.OPT.E
+		custom_tooltip = ave_maria_fatimid_nile_events.0002.OPT.E.tt
+		add_prestige = 75
+		stress_impact = {
+			gregarious = medium_stress_impact_loss
+			lively = medium_stress_impact_loss
+			sociable = medium_stress_impact_loss
+			talkative = medium_stress_impact_loss
+			cheerful = medium_stress_impact_loss
+			passive = medium_stress_impact_gain
+			shy = medium_stress_impact_gain
+			reserved = medium_stress_impact_gain
+			quiet = medium_stress_impact_gain
+			introverted = medium_stress_impact_gain
+		}
+	}
+}
+
+### Procession, who shall be on horse at my side
+ave_maria_fatimid_nile_events.0003 = {
+	type = character_event
+	title = ave_maria_fatimid_nile_events.0003.title
+	desc = {
+		desc = ave_maria_fatimid_nile_events.0003.desc
+		first_valid = {
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0003.desc.very_bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0003.desc.bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_average_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0003.desc.average_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0003.desc.good_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0003.desc.very_good_flood
+			}
+			desc = ave_maria_fatimid_nile_events.0003.desc_fallback
+		}
+	}
+	
+	theme = realm
+
+	override_background = {
+		event_background = ave_maria_nile_banks
+	}
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	right_portrait = {
+		character = scope:regiment_leader_1
+		animation = idle
+	}
+
+	lower_right_portrait = {
+		character = scope:regiment_leader_2
+		animation = idle
+	}
+
+	lower_center_portrait = {
+		character = scope:regiment_leader_3
+		animation = idle
+	}
+
+	trigger = { 
+
+	}
+
+	immediate = {
+		every_martial_councillor = {
+			save_scope_as = marshal
+		}
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+			}
+			save_scope_as = regiment_leader_1
+		}
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOT = { this = scope:regiment_leader_1 }
+			}
+			save_scope_as = regiment_leader_2
+		}
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOR = { this = scope:regiment_leader_1 this = scope:regiment_leader_2 }
+			}
+			save_scope_as = regiment_leader_3
+		}
+	}
+
+	## 
+	option = {
+		name = ave_maria_fatimid_nile_events.0003.OPT.A
+		custom_tooltip = ave_maria_fatimid_nile_events.0003.OPT.A.tt
+		scope:regiment_leader_1 = {
+			add_prestige = 200
+			add_opinion = {
+				modifier = islamic_empire_court_precedence_granted
+				target = root
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_honors
+					add = 1
+				}
+			}
+			save_scope_as = chosen_regiment_leader
+		}
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0004
+			days = 1
+		}
+	}
+
+	## 
+	option = {
+		name = ave_maria_fatimid_nile_events.0003.OPT.B
+		custom_tooltip = ave_maria_fatimid_nile_events.0003.OPT.A.tt
+		scope:regiment_leader_2 = {
+			add_prestige = 200
+			add_opinion = {
+				modifier = islamic_empire_court_precedence_granted
+				target = root
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_regiment_honors
+					add = 1
+				}
+			}
+			save_scope_as = chosen_regiment_leader
+		}
+		trigger_event = {
+			id = ave_maria_fatimid_nile_events.0004
+			days = 1
+		}
+	}
+
+	## 
+	# option = {
+	# 	name = ave_maria_fatimid_nile_events.0003.OPT.C
+	# 	custom_tooltip = ave_maria_fatimid_nile_events.0003.OPT.A.tt
+	# 	scope:regiment_leader_3 = {
+	# 		add_prestige = 200
+	# 		add_opinion = {
+	# 			modifier = islamic_empire_court_precedence_granted
+	# 			target = root
+	# 		}
+	# 		primary_title = {
+	# 			change_variable = {
+	# 				name = islamic_empire_regiment_honors
+	# 				add = 1
+	# 			}
+	# 		}
+	# 		save_scope_as = chosen_regiment_leader
+	# 	}
+	# 	trigger_event = {
+	# 		id = ave_maria_fatimid_nile_events.0004
+	# 		# days = 1
+	# 	}
+	# }
+}
+
+### Procession itself
+ave_maria_fatimid_nile_events.0004 = {
+	type = character_event
+	title = ave_maria_fatimid_nile_events.0004.title
+	desc = {
+		desc = ave_maria_fatimid_nile_events.0004.desc
+		first_valid = {
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0004.desc.very_bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_bad_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0004.desc.bad_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_average_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0004.desc.average_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0004.desc.good_flood
+			}
+			triggered_desc = {
+				trigger= {
+					has_character_flag = islamic_empire_fatimid_very_good_flood
+				}
+				desc = ave_maria_fatimid_nile_events.0004.desc.very_good_flood
+			}
+			desc = ave_maria_fatimid_nile_events.0004.desc_fallback
+		}
+	}
+	
+	theme = realm
+
+	override_background = {
+		event_background = ave_maria_nile_banks
+	}
+	
+	left_portrait = {
+		character = root
+		animation = idle
+	}
+
+	trigger = { 
+
+	}
+
+	immediate = {
+		
+	}
+
+	## When flood is okay, everything is okay
+	option = {
+		name = ave_maria_fatimid_nile_events.0004.OPT.A
+		#custom_tooltip = ave_maria_fatimid_nile_events.0004.OPT.A.tt
+		trigger = {
+			NOR = {
+				has_character_flag = islamic_empire_fatimid_very_bad_flood
+				has_character_flag = islamic_empire_fatimid_bad_flood
+			}
+		}
+		add_prestige = 300
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				days = 150
+			}
+		}
+	}
+
+	## When flood is not okay, option to give out money to relieve the poor
+	option = {
+		name = ave_maria_fatimid_nile_events.0004.OPT.B
+		#custom_tooltip = ave_maria_fatimid_nile_events.0004.OPT.B.tt
+		trigger = {
+			OR = {
+				has_character_flag = islamic_empire_fatimid_very_bad_flood
+				has_character_flag = islamic_empire_fatimid_bad_flood
+			}
+		}
+		add_prestige = 300
+		remove_short_term_gold = 200
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_happy_constantinople_populace
+				days = 150
+			}
+		}
+		stress_impact = {
+			faithful = major_stress_impact_loss
+			just = major_stress_impact_loss
+			honest = major_stress_impact_loss
+			generous = major_stress_impact_loss
+			humble = major_stress_impact_loss
+			arrogant = medium_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			arbitrary = medium_stress_impact_gain
+			cynical = medium_stress_impact_gain
+			deceitful = medium_stress_impact_gain
+		}
+	}
+
+	## When flood is not okay, option to NOT give relief money
+	option = {
+		name = ave_maria_fatimid_nile_events.0004.OPT.C
+		#custom_tooltip = ave_maria_fatimid_nile_events.0004.OPT.C.tt
+		trigger = {
+			OR = {
+				has_character_flag = islamic_empire_fatimid_very_bad_flood
+				has_character_flag = islamic_empire_fatimid_bad_flood
+			}
+		}
+		add_prestige = 150
+		capital_county = {
+			add_county_modifier = {
+				modifier = roman_administration_frustrated_constantinople_populace
+				days = 150
+			}
+		}
+		stress_impact = {
+			faithful = major_stress_impact_gain
+			just = major_stress_impact_gain
+			honest = major_stress_impact_gain
+			generous = major_stress_impact_gain
+			humble = major_stress_impact_gain
+			arrogant = medium_stress_impact_loss
+			greedy = medium_stress_impact_loss
+			arbitrary = medium_stress_impact_loss
+			cynical = medium_stress_impact_loss
+			deceitful = medium_stress_impact_loss
+		}
+	}
+
+}
+
