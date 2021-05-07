@@ -66,13 +66,64 @@ ave_maria_alim_events.0002 = {
 	trigger = { exists = capital_province }
 
 	immediate = {
-		# Create random ulama
-		create_character = {
-			employer = root
-			template = islamic_empire_ulama_character
-			save_scope_as = target
-			gender_female_chance = 0
+		if = {
+			limit = {
+				any_held_title = {
+					title_province = {
+						NOR = {
+							has_building_or_higher = madrasa_01
+						}
+					}
+				}
+			}
+			# Create random ulama
+			create_character = {
+				employer = root
+				template = islamic_empire_ulama_character_0
+				save_scope_as = target
+				gender_female_chance = 0
+			}
 		}
+		if = {
+			limit = {
+				any_held_title = {
+					title_province = {
+						OR = {
+							has_building = madrasa_01
+							has_building = madrasa_02
+						}
+					}
+				}
+			}
+			# Create random ulama
+			create_character = {
+				employer = root
+				template = islamic_empire_ulama_character_1
+				save_scope_as = target
+				gender_female_chance = 0
+			}
+		}
+		if = {
+			limit = {
+				any_held_title = {
+					title_province = {
+						OR = {
+							has_building_or_higher = madrasa_03
+							has_building = al_azhar_university
+							has_building = house_of_wisdom_01
+						}
+					}
+				}
+			}
+			# Create random ulama
+			create_character = {
+				employer = root
+				template = islamic_empire_ulama_character
+				save_scope_as = target
+				gender_female_chance = 0
+			}
+		}
+
 		scope:target = {
 			add_random_hexaco_personality_trait = { WHO = this }
 		}
@@ -80,7 +131,7 @@ ave_maria_alim_events.0002 = {
 
 	option = {
 		name = ave_maria_alim_events.0002.a
-		remove_short_term_gold = tiny_gold_value 
+		remove_short_term_gold = medium_gold_value 
 	}
 
 	option = {

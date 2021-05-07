@@ -353,20 +353,17 @@ ave_maria_test_events.0007 = {
 		animation = idle
 	}
 
-	right_portrait = {
-		character = scope:new_holder
-		animation = idle
+
+	override_background = {
+		event_background = ave_maria_wilderness_cliff_view
+		
 	}
 
 	option = {
 		name = ave_maria_test_events.0007.OPT.A
-		scope:barony.county = {
-            change_development_progress_with_overflow = 300
-			add_county_modifier = {
-                modifier = islamic_empire_ismailai_dawa_mission
-                years = 10
-            }
-        }
+		capital_province = {
+			add_building = madrasa_04
+		}
 	}
 }
 

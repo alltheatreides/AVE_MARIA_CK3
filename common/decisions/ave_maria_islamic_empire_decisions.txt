@@ -26,7 +26,7 @@ ave_maria_islamic_empire_hire_learned_man_decision = {
 		gold = { value = tiny_gold_value } 
 	}	
 
-	cooldown = { days = 365 }
+	#cooldown = { days = 365 }
 
 	effect = {
 		trigger_event = {
@@ -188,7 +188,17 @@ ave_maria_islamic_empire_buy_slaves_for_military_training = {
 	is_shown = {
 		faith.religion = religion:islam_religion
 		uses_islamic_empire_govt = yes
-		
+		any_held_title = {
+			tier = tier_county
+			title_province = {
+				OR = {
+					has_building = slave_market_1
+					has_building = slave_market_2
+					# has_building = slave_market_3
+					# has_building = slave_market_4
+				}				
+			}
+		}
 	}
 
 	is_valid = {

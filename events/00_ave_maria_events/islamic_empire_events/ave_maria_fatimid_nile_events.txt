@@ -419,6 +419,12 @@ ave_maria_fatimid_nile_events.0002 = {
 				province:6125 = {
 					every_in_list = {
 						variable = prov_port
+						limit = {
+							NOR = {
+								this = province:6362
+								this = province:6361
+							}
+						}
 						county = {
 							add_county_modifier = {
 								modifier = islamic_empire_nile_flood_very_good
