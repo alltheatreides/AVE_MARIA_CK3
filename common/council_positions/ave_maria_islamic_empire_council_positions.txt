@@ -1,0 +1,45 @@
+﻿#######################################################################################
+#                                        											  #
+# AVE MARIA COUNCIL POSITIONS														  #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	  #
+#                                        											  #
+# Islamic Empire Council Positions						                        	  #
+#	                              													  #
+#######################################################################################
+
+# Written by Atreides
+
+# NEW DIWAN COUNCILLORS
+### Second tab of councillors
+
+# Wazir
+islamic_empire_councillor_grand_vizier = {
+	name = islamic_empire_councillor_grand_vizier
+	tooltip = game_concept_islamic_empire_councillor_grand_vizier_desc
+
+	modifier = {
+		name = islamic_empire_councillor_grand_vizier_modifier
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+	valid_position = {
+		highest_held_title_tier >= tier_kingdom
+		has_religion = religion:islam_religion
+	}
+	valid_character = {
+		is_female = no
+		NOT = { 
+			has_government = theocracy_government
+		}
+	}
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = chancellor
+}
+

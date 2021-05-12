@@ -102,15 +102,11 @@ task_develop_county = {
 	task_max_value = 100
 	highlight_own_realm = yes
 
-	# is_shown = {
-	# 	scope:councillor_liege = {
-	# 		NOT = {
-	# 			any_held_title = {
-	# 				this = title:e_byzantium
-	# 			}
-	# 		}
-	# 	}
-	# }
+	is_shown = {
+		scope:councillor_liege.religion = {
+			NOT = { this = religion:islam_religion }
+		}	
+	}
 
 	effect_desc = {
 		desc = task_develop_county_complete_effect_desc

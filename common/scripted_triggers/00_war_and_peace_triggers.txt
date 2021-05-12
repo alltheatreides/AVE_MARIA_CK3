@@ -368,6 +368,34 @@ can_be_commander_basic_trigger = {
 		NOT = {
 			this = title:e_byzantium.holder
 		}
+		trigger_if = {
+			limit = {
+				$ARMY_OWNER$ = { is_at_war_as_attacker = yes }
+				is_ruler = yes
+			}
+			primary_title = {
+				$ARMY_OWNER$.war.primary_defender = {
+					realm_to_title_distance_squared = {
+						title = prev
+						value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+					}
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				$ARMY_OWNER$ = { is_at_war_as_defender = yes }
+				is_ruler = yes
+			}
+			primary_title = {
+				$ARMY_OWNER$.war.primary_attacker = {
+					realm_to_title_distance_squared = {
+						title = prev
+						value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+					}
+				}
+			}
+		}
 	}
 	trigger_if = {
 		limit = {

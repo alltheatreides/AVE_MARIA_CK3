@@ -5,6 +5,12 @@
 	task_type = task_type_general
 	task_progress = task_progress_infinite
 
+	is_shown = {
+		scope:councillor_liege.religion = {
+			NOT = { this = religion:islam_religion }
+		}
+	}
+
 	effect_desc = {
 		### Piety tooltip
 		desc = task_religious_relations_piety_effect_desc
@@ -883,6 +889,9 @@ task_fabricate_claim = {
 				}
 			}
 		}
+		scope:councillor_liege.religion = {
+			NOT = { this = religion:islam_religion }
+		}	
 	}
 
 	effect_desc = {
