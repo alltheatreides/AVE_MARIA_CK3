@@ -371,27 +371,46 @@ can_be_commander_basic_trigger = {
 		trigger_if = {
 			limit = {
 				$ARMY_OWNER$ = { is_at_war_as_attacker = yes }
-				is_ruler = yes
+				is_landed = yes
+				primary_title = { roman_administration_is_a_tagma_title_trigger = no }
 			}
 			primary_title = {
-				$ARMY_OWNER$.war.primary_defender = {
-					realm_to_title_distance_squared = {
-						title = prev
-						value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+				# $ARMY_OWNER$.war.primary_defender = {
+				# 	realm_to_title_distance_squared = {
+				# 		title = prev
+				# 		value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+				# 	}
+				# }
+				$ARMY_OWNER$ = {
+					any_primary_war_enemy = {
+						realm_to_title_distance_squared = {
+							title = root.primary_title
+							value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+						}
 					}
 				}
+				
 			}
 		}
 		trigger_if = {
 			limit = {
 				$ARMY_OWNER$ = { is_at_war_as_defender = yes }
-				is_ruler = yes
+				is_landed = yes
+				primary_title = { roman_administration_is_a_tagma_title_trigger = no }
 			}
 			primary_title = {
-				$ARMY_OWNER$.war.primary_attacker = {
-					realm_to_title_distance_squared = {
-						title = prev
-						value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+				# $ARMY_OWNER$.war.primary_attacker = {
+				# 	realm_to_title_distance_squared = {
+				# 		title = prev
+				# 		value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+				# 	}
+				# }
+				$ARMY_OWNER$ = {
+					any_primary_war_enemy = {
+						realm_to_title_distance_squared = {
+							title = root.primary_title
+							value <= squared_distance_large #250 map-pixels. Roughly one Ireland away (top to bottom).
+						}
 					}
 				}
 			}

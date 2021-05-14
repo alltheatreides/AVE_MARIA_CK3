@@ -1654,7 +1654,10 @@ am_institutions_normal_councillors = {
 	is_shown = {
 		exists = this
 		NOT = {			
-			has_religion = religion:islam_religion
+			AND = {
+				has_government = islamic_empire_government
+				has_religion = religion:islam_religion
+			}
 		}		
 	}
 }
@@ -1663,8 +1666,9 @@ am_institutions_islamic_empire_muslim_councillors = {
 	scope = character
 	is_shown = {
 		exists = this
+		has_government = islamic_empire_government
 		has_religion = religion:islam_religion
-		highest_held_title_tier >= tier_duchy
+		#highest_held_title_tier >= tier_duchy
 	}
 }
 

@@ -1924,9 +1924,22 @@ roman_administration_convert_feudal = {
 						}
 					}
 				}
-				change_variable = {
-					name = roman_administration_legitimacy
-					add = 10
+				# change_variable = {
+				# 	name = roman_administration_legitimacy
+				# 	add = 10
+				# }
+				send_interface_message = {
+					type = ave_maria_roman_administration_legitimacy_gain_10
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_legitimacy_gain_10.message
+						}
+					}
+					left_icon = scope:actor
+					change_variable = {
+						name = roman_administration_legitimacy
+						add = 10
+					}
 				}
 				roman_administration_update_legitimacy_level_display = yes
 				change_variable = {

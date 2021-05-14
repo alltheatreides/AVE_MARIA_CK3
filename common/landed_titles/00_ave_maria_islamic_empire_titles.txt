@@ -79,11 +79,18 @@ d_fatimid_diwan_al_rawatib = {
 
 ## "Church" hierarchy of the Shia 
 k_fatimid_dawa = {
-	capital = c_cairo
-	landless = yes
-	de_jure_drift_disabled = yes
+	capital = c_sharkiya
 	definite_form = yes
+	landless = yes
+	
+	ai_primary_priority = {
+		add = @always_primary_score
+	}
+
+	destroy_if_invalid_heir = yes
 	no_automatic_claims = yes
+	always_follows_primary_heir = yes
+	de_jure_drift_disabled = yes
 }
 
 ## regiment of slave soldiers

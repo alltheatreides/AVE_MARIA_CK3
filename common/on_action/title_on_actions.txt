@@ -26,6 +26,66 @@
 # scope:landed_title = the title that is being destroyed
 # Does *not* provide scope:transfer_type
 on_title_destroyed = {
+	effect = {
+		if = {
+			limit = {
+				scope:landed_title = {
+					roman_administration_is_a_tagma_title_trigger = yes
+				}
+			}
+			title:e_byzantium.holder = {
+				create_character = {
+					employer = title:e_byzantium.holder
+					template = tagma_commander_character
+					save_scope_as = new_title_holder
+				}
+				scope:landed_title = {
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_title_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+
+					add_title_law = ave_maria_roman_administration_tagma_succession_law
+					add_title_law = male_only_law
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:landed_title = {
+					roman_administration_is_a_high_administrative_office_title = yes
+				}
+			}
+			title:e_byzantium.holder = {
+				create_character = {
+					employer = title:e_byzantium.holder
+					template = bureaucrat_character
+					save_scope_as = new_title_holder
+				}
+				scope:landed_title = {
+					create_title_and_vassal_change = {
+						type = granted
+						save_scope_as = change
+						add_claim_on_loss = yes
+					}
+					change_title_holder = {
+						holder = scope:new_title_holder
+						change = scope:change
+					}
+					resolve_title_and_vassal_change = scope:change
+
+					add_title_law = ave_maria_roman_administration_tagma_succession_law
+					add_title_law = male_only_law
+				}
+			}
+		}
+	}
 	events = {
 		british_isles.1031	# Danelaw-England partition calc.
 	}
@@ -360,7 +420,10 @@ on_title_gain = {
 				}
 				if = {
 					limit = {
-						scope:new_holder.primary_title >= tier_duchy
+						scope:new_holder.primary_title = {
+							tier >= tier_duchy
+							tier <= tier_kingdom
+						}
 					}
 					trigger_event = { 
 						id = ave_maria_roman_administration_officials_nomination_events.0005 
@@ -469,7 +532,8 @@ on_title_gain = {
 		if = {
 			limit = {
 				scope:title = {
-					tier = tier_duchy
+					tier >= tier_duchy
+					tier <= tier_kingdom
 				}
 				root = {
 					any_held_title = {
@@ -681,10 +745,9 @@ on_title_gain = {
 			## 
 			if = {
 				limit = {
-					root = {
-
-					}
+					scope:title = { this = title:e_egypt }
 				}
+				root = { add_character_modifier = islamic_empire_multiethnic_army_system }
 			}
 			## Allying clan vassal
 			every_vassal = {

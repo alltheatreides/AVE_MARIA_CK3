@@ -254,10 +254,23 @@ ave_maria_roman_administration_purple_born_events.3 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = 10
-			}	
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = 10
+			# }	
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_gain_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_gain_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = 10
+				}
+			}
 		}
 		
 		scope:child = {
@@ -320,9 +333,22 @@ ave_maria_roman_administration_purple_born_events.3 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = -10
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = -10
+			# }
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_loss_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_loss_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = -10
+				}
 			}
 		}
 		
@@ -400,10 +426,23 @@ ave_maria_roman_administration_purple_born_events.3 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = -10
-			}	
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = -10
+			# }	
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_loss_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_loss_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = -10
+				}
+			}
 		}
 		add_prestige = major_prestige_loss
 		roman_administration_update_popularity_level_display = yes
@@ -488,9 +527,22 @@ ave_maria_roman_administration_purple_born_events.4 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = 10
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = 10
+			# }
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_gain_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_gain_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = 10
+				}
 			}
 		}
 		
@@ -588,10 +640,23 @@ ave_maria_roman_administration_purple_born_events.4 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = -10
-			}	
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = -10
+			# }	
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_loss_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_loss_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = -10
+				}
+			}
 		}
 		capital_county = {
 			add_county_modifier = {
@@ -658,10 +723,23 @@ ave_maria_roman_administration_purple_born_events.4 = {
 		}
 		
 		scope:child = {
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = -10
-			}	
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = -10
+			# }	
+			send_interface_message = {
+				type = ave_maria_roman_administration_legitimacy_loss_10
+				title = {
+					first_valid = {
+						desc = ave_maria_roman_administration_legitimacy_loss_10.message
+					}
+				}
+				left_icon = scope:child
+				change_variable = {
+					name = roman_administration_legitimacy
+					add = -10
+				}
+			}
 		}
 		
 		roman_administration_update_popularity_level_display = yes

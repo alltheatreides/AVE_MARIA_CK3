@@ -440,6 +440,7 @@ five_year_everyone_pulse = {
 					limit = {
 						exists = root.location
 						any_pool_character = {
+							NOT = { has_trait = orc_pop }
 							province = location
 							sex_opposite_of = root
 							is_physically_able_adult = yes
@@ -501,6 +502,7 @@ five_year_everyone_pulse = {
 three_year_pool_pulse = {
 	trigger = {
 		is_pool_character = yes # Can cease to be in the pool between it queuing and executing
+		NOT = { has_trait = orc_pop }
 	}
 	events = {
 		courtier_guest_management.2001 #"Develops" the character and gives those without location a location

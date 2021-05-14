@@ -870,9 +870,22 @@ ave_maria_roman_administration_imperial_expedition_events.0009 = {
 			add = 20
 		}
 		roman_administration_update_popularity_level_display = yes
-		change_variable = {
-			name = roman_administration_legitimacy
-			add = 5
+		# change_variable = {
+		# 	name = roman_administration_legitimacy
+		# 	add = 5
+		# }
+		send_interface_message = {
+			type = ave_maria_roman_administration_legitimacy_gain_05
+			title = {
+				first_valid = {
+					desc = ave_maria_roman_administration_legitimacy_gain_05.message
+				}
+			}
+			left_icon = root
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = 5
+			}
 		}
 		roman_administration_update_legitimacy_level_display = yes
 		#roman_administration_add_legitimacy_small_amount = yes

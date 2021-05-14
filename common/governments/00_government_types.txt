@@ -59,6 +59,7 @@ theocracy_government = {
 	required_county_holdings = { church_holding castle_holding city_holding }
 
 	can_get_government = {
+		#always = yes
 		trigger_if = {
 			limit = {
 				NOR = {
@@ -91,9 +92,11 @@ theocracy_government = {
 				any_held_title = { this = title:k_papal_state }
 				any_held_title = { this = title:k_fatimid_dawa }
 			}
-			
+			#always = yes
 		}	
 	}
+
+	#preferred_religions = { religion:christianity_religion religion:islam_religion }
 
 	vassal_contract = { theocracy_government_obligations islamic_empire_non_muslim_tax }
 	color = hsv{ 0.00 0.00 0.78 }

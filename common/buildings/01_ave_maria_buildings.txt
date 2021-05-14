@@ -333,6 +333,16 @@ roads_1 = {
 	
 	ai_value = {
 		base = 1
+		modifier = {
+			factor = 2
+			NOT = { scope:holder.capital_province = this }
+		}
+		modifier = {
+			add = 2
+			county = {
+				county_control <= 50
+			}			
+		}
 	}
 
 	type_icon = "am_icon_roads_1.dds"
@@ -375,6 +385,16 @@ roads_2 = {
 	
 	ai_value = {
 		base = 1
+		modifier = {
+			factor = 2
+			NOT = { scope:holder.capital_province = this }
+		}
+		modifier = {
+			add = 2
+			county = {
+				county_control <= 50
+			}
+		}
 	}
 
 	type_icon = "am_icon_roads_2.dds"
@@ -415,6 +435,16 @@ roads_3 = {
 	
 	ai_value = {
 		base = 1
+		modifier = {
+			factor = 2
+			NOT = { scope:holder.capital_province = this }
+		}
+		modifier = {
+			add = 2
+			county = {
+				county_control <= 50
+			}
+		}
 	}
 
 	type_icon = "am_icon_roads_3.dds"

@@ -334,8 +334,7 @@ ave_maria_test_events.0006 = {
 			template = pool_repopulate_diplomacy
 			culture = root.culture
 			faith = root.faith
-			save_scope_as = traveler
-			trait = pope
+			trait = orc_pop
 		}
 	}
 	
@@ -355,14 +354,31 @@ ave_maria_test_events.0007 = {
 
 
 	override_background = {
-		event_background = ave_maria_wilderness_cliff_view
+		event_background = ave_maria_test
 		
 	}
 
 	option = {
 		name = ave_maria_test_events.0007.OPT.A
-		capital_province = {
-			add_building = madrasa_04
+		# send_interface_message = {
+			# type = ave_maria_roman_administration_legitimacy_gain
+			# title = {
+				# first_valid = {
+					# desc = ave_maria_roman_administration_legitimacy_gain.message
+				# }
+			# }
+			# left_icon = scope:actor
+			# change_variable = {
+				# name = roman_administration_legitimacy
+				# add = 10
+			# }
+		# }
+		# change_government = theocracy_government
+		province:6043 = {
+			set_holding_type = church_holding
+		}
+		title:k_fatimid_dawa.holder = {
+			change_government = theocracy_government
 		}
 	}
 }

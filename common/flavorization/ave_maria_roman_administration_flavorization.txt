@@ -235,6 +235,16 @@ duke_roman_administration_kouratoreia_government_female = {
 # 	governments = { roman_administration_government roman_administration_military_government }
 # 	culture_groups = { byzantine_group }
 # }
+king_roman_administration_doukaton_government_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 300
+	top_liege = no
+	governments = { roman_administration_doukaton_government }
+	culture_groups = { byzantine_group }
+}
 
 # #Roman - titles
 barony_roman_administration = {
@@ -275,6 +285,14 @@ duchy_roman_administration_theme_government = {
 duchy_roman_administration_doukaton_government = {
 	type = title
 	tier = duchy
+	priority = 300
+	governments = { roman_administration_doukaton_government }
+	# de_jure_liege = { e_byzantium e_roman_empire }
+	top_liege = no
+}
+kingdom_roman_administration_doukaton_government = {
+	type = title
+	tier = kingdom
 	priority = 300
 	governments = { roman_administration_doukaton_government }
 	# de_jure_liege = { e_byzantium e_roman_empire }

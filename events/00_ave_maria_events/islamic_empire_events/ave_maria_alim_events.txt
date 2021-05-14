@@ -68,6 +68,7 @@ ave_maria_alim_events.0002 = {
 	immediate = {
 		if = {
 			limit = {
+				is_landed = yes
 				any_held_title = {
 					title_province = {
 						NOR = {
@@ -86,6 +87,7 @@ ave_maria_alim_events.0002 = {
 		}
 		if = {
 			limit = {
+				is_landed = yes
 				any_held_title = {
 					title_province = {
 						OR = {
@@ -105,6 +107,7 @@ ave_maria_alim_events.0002 = {
 		}
 		if = {
 			limit = {
+				is_landed = yes
 				any_held_title = {
 					title_province = {
 						OR = {
@@ -123,7 +126,18 @@ ave_maria_alim_events.0002 = {
 				gender_female_chance = 0
 			}
 		}
-
+		if = {
+			limit = {
+				is_landed = no
+			}
+			# Create random ulama
+			create_character = {
+				employer = root
+				template = islamic_empire_ulama_character_0
+				save_scope_as = target
+				gender_female_chance = 0
+			}
+		}
 		scope:target = {
 			add_random_hexaco_personality_trait = { WHO = this }
 		}

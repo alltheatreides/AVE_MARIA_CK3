@@ -103,7 +103,11 @@ building_university_requirement = {
 ######################################################################
 
 building_common_tradeport_requirement_terrain = {
-	is_coastal = yes
+	OR = {
+		is_coastal = yes
+		## add some trigger for major river coastal
+	}
+	
 	#OR = {
 	#	terrain = plains
 	#	terrain = steppe

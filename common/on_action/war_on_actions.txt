@@ -1188,9 +1188,18 @@ on_war_won_attacker = {
 				}				
 			}
 			scope:attacker = {
-				change_variable = {
-					name = roman_administration_legitimacy
-					add = 10
+				send_interface_message = {
+					type = ave_maria_roman_administration_legitimacy_gain_10
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_legitimacy_gain_10.message
+						}
+					}
+					left_icon = scope:attacker
+					change_variable = {
+						name = roman_administration_legitimacy
+						add = 10
+					}
 				}
 				roman_administration_update_legitimacy_level_display = yes
 				roman_administration_update_total_salary_cost = yes
@@ -1223,9 +1232,18 @@ on_war_won_attacker = {
 						limit = {
 							has_variable = roman_administration_legitimacy
 						}
-						change_variable = {
-							name = roman_administration_legitimacy
-							add = 10
+						send_interface_message = {
+							type = ave_maria_roman_administration_legitimacy_gain_10
+							title = {
+								first_valid = {
+									desc = ave_maria_roman_administration_legitimacy_gain_10.message
+								}
+							}
+							left_icon = this
+							change_variable = {
+								name = roman_administration_legitimacy
+								add = 10
+							}
 						}
 					}
 									
@@ -1243,14 +1261,40 @@ on_war_won_attacker = {
 				}				
 			}
 			scope:defender = {
-				change_variable = {
-					name = roman_administration_legitimacy
-					subtract = 50
+				# change_variable = {
+				# 	name = roman_administration_legitimacy
+				# 	subtract = 50
+				# }
+				send_interface_message = {
+					type = ave_maria_roman_administration_legitimacy_loss_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_legitimacy_loss_50.message
+						}
+					}
+					left_icon = scope:defender
+					change_variable = {
+						name = roman_administration_popularity
+						subtract = 50
+					}
 				}
 				roman_administration_update_legitimacy_level_display = yes
-				change_variable = {
-					name = roman_administration_popularity
-					subtract = 50
+				# change_variable = {
+				# 	name = roman_administration_popularity
+				# 	subtract = 50
+				# }
+				send_interface_message = {
+					type = ave_maria_roman_administration_popularity_loss_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_popularity_loss_50.message
+						}
+					}
+					left_icon = scope:defender
+					change_variable = {
+						name = roman_administration_popularity
+						subtract = 50
+					}
 				}
 				roman_administration_update_popularity_level_display = yes
 				roman_administration_update_total_salary_cost = yes
@@ -1422,14 +1466,46 @@ on_war_won_defender = {
 					}
 				}				
 			}
-			change_variable = {
-				name = roman_administration_legitimacy
-				add = 50
+			# change_variable = {
+			# 	name = roman_administration_legitimacy
+			# 	add = 50
+			# }
+			# change_variable = {
+			# 	name = roman_administration_popularity
+			# 	add = 50
+			# }
+			scope:defender = {
+				send_interface_message = {
+					type = ave_maria_roman_administration_legitimacy_gain_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_legitimacy_gain_50.message
+						}
+					}
+					left_icon = scope:defender
+					change_variable = {
+						name = roman_administration_popularity
+						add = 50
+					}
+				}
+				roman_administration_update_legitimacy_level_display = yes
+				send_interface_message = {
+					type = ave_maria_roman_administration_popularity_gain_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_popularity_gain_50.message
+						}
+					}
+					left_icon = scope:defender
+					change_variable = {
+						name = roman_administration_popularity
+						add = 50
+					}
+				}
+				roman_administration_update_popularity_level_display = yes
+				roman_administration_update_total_salary_cost = yes
 			}
-			change_variable = {
-				name = roman_administration_popularity
-				add = 50
-			}
+			
 		}
 		## Military officials gain also legitimacy
 		scope:war = {
@@ -1454,13 +1530,73 @@ on_war_won_defender = {
 						limit = {
 							has_variable = roman_administration_legitimacy
 						}
-						change_variable = {
-							name = roman_administration_legitimacy
-							add = 10
+						send_interface_message = {
+							type = ave_maria_roman_administration_legitimacy_gain_10
+							title = {
+								first_valid = {
+									desc = ave_maria_roman_administration_legitimacy_gain_10.message
+								}
+							}
+							left_icon = this
+							change_variable = {
+								name = roman_administration_legitimacy
+								add = 10
+							}
 						}
 					}
 				}
 			}
+		}
+
+		## Removing Legitimacy and Popularity if you are the Emperor and lost
+		if = {
+			limit = {
+				scope:attacker = {
+					any_held_title = {
+						this = title:e_byzantium
+					}
+				}				
+			}
+			scope:attacker = {
+				# change_variable = {
+				# 	name = roman_administration_legitimacy
+				# 	subtract = 50
+				# }
+				send_interface_message = {
+					type = ave_maria_roman_administration_legitimacy_loss_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_legitimacy_loss_50.message
+						}
+					}
+					left_icon = scope:attacker
+					change_variable = {
+						name = roman_administration_popularity
+						subtract = 50
+					}
+				}
+				roman_administration_update_legitimacy_level_display = yes
+				# change_variable = {
+				# 	name = roman_administration_popularity
+				# 	subtract = 50
+				# }
+				send_interface_message = {
+					type = ave_maria_roman_administration_popularity_loss_50
+					title = {
+						first_valid = {
+							desc = ave_maria_roman_administration_popularity_loss_50.message
+						}
+					}
+					left_icon = scope:attacker
+					change_variable = {
+						name = roman_administration_popularity
+						subtract = 50
+					}
+				}
+				roman_administration_update_popularity_level_display = yes
+				roman_administration_update_total_salary_cost = yes
+			}
+			
 		}
 	}
 
