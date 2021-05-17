@@ -103,9 +103,9 @@ task_develop_county = {
 	highlight_own_realm = yes
 
 	is_shown = {
-		scope:councillor_liege.religion = {
-			NOT = { this = religion:islam_religion }
-		}	
+		scope:councillor_liege = {
+			NOT = { uses_islamic_empire_govt = yes }
+		}
 	}
 
 	effect_desc = {

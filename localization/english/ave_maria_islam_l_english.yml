@@ -167,6 +167,10 @@
 
  kharaj_streamline_bureaucracy:0 "Streamline Bureaucracy"
 
+ dai_convert_county:0 "Convert County"
+
+ task_grand_vizier_default_effect_desc:0 "[councillor.GetShortUINameNoTooltip] helps you run the Realm in general\n\n[councillor.GetHerHis|U] support gives you:\n[councillor.GetModifierDescForTask('task_grand_vizier_default')]"
+
  ## CHARACTERS
  al_jamali:0 "Abū'l-Najm Badr al-Jamali"
  al_shirazi:0 "Al-Mu'ayyad fi'l-Din al-Shirazi"
@@ -204,6 +208,10 @@
 
  islamic_empire_change_vassal_contract:0 "Change Administration"
  islamic_empire_change_vassal_contract_extra_icon:0 "@weak_hook_icon! [hook|E] available"
+
+ islamic_empire_name_wazir:0 "Name Wazir"
+ islamic_empire_name_wazir_desc:0 "Will name this character as Wazir"
+ 
 
 
  ## MODIFIERS
@@ -260,6 +268,8 @@
 
  islamic_empire_councillor_grand_vizier_modifier:0 "Grand Wazir"
 
+ islamic_empire_wazir_stat_bonus:0 "Wazir Assistance"
+
  ### COUNCILLORS
  islamic_empire_councillor_grand_vizier:0 "Wazīr"
  islamic_empire_councillor_grand_vizier_desc:0 "Wazīr"
@@ -305,6 +315,9 @@
 
  game_concept_diwan:0 "Dīwān"
  game_concept_diwan_desc:0 "Dīwān are a form of [administrative_title|E] government representing various government departments within the state administration."
+
+ game_concept_wazir:0 "Wazīr"
+ game_concept_wazir_desc:0 "The office of Wazīr, or vizier arose under the first Abbasid caliphs, and spread across the Muslim world.\n\nThe Wazīr stood between sovereign and subjects, representing the former in all matters touching the latter.\n\nWith wide authority over civil and military affairs, they were the prime ministers of a muslim monarch's governments."
 
  ### CONTRACTS
  islamic_empire_kharaj_right:0 "Kharaj Right"
@@ -452,6 +465,18 @@
  AVE_MARIA_ISLAMIC_EMPIRE_DIWAN_ADVISORS:0 "Dīwān"
  COUNCIL:0 "Council"
  COUNCIL_WINDOW_LIEGE_DIWAN:0 "Liege's Dīwān"
+
+ ### RELATIONS
+ islamic_empire_wazir_relation:0 "[wazir|e]"
+ set_relation_islamic_empire_wazir_relation:0 "Appoints [recipient.GetShortUIName|U] as [wazir|e]."
+ remove_relation_set_relation_islamic_empire_wazir_relation:0 "[recipient.GetShortUIName|U] will no longer be [wazir|e]."
+ THEY_GET_WAZIR:0 "[CHARACTER.GetShortUIName|U] appoints [TARGET_CHARACTER.GetShortUIName] as [wazir|e]"
+ THEY_GOT_WAZIR:0 "[CHARACTER.GetShortUIName|U] became [TARGET_CHARACTER.GetShortUINamePossessive] [wazir|e]"
+ GLOBAL_BECOME_WAZIR:0 "Becomes [TARGET_CHARACTER.GetShortUINamePossessive] [wazir|e]"
+ THEY_LOSE_WAZIR:0 "[CHARACTER.GetShortUIName|U] will no longer be the [wazir|e] of [TARGET_CHARACTER.GetShortUIName]"
+ GLOBAL_LOSE_WAZIR:0 "Will no longer be [TARGET_CHARACTER.GetShortUINamePossessive] [wazir|e]"
+ GLOBAL_LOST_WAZIR:0 "No longer is [TARGET_CHARACTER.GetShortUINamePossessive] [wazir|e]"
+
  
 
 
@@ -504,6 +529,7 @@
  islamic_empire_low_court_precedence:0 "Minor Court Precedence"
  islamic_empire_high_court_precedence:0 "Court Precedence"
  islamic_empire_military_riot:0 "Rioting"
+ islamic_empire_fire_wazir:0 "Revoked [wazir|e]"
 
  ## LAW
  islamic_empire_amir_succession_law:0 "Clientelism"

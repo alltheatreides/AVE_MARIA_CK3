@@ -1888,6 +1888,20 @@ am_institutions_islamic_empire_fatimid_get_dawa_leaders = {
 	}
 }
 
+am_islamic_empire_wazir_candidates = {
+	scope = character
+	effect = {
+		clear_variable_list = list_am_islamic_empire_wazir_candidates
+		every_vassal = {
+			root = {
+				add_to_variable_list = {
+					name = list_am_islamic_empire_wazir_candidates
+					target = prev
+				}
+			}	
+		}
+	}
+}
 
 ## Fatimid faction size/salary/honors/troops increase/decrease
 am_institutions_islamic_empire_fatimid_faction_increase_size = {

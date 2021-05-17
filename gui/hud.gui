@@ -181,8 +181,7 @@ widget = {
 
 						vbox = {
 							#margin_top = 22
-							margin_bottom = 52
-							
+							margin_bottom = 52							
 
 							hbox = {
 								spacing = 20
@@ -1884,6 +1883,93 @@ widget = {
 											}
 										}
 									}
+
+									# divider = {
+									# 	layoutpolicy_horizontal = expanding
+									# }
+
+									## Minor title experiment
+									# hbox = {
+									# 	margin = { 10 0 }
+									# 	layoutpolicy_horizontal = expanding
+									# 	vbox = {
+									# 		layoutpolicy_horizontal = expanding
+									# 		spacing = 5
+											
+									# 		datacontext = "[GetPlayer.GetRelationOfType( GetRelation( 'junior_emperor' ) )]"											
+						
+									# 		hbox = {
+									# 			layoutpolicy_horizontal = expanding
+						
+									# 			background = {
+									# 				texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_great_palace_interior.dds"
+									# 				fittype = centercrop
+									# 				alpha = 0.5
+						
+									# 				using = Mask_Rough_Edges
+									# 			}
+						
+									# 			portrait_shoulders = {
+									# 				background = {
+									# 					using = Background_Area
+									# 				}
+									# 				blockoverride "onclick" {
+									# 					#datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+									# 					#onclick = "[OpenDecisionDetailView( Decision.Self )]"
+						
+									# 					button_icon = {
+									# 						parentanchor = center
+									# 						alwaystransparent = yes
+									# 						size = { 40 40 }
+									# 						position = {-5 -5}
+									# 						texture = "gfx/interface/icons/flat_icons/plus.dds" 
+									# 					}
+									# 				}
+									# 			}
+						
+									# 			vbox = {
+									# 				layoutpolicy_horizontal = expanding
+						
+									# 				text_single = {
+									# 					layoutpolicy_horizontal = expanding
+									# 					text = "Symbaleus"
+									# 				}
+						
+									# 				text_single = {
+									# 					layoutpolicy_horizontal = expanding
+									# 					visible = "[Character.IsValid]"
+									# 					text = "[Character.GetFullName]"
+									# 					autoresize = no
+									# 				}
+						
+									# 				hbox = {
+									# 					layoutpolicy_horizontal = expanding
+									# 					margin = { 0 10 }
+						
+									# 					# button_court = {
+									# 					# 	name = "hire_physician_decision"
+									# 					# 	#datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+									# 					# 	visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+									# 					# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+						
+									# 					# 	size = { 250 40 }
+															
+									# 					# 	blockoverride "size_illustration" {
+									# 					# 		size = { 250 38 }
+									# 					# 	}
+															
+									# 					# 	blockoverride "deb_illustration" {
+									# 					# 		visible = no
+									# 					# 	}
+									# 					# }
+						
+									# 					expand = {}
+									# 				}
+									# 			}
+									# 		}
+						
+									# 	}
+									# }
 									
 								}
 							}
@@ -1899,11 +1985,7 @@ widget = {
 
 							}
 
-							hbox = {
-								vbox = {
-									
-								}
-							}
+							
 						}
 					}					
 				}
@@ -1920,7 +2002,85 @@ widget = {
 				name = "footer_army"
 				layoutpolicy_horizontal = expanding
 				
-				
+				# vbox = {
+				# 	layoutpolicy_horizontal = expanding
+				# 	spacing = 5
+					
+				# 	datacontext = "[GetPlayer.GetRelationOfType( GetRelation( 'junior_emperor' ) )]"
+
+					
+
+				# 	hbox = {
+				# 		layoutpolicy_horizontal = expanding
+
+				# 		background = {
+				# 			texture = "gfx/interface/illustrations/event_scenes/z_ave_maria_constantinople_great_palace_interior.dds"
+				# 			fittype = centercrop
+				# 			alpha = 0.5
+
+				# 			using = Mask_Rough_Edges
+				# 		}
+
+				# 		portrait_shoulders = {
+				# 			background = {
+				# 				using = Background_Area
+				# 			}
+				# 			blockoverride "onclick" {
+				# 				#datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+				# 				#onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+				# 				button_icon = {
+				# 					parentanchor = center
+				# 					alwaystransparent = yes
+				# 					size = { 40 40 }
+				# 					position = {-5 -5}
+				# 					texture = "gfx/interface/icons/flat_icons/plus.dds" 
+				# 				}
+				# 			}
+				# 		}
+
+				# 		vbox = {
+				# 			layoutpolicy_horizontal = expanding
+
+				# 			text_single = {
+				# 				layoutpolicy_horizontal = expanding
+				# 				text = "Symbaleus"
+				# 			}
+
+				# 			text_single = {
+				# 				layoutpolicy_horizontal = expanding
+				# 				visible = "[Character.IsValid]"
+				# 				text = "[Character.GetFullName]"
+				# 				autoresize = no
+				# 			}
+
+				# 			hbox = {
+				# 				layoutpolicy_horizontal = expanding
+				# 				margin = { 0 10 }
+
+				# 				# button_court = {
+				# 				# 	name = "hire_physician_decision"
+				# 				# 	#datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
+				# 				# 	visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
+				# 				# 	onclick = "[OpenDecisionDetailView( Decision.Self )]"
+
+				# 				# 	size = { 250 40 }
+									
+				# 				# 	blockoverride "size_illustration" {
+				# 				# 		size = { 250 38 }
+				# 				# 	}
+									
+				# 				# 	blockoverride "deb_illustration" {
+				# 				# 		visible = no
+				# 				# 	}
+				# 				# }
+
+				# 				expand = {}
+				# 			}
+				# 		}
+				# 	}
+
+				# }
 			}
 		}
 	}

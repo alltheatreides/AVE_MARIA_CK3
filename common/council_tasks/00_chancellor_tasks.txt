@@ -376,8 +376,8 @@ task_integrate_title = {
 	task_current_value = scope:councillor_liege.chancellor_integrate_title_current_progress
 
 	is_shown = {
-		scope:councillor_liege.religion = {
-			NOT = { this = religion:islam_religion }
+		scope:councillor_liege = {
+			NOT = { uses_islamic_empire_govt = yes }
 		}
 	}
 

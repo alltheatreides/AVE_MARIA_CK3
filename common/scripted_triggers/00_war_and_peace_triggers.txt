@@ -299,14 +299,12 @@ can_be_knight_trigger = {
 	trigger_if = {
 		limit = {
 			$ARMY_OWNER$ = {
-				any_held_title = {
-					has_variable = islamic_empire_title
-				}
+				uses_islamic_empire_govt = yes
 			}			
 		}
 		trigger_if = {
 			limit = {
-				is_landed = yes
+				is_ruler = yes
 			}
 			NOR = {
 				has_government = islamic_empire_diwan_government
@@ -315,7 +313,7 @@ can_be_knight_trigger = {
 		}	
 		trigger_if = {
 			limit = {
-				is_landed = no
+				is_ruler = no
 			}
 			is_courtier = yes
 		}	
@@ -323,10 +321,11 @@ can_be_knight_trigger = {
 	trigger_if = {
 		limit = {
 			$ARMY_OWNER$ = {
-				NOT = {
+				NOR = {
 					any_held_title = {
 						this = title:e_byzantium
 					}
+					uses_islamic_empire_govt = yes
 				}
 			}			
 		}

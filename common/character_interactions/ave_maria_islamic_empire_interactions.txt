@@ -1280,17 +1280,23 @@ islamic_empire_change_vassal_contract = {
 	is_shown = {
 		scope:recipient = {
 			NOT = { this = scope:actor }
-			OR = {
-				has_government = clan_government
-				uses_islamic_empire_govt = yes
-			}
+			# OR = {
+			# 	has_government = clan_government
+			# 	uses_islamic_empire_govt = yes
+			# }
 			exists = liege
 			liege = scope:actor
 			is_ruler = yes
 			vassal_contract_has_modifiable_obligations = yes
 		}
 		scope:actor = {
-			uses_islamic_empire_govt = yes
+			OR = {
+				uses_islamic_empire_govt = yes
+				AND = {
+					uses_islamic_empire_govt = no
+					scope:recipient = { uses_islamic_empire_govt = yes }
+				}
+			}
 		}
 	}
 
@@ -1445,3 +1451,184 @@ islamic_empire_change_vassal_contract = {
 	}
 }
 
+## Emperor interaction to name a junior emperor
+islamic_empire_name_wazir = {
+	category = interaction_category_islamic_empire
+	interface_priority = 60
+
+	desc = islamic_empire_name_wazir_desc
+
+	is_shown = {
+		always = no
+		scope:actor = {
+			OR = {
+				uses_islamic_empire_govt = yes
+				AND = {
+					uses_islamic_empire_govt = no
+					scope:recipient = { uses_islamic_empire_govt = yes }
+				}
+			}
+			
+		}
+		scope:recipient = { 
+			NOT = { this = scope:actor }
+			OR = {
+				is_vassal_of = scope:actor
+				is_courtier_of = scope:actor
+			}
+			
+			age >= 16
+			is_female = no
+			# NOT = {
+			# 	has_any_scripted_relation = scope:actor
+			# }
+			NOT = {
+				has_relation_islamic_empire_wazir_relation = scope:actor
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_diplomatically_available = yes
+		}
+		# custom_description = {
+		# 	title:e_byzantium = {
+		# 		any_election_candidate = {
+		# 			this = scope:recipient
+		# 		}
+		# 	}
+		# 	text = "roman_administration_name_junior_emperor_candidate_requirement"
+		# }
+		custom_description = {
+			scope:recipient.top_liege = scope:actor.top_liege
+			text = "same_realm_as"
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			every_relation = {
+				type = islamic_empire_wazir_relation
+				#scope:actor = { remove_relation_junior_emperor = prev }
+				
+				hidden_effect = { scope:actor = { remove_relation_islamic_empire_wazir_relation = prev } }
+				add_opinion = {
+					target = scope:actor
+					modifier = islamic_empire_fire_wazir
+				}
+				scope:actor = {
+					remove_character_modifier = islamic_empire_wazir_stat_bonus
+				}
+			}
+			# if = {
+			# 	limit = {
+			# 		exists = cp:roman_councillor_coemperor
+			# 	}
+			# 	fire_councillor = cp:roman_councillor_coemperor
+			# }
+			# assign_councillor_type = {
+			# 	type = roman_councillor_coemperor
+			# 	target = scope:recipient
+			# }
+
+			#set_relation_junior_emperor = scope:recipient
+		}
+
+		scope:recipient = {
+			set_relation_islamic_empire_wazir_relation = scope:actor
+		}
+		scope:actor = {
+			add_character_modifier = { modifier = islamic_empire_wazir_stat_bonus }
+		}
+	}
+
+	cost = {
+		prestige = {
+			value = {
+				add = 100
+				if = {
+					limit = {
+						scope:actor = { 
+							any_relation = {
+								type = junior_emperor
+							}
+						}
+					}
+					add = 1000
+				}
+			}
+		}
+	}
+
+	auto_accept = yes
+
+	ai_potential = {
+
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+
+	ai_frequency = 96
+
+	ai_will_do = {
+		base = 0
+
+		modifier = {
+			add = 100
+			scope:recipient = {
+				NOT = {
+					OR = {
+						has_relation_rival = scope:actor
+						has_relation_nemesis = scope:actor
+					}
+				}
+			}
+		}
+
+		modifier = {
+			add = 500
+			scope:recipient = {
+				is_adult = yes
+				is_female = no
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = -100
+			scope:actor = {
+				any_relation = {
+					type = islamic_empire_wazir_relation
+				}
+			}
+		}
+
+		modifier = {
+			add = 50
+			scope:recipient = {
+				is_child_of = scope:actor
+			}
+		}
+
+		modifier = {
+			add = 50
+			scope:recipient = {
+				NOT = { is_primary_heir_of = root }
+			}
+		}
+
+		modifier = {
+			add = -500
+			scope:recipient = {
+				OR = {
+					has_trait = inbred
+					has_trait = intellect_bad_3
+					has_trait = incapable
+				}
+			}
+		}
+	}
+}

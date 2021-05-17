@@ -16,6 +16,14 @@
 			triggered_desc = {
 				trigger = {
 					scope:councillor_liege = {
+						uses_islamic_empire_govt = yes
+					}					
+				}
+				desc = islamic_empire_councillor_grand_vizier
+			}
+			triggered_desc = {
+				trigger = {
+					scope:councillor_liege = {
 						NOT = {
 							any_held_title = {
 								this = title:e_byzantium
@@ -2462,10 +2470,10 @@ councillor_spouse = {
 	tooltip = game_concept_spouse_desc
 
 	valid_position = {
-		NOT = {
-			has_government = islamic_empire_government
-			has_religion = religion:islam_religion
-		}
+		# NOT = {
+		# 	has_government = islamic_empire_government
+		# 	has_religion = religion:islam_religion
+		# }
 		any_spouse = {
 			OR = {
 				court_owner = root
