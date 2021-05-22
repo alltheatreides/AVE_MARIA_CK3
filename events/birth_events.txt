@@ -2748,16 +2748,25 @@ birth.8011 = {
 	trigger = {
 		any_parent = {
 			OR = {
-				has_title = title:e_byzantium	#Must be the current emperor.
-				has_title = title:e_roman_empire	#Or the other emperor.
+				AND = {
+					OR = {
+						has_title = title:e_byzantium	#Must be the current emperor.
+						has_title = title:e_roman_empire	#Or the other emperor.
+					}
+					capital_county = title:c_byzantion	#Must rule from the Bucoleon Palace.
+				}
+				has_trait = junior_emperor
 			}
-			capital_county = title:c_byzantion	#Must rule from the Bucoleon Palace.
+			
 		}
 		mother = {
 			OR = {
 				AND = {	#Landless mothers must be actually at court to use the chamber.
 					is_ruler = no
-					location = title:c_byzantion.title_province
+					OR = {
+						location = title:c_byzantion.title_province
+						any_spouse = { has_trait = junior_emperor }
+					}					
 				}
 				AND = {	#Landed rulers can be assumed to make the journey, unless they have some extremely pressing reason not to.
 					is_ruler = yes

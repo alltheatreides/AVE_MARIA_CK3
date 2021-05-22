@@ -74,7 +74,7 @@ metropolis_constantinople_01 = {
 	
 	province_modifier = {
 		monthly_income = excellent_building_tax_tier_2
-		fort_level = great_building_fort_level_tier_1
+		fort_level = great_building_fort_level_tier_3
 	}
 
 	county_modifier = {
@@ -97,28 +97,60 @@ metropolis_constantinople_01 = {
 sparsly_populated_holding_building_1 = {
 	construction_time = slow_construction_time
 	
-	# asset = {
-		## type = pdxmesh
-		# illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
-	# }
-	
 	asset = {
-		# type = pdxmesh
-		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
-		graphical_regions = { graphical_mediterranean }
+		type = pdxmesh
+		names = {
+			building_western_tribal_01_a_mesh
+		}
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
 	}
-	
 	asset = {
-		# type = pdxmesh
-		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
-		graphical_regions = { graphical_mena }
+		type = pdxmesh
+		names = {
+			"building_mena_tribal_01_a_mesh"
+		}
+		graphical_cultures = { arabic_group_building_gfx berber_group_building_gfx }
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
 	}
-	
 	asset = {
-		# type = pdxmesh
-		illustration = "gfx/interface/illustrations/holding_types/z_orc_sparsly_populated_holding_forest.dds"
-		graphical_regions = { graphical_india }
+		type = pdxmesh
+		names = {
+			"building_steppe_tribal_01_a_mesh"
+		}
+		graphical_cultures = { steppe_building_gfx }
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
 	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_india_tribal_01_a_mesh"
+		}
+		graphical_cultures = { indian_building_gfx }
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"building_african_tribal_01_a_mesh"
+		}
+		graphical_cultures = { african_building_gfx }
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}
+	asset = {
+		type = pdxmesh
+		names = {
+			"fp1_building_norse_tribal_mesh"
+		}
+		requires_dlc_flag = the_northern_lords
+		graphical_cultures = { norse_building_gfx }
+		illustration = @holding_illustration_grass
+		soundeffect = { soundeffect = "event:/SFX/Ambience/3DMapEmitters/Holdings/City/tribal_city" soundparameter = { "Tier" = 0 } }
+	}	
 	
 	can_construct_potential = {
 		always = no

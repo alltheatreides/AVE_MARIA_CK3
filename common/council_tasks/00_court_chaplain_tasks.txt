@@ -214,9 +214,14 @@ task_conversion = {
 	highlight_own_realm = yes
 
 	is_shown = {
-		scope:councillor_liege.religion = {
-			NOT = { this = religion:islam_religion }
-		}
+		AND = {
+			scope:councillor_liege.religion = {
+				NOT = { this = religion:islam_religion }
+			}
+			scope:councillor_liege = {
+				NOT = { has_trait = zealous }
+			}
+		}		
 	}
 
 	effect_desc = {

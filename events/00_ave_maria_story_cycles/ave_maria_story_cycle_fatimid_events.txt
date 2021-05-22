@@ -359,7 +359,7 @@ ave_maria_story_cycle_fatimids.10 = {
 						has_trait = ambitious			
 					}
 					modifier = {
-						multiply = scope:regiment_leader.var:denied_pay_increase
+						add = scope:regiment_leader.var:denied_pay_increase
 						scope:regiment_leader = {
 							has_variable = denied_pay_increase
 						}
@@ -1379,8 +1379,11 @@ ave_maria_story_cycle_fatimids.17 = {
 				}
 			}	
 		}
-		scope:regiment_leader_rioter.primary_title = {
-			destroy_title = this
+		scope:regiment_leader_rioter = {			
+			primary_title = {
+				save_scope_as = title_to_destroy
+			}	
+			destroy_title = scope:title_to_destroy
 		}
 		scope:regiment_leader_rioter = {
 			death = { death_reason = death_fight }

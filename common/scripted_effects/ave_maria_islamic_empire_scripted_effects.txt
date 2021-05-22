@@ -15,6 +15,94 @@
 
 
 #############################################
+# FACTION INFLUENCE EFFECT	 				#
+#############################################
+
+## to be used in the title scope -> islamic_empire_apply_faction_influence_modifier = { FACTION = barid }
+## Factions as of 20/05/21: barid ; insha ; karaj
+islamic_empire_apply_faction_influence_modifier = {
+	## high
+	if = {
+		limit = {
+			has_variable = islamic_empire_influence_internal_faction
+			var:islamic_empire_influence_internal_faction >= 75
+		}
+		holder.liege = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_influence_normal_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_low_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_minimal_$FACTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_influence_high_$FACTION$
+			}
+		}		
+	}
+	## normal
+	if = {
+		limit = {
+			has_variable = islamic_empire_influence_internal_faction
+			var:islamic_empire_influence_internal_faction >= 50
+			var:islamic_empire_influence_internal_faction < 75
+		}
+		holder.liege = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_influence_high_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_low_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_minimal_$FACTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_influence_normal_$FACTION$
+			}
+		}		
+	}
+	## low
+	if = {
+		limit = {
+			has_variable = islamic_empire_influence_internal_faction
+			var:islamic_empire_influence_internal_faction >= 25
+			var:islamic_empire_influence_internal_faction < 50
+		}
+		holder.liege = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_influence_high_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_normal_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_minimal_$FACTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_influence_low_$FACTION$
+			}
+		}		
+	}
+	## minimal
+	if = {
+		limit = {
+			has_variable = islamic_empire_influence_internal_faction
+			var:islamic_empire_influence_internal_faction >= 0
+			var:islamic_empire_influence_internal_faction < 25
+		}
+		holder.liege = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_influence_high_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_low_$FACTION$
+				remove_character_modifier = islamic_empire_faction_influence_normal_$FACTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_influence_minimal_$FACTION$
+			}
+		}		
+	}
+}
+
+#############################################
+# FACTION ASCENDENCY EFFECT	 				#
+#############################################
+
+# islamic_empire_apply_faction_ascendency_modifier = {
+
+# }
+
+#############################################
 # ASABIYYA EFFECT			 				#
 #############################################
 

@@ -32,20 +32,20 @@ islamic_empire_caliph_favourite = {
 # WAZIR MODIFIERS							#
 #############################################
 
-islamic_empire_wazir_stat_bonus = {
-	icon = letter_positive
-	diplomacy = wazir_stat_diplomacy
-	# martial = wazir_stat_diplomacy
-	# stewardship = wazir_stat_martial
-	# intrigue = wazir_stat_stewardship
-	# learning = wazir_stat_learning
+# islamic_empire_wazir_stat_bonus = {
+# 	icon = letter_positive
+# 	diplomacy = wazir_stat_diplomacy
+# 	# martial = wazir_stat_diplomacy
+# 	# stewardship = wazir_stat_martial
+# 	# intrigue = wazir_stat_stewardship
+# 	# learning = wazir_stat_learning
 
-	# diplomacy = 5
-	# martial = 5
-	# stewardship = 5
-	# intrigue = 5
-	# learning = 5
-}
+# 	# diplomacy = 5
+# 	# martial = 5
+# 	# stewardship = 5
+# 	# intrigue = 5
+# 	# learning = 5
+# }
 
 #############################################
 # PROVINCE MODIFIERS						#
@@ -111,6 +111,87 @@ islamic_empire_military_wazir = {
 }
 
 #############################################
+# FACTION MODIFIERS							#
+#############################################
+
+islamic_empire_faction_ascendant_army = {
+	icon = martial_negative
+}
+
+islamic_empire_faction_ascendant_diwan = {
+	icon = diplomacy_negative
+}
+
+islamic_empire_faction_influence_high_insha = {
+	icon = diplomacy_positive
+	diplomacy = 5
+	vassal_opinion = 5
+	hide_effects = yes
+}
+islamic_empire_faction_influence_normal_insha = {
+	icon = diplomacy_positive
+	diplomacy = 3
+	vassal_opinion = 3
+	hide_effects = yes
+}
+islamic_empire_faction_influence_low_insha = {
+	icon = diplomacy_positive
+	diplomacy = 1
+	vassal_opinion = 1
+	hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_insha = {
+	icon = diplomacy_positive
+	hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_barid = {
+	icon = intrigue_positive
+	intrigue = 5
+	hostile_scheme_resistance_add = 10
+	hide_effects = yes
+}
+islamic_empire_faction_influence_normal_barid = {
+	icon = intrigue_positive
+	intrigue = 3
+	hostile_scheme_resistance_add = 5
+	hide_effects = yes
+}
+islamic_empire_faction_influence_low_barid = {
+	icon = intrigue_positive
+	intrigue = 1
+	hostile_scheme_resistance_add = 3
+	hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_barid = {
+	icon = intrigue_positive
+	hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_karaj = {
+	icon = stewardship_positive
+	stewardship = 5
+	domain_tax_mult = 0.05
+	hide_effects = yes
+}
+islamic_empire_faction_influence_normal_karaj = {
+	icon = stewardship_positive
+	stewardship = 3
+	domain_tax_mult = 0.03
+	hide_effects = yes
+}
+islamic_empire_faction_influence_low_karaj = {
+	icon = stewardship_positive
+	stewardship = 1
+	domain_tax_mult = 0.01
+	hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_karaj = {
+	icon = stewardship_positive
+	hide_effects = yes
+}
+
+#############################################
 # ASABIYYA MODIFIERS						#
 #############################################
 
@@ -144,7 +225,6 @@ islamic_empire_asabiyya_level_medium = {
 	light_cavalry_screen_add = 0.5
 	clan_government_vassal_opinion = 10
 }
-
 
 islamic_empire_asabiyya_level_strong = {
 	icon = martial_positive

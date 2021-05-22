@@ -9,7 +9,12 @@
 
 # Written by Atreides
 
-## WAZIR
+
+
+###########################################
+# WAZIR								      #
+###########################################
+# deprecated / not used, was for testing purposes
 wazir_stat_diplomacy = {
 	value = 1
 	add = {
@@ -18,11 +23,18 @@ wazir_stat_diplomacy = {
 	}
 }
 
-# Base modifier value
+###########################################
+# QADI								      #
+###########################################
+
 court_chaplain_qadi_county_opinion_add = {
 	add = learning
 	divide = 4
 }
+
+###########################################
+# ASABIYYA							      #
+###########################################
 
 islamic_empire_asabiyya_monthly = {
 	value = 0
@@ -175,3 +187,127 @@ islamic_empire_authority_monthly = {
 	# 	add = 0.1
 	# }
 }
+
+###########################################
+# FACTION INFLUENCE					      #
+###########################################
+
+## scoped to a title
+islamic_empire_influence_internal_faction_monthly = {
+	value = 0
+
+	##
+	# if = {
+	# 	limit = {
+	# 		holder = {
+	# 			any_councillor = {
+	# 				OR = {
+	# 					is_performing_council_task = task_foreign_affairs
+	# 					is_performing_council_task = task_domestic_affairs
+	# 				}					
+	# 			}
+	# 		}
+	# 	}
+	# 	add = 0.5
+	# }
+	## INTERNAL FACTION INFLUENCE
+	## Diwans
+	if = {
+		limit = {
+			this = title:d_fatimid_diwan_al_insha
+			holder = {
+				is_independent_ruler = no
+				liege = {
+					any_councillor = {
+						OR = {
+							is_performing_council_task = task_foreign_affairs	
+							is_performing_council_task = task_domestic_affairs
+						}
+									
+					}
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+			
+		}
+		add = 0.25
+	}
+	if = {
+		limit = {
+			this = title:d_fatimid_diwan_al_karaj
+			holder = {
+				is_independent_ruler = no
+				liege = {
+					any_councillor = {
+						is_performing_council_task = task_collect_taxes
+					}
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.25
+	}
+	if = {
+		limit = {
+			this = title:d_fatimid_diwan_al_rawatib
+			holder = {
+				is_independent_ruler = no
+				liege = {
+					any_councillor = {
+						is_performing_council_task = kharaj_streamline_bureaucracy
+					}
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.25
+	}
+	if = {
+		limit = {
+			this = title:d_fatimid_diwan_al_barid
+			holder = {
+				is_independent_ruler = no
+				liege = {
+					any_councillor = {
+						is_performing_council_task = task_find_secrets
+					}
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.25
+	}
+	## jawalla
+	if = {
+		limit = {			
+			holder = {
+				has_government = islamic_empire_regiment_government
+				is_independent_ruler = no
+				OR = { 
+					is_performing_council_task = task_organize_levies
+					is_performing_council_task = task_train_commanders
+					is_performing_council_task = task_increase_control
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.25
+	}
+
+}
+

@@ -329,13 +329,129 @@ ave_maria_test_events.0006 = {
 	}
 	
 	immediate = {
-		create_character = {
-			location = root.capital_province
-			template = pool_repopulate_diplomacy
-			culture = root.culture
-			faith = root.faith
-			trait = orc_pop
+		# create_character = {
+		# 	location = root.capital_province
+		# 	template = pool_repopulate_diplomacy
+		# 	culture = root.culture
+		# 	faith = root.faith
+		# 	trait = orc_pop
+		# }
+
+		primary_title = {
+			set_variable = {
+				name = islamic_empire_influence_diwan
+				value = 45
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_diwan
+				max = 100
+				min = 0
+			}
+
+			set_variable = {
+				name = islamic_empire_influence_army
+				value = 99.75
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_army
+				max = 100
+				min = 0
+			}
+			
+
 		}
+		title:d_fatimid_diwan_al_insha = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 55
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		title:d_fatimid_diwan_al_barid = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 40
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		title:d_fatimid_diwan_al_jays = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 35
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		title:d_fatimid_diwan_al_iqta = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 23
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		title:d_fatimid_diwan_al_karaj = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 30
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		title:d_fatimid_diwan_al_rawatib = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 15
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+
+		title:d_regiment_ghilman_turks = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 99.75
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+
+		title:d_regiment_abid = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 35
+			}
+			clamp_variable = {
+				name = islamic_empire_influence_internal_faction
+				max = 100
+				min = 0
+			}
+		}
+		
+		
 	}
 	
 }
@@ -354,15 +470,19 @@ ave_maria_test_events.0007 = {
 
 
 	override_background = {
-		event_background = ave_maria_wilderness_cliff_view
+		event_background = ave_maria_muslim_palace
 		
+	}
+
+	immediate = {
+		every_in_global_list = {
+			variable = roman_administration_junior_emperor
+			add_trait = pope
+		}
 	}
 
 	option = {
 		name = ave_maria_test_events.0007.OPT.A
-		title:d_fatimid_diwan_al_insha.holder = {
-			set_relation_islamic_empire_wazir_relation = root
-		}
 		
 	}
 }

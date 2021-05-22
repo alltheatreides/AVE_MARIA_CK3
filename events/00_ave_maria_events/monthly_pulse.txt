@@ -465,6 +465,36 @@ monthly_pulse.13 = {
 		# 		vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
 		# 	}
 		# }
+
+		## FACTION INFLUENCE
+		every_ruler = {
+			limit = {
+				is_alive = yes
+				primary_title = {
+					has_variable = islamic_empire_influence_internal_faction
+				}
+			}
+			primary_title = {
+			
+				change_variable = {
+					name = islamic_empire_influence_internal_faction
+					add = islamic_empire_influence_internal_faction_monthly
+				}
+				
+				if = {
+					limit = {
+						var:islamic_empire_influence_internal_faction >= 100
+					}
+					holder = {
+						save_scope_as = islamic_empire_influential_ruler
+					}
+					holder.liege = {
+						trigger_event = ave_maria_factions_events.0001
+					}
+				}
+			}
+		}
+		
 	}
 	
 	option = {

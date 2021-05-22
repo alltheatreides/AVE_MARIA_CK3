@@ -340,6 +340,7 @@ widget = {
 													blend_mode = alphamultiply
 												}
 											}
+
 	
 											text_single = {
 												margin_top = 10
@@ -581,7 +582,7 @@ widget = {
 		}
 	}
 
-	### AVE MARIA - SENATE WINDOW
+	### AVE MARIA - ROMAN SENATE WINDOW
 	window = {
 		name = "senate_window"
 		parentanchor = center
@@ -795,7 +796,7 @@ widget = {
 		}
 	}
 
-	### AVE MARIA - ARMY WINDOW
+	### AVE MARIA - ROMAN ARMY WINDOW
 	window = {
 		name = "army_window"
 		parentanchor = center
@@ -809,6 +810,7 @@ widget = {
 		
 		using = Window_Background
 		using = Window_Decoration
+
 
 		## Main box
 		vbox = {
@@ -827,14 +829,62 @@ widget = {
 				}
 			}
 
+			## gfx tests
+			# icon = {
+			# 	texture = "gfx/interface/icons/institutions/roman_header_ornament.dds"
+			# 	alpha = 0.9
+			# }
+			# background = {
+			# 	texture = "gfx/interface/icons/institutions/roman_background_fill.dds"
+			# 	fittype = centercrop
+			# 	alpha = 0.1
+
+			# 	using = Mask_Rough_Edges
+			# }
+			# icon = {
+			# 	name = "roman_tile_frame_top"
+			# 	#parentanchor = hcenter
+			# 	size = { 920 50 }
+			# 	#position = { 0 5 }
+
+			# 	texture = "gfx/interface/icons/institutions/roman_tooltip_title.dds"
+			# 	spriteType = Corneredtiled
+			# 	spriteborder = { 25 0 }
+			# 	#mirror = vertical
+			# 	texture_density = 1
+
+			# 	hbox = {
+			# 		position = { 0 0 }
+			# 		layoutpolicy_horizontal = expanding
+			# 		text_label_center = {
+			# 			text = "Military Offices"
+			# 			using = Font_Size_Medium
+			# 			default_format = "#high"								
+			# 		}
+			# 	}
+			# }
+			
+			
+
 			## Main Box where army things are
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
+
+				## background gfx tests
+				# background = {
+				# 	texture = "gfx/interface/icons/institutions/roman_background_fill.dds"
+				# 	fittype = centercrop
+				# 	alpha = 0.1
+	
+				# 	using = Mask_Rough_Edges
+				# }
 				
 				widget = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
+
+				
 
 					## Main box
 					vbox = {
@@ -1541,12 +1591,27 @@ widget = {
 				name = "footer_army"
 				layoutpolicy_horizontal = expanding
 				
-				
+				# background = {
+				# 	texture = "gfx/interface/component_tiles/tile_window_background.dds"
+				# 	spriteType = Corneredtiled
+				# 	spriteborder = { 40 8 }
+				# 	margin = { 10 0 }
+				# 	margin_right = 25
+				# 	texture_density = 2
+
+				# 	modify_texture = {
+				# 		name = "mask"
+				# 		texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+				# 		blend_mode = alphamultiply
+				# 	}
+
+				# 	alpha = 0.9
+				# }
 			}
 		}
 	}
 
-	### AVE MARIA - Administration WINDOW
+	### AVE MARIA - ROMAN Administration WINDOW
 	window = {
 		name = "administration_window"
 		parentanchor = center
@@ -2089,7 +2154,7 @@ widget = {
 	window = {
 		name = "fatimid_army_factions_window"
 		parentanchor = center
-		size = { 1000 650 }
+		size = { 1000 700 }
 		position = { -150 0 }
 		layer = windows_layer
 		
@@ -2115,10 +2180,246 @@ widget = {
 				}
 			}
 
+			# icon = {
+			# 	texture = "gfx/interface/icons/institutions/islamic_ui_round_ornament.dds"
+			# 	alpha = 0.9
+			# }
+			# icon = {
+			# 	#parentanchor = hcenter
+			# 	size = { 920 25 }
+			# 	#position = { 0 5 }
+
+			# 	texture = "gfx/interface/icons/institutions/islamic_ui_horizontal.dds"
+			# 	spriteType = Corneredtiled
+			# 	spriteborder = { 25 0 }
+			# 	#mirror = vertical
+			# 	texture_density = 1
+
+			# }
+			# background = {
+			# 	texture = "gfx/interface/icons/institutions/islamic_background_fill.dds"
+			# 	fittype = centercrop
+			# 	alpha = 0.2
+
+			# 	using = Mask_Rough_Edges
+			# }
+
+			## Diwan Realm Ascendency Bar
+			hbox = {
+				name = "army_influence"
+				layoutpolicy_horizontal = expanding
+				spacing = 1
+
+				margin = { 10 10 }
+
+				background = {
+					using = Background_Area_Dark
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+
+				icon = {
+					texture = "gfx/interface/icons/ascendency.dds"
+					size = { 35 35 }
+				}
+
+				text_single = {
+					align = left
+					text = "[ascendency|E]: "
+					using = Font_Size_Medium
+					default_format = "#bold"
+				}
+				
+				vbox = {
+
+					widget = {
+						name = "islamic_empire_influence_army"
+						size = { 300 30 }	
+	
+						background = {
+							using = Background_Area
+							margin = { 3 2 }
+						}
+
+						hbox = {
+							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue,'(CFixedPoint)50')]"
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 0
+								max = 2500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 2500
+								max = 5000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 5000
+								max = 7500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 7500
+								max = 10000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+						}
+						hbox = {
+							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue,'(CFixedPoint)50')]"
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 0
+								max = 2500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 2500
+								max = 5000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 5000
+								max = 7500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 7500
+								max = 10000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+							}
+						}
+						# hbox = {
+						# 	visible = "[EqualTo_CFixedPoint(GetPlayer.MakeScope.Var('ticking_authority').GetValue,GuiScope.SetRoot( GetPlayer.MakeScope ).ScriptValue('realm_authority'))]"
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 0
+						# 		max = 2500
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 2500
+						# 		max = 5000
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 5000
+						# 		max = 7500
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 7500
+						# 		max = 10000
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# }
+						## text
+						hbox = {
+							text_single = {
+								# margin = { 10 5 }
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Absent"
+								autoresize = no
+								tooltip = "crown_authority_0_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Low"
+								autoresize = no
+								tooltip = "crown_authority_1_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Normal"
+								autoresize = no
+								tooltip = "crown_authority_2_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "High"
+								autoresize = no
+								tooltip = "crown_authority_3_effects_not_in_prev"
+							}
+						}
+					}
+
+					divider = {}
+
+				}
+
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				spacer = {
+					size = { 6 6 }
+				}
+				
+			}
+
+			spacer = {
+				size = { 6 6 }
+			}
+
 			## Main Box where army things are
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
+
+				##gfx tests
+				background = {
+					texture = "gfx/interface/icons/institutions/islamic_background_fill.dds"
+					fittype = centercrop
+					alpha = 0.2
+	
+					using = Mask_Rough_Edges
+				}
 				
 				widget = {
 					layoutpolicy_horizontal = expanding
@@ -2171,7 +2472,8 @@ widget = {
 											## Gros bouton
 											button_standard = {
 												layoutpolicy_horizontal = expanding
-												size = { 850 160 }	
+												size = { 850 220 }	
+												margin = { 10 10 }
 
 												background = {
 													fittype = centercrop
@@ -2204,6 +2506,10 @@ widget = {
 																using = Background_Area
 															}
 														}
+
+														# spacer = {
+														# 	size = { 0 40 }
+														# }
 													}
 
 													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
@@ -2213,17 +2519,57 @@ widget = {
 
 														## Titre/nom du régiment
 														hbox = {
+
+															
 															text_single = {
+																parentanchor = top|left
 																datacontext = "[Scope.GetCharacter]"
 																text = "[Character.GetPrimaryTitle.GetBaseNameNoTier]"
 																using = Font_Size_Medium
 																default_format = "#bold"
+
+																margin = { 10 10 }
+																background = {
+																	using = Background_Area_Dark
+																}
+												
+																background = {
+																	visible = "[ObjectsEqual( Character.Self, GetPlayer )]"
+																	texture = "gfx/interface/component_masks/patterns/mask_pattern_02.dds"
+																	spriteType = Corneredtiled
+																	alpha = 0.4
+												
+																	#using = Color_Blue
+												
+																	modify_texture = {
+																		texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+																		blend_mode = alphamultiply
+																		alpha = 0.9
+																	}
+												
+																	modify_texture = {
+																		texture = "gfx/interface/component_masks/mask_texture_01.dds"
+																		spriteType = Corneredtiled
+																		spriteborder = { 15 15 }
+																		blend_mode = alphamultiply
+																	}
+																}
+																
 															}
-														}
+
+															# spacer = {
+															# 	size = { 600 0 }
+															# }
+											
+													
+
+														}														
 														
 														## Infos
 														hbox = {
 															spacing = 25
+
+															
 
 															## Text info : Salary, honors
 															vbox = {
@@ -2453,6 +2799,139 @@ widget = {
 																}
 															}
 														}
+
+														## Influence
+														hbox = {
+															max_width = 460
+															name = "army_faction_influence"
+															layoutpolicy_horizontal = expanding
+											
+															margin = { 10 10 }	
+															#margin_right = 370			
+											
+															text_single = {
+																align = left
+																text = "Influence:  "
+																using = Font_Size_Medium
+																#default_format = "#bold"
+															}
+															
+															vbox = {
+											
+																widget = {
+																	datacontext = "[Scope.GetCharacter]"
+																	name = "islamic_empire_influence_army_individual"
+																	size = { 300 30 }	
+												
+																	background = {
+																		using = Background_Area
+																	}
+											
+																	hbox = {
+																		visible = "[LessThanOrEqualTo_CFixedPoint(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue,'(CFixedPoint)50')]"
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 0
+																			max = 2500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 2500
+																			max = 5000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 5000
+																			max = 7500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 7500
+																			max = 10000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																	}
+																	hbox = {
+																		visible = "[GreaterThan_CFixedPoint(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue,'(CFixedPoint)50')]"
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 0
+																			max = 2500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 2500
+																			max = 5000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 5000
+																			max = 7500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 7500
+																			max = 10000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																	}
+																	
+																	## text
+																	hbox = {
+																		text_single = {
+																			# margin = { 10 5 }
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Absent"
+																			autoresize = no
+																			tooltip = "crown_authority_0_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Low"
+																			autoresize = no
+																			tooltip = "crown_authority_1_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Normal"
+																			autoresize = no
+																			tooltip = "crown_authority_2_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "High"
+																			autoresize = no
+																			tooltip = "crown_authority_3_effects_not_in_prev"
+																		}
+																	}
+																}
+											
+																divider = {}	
+																
+																
+											
+															}									
+																										
+															#expand = {}
+														}
 														
 														
 													}	
@@ -2484,7 +2963,13 @@ widget = {
 				name = "footer_army"
 				layoutpolicy_horizontal = expanding
 				
-				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					text_single = {
+						text = "   "
+					}
+					expand = {}
+				}	
 			}
 		}
 	}
@@ -2493,7 +2978,7 @@ widget = {
 	window = {
 		name = "fatimid_administration_window"
 		parentanchor = center
-		size = { 750 650 }
+		size = { 750 900 }
 		position = { -25 0 }
 		margin = { 20 20 }
 		layer = windows_layer
@@ -2519,14 +3004,238 @@ widget = {
 				}
 			}
 
-			## Divider for visuals
-			divider = {
+			# icon = {
+			# 	#size = { 700 }
+			# 	texture = "gfx/interface/icons/institutions/islamic_ui_horizontal.dds"					
+			# }
+			# icon = {
+			# 	name = "tile_frame_top"
+			# 	#parentanchor = hcenter
+			# 	size = { 690 30 }
+			# 	#position = { 0 5 }
+
+			# 	texture = "gfx/interface/icons/institutions/islamic_ui_horizontal.dds"
+			# 	spriteType = Corneredtiled
+			# 	spriteborder = { 25 0 }
+			# 	#mirror = vertical
+			# 	texture_density = 1
+			# }
+			# icon = {
+			# 	name = "tile_frame_top"
+			# 	#parentanchor = hcenter
+			# 	size = { 690 45 }
+			# 	#position = { 0 5 }
+
+			# 	texture = "gfx/interface/icons/institutions/islamic_ornament.dds"
+			# 	spriteType = Corneredtiled
+			# 	spriteborder = { 60 0 }
+			# 	#mirror = vertical
+			# 	#texture_density = 1
+			# }
+			
+			## Diwan Realm Ascendency Bar
+			hbox = {
+				name = "administration_influence"
 				layoutpolicy_horizontal = expanding
+
+				margin = { 10 10 }
+
+				background = {
+					using = Background_Area_Dark
+				}
+
+				
+
+				text_single = {
+					align = left
+					text = "Ascendency: "
+					using = Font_Size_Medium
+					default_format = "#bold"
+				}
+				
+				vbox = {
+
+					
+
+					widget = {
+						name = "islamic_empire_influence_diwan"
+						size = { 300 30 }	
+	
+						background = {
+							using = Background_Area
+							margin = { 3 2 }
+						}
+
+						hbox = {
+							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue,'(CFixedPoint)50')]"
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 0
+								max = 2500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 2500
+								max = 5000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 5000
+								max = 7500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_green = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 7500
+								max = 10000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+						}
+						hbox = {
+							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue,'(CFixedPoint)50')]"
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 0
+								max = 2500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 2500
+								max = 5000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 5000
+								max = 7500
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+							progressbar_red = {
+								# size = 7500
+								minimumsize = { 75 30 }
+								min = 7500
+								max = 10000
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+							}
+						}
+						# hbox = {
+						# 	visible = "[EqualTo_CFixedPoint(GetPlayer.MakeScope.Var('ticking_authority').GetValue,GuiScope.SetRoot( GetPlayer.MakeScope ).ScriptValue('realm_authority'))]"
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 0
+						# 		max = 2500
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 2500
+						# 		max = 5000
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 5000
+						# 		max = 7500
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# 	progressbar_frozen = {
+						# 		# size = 7500
+						# 		minimumsize = { 75 30 }
+						# 		min = 7500
+						# 		max = 10000
+						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
+						# 	}
+						# }
+						## text
+						hbox = {
+							text_single = {
+								# margin = { 10 5 }
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Minimal"
+								autoresize = no
+								tooltip = "crown_authority_0_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Low"
+								autoresize = no
+								tooltip = "crown_authority_1_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "Normal"
+								autoresize = no
+								tooltip = "crown_authority_2_effects_not_in_prev"
+							}
+							text_single = {
+								align = center
+								layoutpolicy_horizontal = expanding
+								text = "High"
+								autoresize = no
+								tooltip = "crown_authority_3_effects_not_in_prev"
+							}
+						}
+					}
+
+					divider = {}
+
+				}
+
+				spacer = {
+					size = { 6 6 }
+				}
+
+				spacer = {
+					size = { 6 6 }
+				}
+				
 			}
 
+			# icon = {
+			# 	name = "tile_frame_top_2"
+			# 	#parentanchor = hcenter
+			# 	size = { 690 30 }
+			# 	#position = { 0 5 }
+
+			# 	texture = "gfx/interface/icons/institutions/islamic_ui_horizontal.dds"
+			# 	spriteType = Corneredtiled
+			# 	spriteborder = { 25 0 }
+			# 	mirror = vertical
+			# 	texture_density = 1
+			# }
+
+			spacer = {
+				size = { 6 6 }
+			}
+
+			## Buttons and portraits list
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
+
+				background = {
+					texture = "gfx/interface/icons/institutions/islamic_background_fill.dds"
+					fittype = centercrop
+					alpha = 0.2
+	
+					using = Mask_Rough_Edges
+				}
 				
 				widget = {
 					layoutpolicy_horizontal = expanding
@@ -2564,6 +3273,7 @@ widget = {
 									dynamicgridbox = {
 										datamodel = "[GetPlayer.MakeScope.GetList('list_fatimid_diwan_leaders')]"
 										datamodel_wrap = 1
+										spacing = 5
 										flipdirection = yes
 										
 										state = {
@@ -2578,7 +3288,7 @@ widget = {
 											## Gros bouton
 											button_standard = {
 												layoutpolicy_horizontal = expanding
-												size = { 625 160 }	
+												size = { 625 175 }	
 
 												background = {
 													fittype = centercrop
@@ -2588,6 +3298,23 @@ widget = {
 														texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
 														blend_mode = alphamultiply
 													}
+												}
+
+												background = {
+													texture = "gfx/interface/component_tiles/tile_window_background.dds"
+													spriteType = Corneredtiled
+													spriteborder = { 40 8 }
+													margin = { 10 0 }
+													margin_right = 25
+													texture_density = 2
+								
+													modify_texture = {
+														name = "mask"
+														texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+														blend_mode = alphamultiply
+													}
+
+													alpha = 0.5
 												}
 
 												## Boite principale horizontale ou tout est mis
@@ -2612,7 +3339,7 @@ widget = {
 														}
 													}
 
-													## Boite verticale - Titre/nom du régiment et Infos/boutons chacun ans leur boites horizontales
+													## Boite verticale - infos et influence
 													vbox = {
 														parentanchor = top
 														layoutpolicy_horizontal = expanding
@@ -2645,6 +3372,158 @@ widget = {
 															
 														}
 														expand = {}
+
+														## Influence
+														hbox = {
+															datacontext = "[Scope.GetCharacter]"
+															max_width = 460
+															name = "diwan_faction_influence"
+															layoutpolicy_horizontal = expanding
+															spacing = 10
+															margin = { 10 10 }			
+															
+															icon = {
+																texture = "gfx/interface/icons/influence.dds"
+																#parentanchor = center
+																size = { 35 35 }
+															}
+											
+															#[Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]
+															text_single = {
+																align = left
+																text = "[influence|E]: "
+																using = Font_Size_Medium
+																#default_format = "#bold"
+															}
+
+															text_single = {
+																#align = left
+																text = "[Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)|0]"
+																using = Font_Size_Medium
+																#default_format = "#bold"
+															}
+															
+															vbox = {
+											
+																widget = {
+																	datacontext = "[Scope.GetCharacter]"
+																	name = "islamic_empire_influence_diwan_individual"
+																	size = { 300 30 }	
+												
+																	background = {
+																		using = Background_Area
+																	}
+											
+																	## Green / red bars
+																	hbox = {
+																		visible = "[LessThanOrEqualTo_CFixedPoint(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue,'(CFixedPoint)50')]"
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 0
+																			max = 2500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 2500
+																			max = 5000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 5000
+																			max = 7500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_green = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 7500
+																			max = 10000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																	}
+																	hbox = {
+																		visible = "[GreaterThan_CFixedPoint(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue,'(CFixedPoint)50')]"
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 0
+																			max = 2500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 2500
+																			max = 5000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 5000
+																			max = 7500
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																		progressbar_red = {
+																			# size = 7500
+																			minimumsize = { 75 30 }
+																			min = 7500
+																			max = 10000
+																			value = "[FixedPointToProgressbarValue(Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)]"
+																		}
+																	}
+																	
+																	## text
+																	hbox = {
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Minimal"
+																			autoresize = no
+																			tooltip = "crown_authority_0_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Low"
+																			autoresize = no
+																			tooltip = "crown_authority_1_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "Normal"
+																			autoresize = no
+																			tooltip = "crown_authority_2_effects_not_in_prev"
+																		}
+																		text_single = {
+																			align = center
+																			layoutpolicy_horizontal = expanding
+																			text = "High"
+																			autoresize = no
+																			tooltip = "crown_authority_3_effects_not_in_prev"
+																		}
+																	}
+																}
+											
+																divider = {}					
+											
+															}															
+											
+															spacer = {
+																size = { 6 6 }
+															}
+											
+															spacer = {
+																size = { 6 6 }
+															}
+															
+														}
 														
 													}	
 
@@ -2660,19 +3539,28 @@ widget = {
 								}
 							}
 						}
-					}
-					
+					}					
 										
 				}
 			
 			}
 
+			spacer = {
+				size = { 6 6 }
+			}
+
 			## Footer area
 			hbox = {
-				name = "footer_army"
+				name = "footer_admin"
 				layoutpolicy_horizontal = expanding
 				
-				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					text_single = {
+						text = "   "
+					}
+					expand = {}
+				}			
 			}
 		}
 	}

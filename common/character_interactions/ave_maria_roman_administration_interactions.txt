@@ -509,6 +509,9 @@ roman_administration_name_junior_emperor = {
 		scope:recipient = {
 			set_relation_junior_emperor = scope:actor
 			add_trait = junior_emperor
+			hidden_effect = {
+				add_to_global_variable_list = { name = roman_administration_junior_emperor target = this }
+			}
 		}
 	}
 
@@ -1272,7 +1275,7 @@ roman_administration_replace_bureaucrat = {
 					current_heir = {
 						save_scope_as = new_holder
 					}
-					save_temporary_scope_as = ducal_title
+					save_scope_as = ducal_title
 
 					
 
@@ -2000,6 +2003,11 @@ roman_administration_name_protospatharios = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_protospatharios >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			every_relation = {
@@ -2033,6 +2041,45 @@ roman_administration_name_protospatharios = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_protospatharios
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2166,6 +2213,11 @@ roman_administration_name_patrikios = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_patrikios >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			every_relation = {
@@ -2199,6 +2251,45 @@ roman_administration_name_patrikios = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_patrikios
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2322,6 +2413,11 @@ roman_administration_name_anthypatos = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_anthypatos >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			every_relation = {
@@ -2355,6 +2451,45 @@ roman_administration_name_anthypatos = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_anthypatos
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2470,6 +2605,7 @@ roman_administration_name_magistros = {
 				this = scope:actor
 			}	
 		}
+		
 	}
 
 	is_valid = {
@@ -2487,6 +2623,11 @@ roman_administration_name_magistros = {
 			}			
 		}
 	}
+
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_magistros >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
 
 	on_accept = {
 		scope:actor = {
@@ -2521,6 +2662,45 @@ roman_administration_name_magistros = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_magistros
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2654,6 +2834,11 @@ roman_administration_name_proedros = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_proedros >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			every_relation = {
@@ -2687,6 +2872,45 @@ roman_administration_name_proedros = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_proedros
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2820,6 +3044,11 @@ roman_administration_name_vestarches = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_vestarches >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			every_relation = {
@@ -2853,6 +3082,45 @@ roman_administration_name_vestarches = {
 			}
 			add_character_modifier = {
 				modifier = roman_administration_vestarches
+			}
+		}
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
 			}
 		}
 	}
@@ -2986,6 +3254,11 @@ roman_administration_name_spatharios = {
 		}
 	}
 
+	should_use_extra_icon = {
+		scope:actor = { num_of_relation_spatharios >= 1 }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/roman_administration_spot_already_taken.dds"
+
 	on_accept = {
 		scope:actor = {
 			if = {
@@ -3040,7 +3313,45 @@ roman_administration_name_spatharios = {
 			
 			
 		}
-		
+		scope:actor = {
+			send_interface_message = {
+				type = ave_maria_roman_administration_dignity
+				title = {
+					first_valid = {
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_protospatharios } }
+							desc = ave_maria_roman_administration_dignity.protospatharios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_patrikios } }
+							desc = ave_maria_roman_administration_dignity.patrikios
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_magistros } }
+							desc = ave_maria_roman_administration_dignity.magistros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_proedros } }
+							desc = ave_maria_roman_administration_dignity.proedros
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_vestarches } }
+							desc = ave_maria_roman_administration_dignity.vestarches
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_anthypatos } }
+							desc = ave_maria_roman_administration_dignity.anthypatos
+						}
+						triggered_desc = {
+							trigger = { scope:recipient = { has_character_modifier = roman_administration_spatharios } }
+							desc = ave_maria_roman_administration_dignity.spatharios
+						}
+						desc = ave_maria_roman_administration_dignity.message
+					}
+				}
+				left_icon = scope:recipient
+			}
+		}
 	}
 
 	ai_targets = {

@@ -24,3 +24,16 @@ uses_islamic_empire_govt = {
 		has_government = islamic_empire_amir_government
 	}	
 }
+
+#############################################
+# TITLE TYPE TRIGGER						#
+#############################################
+
+## Title scope trigger
+islamic_empire_is_a_regiment_title = {
+	OR = {
+		this = title:d_regiment_abid
+		this = title:d_regiment_ghilman_turks
+		this = title:d_kutama
+	}
+}

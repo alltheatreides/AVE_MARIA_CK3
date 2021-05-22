@@ -39,20 +39,27 @@ can_be_chancellor_trigger = {
 			this = title:d_logothetetes_tou_dromou
 		}
 	}
-	## AVE MARIA FATIMID triggers
+	## AVE MARIA Muslim triggers
 	trigger_if = {
 		limit = {
 			$COURT_OWNER$ = { 
-				has_government = islamic_empire_government
+				uses_islamic_empire_govt = yes
 				highest_held_title_tier = tier_empire
 				any_held_title = {
 					has_variable = islamic_empire_title
 				}
 			}
 		}
-		NOR = {
+		NOT = {
 			has_government = theocracy_government
 		}
+		# trigger_if = {
+		# 	limit = {
+		# 		$COURT_OWNER$ = {
+		# 			has_character_flag = insha_ascendant
+		# 		}
+		# 	}
+		# }
 	}
 }
 
@@ -121,11 +128,11 @@ can_be_marshal_trigger = {
 			this = title:d_megas_domestikos
 		}
 	}
-	## AVE MARIA FATIMID triggers
+	## AVE MARIA Islamic Empire triggers
 	trigger_if = {
 		limit = {
 			$COURT_OWNER$ = { 
-				has_government = islamic_empire_government
+				uses_islamic_empire_govt = yes
 				highest_held_title_tier = tier_empire
 				any_held_title = {
 					has_variable = islamic_empire_title
@@ -136,6 +143,18 @@ can_be_marshal_trigger = {
 			has_government = islamic_empire_diwan_government
 			has_government = theocracy_government
 		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					has_character_modifier = islamic_empire_faction_ascendant_army
+				}
+			}
+			is_ruler = yes
+			any_held_title = {
+				has_variable = islamic_empire_privilege_position
+			}
+		}
+		
 	}
 }
 
@@ -218,6 +237,7 @@ can_be_court_chaplain_trigger = {
 				trait = education_learning_rhetorician
 				rank >= 3
 			}
+			learning >= 10
 		}
 	}
 
@@ -235,16 +255,15 @@ can_be_court_chaplain_trigger = {
 		scope:court_chaplain_check = {
 			trigger_if = {
 				limit = {
-					is_landed = yes
+					is_ruler = yes
 				}
-				NOR = {
-					has_government = islamic_empire_amir_government
-					has_government = islamic_empire_thugur_government
-					has_government = islamic_empire_diwan_government
-				}
-			}		
-			
-			learning >= 12
+			}			
+			NOR = {
+				has_government = islamic_empire_regiment_government
+				has_government = islamic_empire_amir_government
+				has_government = islamic_empire_thugur_government
+				has_government = islamic_empire_diwan_government
+			}
 		}		
 	}
 	trigger_if = {

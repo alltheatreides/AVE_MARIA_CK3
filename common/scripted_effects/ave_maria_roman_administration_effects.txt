@@ -898,6 +898,12 @@ roman_administration_game_start_legitimacy_distribution = {
 
 roman_administration_accession_to_basileus_effect = {
 
+	every_in_global_list = {
+		list = roman_administration_junior_emperor
+		remove_trait = junior_emperor
+		remove_from_list = roman_administration_junior_emperor
+	}
+
 	save_scope_as = roman_emperor
 	
 	## Removes terms of office if you were an Official before
@@ -905,7 +911,12 @@ roman_administration_accession_to_basileus_effect = {
 
 	roman_administration_remove_salary_indicator = yes
 	roman_administration_remove_salary_cost_modifier = yes
-	roman_administration_update_total_salary_cost = yes
+	if = {
+		limit = {
+			NOT = { has_variable = total_number_of_officials_cost }
+		}
+		roman_administration_update_total_salary_cost = yes
+	}
 
 	## Remove the junior emperor trait
 	remove_trait = junior_emperor
