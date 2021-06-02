@@ -11,6 +11,7 @@ This mod is founded on the belief that latest scholarly research on the Middle A
 
 ## CURRENT FEATURES
 - Unique new government and mechanics for the Eastern Roman Empire: a bureaucratic system allowing office terms and competing for administrative posts.
+- Unique new government and mechanics for the Islamic Empires and polities, chiefly the Fatimids and Seljuks: a bureaucratic system with competing factions and interest groups.
 - More than 30 new personality traits as well as rework of the existing ones based on the psychological HEXACO model.
 - Increased county granularity: counties only have one barony for outside of realm succession.
 
@@ -19,3 +20,4 @@ This mod is founded on the belief that latest scholarly research on the Middle A
 
 ## LINKS
 * [Discord](https://discord.gg/C3X3yjS) 
+* [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2268393523) 

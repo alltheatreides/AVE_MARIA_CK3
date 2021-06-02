@@ -337,118 +337,25 @@ ave_maria_test_events.0006 = {
 		# 	trait = orc_pop
 		# }
 
-		primary_title = {
-			set_variable = {
-				name = islamic_empire_influence_diwan
-				value = 45
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_diwan
-				max = 100
-				min = 0
-			}
+		# primary_title = {
+			# set_variable = {
+				# name = islamic_empire_ascendency_army
+				# value = 35
+			# }			
 
-			set_variable = {
-				name = islamic_empire_influence_army
-				value = 99.75
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_army
-				max = 100
-				min = 0
-			}
-			
-
-		}
+		# }
+		
 		title:d_fatimid_diwan_al_insha = {
 			set_variable = {
 				name = islamic_empire_influence_internal_faction
-				value = 55
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
+				value = 50
+			}	
 		}
-		title:d_fatimid_diwan_al_barid = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 40
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-		title:d_fatimid_diwan_al_jays = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 35
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-		title:d_fatimid_diwan_al_iqta = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 23
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-		title:d_fatimid_diwan_al_karaj = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 30
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-		title:d_fatimid_diwan_al_rawatib = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 15
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-
-		title:d_regiment_ghilman_turks = {
-			set_variable = {
-				name = islamic_empire_influence_internal_faction
-				value = 99.75
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
-		}
-
 		title:d_regiment_abid = {
 			set_variable = {
 				name = islamic_empire_influence_internal_faction
-				value = 35
-			}
-			clamp_variable = {
-				name = islamic_empire_influence_internal_faction
-				max = 100
-				min = 0
-			}
+				value = 99.75
+			}	
 		}
 		
 		
@@ -476,9 +383,20 @@ ave_maria_test_events.0007 = {
 
 	immediate = {
 		every_in_global_list = {
-			variable = roman_administration_junior_emperor
-			add_trait = pope
+			variable = islamic_empire_faction_ascendency_title
+			holder = {
+				# add_trait = pope
+				remove_trait = pope
+			}
+			# add_trait = pope
+			# remove_trait = pope
+			# change_variable = {
+				# name = islamic_empire_influence_internal_faction
+				# add = islamic_empire_influence_internal_faction_monthly
+			# }
 		}
+
+		
 	}
 
 	option = {

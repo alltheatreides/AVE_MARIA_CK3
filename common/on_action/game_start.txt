@@ -868,6 +868,12 @@ on_game_start_after_lobby = {
 				target = character:1732
 				target_title = k_armenia
 			}
+			every_character_war = {
+				add_attacker = title:d_edessa.holder
+				add_attacker = title:d_diyarrabia.holder
+				add_attacker = title:d_aleppo.holder
+				add_attacker = title:d_azerbaijan.holder
+			}
 		}
 
 		## ISLAMIC EMPIRES
@@ -877,6 +883,11 @@ on_game_start_after_lobby = {
 				name = islamic_empire_title
 				value = yes
 			}
+
+			add_to_global_variable_list = { name = islamic_empire_faction_ascendency_title target = this }
+			islamic_empire_apply_faction_ascendency_modifier = { INSTITUTION = army }
+			islamic_empire_apply_faction_ascendency_modifier = { INSTITUTION = diwan }
+
 			holder = {
 				add_pressed_claim = d_damascus
 				add_pressed_claim = d_palestine
@@ -1551,6 +1562,7 @@ on_game_start_after_lobby = {
 				}
 				islamic_empire_asabiyya_level_calc = yes
 			}
+			add_to_global_variable_list = { name = islamic_empire_asabiyya_title_holder target = this }
 		}
 
 		## Vassal contracts for dhimmi
@@ -1574,6 +1586,30 @@ on_game_start_after_lobby = {
 				}
 				vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
 			}
+		}
+		## Getting the factional influence leaders for the list
+		every_ruler = {
+			limit = {
+				is_alive = yes
+				primary_title = {
+					has_variable = islamic_empire_influence_internal_faction
+				}
+			}
+			primary_title = {
+				add_to_global_variable_list = { name = islamic_empire_faction_influence_title target = this }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = barid }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = insha }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = karaj }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = jays }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = rawatib }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = iqta }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = abid }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = ghulam }
+				islamic_empire_apply_faction_influence_modifier = { FACTION = berber }
+
+				
+			}
+			
 		}
 
 		## CHRISTIAN

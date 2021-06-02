@@ -3,7 +3,7 @@
 # AVE MARIA events																	   #
 # A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
 #                                         											   #
-# FACTIONS EVENTS																		   #
+# FACTIONS EVENTS																	   #
 #                               													   #
 ########################################################################################
 
@@ -16,6 +16,7 @@ namespace = ave_maria_factions_events
 
 # TABLE OF CONTENT:
 
+## Hidden event with random chance to trigger the various other outcomes
 ave_maria_factions_events.0001 = {
 	hidden = yes
 
@@ -26,15 +27,89 @@ ave_maria_factions_events.0001 = {
 					has_government = islamic_empire_regiment_government
 				}
 			}
-			scope:islamic_empire_influential_ruler.liege = {
-				trigger_event = ave_maria_factions_events.0002
-			}
 			## random chance to trigger several types of demand
-			## desires higher pay - will increase their salary
-			# reduced chance if already asked for it, or salary is above a certain level
-			## desires one time cash - one time cash injection
-			## specific council position over their other internal factions
-			# reduced chance if already asked for some
+			random_list = {
+				## specific council position over their other internal factions
+				# reduced chance if already asked for some
+				7 = {
+					trigger = {
+						
+					}
+					add_character_flag = {
+						flag = islamic_empire_faction_demanded_council_spot
+						days = 1400
+					}
+					liege = {
+						trigger_event = {
+							id = ave_maria_factions_events.0002
+							days = 1
+						}
+					}					
+					modifier = {
+						has_character_flag = islamic_empire_faction_demanded_council_spot
+						factor = -10
+					}
+					modifier = {
+						liege = { has_character_modifier = islamic_empire_faction_influential_army_faction }
+						factor = -100
+					}
+				}
+				## desires higher pay - will increase their salary
+				# reduced chance if already asked for it, or salary is above a certain level
+				8 = {
+					trigger = {
+
+					}
+					add_character_flag = {
+						flag = islamic_empire_faction_demanded_pay_increase
+						days = 1400
+					}
+					liege = {
+						trigger_event = {
+							id = ave_maria_factions_events.0004
+							days = 1
+						}
+					}					
+					modifier = {
+						has_character_flag = islamic_empire_faction_demanded_pay_increase
+						factor = -10
+					}
+					modifier = {
+						primary_title = { 
+							has_variable = islamic_empire_regiment_salary
+							var:islamic_empire_regiment_salary >= 5
+						}
+						factor = -5
+					}
+				}
+				## desires one time cash - one time cash injection
+				10 = {
+					trigger = {
+						
+					}
+					add_character_flag = {
+						flag = islamic_empire_faction_demanded_cash_injection
+						days = 1400
+					}
+					liege = {
+						trigger_event = {
+							id = ave_maria_factions_events.0006
+							days = 1
+						}
+					}					
+					modifier = {
+						has_character_flag = islamic_empire_faction_demanded_pay_increase
+						factor = 5
+					}
+				}
+				75 = {
+					trigger = {
+
+					}
+					## nothing
+				}
+			}		
+			
 		}
 		if = {
 			limit = {
@@ -42,18 +117,97 @@ ave_maria_factions_events.0001 = {
 					has_government = islamic_empire_diwan_government
 				}
 			}
-			scope:islamic_empire_influential_ruler.liege = {
-				trigger_event = ave_maria_factions_events.0003
-			}
+			## random chance to trigger several types of demand
+			random_list = {
+				## specific council position over their other internal factions
+				# reduced chance if already asked for some
+				7 = {
+					trigger = {
+						
+					}
+					add_character_flag = {
+						flag = islamic_empire_faction_demanded_council_spot
+						days = 1400
+					}
+					liege = {
+						trigger_event = {
+							id = ave_maria_factions_events.0003
+							days = 1
+						}
+					}					
+					modifier = {
+						has_character_flag = islamic_empire_faction_demanded_council_spot
+						factor = -10
+					}
+					modifier = {
+						liege = { has_character_modifier = islamic_empire_faction_influential_diwan_faction }
+						factor = -100
+					}
+				}
+				## desires higher pay - will increase their salary
+				# reduced chance if already asked for it, or salary is above a certain level
+				# 8 = {
+				# 	trigger = {
+
+				# 	}
+				# 	add_character_flag = {
+				# 		flag = islamic_empire_faction_demanded_pay_increase
+				# 		days = 1400
+				# 	}
+				# 	liege = {
+				# 		trigger_event = {
+				# 			id = ave_maria_factions_events.0005
+				# 			days = 1
+				# 		}
+				# 	}					
+				# 	modifier = {
+				# 		has_character_flag = islamic_empire_faction_demanded_pay_increase
+				# 		factor = -10
+				# 	}
+				# 	modifier = {
+				# 		primary_title = { 
+				# 			has_variable = islamic_empire_regiment_salary
+				# 			var:islamic_empire_regiment_salary >= 5
+				# 		}
+				# 		factor = -5
+				# 	}
+				# }
+				## desires one time cash - one time cash injection
+				10 = {
+					trigger = {
+						
+					}
+					add_character_flag = {
+						flag = islamic_empire_faction_demanded_cash_injection
+						days = 1400
+					}
+					liege = {
+						trigger_event = {
+							id = ave_maria_factions_events.0007
+							days = 1
+						}
+					}					
+					modifier = {
+						has_character_flag = islamic_empire_faction_demanded_pay_increase
+						factor = 5
+					}
+				}
+				75 = {
+					trigger = {
+
+					}
+					## nothing
+				}
+			}	
 		}
 	}
 }
 
-## Faction reaches 100 - military
+## Faction reaches 100 - military - council spot demand
 ave_maria_factions_events.0002 = {
 	type = character_event
-	title = ave_maria_factions_events.0001.title
-	desc = ave_maria_factions_events.0001.desc
+	title = ave_maria_factions_events.0002.title
+	desc = ave_maria_factions_events.0002.desc
 
 	theme = realm
 	override_background = {
@@ -69,6 +223,9 @@ ave_maria_factions_events.0002 = {
 		character = scope:islamic_empire_influential_ruler
 	}
 	
+	lower_right_portait = {
+		character = scope:potential_regiment_leader_to_promote
+	}
 
 	trigger = {
 		
@@ -86,6 +243,7 @@ ave_maria_factions_events.0002 = {
 		}
 		every_vassal = {
 			limit = {
+				has_government = islamic_empire_regiment_government
 				primary_title = {
 					has_variable = islamic_empire_privilege_position
 				}
@@ -98,7 +256,7 @@ ave_maria_factions_events.0002 = {
 
 	## Okay - accept
 	option = {
-		name = ave_maria_factions_events.0001.OPT.A
+		name = ave_maria_factions_events.0002.OPT.A
 		scope:islamic_empire_influential_ruler.primary_title = {
 			set_variable = {
 				name = islamic_empire_privilege_position
@@ -117,7 +275,7 @@ ave_maria_factions_events.0002 = {
 				}
 			}
 		}
-		add_character_modifier = islamic_empire_faction_ascendant_army
+		add_character_modifier = islamic_empire_faction_influential_army_faction
 		scope:islamic_empire_influential_ruler = {
 			add_opinion = {
 				target = root
@@ -129,7 +287,7 @@ ave_maria_factions_events.0002 = {
 
 	## No
 	option = {
-		name = ave_maria_factions_events.0001.OPT.B
+		name = ave_maria_factions_events.0002.OPT.B
 		scope:islamic_empire_influential_ruler.primary_title = {
 			change_variable = {
 				name = islamic_empire_influence_internal_faction
@@ -154,7 +312,8 @@ ave_maria_factions_events.0002 = {
 
 	## Divide and conquer
 	option = {
-		name = ave_maria_factions_events.0001.OPT.C
+		name = ave_maria_factions_events.0002.OPT.C
+		custom_tooltip = ave_maria_factions_events.0002.OPT.C.tooltip
 		scope:islamic_empire_influential_ruler.primary_title = {
 			change_variable = {
 				name = islamic_empire_influence_internal_faction
@@ -171,13 +330,18 @@ ave_maria_factions_events.0002 = {
 			
 		}
 	}
+
+	after = {
+		clear_saved_scope = islamic_empire_influential_ruler
+		clear_saved_scope = potential_regiment_leader_to_promote
+	}
 }
 
-## Faction reaches 100 - diwan
+## Faction reaches 100 - diwan - council spot demand
 ave_maria_factions_events.0003 = {
 	type = character_event
-	title = ave_maria_factions_events.0001.title
-	desc = ave_maria_factions_events.0001.desc
+	title = ave_maria_factions_events.0003.title
+	desc = ave_maria_factions_events.0003.desc
 
 	theme = realm
 	override_background = {
@@ -210,6 +374,7 @@ ave_maria_factions_events.0003 = {
 		}
 		every_vassal = {
 			limit = {
+				has_government = islamic_empire_diwan_government
 				primary_title = {
 					has_variable = islamic_empire_privilege_position
 				}
@@ -222,7 +387,8 @@ ave_maria_factions_events.0003 = {
 
 	## Okay - accept
 	option = {
-		name = ave_maria_factions_events.0001.OPT.A
+		name = ave_maria_factions_events.0003.OPT.A
+		
 		scope:islamic_empire_influential_ruler.primary_title = {
 			set_variable = {
 				name = islamic_empire_privilege_position
@@ -241,7 +407,7 @@ ave_maria_factions_events.0003 = {
 				}
 			}
 		}
-		add_character_modifier = islamic_empire_faction_ascendant_diwan
+		add_character_modifier = islamic_empire_faction_influential_diwan_faction
 		scope:islamic_empire_influential_ruler = {
 			add_opinion = {
 				target = root
@@ -253,7 +419,8 @@ ave_maria_factions_events.0003 = {
 
 	## No
 	option = {
-		name = ave_maria_factions_events.0001.OPT.B
+		name = ave_maria_factions_events.0003.OPT.B
+		custom_tooltip = ave_maria_factions_events.0003.OPT.B.tooltip
 		scope:islamic_empire_influential_ruler.primary_title = {
 			change_variable = {
 				name = islamic_empire_influence_internal_faction
@@ -278,14 +445,27 @@ ave_maria_factions_events.0003 = {
 
 	## Divide and conquer
 	option = {
-		name = ave_maria_factions_events.0001.OPT.C
+		name = ave_maria_factions_events.0003.OPT.C
+		custom_tooltip = ave_maria_factions_events.0003.OPT.C.tooltip
 		scope:islamic_empire_influential_ruler.primary_title = {
 			change_variable = {
 				name = islamic_empire_influence_internal_faction
 				subtract = 10
 			}
 		}
-		scope:potential_regiment_leader_to_promote = {
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_fired_me
+				opinion = -25
+			}
+		}
+		scope:potential_diwan_leader_to_promote = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
 			primary_title = {
 				change_variable = {
 					name = islamic_empire_influence_internal_faction
@@ -298,7 +478,848 @@ ave_maria_factions_events.0003 = {
 
 	after = {
 		clear_saved_scope = islamic_empire_influential_ruler
-		clear_saved_scope = potential_regiment_leader_to_promote
+		clear_saved_scope = potential_diwan_leader_to_promote
 	}
 }
 
+## Faction reaches 100 - military - pay increase demand
+ave_maria_factions_events.0004 = {
+	type = character_event
+	title = ave_maria_factions_events.0004.title
+	desc = ave_maria_factions_events.0004.desc
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_muslim_palace
+		
+	}
+
+	left_portrait = {
+		character = root
+	}
+
+	right_portrait = {
+		character = scope:islamic_empire_influential_ruler
+	}
+	
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOT = { this = scope:islamic_empire_influential_ruler }
+				primary_title = { has_variable = islamic_empire_influence_internal_faction }
+			}
+			save_scope_as = potential_regiment_leader_to_promote
+			
+		}
+	}
+
+	## Okay - accept
+	option = {
+		name = ave_maria_factions_events.0004.OPT.A
+		custom_tooltip = ave_maria_factions_events.0004.OPT.A.tooltip
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				modifier = islamic_empire_increased_salary
+				target = root
+			}
+		}
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_regiment_salary
+				add = 1
+			}
+			hidden_effect = {
+				islamic_empire_apply_salary_income = yes
+			}
+			holder = { islamic_empire_apply_salary_opinion = yes }
+		}
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+		## Stress Impact
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = minor_stress_impact_gain
+				greedy = minor_stress_impact_gain
+	
+				forgiving = minor_stress_impact_loss
+				compassionate = minor_stress_impact_loss
+				patient = minor_stress_impact_loss
+				trusting = minor_stress_impact_loss
+				calm = minor_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_gain
+				greedy = major_stress_impact_gain
+				arbitrary = major_stress_impact_gain
+				cynical = major_stress_impact_gain
+				deceitful = major_stress_impact_gain
+	
+	
+				forgiving = major_stress_impact_loss
+				compassionate = major_stress_impact_loss
+				patient = major_stress_impact_loss
+				trusting = major_stress_impact_loss
+				calm = major_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_gain
+				greedy = medium_stress_impact_gain
+	
+				forgiving = medium_stress_impact_loss
+				compassionate = medium_stress_impact_loss
+				patient = medium_stress_impact_loss
+				trusting = medium_stress_impact_loss
+				calm = medium_stress_impact_loss
+			}
+
+		}
+	}
+
+	## No
+	option = {
+		name = ave_maria_factions_events.0004.OPT.B
+		custom_tooltip = ave_maria_factions_events.0004.OPT.B.tooltip
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}		
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+	}
+
+	## Divide and conquer
+	option = {
+		name = ave_maria_factions_events.0004.OPT.C
+		custom_tooltip = ave_maria_factions_events.0004.OPT.C.tooltip
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		scope:potential_regiment_leader_to_promote = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_influence_internal_faction
+					add = 10
+				}
+				change_variable = {
+					name = islamic_empire_regiment_salary
+					add = 1
+				}
+				hidden_effect = {
+					islamic_empire_apply_salary_income = yes
+				}
+
+				holder = { islamic_empire_apply_salary_opinion = yes }
+			}
+			
+		}
+
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}		
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:islamic_empire_influential_ruler = {
+					primary_title = {
+						var:islamic_empire_regiment_salary > 2
+						var:islamic_empire_regiment_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+	}
+
+	
+}
+
+## Faction reaches 100 - diwan - pay increase demand
+ave_maria_factions_events.0005 = {
+	type = character_event
+	title = ave_maria_factions_events.0005.title
+	desc = ave_maria_factions_events.0005.desc
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_muslim_palace
+		
+	}
+
+	left_portrait = {
+		character = root
+	}
+
+	right_portrait = {
+		character = scope:islamic_empire_influential_ruler
+	}
+	
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		
+	}
+
+	## Okay - accept
+	option = {
+		name = ave_maria_factions_events.0001.OPT.A
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_diwan_salary
+				add = 1
+			}
+			hidden_effect = {
+				islamic_empire_apply_salary_income = yes
+			}
+			add_opinion = {
+				modifier = islamic_empire_increased_salary
+				target = liege
+			}
+			islamic_empire_apply_salary_opinion = yes
+		}
+		hidden_effect = {
+			islamic_empire_calculate_regiment_cost = yes
+		}
+		## Stress Impact
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = minor_stress_impact_gain
+				greedy = minor_stress_impact_gain
+	
+				forgiving = minor_stress_impact_loss
+				compassionate = minor_stress_impact_loss
+				patient = minor_stress_impact_loss
+				trusting = minor_stress_impact_loss
+				calm = minor_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_gain
+				greedy = major_stress_impact_gain
+				arbitrary = major_stress_impact_gain
+				cynical = major_stress_impact_gain
+				deceitful = major_stress_impact_gain
+	
+	
+				forgiving = major_stress_impact_loss
+				compassionate = major_stress_impact_loss
+				patient = major_stress_impact_loss
+				trusting = major_stress_impact_loss
+				calm = major_stress_impact_loss
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary > 2
+						var:islamic_empire_diwan_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_gain
+				greedy = medium_stress_impact_gain
+	
+				forgiving = medium_stress_impact_loss
+				compassionate = medium_stress_impact_loss
+				patient = medium_stress_impact_loss
+				trusting = medium_stress_impact_loss
+				calm = medium_stress_impact_loss
+			}
+
+		}
+	}
+
+	## No
+	option = {
+		name = ave_maria_factions_events.0001.OPT.B
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary <= 2
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}		
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary >= 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = major_stress_impact_loss
+				greedy = major_stress_impact_loss
+				arbitrary = major_stress_impact_loss
+				cynical = major_stress_impact_loss
+				deceitful = major_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+
+		}
+		if = {
+			limit = {
+				scope:regiment_leader = {
+					primary_title = {
+						var:islamic_empire_diwan_salary > 2
+						var:islamic_empire_diwan_salary < 5
+					}
+				}
+			}
+			stress_impact = {
+				arrogant = medium_stress_impact_loss
+				greedy = medium_stress_impact_loss
+				arbitrary = medium_stress_impact_loss
+				cynical = medium_stress_impact_loss
+				deceitful = medium_stress_impact_loss
+	
+				forgiving = medium_stress_impact_gain
+				compassionate = medium_stress_impact_gain
+				patient = medium_stress_impact_gain
+				trusting = medium_stress_impact_gain
+				calm = medium_stress_impact_gain
+			}
+
+		}
+	}
+}
+
+## Faction reaches 100 - military - cash injection demand
+ave_maria_factions_events.0006 = {
+	type = character_event
+	title = ave_maria_factions_events.0006.title
+	desc = ave_maria_factions_events.0006.desc
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_muslim_palace
+		
+	}
+
+	left_portrait = {
+		character = root
+	}
+
+	right_portrait = {
+		character = scope:islamic_empire_influential_ruler
+	}
+	
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_regiment_government
+				NOT = { this = scope:islamic_empire_influential_ruler }
+				primary_title = { has_variable = islamic_empire_influence_internal_faction }
+			}
+			save_scope_as = potential_regiment_leader_to_promote
+			
+		}
+	}
+
+	option = {
+		name = ave_maria_factions_events.0006.OPT.A
+		pay_short_term_gold = { target = scope:islamic_empire_influential_ruler gold = 75 }
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+	}
+
+	option = {
+		name = ave_maria_factions_events.0006.OPT.B
+		custom_tooltip = ave_maria_factions_events.0002.OPT.B.tooltip
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+	}
+
+	## Divide and conquer
+	option = {
+		name = ave_maria_factions_events.0006.OPT.C
+		custom_tooltip = ave_maria_factions_events.0006.OPT.C.tooltip
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		pay_short_term_gold = { target = scope:islamic_empire_influential_ruler gold = 75 }
+		scope:potential_regiment_leader_to_promote = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_influence_internal_faction
+					add = 10
+				}
+			}
+			
+		}
+	}
+
+}
+
+## Faction reaches 100 - diwan - cash injection demand
+ave_maria_factions_events.0007 = {
+	type = character_event
+	title = ave_maria_factions_events.0007.title
+	desc = ave_maria_factions_events.0007.desc
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_muslim_palace
+		
+	}
+
+	left_portrait = {
+		character = root
+	}
+
+	right_portrait = {
+		character = scope:islamic_empire_influential_ruler
+	}
+	
+
+	trigger = {
+		
+	}
+
+	immediate = {
+		random_vassal = {
+			limit = {
+				has_government = islamic_empire_diwan_government
+				NOT = { this = scope:islamic_empire_influential_ruler }
+				primary_title = { has_variable = islamic_empire_influence_internal_faction }
+			}
+			save_scope_as = potential_diwan_leader_to_promote
+			
+		}
+	}
+	
+	option = {
+		name = ave_maria_factions_events.0007.OPT.A
+		pay_short_term_gold = { target = scope:islamic_empire_influential_ruler gold = 75 }
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+		}
+		
+	}
+
+	option = {
+		name = ave_maria_factions_events.0007.OPT.B
+		custom_tooltip = ave_maria_factions_events.0002.OPT.B.tooltip
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+	}
+
+	## Divide and conquer
+	option = {
+		name = ave_maria_factions_events.0007.OPT.C
+		custom_tooltip = ave_maria_factions_events.0007.OPT.C.tooltip
+		scope:islamic_empire_influential_ruler = {
+			add_opinion = {
+				target = root
+				modifier = refusal_opinion
+				opinion = -30
+			}
+		}
+		scope:islamic_empire_influential_ruler.primary_title = {
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				subtract = 10
+			}
+		}
+		pay_short_term_gold = { target = scope:potential_diwan_leader_to_promote gold = 75 }
+		scope:potential_diwan_leader_to_promote = {
+			add_opinion = {
+				target = root
+				modifier = roman_administration_favoured_me
+				opinion = 25
+			}
+			primary_title = {
+				change_variable = {
+					name = islamic_empire_influence_internal_faction
+					add = 10
+				}
+			}
+			
+		}
+	}
+}
+
+## Triggered from the decision - remove the council reserved spot modifier
+ave_maria_factions_events.0050 = {
+	type = character_event
+	title = ave_maria_factions_events.0050.title
+	desc = ave_maria_factions_events.0050.desc
+
+	theme = realm
+	override_background = {
+		event_background = ave_maria_muslim_palace
+		
+	}
+
+	left_portrait = {
+		character = root
+	}
+
+	right_portrait = {
+		character = scope:islamic_empire_privileged_leader
+	}
+
+	immediate = {
+		random_vassal = {
+			limit = {
+				primary_title = {
+					has_variable = islamic_empire_privilege_position
+				}
+			}
+			save_scope_as = islamic_empire_privileged_leader
+		}
+	}
+
+	option = {
+		name = ave_maria_factions_events.0050.OPT.A
+		custom_tooltip =  ave_maria_factions_events.0050.OPT.A.tooltip
+		add_prestige = -150
+		scope:islamic_empire_privileged_leader = {
+			primary_title = {
+				remove_variable = islamic_empire_privilege_position
+			}
+		}
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_faction_influential_diwan_faction
+			}
+			remove_character_modifier = islamic_empire_faction_influential_diwan_faction
+		}
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_faction_influential_army_faction
+			}
+			remove_character_modifier = islamic_empire_faction_influential_army_faction
+		}
+	}
+
+	option = {
+		name = ave_maria_factions_events.0050.OPT.B
+	}
+
+	option = {
+		name = ave_maria_factions_events.0050.OPT.C
+		custom_tooltip =  ave_maria_factions_events.0050.OPT.A.tooltip
+		trigger = {
+			OR = {
+				has_trait = impatient
+				has_trait = vengeful
+				has_trait = stubborn
+				has_trait = zealous
+				has_trait = wrathful
+				has_trait = callous
+				has_trait = sadistic
+			}
+		}
+		add_prestige = -150
+		scope:islamic_empire_privileged_leader = {
+			primary_title = {
+				remove_variable = islamic_empire_privilege_position
+			}
+		}
+		scope:islamic_empire_privileged_leader = {
+			death = { killer = root death_reason = death_punishment } 
+		}
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_faction_influential_diwan_faction
+			}
+			remove_character_modifier = islamic_empire_faction_influential_diwan_faction
+		}
+		if = {
+			limit = {
+				has_character_modifier = islamic_empire_faction_influential_army_faction
+			}
+			remove_character_modifier = islamic_empire_faction_influential_army_faction
+		}
+	}
+}

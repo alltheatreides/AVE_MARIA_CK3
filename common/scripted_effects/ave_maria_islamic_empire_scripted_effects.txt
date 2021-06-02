@@ -87,9 +87,9 @@ islamic_empire_apply_faction_influence_modifier = {
 				remove_character_modifier = islamic_empire_faction_influence_low_$FACTION$
 				remove_character_modifier = islamic_empire_faction_influence_normal_$FACTION$
 			}
-			add_character_modifier = {
-				modifier = islamic_empire_faction_influence_minimal_$FACTION$
-			}
+			# add_character_modifier = {
+			# 	modifier = islamic_empire_faction_influence_minimal_$FACTION$
+			# }
 		}		
 	}
 }
@@ -98,9 +98,79 @@ islamic_empire_apply_faction_influence_modifier = {
 # FACTION ASCENDENCY EFFECT	 				#
 #############################################
 
-# islamic_empire_apply_faction_ascendency_modifier = {
-
-# }
+islamic_empire_apply_faction_ascendency_modifier = {
+	## high
+	if = {
+		limit = {
+			has_variable = islamic_empire_ascendency_$INSTITUTION$
+			var:islamic_empire_ascendency_$INSTITUTION$ >= 75
+		}
+		holder = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_ascendency_normal_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_low_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_minimal_$INSTITUTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_ascendency_high_$INSTITUTION$
+			}
+		}		
+	}
+	## normal
+	if = {
+		limit = {
+			has_variable = islamic_empire_ascendency_$INSTITUTION$
+			var:islamic_empire_ascendency_$INSTITUTION$ >= 50
+			var:islamic_empire_ascendency_$INSTITUTION$ < 75
+		}
+		holder = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_ascendency_high_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_low_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_minimal_$INSTITUTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_ascendency_normal_$INSTITUTION$
+			}
+		}		
+	}
+	## low
+	if = {
+		limit = {
+			has_variable = islamic_empire_ascendency_$INSTITUTION$
+			var:islamic_empire_ascendency_$INSTITUTION$ >= 25
+			var:islamic_empire_ascendency_$INSTITUTION$ < 50
+		}
+		holder = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_ascendency_high_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_normal_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_minimal_$INSTITUTION$
+			}
+			add_character_modifier = {
+				modifier = islamic_empire_faction_ascendency_low_$INSTITUTION$
+			}
+		}		
+	}
+	## minimal
+	if = {
+		limit = {
+			has_variable = islamic_empire_ascendency_$INSTITUTION$
+			var:islamic_empire_ascendency_$INSTITUTION$ >= 0
+			var:islamic_empire_ascendency_$INSTITUTION$ < 25
+		}
+		holder = {
+			hidden_effect = {
+				remove_character_modifier = islamic_empire_faction_ascendency_high_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_low_$INSTITUTION$
+				remove_character_modifier = islamic_empire_faction_ascendency_normal_$INSTITUTION$
+			}
+			# add_character_modifier = {
+			# 	modifier = islamic_empire_faction_ascendency_minimal_$INSTITUTION$
+			# }
+		}		
+	}
+}
 
 #############################################
 # ASABIYYA EFFECT			 				#
@@ -683,6 +753,7 @@ islamic_empire_historical_drought_start_up_effect = {
 # REGIMENT CALC EFFECT						#
 #############################################
 
+## used in a title scope
 islamic_empire_apply_salary_income = {
 	holder = { 
 		islamic_empire_remove_salary_income = yes 
@@ -1391,6 +1462,7 @@ islamic_empire_apply_salary_income = {
 	
 }
 
+## used ina character scope
 islamic_empire_calculate_regiment_cost = {
 	save_scope_as = caliph
 
@@ -4444,6 +4516,7 @@ islamic_empire_calculate_regiment_cost = {
 	
 }
 
+## used ina character scope
 islamic_empire_remove_salary_cost = {
 	remove_character_modifier = islamic_empire_salary_cost_modifier_1
 	remove_character_modifier = islamic_empire_salary_cost_modifier_2
@@ -4948,6 +5021,7 @@ islamic_empire_remove_salary_cost = {
 
 }
 
+## used ina character scope
 islamic_empire_remove_salary_income = {
 	remove_character_modifier = islamic_empire_salary_1
 	remove_character_modifier = islamic_empire_salary_2
@@ -5005,6 +5079,7 @@ islamic_empire_remove_salary_income = {
 # SALARY OPINION EFFECT						#
 #############################################
 
+## used in a character scope
 islamic_empire_apply_salary_opinion = {
 	## Low
 	if = {
@@ -5083,6 +5158,7 @@ islamic_empire_apply_salary_opinion = {
 	}
 }
 
+## used in a character scope
 islamic_empire_apply_court_precedence_opinion = {
 	## Low
 	if = {

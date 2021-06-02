@@ -114,11 +114,55 @@ islamic_empire_military_wazir = {
 # FACTION MODIFIERS							#
 #############################################
 
-islamic_empire_faction_ascendant_army = {
+## Ascendency
+islamic_empire_faction_ascendency_high_army = {
+	icon = martial_negative
+	men_at_arms_maintenance = -1
+	men_at_arms_limit = 5
+}
+islamic_empire_faction_ascendency_normal_army = {
+	icon = martial_negative
+	men_at_arms_maintenance = -0.75
+	men_at_arms_limit = 3
+}
+islamic_empire_faction_ascendency_low_army = {
+	icon = martial_negative
+	men_at_arms_maintenance = -0.5
+	men_at_arms_limit = 1
+}
+islamic_empire_faction_ascendency_minimal_army = {
 	icon = martial_negative
 }
 
-islamic_empire_faction_ascendant_diwan = {
+islamic_empire_faction_ascendency_high_diwan = {
+	icon = diplomacy_negative
+	domain_tax_mult = 0.05
+}
+islamic_empire_faction_ascendency_normal_diwan = {
+	icon = diplomacy_negative
+	domain_tax_mult = 0.03
+}
+islamic_empire_faction_ascendency_low_diwan = {
+	icon = diplomacy_negative
+	domain_tax_mult = 0.01
+}
+islamic_empire_faction_ascendency_minimal_diwan = {
+	icon = diplomacy_negative
+}
+
+
+islamic_empire_faction_ascendant_ulama = {
+	icon = piety_negative
+}
+
+
+## Internal Factions
+
+islamic_empire_faction_influential_army_faction = {
+	icon = martial_negative
+}
+
+islamic_empire_faction_influential_diwan_faction = {
 	icon = diplomacy_negative
 }
 
@@ -126,70 +170,207 @@ islamic_empire_faction_influence_high_insha = {
 	icon = diplomacy_positive
 	diplomacy = 5
 	vassal_opinion = 5
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_normal_insha = {
 	icon = diplomacy_positive
 	diplomacy = 3
 	vassal_opinion = 3
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_low_insha = {
 	icon = diplomacy_positive
 	diplomacy = 1
 	vassal_opinion = 1
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_minimal_insha = {
 	icon = diplomacy_positive
-	hide_effects = yes
+	# hide_effects = yes
 }
 
 islamic_empire_faction_influence_high_barid = {
 	icon = intrigue_positive
 	intrigue = 5
 	hostile_scheme_resistance_add = 10
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_normal_barid = {
 	icon = intrigue_positive
 	intrigue = 3
 	hostile_scheme_resistance_add = 5
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_low_barid = {
 	icon = intrigue_positive
 	intrigue = 1
 	hostile_scheme_resistance_add = 3
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_minimal_barid = {
 	icon = intrigue_positive
-	hide_effects = yes
+	# hide_effects = yes
 }
 
 islamic_empire_faction_influence_high_karaj = {
 	icon = stewardship_positive
 	stewardship = 5
 	domain_tax_mult = 0.05
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_normal_karaj = {
 	icon = stewardship_positive
 	stewardship = 3
 	domain_tax_mult = 0.03
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_low_karaj = {
 	icon = stewardship_positive
 	stewardship = 1
 	domain_tax_mult = 0.01
-	hide_effects = yes
+	# hide_effects = yes
 }
 islamic_empire_faction_influence_minimal_karaj = {
 	icon = stewardship_positive
-	hide_effects = yes
+	# hide_effects = yes
 }
+
+islamic_empire_faction_influence_high_jays = {
+	icon = stewardship_positive
+	islamic_empire_regiment_government_vassal_opinion = 10
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_jays = {
+	icon = stewardship_positive
+	islamic_empire_regiment_government_vassal_opinion = 5
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_jays = {
+	icon = stewardship_positive
+	islamic_empire_regiment_government_vassal_opinion = 3
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_jays = {
+	icon = stewardship_positive
+	# hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_rawatib = {
+	icon = stewardship_positive
+	islamic_empire_diwan_government_vassal_opinion = 10
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_rawatib = {
+	icon = stewardship_positive
+	islamic_empire_diwan_government_vassal_opinion = 5
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_rawatib = {
+	icon = stewardship_positive
+	islamic_empire_diwan_government_vassal_opinion = 3
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_rawatib = {
+	icon = stewardship_positive
+	# hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_iqta = {
+	icon = stewardship_positive
+	#stewardship = 5
+	domain_tax_mult = 0.05
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_iqta = {
+	icon = stewardship_positive
+	#stewardship = 3
+	domain_tax_mult = 0.03
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_iqta = {
+	icon = stewardship_positive
+	#stewardship = 1
+	domain_tax_mult = 0.01
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_iqta = {
+	icon = stewardship_positive
+	# hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_abid = {
+	icon = martial_positive
+	heavy_infantry_damage_add = 5
+	skirmishers_damage_add = 5
+	garrison_size = 0.05
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_abid = {
+	icon = martial_positive
+	heavy_infantry_damage_add = 3
+	skirmishers_damage_add = 3
+	garrison_size = 0.03
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_abid = {
+	icon = martial_positive
+	heavy_infantry_damage_add = 1
+	skirmishers_damage_add = 1
+	garrison_size = 0.01
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_abid = {
+	icon = martial_positive
+	# hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_ghulam = {
+	icon = martial_positive
+	light_cavalry_damage_add = 5
+	heavy_cavalry_damage_add = 5
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_ghulam = {
+	icon = martial_positive
+	light_cavalry_damage_add = 3
+	heavy_cavalry_damage_add = 3
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_ghulam = {
+	icon = martial_positive
+	light_cavalry_damage_add = 1
+	heavy_cavalry_damage_add = 1
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_ghulam = {
+	icon = martial_positive
+	# hide_effects = yes
+}
+
+islamic_empire_faction_influence_high_berber = {
+	icon = martial_positive
+	light_cavalry_damage_add = 5
+	skirmishers_damage_add = 5
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_normal_berber = {
+	icon = martial_positive
+	light_cavalry_damage_add = 3
+	skirmishers_damage_add = 3
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_low_berber = {
+	icon = martial_positive
+	light_cavalry_damage_add = 1
+	skirmishers_damage_add = 1
+	# hide_effects = yes
+}
+islamic_empire_faction_influence_minimal_berber = {
+	icon = martial_positive
+	# hide_effects = yes
+}	
+
+	
 
 #############################################
 # ASABIYYA MODIFIERS						#

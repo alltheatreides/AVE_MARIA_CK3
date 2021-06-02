@@ -11,7 +11,13 @@
 	is_shown = {
 		is_ruler = yes
 		NOT = { faith = { religion_tag = islam_religion } }
-		NOT = { num_of_relation_court_physician >= 1 }
+		# NOT = { num_of_relation_court_physician >= 1 }
+		NOT = {
+			any_relation = {
+				type = court_physician
+				count >= 1
+			}
+		}
 	}
 
 	cooldown = { days = 90 }
@@ -60,6 +66,12 @@ hire_physician_decision_muslim = {
 	is_shown = {
 		is_ruler = yes
 		faith = { religion_tag = islam_religion }
+		NOT = {
+			any_relation = {
+				type = court_physician
+				count >= 1
+			}
+		}
 	}
 
 	cooldown = { days = 90 }

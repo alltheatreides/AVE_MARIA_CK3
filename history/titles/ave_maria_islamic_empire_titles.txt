@@ -37,6 +37,20 @@ e_egypt = {
 	}
 	1036.6.13 = {
 		holder = 3096
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_ascendency_army
+				value = 35
+			}
+			set_variable = {
+				name = islamic_empire_ascendency_diwan
+				value = 65
+			}
+
+			#add_to_global_variable_list = { name = islamic_empire_faction_ascendency_title target = this }
+
+		}
 	}
 }
 
@@ -53,6 +67,13 @@ d_fatimid_diwan_al_insha = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111165
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 55
+			}
+		}
 	}
 }
 
@@ -66,6 +87,13 @@ d_fatimid_diwan_al_barid = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111166
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 40
+			}
+		}
 	}
 }
 
@@ -82,6 +110,13 @@ d_fatimid_diwan_al_jays = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111172
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 25
+			}
+		}
 	}
 }
 
@@ -98,6 +133,13 @@ d_fatimid_diwan_al_iqta = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111173
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 23
+			}
+		}
 	}
 }
 
@@ -114,6 +156,13 @@ d_fatimid_diwan_al_karaj = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111174
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 30
+			}
+		}
 	}
 }
 
@@ -130,6 +179,13 @@ d_fatimid_diwan_al_rawatib = {
 	1066.1.1 = {
 		government = islamic_empire_diwan_government
 		holder = 111175
+
+		effect = {
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 15
+			}
+		}
 	}
 }
 
@@ -209,6 +265,11 @@ d_regiment_abid = {
 				name = abid_regiment
 				value = yes
 			}
+
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 35
+			}
 		}
 	}
 }
@@ -275,6 +336,11 @@ d_kutama = {
 			set_variable = {
 				name = berber_regiment
 				value = yes
+			}
+
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 15
 			}
 		}
 	}
@@ -343,6 +409,22 @@ d_regiment_ghilman_turks = {
 				name = turkish_ghulam_regiment
 				value = yes
 			}
+
+			set_variable = {
+				name = islamic_empire_influence_internal_faction
+				value = 75
+			}
 		}
+	}
+}
+
+###########################################
+# SELJUKS							      #
+###########################################
+
+k_rum = {
+	1077.1.1 = {
+		holder = 3046
+		government = clan_government
 	}
 }

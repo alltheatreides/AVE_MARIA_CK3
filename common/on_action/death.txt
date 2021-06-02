@@ -125,15 +125,39 @@ on_death = {
 
 		}
 		
+		## clear dead root of the junior emperor list
 		if = {
 			limit = {
-				any_in_global_list = {
-					variable = roman_administration_junior_emperor
-					this = root
+				# any_in_global_list = {
+				# 	variable = roman_administration_junior_emperor
+				# 	this = root
+				# }
+				is_target_in_global_variable_list = {
+					name = roman_administration_junior_emperor
+					target = root
 				}
 			}
-			remove_from_list = roman_administration_junior_emperor
+			# remove_from_list = roman_administration_junior_emperor
+			remove_list_global_variable = {
+				name = roman_administration_junior_emperor
+				target = root
+			}
 		}
+
+		## clear dead root of the asabiyya ruler list
+		if = {
+			limit = {
+				is_target_in_global_variable_list = {
+					name = islamic_empire_asabiyya_title_holder
+					target = root
+				}
+			}
+			remove_list_global_variable = {
+				name = islamic_empire_asabiyya_title_holder
+				target = root
+			}
+		}
+
 		
 	}
 	events = {

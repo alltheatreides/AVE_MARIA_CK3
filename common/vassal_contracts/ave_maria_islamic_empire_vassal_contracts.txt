@@ -74,7 +74,7 @@ islamic_empire_muslim_tax = {
 		## 0 
 		no_tax = {
 			position = { 0 0 }
-			#default = yes
+			default = yes
 			tax = 0.00 
 			flag = no_tax_flag # Flag for calculating the Popularity effect
 			
@@ -82,7 +82,7 @@ islamic_empire_muslim_tax = {
 		## 1
 		waqf_tax = {
 			position = { 1 0 }
-			
+			parent = no_tax
 			tax = 0.05
 			flag = waqf_tax_flag # Flag for calculating the Popularity effect
 			is_valid = {
@@ -317,7 +317,7 @@ islamic_empire_non_muslim_tax = {
 
 		jizya_tax_gentle = {
 			position = { 1 0 }
-			
+			parent = jizya_tax_none
 			vassal_opinion = 10
 			tax = 0.2
 			flag = jizya_tax_gentle_flag
@@ -337,7 +337,7 @@ islamic_empire_non_muslim_tax = {
 
 		jizya_tax_normal = {
 			position = { 2 0 }
-			
+			parent = jizya_tax_gentle
 			tax = 0.4
 			flag = jizya_tax_normal_flag
 
@@ -356,7 +356,7 @@ islamic_empire_non_muslim_tax = {
 
 		jizya_tax_extortionate = {
 			position = { 3 0 }
-			
+			parent = jizya_tax_normal
 			tax = 0.6
 			flag = jizya_tax_extortionate_flag
 			vassal_opinion = -10

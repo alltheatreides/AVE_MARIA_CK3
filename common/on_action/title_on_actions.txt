@@ -27,6 +27,8 @@
 # Does *not* provide scope:transfer_type
 on_title_destroyed = {
 	effect = {
+		## AVE MARIA
+		## Making sure roman landless title do not disappear
 		if = {
 			limit = {
 				scope:landed_title = {
@@ -49,13 +51,23 @@ on_title_destroyed = {
 						holder = scope:new_title_holder
 						change = scope:change
 					}
+					scope:new_title_holder = {
+						change_liege = {
+							liege = title:e_byzantium.holder
+							change = scope:change
+						}
+					}
 					resolve_title_and_vassal_change = scope:change
 
 					add_title_law = ave_maria_roman_administration_tagma_succession_law
 					add_title_law = male_only_law
 				}
+				scope:new_title_holder = {
+					change_government = roman_administration_military_government
+				}
 			}
 		}
+		## Making sure roman landless title do not disappear
 		if = {
 			limit = {
 				scope:landed_title = {
@@ -78,13 +90,24 @@ on_title_destroyed = {
 						holder = scope:new_title_holder
 						change = scope:change
 					}
+					scope:new_title_holder = {
+						change_liege = {
+							liege = title:e_byzantium.holder
+							change = scope:change
+						}
+					}
 					resolve_title_and_vassal_change = scope:change
 
 					add_title_law = ave_maria_roman_administration_tagma_succession_law
 					add_title_law = male_only_law
 				}
+				scope:new_title_holder = {
+					change_government = roman_administration_sekreton_government
+				}
 			}
 		}
+
+		## Making sure Islamic empire landless titles do not disappear
 	}
 	events = {
 		british_isles.1031	# Danelaw-England partition calc.
@@ -706,6 +729,21 @@ on_title_gain = {
 					value = 100
 				}
 			}
+			root = { add_to_global_variable_list = { name = islamic_empire_asabiyya_title_holder target = this } }
+		}
+		if = {
+			limit = {
+				scope:title = {
+					has_variable = islamic_empire_asabiyya
+				}
+				NOT = {
+					is_target_in_global_variable_list = {
+						name = islamic_empire_asabiyya_title_holder
+						target = root
+					}
+				}
+			}
+			root = { add_to_global_variable_list = { name = islamic_empire_asabiyya_title_holder target = this } }
 		}
 		## Changing government when asabiyya is too low
 		if = {
@@ -1061,6 +1099,61 @@ on_title_lost = {
 					name = eastern_scandinavian_adventurer_list
 					target = this
 				}
+			}
+		}
+
+		## AVE MARIA
+		## Asabiyya title holder global list
+		if = {
+			limit = {
+				scope:title = {
+					has_variable = islamic_empire_asabiyya				
+					holder = {
+						OR = {
+							has_government = clan_government
+							has_government = tribal_government
+						}						
+						religion = religion:islam_religion
+						primary_title = {
+							NOT = {
+								this = scope:title
+							}							
+						}
+					}
+				}
+			}
+			scope:title = {
+				remove_variable = islamic_empire_asabiyya
+			}
+			root = { 
+				if = {
+					limit = {
+						is_target_in_global_variable_list = {
+							name = islamic_empire_asabiyya_title_holder
+							target = root
+						}
+					}
+					remove_list_global_variable = {
+						name = islamic_empire_asabiyya_title_holder
+						target = root
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				root = {
+					OR = {
+						has_character_modifier = islamic_empire_settled_amir
+						has_character_modifier = islamic_empire_entrenched_amir
+					}
+					
+				}
+			}
+			root = {
+				remove_character_modifier = islamic_empire_settled_amir
+				remove_character_modifier = islamic_empire_entrenched_amir
 			}
 		}
 	}

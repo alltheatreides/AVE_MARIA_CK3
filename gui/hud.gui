@@ -2204,9 +2204,9 @@ widget = {
 			# 	using = Mask_Rough_Edges
 			# }
 
-			## Diwan Realm Ascendency Bar
+			## Army Realm Ascendency Bar
 			hbox = {
-				name = "army_influence"
+				name = "army_ascendency"
 				layoutpolicy_horizontal = expanding
 				spacing = 1
 
@@ -2230,11 +2230,20 @@ widget = {
 					using = Font_Size_Medium
 					default_format = "#bold"
 				}
+
+				text_single = {
+					#align = left
+					text = "[GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)|0]"
+					using = Font_Size_Medium
+					#default_format = "#bold"
+					tooltip = "ascendency_army_monthly_positive"
+				}
 				
+				## Ascendency Box
 				vbox = {
 
 					widget = {
-						name = "islamic_empire_influence_army"
+						name = "islamic_empire_ascendency_army"
 						size = { 300 30 }	
 	
 						background = {
@@ -2243,98 +2252,67 @@ widget = {
 						}
 
 						hbox = {
-							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue,'(CFixedPoint)50')]"
+							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue,'(CFixedPoint)50')]"
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 0
 								max = 2500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 2500
 								max = 5000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 5000
 								max = 7500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 7500
 								max = 10000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 						}
 						hbox = {
-							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue,'(CFixedPoint)50')]"
+							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue,'(CFixedPoint)50')]"
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 0
 								max = 2500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 2500
 								max = 5000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 5000
 								max = 7500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 7500
 								max = 10000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_army').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_army').GetValue)]"
 							}
 						}
-						# hbox = {
-						# 	visible = "[EqualTo_CFixedPoint(GetPlayer.MakeScope.Var('ticking_authority').GetValue,GuiScope.SetRoot( GetPlayer.MakeScope ).ScriptValue('realm_authority'))]"
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 0
-						# 		max = 2500
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 2500
-						# 		max = 5000
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 5000
-						# 		max = 7500
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 7500
-						# 		max = 10000
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# }
 						## text
 						hbox = {
 							text_single = {
@@ -2343,28 +2321,28 @@ widget = {
 								layoutpolicy_horizontal = expanding
 								text = "Absent"
 								autoresize = no
-								tooltip = "crown_authority_0_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_minimal_army_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "Low"
 								autoresize = no
-								tooltip = "crown_authority_1_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_low_army_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "Normal"
 								autoresize = no
-								tooltip = "crown_authority_2_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_normal_army_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "High"
 								autoresize = no
-								tooltip = "crown_authority_3_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_high_army_tooltip"
 							}
 						}
 					}
@@ -2802,18 +2780,47 @@ widget = {
 
 														## Influence
 														hbox = {
+															datacontext = "[Scope.GetCharacter]"
 															max_width = 460
 															name = "army_faction_influence"
 															layoutpolicy_horizontal = expanding
-											
+															#spacing = { 0 10 }
 															margin = { 10 10 }	
 															#margin_right = 370			
+
+															icon = {
+																texture = "gfx/interface/icons/influence.dds"
+																#parentanchor = center
+																size = { 35 35 }
+																
+															}
 											
 															text_single = {
 																align = left
-																text = "Influence:  "
+																text = "[influence|E]: "
 																using = Font_Size_Medium
 																#default_format = "#bold"
+															}
+
+															spacer = {
+																size = { 6 6 }
+															}
+
+															text_single = {
+
+																#align = left
+																text = "[Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)|0]"
+																using = Font_Size_Medium
+																#default_format = "#bold"
+																tooltip = "influence_monthly_positive"
+																
+															}
+
+															spacer = {
+																size = { 6 6 }
+															}
+															spacer = {
+																size = { 6 6 }
 															}
 															
 															vbox = {
@@ -2896,30 +2903,30 @@ widget = {
 																			# margin = { 10 5 }
 																			align = center
 																			layoutpolicy_horizontal = expanding
-																			text = "Absent"
+																			text = "Minimal"
 																			autoresize = no
-																			tooltip = "crown_authority_0_effects_not_in_prev"
+																			tooltip = "faction_influence_minimal_tooltip"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "Low"
 																			autoresize = no
-																			tooltip = "crown_authority_1_effects_not_in_prev"
+																			tooltip = "faction_influence_low_tooltip"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "Normal"
 																			autoresize = no
-																			tooltip = "crown_authority_2_effects_not_in_prev"
+																			tooltip = "faction_influence_normal_tooltip"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "High"
 																			autoresize = no
-																			tooltip = "crown_authority_3_effects_not_in_prev"
+																			tooltip = "faction_influence_high_tooltip"
 																		}
 																	}
 																}
@@ -2928,7 +2935,14 @@ widget = {
 																
 																
 											
-															}									
+															}		
+															
+															spacer = {
+																size = { 6 6 }
+															}
+															spacer = {
+																size = { 6 6 }
+															}
 																										
 															#expand = {}
 														}
@@ -3044,13 +3058,28 @@ widget = {
 					using = Background_Area_Dark
 				}
 
-				
+				spacer = {
+					size = { 6 6 }
+				}
+
+				icon = {
+					texture = "gfx/interface/icons/ascendency.dds"
+					size = { 35 35 }
+				}
 
 				text_single = {
 					align = left
-					text = "Ascendency: "
+					text = "[ascendency|E]: "
 					using = Font_Size_Medium
 					default_format = "#bold"
+				}
+
+				text_single = {
+					#align = left
+					text = "[GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)|0]"
+					using = Font_Size_Medium
+					#default_format = "#bold"
+					tooltip = "ascendency_diwan_monthly_positive"
 				}
 				
 				vbox = {
@@ -3058,7 +3087,7 @@ widget = {
 					
 
 					widget = {
-						name = "islamic_empire_influence_diwan"
+						name = "islamic_empire_ascendency_diwan"
 						size = { 300 30 }	
 	
 						background = {
@@ -3067,98 +3096,67 @@ widget = {
 						}
 
 						hbox = {
-							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue,'(CFixedPoint)50')]"
+							visible = "[LessThanOrEqualTo_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue,'(CFixedPoint)50')]"
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 0
 								max = 2500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 2500
 								max = 5000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 5000
 								max = 7500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_green = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 7500
 								max = 10000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 						}
 						hbox = {
-							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue,'(CFixedPoint)50')]"
+							visible = "[GreaterThan_CFixedPoint(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue,'(CFixedPoint)50')]"
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 0
 								max = 2500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 2500
 								max = 5000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 5000
 								max = 7500
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 							progressbar_red = {
 								# size = 7500
 								minimumsize = { 75 30 }
 								min = 7500
 								max = 10000
-								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_diwan').GetValue)]"
+								value = "[FixedPointToProgressbarValue(GetPlayer.GetPrimaryTitle.MakeScope.Var('islamic_empire_ascendency_diwan').GetValue)]"
 							}
 						}
-						# hbox = {
-						# 	visible = "[EqualTo_CFixedPoint(GetPlayer.MakeScope.Var('ticking_authority').GetValue,GuiScope.SetRoot( GetPlayer.MakeScope ).ScriptValue('realm_authority'))]"
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 0
-						# 		max = 2500
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 2500
-						# 		max = 5000
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 5000
-						# 		max = 7500
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# 	progressbar_frozen = {
-						# 		# size = 7500
-						# 		minimumsize = { 75 30 }
-						# 		min = 7500
-						# 		max = 10000
-						# 		value = "[FixedPointToProgressbarValue(GetPlayer.MakeScope.Var('ticking_authority').GetValue)]"
-						# 	}
-						# }
 						## text
 						hbox = {
 							text_single = {
@@ -3167,28 +3165,28 @@ widget = {
 								layoutpolicy_horizontal = expanding
 								text = "Minimal"
 								autoresize = no
-								tooltip = "crown_authority_0_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_minimal_diwan_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "Low"
 								autoresize = no
-								tooltip = "crown_authority_1_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_low_diwan_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "Normal"
 								autoresize = no
-								tooltip = "crown_authority_2_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_normal_diwan_tooltip"
 							}
 							text_single = {
 								align = center
 								layoutpolicy_horizontal = expanding
 								text = "High"
 								autoresize = no
-								tooltip = "crown_authority_3_effects_not_in_prev"
+								tooltip = "islamic_empire_faction_ascendency_high_diwan_tooltip"
 							}
 						}
 					}
@@ -3401,6 +3399,7 @@ widget = {
 																text = "[Character.GetPrimaryTitle.MakeScope.Var('islamic_empire_influence_internal_faction').GetValue)|0]"
 																using = Font_Size_Medium
 																#default_format = "#bold"
+																tooltip = "influence_monthly_positive"
 															}
 															
 															vbox = {
@@ -3485,28 +3484,29 @@ widget = {
 																			layoutpolicy_horizontal = expanding
 																			text = "Minimal"
 																			autoresize = no
-																			tooltip = "crown_authority_0_effects_not_in_prev"
+																			tooltip = "faction_influence_minimal_tooltip"
+																			#tooltip = "influence_monthly_positive"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "Low"
 																			autoresize = no
-																			tooltip = "crown_authority_1_effects_not_in_prev"
+																			tooltip = "faction_influence_low_tooltip"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "Normal"
 																			autoresize = no
-																			tooltip = "crown_authority_2_effects_not_in_prev"
+																			tooltip = "faction_influence_normal_tooltip"
 																		}
 																		text_single = {
 																			align = center
 																			layoutpolicy_horizontal = expanding
 																			text = "High"
 																			autoresize = no
-																			tooltip = "crown_authority_3_effects_not_in_prev"
+																			tooltip = "faction_influence_high_tooltip"
 																		}
 																	}
 																}

@@ -53,6 +53,57 @@ can_be_chancellor_trigger = {
 		NOT = {
 			has_government = theocracy_government
 		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					OR = {
+						has_character_modifier = islamic_empire_faction_ascendency_high_army
+						has_character_modifier = islamic_empire_faction_ascendency_normal_army
+					}					
+				}
+			}
+			OR = {
+				has_government = islamic_empire_regiment_government
+				AND = {
+					is_landed = yes
+					highest_held_title_tier >= tier_duchy
+					martial >= 12
+				} 
+			}
+		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					OR = {
+						has_character_modifier = islamic_empire_faction_ascendency_high_diwan
+						has_character_modifier = islamic_empire_faction_ascendency_normal_diwan
+					}					
+				}
+			}
+			OR = {
+				AND = {
+					is_ruler = yes
+					has_government = islamic_empire_diwan_government
+				}
+				is_ruler = no
+			}
+			
+		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					has_character_modifier = islamic_empire_faction_influential_diwan_faction
+				}
+			}
+			trigger_if = {
+				limit = {
+					has_government = islamic_empire_diwan_government
+				}
+				primary_title = {
+					has_variable = islamic_empire_privilege_position
+				}
+			}
+		}
 		# trigger_if = {
 		# 	limit = {
 		# 		$COURT_OWNER$ = {
@@ -146,14 +197,32 @@ can_be_marshal_trigger = {
 		trigger_if = {
 			limit = {
 				$COURT_OWNER$ = {
-					has_character_modifier = islamic_empire_faction_ascendant_army
+					OR = {
+						has_character_modifier = islamic_empire_faction_ascendency_high_army
+						has_character_modifier = islamic_empire_faction_ascendency_normal_army
+					}					
 				}
 			}
-			is_ruler = yes
+			OR = {
+				has_government = islamic_empire_regiment_government
+				AND = {
+					is_landed = yes
+					highest_held_title_tier >= tier_duchy
+					martial >= 12
+				} 
+			}
+		}
+		trigger_if = {
+			limit = {
+				$COURT_OWNER$ = {
+					has_character_modifier = islamic_empire_faction_influential_army_faction
+				}
+			}
 			any_held_title = {
 				has_variable = islamic_empire_privilege_position
 			}
 		}
+			
 		
 	}
 }

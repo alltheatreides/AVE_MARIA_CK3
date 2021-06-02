@@ -393,7 +393,29 @@ monthly_pulse.13 = {
 		# 	islamic_empire_asabiyya_level_calc = yes
 		# }
 
-		every_ruler = {
+		# every_ruler = {
+		# 	limit = {
+		# 		is_alive = yes
+		# 		is_landed = yes
+		# 		primary_title = {
+		# 			has_variable = islamic_empire_asabiyya
+		# 		}
+		# 	}
+		# 	primary_title = {
+		# 		set_variable = {
+		# 			name = islamic_empire_asabiyya_monthly_display
+		# 			value = islamic_empire_asabiyya_monthly
+		# 		}
+		# 		change_variable = {
+		# 			name = islamic_empire_asabiyya
+		# 			add = islamic_empire_asabiyya_monthly
+		# 		}
+		# 		islamic_empire_asabiyya_level_calc = yes
+		# 	}
+		# }
+
+		every_in_global_list = {
+			variable = islamic_empire_asabiyya_title_holder
 			limit = {
 				is_alive = yes
 				is_landed = yes
@@ -467,34 +489,128 @@ monthly_pulse.13 = {
 		# }
 
 		## FACTION INFLUENCE
-		every_ruler = {
-			limit = {
-				is_alive = yes
-				primary_title = {
-					has_variable = islamic_empire_influence_internal_faction
-				}
-			}
-			primary_title = {
+		# every_ruler = {
+		# 	limit = {
+		# 		is_alive = yes
+		# 		primary_title = {
+		# 			has_variable = islamic_empire_influence_internal_faction
+		# 		}
+		# 	}
+		# 	primary_title = {
 			
-				change_variable = {
-					name = islamic_empire_influence_internal_faction
-					add = islamic_empire_influence_internal_faction_monthly
-				}
+		# 		change_variable = {
+		# 			name = islamic_empire_influence_internal_faction
+		# 			add = islamic_empire_influence_internal_faction_monthly
+		# 		}
 				
-				if = {
-					limit = {
-						var:islamic_empire_influence_internal_faction >= 100
-					}
-					holder = {
-						save_scope_as = islamic_empire_influential_ruler
-					}
-					holder.liege = {
-						trigger_event = ave_maria_factions_events.0001
-					}
+		# 		if = {
+		# 			limit = {
+		# 				var:islamic_empire_influence_internal_faction >= 100
+		# 			}
+		# 			holder = {
+		# 				save_scope_as = islamic_empire_influential_ruler
+		# 				trigger_event = ave_maria_factions_events.0001
+		# 			}
+		# 		}
+		# 	}
+		# }
+
+		## Monthly effect to all the islamic vassal characters concerned with interal factionalisalsm 
+		every_in_global_list = {
+			variable = islamic_empire_faction_influence_title
+			
+			limit = {
+				holder = { is_alive = yes }
+				# has_variable = islamic_empire_influence_internal_faction
+			}
+			## Monthly increase
+			change_variable = {
+				name = islamic_empire_influence_internal_faction
+				add = islamic_empire_influence_internal_faction_monthly
+			}
+			## display
+			set_variable = {
+				name = islamic_empire_influence_internal_faction_monthly_display
+				value = islamic_empire_influence_internal_faction_monthly
+			}
+
+			## Modifier appliance depending on the title - for generic extension, should be modified to not reference a specific title but a title with a flag/variable
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_barid
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = barid }
+			}
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_insha
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = insha }
+			}
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_karaj
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = karaj }
+			}
+			if = {
+				limit = {
+					this = title:d_regiment_ghilman_turks
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = ghulam }
+			}
+			if = {
+				limit = {
+					this = title:d_regiment_abid
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = abid }
+			}
+			if = {
+				limit = {
+					this = title:d_kutama
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = berber }
+			}
+
+			## Over a 100 trigger the relevant event
+			if = {
+				limit = {
+					var:islamic_empire_influence_internal_faction >= 100
+				}
+				holder = {
+					save_scope_as = islamic_empire_influential_ruler
+					trigger_event = ave_maria_factions_events.0001
 				}
 			}
 		}
 		
+		## monthly effect to all rulers concercned with Ascendency mechanic
+		every_in_global_list = {
+			variable = islamic_empire_faction_ascendency_title
+			limit = {
+				holder = {
+					is_alive = yes
+				}
+			}
+			## Monthly increase
+			change_variable = {
+				name = islamic_empire_ascendency_army
+				add = islamic_empire_ascendency_army_monthly
+			}
+			change_variable = {
+				name = islamic_empire_ascendency_diwan
+				add = islamic_empire_ascendency_diwan_monthly
+			}
+			## display
+			set_variable = {
+				name = islamic_empire_ascendency_army_monthly_display
+				value = islamic_empire_ascendency_army_monthly
+			}
+			set_variable = {
+				name = islamic_empire_ascendency_diwan_monthly_display
+				value = islamic_empire_ascendency_diwan_monthly
+			}
+		}
 	}
 	
 	option = {

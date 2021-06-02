@@ -194,7 +194,7 @@ islamic_empire_authority_monthly = {
 
 ## scoped to a title
 islamic_empire_influence_internal_faction_monthly = {
-	value = 0
+	value = -0.1
 
 	##
 	# if = {
@@ -213,17 +213,41 @@ islamic_empire_influence_internal_faction_monthly = {
 	## INTERNAL FACTION INFLUENCE
 	## Diwans
 	if = {
-		limit = {
-			this = title:d_fatimid_diwan_al_insha
+		limit = {			
 			holder = {
+				primary_title = {
+					this = title:d_fatimid_diwan_al_insha
+				}
+				is_independent_ruler = no
+				OR = {
+					is_performing_council_task = task_foreign_affairs	
+					is_performing_council_task = task_domestic_affairs
+				}
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+			
+		}
+		add = 0.35
+	}
+	if = {
+		limit = {			
+			holder = {
+				primary_title = {
+					this = title:d_fatimid_diwan_al_insha
+				}
 				is_independent_ruler = no
 				liege = {
 					any_councillor = {
+						limit = {
+							NOT = { this = title:d_fatimid_diwan_al_insha.holder }
+						}
 						OR = {
 							is_performing_council_task = task_foreign_affairs	
 							is_performing_council_task = task_domestic_affairs
 						}
-									
 					}
 				}
 			}
@@ -240,9 +264,30 @@ islamic_empire_influence_internal_faction_monthly = {
 			this = title:d_fatimid_diwan_al_karaj
 			holder = {
 				is_independent_ruler = no
+				is_performing_council_task = task_collect_taxes
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.35
+	}
+	if = {
+		limit = {			
+			holder = {
+				primary_title = {
+					this = title:d_fatimid_diwan_al_karaj
+				}
+				is_independent_ruler = no
 				liege = {
 					any_councillor = {
-						is_performing_council_task = task_collect_taxes
+						limit = {
+							NOT = { this = title:d_fatimid_diwan_al_karaj.holder }
+						}
+						OR = {
+							is_performing_council_task = task_collect_taxes	
+						}
 					}
 				}
 			}
@@ -250,6 +295,7 @@ islamic_empire_influence_internal_faction_monthly = {
 				has_variable = islamic_empire_influence_internal_faction
 				var:islamic_empire_influence_internal_faction < 100
 			}
+			
 		}
 		add = 0.25
 	}
@@ -258,9 +304,30 @@ islamic_empire_influence_internal_faction_monthly = {
 			this = title:d_fatimid_diwan_al_rawatib
 			holder = {
 				is_independent_ruler = no
+				is_performing_council_task = kharaj_streamline_bureaucracy
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.35
+	}
+	if = {
+		limit = {			
+			holder = {
+				primary_title = {
+					this = title:d_fatimid_diwan_al_rawatib
+				}
+				is_independent_ruler = no
 				liege = {
 					any_councillor = {
-						is_performing_council_task = kharaj_streamline_bureaucracy
+						limit = {
+							NOT = { this = title:d_fatimid_diwan_al_rawatib.holder }
+						}
+						OR = {
+							is_performing_council_task = kharaj_streamline_bureaucracy	
+						}
 					}
 				}
 			}
@@ -268,6 +335,7 @@ islamic_empire_influence_internal_faction_monthly = {
 				has_variable = islamic_empire_influence_internal_faction
 				var:islamic_empire_influence_internal_faction < 100
 			}
+			
 		}
 		add = 0.25
 	}
@@ -276,9 +344,30 @@ islamic_empire_influence_internal_faction_monthly = {
 			this = title:d_fatimid_diwan_al_barid
 			holder = {
 				is_independent_ruler = no
+				is_performing_council_task = task_find_secrets
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.35
+	}
+	if = {
+		limit = {			
+			holder = {
+				primary_title = {
+					this = title:d_fatimid_diwan_al_barid
+				}
+				is_independent_ruler = no
 				liege = {
 					any_councillor = {
-						is_performing_council_task = task_find_secrets
+						limit = {
+							NOT = { this = title:d_fatimid_diwan_al_barid.holder }
+						}
+						OR = {
+							is_performing_council_task = task_find_secrets	
+						}
 					}
 				}
 			}
@@ -286,6 +375,7 @@ islamic_empire_influence_internal_faction_monthly = {
 				has_variable = islamic_empire_influence_internal_faction
 				var:islamic_empire_influence_internal_faction < 100
 			}
+			
 		}
 		add = 0.25
 	}
@@ -306,8 +396,151 @@ islamic_empire_influence_internal_faction_monthly = {
 				var:islamic_empire_influence_internal_faction < 100
 			}
 		}
-		add = 0.25
+		add = 0.35
 	}
-
+	## Wazir
+	if = {
+		limit = {			
+			holder = {
+				is_independent_ruler = no
+				is_performing_council_task = task_grand_vizier_default
+			}
+			AND = {
+				has_variable = islamic_empire_influence_internal_faction
+				var:islamic_empire_influence_internal_faction < 100
+			}
+		}
+		add = 0.45
+	}
 }
 
+
+islamic_empire_ascendency_army_monthly = {
+	value = -0.1
+
+	## Having a military wazir
+	if = {
+		limit = {
+			holder = {
+				any_diplomacy_councillor = {
+					#has_government = islamic_empire_regiment_government
+					OR = {
+						has_government = islamic_empire_regiment_government
+						AND = {
+							is_landed = yes
+							martial >= 12
+						}
+					}
+				}
+				# any_councillor = {
+				# 	OR = {
+				# 		is_performing_council_task = task_foreign_affairs	
+				# 		is_performing_council_task = task_domestic_affairs
+				# 	}
+				# 	OR = {
+				# 		has_government = islamic_empire_regiment_government
+				# 		AND = {
+				# 			is_landed = yes
+				# 			martial >= 12
+				# 		}
+				# 	}
+				# }
+			}
+			
+		}
+		add = 0.25
+	}
+	## having a jawwala regiment leader as marshal
+	if = {
+		limit = {
+			holder = {
+				# any_martial_councillor = {
+				# 	OR = {
+				# 		has_government = islamic_empire_regiment_government
+				# 		AND = {
+				# 			is_landed = yes
+				# 			martial >= 12
+				# 		}
+				# 	}
+				# }
+				# any_councillor = {
+				# 	OR = {
+				# 		has_government = islamic_empire_regiment_government
+				# 		# AND = {
+				# 		# 	is_landed = yes
+				# 		# 	martial >= 12
+				# 		# }
+				# 	}
+				# 	OR = { 
+				# 		is_performing_council_task = task_organize_levies
+				# 		is_performing_council_task = task_train_commanders
+				# 		is_performing_council_task = task_increase_control
+				# 	}
+				# }
+				any_martial_councillor = {
+					AND = {
+						is_ruler = yes
+						has_government = islamic_empire_regiment_government
+					}
+					
+				}
+			}
+			
+		}
+		add = 0.15
+	}
+	## having a qadi as jawwala regiment leader
+	if = {
+		limit = {
+			holder = {
+				any_learning_councillor = {
+					OR = {
+						has_government = islamic_empire_regiment_government
+						AND = {
+							is_landed = yes
+							martial >= 12
+						}
+					}
+				}
+			}
+			
+		}
+		add = 0.25
+	}
+	## being at war
+	if = {
+		limit = {
+			holder = {
+				is_at_war = yes
+			}
+		}
+		add = 0.25
+	}
+}
+
+islamic_empire_ascendency_diwan_monthly = {
+	value = -0.1
+
+	if = {
+		limit = {
+			holder = {
+				any_diplomacy_councillor = {
+					has_government = islamic_empire_diwan_government
+				}
+			}
+			
+		}
+		add = 0.25
+	}
+	if = {
+		limit = {
+			holder = {
+				any_learning_councillor = {
+					has_government = islamic_empire_diwan_government
+				}
+			}
+			
+		}
+		add = 0.25
+	}
+}

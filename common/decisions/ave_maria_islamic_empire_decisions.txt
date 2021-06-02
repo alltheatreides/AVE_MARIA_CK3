@@ -233,6 +233,54 @@ ave_maria_islamic_empire_buy_slaves_for_military_training = {
 	}
 }
 
+## clear the modifiers to ensure you can name councillors as you wish
+ave_maria_islamic_empire_remove_influential_faction_decision = {
+	picture = "gfx/interface/illustrations/decisions/z_ave_maria_decision_letter.dds"
+	desc = ave_maria_islamic_empire_remove_influential_faction_decision_desc
+
+	major = yes
+
+	is_shown = {
+		OR = {
+			has_character_modifier = islamic_empire_faction_influential_diwan_faction
+			has_character_modifier = islamic_empire_faction_influential_army_faction
+		}
+	}
+
+	is_valid = {
+		OR = {
+			has_character_modifier = islamic_empire_faction_influential_diwan_faction
+			has_character_modifier = islamic_empire_faction_influential_army_faction
+		}
+		is_available_adult = yes
+	}
+
+	cost = { 
+		
+	}	
+
+	#cooldown = { days = 365 }
+
+	effect = {
+		trigger_event = {
+			id = ave_maria_factions_events.0050
+		}
+	}
+
+	ai_check_interval = 48
+
+	ai_potential = {
+		
+	}
+
+	ai_will_do = {
+		base = 10 
+		
+	}
+}
+
+
+
 # ave_maria_islamic_empire_fatimid_dawa_mission = {
 # 	picture = "gfx/interface/illustrations/decisions/z_ave_maria_muslim_request.dds"
 # 	desc = ave_maria_islamic_empire_fatimid_dawa_mission_desc
