@@ -1591,15 +1591,6 @@
 	}
 	1071.1.1 = {
 		trait = education_martial_4
-	}
-	1072.8.1 = {
-		add_pressed_claim = e_byzantium
-	}
-	1078.1.1 = {
-		add_spouse = 1743
-	}
-	1081.12.10 = {
-		remove_claim = e_byzantium
 		trait = basileus
 		trait = ambitious
 		trait = faithful
@@ -1609,13 +1600,33 @@
 		trait = height_tall
 		trait = veteran_2
 		trait = commander_3
+		trait = strong
 		effect = {
+			set_variable = {
+				name = roman_administration_popularity
+				value = 50
+			}
+			set_variable = {
+				name = roman_administration_legitimacy
+				value = 75
+			}
 			set_variable = { name = de_re_militari_combat_experience value = 18 }
 			set_variable = {
 				name = de_re_military_commander_experience
 				value = 12
 			}
 		}
+	}
+	1072.8.1 = {
+		add_pressed_claim = e_byzantium
+	}
+	1078.1.1 = {
+		add_spouse = 1743
+	}
+	1081.12.10 = {
+		remove_claim = e_byzantium
+		
+		
 	}
 	1118.8.15 = {
 		death = yes
