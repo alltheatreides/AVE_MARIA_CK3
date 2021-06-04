@@ -861,18 +861,41 @@ on_game_start_after_lobby = {
 			}
 		}
 
-		title:e_persia.holder = {
-			# trigger_event = { id = ave_maria_roman_administration_start_up_events.0001 days = 1 }
-			start_war = {
-				cb = invasion_war
-				target = character:1732
-				target_title = k_armenia
+		## Seljuk Byzantine War - 1066
+		if = {
+			limit = {
+				current_date = 1066.9.15
 			}
-			every_character_war = {
-				add_attacker = title:d_edessa.holder
-				add_attacker = title:d_diyarrabia.holder
-				add_attacker = title:d_aleppo.holder
-				add_attacker = title:d_azerbaijan.holder
+			title:e_persia.holder = {
+				# trigger_event = { id = ave_maria_roman_administration_start_up_events.0001 days = 1 }
+				start_war = {
+					cb = invasion_war
+					target = character:1732
+					target_title = k_armenia
+				}
+				every_character_war = {
+					add_attacker = title:d_edessa.holder
+					add_attacker = title:d_diyarrabia.holder
+					add_attacker = title:d_aleppo.holder
+					add_attacker = title:d_azerbaijan.holder
+				}
+			}
+		}
+		
+		## Norman Byzantine War - 1081
+		if = {
+			limit = {
+				current_date = 1081.4.1
+			}
+			title:d_apulia.holder = {
+				start_war = {
+					cb = invasion_war
+					target = character:1742
+					target_title = k_epirus
+				}
+				every_character_war = {
+					add_attacker = character:1132
+				}
 			}
 		}
 
@@ -901,6 +924,7 @@ on_game_start_after_lobby = {
 					
 					islamic_empire_apply_salary_opinion = yes
 
+					## giving courtiers for title inheritance
 					if = {
 						limit = {
 							highest_held_title_tier = tier_duchy
@@ -1546,7 +1570,7 @@ on_game_start_after_lobby = {
 				}		
 		}	
 
-		## Assigning asabiyya
+		## ISLAMIC EMPIRE - Assigning asabiyya
 		every_ruler = {
 			limit = {
 				OR = {
@@ -1565,7 +1589,7 @@ on_game_start_after_lobby = {
 			add_to_global_variable_list = { name = islamic_empire_asabiyya_title_holder target = this }
 		}
 
-		## Vassal contracts for dhimmi
+		## ISLAMIC EMPIRE - Vassal contracts for dhimmi
 		every_ruler = {
 			limit = {
 				highest_held_title_tier >= tier_duchy
@@ -1587,7 +1611,7 @@ on_game_start_after_lobby = {
 				vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }
 			}
 		}
-		## Getting the factional influence leaders for the list
+		## ISLAMIC EMPIRE - Getting the factional influence leaders for the list
 		every_ruler = {
 			limit = {
 				is_alive = yes
@@ -1610,6 +1634,74 @@ on_game_start_after_lobby = {
 				
 			}
 			
+		}
+
+		## ISLAMIC EMPIRE - displaying the monthly change of influence
+		every_in_global_list = {
+			variable = islamic_empire_faction_influence_title
+
+			## display
+			set_variable = {
+				name = islamic_empire_influence_internal_faction_monthly_display
+				value = islamic_empire_influence_internal_faction_monthly
+			}
+
+			## Modifier appliance depending on the title - for generic extension, should be modified to not reference a specific title but a title with a flag/variable
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_barid
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = barid }
+			}
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_insha
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = insha }
+			}
+			if = {
+				limit = {
+					this = title:d_fatimid_diwan_al_karaj
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = karaj }
+			}
+			if = {
+				limit = {
+					this = title:d_regiment_ghilman_turks
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = ghulam }
+			}
+			if = {
+				limit = {
+					this = title:d_regiment_abid
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = abid }
+			}
+			if = {
+				limit = {
+					this = title:d_kutama
+				}
+				islamic_empire_apply_faction_influence_modifier = { FACTION = berber }
+			}
+		}
+
+		## ISLAMIC EMPIRE - displaying monthly effect to all rulers concercned with Ascendency mechanic
+		every_in_global_list = {
+			variable = islamic_empire_faction_ascendency_title
+			limit = {
+				holder = {
+					is_alive = yes
+				}
+			}
+			## display
+			set_variable = {
+				name = islamic_empire_ascendency_army_monthly_display
+				value = islamic_empire_ascendency_army_monthly
+			}
+			set_variable = {
+				name = islamic_empire_ascendency_diwan_monthly_display
+				value = islamic_empire_ascendency_diwan_monthly
+			}
 		}
 
 		## CHRISTIAN

@@ -283,6 +283,28 @@ ave_maria_factions_events.0002 = {
 				opinion = 25
 			}
 		}
+
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = vulnerable
+						has_trait = anxious
+						has_trait = paranoid
+						has_trait = sentimental
+						has_trait = craven
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					is_close_family_of = root
+				}
+			}
+		}
 	}
 
 	## No
@@ -308,6 +330,28 @@ ave_maria_factions_events.0002 = {
 				}
 			}
 		}
+
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = brave
+						has_trait = tough
+						has_trait = independent
+						has_trait = selfassured
+						has_trait = stable
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
+		}
 	}
 
 	## Divide and conquer
@@ -328,6 +372,28 @@ ave_maria_factions_events.0002 = {
 				}
 			}
 			
+		}
+
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = intellectual
+						has_trait = creative
+						has_trait = unconventional
+						has_trait = innovative
+						has_trait = thoughtful
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
 		}
 	}
 
@@ -415,6 +481,28 @@ ave_maria_factions_events.0003 = {
 				opinion = 25
 			}
 		}
+
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = vulnerable
+						has_trait = anxious
+						has_trait = paranoid
+						has_trait = sentimental
+						has_trait = craven
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					is_close_family_of = root
+				}
+			}
+		}
 	}
 
 	## No
@@ -438,6 +526,27 @@ ave_maria_factions_events.0003 = {
 					target = root
 					modifier = roman_administration_fired_me
 					opinion = -25
+				}
+			}
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = brave
+						has_trait = tough
+						has_trait = independent
+						has_trait = selfassured
+						has_trait = stable
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
 				}
 			}
 		}
@@ -473,6 +582,27 @@ ave_maria_factions_events.0003 = {
 				}
 			}
 			
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = intellectual
+						has_trait = creative
+						has_trait = unconventional
+						has_trait = innovative
+						has_trait = thoughtful
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
 		}
 	}
 
@@ -541,6 +671,27 @@ ave_maria_factions_events.0004 = {
 		}
 		hidden_effect = {
 			islamic_empire_calculate_regiment_cost = yes
+		}
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = vulnerable
+						has_trait = anxious
+						has_trait = paranoid
+						has_trait = sentimental
+						has_trait = craven
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					is_close_family_of = root
+				}
+			}
 		}
 		## Stress Impact
 		if = {
@@ -627,6 +778,27 @@ ave_maria_factions_events.0004 = {
 			change_variable = {
 				name = islamic_empire_influence_internal_faction
 				subtract = 10
+			}
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = brave
+						has_trait = tough
+						has_trait = independent
+						has_trait = selfassured
+						has_trait = stable
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
 			}
 		}
 		if = {
@@ -742,7 +914,27 @@ ave_maria_factions_events.0004 = {
 			}
 			
 		}
-
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = intellectual
+						has_trait = creative
+						has_trait = unconventional
+						has_trait = innovative
+						has_trait = thoughtful
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
+		}
 		if = {
 			limit = {
 				scope:islamic_empire_influential_ruler = {
@@ -1069,6 +1261,27 @@ ave_maria_factions_events.0006 = {
 				opinion = 25
 			}
 		}
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = vulnerable
+						has_trait = anxious
+						has_trait = paranoid
+						has_trait = sentimental
+						has_trait = craven
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					is_close_family_of = root
+				}
+			}
+		}
 	}
 
 	option = {
@@ -1085,6 +1298,27 @@ ave_maria_factions_events.0006 = {
 				target = root
 				modifier = refusal_opinion
 				opinion = -30
+			}
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = brave
+						has_trait = tough
+						has_trait = independent
+						has_trait = selfassured
+						has_trait = stable
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
 			}
 		}
 	}
@@ -1120,6 +1354,27 @@ ave_maria_factions_events.0006 = {
 				}
 			}
 			
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = intellectual
+						has_trait = creative
+						has_trait = unconventional
+						has_trait = innovative
+						has_trait = thoughtful
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
 		}
 	}
 
@@ -1172,7 +1427,27 @@ ave_maria_factions_events.0007 = {
 				opinion = 25
 			}
 		}
-		
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = vulnerable
+						has_trait = anxious
+						has_trait = paranoid
+						has_trait = sentimental
+						has_trait = craven
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					is_close_family_of = root
+				}
+			}
+		}
 	}
 
 	option = {
@@ -1191,6 +1466,28 @@ ave_maria_factions_events.0007 = {
 				opinion = -30
 			}
 		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = brave
+						has_trait = tough
+						has_trait = independent
+						has_trait = selfassured
+						has_trait = stable
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
+		}
+		
 	}
 
 	## Divide and conquer
@@ -1224,6 +1521,27 @@ ave_maria_factions_events.0007 = {
 				}
 			}
 			
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				root = {
+					OR = {
+						has_trait = intellectual
+						has_trait = creative
+						has_trait = unconventional
+						has_trait = innovative
+						has_trait = thoughtful
+					}
+				}
+			}
+			modifier = {
+				add = 1000
+				scope:islamic_empire_influential_ruler = {
+					has_relation_rival = root
+				}
+			}
 		}
 	}
 }
