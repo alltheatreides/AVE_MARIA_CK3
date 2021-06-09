@@ -163,12 +163,12 @@ window = {
 
 				widget = {
 					parentanchor = bottom|hcenter
-					size = { 145 40 }
+					size = { 250 40 }
 
 					flowcontainer = {
 						parentanchor = bottom|hcenter
 						widgetanchor = bottom|left
-						position = { -20 -3 }
+						position = { -25 -3 }
 						ignoreinvisible = yes
 
 						text_label_center = {
@@ -203,7 +203,7 @@ window = {
 					icon = {
 						name = "marriage_type_icon"
 						visible = "[CharacterWindow.ShowMarriageIcon]"
-						position = { 20 7 }
+						position = { 68 7 }
 
 						size = { 30 30 }
 						framesize = { 60 60 }
@@ -391,42 +391,42 @@ window = {
 				}
 
 				
-					portrait_opinion = {
-						name = "liege_opinion"
-						datacontext = "[CharacterWindow.GetCharacter]"
-						visible = "[And(Character.IsAlive, Not(Character.IsLocalPlayer))]"
+				portrait_opinion = {
+					name = "liege_opinion"
+					datacontext = "[CharacterWindow.GetCharacter]"
+					visible = "[And(Character.IsAlive, Not(Character.IsLocalPlayer))]"
 					parentanchor = top|hcenter
 					position = { -10 110 }
 
-						blockoverride "dread_logic" {
-							visible = "[Character.ShouldShowDreadEffectIconFor( CharacterWindow.GetCourtOwner )]"
-							frame = "[Character.GetDreadEffectIconFrameFor( CharacterWindow.GetCourtOwner )]"
-							tooltip = "[Character.GetDreadEffectTooltipFor( CharacterWindow.GetCourtOwner )]"
-						}
+					blockoverride "dread_logic" {
+						visible = "[Character.ShouldShowDreadEffectIconFor( CharacterWindow.GetCourtOwner )]"
+						frame = "[Character.GetDreadEffectIconFrameFor( CharacterWindow.GetCourtOwner )]"
+						tooltip = "[Character.GetDreadEffectTooltipFor( CharacterWindow.GetCourtOwner )]"
+					}
 
-						blockoverride "opinion_text"
-						{
-							text = "[Character.GetOpinionOf( CharacterWindow.GetCourtOwner )|=]"
-							fonttintcolor = "[Character.GetOpinionOfTint( CharacterWindow.GetCourtOwner )]"
-						}
+					blockoverride "opinion_text"
+					{
+						text = "[Character.GetOpinionOf( CharacterWindow.GetCourtOwner )|=]"
+						fonttintcolor = "[Character.GetOpinionOfTint( CharacterWindow.GetCourtOwner )]"
+					}
 
-						blockoverride "ott_heading_text"
-						{
-							text = "[Character.GetOpinionHeadingText( CharacterWindow.GetCourtOwner )]"
-						}
+					blockoverride "ott_heading_text"
+					{
+						text = "[Character.GetOpinionHeadingText( CharacterWindow.GetCourtOwner )]"
+					}
 
-						blockoverride "ott_opinion_value_text"
-						{
-							text = "[Character.GetOpinionOf( CharacterWindow.GetCourtOwner )|=]"
-							fonttintcolor = "[Character.GetOpinionOfTint( CharacterWindow.GetCourtOwner )]"
-						}
+					blockoverride "ott_opinion_value_text"
+					{
+						text = "[Character.GetOpinionOf( CharacterWindow.GetCourtOwner )|=]"
+						fonttintcolor = "[Character.GetOpinionOfTint( CharacterWindow.GetCourtOwner )]"
+					}
 
-						blockoverride "ott_opinion_breakdown_text"
-						{
-							text = "[Character.GetOpinionBreakdownText( CharacterWindow.GetCourtOwner )]"
-						}
+					blockoverride "ott_opinion_breakdown_text"
+					{
+						text = "[Character.GetOpinionBreakdownText( CharacterWindow.GetCourtOwner )]"
 					}
 				}
+			}
 
 			container = { # Player Heir for the local player
 				name = "heir_player"
@@ -764,7 +764,7 @@ window = {
 								text = "[Character.GetCharacterRelationCombine( GetPlayer )]"
 								fontsize_min = 13
 								align = nobaseline
-					}
+							}
 
 							icon = {
 								visible = "[Not(Character.IsFemale)]"

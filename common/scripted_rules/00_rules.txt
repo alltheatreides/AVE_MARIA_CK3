@@ -110,15 +110,20 @@ allowed_to_be_granted_titles_by = {
 }
 
 is_character_allowed_to_be_player = {
-	# custom_description = {
-		# text = "GAME_OVER_CANNOT_PLAY_THEOCRACY"
-		# NOT = { has_government = theocracy_government }
-	# }
+	trigger_if = {
+		limit = {
+			scope:will_override_government = no
+		}
+		custom_description = {
+			text = "GAME_OVER_CANNOT_PLAY_THEOCRACY"
+			NOT = { has_government = theocracy_government }
+		}
 
-	# custom_description = {
-		# text = "GAME_OVER_CANNOT_PLAY_REPUBLIC"
-		# NOT = { has_government = republic_government }
-	# }
+		custom_description = {
+			text = "GAME_OVER_CANNOT_PLAY_REPUBLIC"
+			NOT = { has_government = republic_government }
+		}
+	}
 }
 
 # Determines if a secret is considered available for blackmail for use in the GUI (icon/tooltip listing a secret you know as usable for blackmail)
@@ -808,3 +813,5 @@ can_potentially_call_ally = {
 		JOINER = scope:ally
 	}
 }
+
+

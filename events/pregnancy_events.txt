@@ -109,7 +109,7 @@ pregnancy.0001 = {
 					days = { 180 200 }
 				}
 			}
-			5 = { #Sickly child (all other events happen as usual)
+			10 = { #Sickly child (all other events happen as usual)
 				modifier = {
 					factor = 0.5 # Religious doctrine focusing on providing a sanitary birthing chamber and supplies should have a substantial impact on birth complications.
 					faith = {
@@ -122,6 +122,10 @@ pregnancy.0001 = {
 				}
 			}
 			5 = { #Ill mother (all other events happen as usual)
+				modifier = { #to keep players from dying excessively
+					add = -4
+					is_ai = no
+				}
 				add_character_flag = { #Flags blocks other birth events
 					flag = birth_mother_will_become_ill
 					days = 270

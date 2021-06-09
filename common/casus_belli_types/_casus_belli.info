@@ -1,5 +1,6 @@
 key = {
 	group = key 	# Which CB group it belongs to. The group itself can define extra restrictions
+	icon = key 											# What icon to use. Optional; defaults to the CB key
 	
 	# These values are based on defines if *not* set in the CB itself
 	attacker_ticking_warscore_delay = { months = 12 }	# How much ticking War Score should be delayed before increasing for the Attacker
@@ -72,7 +73,6 @@ key = {
 	my_war_name_base = string
 
 	truce_days = int
-	icon = path
 	ignore_effect = effect name # This kind of effect is skipped in the effects desc. Can be defined multiple times. E.G., ignore_effect = change_title_holder
 
 	on_primary_attacker_death = invalidate/inherit/inherit_faction
@@ -87,7 +87,7 @@ key = {
 	interface_priority = int # Determines the order it shows up in the list of CBs. The higher it is, the higher it shows up. Ties are broken by definition order
 
 	max_ai_diplo_distance_to_title = int # If the title is further away than this, the AI will never consider it
-	min_ai_score = int # Potential wars with score lower than this won't be declared
+
 	ai_only_against_liege = yes # If set, the AI will only check this CB against its liege
 	ai_only_against_neighbors = yes # If set, the AI will only check this CB against its land and sea neighbors
 	ai_can_target_all_titles = { # If used, the AI will use the scripted title target if it suceeds, otherwise neighbor_land_or_water
@@ -105,6 +105,9 @@ key = {
 	target_top_liege_if_outside_realm = no # Bypass checks that if you're not in a realm, you can only target the top liege. Only used by scripted wars, like Peasant Revolts; will not work in the UI
 
 	should_check_for_interface_availability = no # If set, we don't show check this CB when checking if you've got a CB available (E.G., using the trigger has_any_cb_on)
+
+	ai_score = { # Script value, standard war scopes. Added to the hard-coded scoring from titles, if there are any
+	}
 
 	ai_score_mult = { # Script value, standard war scopes. Multiplied with the scoring from titles
 	}

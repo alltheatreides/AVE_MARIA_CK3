@@ -110,7 +110,6 @@
  game_concept_primary_heirs:0 "Primary Heirs"
  game_concept_primary_heir_desc:0 "The $game_concept_primary_heir$ is the character who will inherit the [primary_title|E] of a [ruler|E] on [succession|E]. This is usually — but not always — the same character as the [player_heir|E]."
  game_concept_player_heir:0 "Player Heir"
- #game_concept_player_heirs:0 "" delete this
  game_concept_player_heir_desc:1 "The $game_concept_player_heir$ is the [heir|E] that a player will keep playing as on [succession|E].\n\nThe $game_concept_player_heir$ is usually the same as the [primary_heir|E], but if the [succession_law|E] of your [primary_title|E] dictates that it should go to a character outside of your [dynasty|E], you will instead keep playing as the dynastic heir to your second highest-tier title (or third, fourth, etc.).\n\nThis situation is common when your $game_concept_player_heir$ is voted out under an elective succession law."
  game_concept_title_heir:0 "Title Heir"
  game_concept_title_heirs:0 "Title Heirs"
@@ -555,7 +554,9 @@
  game_concept_fort_level_i:0 "@fort_icon!"
  game_concept_fort_level_desc:0 "Some [holdings|E] are fortified and need to be [besieged|E] and [occupied|E] in order to gain control of the [county|E].\n\nThe $game_concept_fort_level$ of such [fortified_holdings|E] determines how long the Siege can be expected to last.\n\nA high $game_concept_fort_level$ will require [siege_weapons|E] in order to be $game_concept_besieged$ efficiently, although each Siege Weapon is only effective up to a certain Fort Level."
  game_concept_garrison:0 "Garrison"
- game_concept_garrison_desc:0 "The $game_concept_garrison$ of a [fortified_holding|E] protects it from being [besieged|E] by smaller [armies|E].\n\nThe besieging Army needs to have more [soldiers|E] than the Garrison in order for the Siege to progress."
+ game_concept_garrison_desc:2 "The $game_concept_garrison$ of a [fortified_holding|E] protects it from being [besieged|E] by smaller [armies|E].\n\nThe besieging Army needs to have more [soldiers|E] than the Garrison in order for the Siege to progress.\n\nWhen a [siege|E] is lost, the $game_concept_garrison$ is set to [GetDefine('NDomain', 'HOLDING_MIN_GARRISON_COUNT')|0]. From there, the $game_concept_garrison$ refills every month depending on the [garrison_reinforcement|E] until it reaches its max capacity.\n\nWhen a [siege|E] begins, the manning of the $game_concept_garrison$ affects the required amount of [siege_progress|E]."
+ game_concept_garrison_reinforcement:0 "Garrison Reinforcement Rate"
+ game_concept_garrison_reinforcement_desc:0 "The $game_concept_garrison_reinforcement$ of a [fortified_holding|E] defines how fast the [garrison|E] recovers after losing a [siege|E].\n\nEvery month, the [garrison|E] will regain a percentage of its maximal capacity equal to the current rate. It can be increased by upgrading the [holding|E].\n\nDuring a [siege|E] however, the reinforcement is frozen and the rate set to 0."
  game_concept_fortified_holding:0 "Fortified Holding"
  game_concept_fortified_holdings:0 "Fortified Holdings"
  game_concept_fortified_holding_desc:0 "A $game_concept_fortified_holding$ is a [holding|E] with [buildings|E] that increase its [fort_level|E]. [county_capitals|E] are always Fortified.\n\nIn order to fully [occupy|E] a [county|E], all its Fortified Holdings must be Occupied."
@@ -649,7 +650,9 @@
  game_concept_feast:0 "$activity_feast$"
  game_concept_feast_desc:2 "An [activity|E] where rulers and courtiers in a realm gather to celebrate... one thing or another.\n\nParticipants will lose [stress|E] and increase their [opinion|E] of the host. There may also be any number of other consequences from bringing that many people together.\n\nA [ruler|E] will invite their [liege|E] and their [vassals|E] (along with various [courtiers|E]) to a $activity_feast$."
  game_concept_hunt:0 "$activity_hunt$"
- game_concept_hunt_desc:0 "An activity where rulers and their vassals gather to hunt animals in the local wilderness.\n\nThe primary purpose of this activity is to reduce [stress|E] and to gain [prestige|E].\n\nA [ruler|E] will invite their [courtiers|E], [guests|E] and [vassals|E] to a $activity_hunt$."
+ game_concept_hunt_desc:1 "An [activity|E] where rulers and their vassals gather to hunt animals in the local wilderness.\n\nThe primary purpose of this activity is to reduce [stress|E] and to gain [prestige|E].\n\nA [ruler|E] will invite their [courtiers|E], [guests|E] and [vassals|E] to a $activity_hunt$."
+ game_concept_playdate:0 "$activity_playdate$"
+ game_concept_playdate_desc:0 "An [activity|E] where young rulers and courtiers in a realm gather to play and forget the dreariness of the day.\n\nParticipants will lose [stress|E] and increase their [opinion|E] of the host. There may also be any number of other consequences from bringing that many children together.\n\nA [ruler|E] will invite their [liege|E] and their [vassals|E] (along with various [courtiers|E]) to a $activity_playdate$."
  game_concept_taxes:0 "Taxes"
  game_concept_tax:0 "Tax"
  game_concept_taxation:0 "Taxation"
@@ -915,7 +918,7 @@
  game_concept_intimidated_desc:1 "Characters who greatly fear another character are Intimidated by them. This is usually caused by [dread|E] and/or a cowardly personality.\n\nIntimidated characters are less likely to initiate hostile actions against the character they fear, including joining or starting [factions|E].\n\nCharacters who are even more fearful are marked as [cowed|E]."
  game_concept_cowed:1 "Terrified"
  game_concept_terrified_i:0 "@terrified_icon!"
- game_concept_cowed_desc:1 "Terrified Characters are paralyzed by fear of another character and will not take any hostile actions against that character, including joining or starting [factions|E].\n\nCharacters are Terrified or [intimidated|E] by [dread|E] and/or a cowardly personality."
+ game_concept_cowed_desc:2 "Terrified Characters are paralyzed by fear of another character and will rarely take any hostile actions against that character, including starting [factions|E].\n\nCharacters are Terrified or [intimidated|E] by [dread|E] and/or a cowardly personality."
  game_concept_supply:0 "Supply"
  game_concept_supply_state:0 "Supply State"
  game_concept_supply_desc:1 "$game_concept_supply$ is the amount of food and equipment an [army|E] carries. Armies will begin losing $game_concept_supply$ when their size goes above the [supply_limit|E] of their current location.\n\nArmies that are running low on $game_concept_supplies$ will suffer an [advantage|E] penalty in [battle|E], and when they run out completely they will begin suffering from [attrition|E].\n\nSupply increases over time as long as the Army remains below the $game_concept_supply_limit$ in friendly territory."
@@ -1133,7 +1136,7 @@
  game_concept_screen:0 "Screen"
  game_concept_screen_desc:0 "A defeated [army|E] reduces the amount of [casualties|E] they take in the [aftermath|E] of a [battle|E] by their Army's combined Screen value."
  game_concept_siege_progress:0 "Siege Progress"
- game_concept_siege_progress_desc:0 "The $game_concept_siege_progress$ indicates how close a [siege|E] is to being completed and how long the $game_concept_siege$ is expected to last. When Progress is full, the [holding|E] will become [occupied|E].\n\nThe amount of $game_concept_siege_progress$ required is affected by [fort_level|E].\n\nProgress is gained daily and is affected by Siege Events. It can also be increased by having [siege_weapons|E], or an [army|E] that vastly outnumbers the [garrison|E]."
+ game_concept_siege_progress_desc:1 "The $game_concept_siege_progress$ indicates how close a [siege|E] is to being completed and how long the $game_concept_siege$ is expected to last. When Progress is full, the [holding|E] will become [occupied|E].\n\nThe amount of $game_concept_siege_progress$ required is affected by [fort_level|E] and the manning of the [garrison|E].\n\nProgress is gained daily and is affected by Siege Events. It can also be increased by having [siege_weapons|E], or an [army|E] that vastly outnumbers the [garrison|E]."
  game_concept_siege_weapon:0 "Siege Weapon"
  game_concept_siege_weapons:0 "Siege Weapons"
  game_concept_siege_weapon_desc:0 "$game_concept_siege_weapons$ are [men_at_arms|E] that focus entirely on [sieges|E].\n\nThey do not have an impact on [battles|E], but will make a $game_concept_siege$ complete much faster by increasing the [siege_progress|E].\n\nHowever, $game_concept_siege_weapons$ are only effective at besieging [holdings|E] up to a certain [fort_level|E]."
@@ -1669,6 +1672,36 @@
  game_concept_de_jure_partitioned:0 "De Jure Partitioned"
  game_concept_de_jure_partition_desc:0 "[realms|E] that have been $game_concept_de_jure_partitioned$ have been split into two same-[title_tier|E] [titles|E], but can still be reunited easily.\n\nEither $game_concept_title$ can [de_jure_drift_drift|E] [completely_controlled|E] [duchies|E] from the other $game_concept_title$ into its [de_jure|E] instantly via [decision|E].\n\nIf either $game_concept_title$ is ever destroyed or loses the last of its $game_concept_de_jure$ [counties|E], then the remaining $game_concept_title$ absorbs all of its $game_concept_de_jure$."
 
+ game_concept_winter:0 "Winter Severity"
+ game_concept_winter_desc:0 "Winter steadily drains [supply|E] over time, making armies lose Supply while standing in a barony affected by Winter. The Supply penalty increases with each severity. Winter has three different severities; [Concept( 'winter_severity_mild', 'Mild' )|E], [Concept( 'winter_severity_normal', 'Normal' )|E], and [Concept( 'winter_severity_harsh', 'Harsh' )|E]."
+ game_concept_winter_severity_mild:0 "Mild Winter"
+ game_concept_winter_severity_mild_desc:0 "[GetModifier( 'winter_mild_modifier' ).GetDesc]"
+ game_concept_winter_severity_normal:0 "Normal Winter"
+ game_concept_winter_severity_normal_desc:0 "[GetModifier( 'winter_normal_modifier' ).GetDesc]"
+ game_concept_winter_severity_harsh:0 "Harsh Winter"
+ game_concept_winter_severity_harsh_desc:0 "[GetModifier( 'winter_harsh_modifier' ).GetDesc]"
+
+ game_concept_deceitful_progress_hostile_schemes_decision:0 "$deceitful_progress_hostile_schemes_decision$ Decision"
+ game_concept_deceitful_progress_hostile_schemes_decision_desc:0 "A [decision|E] allowing you to improve your [hostile_scheme|E]. Grants [success_chance|E] and [scheme_power|E] in exchange for [stress|E]."
+
+ game_concept_diligent_development_focus_decision:0 "$diligent_development_focus_decision$ Decision"
+ game_concept_diligent_development_focus_decision_desc:0 "A [decision|E] allowing you to improve your [capital|E]. Grants [development|E] in exchange for [stress|E]."
+
+ game_concept_impatient_rushing_all_schemes_decision:0 "$impatient_rushing_all_schemes_decision$ Decision"
+ game_concept_impatient_rushing_all_schemes_decision_desc:0 "A [decision|E] allowing you to accelerate your [scheme|E]. Grants Scheme Progress in exchange for [stress|E]."
+
+ game_concept_dismiss_strong_hook_interaction:0 "$dismiss_strong_hook_interaction$ Interaction"
+ game_concept_dismiss_strong_hook_interaction_desc:0 "An [interaction|E] allowing you to dismiss a [hook|E] targeting you in exchange for [prestige|E]."
+
+ game_concept_abandon_hook_interaction:0 "$abandon_hook_interaction$ Interaction"
+ game_concept_abandon_hook_interaction_desc:0 "An [interaction|E] allowing you to abandon a [hook|E] you have in exchange for losing [stress_loss_i][stress|E]."
+
+ game_concept_force_duel_criminals_interaction:0 "$force_duel_criminals_interaction$ Interaction"
+ game_concept_force_duel_criminals_interaction_desc:0 "An [interaction|E] allowing you to [single_combat_duel|E] criminals when you are [stressed|E]."
+
+ game_concept_force_duel_anyone_interaction:0 "$force_duel_anyone_interaction$ Interaction"
+ game_concept_force_duel_anyone_interaction_desc:0 "An [interaction|E] allowing you to [single_combat_duel|E] anyone when you are [stressed|E]."
+ 
  ### AVE MARIA ADDITION
  administrative_title:0 "Administrative Title"
  administrative_titles:0 "Administrative Titles"

@@ -146,6 +146,7 @@ embrace_english_culture_decision = {
 		# 	}
 		# }
 		current_date >= 1200.1.1
+		has_title = title:k_england
 	}
 
 	is_valid_showing_failures_only = {
@@ -331,15 +332,14 @@ negotiate_the_danelaw_decision = {
 		# And completely control any two duchies within k_england.
 		custom_description = {
 			text = negotiate_the_danelaw.controlled_duchies.tt
-			title:k_england = {
-				any_in_de_jure_hierarchy = {
+			any_held_title = {
 					count >= 2
-					continue = { tier >= tier_duchy }
+				tier = tier_duchy
+				any_this_title_or_de_jure_above = { this = title:k_england }
 					save_temporary_scope_as = de_jure_duchy
 					root = { completely_controls = scope:de_jure_duchy }
 				}
 			}
-		}
 		# Can only be fired by someone in the Tribal Era (though their rival need not be).
 		## Reshow this here so players know they're on a timer.
 		culture = {
@@ -731,6 +731,10 @@ restore_dumnonia_decision = {
 			add_to_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_restored_dumnonia
+			}
+			set_global_variable = {
+				name = flag_restored_dumnonia
+				value = root
 			}
 		}
 	}

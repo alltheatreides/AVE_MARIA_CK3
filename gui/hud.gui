@@ -3816,8 +3816,8 @@ widget = {
 							layoutpolicy_vertical = expanding
 
 							hbox = {
-								spacing = 6
-								margin_top = -11
+								margin_top = -5
+								spacing = 7
 
 								icon = {
 									name = "gold_icon"
@@ -3853,6 +3853,7 @@ widget = {
 										using = Font_Size_Medium
 									}
 
+									container = {
 									text_single = {
 										name = "balance_positive"
 										visible = "[GreaterThanOrEqualTo_CFixedPoint(GetPlayerBalance, '(CFixedPoint)0')]"
@@ -3877,6 +3878,7 @@ widget = {
 								}
 							}
 						}
+					}
 					}
 
 					divider_light = {
@@ -5498,6 +5500,7 @@ widget = {
 	visible = "[And( Not( IsPauseMenuShown ), IsDefaultGUIMode )]"
 	size = { 100% 100% }
 	layer = bottom
+	datacontext = "[GetPlayer]"
 
 	using = Animation_ShowHide_Quick
 

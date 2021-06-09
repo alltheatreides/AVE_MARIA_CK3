@@ -2639,6 +2639,7 @@ relation_upgrade.2001 = { #by Mathilda Bjarnehed
 	}
 	
 	trigger = {
+		is_available_adult = yes
 		OR = {
 			any_relation = {
 				type = potential_lover
@@ -3505,6 +3506,7 @@ relation_upgrade.2101 = {
 	lower_right_portrait = scope:physician
 	
 	trigger = {
+		is_available_adult = yes
 		exists = capital_province
 		OR = {
 			any_relation = {
@@ -3730,10 +3732,28 @@ relation_upgrade.2101 = {
 		name = relation_upgrade.2101.a
 		custom_tooltip = relation_upgrade.2101.a_tt
 		scope:rival = {
-			add_opinion = {
-				target = root
-				modifier = hate_opinion
-				opinion = -40
+			if = {
+				limit = {
+					OR = {
+						is_courtier_of = root
+						is_foreign_court_or_pool_guest_of = root
+						any_vassal = {
+							this = root
+						}
+					}
+				}
+				add_opinion = {
+					target = root
+					modifier = treachery_opinion
+					opinion = -40
+				}
+			}
+			else = {
+				add_opinion = {
+					target = root
+					modifier = hate_opinion
+					opinion = -40
+				}
 			}
 			hidden_effect = {
 				add_character_flag = {

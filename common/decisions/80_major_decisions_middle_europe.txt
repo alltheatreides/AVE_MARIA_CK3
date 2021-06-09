@@ -70,6 +70,10 @@ form_switzerland_kingdom_decision = {
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_switzerland_kingdom
 			}
+			set_global_variable = {
+				name = flag_formed_switzerland_kingdom
+				value = root
+			}
 		}
 	}
 	
@@ -159,6 +163,10 @@ form_austria_kingdom_decision = {
 			add_to_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_austria_kingdom
+			}
+			set_global_variable = {
+				name = flag_formed_austria_kingdom
+				value = root
 			}
 		}
 	}
@@ -250,6 +258,10 @@ reform_carolingian_empire_decision = {
 				name = unavailable_unique_decisions
 				target = flag:flag_reformed_carolingian_empire
 			}
+			set_global_variable = {
+				name = flag_reformed_carolingian_empire
+				value = root
+			}
 		}
 	}
 	
@@ -333,6 +345,10 @@ unify_burgundy_kingdom_decision = {
 			add_to_global_variable_list = {
 				name = unavailable_unique_decisions
 				target = flag:flag_unified_burgundy_kingdom
+			}
+			set_global_variable = {
+				name = flag_unified_burgundy_kingdom
+				value = root
 			}
 		}
 	}
@@ -647,6 +663,16 @@ restore_holy_roman_empire_decision = {
 			}
 			trigger_event = middle_europe_decisions.0016
 		}
+		if = {
+			limit = {
+				is_ai = no
+				NOT = { exists = global_var:restore_holy_roman_empire_decision  }
+			}
+			set_global_variable = {
+				name = restore_holy_roman_empire_decision
+				value = root
+			}
+		}
 	}
 
 	cost = {
@@ -912,6 +938,10 @@ form_the_kingdom_of_aragon_decision = {
 		add_to_global_variable_list = {
 			name = unavailable_unique_decisions
 			target = flag:flag_formed_kingdom_of_aragon
+		}
+		set_global_variable = {
+			name = flag_formed_kingdom_of_aragon
+			value = root
 		}
 	}
 
