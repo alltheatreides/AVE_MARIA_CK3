@@ -1057,7 +1057,7 @@ banquet_default.1008 = {
 
 	option = {
 		name = feast_default.1008.a
-		flavor = banquet_default.1008.a.flavor
+		flavor = feast_default.1008.a.flavor
 		scope:secret_to_reveal = {
 			reveal_to = scope:secret_recipient
 		}
@@ -1156,7 +1156,7 @@ banquet_default.1009 = {
 
 	option = {
 		name = feast_default.1009.a
-		flavor = banquet_default.1008.a.flavor
+		flavor = feast_default.1008.a.flavor
 		scope:secret_to_reveal = {
 			reveal_to = scope:secret_recipient
 		}
@@ -1810,7 +1810,7 @@ banquet_default.1013 = {
 
 	option = { #Kill the attacker
 		name = {
-			text = banquet_default.1013.a
+			text = feast_default.1013.a
 		}
 		name = {
 			trigger = {
@@ -1821,7 +1821,7 @@ banquet_default.1013 = {
 					has_trait = vengeful
 				}
 			}
-			text = banquet_default.1013.a_1
+			text = feast_default.1013.a_1
 		}
 
 		scope:guest_to_save = {
@@ -2088,11 +2088,11 @@ banquet_default.1014 = {
 
 	option = {
 		name = {
-			text = banquet_default.1014.a
+			text = feast_default.1014.a
 		}
 		name = {
 			trigger = { has_trait = wrathful }
-			text = banquet_default.1014.a_2
+			text = feast_default.1014.a_2
 		}
 		random_secret = {
 			limit = {
@@ -4332,7 +4332,7 @@ banquet_default.3004 = {
 
 	option = { #Please leave my party
 		name = feast_default.3004.c
-		flavor = banquet_default.3004.c.tt
+		flavor = feast_default.3004.c.tt
 		trigger = {
 			OR = {
 				has_trait = gregarious
@@ -6074,7 +6074,7 @@ banquet_default.5005 = {
 
 	option = { # I know a fun fact!
 		name = feast_default.5005.c
-		flavor = banquet_default.5005.c.flavor
+		flavor = feast_default.5005.c.flavor
 		trigger = {
 			OR = {
 				has_trait = scholar
@@ -6679,7 +6679,7 @@ banquet_default.6101 = {
 
 	option = { #You save him
 		name = feast_default.6101.c
-		flavor = banquet_default.6101.c.tt
+		flavor = feast_default.6101.c.tt
 		trigger = {
 			OR = {
 				has_trait = shy
@@ -8253,9 +8253,9 @@ banquet_default.9001 = {
 							trigger = {
 								has_character_flag = murder_banquet_success
 							}
-							desc = feast_default.9001.desc_murder_banquet_success
+							desc = feast_default.9001.desc_murder_feast_success
 						}
-						desc = feast_default.9001.desc_murder_banquet_fail
+						desc = feast_default.9001.desc_murder_feast_fail
 					}
 				}
 			}
@@ -8337,7 +8337,7 @@ banquet_default.9002 = {
 				trigger = {
 					exists = scope:murder_banquet
 				}
-				desc = feast_default.9002.desc_murder_banquet
+				desc = feast_default.9002.desc_murder_feast
 			}
 			desc = feast_default.9002.desc
 		}

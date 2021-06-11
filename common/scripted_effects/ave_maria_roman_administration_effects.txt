@@ -150,8 +150,8 @@ roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
 			vassal_contract_has_flag = is_theme
-		}
-		NOT = { has_government = roman_administration_theme_government }
+			NOT = { has_government = roman_administration_theme_government }
+		}		
 		change_government = roman_administration_theme_government
 		vassal_contract_set_obligation_level = {
 			type = ave_maria_roman_administration_special_contract
@@ -173,8 +173,9 @@ roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
 			vassal_contract_has_flag = is_doukaton
+			NOT = { has_government = roman_administration_doukaton_government }
 		}
-		NOT = { has_government = roman_administration_doukaton_government }
+		
 		change_government = roman_administration_doukaton_government
 		vassal_contract_set_obligation_level = {
 			type = ave_maria_roman_administration_special_contract
@@ -190,8 +191,9 @@ roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
 			vassal_contract_has_flag = is_kouratoreia
+			NOT = { has_government = roman_administration_kouratoreia_government }
 		}
-		NOT = { has_government = roman_administration_kouratoreia_government }
+		
 		change_government = roman_administration_kouratoreia_government
 		vassal_contract_set_obligation_level = {
 			type = ave_maria_roman_administration_special_contract
@@ -207,8 +209,9 @@ roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
 			vassal_contract_has_flag = is_tagma
+			NOT = { has_government = roman_administration_military_government }
 		}
-		NOT = { has_government = roman_administration_military_government }
+		
 		change_government = roman_administration_military_government
 		vassal_contract_set_obligation_level = {
 			type = ave_maria_roman_administration_special_contract
@@ -218,8 +221,9 @@ roman_administration_update_government_after_contract_change = {
 	if = {
 		limit = {
 			vassal_contract_has_flag = is_sekreton
+			NOT = { has_government = roman_administration_sekreton_government }
 		}
-		NOT = { has_government = roman_administration_sekreton_government }
+		
 		change_government = roman_administration_sekreton_government
 		vassal_contract_set_obligation_level = {
 			type = ave_maria_roman_administration_special_contract

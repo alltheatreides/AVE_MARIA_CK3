@@ -99,7 +99,7 @@ theocracy_government = {
 	#preferred_religions = { religion:christianity_religion religion:islam_religion }
 
 	vassal_contract = { 
-		theocracy_government_obligations islamic_empire_non_muslim_tax 
+		theocracy_government_obligations 
 		islamic_empire_muslim_tax
 		islamic_empire_levies
 		islamic_empire_non_muslim_tax
@@ -216,7 +216,13 @@ tribal_government = {
 	prestige_opinion_override = { -10 0 3 5 10 20 }
 	always_use_patronym = yes	
 
-	vassal_contract = { tribal_government_obligations islamic_empire_non_muslim_tax }
+	vassal_contract = { 
+		tribal_government_obligations 
+		islamic_empire_muslim_tax 
+		islamic_empire_levies
+		islamic_empire_iqta
+		islamic_empire_non_muslim_tax
+	}
 	
 	character_modifier = {
 		title_creation_cost_mult = -0.5

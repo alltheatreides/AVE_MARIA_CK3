@@ -2994,7 +2994,7 @@ widget = {
 		parentanchor = center
 		size = { 750 900 }
 		position = { -25 0 }
-		margin = { 20 20 }
+		#margin = { 20 20 }
 		layer = windows_layer
 		
 		visible = "[GetVariableSystem.Exists( 'am_institutions_fatimid_administration_gui_toggle' )]"
@@ -3265,13 +3265,13 @@ widget = {
 
 								blockoverride "scrollbox_content"
 								{
-									spacing = 20
+									#spacing = 20
 									margin = { 0 20 }
 
 									dynamicgridbox = {
 										datamodel = "[GetPlayer.MakeScope.GetList('list_fatimid_diwan_leaders')]"
 										datamodel_wrap = 1
-										spacing = 5
+										#spacing = 5
 										flipdirection = yes
 										
 										state = {

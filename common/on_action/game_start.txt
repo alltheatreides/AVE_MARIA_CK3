@@ -1584,19 +1584,19 @@ on_game_start_after_lobby = {
 		every_ruler = {
 			limit = {
 				highest_held_title_tier >= tier_duchy
-				religion = religion:islam_religion
+				has_religion = religion:islam_religion
 			}
 			every_vassal = {
 				limit = {
-					religion = religion:islam_religion
+					has_religion = religion:islam_religion
 				}
 				vassal_contract_set_obligation_level = { type = islamic_empire_muslim_tax level = 3 }
 			}
 			every_vassal = {
 				limit = {
 					OR = {
-						religion = religion:christianity_religion
-						religion = religion:judaism_religion
+						has_religion = religion:christianity_religion
+						has_religion = religion:judaism_religion
 					}
 				}
 				vassal_contract_set_obligation_level = { type = islamic_empire_non_muslim_tax level = 2 }

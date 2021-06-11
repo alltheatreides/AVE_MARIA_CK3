@@ -223,7 +223,7 @@ ave_maria_factions_events.0002 = {
 		character = scope:islamic_empire_influential_ruler
 	}
 	
-	lower_right_portait = {
+	lower_right_portrait = {
 		character = scope:potential_regiment_leader_to_promote
 	}
 
@@ -1042,7 +1042,7 @@ ave_maria_factions_events.0005 = {
 
 	## Okay - accept
 	option = {
-		name = ave_maria_factions_events.0001.OPT.A
+		name = ave_maria_factions_events.0004.OPT.A
 		scope:islamic_empire_influential_ruler.primary_title = {
 			change_variable = {
 				name = islamic_empire_diwan_salary
@@ -1051,10 +1051,13 @@ ave_maria_factions_events.0005 = {
 			hidden_effect = {
 				islamic_empire_apply_salary_income = yes
 			}
-			add_opinion = {
-				modifier = islamic_empire_increased_salary
-				target = liege
+			holder = {
+				add_opinion = {
+					modifier = islamic_empire_increased_salary
+					target = liege
+				}
 			}
+			
 			islamic_empire_apply_salary_opinion = yes
 		}
 		hidden_effect = {
@@ -1132,7 +1135,7 @@ ave_maria_factions_events.0005 = {
 
 	## No
 	option = {
-		name = ave_maria_factions_events.0001.OPT.B
+		name = ave_maria_factions_events.0004.OPT.B
 		scope:islamic_empire_influential_ruler = {
 			add_opinion = {
 				target = root
