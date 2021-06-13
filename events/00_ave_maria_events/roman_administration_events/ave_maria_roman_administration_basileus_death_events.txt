@@ -1,0 +1,295 @@
+﻿########################################################################################
+#                                         											   #
+# AVE MARIA events																	   #
+# A Very Extensive Modification for Appropriate Realism and Improved Authenticity	   #
+#                                         											   #
+#  BASILEUS DEATH EVENTS															   #
+#                               													   #
+########################################################################################
+
+# Written by Maneege
+
+namespace = ave_maria_roman_administration_basileus_death_events
+
+## hidden event triggered from the death_on_action, triggering the rest of the events for your heir
+ave_maria_roman_administration_basileus_death_events.0001 = {
+	hidden = yes
+
+	trigger = {
+		exists = player_heir
+		any_held_title = {
+			this = title:e_byzantium
+		}		
+	}
+
+	immediate = {
+		## You did not die in battle
+		if = {
+			limit = {
+				NOT = { has_variable = ave_maria_basileus_death_in_battle }
+			}
+			player_heir = {
+				if = {
+					limit = {
+						is_close_or_extended_family_of = root
+					}
+					set_variable = {
+						name = basileus_to_bury
+						value = root
+						years = 5
+					}
+					trigger_event = {
+						id = ave_maria_roman_administration_basileus_death_events.0003
+						days = 1
+					}
+				}
+			}
+		}
+		## you are a commander and died in battle
+		if = {
+			limit = {
+				has_variable = ave_maria_basileus_death_in_battle
+			}
+			player_heir = {
+				if = {
+					limit = {
+						is_close_or_extended_family_of = root
+					}
+					set_variable = {
+						name = basileus_to_bury_battle
+						value = root
+						years = 5
+					}
+					trigger_event = { 
+						id = ave_maria_roman_administration_basileus_death_events.0005
+						days = 1
+					}
+				}
+			}
+		}
+	}
+}
+
+## hidden event triggered from the commander_battle_pulse_on_action from the commanders.1 death chance, triggering the rest of the events for your heir
+# ave_maria_roman_administration_basileus_death_events.0002 = {
+# 	hidden = yes
+
+# 	trigger = {
+# 		exists = player_heir
+# 		any_held_title = {
+# 			this = title:e_byzantium
+# 		}
+# 	}
+
+# 	immediate = {
+# 		player_heir = {
+# 			if = {
+# 				limit = {
+# 					is_close_or_extended_family_of = root
+# 				}
+# 				set_variable = {
+# 					name = basileus_to_bury_battle
+# 					value = root
+# 					years = 5
+# 				}
+# 				trigger_event = { 
+# 					id = ave_maria_roman_administration_basileus_death_events.0005
+# 					days = 5 
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+## Event for the new emperor - Description of the last moments - Private Setting
+ave_maria_roman_administration_basileus_death_events.0003 = {
+	type = character_event
+	title = ave_maria_roman_administration_basileus_death_events.0003.title
+	desc = ave_maria_roman_administration_basileus_death_events.0003.desc
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+	right_portrait = {
+		character = var:basileus_to_bury
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.A
+		add_character_flag = { flag = basileus_buried_holy_apostles days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0004 days = 2 }
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.B
+		add_character_flag = { flag = basileus_buried_pantokrator days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0004 days = 2 }
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.C
+		add_character_flag = { flag = basileus_buried_hebdomon days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0004 days = 2 }
+	}
+
+}
+
+## Event for the new emperor - Public Procession - non battlefield death
+ave_maria_roman_administration_basileus_death_events.0004 = {
+	type = character_event
+	title = ave_maria_roman_administration_basileus_death_events.0004.title
+	desc = {
+		first_valid = {	
+			## Holy apostles
+			triggered_desc = {
+				trigger = {
+					has_character_flag = basileus_buried_holy_apostles
+				}
+				desc = ave_maria_roman_administration_basileus_death_events.4.desc.holy_apostles
+			}
+		
+			## Pantokrator monastery
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = basileus_buried_pantokrator 
+				}				
+				desc = ave_maria_roman_administration_basileus_death_events.4.desc.pantokrator
+			}
+
+			## hebdomon
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = basileus_buried_hebdomon
+				}			
+				desc = ave_maria_roman_administration_basileus_death_events.4.desc.hebdomon
+			}
+		
+		}
+	}
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+	right_portrait = {
+		character = var:basileus_to_bury
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0004.OPT.A
+		add_prestige = minor_prestige_gain
+		add_piety = minor_piety_gain
+		custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
+		send_interface_message = {
+			type = ave_maria_roman_administration_legitimacy_gain_5
+			title = {
+				first_valid = {
+					desc = ave_maria_roman_administration_legitimacy_gain_5.message
+				}
+			}
+			left_icon = scope:actor
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = 5
+			}
+		}
+	}
+}
+
+## Event for the new emperor - Description of the last moments - War Setting
+ave_maria_roman_administration_basileus_death_events.0005 = {
+	type = character_event
+	title = ave_maria_roman_administration_basileus_death_events.0005.title
+	desc = ave_maria_roman_administration_basileus_death_events.0005.desc
+	theme = crown	
+	## replace by battlefield background
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+	right_portrait = {
+		character = var:basileus_to_bury_battle
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.A
+		add_character_flag = { flag = basileus_buried_holy_apostles days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0006 days = 2 }
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.B
+		add_character_flag = { flag = basileus_buried_pantokrator days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0006 days = 2 }
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0003.OPT.C
+		add_character_flag = { flag = basileus_buried_hebdomon days = 75 }
+		trigger_event = { id = ave_maria_roman_administration_basileus_death_events.0006 days = 2 }
+	}
+
+}
+
+## Event for the new emperor - Public Procession - battlfield death
+ave_maria_roman_administration_basileus_death_events.0006 = {
+	type = character_event
+	title = ave_maria_roman_administration_basileus_death_events.0004.title
+	desc = {
+		first_valid = {	
+			## Holy apostles
+			triggered_desc = {
+				trigger = {
+					has_character_flag = basileus_buried_holy_apostles
+				}
+				desc = ave_maria_roman_administration_basileus_death_events.6.desc.holy_apostles
+			}
+		
+			## Pantokrator monastery
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = basileus_buried_pantokrator 
+				}				
+				desc = ave_maria_roman_administration_basileus_death_events.6.desc.pantokrator
+			}
+
+			## hebdomon
+			triggered_desc = {
+				trigger = { 
+					has_character_flag = basileus_buried_hebdomon
+				}			
+				desc = ave_maria_roman_administration_basileus_death_events.6.desc.hebdomon
+			}
+		
+		}
+	}
+	theme = crown	
+	override_background = {
+		event_background = ave_maria_constantinople_great_palace_interior
+	}
+	left_portrait = root
+	right_portrait = {
+		character = var:basileus_to_bury_battle
+	}
+
+	option = {
+		name = ave_maria_roman_administration_basileus_death_events.0004.OPT.A
+		add_prestige = minor_prestige_gain
+		add_piety = minor_piety_gain
+		custom_tooltip = ave_maria_roman_administration_small_popularity_gain.tt
+		send_interface_message = {
+			type = ave_maria_roman_administration_legitimacy_gain_5
+			title = {
+				first_valid = {
+					desc = ave_maria_roman_administration_legitimacy_gain_5.message
+				}
+			}
+			left_icon = scope:actor
+			change_variable = {
+				name = roman_administration_legitimacy
+				add = 5
+			}
+		}
+	}
+}
