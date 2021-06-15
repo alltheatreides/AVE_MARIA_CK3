@@ -4510,7 +4510,7 @@ widget = {
 					using = Animation_Curve_Default
 
 					modify_texture = {
-						name = "glow_institutions"
+						name = "glow_decisions"
 						alpha = 1
 						translate_uv = { -0.2 -0.79 }
 					}
@@ -4522,7 +4522,7 @@ widget = {
 					using = Animation_Curve_Default
 
 					modify_texture = {
-						name = "glow_institutions"
+						name = "glow_decisions"
 						alpha = 0
 						translate_uv = { -0.2 -0.79 }
 					}
@@ -4628,8 +4628,10 @@ widget = {
 						onclick = "[GetVariableSystem.Clear( 'am_institutions_fatimid_administration_gui_toggle' )]"
 						onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_dawa_mission_gui_toggle')]"
 
-						on_start = "[GetVariableSystem.Toggle( 'council_tabs_inner' )]"
-						on_start = "[GetVariableSystem.Toggle( 'council_vanilla' )]"
+						# on_start = "[GetVariableSystem.Toggle( 'council_tabs_inner' )]"
+						# on_start = "[GetVariableSystem.Toggle( 'council_vanilla' )]"
+						onclick = "[GetVariableSystem.Toggle( 'council_tabs_inner' )]"
+						onclick = "[GetVariableSystem.Toggle( 'council_vanilla' )]"
 
 					}
 

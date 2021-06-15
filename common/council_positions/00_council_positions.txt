@@ -67,6 +67,88 @@
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_primary_title = title:e_byzantium
+				}
+			}
+			is_ruler = yes
+			has_primary_title = title:d_logothetetes_tou_dromou
+		}
+		## AVE MARIA Muslim triggers
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = { 
+					uses_islamic_empire_govt = yes
+					highest_held_title_tier = tier_empire
+					any_held_title = {
+						has_variable = islamic_empire_title
+					}
+				}
+			}
+			NOT = {
+				has_government = theocracy_government
+			}
+			trigger_if = {
+				limit = {
+					root.liege_or_court_owner = {
+						OR = {
+							has_character_modifier = islamic_empire_faction_ascendency_high_army
+							has_character_modifier = islamic_empire_faction_ascendency_normal_army
+						}					
+					}
+				}
+				OR = {
+					has_government = islamic_empire_regiment_government
+					AND = {
+						is_landed = yes
+						highest_held_title_tier >= tier_duchy
+						martial >= 12
+					} 
+				}
+			}
+			trigger_if = {
+				limit = {
+					root.liege_or_court_owner = {
+						OR = {
+							has_character_modifier = islamic_empire_faction_ascendency_high_diwan
+							has_character_modifier = islamic_empire_faction_ascendency_normal_diwan
+						}					
+					}
+				}
+				OR = {
+					AND = {
+						is_ruler = yes
+						has_government = islamic_empire_diwan_government
+					}
+					is_ruler = no
+				}
+				
+			}
+			trigger_if = {
+				limit = {
+					root.liege_or_court_owner = {
+						has_character_modifier = islamic_empire_faction_influential_diwan_faction
+					}
+				}
+				trigger_if = {
+					limit = {
+						has_government = islamic_empire_diwan_government
+					}
+					primary_title = {
+						has_variable = islamic_empire_privilege_position
+					}
+				}
+			}
+			# trigger_if = {
+			# 	limit = {
+			# 		root.liege_or_court_owner = {
+			# 			has_character_flag = insha_ascendant
+			# 		}
+			# 	}
+			# }
+		}
 	}
 
 	on_get_position = {
@@ -164,6 +246,29 @@ councillor_steward = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_primary_title = title:e_byzantium
+				}
+			}
+			is_ruler = yes
+			has_primary_title = title:d_sakellion
+		}
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_religion = religion:islam_religion 
+					is_independent_ruler = no
+					OR = {
+						has_government = islamic_empire_amir_government
+						has_government = islamic_empire_thugur_government
+					}
+					vassal_contract_has_flag = islamic_empire_kharaj_right_none
+				}
+			}
+			has_character_modifier = islamic_empire_appointed_sahib_al_maks		
+		}
 	}
 
 	on_get_position = {
@@ -241,6 +346,61 @@ councillor_marshal = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_primary_title = title:e_byzantium
+				}
+			}
+			is_ruler = yes
+			has_primary_title = title:d_megas_domestikos
+		}
+		## AVE MARIA Islamic Empire triggers
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = { 
+					uses_islamic_empire_govt = yes
+					highest_held_title_tier = tier_empire
+					any_held_title = {
+						has_variable = islamic_empire_title
+					}
+				}
+			}
+			NOR = {
+				has_government = islamic_empire_diwan_government
+				has_government = theocracy_government
+			}
+			trigger_if = {
+				limit = {
+					root.liege_or_court_owner = {
+						OR = {
+							has_character_modifier = islamic_empire_faction_ascendency_high_army
+							has_character_modifier = islamic_empire_faction_ascendency_normal_army
+						}					
+					}
+				}
+				OR = {
+					has_government = islamic_empire_regiment_government
+					AND = {
+						is_landed = yes
+						highest_held_title_tier >= tier_duchy
+						martial >= 12
+					} 
+				}
+			}
+			trigger_if = {
+				limit = {
+					root.liege_or_court_owner = {
+						has_character_modifier = islamic_empire_faction_influential_army_faction
+					}
+				}
+				any_held_title = {
+					has_variable = islamic_empire_privilege_position
+				}
+			}
+				
+			
+		}
 	}
 
 	on_get_position = {
@@ -311,6 +471,14 @@ councillor_spymaster = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_primary_title = title:e_byzantium
+				}
+			}
+			is_ruler = no
+		}
 	}
 
 	on_get_position = {
@@ -516,11 +684,86 @@ councillor_court_chaplain = {
 		scale = court_chaplain_learn_on_the_job_scale
 	}
 
-	pool_character_config = pool_court_chaplain
+	#pool_character_config = pool_court_chaplain
 	
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }			
+		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }		
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_primary_title = title:e_byzantium
+				}
+			}
+			NOT = { has_primary_title = title:k_orthodox }
+			OR = {
+				has_government = theocracy_government
+				has_trait = devoted
+				# has_trait = priest
+				has_trait_rank = {
+					trait = education_learning_rhetorician
+					rank >= 3
+				}
+				learning >= 8
+			}
+		}	
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					faith = { 
+						has_doctrine = doctrine_clerical_succession_temporal_appointment
+						religion_tag = christianity_religion
+					}
+				}
+			}
+			OR = {
+				has_government = theocracy_government
+				has_trait = devoted
+				# has_trait = priest
+				has_trait_rank = {
+					trait = education_learning_rhetorician
+					rank >= 3
+				}
+				#learning >= 8
+			}
+		}	
+		## AVE MARIA MUSLIM TRIGGERS
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_religion = religion:islam_religion 
+					NOR = {
+						has_government = islamic_empire_amir_government
+						has_government = islamic_empire_thugur_government
+					}
+				}			
+			}
+			trigger_if = {
+				limit = {
+					is_ruler = yes
+				}
+				NOR = {
+					has_government = islamic_empire_regiment_government
+					has_government = islamic_empire_amir_government
+					has_government = islamic_empire_thugur_government
+					has_government = islamic_empire_diwan_government
+				}
+			}			
+		}
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					has_religion = religion:islam_religion 
+					is_independent_ruler = no
+					OR = {
+						has_government = islamic_empire_amir_government
+						has_government = islamic_empire_thugur_government
+					}
+					vassal_contract_has_flag = islamic_empire_qadi_right_none
+				}
+			}
+			has_character_modifier = islamic_empire_appointed_qadi		
+		}
 	}
 
 	on_get_position = {

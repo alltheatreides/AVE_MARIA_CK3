@@ -30,88 +30,6 @@ can_be_chancellor_trigger = {
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
-	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
-		}
-		any_held_title = {
-			this = title:d_logothetetes_tou_dromou
-		}
-	}
-	## AVE MARIA Muslim triggers
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { 
-				uses_islamic_empire_govt = yes
-				highest_held_title_tier = tier_empire
-				any_held_title = {
-					has_variable = islamic_empire_title
-				}
-			}
-		}
-		NOT = {
-			has_government = theocracy_government
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					OR = {
-						has_character_modifier = islamic_empire_faction_ascendency_high_army
-						has_character_modifier = islamic_empire_faction_ascendency_normal_army
-					}					
-				}
-			}
-			OR = {
-				has_government = islamic_empire_regiment_government
-				AND = {
-					is_landed = yes
-					highest_held_title_tier >= tier_duchy
-					martial >= 12
-				} 
-			}
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					OR = {
-						has_character_modifier = islamic_empire_faction_ascendency_high_diwan
-						has_character_modifier = islamic_empire_faction_ascendency_normal_diwan
-					}					
-				}
-			}
-			OR = {
-				AND = {
-					is_ruler = yes
-					has_government = islamic_empire_diwan_government
-				}
-				is_ruler = no
-			}
-			
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					has_character_modifier = islamic_empire_faction_influential_diwan_faction
-				}
-			}
-			trigger_if = {
-				limit = {
-					has_government = islamic_empire_diwan_government
-				}
-				primary_title = {
-					has_variable = islamic_empire_privilege_position
-				}
-			}
-		}
-		# trigger_if = {
-		# 	limit = {
-		# 		$COURT_OWNER$ = {
-		# 			has_character_flag = insha_ascendant
-		# 		}
-		# 	}
-		# }
-	}
 }
 
 can_be_steward_trigger = {
@@ -127,28 +45,6 @@ can_be_steward_trigger = {
 			is_male = yes
 			$COURT_OWNER$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
-	}
-	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
-		}
-		any_held_title = {
-			this = title:d_sakellion
-		}
-	}
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = {
-				has_religion = religion:islam_religion 
-				OR = {
-					has_government = islamic_empire_amir_government
-					has_government = islamic_empire_thugur_government
-				}
-				vassal_contract_has_flag = islamic_empire_kharaj_right_none
-			}
-		}
-		has_character_modifier = islamic_empire_appointed_sahib_al_maks		
 	}
 }
 
@@ -170,75 +66,12 @@ can_be_marshal_trigger = {
 			$COURT_OWNER$.religion = religion:germanic_religion
 		}
 	}
-	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
-		}
-		any_held_title = {
-			this = title:d_megas_domestikos
-		}
-	}
-	## AVE MARIA Islamic Empire triggers
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { 
-				uses_islamic_empire_govt = yes
-				highest_held_title_tier = tier_empire
-				any_held_title = {
-					has_variable = islamic_empire_title
-				}
-			}
-		}
-		NOR = {
-			has_government = islamic_empire_diwan_government
-			has_government = theocracy_government
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					OR = {
-						has_character_modifier = islamic_empire_faction_ascendency_high_army
-						has_character_modifier = islamic_empire_faction_ascendency_normal_army
-					}					
-				}
-			}
-			OR = {
-				has_government = islamic_empire_regiment_government
-				AND = {
-					is_landed = yes
-					highest_held_title_tier >= tier_duchy
-					martial >= 12
-				} 
-			}
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					has_character_modifier = islamic_empire_faction_influential_army_faction
-				}
-			}
-			any_held_title = {
-				has_variable = islamic_empire_privilege_position
-			}
-		}
-			
-		
-	}
 }
 
 can_be_spymaster_trigger = {
 	can_be_councillor_basics_trigger = yes
 	NOT = { has_council_position = councillor_spouse }
 	exists = $COURT_OWNER$ #so we can have the argument but get no errors
-
-	## AVE MARIA trigger for Roman Emperor, only certain title holders can have the job
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = { any_held_title = { this = title:e_byzantium } }
-		}
-		is_ruler = no
-	}
 }
 
 can_be_court_chaplain_trigger = {
@@ -246,111 +79,16 @@ can_be_court_chaplain_trigger = {
 	can_be_councillor_basics_trigger = yes
 	NOT = { has_council_position = councillor_spouse }
 	$COURT_OWNER$.faith = { has_allowed_gender_for_clergy = scope:court_chaplain_check }
-
-	## Change for the Ismaili, Qadi can be non ismaili
+	faith = $COURT_OWNER$.faith
 	trigger_if = {
 		limit = {
-			$COURT_OWNER$.faith = faith:ismaili
-		}
-		faith = { religion_tag = islam_religion }
-	}
-	trigger_if = {
-		limit = {
-			NOT = {
-				$COURT_OWNER$.faith = faith:ismaili
-			}			
-		}
-		faith = $COURT_OWNER$.faith
-	}
-
-	# Vanilla trigger
-	trigger_if = {
-		limit = {
-			faith = { 
-				has_doctrine = doctrine_theocracy_temporal
-			}
+			faith = { has_doctrine = doctrine_theocracy_temporal }
 		}
 		OR = {
 			is_ruler = no
 			has_government = theocracy_government
 		}
 	}
-
-	## AVE MARIA Christian Triggers
-	trigger_if = {
-		limit = {
-			faith = { 
-				has_doctrine = doctrine_clerical_succession_temporal_appointment
-				religion_tag = christianity_religion
-			}
-		}
-		trigger_if = {
-			limit = {
-				$COURT_OWNER$ = {
-					any_held_title = {
-						this = title:e_byzantium
-					}
-				}
-			}
-			NOT = {
-				any_held_title = {
-					this = title:k_orthodox
-				}
-			}
-		}
-		OR = {
-			has_government = theocracy_government
-			has_trait = devoted
-			# has_trait = priest
-			has_trait_rank = {
-				trait = education_learning_rhetorician
-				rank >= 3
-			}
-			learning >= 10
-		}
-	}
-
-	## AVE MARIA MUSLIM TRIGGERS
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = {
-				has_religion = religion:islam_religion 
-				NOR = {
-					has_government = islamic_empire_amir_government
-					has_government = islamic_empire_thugur_government
-				}
-			}			
-		}
-		scope:court_chaplain_check = {
-			trigger_if = {
-				limit = {
-					is_ruler = yes
-				}
-			}			
-			NOR = {
-				has_government = islamic_empire_regiment_government
-				has_government = islamic_empire_amir_government
-				has_government = islamic_empire_thugur_government
-				has_government = islamic_empire_diwan_government
-			}
-		}		
-	}
-	trigger_if = {
-		limit = {
-			$COURT_OWNER$ = {
-				has_religion = religion:islam_religion 
-				OR = {
-					has_government = islamic_empire_amir_government
-					has_government = islamic_empire_thugur_government
-				}
-				vassal_contract_has_flag = islamic_empire_qadi_right_none
-			}
-		}
-		scope:court_chaplain_check = {
-			has_character_modifier = islamic_empire_appointed_qadi
-		}			
-	}
-	
 	trigger_if = {
 		limit = {
 			exists = var:escaped_imprisonment_from
