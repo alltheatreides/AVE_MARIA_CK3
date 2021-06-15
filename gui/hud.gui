@@ -275,6 +275,9 @@ widget = {
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_logothetetes_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_sakellion_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_quaestor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 											onclick = "[GetVariableSystem.Toggle( 'am_institutions_administration_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear( 'am_institutions_army_gui_toggle' )]"
@@ -328,6 +331,14 @@ widget = {
 											size = { 0 80 }	
 					
 											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_military_officials_list').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End ) ]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_domestikos_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_antioch_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_anatolia_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_excubitor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_vigla_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_droungarios_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_hikanatoi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+											onclick = "[GetScriptedGui('am_institutions_roman_administration_get_noumeroi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 											onclick = "[GetVariableSystem.Toggle( 'am_institutions_army_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear( 'am_institutions_administration_gui_toggle' )]"
 											onclick = "[GetVariableSystem.Clear( 'am_institutions_senate_gui_toggle' )]"
@@ -694,7 +705,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_senator_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -960,7 +971,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_domestikos_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_domestikos_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1024,7 +1035,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_antioch_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_antioch_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1093,7 +1104,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_anatolia_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_anatolia_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1157,7 +1168,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_excubitor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_excubitor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1227,7 +1238,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_vigla_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_vigla_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1291,7 +1302,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_droungarios_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_droungarios_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1360,7 +1371,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_hikanatoi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_hikanatoi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1424,7 +1435,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_noumeroi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_noumeroi_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1490,7 +1501,7 @@ widget = {
 												name = get_list
 												trigger_on_create = yes
 												duration = 2
-												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_doukaton_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_doukaton_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 												next = get_list
 											}
 	
@@ -1535,7 +1546,7 @@ widget = {
 												name = get_list
 												trigger_on_create = yes
 												duration = 2
-												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_theme_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_theme_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 												next = get_list
 											}
 	
@@ -1724,7 +1735,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_logothetetes_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_logothetetes_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1788,7 +1799,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_sakellion_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_sakellion_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1857,7 +1868,7 @@ widget = {
 													name = get_list
 													trigger_on_create = yes
 													duration = 2
-													on_start = "[GetScriptedGui('am_institutions_roman_administration_get_quaestor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+													# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_quaestor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 													next = get_list
 												}
 	
@@ -1928,7 +1939,7 @@ widget = {
 												name = get_list
 												trigger_on_create = yes
 												duration = 2
-												on_start = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+												# on_start = "[GetScriptedGui('am_institutions_roman_administration_get_administrative_officials_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 												next = get_list
 											}
 	
@@ -2619,7 +2630,7 @@ widget = {
 																		text = "Decrease Salary"
 																		size = { 150 32 }
 																		tooltip = "decrease_regiment_salary_tt"
-																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
 																		onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_salary').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
@@ -2726,7 +2737,7 @@ widget = {
 																		text = "Recruit"
 																		size = { 75 32 }
 																		tooltip = "increase_light_cavalry_size_tt"
-																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
@@ -2738,7 +2749,7 @@ widget = {
 																		text = "Fire"
 																		size = { 75 32 }
 																		tooltip = "decrease_light_cavalry_size_tt"
-																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_light_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
@@ -2754,7 +2765,7 @@ widget = {
 																		text = "Recruit"
 																		size = { 75 32 }
 																		tooltip = "increase_heavy_cavalry_size_tt"
-																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_increase_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"
@@ -2766,7 +2777,7 @@ widget = {
 																		text = "Fire"
 																		size = { 75 32 }
 																		tooltip = "decrease_heavy_cavalry_size_tt"
-																		datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
+																		#datacontext = "[ROOT.MakeScope.Scope.GetCharacter]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_fatimid_army_factions_gui_toggle')]"
 																		#onclick = "[GetVariableSystem.Clear('am_institutions_gui_toggle')]"
 																		onclick = "[GetScriptedGui('am_institutions_islamic_empire_fatimid_faction_decrease_heavy_cavalry').Execute(GuiScope.SetRoot(Scope.GetCharacter.MakeScope).End)]"

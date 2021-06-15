@@ -134,21 +134,21 @@ am_institutions_roman_administration_get_senator_list = {
 				}				
 			}
 			## Put the senators who like you into a specific list
-			every_vassal = {
-				limit = {
-					highest_held_title_tier = tier_duchy
-					opinion = {
-						target = root
-						value >= 0
-					}
-				}
-				root = {
-					add_to_variable_list = {
-						name = list_roman_administration_supportive_senators
-						target = prev
-					}
-				}
-			}
+			# every_vassal = {
+			# 	limit = {
+			# 		highest_held_title_tier = tier_duchy
+			# 		opinion = {
+			# 			target = root
+			# 			value >= 0
+			# 		}
+			# 	}
+			# 	root = {
+			# 		add_to_variable_list = {
+			# 			name = list_roman_administration_supportive_senators
+			# 			target = prev
+			# 		}
+			# 	}
+			# }
 
 		}
 		if = {
@@ -192,21 +192,21 @@ am_institutions_roman_administration_get_senator_list = {
 					}					
 				}
 				## Put the senators who like you into a specific list
-				every_vassal = {
-					limit = {
-						highest_held_title_tier = tier_duchy
-						opinion = {
-							target = root
-							value >= 0
-						}
-					}
-					root = {
-						add_to_variable_list = {
-							name = list_roman_administration_supportive_senators
-							target = prev
-						}
-					}
-				}
+				# every_vassal = {
+				# 	limit = {
+				# 		highest_held_title_tier = tier_duchy
+				# 		opinion = {
+				# 			target = root
+				# 			value >= 0
+				# 		}
+				# 	}
+				# 	root = {
+				# 		add_to_variable_list = {
+				# 			name = list_roman_administration_supportive_senators
+				# 			target = prev
+				# 		}
+				# 	}
+				# }
 			}
 		}
 	}
