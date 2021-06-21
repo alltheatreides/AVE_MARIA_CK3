@@ -1589,6 +1589,14 @@ on_game_start_after_lobby = {
 			every_vassal = {
 				limit = {
 					has_religion = religion:islam_religion
+					OR = {
+						NOT = {
+							has_government = islamic_empire_diwan_government
+						}
+						NOT = {
+							has_government = islamic_empire_regiment_government
+						}
+					}
 				}
 				vassal_contract_set_obligation_level = { type = islamic_empire_muslim_tax level = 3 }
 			}
