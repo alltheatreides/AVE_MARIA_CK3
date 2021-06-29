@@ -71,6 +71,10 @@
 			trigger_if = {
 				limit = {
 					NOT = { has_government = tribal_government }
+					NOR = {
+						uses_roman_govt = yes
+						uses_islamic_empire_govt = yes
+					}
 				}
 				custom_description = {
 					text = "has_law_allowing_title_revocation_crown"
@@ -240,6 +244,18 @@
 			scope:recipient = {
 				is_imprisoned_by = scope:actor
 			}
+			AND = {
+				scope:recipient = {
+					highest_held_title_tier < tier_duchy
+				}
+				scope:actor = {
+					OR = {
+						uses_islamic_empire_govt = yes
+						uses_roman_govt = yes
+					}
+				}
+			}
+			
 			custom_description = {
 				text = "spending_hook"
 				subject = scope:actor
