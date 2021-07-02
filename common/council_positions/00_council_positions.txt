@@ -66,7 +66,16 @@
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		
+		trigger_if = {
+			limit = {
+				OR = {
+					NOT = { uses_roman_govt = yes }
+					NOT = { uses_islamic_empire_govt = yes }
+				}
+			}
+			can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		}	
 		trigger_if = {
 			limit = {
 				root.liege_or_court_owner = {
@@ -246,7 +255,16 @@ councillor_steward = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		
+		trigger_if = {
+			limit = {
+				OR = {
+					NOT = { uses_roman_govt = yes }
+					NOT = { uses_islamic_empire_govt = yes }
+				}
+			}
+			can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		}	
 		trigger_if = {
 			limit = {
 				root.liege_or_court_owner = {
@@ -347,7 +365,15 @@ councillor_marshal = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		trigger_if = {
+			limit = {
+				OR = {
+					NOT = { uses_roman_govt = yes }
+					NOT = { uses_islamic_empire_govt = yes }
+				}
+			}
+			can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		}		
 		trigger_if = {
 			limit = {
 				root.liege_or_court_owner = {
@@ -474,15 +500,24 @@ councillor_spymaster = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
-		trigger_if = {
-			limit = {
-				root.liege_or_court_owner = {
-					uses_roman_govt = yes
-					highest_held_title_tier = tier_empire
-				}
-			}
-			is_ruler = no
-		}
+		# trigger_if = {
+		# 	limit = {
+		# 		OR = {
+		# 			NOT = { uses_roman_govt = yes }
+		# 			#NOT = { uses_islamic_empire_govt = yes }
+		# 		}
+		# 	}
+		# 	can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		# }	
+		# trigger_if = {
+		# 	limit = {
+		# 		root.liege_or_court_owner = {
+		# 			uses_roman_govt = yes
+		# 			highest_held_title_tier = tier_empire
+		# 		}
+		# 	}
+		# 	is_ruler = no
+		# }
 	}
 
 	on_get_position = {
@@ -692,7 +727,18 @@ councillor_court_chaplain = {
 	
 	valid_character = {
 		exists = root.liege_or_court_owner
-		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }		
+		
+		trigger_if = {
+			limit = {
+				root.liege_or_court_owner = {
+					OR = {
+						NOT = { uses_roman_govt = yes }
+						NOT = { uses_islamic_empire_govt = yes }
+					}
+				}				
+			}
+			can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }		
+		}	
 		trigger_if = {
 			limit = {
 				root.liege_or_court_owner = {
@@ -700,9 +746,16 @@ councillor_court_chaplain = {
 					highest_held_title_tier = tier_empire
 				}
 			}
-			NOT = { has_primary_title = title:k_orthodox }
-			OR = {
+			trigger_if = {
+				limit = {
+					is_ruler = yes
+				}
+				NOT = { has_primary_title = title:k_orthodox }
 				has_government = theocracy_government
+			}	
+			NOT = { has_trait = junior_emperor }		
+			OR = {
+				
 				has_trait = devoted
 				# has_trait = priest
 				has_trait_rank = {
@@ -715,6 +768,8 @@ councillor_court_chaplain = {
 		trigger_if = {
 			limit = {
 				root.liege_or_court_owner = {
+					uses_roman_govt = no
+					highest_held_title_tier < tier_empire
 					faith = { 
 						has_doctrine = doctrine_clerical_succession_temporal_appointment
 						religion_tag = christianity_religion
