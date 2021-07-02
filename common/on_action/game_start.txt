@@ -759,6 +759,7 @@ on_game_start_after_lobby = {
 			## Update the Salary cost Tax Income negative modifier for the emperor
 			roman_administration_update_total_salary_cost = yes
 
+			## converting non roman vassals
 			every_vassal = {
 				if = {
 					limit = { uses_roman_govt = no NOT = { has_government = theocracy_government } }
@@ -772,6 +773,7 @@ on_game_start_after_lobby = {
 				}
 			}
 
+			## adding important title holders in global list and handing out popularity/legitimacy
 			every_vassal = {
 				if = {
 					limit = {
@@ -842,6 +844,51 @@ on_game_start_after_lobby = {
 						}
 					}
 				}
+			}
+
+			## vassal contracts
+			every_vassal = {
+				if = {
+					limit = {
+						highest_held_title_tier >= tier_duchy
+					}
+					set_variable = {
+						name = roman_administration_contract_level_tax
+						value = vassal_contract_obligation_level:imperial_obligation_tax
+					}
+					set_variable = {
+						name = roman_administration_contract_level_special_contract
+						value = vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
+					}
+
+					if = {
+						limit = {
+							has_government = roman_administration_doukaton_government
+						}
+						set_variable = {
+							name = roman_administration_contract_level_doukaton
+							value = vassal_contract_obligation_level:imperial_obligation_doukaton
+						}
+					}
+					if = {
+						limit = {
+							has_government = roman_administration_theme_government
+						}
+						set_variable = {
+							name = roman_administration_contract_level_theme
+							value = vassal_contract_obligation_level:imperial_obligation_theme
+						}
+					}
+					if = {
+						limit = {
+							has_government = roman_administration_kouratoreia_government
+						}
+						set_variable = {
+							name = roman_administration_contract_level_kouratoreia
+							value = vassal_contract_obligation_level:imperial_obligation_kouratoreia
+						}
+					}
+				}				
 			}
 		}
 

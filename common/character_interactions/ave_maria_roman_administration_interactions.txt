@@ -294,11 +294,13 @@ roman_administration_send_family_member_for_training = {
 			highest_held_title_tier >= tier_duchy 
 			uses_roman_govt = yes
 			NOT = { this = scope:actor }
-			NOT = { 
-				scope:secondary_recipient = {
-					is_courtier_of = prev
-				}
-			}
+		}
+		
+	}
+
+	is_valid = {
+		scope:secondary_recipient = {
+			NOT = { is_courtier_of = scope:recipient }			
 		}
 	}
 
@@ -1645,18 +1647,30 @@ roman_administration_change_vassal_contract = {
 							has_government = roman_administration_theme_government
 						}
 						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_theme }
+						set_variable = {
+							name = roman_administration_contract_level_theme
+							value = vassal_contract_obligation_level:imperial_obligation_theme
+						}
 					}
 					if = {
 						limit = {
 							has_government = roman_administration_doukaton_government
 						}
 						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_doukaton }
+						set_variable = {
+							name = roman_administration_contract_level_doukaton
+							value = vassal_contract_obligation_level:imperial_obligation_doukaton
+						}
 					}
 					if = {
 						limit = {
 							has_government = roman_administration_kouratoreia_government
 						}
 						roman_administration_set_obligation_if_changed_effect = { AM_OBLIGATION_TYPE = imperial_obligation_kouratoreia }
+						set_variable = {
+							name = roman_administration_contract_level_kouratoreia
+							value = vassal_contract_obligation_level:imperial_obligation_kouratoreia
+						}
 					}	
 					if = {
 						limit = {
@@ -1668,7 +1682,14 @@ roman_administration_change_vassal_contract = {
 						roman_administration_set_salary_level = { SALARY_OBLIGATION_TYPE = imperial_high_office_salary }
 					}				
 
-					
+					set_variable = {
+						name = roman_administration_contract_level_tax
+						value = vassal_contract_obligation_level:imperial_obligation_tax
+					}
+					set_variable = {
+						name = roman_administration_contract_level_special_contract
+						value = vassal_contract_obligation_level:ave_maria_roman_administration_special_contract
+					}
 					
 				}
 			}
