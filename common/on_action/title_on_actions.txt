@@ -638,6 +638,104 @@ on_title_gain = {
 				}
 				add_unpressed_claim = scope:title
 			}
+
+
+			### Transposing vassal contracts
+			if = {
+				limit = {
+					scope:previous_holder = {
+						exists = yes
+						is_alive = yes
+						has_variable = roman_administration_contract_level_tax
+					}
+				}
+				root = {
+					set_variable = {
+						name = roman_administration_contract_level_tax
+						value = scope:previous_holder.var:roman_administration_contract_level_tax
+					}
+					vassal_contract_set_obligation_level = { type = imperial_obligation_tax level = var:roman_administration_contract_level_tax }
+				}
+				scope:previous_holder = {
+					remove_variable = roman_administration_contract_level_tax
+				}
+			}
+			if = {
+				limit = {
+					scope:previous_holder = {
+						exists = yes
+						is_alive = yes
+						has_variable = roman_administration_contract_level_special_contract
+					}
+				}
+				root = {
+					set_variable = {
+						name = roman_administration_contract_level_special_contract
+						value = scope:previous_holder.var:roman_administration_contract_level_special_contract
+					}
+					vassal_contract_set_obligation_level = { type = imperial_obligation_tax level = var:roman_administration_contract_level_special_contract }
+				}
+				scope:previous_holder = {
+					remove_variable = roman_administration_contract_level_special_contract
+				}
+			}
+			if = {
+				limit = {
+					scope:previous_holder = {
+						exists = yes
+						is_alive = yes
+						has_variable = roman_administration_contract_level_theme
+					}
+				}
+				root = {
+					set_variable = {
+						name = roman_administration_contract_level_theme
+						value = scope:previous_holder.var:roman_administration_contract_level_theme
+					}
+					vassal_contract_set_obligation_level = { type = imperial_obligation_tax level = var:roman_administration_contract_level_theme }
+				}
+				scope:previous_holder = {
+					remove_variable = roman_administration_contract_level_theme
+				}
+			}
+			if = {
+				limit = {
+					scope:previous_holder = {
+						exists = yes
+						is_alive = yes
+						has_variable = roman_administration_contract_level_doukaton
+					}
+				}
+				root = {
+					set_variable = {
+						name = roman_administration_contract_level_doukaton
+						value = scope:previous_holder.var:roman_administration_contract_level_doukaton
+					}
+					vassal_contract_set_obligation_level = { type = imperial_obligation_tax level = var:roman_administration_contract_level_doukaton }
+				}
+				scope:previous_holder = {
+					remove_variable = roman_administration_contract_level_doukaton
+				}
+			}
+			if = {
+				limit = {
+					scope:previous_holder = {
+						exists = yes
+						is_alive = yes
+						has_variable = roman_administration_contract_level_kouratoreia
+					}
+				}
+				root = {
+					set_variable = {
+						name = roman_administration_contract_level_kouratoreia
+						value = scope:previous_holder.var:roman_administration_contract_level_kouratoreia
+					}
+					vassal_contract_set_obligation_level = { type = imperial_obligation_tax level = var:roman_administration_contract_level_kouratoreia }
+				}
+				scope:previous_holder = {
+					remove_variable = roman_administration_contract_level_kouratoreia
+				}
+			}
 		}
 
 		## CHECKING IF YOU ARE NOT ADMINISTRATIVE AND IN THE EMPIRE
