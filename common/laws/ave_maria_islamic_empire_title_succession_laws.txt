@@ -53,13 +53,25 @@ title_succession_laws = {
 					#this = title:d_shiite
 				}
 			}
+			dynasty = dynasty:589
 		}
 		can_pass = {
 			can_change_title_law_trigger = yes
 		}
 		can_title_have = {
 			OR = {
-				this = title:e_egypt
+				AND = {
+					this = title:e_egypt
+					holder = {
+						dynasty = dynasty:589
+					}
+				}
+				AND = {
+					this = title:k_egypt
+					holder = {
+						dynasty = dynasty:589
+					}
+				}
 				#this = title:d_shiite
 			}
 		}
