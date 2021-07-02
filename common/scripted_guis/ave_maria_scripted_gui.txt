@@ -282,15 +282,8 @@ am_institutions_roman_administration_get_military_officials_list = {
 	scope = character
 	
 	effect = {
-		## If root is the emperor
-		if = {
-			limit = {
-				root = {
-					primary_title = {
-						this = title:e_byzantium
-					}
-				}				
-			}
+
+		title:e_byzantium.holder = {
 			## Clear variable always before
 			clear_variable_list = list_roman_administration_military_officials
 			clear_variable_list = list_roman_administration_military_officials_minus_high_officials
@@ -343,72 +336,9 @@ am_institutions_roman_administration_get_military_officials_list = {
 				list = list_roman_administration_military_officials
 				order_by = roman_administration_army_pecking_order_character
 			}
-		}
-		## If root is not the emperor
-		if = {
-			limit = {
-				root = {
-					NOT = {
-						primary_title = {
-							this = title:e_byzantium
-						}
-					}	
-					any_liege_or_above = {
-						primary_title = {
-							this = title:e_byzantium
-						}
-					}				
-				}				
-			}
-			title:e_byzantium.holder = {
-				## Clear variable always before
-				clear_variable_list = list_roman_administration_military_officials
-				clear_variable_list = list_roman_administration_military_officials_minus_high_officials
-				clear_variable_list = list_roman_administration_imperial_tagma_officials
 
-				## All the military officials
-				every_vassal = {
-					limit = {
-						roman_administration_holds_military_title_trigger = yes
-					}
-					root = {
-						add_to_variable_list = {
-							name = list_roman_administration_military_officials
-							target = prev
-						}
-					}				
-				}
-				## provincial military officials
-				every_vassal = {
-					limit = {
-						#roman_administration_holds_military_title_trigger = yes
-						OR = {
-							roman_administration_holds_doukaton_title_trigger = yes
-							roman_administration_holds_strategos_title_trigger = yes
-						}
-						roman_administration_holds_tagma_title_trigger = no
-					}
-					root = {
-						add_to_variable_list = {
-							name = list_roman_administration_military_officials_minus_high_officials
-							target = prev
-						}
-					}				
-				}
-				## Only Imperial Tagma officials
-				every_vassal = {
-					limit = {
-						roman_administration_holds_tagma_title_trigger = yes
-					}
-					root = {
-						add_to_variable_list = {
-							name = list_roman_administration_imperial_tagma_officials
-							target = prev
-						}
-					}				
-				}
-			}
 		}
+
 	}
 
 }
@@ -506,7 +436,7 @@ am_institutions_roman_administration_get_doukaton_list = {
 		if = {
 			limit = {
 				root = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}				
@@ -519,7 +449,7 @@ am_institutions_roman_administration_get_doukaton_list = {
 					limit = {
 						has_government = roman_administration_doukaton_government
 						NOT = {
-							primary_title = {
+							any_held_title = {
 								this = title:d_antioch
 							}
 						}
@@ -538,7 +468,7 @@ am_institutions_roman_administration_get_doukaton_list = {
 			limit = {
 				root = {
 					NOT = {
-						primary_title = {
+						any_held_title = {
 							this = title:e_byzantium
 						}
 					}	
@@ -557,7 +487,7 @@ am_institutions_roman_administration_get_doukaton_list = {
 					limit = {
 						has_government = roman_administration_doukaton_government
 						NOT = {
-							primary_title = {
+							any_held_title = {
 								this = title:d_antioch
 							}
 						}
@@ -581,7 +511,7 @@ am_institutions_roman_administration_get_theme_list = {
 		if = {
 			limit = {
 				root = {
-					primary_title = {
+					any_held_title = {
 						this = title:e_byzantium
 					}
 				}				
@@ -594,7 +524,7 @@ am_institutions_roman_administration_get_theme_list = {
 					limit = {
 						has_government = roman_administration_theme_government
 						NOT = {
-							primary_title = {
+							any_held_title = {
 								this = title:d_anatolia
 							}
 						}
@@ -613,12 +543,12 @@ am_institutions_roman_administration_get_theme_list = {
 			limit = {
 				root = {
 					NOT = {
-						primary_title = {
+						any_held_title = {
 							this = title:e_byzantium
 						}
 					}	
 					any_liege_or_above = {
-						primary_title = {
+						any_held_title = {
 							this = title:e_byzantium
 						}
 					}				
@@ -632,7 +562,7 @@ am_institutions_roman_administration_get_theme_list = {
 					limit = {
 						has_government = roman_administration_theme_government
 						NOT = {
-							primary_title = {
+							any_held_title = {
 								this = title:d_anatolia
 							}
 						}
